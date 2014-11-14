@@ -14,7 +14,7 @@
         "php": ">=5.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": "~4.3.5",
         "phalcon/zephir": "dev-master"
     },
     "scripts": {
