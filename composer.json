@@ -18,7 +18,12 @@
         "phalcon/zephir": "dev-master"
     },
     "scripts": {
-        "post-install-cmd": "./ext/install",
-        "post-update-cmd": "./ext/install"
+        "pre-install-cmd": [
+            "git submodule --quiet update --init --recursive",
+            "cd vendor/phalcon/zephir; ./unit-tests/ci/before_install.sh; ./install",
+            "./vendor/bin/zephir generate",
+            "cd ext; ./install; phpenv config-add ../tests/ci/ice.ini",
+            "ulimit -c unlimited || true"
+        ]
     }
 }
