@@ -14,11 +14,11 @@
         "php": ">=5.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
+        "phpunit/phpunit": "~4.3.5",
         "phalcon/zephir": "dev-master"
     },
     "scripts": {
-        "post-install-cmd": "./ext/install",
-        "post-update-cmd": "./ext/install"
+        "post-install-cmd": "cd ext; ./install; phpenv config-add ../tests/ci/ice.ini",
+        "post-update-cmd": "cd ext; ./install;"
     }
 }
