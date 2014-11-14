@@ -11,10 +11,12 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, _generate);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_create, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
+	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_update, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
+	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_tokens_method_entry) {

@@ -77,11 +77,15 @@ class Model extends Driver implements DriverInterface
      * @param array roles User's roles
      * @return void
      */
-    protected function completeLogin(<Users> user, array roles = [])
+    protected function completeLogin(var user, array roles = [])
     {
-        user->completeLogin();
+        if user instanceof Users {
+            user->completeLogin();
 
-        return parent::completeLogin(user->serialize(), roles);
+            return parent::completeLogin(user->serialize(), roles);
+        } else {
+            return false;
+        }
     }
 
     /**

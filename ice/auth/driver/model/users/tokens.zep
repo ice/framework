@@ -3,6 +3,7 @@ namespace Ice\Auth\Driver\Model\Users;
 
 use Ice\Text;
 use Ice\Mvc\Model;
+use Ice\Validation;
 
 /**
  * Model user's Tokens.
@@ -44,9 +45,11 @@ class Tokens extends Model
     /**
      * Generate a new unique token and create the token
      *
+     * @param array fields Fields to save or valid fields
+     * @param object extra Extra validation
      * @return mixed
      */
-    public function create(var fields = [])
+    public function create(var fields = [], <Validation> extra = null)
     {
         let this->{"token"} = this->_generate();
 
@@ -74,9 +77,11 @@ class Tokens extends Model
     /**
      * Generate a new unique token and update the token
      *
+     * @param array fields Fields to save or valid fields
+     * @param object extra Extra validation
      * @return mixed
      */
-    public function update(var fields = [])
+    public function update(var fields = [], <Validation> extra = null)
     {
         let this->{"token"} = this->_generate();
 

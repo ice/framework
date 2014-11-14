@@ -168,17 +168,17 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
 	}
 
 
-	if (!(zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'user' must be an instance of 'Ice\\Auth\\Driver\\Model\\Users'", "", 0);
-		return;
+	if (zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC)) {
+		ZEPHIR_CALL_METHOD(NULL, user, "completelogin", NULL);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&_1, user, "serialize",  NULL);
+		zephir_check_call_status();
+		ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "completelogin", &_0, _1, roles);
+		zephir_check_call_status();
+		RETURN_MM();
+	} else {
+		RETURN_MM_BOOL(0);
 	}
-	ZEPHIR_CALL_METHOD(NULL, user, "completelogin", NULL);
-	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_1, user, "serialize",  NULL);
-	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "completelogin", &_0, _1, roles);
-	zephir_check_call_status();
-	RETURN_MM();
 
 }
 
@@ -347,7 +347,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				ZEPHIR_CALL_METHOD(&_7, role, "get", &_8, _4);
 				zephir_check_temp_parameter(_4);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 164);
+				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 168);
 			}
 			_6->funcs->dtor(_6 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_9);
