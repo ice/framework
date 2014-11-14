@@ -1,0 +1,24 @@
+{
+    "name": "iceframework/framework",
+    "description": "Simple and fast PHP framework delivered as C-extension",
+    "keywords": ["extension", "php", "framework", "ice"],
+    "homepage": "http://www.iceframework.org",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Ice Team",
+            "email": "info@iceframework.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "phalcon/zephir": "dev-master"
+    },
+    "scripts": {
+        "post-install-cmd": "./ext/install",
+        "post-update-cmd": "./ext/install"
+    }
+}
