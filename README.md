@@ -21,7 +21,7 @@ There are two ways to compile Ice framework*:
 #### Compile from `/ext`:
 Install using composer:
 ```sh
-composer install iceframework/framework --no-dev
+composer require iceframework/framework:dev-dev
 ```
 
 ###### or clone and install manualy:
@@ -39,6 +39,7 @@ extension=ice.so
 Finally restart the webserver
 
 #### Build by zephir* (generate, compile and install extension):
+###### By default `../vendor/bin/zephir` runns zephir. You must run zephir begin in the `/framework` directory to build Ice:
 ```sh
 cd framework/
 ../vendor/bin/zephir build
@@ -47,19 +48,11 @@ cd framework/
 *if you don't have zephir you need to compile zephir.
 
 ##### Compile zephir
-###### You can install zephir using [composer](https://getcomposer.org/) (recommended way):
-```sh
-composer install iceframework/framework --no-scripts
-```
-
-If you already have ice and you are inside `/framework` folder:
+###### You can install zephir using [composer](https://getcomposer.org/). If you already have ice and you are inside `/framework` directory:
 ```sh
 cd ../
 composer require phalcon/zephir
 ```
-
-Then by default `../vendor/bin/zephir` runns zephir.
-
 
 ###### or clone zephir repo:
 ```sh

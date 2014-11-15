@@ -18,7 +18,7 @@
         "phalcon/zephir": "dev-master"
     },
     "scripts": {
-        "post-install-cmd": "cd ext; ./install; phpenv config-add ../tests/ci/ice.ini",
-        "post-update-cmd": "cd ext; ./install;"
+        "post-install-cmd": ["./install"],
+        "post-update-cmd": ["./install"]
     }
 }
