@@ -6,7 +6,7 @@ php:
   - 5.6
 
 before_install:
-  - composer install --prefer-source
+  - composer install --prefer-source --no-scripts
 
 before_script:
   - git submodule --quiet update --init --recursive
