@@ -6,8 +6,7 @@ php:
   - 5.6
 
 before_install:
-  - composer --prefer-source --no-scripts install
-  - composer require phalcon/zephir:dev-master
+  - composer install --prefer-source --no-scripts
 
 before_script:
   - git submodule --quiet update --init --recursive
