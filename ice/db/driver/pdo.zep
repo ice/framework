@@ -35,22 +35,22 @@ class Pdo implements DbInterface
         let this->_client = new \Pdo(dsn, user, password, options);
     }
 
-    public function findOne(string! from, var filters = [], array fields = [], array options = [])
+    public function findOne(string! from, var filters = [], array options = [], array fields = [])
     {
         var result;
 
         let options["limit"] = 1,
-            result = this->select(from, filters, fields, options);
+            result = this->select(from, filters, options, fields);
 
         return new Arr(result->$fetch(\Pdo::FETCH_ASSOC));
 
     }
 
-    public function find(string! from, var filters = [], array fields = [], array options = [])
+    public function find(string! from, var filters = [], array options = [], array fields = [])
     {
         var result;
 
-        let result = this->select(from, filters, fields, options);
+        let result = this->select(from, filters, options, fields);
 
         return new Arr(result->fetchAll(\Pdo::FETCH_ASSOC));
     }
@@ -185,7 +185,7 @@ class Pdo implements DbInterface
         return [sql, values];
     }
 
-    public function select(string! from, var filters = [], array fields = [], array options = [])
+    public function select(string! from, var filters = [], array options = [], array fields = [])
     {
         var columns, sql, filtered, values, query;
 

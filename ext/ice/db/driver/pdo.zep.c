@@ -139,12 +139,12 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *result = NULL, *_0, *_1 = NULL, *_2;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1 = NULL, *_2;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -161,24 +161,24 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
 	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
+	}
 
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_LONG(_0, 1);
 	zephir_array_update_string(&options, SL("limit"), &_0, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, from, filters, fields, options);
+	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, from, filters, options, fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
 	ZEPHIR_INIT_VAR(_2);
@@ -194,12 +194,12 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *result = NULL, *_0 = NULL, *_1;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0 = NULL, *_1;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -216,21 +216,21 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
 	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
+	}
 
 
-	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, from, filters, fields, options);
+	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, from, filters, options, fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
 	ZEPHIR_INIT_VAR(_1);
@@ -512,12 +512,12 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *columns = NULL, *sql, *filtered = NULL, *values, *query = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5, *_6 = NULL;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *columns = NULL, *sql, *filtered = NULL, *values, *query = NULL, *_1, *_2 = NULL, *_3, *_4 = NULL, *_5, *_6 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -534,17 +534,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
+	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
 	}
 
 
