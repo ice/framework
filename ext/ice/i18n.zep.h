@@ -8,6 +8,7 @@ PHP_METHOD(Ice_I18n, fetch);
 PHP_METHOD(Ice_I18n, lang);
 PHP_METHOD(Ice_I18n, get);
 PHP_METHOD(Ice_I18n, load);
+PHP_METHOD(Ice_I18n, _);
 PHP_METHOD(Ice_I18n, translate);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n___construct, 0, 0, 0)
@@ -27,6 +28,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n_load, 0, 0, 1)
 	ZEND_ARG_INFO(0, lang)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n__, 0, 0, 1)
+	ZEND_ARG_INFO(0, str)
+	ZEND_ARG_ARRAY_INFO(0, values, 1)
+	ZEND_ARG_INFO(0, lang)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n_translate, 0, 0, 1)
 	ZEND_ARG_INFO(0, str)
 	ZEND_ARG_ARRAY_INFO(0, values, 1)
@@ -39,6 +46,7 @@ ZEPHIR_INIT_FUNCS(ice_i18n_method_entry) {
 	PHP_ME(Ice_I18n, lang, arginfo_ice_i18n_lang, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, get, arginfo_ice_i18n_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, load, arginfo_ice_i18n_load, ZEND_ACC_PRIVATE)
+	PHP_ME(Ice_I18n, _, arginfo_ice_i18n__, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, translate, arginfo_ice_i18n_translate, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
