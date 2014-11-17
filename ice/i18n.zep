@@ -108,6 +108,14 @@ class I18n
     }
 
     /**
+     * Alias of translate
+     */
+    public function _(string! str, array values = null, string lang = null) -> string
+    {
+        return this->translate(str, values, lang);
+    }
+
+    /**
      * Translation/internationalization function. strtr() or sprintf is used for replacing parameters.
      *
      * @param string $string text to translate

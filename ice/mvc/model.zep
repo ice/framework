@@ -66,11 +66,11 @@ abstract class Model extends Arr
         }
     }
 
-    public function load(var filters)
+    public function load(var filters, array options = [])
     {
         var result, instances, data;
 
-        let result = this->_db->find(this->_from, filters),
+        let result = this->_db->find(this->_from, filters, options),
             instances = [];
 
         if result->count() {
@@ -95,13 +95,13 @@ abstract class Model extends Arr
         }
     }
 
-    public static function find(var filters = null)
+    public static function find(var filters = null, array options = [])
     {
         var result, model, instance;
 
         let model = get_called_class(),
             instance = create_instance(model),
-            result = instance->load(filters);
+            result = instance->load(filters, options);
 
         return result;
     }

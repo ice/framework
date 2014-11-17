@@ -252,6 +252,50 @@ PHP_METHOD(Ice_I18n, load) {
 }
 
 /**
+ * Alias of translate
+ */
+PHP_METHOD(Ice_I18n, _) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *values = NULL;
+	zval *str_param = NULL, *values_param = NULL, *lang_param = NULL;
+	zval *str = NULL, *lang = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &str_param, &values_param, &lang_param);
+
+	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+		zephir_get_strval(str, str_param);
+	} else {
+		ZEPHIR_INIT_VAR(str);
+		ZVAL_EMPTY_STRING(str);
+	}
+	if (!values_param) {
+	ZEPHIR_INIT_VAR(values);
+	array_init(values);
+	} else {
+		zephir_get_arrval(values, values_param);
+	}
+	if (!lang_param) {
+		ZEPHIR_INIT_VAR(lang);
+		ZVAL_EMPTY_STRING(lang);
+	} else {
+		zephir_get_strval(lang, lang_param);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "translate", NULL, str, values, lang);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Translation/internationalization function. strtr() or sprintf is used for replacing parameters.
  *
  * @param string $string text to translate
@@ -298,7 +342,7 @@ PHP_METHOD(Ice_I18n, translate) {
 	if (!(lang && Z_STRLEN_P(lang))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
-		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 121 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 129 TSRMLS_CC);
 		zephir_get_strval(_2, _1);
 		ZEPHIR_CPY_WRT(lang, _2);
 	}

@@ -229,19 +229,25 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 
 PHP_METHOD(Ice_Mvc_Model, load) {
 
-	zval *_6 = NULL;
 	zend_object_iterator *_3;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *filters, *result = NULL, *instances, *data = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL;
+	zval *options = NULL, *_6 = NULL;
+	zval *filters, *options_param = NULL, *result = NULL, *instances, *data = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &filters);
+	zephir_fetch_params(1, 1, 1, &filters, &options_param);
 
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(options);
+		array_init(options);
+	} else {
+		zephir_get_arrval(options, options_param);
+	}
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_db"), PH_NOISY_CC);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_from"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&result, _0, "find", NULL, _1, filters);
+	ZEPHIR_CALL_METHOD(&result, _0, "find", NULL, _1, filters, options);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(instances);
 	array_init(instances);
@@ -310,13 +316,20 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 PHP_METHOD(Ice_Mvc_Model, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *filters = NULL, *result = NULL, *model, *instance;
+	zval *options = NULL;
+	zval *filters = NULL, *options_param = NULL, *result = NULL, *model, *instance;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &filters);
+	zephir_fetch_params(1, 0, 2, &filters, &options_param);
 
 	if (!filters) {
 		filters = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(options);
+		array_init(options);
+	} else {
+		zephir_get_arrval(options, options_param);
 	}
 
 
@@ -325,7 +338,7 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 	ZEPHIR_INIT_VAR(instance);
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(instance, model TSRMLS_CC);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&result, instance, "load", NULL, filters);
+	ZEPHIR_CALL_METHOD(&result, instance, "load", NULL, filters, options);
 	zephir_check_call_status();
 	RETURN_CCTOR(result);
 
