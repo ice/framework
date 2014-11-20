@@ -61,11 +61,11 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
  */
 PHP_METHOD(Ice_Cli_Console, handle) {
 
-	zend_class_entry *_8;
+	zend_class_entry *_9;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *arguments = NULL, *router = NULL, *handled = NULL, *module = NULL, *modules, *namespace = NULL, *path, *className = NULL, *loader, *dispatcher = NULL, *task = NULL, *_0, *_1 = NULL, _2 = zval_used_for_init, *_3 = NULL, *_6, *_7 = NULL, *_9, *_10, *_11 = NULL, *_12, *_13, *_14, *_15;
+	zval *arguments = NULL, *router = NULL, *handled = NULL, *module = NULL, *modules, *namespace = NULL, *path, *className = NULL, *loader, *dispatcher = NULL, *task = NULL, *_0, *_1 = NULL, _2 = zval_used_for_init, *_3 = NULL, *_6, *_7 = NULL, *_8 = NULL, *_10, *_11, *_12 = NULL, *_13, *_14, *_15, *_16;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &arguments);
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&router, _0, "getrouter",  NULL);
+	ZEPHIR_CALL_METHOD(&router, _0, "getrouter", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&handled, router, "handle", NULL, arguments);
 	zephir_check_call_status();
@@ -106,7 +106,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	ZEPHIR_OBS_VAR(path);
 	if (zephir_array_isset_string_fetch(&path, module, SS("path"), 0 TSRMLS_CC)) {
 		if (!((zephir_file_exists(path TSRMLS_CC) == SUCCESS))) {
-			ZEPHIR_INIT_LNVAR(_1);
+			ZEPHIR_INIT_NVAR(_1);
 			object_init_ex(_1, ice_exception_ce);
 			ZEPHIR_SINIT_NVAR(_2);
 			ZVAL_STRING(&_2, "Module definition path '%s' doesn't exist", 0);
@@ -138,45 +138,45 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _3, "register", NULL);
 	zephir_check_call_status();
-	ZEPHIR_INIT_LNVAR(_1);
-	ZEPHIR_CONCAT_VSV(_1, namespace, "\\", className);
-	ZEPHIR_CPY_WRT(className, _1);
+	ZEPHIR_INIT_VAR(_7);
+	ZEPHIR_CONCAT_VSV(_7, namespace, "\\", className);
+	ZEPHIR_CPY_WRT(className, _7);
 	ZEPHIR_INIT_NVAR(module);
-	zephir_fetch_safe_class(_7, className);
-	_8 = zend_fetch_class(Z_STRVAL_P(_7), Z_STRLEN_P(_7), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-	object_init_ex(module, _8);
+	zephir_fetch_safe_class(_8, className);
+	_9 = zend_fetch_class(Z_STRVAL_P(_8), Z_STRLEN_P(_8), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+	object_init_ex(module, _9);
 	if (zephir_has_constructor(module TSRMLS_CC)) {
-		_9 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, module, "__construct", NULL, _9);
+		_10 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, module, "__construct", NULL, _10);
 		zephir_check_call_status();
 	}
-	_10 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&dispatcher, _10, "getdispatcher",  NULL);
+	_11 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&dispatcher, _11, "getdispatcher", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_11, dispatcher, "gethandlersuffix",  NULL);
+	ZEPHIR_CALL_METHOD(&_12, dispatcher, "gethandlersuffix", NULL);
 	zephir_check_call_status();
-	ZEPHIR_INIT_LNVAR(_1);
-	ZEPHIR_CONCAT_VSV(_1, namespace, "\\", _11);
-	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setdefaultnamespace", NULL, _1);
+	ZEPHIR_INIT_LNVAR(_7);
+	ZEPHIR_CONCAT_VSV(_7, namespace, "\\", _12);
+	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setdefaultnamespace", NULL, _7);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, module, "registerautoloaders", NULL);
 	zephir_check_call_status();
-	_12 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, module, "registerservices", NULL, _12);
+	_13 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, module, "registerservices", NULL, _13);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_6, handled, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 68 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, _6);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_13, handled, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 69 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _13);
+	zephir_array_fetch_string(&_14, handled, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 69 TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _14);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_14, handled, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 70 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _14);
+	zephir_array_fetch_string(&_15, handled, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 70 TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _15);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_15, handled, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 71 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _15);
+	zephir_array_fetch_string(&_16, handled, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 71 TSRMLS_CC);
+	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _16);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&task, dispatcher, "dispatch",  NULL);
+	ZEPHIR_CALL_METHOD(&task, dispatcher, "dispatch", NULL);
 	zephir_check_call_status();
 	RETURN_CCTOR(task);
 

@@ -90,7 +90,7 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 	zephir_get_strval(text, text_param);
 
 
-	ZEPHIR_CALL_METHOD(&iv, this_ptr, "generateinputvector",  NULL);
+	ZEPHIR_CALL_METHOD(&iv, this_ptr, "generateinputvector", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_0, "serialize", &_1, text);
 	zephir_check_call_status();
@@ -130,7 +130,7 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getivsize",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getivsize", NULL);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, _0);
 	zephir_check_call_status();
@@ -342,7 +342,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	ZEPHIR_INIT_VAR(_2);
 	mod_function(_2, len, _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(pad);
-	zephir_sub_function(pad, _0, _2 TSRMLS_CC);
+	sub_function(pad, _0, _2 TSRMLS_CC);
 	ZEPHIR_CALL_FUNCTION(&_3, "chr", &_4, pad);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_5, "str_repeat", &_6, _3, pad);

@@ -273,7 +273,7 @@ PHP_METHOD(Ice_Cookies, get) {
 			_3 = zephir_fetch_nproperty_this(this_ptr, SL("_encrypt"), PH_NOISY_CC);
 			if (zephir_is_true(_3)) {
 				_4 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-				ZEPHIR_CALL_METHOD(&_5, _4, "getcrypt",  NULL);
+				ZEPHIR_CALL_METHOD(&_5, _4, "getcrypt", NULL);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&_6, _5, "decrypt", NULL, value);
 				zephir_check_call_status();
@@ -325,7 +325,7 @@ PHP_METHOD(Ice_Cookies, set) {
 	if (zephir_is_true(_1)) {
 		if (!(ZEPHIR_IS_EMPTY(value))) {
 			_2 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_3, _2, "getcrypt",  NULL);
+			ZEPHIR_CALL_METHOD(&_3, _2, "getcrypt", NULL);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&_4, _3, "encrypt", NULL, value);
 			zephir_check_call_status();
@@ -409,9 +409,9 @@ PHP_METHOD(Ice_Cookies, salt) {
 		return;
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_2, _1, "getrequest",  NULL);
+	ZEPHIR_CALL_METHOD(&_2, _1, "getrequest", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&userAgent, _2, "getuseragent",  NULL);
+	ZEPHIR_CALL_METHOD(&userAgent, _2, "getuseragent", NULL);
 	zephir_check_call_status();
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_salt"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_4);

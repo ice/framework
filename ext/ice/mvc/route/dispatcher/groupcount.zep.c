@@ -97,12 +97,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setData) {
 		ZEPHIR_INIT_VAR(data);
 		array_init(data);
 	} else {
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
+	data = data_param;
 
 	}
 

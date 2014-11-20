@@ -155,12 +155,12 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	ZEPHIR_CALL_METHOD(&roles, this_ptr, "getroles", NULL, _3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_4);
-	ZEPHIR_CALL_METHOD(&_0, roles, "count",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, roles, "count", NULL);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_CALL_METHOD(&_5, roles, "getiterator",  NULL);
+		ZEPHIR_CALL_METHOD(&_5, roles, "getiterator", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_4, _5, "current",  NULL);
+		ZEPHIR_CALL_METHOD(&_4, _5, "current", NULL);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(_4, 0);

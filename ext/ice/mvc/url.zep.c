@@ -93,7 +93,7 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getstaticuri",  NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getstaticuri", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VV(return_value, _0, uri);
 	RETURN_MM();
@@ -155,7 +155,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 			local = 1;
 		}
 	}
-	ZEPHIR_CALL_METHOD(&baseUri, this_ptr, "getbaseuri",  NULL);
+	ZEPHIR_CALL_METHOD(&baseUri, this_ptr, "getbaseuri", NULL);
 	zephir_check_call_status();
 	if (local) {
 		ZEPHIR_INIT_VAR(_5);

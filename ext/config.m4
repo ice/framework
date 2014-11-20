@@ -2,6 +2,12 @@ PHP_ARG_ENABLE(ice, whether to enable ice, [ --enable-ice   Enable Ice])
 
 if test "$PHP_ICE" = "yes"; then
 
+	
+
+	if ! test "x" = "x"; then
+		PHP_EVAL_LIBLINE(, ICE_SHARED_LIBADD)
+	fi
+
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
 	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/exit.c ice/arr.zep.c
 	ice/auth.zep.c
@@ -79,6 +85,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/validation/validator/between.zep.c
 	ice/validation/validator/digit.zep.c
 	ice/validation/validator/email.zep.c
+	ice/validation/validator/file.zep.c
 	ice/validation/validator/in.zep.c
 	ice/validation/validator/length.zep.c
 	ice/validation/validator/notin.zep.c
@@ -90,7 +97,8 @@ if test "$PHP_ICE" = "yes"; then
 	ice/validation/validator/with.zep.c
 	ice/validation/validator/without.zep.c
 	ice/version.zep.c "
-	PHP_NEW_EXTENSION(ice, $ice_sources, $ext_shared)
+	PHP_NEW_EXTENSION(ice, $ice_sources, $ext_shared,, )
+	PHP_SUBST(ICE_SHARED_LIBADD)
 
 	old_CPPFLAGS=$CPPFLAGS
 	CPPFLAGS="$CPPFLAGS $INCLUDES"
@@ -132,4 +140,5 @@ if test "$PHP_ICE" = "yes"; then
 	CPPFLAGS=$old_CPPFLAGS
 
 	PHP_INSTALL_HEADERS([ext/ice], [php_ICE.h])
+
 fi

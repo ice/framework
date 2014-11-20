@@ -543,7 +543,6 @@ PHP_METHOD(Ice_Dump, output) {
 			  ; zephir_hash_get_current_data_ex(_38, (void**) &_39, &_37) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_38, &_37)
 			) {
-				ZEPHIR_GET_HMKEY(key, _38, _37);
 				ZEPHIR_GET_HVALUE(value, _39);
 				_40 = zephir_fetch_nproperty_this(this_ptr, SL("_methods"), PH_NOISY_CC);
 				if (!(zephir_fast_in_array(className, _40 TSRMLS_CC))) {
@@ -824,7 +823,7 @@ PHP_METHOD(Ice_Dump, vars) {
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
 	) {
-		ZEPHIR_GET_HMKEY(key, _3, _2);
+		ZEPHIR_GET_HKEY(key, _3, _2);
 		ZEPHIR_GET_HVALUE(value, _4);
 		ZEPHIR_INIT_LNVAR(_6);
 		ZEPHIR_CONCAT_SV(_6, "var ", key);

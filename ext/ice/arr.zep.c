@@ -153,12 +153,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data_param);
 
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
+	data = data_param;
 
 
 
@@ -208,12 +203,7 @@ PHP_METHOD(Ice_Arr, setData) {
 		ZEPHIR_INIT_VAR(data);
 		array_init(data);
 	} else {
-	if (unlikely(Z_TYPE_P(data_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		data = data_param;
+	data = data_param;
 
 	}
 
@@ -328,7 +318,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 		ZEPHIR_INIT_NVAR(parts);
 		zephir_fast_explode(parts, delimiter, path, LONG_MAX TSRMLS_CC);
 	}
-	ZEPHIR_CALL_METHOD(&value, this_ptr, "toarray",  NULL);
+	ZEPHIR_CALL_METHOD(&value, this_ptr, "toarray", NULL);
 	zephir_check_call_status();
 	zephir_is_iterable(parts, &_1, &_0, 0, 0, "ice/arr.zep", 142);
 	for (
@@ -370,11 +360,11 @@ PHP_METHOD(Ice_Arr, toArray) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HMKEY(key, _2, _1);
+		ZEPHIR_GET_HKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
 		if (Z_TYPE_P(value) == IS_OBJECT) {
 			if ((zephir_method_exists_ex(value, SS("toarray") TSRMLS_CC) == SUCCESS)) {
-				ZEPHIR_CALL_METHOD(&_4, value, "toarray",  NULL);
+				ZEPHIR_CALL_METHOD(&_4, value, "toarray", NULL);
 				zephir_check_call_status();
 				zephir_array_update_zval(&tmp, key, &_4, PH_COPY | PH_SEPARATE);
 			} else {

@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 		ZEPHIR_CALL_CE_STATIC(&token, ice_auth_driver_model_users_tokens_ce, "findone", &_2, _3);
 		zephir_check_call_status();
 		if (zephir_is_true(token)) {
-			ZEPHIR_CALL_METHOD(&user, token, "getuser",  NULL);
+			ZEPHIR_CALL_METHOD(&user, token, "getuser", NULL);
 			zephir_check_call_status();
 			_4 = zephir_is_true(user);
 			if (_4) {
@@ -80,14 +80,14 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 				ZEPHIR_OBS_VAR(_6);
 				zephir_read_property_zval(&_6, token, _5, PH_NOISY_CC);
 				_7 = zephir_fetch_nproperty_this(this_ptr, SL("_request"), PH_NOISY_CC);
-				ZEPHIR_CALL_METHOD(&_8, _7, "getuseragent",  NULL);
+				ZEPHIR_CALL_METHOD(&_8, _7, "getuseragent", NULL);
 				zephir_check_call_status();
 				ZEPHIR_CALL_FUNCTION(&_9, "sha1", &_10, _8);
 				zephir_check_call_status();
 				_4 = ZEPHIR_IS_IDENTICAL(_6, _9);
 			}
 			if (_4) {
-				ZEPHIR_CALL_METHOD(&userRoles, user, "getroles",  NULL);
+				ZEPHIR_CALL_METHOD(&userRoles, user, "getroles", NULL);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(roles);
 				array_init(roles);
@@ -98,7 +98,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 					_11->funcs->get_current_data(_11, &tmp TSRMLS_CC);
 					role = *tmp;
 					}
-					ZEPHIR_CALL_METHOD(&_12, role, "getrole",  NULL);
+					ZEPHIR_CALL_METHOD(&_12, role, "getrole", NULL);
 					zephir_check_call_status();
 					ZEPHIR_CPY_WRT(role, _12);
 					ZEPHIR_INIT_NVAR(_1);
@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
 	if (zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC)) {
 		ZEPHIR_CALL_METHOD(NULL, user, "completelogin", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_1, user, "serialize",  NULL);
+		ZEPHIR_CALL_METHOD(&_1, user, "serialize", NULL);
 		zephir_check_call_status();
 		ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "completelogin", &_0, _1, roles);
 		zephir_check_call_status();
@@ -220,7 +220,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 	}
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_user"), PH_NOISY_CC);
 	if (!(zephir_is_true(_2))) {
-		ZEPHIR_CALL_METHOD(&_3, this_ptr, "autologin",  NULL);
+		ZEPHIR_CALL_METHOD(&_3, this_ptr, "autologin", NULL);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("_user"), _3 TSRMLS_CC);
 	}
@@ -328,7 +328,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 		ZEPHIR_CALL_METHOD(&_5, this_ptr, "hash", NULL, password);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_EQUAL(_0, _5)) {
-			ZEPHIR_CALL_METHOD(&userRoles, user, "getroles",  NULL);
+			ZEPHIR_CALL_METHOD(&userRoles, user, "getroles", NULL);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(roles);
 			array_init(roles);
@@ -339,7 +339,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				_6->funcs->get_current_data(_6, &tmp TSRMLS_CC);
 				role = *tmp;
 				}
-				ZEPHIR_CALL_METHOD(&_7, role, "getrole",  NULL);
+				ZEPHIR_CALL_METHOD(&_7, role, "getrole", NULL);
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(role, _7);
 				ZEPHIR_INIT_NVAR(_4);
@@ -370,7 +370,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 					zephir_check_call_status();
 					zephir_update_property_zval(token, SL("user_id"), _7 TSRMLS_CC);
 					_10 = zephir_fetch_nproperty_this(this_ptr, SL("_request"), PH_NOISY_CC);
-					ZEPHIR_CALL_METHOD(&_11, _10, "getuseragent",  NULL);
+					ZEPHIR_CALL_METHOD(&_11, _10, "getuseragent", NULL);
 					zephir_check_call_status();
 					ZEPHIR_CALL_FUNCTION(&_12, "sha1", &_13, _11);
 					zephir_check_call_status();
@@ -381,9 +381,9 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 					ZEPHIR_CALL_FUNCTION(&_16, "time", &_15);
 					zephir_check_call_status();
 					ZEPHIR_INIT_VAR(_17);
-					zephir_add_function(_17, _16, lifetime TSRMLS_CC);
+					zephir_add_function_ex(_17, _16, lifetime TSRMLS_CC);
 					zephir_update_property_zval(token, SL("expires"), _17 TSRMLS_CC);
-					ZEPHIR_CALL_METHOD(&_16, token, "create",  NULL);
+					ZEPHIR_CALL_METHOD(&_16, token, "create", NULL);
 					zephir_check_call_status();
 					if (ZEPHIR_IS_TRUE_IDENTICAL(_16)) {
 						_18 = zephir_fetch_nproperty_this(this_ptr, SL("_cookies"), PH_NOISY_CC);

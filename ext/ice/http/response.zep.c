@@ -416,7 +416,7 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 		zephir_check_call_status();
 		sendBody = 0;
 	}
-	ZEPHIR_CALL_METHOD(&_5, request, "ishead",  NULL);
+	ZEPHIR_CALL_METHOD(&_5, request, "ishead", NULL);
 	zephir_check_call_status();
 	if (zephir_is_true(_5)) {
 		sendBody = 0;
@@ -465,7 +465,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			ZEPHIR_CALL_FUNCTION(NULL, "header", &_12, _10);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_CALL_METHOD(&_10, this_ptr, "getprotocolversion",  NULL);
+			ZEPHIR_CALL_METHOD(&_10, this_ptr, "getprotocolversion", NULL);
 			zephir_check_call_status();
 			_5 = zephir_fetch_nproperty_this(this_ptr, SL("_status"), PH_NOISY_CC);
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
@@ -530,7 +530,7 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	zephir_check_call_status();
 	if (!(external)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&url, _1, "geturl",  NULL);
+		ZEPHIR_CALL_METHOD(&url, _1, "geturl", NULL);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_2, url, "get", NULL, location);
 		zephir_check_call_status();
