@@ -368,6 +368,41 @@ PHP_METHOD(Ice_Mvc_View, render) {
 
 }
 
+PHP_METHOD(Ice_Mvc_View, load) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *data = NULL;
+	zval *file_param = NULL, *data_param = NULL;
+	zval *file = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
+
+	if (unlikely(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
+		zephir_get_strval(file, file_param);
+	} else {
+		ZEPHIR_INIT_VAR(file);
+		ZVAL_EMPTY_STRING(file);
+	}
+	if (!data_param) {
+		ZEPHIR_INIT_VAR(data);
+		array_init(data);
+	} else {
+		zephir_get_arrval(data, data_param);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, file, data);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Ice_Mvc_View, partial) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
