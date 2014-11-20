@@ -76,6 +76,11 @@ class Request extends Arr
         return this->getMethod() == "OPTIONS";
     }
 
+    public function isAjax() -> boolean
+    {
+        return this->_server->get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest";
+    }
+
     public final function getMethod() -> string
     {
         return this->_server->get("REQUEST_METHOD", "");
