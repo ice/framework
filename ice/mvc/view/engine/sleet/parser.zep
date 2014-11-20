@@ -10,7 +10,6 @@ class Parser
         "content": "$this->getContent",
         "partial": "$this->partial",
         "dump": "$this->dump->vars",
-        "url": "$this->url->get",
         "version": "Ice\\Version::get"
     ];
 
