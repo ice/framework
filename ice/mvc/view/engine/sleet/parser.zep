@@ -9,8 +9,8 @@ class Parser
     protected _functions = [
         "content": "$this->getContent",
         "partial": "$this->partial",
+        "load": "$this->load",
         "dump": "$this->dump->vars",
-        "url": "$this->url->get",
         "version": "Ice\\Version::get"
     ];
 
@@ -265,7 +265,7 @@ class Parser
                 case T_STRING:
                     let str = (string) token[1];
 
-                    if next == "(" && prev != "." {
+                    if next == "(" && prev != "." && prev != ":" {
                         return isset this->_functions[str] ? this->_functions[str] : str;
                     }
                     switch str {

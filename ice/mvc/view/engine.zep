@@ -23,6 +23,11 @@ abstract class Engine extends Access implements EngineInterface
         return this->_view->getContent();
     }
 
+    public function load(string! path, array data = []) -> string
+    {
+        return this->_view->load(path, data);
+    }
+
     public function partial(string! path, array data = []) -> string
     {
         return this->_view->partial(path, data);

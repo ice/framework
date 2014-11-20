@@ -93,6 +93,42 @@ PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 }
 
+PHP_METHOD(Ice_Mvc_View_Engine, load) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *data = NULL;
+	zval *path_param = NULL, *data_param = NULL, *_0;
+	zval *path = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
+
+	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+		zephir_get_strval(path, path_param);
+	} else {
+		ZEPHIR_INIT_VAR(path);
+		ZVAL_EMPTY_STRING(path);
+	}
+	if (!data_param) {
+		ZEPHIR_INIT_VAR(data);
+		array_init(data);
+	} else {
+		zephir_get_arrval(data, data_param);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_view"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "load", NULL, path, data);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

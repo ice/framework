@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HMKEY(regex, _1, _0);
+		ZEPHIR_GET_HKEY(regex, _1, _0);
 		ZEPHIR_GET_HVALUE(routes, _2);
 		Z_SET_ISREF_P(routes);
 		ZEPHIR_CALL_FUNCTION(&_3, "reset", &_4, routes);
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(numGroups, _6);
 		ZEPHIR_INIT_LNVAR(_8);
-		zephir_sub_function(_8, numGroups, numVariables TSRMLS_CC);
+		sub_function(_8, numGroups, numVariables TSRMLS_CC);
 		repeat = zephir_get_numberval(_8);
 		ZEPHIR_SINIT_NVAR(_9);
 		ZVAL_STRING(&_9, "()", 0);

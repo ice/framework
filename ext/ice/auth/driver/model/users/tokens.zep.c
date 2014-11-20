@@ -147,7 +147,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate", NULL);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), _1 TSRMLS_CC);
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_2, fields);
@@ -232,7 +232,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate", NULL);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), _1 TSRMLS_CC);
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_2, fields);

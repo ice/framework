@@ -76,13 +76,13 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 	zephir_fast_array_merge(_2, &(_3), &(options) TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_options"), _2 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_4, di, "getsession",  NULL);
+	ZEPHIR_CALL_METHOD(&_4, di, "getsession", NULL);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_session"), _4 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_5, di, "getcookies",  NULL);
+	ZEPHIR_CALL_METHOD(&_5, di, "getcookies", NULL);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_cookies"), _5 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_6, di, "getrequest",  NULL);
+	ZEPHIR_CALL_METHOD(&_6, di, "getrequest", NULL);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_request"), _6 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -295,7 +295,7 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&user, this_ptr, "getuser",  NULL);
+	ZEPHIR_CALL_METHOD(&user, this_ptr, "getuser", NULL);
 	zephir_check_call_status();
 	if (!(zephir_is_true(user))) {
 		RETURN_MM_BOOL(0);
@@ -378,7 +378,7 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 		ZEPHIR_CALL_METHOD(NULL, _3, "regenerate", NULL);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "loggedin",  NULL);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "loggedin", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!zephir_is_true(_1));
 

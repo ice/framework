@@ -113,7 +113,7 @@ abstract class Dispatcher
 
             let handlerName = this->_handler,
                 actionName = this->_action,
-                handlerClass = this->_defaultNamespace . "\\" . camelize(handlerName) . handlerSuffix;
+                handlerClass = this->_defaultNamespace . "\\" . ucfirst(camelize(handlerName)) . handlerSuffix;
 
             if !class_exists(handlerClass) {
                 if this->_silent {
@@ -130,6 +130,23 @@ abstract class Dispatcher
                 handler = new {handlerClass}(),
                 this->_activeHandler = handler,
                 actionMethod = this->getActiveMethod();
+
+
+            if method_exists(handler, "before") {
+                handler->before();
+
+                if this->_finished === false {
+                    continue;
+                }
+            }
+
+
+            // Call the 'initialize' method just once per request
+            if fresh === true {
+                if method_exists(handler, "initialize") {
+                    handler->initialize();
+                }
+            }
 
             // Check if the method exists in the handler
             if !method_exists(handler, actionMethod) {
@@ -148,21 +165,18 @@ abstract class Dispatcher
                 throw new Exception("Action parameters must be an array", self::INVALID_PARAMS);
             }
 
-            // Call the 'initialize' method just once per request
-            if fresh === true {
-                if method_exists(handler, "initialize") {
-                    handler->initialize();
-                }
-            }
-
-            if method_exists(handler, "before") {
-                handler->before();
-            }
-
             let this->_returnedValue = call_user_func_array([handler, actionMethod], params);
+
+            if this->_finished === false {
+                continue;
+            }
 
             if method_exists(handler, "after") {
                 handler->after();
+
+                if this->_finished === false {
+                    continue;
+                }
             }
             let fresh = false;
         }

@@ -77,10 +77,10 @@ PHP_METHOD(Ice_Flash, __construct) {
 	zephir_update_property_this(this_ptr, SL("_options"), _0 TSRMLS_CC);
 	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_2);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_3, di, "getsession",  NULL);
+	ZEPHIR_CALL_METHOD(&_3, di, "getsession", NULL);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_session"), _3 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_4, di, "gettag",  NULL);
+	ZEPHIR_CALL_METHOD(&_4, di, "gettag", NULL);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_tag"), _4 TSRMLS_CC);
 	if (zephir_fast_count_int(options TSRMLS_CC)) {

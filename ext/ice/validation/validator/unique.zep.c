@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(di, _1);
-	ZEPHIR_CALL_METHOD(&db, di, "getdb",  NULL);
+	ZEPHIR_CALL_METHOD(&db, di, "getdb", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_LONG(_3, 0);
@@ -140,7 +140,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _6);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_METHOD(&_7, result, "count",  NULL);
+	ZEPHIR_CALL_METHOD(&_7, result, "count", NULL);
 	zephir_check_call_status();
 	if (zephir_is_true(_7)) {
 		ZEPHIR_INIT_NVAR(_3);

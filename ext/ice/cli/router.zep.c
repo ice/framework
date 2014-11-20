@@ -140,12 +140,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
 
 	zephir_fetch_params(0, 1, 0, &defaults_param);
 
-	if (unlikely(Z_TYPE_P(defaults_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'defaults' must be an array") TSRMLS_CC);
-		RETURN_NULL();
-	}
-
-		defaults = defaults_param;
+	defaults = defaults_param;
 
 
 

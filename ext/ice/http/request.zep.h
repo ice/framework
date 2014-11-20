@@ -15,6 +15,7 @@ PHP_METHOD(Ice_Http_Request, isPatch);
 PHP_METHOD(Ice_Http_Request, isHead);
 PHP_METHOD(Ice_Http_Request, isDelete);
 PHP_METHOD(Ice_Http_Request, isOptions);
+PHP_METHOD(Ice_Http_Request, isAjax);
 PHP_METHOD(Ice_Http_Request, getMethod);
 PHP_METHOD(Ice_Http_Request, getUserAgent);
 PHP_METHOD(Ice_Http_Request, getHTTPReferer);
@@ -66,6 +67,7 @@ ZEPHIR_INIT_FUNCS(ice_http_request_method_entry) {
 	PHP_ME(Ice_Http_Request, isHead, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, isDelete, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, isOptions, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Request, isAjax, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getMethod, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_FINAL)
 	PHP_ME(Ice_Http_Request, getUserAgent, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getHTTPReferer, NULL, ZEND_ACC_PUBLIC)

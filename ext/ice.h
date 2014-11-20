@@ -80,6 +80,7 @@
 #include "ice/validation/validator/between.zep.h"
 #include "ice/validation/validator/digit.zep.h"
 #include "ice/validation/validator/email.zep.h"
+#include "ice/validation/validator/file.zep.h"
 #include "ice/validation/validator/in.zep.h"
 #include "ice/validation/validator/length.zep.h"
 #include "ice/validation/validator/notin.zep.h"

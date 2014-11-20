@@ -226,7 +226,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	HashTable *_5;
 	HashPosition _4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *ext = NULL, *engine = NULL, *_0, *_1 = NULL, *_2 = NULL, *_3, **_6, _8 = zval_used_for_init, *_9 = NULL;
+	zval *ext = NULL, *engine = NULL, *_0, *_1 = NULL, *_2, *_3, **_6, _8 = zval_used_for_init, *_9 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -250,25 +250,25 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 		ZEPHIR_GET_HVALUE(engine, _6);
 		if (Z_TYPE_P(engine) == IS_OBJECT) {
 			if (zephir_instance_of_ev(engine, zend_ce_closure TSRMLS_CC)) {
-				ZEPHIR_INIT_NVAR(_2);
+				ZEPHIR_INIT_NVAR(_1);
 				ZEPHIR_INIT_NVAR(_7);
 				array_init_size(_7, 2);
 				zephir_array_fast_append(_7, this_ptr);
-				ZEPHIR_CALL_USER_FUNC_ARRAY(_2, engine, _7);
+				ZEPHIR_CALL_USER_FUNC_ARRAY(_1, engine, _7);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("_engines"), ext, _2 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
 			}
 		} else {
 			if (Z_TYPE_P(engine) == IS_STRING) {
-				ZEPHIR_INIT_NVAR(_2);
+				ZEPHIR_INIT_NVAR(_1);
 				ZEPHIR_INIT_NVAR(_7);
 				array_init_size(_7, 2);
 				zephir_array_fast_append(_7, this_ptr);
-				ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_2, engine, _7 TSRMLS_CC);
+				ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, engine, _7 TSRMLS_CC);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("_engines"), ext, _2 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
 			} else {
-				ZEPHIR_INIT_LNVAR(_1);
+				ZEPHIR_INIT_NVAR(_1);
 				object_init_ex(_1, ice_exception_ce);
 				ZEPHIR_SINIT_NVAR(_8);
 				ZVAL_STRING(&_8, "Invalid template engine registration for '%s' extension", 0);
@@ -322,14 +322,14 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 64);
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&engines, this_ptr, "getengines",  NULL);
+	ZEPHIR_CALL_METHOD(&engines, this_ptr, "getengines", NULL);
 	zephir_check_call_status();
 	zephir_is_iterable(engines, &_2, &_1, 0, 0, "ice/mvc/view.zep", 79);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HMKEY(ext, _2, _1);
+		ZEPHIR_GET_HKEY(ext, _2, _1);
 		ZEPHIR_GET_HVALUE(engine, _3);
 		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_viewsDir"), PH_NOISY_CC);
 		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
@@ -339,7 +339,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 			exists = 1;
 			ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_6, data);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_7, this_ptr, "all",  &_8);
+			ZEPHIR_CALL_METHOD(&_7, this_ptr, "all", &_8);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&content, engine, "render", NULL, path, _7);
 			zephir_check_call_status();
@@ -365,6 +365,41 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		return;
 	}
 	RETURN_CCTOR(content);
+
+}
+
+PHP_METHOD(Ice_Mvc_View, load) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *data = NULL;
+	zval *file_param = NULL, *data_param = NULL;
+	zval *file = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
+
+	if (unlikely(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
+		zephir_get_strval(file, file_param);
+	} else {
+		ZEPHIR_INIT_VAR(file);
+		ZVAL_EMPTY_STRING(file);
+	}
+	if (!data_param) {
+		ZEPHIR_INIT_VAR(data);
+		array_init(data);
+	} else {
+		zephir_get_arrval(data, data_param);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, file, data);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 
@@ -478,12 +513,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &vars_param);
 
-	if (unlikely(Z_TYPE_P(vars_param) != IS_ARRAY)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'vars' must be an array") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-
-		vars = vars_param;
+	vars = vars_param;
 
 
 

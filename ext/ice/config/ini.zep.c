@@ -143,7 +143,7 @@ PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HMKEY(key, _1, _0);
+		ZEPHIR_GET_HKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
 			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 64 TSRMLS_CC);

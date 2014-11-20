@@ -243,11 +243,10 @@ class Pdo implements DbInterface
 
     public function update(string! from, var filters = [], array fields = [])
     {
-        var key, value, columns, where, values, filtered, sql, query, status;
+        var key, value, columns, values, filtered, sql, query, status;
 
         let columns = [],
-            values = [],
-            where = [];
+            values = [];
 
         for key, value in fields {
             let values[":" . key] = value,

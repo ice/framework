@@ -82,6 +82,11 @@ class View extends Arr implements ViewInterface
         return content;
     }
 
+    public function load(string! file, array data = [])
+    {
+        return this->render(file, data);
+    }
+
     public function partial(string! file, array data = [])
     {
         return this->render(this->_partialsDir . file, data);

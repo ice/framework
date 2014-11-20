@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 	ZEPHIR_CALL_FUNCTION(&_0, "is_writable", &_5, file);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_INIT_LNVAR(_2);
+		ZEPHIR_INIT_NVAR(_2);
 		object_init_ex(_2, ice_exception_ce);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "Log file ", file, " is not writeable");
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HMKEY(key, _1, _0);
+		ZEPHIR_GET_HKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "{", key, "}");

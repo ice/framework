@@ -14,7 +14,7 @@
 #define PHP_ICE_VERSION     "1.0.0-dev"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.5.8a"
+#define PHP_ICE_ZEPVERSION  "0.5.9a"
 #define PHP_ICE_DESCRIPTION "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014 Ice Team."
 
 

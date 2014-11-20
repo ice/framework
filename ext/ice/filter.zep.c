@@ -124,10 +124,10 @@ PHP_METHOD(Ice_Filter, sanitize) {
 PHP_METHOD(Ice_Filter, _sanitize) {
 
 	zephir_fcall_cache_entry *_12 = NULL;
-	zephir_nts_static zephir_fcall_cache_entry *_8 = NULL, *_11 = NULL, *_15 = NULL, *_16 = NULL, *_18 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_8 = NULL, *_11 = NULL, *_15 = NULL, *_16 = NULL, *_17 = NULL;
 	zval *_1 = NULL, *_13;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *value_param = NULL, *filter_param = NULL, *custom, *_0, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6, *_7 = NULL, _9 = zval_used_for_init, _10 = zval_used_for_init, *_17;
+	zval *value_param = NULL, *filter_param = NULL, *custom, *_0, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6, *_7 = NULL, _9 = zval_used_for_init, _10 = zval_used_for_init;
 	zval *value = NULL, *filter = NULL, *_14 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -310,15 +310,15 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 			zephir_check_call_status();
 			RETURN_MM();
 		}
-		ZEPHIR_INIT_VAR(_17);
-		object_init_ex(_17, ice_exception_ce);
+		ZEPHIR_INIT_NVAR(_2);
+		object_init_ex(_2, ice_exception_ce);
 		ZEPHIR_SINIT_NVAR(_9);
 		ZVAL_STRING(&_9, "Filter '%s' is not supported", 0);
-		ZEPHIR_CALL_FUNCTION(&_7, "sprintf", &_18, &_9, filter);
+		ZEPHIR_CALL_FUNCTION(&_7, "sprintf", &_17, &_9, filter);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _17, "__construct", NULL, _7);
+		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, _7);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_17, "ice/filter.zep", 108 TSRMLS_CC);
+		zephir_throw_exception_debug(_2, "ice/filter.zep", 108 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	} while(0);
