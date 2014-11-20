@@ -198,7 +198,9 @@ class Tag
                 fetch action, parameters[defaultParams["action"]];
             }
 
-            let parameters["action"] = this->_url->getStatic(action);
+            if action !== false {
+                let parameters["action"] = this->_url->get(action);
+            }
         }
 
         return this->tagHtml("form", parameters, defaultParams, ["local"]);
@@ -409,7 +411,7 @@ class Tag
             }
         }
 
-        for param, key in defaultParams {
+        for key in defaultParams {
             unset params[key];
         }
 
@@ -476,8 +478,8 @@ class Tag
             }
         }
 
-        for key, value in attrs {           
-            if typeof key == "string" && value != null && !in_array(key, skip) {
+        for key, value in attrs {
+            if typeof key == "string" && value !== null && value !== false && !in_array(key, skip) {
                 let code .= " " . key . "=\"" . value. "\"";
             }
         }
