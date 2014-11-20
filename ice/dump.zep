@@ -195,7 +195,7 @@ class Dump
             if (in_array(className, this->_methods)) {
                 let output .= str_repeat(space, tab) . "[already listed]\n";
             } else {
-                for key, value in attr {
+                for value in attr {
                     if !in_array(className, this->_methods) {
                         let this->_methods[] = className;
                     }

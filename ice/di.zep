@@ -144,12 +144,12 @@ class Di extends Arr implements DiInterface
      */
     public function clearHooks(string name = null)
     {
-        var key, value;
+        var key;
 
         if name && isset this->_hooks[name] {
             let this->_hooks[name] = [[]];
         } else {
-            for key, value in this->_hooks {
+            for key in array_keys(this->_hooks) {
                 let this->_hooks[key] = [[]];
             }
         }
