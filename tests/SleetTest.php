@@ -64,7 +64,7 @@ class SleetTest extends PHPUnit
             ['{{ image(["img/logo.png", "width": 80]) }}', '<?php echo $this->tag->image(["img/logo.png", "width" => 80]) ?>'],
             ['{{ a(["/", img(["img/logo.png", "width": 80])]) }}', '<?php echo $this->tag->a(["/", $this->tag->img(["img/logo.png", "width" => 80])]) ?>'],
             // Calling services
-            ['{{ url("contact") }}', '<?php echo $this->url->get("contact") ?>'],
+            ['{{ this.url.get("contact") }}', '<?php echo $this->url->get("contact") ?>'],
             ['{{ this.tag.a(["user", "Account"]) }}', '<?php echo $this->tag->a(["user", "Account"]) ?>'],
             // Filters
             ['{{ user|trim }}', '<?php echo trim($user) ?>'],
