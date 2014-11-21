@@ -105,10 +105,12 @@ class Model extends Driver implements DriverInterface
                 // User isn't currently logged in
                 let this->_user = defaultValue;
             } else {
-                let user = new Users();
+                let user = create_instance(this->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"));
 
-                user->unserialize(data);
-                let this->_user = user;
+                if typeof user == "object" && (user instanceof Users) {
+                    user->unserialize(data);
+                    let this->_user = user;
+                }
             }
         }
 
@@ -141,7 +143,7 @@ class Model extends Driver implements DriverInterface
      */
     public function login(var username, string password, boolean remember = false)
     {
-        var user, roles, userRoles, role, token, lifetime;
+        var user, users, roles, userRoles, role, token, lifetime;
 
         let user = null;
 
@@ -153,7 +155,8 @@ class Model extends Driver implements DriverInterface
             if typeof username == "object" {
                 let user = username;
             } else {
-                let user = <Users> Users::findOne(["username": username]);
+                let users = this->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"),
+                    user = {users}::findOne(["username": username]);
             }
         }
 
