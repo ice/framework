@@ -12,6 +12,7 @@ use Ice\Http\Response\ResponseInterface;
 class App extends Access
 {
 
+    protected _autoRender = true { get, set };
     protected _defaultModule { get, set };
     protected _modules { get, set };
 
@@ -114,7 +115,9 @@ class App extends Access
                     view->setContent(view->render());
                 }
 
-                response->setBody(view->layout(view->getMainView()));
+                if this->_autoRender {
+                    response->setBody(view->layout(view->getMainView()));
+                }
             }
         }
 
