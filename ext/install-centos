@@ -1,0 +1,12 @@
+#!/bin/bash
+export CC="gcc"
+directory=`pwd`
+sudo ln -s /usr/local/bin/phpize /usr/bin/phpize
+if [ -f Makefile ]; then
+        sudo make --silent clean
+        sudo phpize --silent --clean
+fi
+phpize --silent
+sleep 1
+$directory/configure --silent --enable-ice
+make --silent && sudo make --silent install
