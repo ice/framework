@@ -268,7 +268,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 			zephir_check_call_status();
 			RETURN_MM();
 		}
-		if (ZEPHIR_IS_STRING(filter, "strip_repeats")) {
+		if (ZEPHIR_IS_STRING(filter, "repeats") || ZEPHIR_IS_STRING(filter, "strip_repeats")) {
 			ZEPHIR_INIT_NVAR(_1);
 			array_init_size(_1, 4);
 			ZEPHIR_INIT_NVAR(_2);
@@ -318,7 +318,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, _7);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_2, "ice/filter.zep", 108 TSRMLS_CC);
+		zephir_throw_exception_debug(_2, "ice/filter.zep", 109 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	} while(0);
