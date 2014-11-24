@@ -18,14 +18,14 @@ PHP_METHOD(Ice_Arr, count);
 PHP_METHOD(Ice_Arr, getIterator);
 PHP_METHOD(Ice_Arr, getPath);
 PHP_METHOD(Ice_Arr, toArray);
-PHP_METHOD(Ice_Arr, __isset);
-PHP_METHOD(Ice_Arr, __get);
-PHP_METHOD(Ice_Arr, __set);
-PHP_METHOD(Ice_Arr, __unset);
 PHP_METHOD(Ice_Arr, offsetExists);
 PHP_METHOD(Ice_Arr, offsetGet);
 PHP_METHOD(Ice_Arr, offsetSet);
 PHP_METHOD(Ice_Arr, offsetUnset);
+PHP_METHOD(Ice_Arr, __isset);
+PHP_METHOD(Ice_Arr, __get);
+PHP_METHOD(Ice_Arr, __set);
+PHP_METHOD(Ice_Arr, __unset);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
@@ -63,23 +63,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getpath, 0, 0, 1)
 	ZEND_ARG_INFO(0, delimiter)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___isset, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___get, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___set, 0, 0, 2)
-	ZEND_ARG_INFO(0, key)
-	ZEND_ARG_INFO(0, value)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___unset, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
-ZEND_END_ARG_INFO()
-
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetexists, 0, 0, 1)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
@@ -95,6 +78,23 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetunset, 0, 0, 1)
 	ZEND_ARG_INFO(0, offset)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___isset, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___get, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___set, 0, 0, 2)
+	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, value)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___unset, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
@@ -113,13 +113,13 @@ ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
 	PHP_ME(Ice_Arr, getIterator, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, getPath, arginfo_ice_arr_getpath, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, toArray, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, __isset, arginfo_ice_arr___isset, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, __get, arginfo_ice_arr___get, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, __set, arginfo_ice_arr___set, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, __unset, arginfo_ice_arr___unset, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetExists, arginfo_ice_arr_offsetexists, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetGet, arginfo_ice_arr_offsetget, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetSet, arginfo_ice_arr_offsetset, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetUnset, arginfo_ice_arr_offsetunset, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, __isset, arginfo_ice_arr___isset, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, __get, arginfo_ice_arr___get, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, __set, arginfo_ice_arr___set, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, __unset, arginfo_ice_arr___unset, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };
