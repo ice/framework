@@ -1,6 +1,8 @@
 
 namespace Ice;
 
+use Ice\Di;
+use Ice\Di\DiInterface;
 use Ice\Exception;
 use Ice\Validation\ValidationInterface;
 
@@ -10,7 +12,7 @@ class Validation
     protected _data = [];
     protected _rules = [] { set };
     protected _validators = [];
-    //protected _filters = [];
+    protected _filters = [] { set };
     protected _labels = [] { set };
     protected _messages = [] { get };
     protected _valid = true;
@@ -145,11 +147,16 @@ class Validation
         return isset this->_data[field];
     }
 
-    public function getValue(string! field)
+    public function getValue(string! field, boolean filtered = true)
     {
-        var value;
+        var value, filters, filter;
 
         fetch value, this->_data[field];
+
+        if filtered && fetch filters, this->_filters[field] {
+            let filter = Di::$fetch()->getFilter(),
+                value = filter->sanitize(value, filters);
+        }
 
         return value;
     }

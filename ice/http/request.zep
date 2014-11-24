@@ -2,6 +2,8 @@
 namespace Ice\Http;
 
 use Ice\Arr;
+use Ice\Di;
+use Ice\Di\DiInterface;
 
 class Request extends Arr
 {
@@ -96,14 +98,67 @@ class Request extends Arr
         return this->_server->get("HTTP_REFERER", "");
     }
 
-    public function getGet(string key = null, var defaultValue = null)
+    public function getClientAddress() -> string
     {
-        return key ? this->_get->get(key, defaultValue) : this->_get->all();
+        var client, forward, remote, ip;
+
+        let client = this->_server->get("HTTP_CLIENT_IP"),
+            forward = this->_server->get("HTTP_X_FORWARDED_FOR"),
+            remote = this->_server->get("REMOTE_ADDR");
+
+        if filter_var(client, FILTER_VALIDATE_IP) {
+            let ip = client;
+        } elseif filter_var(forward, FILTER_VALIDATE_IP) {
+            let ip = forward;
+        } else {
+            let ip = remote;
+        }
+
+        return ip;
     }
 
-    public function getPost(string key = null, var defaultValue = null)
+    public function getGet(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
-        return key ? this->_post->get(key, defaultValue) : this->_post->all();
+        var value, filter;
+
+        if !key {
+            return this->_get->all();
+        } else {
+            let value = this->_get->get(key, defaultValue);
+
+            if filters {
+                let filter = Di::$fetch()->getFilter(),
+                    value = filter->sanitize(value, filters);
+            }
+
+            if (value === "" || value === null) && allowEmpty === false {
+                return defaultValue;
+            }
+
+            return value;
+        }
+    }
+
+    public function getPost(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
+    {
+        var value, filter;
+
+        if !key {
+            return this->_post->all();
+        } else {
+            let value = this->_post->get(key, defaultValue);
+
+            if filters {
+                let filter = Di::$fetch()->getFilter(),
+                    value = filter->sanitize(value, filters);
+            }
+
+            if (value === "" || value === null) && allowEmpty === false {
+                return defaultValue;
+            }
+
+            return value;
+        }
     }
 
     public function getServer(string key = null, var defaultValue = null)

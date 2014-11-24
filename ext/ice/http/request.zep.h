@@ -19,6 +19,7 @@ PHP_METHOD(Ice_Http_Request, isAjax);
 PHP_METHOD(Ice_Http_Request, getMethod);
 PHP_METHOD(Ice_Http_Request, getUserAgent);
 PHP_METHOD(Ice_Http_Request, getHTTPReferer);
+PHP_METHOD(Ice_Http_Request, getClientAddress);
 PHP_METHOD(Ice_Http_Request, getGet);
 PHP_METHOD(Ice_Http_Request, getPost);
 PHP_METHOD(Ice_Http_Request, getServer);
@@ -41,12 +42,16 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_getget, 0, 0, 0)
 	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_INFO(0, defaultValue)
+	ZEND_ARG_INFO(0, allowEmpty)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_getpost, 0, 0, 0)
 	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_INFO(0, defaultValue)
+	ZEND_ARG_INFO(0, allowEmpty)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_getserver, 0, 0, 0)
@@ -71,6 +76,7 @@ ZEPHIR_INIT_FUNCS(ice_http_request_method_entry) {
 	PHP_ME(Ice_Http_Request, getMethod, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_FINAL)
 	PHP_ME(Ice_Http_Request, getUserAgent, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getHTTPReferer, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Request, getClientAddress, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getGet, arginfo_ice_http_request_getget, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getPost, arginfo_ice_http_request_getpost, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getServer, arginfo_ice_http_request_getserver, ZEND_ACC_PUBLIC)

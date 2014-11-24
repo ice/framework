@@ -92,6 +92,7 @@ class Filter
             case "string":
                 return filter_var(value, FILTER_SANITIZE_STRING);
 
+            case "repeats":
             case "strip_repeats":
                 // Remove repeating, more than 2 spaces to space, more than 3 br to 2 br, more than 3 the same char to 3 chars
                 return preg_replace(["/[ ]{2,}/", "/((\\r\\n|\\n\\r|\\n|\\r){3,})/", "~(.?)\\1{3,}~"], [" ", "\\n\\n", "$1$1$1"], value);
