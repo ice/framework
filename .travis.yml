@@ -18,6 +18,10 @@ before_script:
 script:
   - phpunit --configuration tests/phpunit.xml
 
+after_failure:
+  - sudo apt-get -qq install gdb
+  - ./tests/ci/failure.sh
+
 notifications:
   email:
     - info@iceframework.org
