@@ -1,6 +1,7 @@
 
 namespace Ice;
 
+use Ice\Arr;
 use Ice\Di;
 use Ice\Di\DiInterface;
 use Ice\Exception;
@@ -14,7 +15,7 @@ class Validation
     protected _validators = [];
     protected _filters = [] { set };
     protected _labels = [] { set };
-    protected _messages = [] { get };
+    protected _messages = [];
     protected _valid = true;
     protected _aliases = [] { set };
     protected _translate = "__" { set };
@@ -192,5 +193,10 @@ class Validation
     public function addMessage(string! field, string message)
     {
         let this->_messages[field][] = message;
+    }
+
+    public function getMessages() -> <Arr>
+    {
+        return new Arr(this->_messages);
     }
 }
