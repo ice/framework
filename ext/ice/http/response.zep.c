@@ -763,11 +763,11 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
  */
 PHP_METHOD(Ice_Http_Response, getMessage) {
 
-	zval *_1 = NULL;
-	zval *code_param = NULL, *message, *_0;
+	zval *code_param = NULL, *message, *_0, *_1 = NULL;
 	int code;
 
-	zephir_fetch_params(0, 0, 1, &code_param);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &code_param);
 
 	if (!code_param) {
 		code = 200;
@@ -778,8 +778,13 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
 	zephir_array_isset_long_fetch(&message, _0, code, 1 TSRMLS_CC);
-	zephir_get_strval(_1, message);
-	RETURN_CTORW(_1);
+	ZEPHIR_INIT_VAR(_1);
+	if (zephir_is_true(message)) {
+		ZEPHIR_CPY_WRT(_1, message);
+	} else {
+		ZVAL_STRING(_1, "", 1);
+	}
+	RETURN_CCTOR(_1);
 
 }
 
