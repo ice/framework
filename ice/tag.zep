@@ -506,12 +506,12 @@ class Tag
      */
     public function hasValue(string name) -> boolean
     {
-        // Check if there is a predefined value for it
-        if isset this->_values[name] {
+        // Check if there is a post value for the item
+        if isset _POST[name] {
             return true;
         } else {
-            // Check if there is a post value for the item
-            if isset _POST[name] {
+            // Check if there is a predefined value for it
+            if isset this->_values[name] {
                 return true;
             }
         }

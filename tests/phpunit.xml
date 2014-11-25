@@ -10,7 +10,13 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="true">
-    <testsuite name="main">
+    <testsuite name="all">
         <directory>./</directory>
+    </testsuite>
+    <testsuite name="sleet">
+        <file>SleetTest.php</file>
+    </testsuite>
+    <testsuite name="tag">
+        <file>TagTest.php</file>
     </testsuite>
 </phpunit>

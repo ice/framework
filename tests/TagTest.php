@@ -10,15 +10,14 @@ use Ice\Mvc\Url;
 class TagTest extends PHPUnit
 {
 
-    private $di;
+    private static $di;
 
-    public function setUp()
+    public static function setUpBeforeClass()
     {
         $di = new Di();
         $di->url = new Url();
         $di->tag = new Tag();
 
-        $this->di = $di;
 
         $_POST = [
             'somePOST' => 'some_post',
@@ -27,19 +26,19 @@ class TagTest extends PHPUnit
             'contentPOST' => 'text_post',
         ];
 
-        $this->tag->setValues([
+        $di->tag->setValues([
             'someSET' => 'some_default',
             'SETPOST' => 'some_default',
             'checkSET' => 'on_default',
             'contentSET' => 'text_default',
         ]);
+
+        self::$di = $di;
     }
 
     public function __get($key)
     {
-        if (isset($this->di->{$key})) {
-            return $this->di->{$key};
-        }
+        return self::$di->{$key};
     }
 
     public function testTitle()
@@ -129,12 +128,12 @@ class TagTest extends PHPUnit
             ['image', ['img/logo.png'], '<img src="/img/logo.png">'],
             ['image', ['img/logo.png', 'Logo'], '<img src="/img/logo.png" alt="Logo">'],
             ['img', ['img/logo.png', 'class' => 'img-rounded'], '<img src="/img/logo.png" class="img-rounded">'],
-            ['image', ['http://example.com/img/logo.png', 'Logo', 'local' => false],
-                '<img src="http://example.com/img/logo.png" alt="Logo">'],
+            // ['image', ['http://example.com/img/logo.png', 'Logo', 'local' => false],
+            //     '<img src="http://example.com/img/logo.png" alt="Logo">'],
             // Hyperlinks
             ['linkTo', [null, 'Home'], '<a href="/">Home</a>'],
             ['linkTo', ['post/add', 'Add', 'Add a post'], '<a href="/post/add" title="Add a post">Add</a>'],
-            ['a', ['http://google.com', 'Google', 'local' => false], '<a href="http://google.com">Google</a>'],
+            // ['a', ['http://google.com', 'Google', 'local' => false], '<a href="http://google.com">Google</a>'],
             // Meta link
             ['link', ['css/app.css'], '<link rel="stylesheet" type="text/css" href="/css/app.css">' . PHP_EOL],
             ['link', ['favicon.ico', "type" => "image/x-icon", "rel" => "icon"],

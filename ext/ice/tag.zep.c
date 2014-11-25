@@ -1271,7 +1271,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
  */
 PHP_METHOD(Ice_Tag, hasValue) {
 
-	zval *name_param = NULL, *_0, *_POST;
+	zval *name_param = NULL, *_POST, *_0;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -1280,12 +1280,12 @@ PHP_METHOD(Ice_Tag, hasValue) {
 	zephir_get_strval(name, name_param);
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_values"), PH_NOISY_CC);
-	if (zephir_array_isset(_0, name)) {
+	zephir_get_global(&_POST, SS("_POST") TSRMLS_CC);
+	if (zephir_array_isset(_POST, name)) {
 		RETURN_MM_BOOL(1);
 	} else {
-		zephir_get_global(&_POST, SS("_POST") TSRMLS_CC);
-		if (zephir_array_isset(_POST, name)) {
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_values"), PH_NOISY_CC);
+		if (zephir_array_isset(_0, name)) {
 			RETURN_MM_BOOL(1);
 		}
 	}
