@@ -219,10 +219,10 @@ class Tag
         let defaultParams = [
             "id": 0,
             "name": 0,
-            "value": 1
+            "content": 1
         ];
 
-        return this->tagHtml("textarea", parameters, defaultParams, ["value"], "value", true);
+        return this->tagHtml("textarea", parameters, defaultParams, ["content", "value"], "content", true);
     }
 
     /**
@@ -282,7 +282,7 @@ class Tag
 
         let defaultParams = [
             "href": 0,
-            "anchor": 1,
+            "text": 1,
             "title": 2
         ];
 
@@ -298,7 +298,7 @@ class Tag
 
         let parameters["href"] = this->_url->get(href, query, local);
 
-        return this->tagHtml("a", parameters, defaultParams, ["anchor", "local", "query"], "anchor", true);
+        return this->tagHtml("a", parameters, defaultParams, ["text", "local", "query"], "text", true);
     }
 
     /**
@@ -423,9 +423,14 @@ class Tag
         }
 
         if content {
-            if fetch value, attributes[content] {
-                let code .= value;
+            // Check if textarea has a value
+            if name == "textarea" && isset attributes["name"] && this->hasValue(attributes["name"]) {
+                let value = this->getValue(attributes["name"]);
+            } else {
+                fetch value, attributes[content];
             }
+
+            let code .= value;
         }
 
         if close {
@@ -562,20 +567,17 @@ class Tag
      * Every helper calls this function to check whether a component has a predefined value using Ice\Tag::setValue or value from _POST
      *
      * @param string name
-     * @param mixed params
      * @return mixed
      */
-    public function getValue(string name, var params = null)
+    public function getValue(string name)
     {
         var value;
 
-        if !params || !fetch value, params["value"] {
-            // Check if there is a predefined value for it
+        // Check if there is a predefined value for it
+        if !fetch value, _POST[name] {
+            // Check if there is a post value for the item
             if !fetch value, this->_values[name] {
-                // Check if there is a post value for the item
-                if !fetch value, _POST[name] {
-                    return null;
-                }
+                return null;
             }
         }
 
