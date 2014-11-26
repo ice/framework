@@ -36,6 +36,11 @@ class TagTest extends PHPUnit
         self::$di = $di;
     }
 
+    public static function tearDownAfterClass()
+    {
+        self::$di = null;
+    }
+
     public function __get($key)
     {
         return self::$di->{$key};
@@ -128,12 +133,12 @@ class TagTest extends PHPUnit
             ['image', ['img/logo.png'], '<img src="/img/logo.png">'],
             ['image', ['img/logo.png', 'Logo'], '<img src="/img/logo.png" alt="Logo">'],
             ['img', ['img/logo.png', 'class' => 'img-rounded'], '<img src="/img/logo.png" class="img-rounded">'],
-            // ['image', ['http://example.com/img/logo.png', 'Logo', 'local' => false],
-            //     '<img src="http://example.com/img/logo.png" alt="Logo">'],
+            ['image', ['http://example.com/img/logo.png', 'Logo', 'local' => false],
+                '<img src="http://example.com/img/logo.png" alt="Logo">'],
             // Hyperlinks
             ['linkTo', [null, 'Home'], '<a href="/">Home</a>'],
             ['linkTo', ['post/add', 'Add', 'Add a post'], '<a href="/post/add" title="Add a post">Add</a>'],
-            // ['a', ['http://google.com', 'Google', 'local' => false], '<a href="http://google.com">Google</a>'],
+            ['a', ['http://google.com', 'Google', 'local' => false], '<a href="http://google.com">Google</a>'],
             // Meta link
             ['link', ['css/app.css'], '<link rel="stylesheet" type="text/css" href="/css/app.css">' . PHP_EOL],
             ['link', ['favicon.ico', "type" => "image/x-icon", "rel" => "icon"],
@@ -165,6 +170,18 @@ class TagTest extends PHPUnit
          */
         return [
             ['textField', ['some'], '<input type="text" id="some" name="some" />'],
+            ['passwordField', ['pass'], '<input type="password" id="pass" name="pass" />'],
+            ['fileField', ['picture'], '<input type="file" id="picture" name="picture" />'],
+            ['hiddenField', ['secret'], '<input type="hidden" id="secret" name="secret" />'],
+            ['submitButton', ['some', 'Submit'], '<input type="submit" id="some" name="some" value="Submit" />'],
+            ['form', [false], '<form method="post">'],
+            ['image', ['img/logo.png'], '<img src="/img/logo.png" />'],
+            ['textArea', ['content'], '<textarea id="content" name="content"></textarea>'],
+            ['button', ['some', 'Submit'], '<button type="submit" id="some" name="some">Submit</button>'],
+            ['linkTo', [null, 'Home'], '<a href="/">Home</a>'],
+            ['link', ['css/app.css'], '<link rel="stylesheet" type="text/css" href="/css/app.css" />' . PHP_EOL],
+            ['script', ['js/plugins.js'], '<script type="text/javascript" src="/js/plugins.js"></script>' . PHP_EOL],
+            ['endTag', 'form', "</form>\n"],
         ];
     }
 
