@@ -50,7 +50,6 @@ class SleetTest extends PHPUnit
             ['Some = {{ 100%50 }}', 'Some = <?php echo 100 % 50 ?>'],
             ['Some = {{ 100~50 }}', 'Some = <?php echo 100 . 50 ?>'],
             // Unary operators
-            /**['{{ -10 }}', '<?php echo -10 ?>'],*/
             ['{{ !10 }}', '<?php echo !10 ?>'],
             ['{{ !a }}', '<?php echo !$a ?>'],
             ['{{ not a }}', '<?php echo !$a ?>'],
@@ -107,7 +106,7 @@ class SleetTest extends PHPUnit
             ['{% while i<10 %} lorem {% var i++ %}{% endwhile %}',
                 '<?php while($i < 10): ?> lorem <?php $i++; ?><?php endwhile ?>'],
             ['{% switch a %}{% case 1 %}one{% break %}{% default %}def{% break %}{% endswitch %}',
-                '<?php switch($a): ?><?php case(1): ?>one<?php break; ?><?php default: ?>def<?php break; ?>'.
+                '<?php switch($a): ?><?php case(1): ?>one<?php break; ?><?php default: ?>def<?php break; ?>' .
                 '<?php endswitch ?>'],
             // If statement
             ['{% if a==b %} hello {% endif %}', '<?php if($a == $b): ?> hello <?php endif ?>'],

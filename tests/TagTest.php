@@ -185,25 +185,20 @@ class TagTest extends PHPUnit
         ];
     }
 
-    /**
-     * @dataProvider titleProvider
-     */
-    public function testFriendlyTitle($parameters, $expected)
+    public function testFriendlyTitle()
     {
-        $friendly = call_user_func_array([$this->tag, 'friendlyTitle'], $parameters);
-        $this->assertEquals($expected, $friendly, json_encode($parameters));
-    }
+        $title = "Mess'd up --text-- just (to) stress /test/ ?our! `little` \\clean\\ url fun.ction!?-->";
+        $friendly = $this->tag->friendlyTitle($title);
+        $expected = 'messd-up-text-just-to-stress-test-our-little-clean-url-function';
+        $this->assertEquals($expected, $friendly);
 
-    public function titleProvider()
-    {
-        /**
-         * title, expected friendly title
-         */
-        return [
-            [["Mess'd up --text-- just (to) stress /test/ ?our! `little` \\clean\\ url fun.ction!?-->"],
-                'messd-up-text-just-to-stress-test-our-little-clean-url-function'],
-            [["Perché l'erba è verde?", "-", true, "'"], 'perche-l-erba-e-verde'],
-            [["Perché l'erba è verde?", "_", false, array('e', 'a')], 'P_rch_l_rb_v_rd'],
-        ];
+        $title = "Perché l'erba è verde?";
+        $friendly = $this->tag->friendlyTitle($title, "-", true, "'");
+        $expected = 'perche-l-erba-e-verde';
+        $this->assertEquals($expected, $friendly);
+
+        $friendly = $this->tag->friendlyTitle($title, "_", false, ['e', 'a']);
+        $expected = 'P_rch_l_rb_v_rd';
+        $this->assertEquals($expected, $friendly);
     }
 }
