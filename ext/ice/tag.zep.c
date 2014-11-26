@@ -346,9 +346,9 @@ PHP_METHOD(Ice_Tag, fileField) {
  */
 PHP_METHOD(Ice_Tag, submitButton) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
-	zval *parameters_param = NULL, *_1;
+	zval *parameters_param = NULL, *_0;
 	zval *parameters = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -357,10 +357,10 @@ PHP_METHOD(Ice_Tag, submitButton) {
 	zephir_get_arrval(parameters, parameters_param);
 
 
-	ZEPHIR_INIT_VAR(_1);
-	ZVAL_STRING(_1, "submit", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_RETURN_CALL_SELF("input", &_0, _1, parameters);
-	zephir_check_temp_parameter(_1);
+	ZEPHIR_INIT_VAR(_0);
+	ZVAL_STRING(_0, "submit", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", &_1, _0, parameters);
+	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

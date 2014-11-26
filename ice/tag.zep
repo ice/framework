@@ -119,7 +119,7 @@ class Tag
      */
     public function submitButton(array parameters) -> string
     {
-        return self::input("submit", parameters);
+        return this->input("submit", parameters);
     }
 
     /**
