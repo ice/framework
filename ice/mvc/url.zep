@@ -15,7 +15,7 @@ class Url
      */
     public function getStatic(string uri = null) -> string
     {
-        return this->{"getStaticUri"}() . uri;
+        return this->getStaticUri() . uri;
     }
 
     /**

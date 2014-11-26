@@ -16,7 +16,7 @@ before_script:
   - ulimit -c unlimited || true
 
 script:
-  - phpunit -c tests/phpunit.xml --testsuite=all
+  - ./vendor/bin/phpunit --debug -c tests/phpunit.xml --testsuite=all
 
 after_failure:
   - sudo apt-get -qq install gdb
