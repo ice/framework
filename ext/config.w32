@@ -24,7 +24,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc", "app.zep.c controller.zep.c dispatcher.zep.c model.zep.c moduleinterface.zep.c route.zep.c router.zep.c url.zep.c view.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route", "collector.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/datagenerator", "datageneratorinterface.zep.c groupcount.zep.c regex.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/dispatcher", "dispatcherinterface.zep.c groupcount.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/dispatcher", "dispatcherinterface.zep.c groupcount.zep.c regex.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/parser", "parserinterface.zep.c std.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view", "engine.zep.c viewinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view/engine", "engineinterface.zep.c php.zep.c sleet.zep.c", "ice");

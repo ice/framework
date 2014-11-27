@@ -58,6 +58,7 @@
 #include "ice/mvc/route/datagenerator/regex.zep.h"
 #include "ice/mvc/route/dispatcher/dispatcherinterface.zep.h"
 #include "ice/mvc/route/dispatcher/groupcount.zep.h"
+#include "ice/mvc/route/dispatcher/regex.zep.h"
 #include "ice/mvc/route/parser/parserinterface.zep.h"
 #include "ice/mvc/route/parser/std.zep.h"
 #include "ice/mvc/router.zep.h"
