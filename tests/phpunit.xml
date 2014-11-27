@@ -13,10 +13,9 @@
     <testsuite name="all">
         <directory>./</directory>
     </testsuite>
-    <testsuite name="sleet">
+    <testsuite name="stable">
+        <file>FastRouteTest.php</file>
         <file>SleetTest.php</file>
-    </testsuite>
-    <testsuite name="tag">
-        <file>TagTest.php</file>
+        <!--<file>TagTest.php</file>-->
     </testsuite>
 </phpunit>
