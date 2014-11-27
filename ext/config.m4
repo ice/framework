@@ -63,6 +63,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/route/datagenerator/regex.zep.c
 	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
 	ice/mvc/route/dispatcher/groupcount.zep.c
+	ice/mvc/route/dispatcher/regex.zep.c
 	ice/mvc/route/parser/parserinterface.zep.c
 	ice/mvc/route/parser/std.zep.c
 	ice/mvc/router.zep.c

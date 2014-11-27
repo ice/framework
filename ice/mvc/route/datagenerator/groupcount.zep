@@ -13,27 +13,21 @@ class GroupCount extends Regex
 
     public function processChunk(regexToRoutesMap)
     {
-        var routeMap, regex, regexes, route, routes, numGroups, numVariables;
+        var routeMap, regex, route, regexes, numGroups, numVariables;
         int repeat, i;
 
         let routeMap = [],
-            regexes = [];
+            regexes = [],
+            numGroups = 0;
 
-        let numGroups = 0;
-        for regex, routes in regexToRoutesMap  {
-            let numVariables = count(reset(routes)->variables),
-                numGroups = max(numGroups, numVariables);
-
-
-            let repeat = numGroups - numVariables,
-                regexes[] = regex . str_repeat("()", repeat);
-
-            for route in routes {
-                let i = numGroups + 1;
-                let routeMap[i][route->httpMethod] = [route->handler, route->variables];
-            }
-
-            let numGroups++;
+        for regex, route in regexToRoutesMap  {
+            let numVariables = count(route->variables),
+                numGroups = max(numGroups, numVariables),
+                repeat = numGroups - numVariables,
+                regexes[] = regex . str_repeat("()", repeat),
+                i = numGroups + 1,
+                routeMap[i] = [route->handler, route->variables],
+                numGroups++;
         }
 
         let regex = "~^(?|" . implode("|", regexes) . ")$~";
