@@ -356,7 +356,7 @@ class Response implements ResponseInterface
 
         fetch message, this->_messages[code];
 
-        return (string) message;
+        return message ? message : "";
     }
 
     /**

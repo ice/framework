@@ -441,10 +441,7 @@ PHP_METHOD(Ice_Http_Request, getGet) {
 
 
 	if (!(key && Z_STRLEN_P(key))) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_get"), PH_NOISY_CC);
-		ZEPHIR_RETURN_CALL_METHOD(_0, "all", NULL);
-		zephir_check_call_status();
-		RETURN_MM();
+		RETURN_MM_MEMBER(this_ptr, "_get");
 	} else {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_get"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&value, _0, "get", NULL, key, defaultValue);
@@ -507,10 +504,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 
 
 	if (!(key && Z_STRLEN_P(key))) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_post"), PH_NOISY_CC);
-		ZEPHIR_RETURN_CALL_METHOD(_0, "all", NULL);
-		zephir_check_call_status();
-		RETURN_MM();
+		RETURN_MM_MEMBER(this_ptr, "_post");
 	} else {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_post"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&value, _0, "get", NULL, key, defaultValue);
@@ -545,7 +539,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 PHP_METHOD(Ice_Http_Request, getServer) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *defaultValue = NULL, *_0 = NULL, *_1, *_2;
+	zval *key_param = NULL, *defaultValue = NULL, *_0 = NULL, *_1;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -568,9 +562,39 @@ PHP_METHOD(Ice_Http_Request, getServer) {
 		ZEPHIR_CALL_METHOD(&_0, _1, "get", NULL, key, defaultValue);
 		zephir_check_call_status();
 	} else {
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_server"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_0, _2, "all", NULL);
+		zephir_read_property_this(&_0, this_ptr, SL("_server"), PH_NOISY_CC);
+	}
+	RETURN_CCTOR(_0);
+
+}
+
+PHP_METHOD(Ice_Http_Request, getFiles) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *key_param = NULL, *defaultValue = NULL, *_0 = NULL, *_1;
+	zval *key = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 2, &key_param, &defaultValue);
+
+	if (!key_param) {
+		ZEPHIR_INIT_VAR(key);
+		ZVAL_EMPTY_STRING(key);
+	} else {
+		zephir_get_strval(key, key_param);
+	}
+	if (!defaultValue) {
+		defaultValue = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	ZEPHIR_INIT_VAR(_0);
+	if (key && Z_STRLEN_P(key)) {
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_files"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_0, _1, "get", NULL, key, defaultValue);
 		zephir_check_call_status();
+	} else {
+		zephir_read_property_this(&_0, this_ptr, SL("_files"), PH_NOISY_CC);
 	}
 	RETURN_CCTOR(_0);
 

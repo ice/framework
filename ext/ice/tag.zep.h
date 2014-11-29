@@ -132,7 +132,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_taghtml, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_ARRAY_INFO(0, params, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
 	ZEND_ARG_ARRAY_INFO(0, defaultParams, 1)
 	ZEND_ARG_ARRAY_INFO(0, skip, 1)
 	ZEND_ARG_INFO(0, content)
@@ -169,7 +169,6 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_getvalue, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_INFO(0, params)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_friendlytitle, 0, 0, 1)

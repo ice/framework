@@ -122,7 +122,7 @@ class Request extends Arr
         var value, filter;
 
         if !key {
-            return this->_get->all();
+            return this->_get;
         } else {
             let value = this->_get->get(key, defaultValue);
 
@@ -144,7 +144,7 @@ class Request extends Arr
         var value, filter;
 
         if !key {
-            return this->_post->all();
+            return this->_post;
         } else {
             let value = this->_post->get(key, defaultValue);
 
@@ -163,6 +163,11 @@ class Request extends Arr
 
     public function getServer(string key = null, var defaultValue = null)
     {
-        return key ? this->_server->get(key, defaultValue) : this->_server->all();
+        return key ? this->_server->get(key, defaultValue) : this->_server;
+    }
+
+    public function getFiles(string key = null, var defaultValue = null)
+    {
+        return key ? this->_files->get(key, defaultValue) : this->_files;
     }
 }
