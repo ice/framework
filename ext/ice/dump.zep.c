@@ -215,7 +215,7 @@ PHP_METHOD(Ice_Dump, setStyles) {
 }
 
 /**
- * Alias of var() method
+ * Alias of variable() method
  *
  * @param mixed variable
  * @param string name
@@ -238,7 +238,7 @@ PHP_METHOD(Ice_Dump, one) {
 	}
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "var", NULL, variable, name);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "variable", NULL, variable, name);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -249,7 +249,7 @@ PHP_METHOD(Ice_Dump, one) {
  *
  * @param mixed variable
  * @param string name
- * @param intiger tab
+ * @param integer tab
  * @return  string
  */
 PHP_METHOD(Ice_Dump, output) {
@@ -294,7 +294,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_array_update_string(&_0, SL(":style"), &_1, PH_COPY | PH_SEPARATE);
 		add_assoc_long_ex(_0, SS(":count"), zephir_fast_count_int(variable TSRMLS_CC));
 		ZEPHIR_SINIT_VAR(_3);
-		ZVAL_STRING(&_3, "<b style =':style'>Array</b> (<span style =':style'>:count</span>) (\n", 0);
+		ZVAL_STRING(&_3, "<b style =':style'>array</b> (<span style =':style'>:count</span>) (\n", 0);
 		ZEPHIR_CALL_FUNCTION(&_1, "strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		zephir_concat_self(&output, _1 TSRMLS_CC);
@@ -372,7 +372,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_array_update_string(&_0, SL(":style"), &_1, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&_0, SL(":class"), &className, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>Object</b> :class", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>object</b> :class", 0);
 		ZEPHIR_CALL_FUNCTION(&_1, "strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		zephir_concat_self(&output, _1 TSRMLS_CC);
@@ -618,7 +618,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_array_update_string(&_0, SL(":style"), &_11, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&_0, SL(":var"), &variable, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>Intiger</b> (<span style=':style'>:var</span>)", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>integer</b> (<span style=':style'>:var</span>)", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -636,7 +636,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_array_update_string(&_0, SL(":style"), &_11, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&_0, SL(":var"), &variable, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>Float</b> (<span style=':style'>:var</span>)", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>float</b> (<span style=':style'>:var</span>)", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -653,7 +653,7 @@ PHP_METHOD(Ice_Dump, output) {
 		add_assoc_long_ex(_0, SS(":length"), zephir_fast_strlen_ev(variable));
 		zephir_array_update_string(&_0, SL(":var"), &variable, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>Numeric string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>numeric string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -678,7 +678,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_check_call_status();
 		zephir_array_update_string(&_0, SL(":var"), &_11, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>String</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -695,14 +695,14 @@ PHP_METHOD(Ice_Dump, output) {
 		ZEPHIR_INIT_LNVAR(_13);
 		if (zephir_is_true(variable)) {
 			ZEPHIR_INIT_NVAR(_13);
-			ZVAL_STRING(_13, "TRUE", 1);
+			ZVAL_STRING(_13, "true", 1);
 		} else {
 			ZEPHIR_INIT_NVAR(_13);
-			ZVAL_STRING(_13, "FALSE", 1);
+			ZVAL_STRING(_13, "false", 1);
 		}
 		zephir_array_update_string(&_0, SL(":var"), &_13, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>Boolean</b> (<span style=':style'>:var</span>)", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>boolean</b> (<span style=':style'>:var</span>)", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -717,7 +717,7 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_check_call_status();
 		zephir_array_update_string(&_0, SL(":style"), &_1, PH_COPY | PH_SEPARATE);
 		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_STRING(&_3, "<b style=':style'>NULL</b>", 0);
+		ZVAL_STRING(&_3, "<b style=':style'>null</b>", 0);
 		ZEPHIR_RETURN_CALL_FUNCTION("strtr", &_4, &_3, _0);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -743,14 +743,14 @@ PHP_METHOD(Ice_Dump, output) {
  * Returns an HTML string of information about a single variable.
  *
  *<code>
- *  echo (new \Ice\Dump())->var($foo, "foo");
+ *  echo (new \Ice\Dump())->variable($foo, "foo");
  *</code>
  *
  * @param mixed variable
  * @param string name
  * @return string
  */
-PHP_METHOD(Ice_Dump, var) {
+PHP_METHOD(Ice_Dump, variable) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
