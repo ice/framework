@@ -40,7 +40,7 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zend_declare_class_constant_long(ice_version_ce, SL("RC"), 3 TSRMLS_CC);
 
-	zend_declare_class_constant_long(ice_version_ce, SL("FINAL"), 4 TSRMLS_CC);
+	zend_declare_class_constant_long(ice_version_ce, SL("STABLE"), 4 TSRMLS_CC);
 
 	return SUCCESS;
 

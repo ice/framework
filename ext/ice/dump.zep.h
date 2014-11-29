@@ -11,7 +11,7 @@ PHP_METHOD(Ice_Dump, getStyle);
 PHP_METHOD(Ice_Dump, setStyles);
 PHP_METHOD(Ice_Dump, one);
 PHP_METHOD(Ice_Dump, output);
-PHP_METHOD(Ice_Dump, var);
+PHP_METHOD(Ice_Dump, variable);
 PHP_METHOD(Ice_Dump, vars);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setdetailed, 0, 0, 1)
@@ -42,7 +42,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_output, 0, 0, 1)
 	ZEND_ARG_INFO(0, tab)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_var, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_variable, 0, 0, 1)
 	ZEND_ARG_INFO(0, variable)
 	ZEND_ARG_INFO(0, name)
 ZEND_END_ARG_INFO()
@@ -56,7 +56,7 @@ ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, setStyles, arginfo_ice_dump_setstyles, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, one, arginfo_ice_dump_one, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, output, arginfo_ice_dump_output, ZEND_ACC_PROTECTED)
-	PHP_ME(Ice_Dump, var, arginfo_ice_dump_var, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, variable, arginfo_ice_dump_variable, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, vars, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

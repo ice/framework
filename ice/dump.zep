@@ -6,7 +6,7 @@ namespace Ice;
  *
  *<code>
  *  $foo = 123;
- *  echo (new \Ice\Dump())->var($foo, "foo");
+ *  echo (new \Ice\Dump())->variable($foo, "foo");
  *</code>
  * 
  *<code>
@@ -101,7 +101,7 @@ class Dump
     }
 
     /**
-     * Alias of var() method
+     * Alias of variable() method
      *
      * @param mixed variable
      * @param string name
@@ -109,7 +109,7 @@ class Dump
      */
     public function one(variable, string name = null) -> string
     {
-        return this->$var(variable, name);
+        return this->variable(variable, name);
     }   
 
     /**
@@ -131,7 +131,7 @@ class Dump
         }
 
         if typeof variable == "array" {
-            let output .= strtr("<b style =':style'>Array</b> (<span style =':style'>:count</span>) (\n", [":style": this->getStyle("arr"), ":count": count(variable)]);
+            let output .= strtr("<b style =':style'>array</b> (<span style =':style'>:count</span>) (\n", [":style": this->getStyle("arr"), ":count": count(variable)]);
 
             for key, value in variable {
                 let output .= str_repeat(space, tab) . strtr("[<span style=':style'>:key</span>] => ", [":style": this->getStyle("arr"), ":key": key]);
@@ -149,7 +149,7 @@ class Dump
             var className;
 
             let className = get_class(variable),
-                output .= strtr("<b style=':style'>Object</b> :class", [":style": this->getStyle("obj"), ":class": className]);
+                output .= strtr("<b style=':style'>object</b> :class", [":style": this->getStyle("obj"), ":class": className]);
 
             if get_parent_class(variable) {
                 let output .= strtr(" <b style=':style'>extends</b> :parent", [":style": this->getStyle("obj"), ":parent": get_parent_class(variable)]);
@@ -215,23 +215,23 @@ class Dump
         }
 
         if is_float(variable) {
-            return strtr("<b style=':style'>Float</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("float"), ":var": variable]);
+            return strtr("<b style=':style'>float</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("float"), ":var": variable]);
         }
 
         if is_numeric(variable) {
-            return strtr("<b style=':style'>Numeric string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", [":style": this->getStyle("num"), ":length": strlen(variable), ":var": variable]);
+            return strtr("<b style=':style'>numeric string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", [":style": this->getStyle("num"), ":length": strlen(variable), ":var": variable]);
         }
 
         if is_string(variable) {
-            return strtr("<b style=':style'>String</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", [":style": this->getStyle("str"), ":length": strlen(variable), ":var": nl2br(htmlentities(variable, ENT_IGNORE, "utf-8"))]);
+            return strtr("<b style=':style'>string</b> (<span style=':style'>:length</span>) \"<span style=':style'>:var</span>\"", [":style": this->getStyle("str"), ":length": strlen(variable), ":var": nl2br(htmlentities(variable, ENT_IGNORE, "utf-8"))]);
         }
 
         if is_bool(variable) {
-            return strtr("<b style=':style'>Boolean</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("bool"), ":var": (variable ? "TRUE" : "FALSE")]);
+            return strtr("<b style=':style'>boolean</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("bool"), ":var": (variable ? "true" : "false")]);
         }
 
         if is_null(variable) {
-            return strtr("<b style=':style'>NULL</b>", [":style": this->getStyle("null")]);
+            return strtr("<b style=':style'>null</b>", [":style": this->getStyle("null")]);
         }
         return strtr("(<span style=':style'>:var</span>)", [":style": this->getStyle("other"), ":var": variable]);
     }
@@ -240,14 +240,14 @@ class Dump
      * Returns an HTML string of information about a single variable.
      *
      *<code>
-     *  echo (new \Ice\Dump())->var($foo, "foo");
+     *  echo (new \Ice\Dump())->variable($foo, "foo");
      *</code>
      *
      * @param mixed variable
      * @param string name
      * @return string
      */
-    public function $var(variable, string name = null) -> string
+    public function variable(variable, string name = null) -> string
     {
         return strtr("<pre style=':style'>:output</pre>", [":style": this->getStyle("pre"), ":output": this->output(variable, name)]);
     }

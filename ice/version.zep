@@ -17,7 +17,7 @@ class Version
     const ALPHA = 1;
     const BETA = 2;
     const RC = 3;
-    const $FINAL = 4;
+    const STABLE = 4;
 
     /**
      * Get array version of the framework
@@ -66,7 +66,7 @@ class Version
             case Version::RC:
                 let suffix = "-RC" . current["build"];
             break;
-            case Version::$FINAL:
+            case Version::STABLE:
                 let suffix = "";
             break;
         }
