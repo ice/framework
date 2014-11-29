@@ -117,7 +117,7 @@ class Dump
      *
      * @param mixed variable
      * @param string name
-     * @param intiger tab
+     * @param integer tab
      * @return  string
      */
     protected function output(variable, name = null, tab = 1) -> string
@@ -211,7 +211,7 @@ class Dump
         }
 
         if is_int(variable) {
-            return strtr("<b style=':style'>Intiger</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("int"), ":var": variable]);
+            return strtr("<b style=':style'>integer</b> (<span style=':style'>:var</span>)", [":style": this->getStyle("int"), ":var": variable]);
         }
 
         if is_float(variable) {
