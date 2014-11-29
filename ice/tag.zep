@@ -386,8 +386,8 @@ class Tag
      * Builds a HTML tag
      *
      * @param string name Name of tag
-     * @param array params Parameters like id, style
-     * @param array defaultParams Default paramerters
+     * @param array parameters Parameters like id, style
+     * @param array defaultParams Default parameters
      * @param array skip Skip parameters
      * @param string content Parameter name to append content
      * @param boolean close Close tag
@@ -395,11 +395,12 @@ class Tag
      * @param boolean single Void element, close a tag by " />" (depending on doctype)
      * @return string
      */
-    public function tagHtml(string name, array! params = [], array defaultParams = [], array skip = [], string content = null, boolean close = false, boolean eol = false, boolean single = false) -> string
+    public function tagHtml(string name, array! parameters = [], array defaultParams = [], array skip = [], string content = null, boolean close = false, boolean eol = false, boolean single = false) -> string
     {
-        var param, key, value, attributes, code;
+        var params, param, key, value, attributes, code;
 
-        let attributes = [];
+        let attributes = [],
+            params = parameters;
 
         for param, key in defaultParams {
             if is_numeric(key) {

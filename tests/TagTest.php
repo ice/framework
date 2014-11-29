@@ -184,7 +184,7 @@ class TagTest extends PHPUnit
             ['endTag', 'form', "</form>\n"],
         ];
     }
-    /**
+
     public function testFriendlyTitle()
     {
         $title = "Mess'd up --text-- just (to) stress /test/ ?our! `little` \\clean\\ url fun.ction!?-->";
@@ -201,5 +201,4 @@ class TagTest extends PHPUnit
         $expected = 'P_rch_l_rb_v_rd';
         $this->assertEquals($expected, $friendly);
     }
-    **/
 }
