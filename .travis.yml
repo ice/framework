@@ -17,7 +17,7 @@ before_script:
 
 script:
   - phpenv config-rm xdebug.ini
-  - valgrind --read-var-info=yes --error-exitcode=1 --fullpath-after= --track-origins=yes --leak-check=full ./vendor/bin/phpunit --debug -c tests/phpunit.xml --testsuite=stable
+  - valgrind --read-var-info=yes --error-exitcode=1 --fullpath-after= --track-origins=yes --leak-check=full ./vendor/bin/phpunit --debug -c tests/phpunit.xml --testsuite=all
 
 after_failure:
   - sudo apt-get -qq install gdb
