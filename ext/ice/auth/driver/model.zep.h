@@ -9,6 +9,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser);
 PHP_METHOD(Ice_Auth_Driver_Model, hasRole);
 PHP_METHOD(Ice_Auth_Driver_Model, login);
 PHP_METHOD(Ice_Auth_Driver_Model, logout);
+PHP_METHOD(Ice_Auth_Driver_Model, refreshUser);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_completelogin, 0, 0, 1)
 	ZEND_ARG_INFO(0, user)
@@ -42,5 +43,6 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_model_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model, hasRole, arginfo_ice_auth_driver_model_hasrole, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model, login, arginfo_ice_auth_driver_model_login, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model, logout, arginfo_ice_auth_driver_model_logout, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Auth_Driver_Model, refreshUser, NULL, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

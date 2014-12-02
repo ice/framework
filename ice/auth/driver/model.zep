@@ -82,9 +82,7 @@ class Model extends Driver implements DriverInterface
         if user instanceof Users {
             user->completeLogin();
 
-            return parent::completeLogin(user->serialize(), roles);
-        } else {
-            return false;
+            parent::completeLogin(user->serialize(), roles);
         }
     }
 
@@ -236,4 +234,39 @@ class Model extends Driver implements DriverInterface
         return parent::logout(destroy);
     }
 
+    /**
+     * Refresh user data stored in the session.
+     * Returns null if no user is currently logged in.
+     *
+     * @return mixed
+     */
+    public function refreshUser()
+    {
+        var user, refreshed, userRoles, userRole, roles, role;
+
+        let user = this->getUser();
+
+        if !user {
+            return null;
+        } else {
+            if typeof user == "object" && (user instanceof Users) && this->getOption("session_roles") {
+                // Get user's data from db
+                let refreshed = user->loadOne(user->get(user->getPrimary())),
+                    user = refreshed,
+                    userRoles = user->{"getRoles"}(),
+                    roles = [];
+
+                for userRole in iterator(userRoles) {
+                    let role = <Roles> userRole->{"getRole"}(),
+                        roles[] = role->get("name");
+                }
+
+                parent::completeLogin(user->serialize(), roles);
+
+                let this->_user = user;
+            }
+        }
+
+        return user;
+    }
 }
