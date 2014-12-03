@@ -5,7 +5,7 @@ if (PHP_ICE != "no") {
   ADD_SOURCES(configure_module_dirname + "/kernel", "main.c memory.c exception.c hash.c debug.c backtrace.c object.c array.c string.c fcall.c require.c file.c operators.c concat.c variables.c filter.c iterator.c exit.c", "ice");
   ADD_SOURCES(configure_module_dirname + "/kernel/extended", "array.c", "ice");
   
-  ADD_SOURCES(configure_module_dirname + "/ice", "arr.zep.c auth.zep.c config.zep.c cookies.zep.c crypt.zep.c db.zep.c di.zep.c dispatcher.zep.c dump.zep.c exception.zep.c filter.zep.c flash.zep.c i18n.zep.c loader.zep.c log.zep.c session.zep.c tag.zep.c text.zep.c validation.zep.c version.zep.c", "ice");
+  ADD_SOURCES(configure_module_dirname + "/ice", "arr.zep.c auth.zep.c config.zep.c cookies.zep.c crypt.zep.c db.zep.c di.zep.c dispatcher.zep.c dump.zep.c exception.zep.c filter.zep.c flash.zep.c i18n.zep.c loader.zep.c log.zep.c pagination.zep.c session.zep.c tag.zep.c text.zep.c validation.zep.c version.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth", "driver.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver", "driverinterface.zep.c file.zep.c model.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver/model", "roles.zep.c users.zep.c", "ice");
