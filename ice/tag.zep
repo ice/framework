@@ -594,9 +594,9 @@ class Tag
      * @param mixed replace
      * @return string
      */
-    public function friendlyTitle(string text, string separator = "-", boolean lowercase = true, replace = null) -> string
+    public function friendlyTitle(string text, string separator = "-", boolean lowercase = true, var replace = null) -> string
     {
-        var friendly, locale;
+        var friendly, locale, search;
 
         if extension_loaded("iconv") {
             // Save the old locale and set the new locale to UTF-8
@@ -605,13 +605,22 @@ class Tag
         }
 
         if replace {
-            if typeof replace != "array" && typeof replace != "string"{
+            // Replace some additional chars
+            if typeof replace != "array" && typeof replace != "string" {
                 throw new Exception("Parameter replace must be an array or a string");
             }
-            let text = str_replace(replace, " ", text);
+
+            if typeof replace == "array" {
+                for search in replace {
+                    let text = str_replace(search, " ", text);      
+                }
+            } else {
+                let text = str_replace(replace, " ", text);
+            }
         }
 
         let friendly = preg_replace("/[^a-zA-Z0-9\\/_|+ -]/", "", text);
+
         if lowercase {
             let friendly = strtolower(friendly);
         }

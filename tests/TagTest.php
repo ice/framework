@@ -197,6 +197,12 @@ class TagTest extends PHPUnit
         $expected = 'perche-l-erba-e-verde';
         $this->assertEquals($expected, $friendly);
 
+        $title = "Perché l'erba è verde?";
+        $friendly = $this->tag->friendlyTitle($title, "_", false);
+        $expected = 'Perche_lerba_e_verde';
+        $this->assertEquals($expected, $friendly);
+
+        $title = "Perché l'erba è verde?";
         $friendly = $this->tag->friendlyTitle($title, "_", false, ['e', 'a']);
         $expected = 'P_rch_l_rb_v_rd';
         $this->assertEquals($expected, $friendly);
