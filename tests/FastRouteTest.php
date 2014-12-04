@@ -85,7 +85,7 @@ class FastRouteTest extends PHPUnit
         }
     }
 
-    public function routes()
+    public static function routes()
     {
         return [
             ['GET', '/license', ['controller' => 'info', 'action' => 'license']],

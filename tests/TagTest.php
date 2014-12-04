@@ -154,16 +154,16 @@ class TagTest extends PHPUnit
     }
 
     /**
-     * @dataProvider inputXHTMLProvider
+     * @dataProvider tagXHTMLProvider
      */
-    public function testInputXHTML($input, $parameters, $expected)
+    public function testTagXHTML($input, $parameters, $expected)
     {
         $this->tag->setDocType(Tag::XHTML5);
         $output = $this->tag->{$input}($parameters);
         $this->assertEquals($expected, $output, json_encode($parameters));
     }
 
-    public function inputXHTMLProvider()
+    public function tagXHTMLProvider()
     {
         /**
          * input, parameters, expected output

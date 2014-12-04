@@ -71,6 +71,7 @@
 #include "ice/mvc/view/engine/sleet/compiler.zep.h"
 #include "ice/mvc/view/engine/sleet/parser.zep.h"
 #include "ice/mvc/view/viewinterface.zep.h"
+#include "ice/pagination.zep.h"
 #include "ice/session.zep.h"
 #include "ice/tag.zep.h"
 #include "ice/text.zep.h"

@@ -94,6 +94,7 @@ zend_class_entry *ice_mvc_view_engine_php_ce;
 zend_class_entry *ice_mvc_view_engine_sleet_ce;
 zend_class_entry *ice_mvc_view_engine_sleet_compiler_ce;
 zend_class_entry *ice_mvc_view_engine_sleet_parser_ce;
+zend_class_entry *ice_pagination_ce;
 zend_class_entry *ice_session_ce;
 zend_class_entry *ice_tag_ce;
 zend_class_entry *ice_text_ce;
@@ -204,6 +205,7 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_Sleet);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_Sleet_Compiler);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_Sleet_Parser);
+	ZEPHIR_INIT(Ice_Pagination);
 	ZEPHIR_INIT(Ice_Session);
 	ZEPHIR_INIT(Ice_Tag);
 	ZEPHIR_INIT(Ice_Text);

@@ -13,6 +13,7 @@ abstract class Model extends Arr
     protected _di { get };
     protected _db { get };
     protected _from { set };
+    protected _primary { set, get };
     protected _fields = [] { set, get };
     protected _relations = [] { get };
     protected _labels = [] { set };
@@ -37,6 +38,10 @@ abstract class Model extends Arr
 
         if !this->_from {
             let this->_from = uncamelize(get_class_ns(this));
+        }
+
+        if !this->_primary {
+            let this->_primary = this->_db->getId();
         }
 
         if method_exists(this, "onConstruct") {
@@ -203,11 +208,20 @@ abstract class Model extends Arr
 
     public function update(var fields = [], <Validation> extra = null)
     {
-        var id, status;
+        var status, primary, key;
 
         let fields = this->fields(fields),
-            id = this->_db->getId(),
-            status = this->_db->update(this->_from, [id: this->get(id)], fields);
+            primary = [];
+
+        if typeof this->_primary == "array" {
+            for key in this->_primary {
+                let primary[key] = this->get(key);
+            }
+        } else {
+            let primary = [this->_primary: this->get(this->_primary)];
+        }
+
+        let status = this->_db->update(this->_from, primary, fields);
 
         if status {
             this->replace(fields);
@@ -218,11 +232,7 @@ abstract class Model extends Arr
 
     public function save(var fields = [], <Validation> extra = null)
     {
-        var id;
-
-        let id = this->_db->getId();
-
-        if this->has(id) && this->get(id) {
+        if this->exists() {
             return this->update(fields, extra);
         } else {
             return this->create(fields, extra);
@@ -231,16 +241,50 @@ abstract class Model extends Arr
 
     public function remove(var filters = [])
     {
-        var id, status;
+        var key, status;
 
         if !filters {
-            let id = this->_db->getId(),
-                filters = [id: this->get(id)];
+            let filters = [];
+
+            if typeof this->_primary == "array" {
+                for key in this->_primary {
+                    let filters[key] = this->get(key);
+                }
+            } else {
+                let filters = [this->_primary: this->get(this->_primary)];
+            }
         }
 
         let status = this->_db->remove(this->_from, filters);
 
         return status;
+    }
+
+    public function exists(var filters = [])
+    {
+        var key;
+
+        if !filters {
+            let filters = [];
+
+            if typeof this->_primary == "array" {
+                for key in this->_primary {
+                    if this->has(key) && this->get(key) {
+                        let filters[key] = this->get(key);
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                if this->has(this->_primary) && this->get(this->_primary) {
+                    let filters = [this->_primary: this->get(this->_primary)];
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return self::findOne(filters);
     }
 
     public function getError()

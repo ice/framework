@@ -6,6 +6,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Model);
 PHP_METHOD(Ice_Mvc_Model, getDi);
 PHP_METHOD(Ice_Mvc_Model, getDb);
 PHP_METHOD(Ice_Mvc_Model, setFrom);
+PHP_METHOD(Ice_Mvc_Model, setPrimary);
+PHP_METHOD(Ice_Mvc_Model, getPrimary);
 PHP_METHOD(Ice_Mvc_Model, setFields);
 PHP_METHOD(Ice_Mvc_Model, getFields);
 PHP_METHOD(Ice_Mvc_Model, getRelations);
@@ -21,6 +23,7 @@ PHP_METHOD(Ice_Mvc_Model, create);
 PHP_METHOD(Ice_Mvc_Model, update);
 PHP_METHOD(Ice_Mvc_Model, save);
 PHP_METHOD(Ice_Mvc_Model, remove);
+PHP_METHOD(Ice_Mvc_Model, exists);
 PHP_METHOD(Ice_Mvc_Model, getError);
 PHP_METHOD(Ice_Mvc_Model, belongsTo);
 PHP_METHOD(Ice_Mvc_Model, hasOne);
@@ -33,6 +36,10 @@ PHP_METHOD(Ice_Mvc_Model, __call);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfrom, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setprimary, 0, 0, 1)
+	ZEND_ARG_INFO(0, primary)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfields, 0, 0, 1)
@@ -89,6 +96,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_remove, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_exists, 0, 0, 0)
+	ZEND_ARG_INFO(0, filters)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_belongsto, 0, 0, 3)
 	ZEND_ARG_INFO(0, field)
 	ZEND_ARG_INFO(0, referenceModel)
@@ -133,6 +144,8 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, getDi, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getDb, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFrom, arginfo_ice_mvc_model_setfrom, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, setPrimary, arginfo_ice_mvc_model_setprimary, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getPrimary, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFields, arginfo_ice_mvc_model_setfields, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getFields, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getRelations, NULL, ZEND_ACC_PUBLIC)
@@ -148,6 +161,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, update, arginfo_ice_mvc_model_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, save, arginfo_ice_mvc_model_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, remove, arginfo_ice_mvc_model_remove, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, exists, arginfo_ice_mvc_model_exists, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, belongsTo, arginfo_ice_mvc_model_belongsto, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, hasOne, arginfo_ice_mvc_model_hasone, ZEND_ACC_PUBLIC)

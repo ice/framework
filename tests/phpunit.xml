@@ -16,6 +16,6 @@
     <testsuite name="stable">
         <file>FastRouteTest.php</file>
         <file>SleetTest.php</file>
-        <!--<file>TagTest.php</file>-->
+        <file>TagTest.php</file>
     </testsuite>
 </phpunit>

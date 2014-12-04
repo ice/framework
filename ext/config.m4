@@ -76,6 +76,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/view/engine/sleet/compiler.zep.c
 	ice/mvc/view/engine/sleet/parser.zep.c
 	ice/mvc/view/viewinterface.zep.c
+	ice/pagination.zep.c
 	ice/session.zep.c
 	ice/tag.zep.c
 	ice/text.zep.c
