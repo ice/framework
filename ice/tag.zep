@@ -1,9 +1,6 @@
 
 namespace Ice;
 
-use Ice\Exception;
-use Ice\Di\DiInterface;
-
 /**
  * Tag helper is designed to simplify building of HTML tags.
  *
@@ -12,7 +9,7 @@ use Ice\Di\DiInterface;
  * @author      Ice Team
  * @copyright   (c) 2014 Ice Team
  * @license     http://iceframework.org/license
- * @uses        Url service
+ * @uses        Ice\Mvc\Url
  */
 class Tag
 {
@@ -40,7 +37,7 @@ class Tag
         var di;
 
         let di = Di::$fetch(),
-            this->_url = di->getUrl();
+            this->_url = di->{"getUrl"}();
     }
 
     /**

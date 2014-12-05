@@ -81,7 +81,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 		ZEPHIR_CALL_FUNCTION(&values, "array_slice", &_3, message, &_2);
 		zephir_check_call_status();
 		ZEPHIR_OBS_VAR(str);
-		zephir_array_fetch_long(&str, message, 0, PH_NOISY, "ice/exception.zep", 29 TSRMLS_CC);
+		zephir_array_fetch_long(&str, message, 0, PH_NOISY, "ice/exception.zep", 26 TSRMLS_CC);
 	} else {
 		ZEPHIR_INIT_NVAR(values);
 		ZVAL_NULL(values);

@@ -1,8 +1,6 @@
 
 namespace Ice;
 
-use Ice\Di\DiInterface;
-
 class Flash
 {
 
@@ -22,8 +20,8 @@ class Flash
         var di;
 
         let di = Di::$fetch(),
-            this->_session = di->getSession(),
-            this->_tag = di->getTag();
+            this->_session = di->{"getSession"}(),
+            this->_tag = di->{"getTag"}();
 
         if count(options) {
             let this->_options = options;

@@ -410,12 +410,12 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 
 }
 
-PHP_METHOD(Ice_Http_Request, getGet) {
+PHP_METHOD(Ice_Http_Request, getQuery) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool allowEmpty, _4, _5;
-	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0, *_1 = NULL, *_3 = NULL;
+	zend_bool allowEmpty, _5, _6;
+	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -441,29 +441,35 @@ PHP_METHOD(Ice_Http_Request, getGet) {
 
 
 	if (!(key && Z_STRLEN_P(key))) {
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_get"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_1);
+		ZVAL_STRING(_1, "_url", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, _0, "remove", NULL, _1);
+		zephir_check_temp_parameter(_1);
+		zephir_check_call_status();
 		RETURN_MM_MEMBER(this_ptr, "_get");
 	} else {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_get"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&value, _0, "get", NULL, key, defaultValue);
 		zephir_check_call_status();
 		if (zephir_is_true(filters)) {
-			ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2);
+			ZEPHIR_CALL_CE_STATIC(&_2, ice_di_ce, "fetch", &_3);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&filter, _1, "getfilter", NULL);
+			ZEPHIR_CALL_METHOD(&filter, _2, "getfilter", NULL);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_3, filter, "sanitize", NULL, value, filters);
+			ZEPHIR_CALL_METHOD(&_4, filter, "sanitize", NULL, value, filters);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(value, _3);
+			ZEPHIR_CPY_WRT(value, _4);
 		}
-		_4 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
-		if (!(_4)) {
-			_4 = Z_TYPE_P(value) == IS_NULL;
+		_5 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
+		if (!(_5)) {
+			_5 = Z_TYPE_P(value) == IS_NULL;
 		}
-		_5 = _4;
-		if (_5) {
-			_5 = allowEmpty == 0;
+		_6 = _5;
+		if (_6) {
+			_6 = allowEmpty == 0;
 		}
-		if (_5) {
+		if (_6) {
 			RETVAL_ZVAL(defaultValue, 1, 0);
 			RETURN_MM();
 		}

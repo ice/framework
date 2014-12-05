@@ -4,7 +4,6 @@ namespace Ice\Mvc;
 use Ice\Exception;
 use Ice\Loader;
 use Ice\Di\Access;
-use Ice\Di\DiInterface;
 use Ice\Mvc\Dispatcher;
 use Ice\Mvc\ModuleInterface;
 use Ice\Http\Response\ResponseInterface;
@@ -27,7 +26,7 @@ class App extends Access
     {
         var router, request, response, module, modules, $namespace, path, $class, loader, dispatcher, controller, view;
 
-        let request = this->_di->getRequest();
+        let request = this->_di->{"getRequest"}();
         if method == null {
             let method = request->getMethod();
         }
@@ -36,7 +35,7 @@ class App extends Access
             let uri = request->get("_url");
         }
 
-        let router = this->_di->getRouter(),
+        let router = this->_di->{"getRouter"}(),
             response = router->handle(method, uri);
 
         if !(typeof response == "object" && (response instanceof ResponseInterface)) {
@@ -80,7 +79,7 @@ class App extends Access
             loader->addNamespace($namespace, path)->register();
 
             let module = <ModuleInterface> create_instance_params($namespace . "\\" . $class, [this->_di]),
-                dispatcher = this->_di->getDispatcher();
+                dispatcher = this->_di->{"getDispatcher"}();
 
             dispatcher->setDefaultNamespace($namespace . "\\" . dispatcher->getHandlerSuffix());
 
@@ -100,7 +99,7 @@ class App extends Access
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
 
                 let controller = response,
-                    response = this->_di->getResponse(),
+                    response = this->_di->{"getResponse"}(),
                     view = controller->view;
 
                 if view->getContent() === null {

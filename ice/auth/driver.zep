@@ -2,7 +2,6 @@
 namespace Ice\Auth;
 
 use Ice\Di;
-use Ice\Di\DiInterface;
 
 /**
  * User authorization library. Handles user login and logout, as well as secure password hashing.
@@ -40,9 +39,9 @@ abstract class Driver
 
         let di = Di::$fetch(),
             this->_options = array_merge(this->_options, options),
-            this->_session = di->getSession(),
-            this->_cookies = di->getCookies(),
-            this->_request = di->getRequest();
+            this->_session = di->{"getSession"}(),
+            this->_cookies = di->{"getCookies"}(),
+            this->_request = di->{"getRequest"}();
     }
 
     /**

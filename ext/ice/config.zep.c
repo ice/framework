@@ -47,13 +47,13 @@ PHP_METHOD(Ice_Config, __construct) {
 
 	if (Z_TYPE_P(data) != IS_ARRAY) {
 		if (Z_TYPE_P(data) != IS_NULL) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The configuration must be an Array", "ice/config.zep", 15);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The configuration must be an Array", "ice/config.zep", 13);
 			return;
 		} else {
 			RETURN_MM_NULL();
 		}
 	}
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/config.zep", 44);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/config.zep", 42);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -61,12 +61,12 @@ PHP_METHOD(Ice_Config, __construct) {
 		ZEPHIR_GET_HKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(key) != IS_STRING) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 23);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 21);
 			return;
 		}
 		if (Z_TYPE_P(value) == IS_ARRAY) {
 			hasNumericKey = 0;
-			zephir_is_iterable(value, &_4, &_3, 0, 0, "ice/config.zep", 35);
+			zephir_is_iterable(value, &_4, &_3, 0, 0, "ice/config.zep", 33);
 			for (
 			  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_4, &_3)

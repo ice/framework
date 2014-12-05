@@ -1,6 +1,8 @@
 
 namespace Ice\Mvc;
 
+use Ice\Di;
+
 class Url
 {
 
@@ -21,12 +23,12 @@ class Url
     /**
      * Generates a URL
      *
-     * @param string $uri
-     * @param array|object $args Optional arguments to be appended to the query string
-     * @param bool $local
+     * @param string uri
+     * @param array|object args Optional arguments to be appended to the query string
+     * @param bool local
      * @return string
      */
-    public function get(string uri = null, var args = null, boolean local = true)
+    public function get(var uri = null, var args = null, boolean local = true)
     {
         var baseUri, matched, queryString;
 
@@ -46,7 +48,11 @@ class Url
         let baseUri = this->getBaseUri();
 
         if local {
-            let uri = baseUri . uri;
+            if uri === false {
+                let uri = Di::$fetch()->{"getRequest"}()->get("_url");
+            } else {
+                let uri = baseUri . uri;
+            }
         }
 
         if args {

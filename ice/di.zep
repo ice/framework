@@ -1,11 +1,7 @@
 
 namespace Ice;
 
-use Ice\Arr;
-use Ice\Exception;
-use Ice\Di\DiInterface;
-
-class Di extends Arr implements DiInterface
+class Di extends Arr
 {
 
     protected static _di;
@@ -21,9 +17,9 @@ class Di extends Arr implements DiInterface
     /**
      * Return the last DI created
      *
-     * @return DiInterface
+     * @return Di
      */
-    public static function $fetch() -> <DiInterface>
+    public static function $fetch() -> <Di>
     {
         return self::_di;
     }

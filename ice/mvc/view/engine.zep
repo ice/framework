@@ -1,8 +1,8 @@
 
 namespace Ice\Mvc\View;
 
+use Ice\Di;
 use Ice\Di\Access;
-use Ice\Di\DiInterface;
 use Ice\Mvc\View\ViewInterface;
 use Ice\Mvc\View\Engine\EngineInterface;
 
@@ -12,7 +12,7 @@ abstract class Engine extends Access implements EngineInterface
     protected _view;
     protected _options { set };
 
-    public function __construct(<ViewInterface> view, <DiInterface> di = null)
+    public function __construct(<ViewInterface> view, <Di> di = null)
     {
         let this->_view = view;
         parent::__construct(di);

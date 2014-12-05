@@ -2,7 +2,6 @@
 namespace Ice\Validation\Validator;
 
 use Ice\Di;
-use Ice\Di\DiInterface;
 use Ice\Validation;
 use Ice\Validation\Validator;
 
@@ -19,9 +18,9 @@ class Unique extends Validator
             return true;
         }
 
-        let di = <DiInterface> Di::$fetch(),
-            db = di->getDb();
-            //db = di->get("db")->getDriver();
+        let di = Di::$fetch(),
+            db = di->{"getDb"}();
+            //db = di->{"get"}("db")->getDriver();
 
         if this->has(0) {
             let from = this->get(0);

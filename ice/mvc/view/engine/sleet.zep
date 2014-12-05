@@ -3,7 +3,6 @@ namespace Ice\Mvc\View\Engine;
 
 use Ice\Exception;
 use Ice\Mvc\View\Engine;
-use Ice\Di\DiInterface;
 use Ice\Mvc\View\ViewInterface;
 use Ice\Mvc\View\Engine\Sleet\Compiler;
 

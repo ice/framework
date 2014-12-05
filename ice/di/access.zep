@@ -8,7 +8,7 @@ class Access
 
     protected _di;
 
-    public function __construct(<DiInterface> di = null)
+    public function __construct(<Di> di = null)
     {
         if !di {
             let this->_di = Di::$fetch();
@@ -30,7 +30,7 @@ class Access
         }
 
         if di->has(property) {
-            let service = di->get(property),
+            let service = di->{"get"}(property),
                 this->{property} = service;
 
             return service;

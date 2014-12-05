@@ -5,7 +5,6 @@ use Ice\Loader;
 use Ice\Exception;
 use Ice\Cli\Dispatcher;
 use Ice\Di\Access;
-use Ice\Di\DiInterface;
 
 /**
  * This component allows to create CLI applications
@@ -25,7 +24,7 @@ class Console extends Access
     {
         var router, handled, module, modules, $namespace, path, className, loader, dispatcher, task;
 
-        let router = this->_di->getRouter(),
+        let router = this->_di->{"getRouter"}(),
             handled = router->handle(arguments),
             module = handled["module"];
 
@@ -59,7 +58,7 @@ class Console extends Access
         let className = $namespace . "\\" . className,
             module = new {className}(this->_di);
 
-        let dispatcher = this->_di->getDispatcher();
+        let dispatcher = this->_di->{"getDispatcher"}();
         dispatcher->setDefaultNamespace($namespace . "\\" . dispatcher->getHandlerSuffix());
 
         module->registerAutoloaders();
