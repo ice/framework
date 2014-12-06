@@ -380,6 +380,105 @@ class Tag
     }
 
     /**
+     * Builds a SELECT tag
+     *
+     * @param array parameters
+     * @return string
+     */
+    public function select(array parameters)
+    {
+        var defaultParams, name, options, option, selected, tmp, value, text, group, _value, _text, _options;
+
+        let defaultParams = [
+            "id": 0,
+            "name": 0,
+            "options": 1
+        ];
+
+        if !fetch name, parameters["name"] {
+            fetch name, parameters[defaultParams["name"]];
+        }
+
+        if !fetch options, parameters["options"] {
+            fetch options, parameters[defaultParams["options"]];
+        }
+
+        let selected = this->hasValue(name) ? this->getValue(name) : null;
+
+        if typeof selected == "array" {
+            // This is a multi-select, god save us!
+            let parameters["multiple"] = "multiple";
+        }
+
+        if typeof selected != "array" {
+            if selected === null {
+                // Use an empty array
+                let selected = [];
+            } else {
+                // Convert the selected options to an array
+                let tmp = [(string) selected],
+                    selected = tmp;
+            }
+        }
+
+        if empty options {
+            // There are no options
+            let options = "";
+        } else {
+            for value, text in options {
+                if typeof text == "array" {
+                    // Create a new optgroup
+                    let group = ["label": value];
+
+                    // Create a new list of options
+                    let _options = [];
+
+                    for _value, _text in text {
+                        // Force value to be string
+                        let _value = (string) _value;
+
+                        // Create a new attribute set for this option
+                        let option = ["value": _value];
+
+                        if in_array(_value, selected) {
+                            // This option is selected
+                            let option["selected"] = "selected";
+                        }
+
+                        // Change the option to the HTML string
+                        let option["content"] = _text,
+                            _options[] = this->tagHtml("option", option, [], ["content"], "content", true);
+                    }
+
+                    // Compile the options into a string
+                    let group["content"] = PHP_EOL . implode(PHP_EOL, _options) . PHP_EOL,
+                        options[value] = this->tagHtml("optgroup", group, [], ["content"], "content", true);
+                } else {
+                    // Force value to be string
+                    let value = (string) value;
+
+                    // Create a new attribute set for this option
+                    let option = ["value": value];
+
+                    if in_array(value, selected) {
+                        // This option is selected
+                        let option["selected"] = "selected";
+                    }
+
+                    // Change the option to the HTML string
+                    let option["content"] = text,
+                        options[value] = this->tagHtml("option", option, [], ["content"], "content", true);
+                }
+            }
+
+            // Compile the options into a single string
+            let parameters["content"] = implode(PHP_EOL, options);
+        }
+
+        return this->tagHtml("select", parameters, defaultParams, ["content", "options", "value"], "content", true, true);
+    }
+
+    /**
      * Builds a HTML tag
      *
      * @param string name Name of tag

@@ -29,6 +29,7 @@ PHP_METHOD(Ice_Tag, a);
 PHP_METHOD(Ice_Tag, link);
 PHP_METHOD(Ice_Tag, script);
 PHP_METHOD(Ice_Tag, style);
+PHP_METHOD(Ice_Tag, select);
 PHP_METHOD(Ice_Tag, tagHtml);
 PHP_METHOD(Ice_Tag, endTag);
 PHP_METHOD(Ice_Tag, prepareTag);
@@ -130,6 +131,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_style, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_select, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_taghtml, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
@@ -205,6 +210,7 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, link, arginfo_ice_tag_link, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, script, arginfo_ice_tag_script, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, style, arginfo_ice_tag_style, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, select, arginfo_ice_tag_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, tagHtml, arginfo_ice_tag_taghtml, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, endTag, arginfo_ice_tag_endtag, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, prepareTag, arginfo_ice_tag_preparetag, ZEND_ACC_PUBLIC)
