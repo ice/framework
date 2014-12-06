@@ -3,7 +3,6 @@ namespace Ice\Auth\Driver\Model\Roles;
 
 use Ice\Di;
 use Ice\Mvc\Model;
-use Ice\Di\DiInterface;
 
 /**
  * Model user's Roles.
@@ -28,7 +27,7 @@ class Users extends Model
     {
         var auth;
 
-        let auth = Di::$fetch()->getAuth();
+        let auth = this->getDi()->{"getAuth"}();
 
         this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), "id", [
             "alias": "User"

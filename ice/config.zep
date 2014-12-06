@@ -1,8 +1,6 @@
 
 namespace Ice;
 
-use Ice\Arr;
-
 class Config extends Arr
 {
 

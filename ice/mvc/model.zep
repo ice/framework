@@ -5,7 +5,6 @@ use Ice\Di;
 use Ice\Arr;
 use Ice\Exception;
 use Ice\Validation;
-use Ice\Di\DiInterface;
 
 abstract class Model extends Arr
 {
@@ -28,9 +27,9 @@ abstract class Model extends Arr
     {
         var di;
 
-        let di = <DiInterface> Di::$fetch(),
+        let di = Di::$fetch(),
             this->_di = di,
-            this->_db = di->getDb();
+            this->_db = di->{"getDb"}();
 
         let data = array_merge(array_fill_keys(this->_fields, null), data);
 

@@ -15,7 +15,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/config", "ini.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/db", "dbinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/db/driver", "mongo.zep.c pdo.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice/di", "access.zep.c diinterface.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/di", "access.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http", "request.zep.c response.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/request", "requestinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/response", "headers.zep.c headersinterface.zep.c responseinterface.zep.c", "ice");

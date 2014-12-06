@@ -1,11 +1,9 @@
 
 namespace Ice\Auth\Driver\Model\Users;
 
-use Ice\Di;
 use Ice\Text;
 use Ice\Mvc\Model;
 use Ice\Validation;
-use Ice\Di\DiInterface;
 
 /**
  * Model user's Tokens.
@@ -30,7 +28,7 @@ class Tokens extends Model
     {
         var auth;
 
-        let auth = Di::$fetch()->getAuth();
+        let auth = this->getDi()->{"getAuth"}();
 
         this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), "id", [
             "alias": "User",

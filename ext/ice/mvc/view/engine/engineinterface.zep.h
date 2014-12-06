@@ -5,7 +5,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_EngineInterface);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine_engineinterface___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, view, Ice\\Mvc\\View\\ViewInterface, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di\\DiInterface, 1)
+	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine_engineinterface_render, 0, 0, 1)

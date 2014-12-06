@@ -155,7 +155,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 			ZEPHIR_INIT_VAR(_21);
 			zephir_file_put_contents(_21, compiledPath, compiled TSRMLS_CC);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(_21)) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 66);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 65);
 				return;
 			}
 		}

@@ -47,74 +47,74 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 
-	zend_bool _11, _13;
-	zval *_5;
+	zend_bool _10, _12;
+	zephir_nts_static zephir_fcall_cache_entry *_8 = NULL;
+	zval *_4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_9 = NULL;
-	zval *auth = NULL, *_0 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, _6, _7, *_8 = NULL, *_10 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL;
+	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, _5, _6, *_7 = NULL, *_9 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&auth, _0, "getauth", NULL);
 	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_2);
+	ZVAL_STRING(_2, "users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_3);
-	ZVAL_STRING(_3, "users", ZEPHIR_TEMP_PARAM_COPY);
+	ZVAL_STRING(_3, "Ice\\Auth\\Driver\\Model\\Users", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_1, auth, "getoption", NULL, _2, _3);
+	zephir_check_temp_parameter(_2);
+	zephir_check_temp_parameter(_3);
+	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_4);
-	ZVAL_STRING(_4, "Ice\\Auth\\Driver\\Model\\Users", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_2, auth, "getoption", NULL, _3, _4);
-	zephir_check_temp_parameter(_3);
-	zephir_check_temp_parameter(_4);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_5);
-	array_init_size(_5, 3);
-	add_assoc_stringl_ex(_5, SS("alias"), SL("User"), 1);
-	zephir_array_update_string(&_5, SL("foreignKey"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
+	array_init_size(_4, 3);
+	add_assoc_stringl_ex(_4, SS("alias"), SL("User"), 1);
+	zephir_array_update_string(&_4, SL("foreignKey"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "user_id", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
-	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_NVAR(_4);
-	ZVAL_STRING(_4, "id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _3, _2, _4, _5);
+	ZVAL_STRING(_3, "id", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _2, _1, _3, _4);
+	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
-	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
+	ZEPHIR_SINIT_VAR(_5);
+	ZVAL_LONG(&_5, 1);
 	ZEPHIR_SINIT_VAR(_6);
-	ZVAL_LONG(&_6, 1);
-	ZEPHIR_SINIT_VAR(_7);
-	ZVAL_LONG(&_7, 100);
-	ZEPHIR_CALL_FUNCTION(&_8, "mt_rand", &_9, &_6, &_7);
+	ZVAL_LONG(&_6, 100);
+	ZEPHIR_CALL_FUNCTION(&_7, "mt_rand", &_8, &_5, &_6);
 	zephir_check_call_status();
-	if (ZEPHIR_IS_LONG_IDENTICAL(_8, 1)) {
+	if (ZEPHIR_IS_LONG_IDENTICAL(_7, 1)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "deleteexpired", NULL);
 		zephir_check_call_status();
 	}
-	ZEPHIR_INIT_NVAR(_3);
-	ZVAL_STRING(_3, "expires", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_10, this_ptr, "has", NULL, _3);
-	zephir_check_temp_parameter(_3);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "expires", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_9, this_ptr, "has", NULL, _2);
+	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	_11 = zephir_is_true(_10);
-	if (_11) {
-		ZEPHIR_INIT_NVAR(_3);
-		ZVAL_STRING(_3, "expires", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, _3);
-		zephir_check_temp_parameter(_3);
+	_10 = zephir_is_true(_9);
+	if (_10) {
+		ZEPHIR_INIT_NVAR(_2);
+		ZVAL_STRING(_2, "expires", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_11, this_ptr, "get", NULL, _2);
+		zephir_check_temp_parameter(_2);
 		zephir_check_call_status();
-		_11 = zephir_is_true(_12);
+		_10 = zephir_is_true(_11);
 	}
-	_13 = _11;
-	if (_13) {
-		ZEPHIR_INIT_NVAR(_3);
-		ZVAL_STRING(_3, "expires", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_14, this_ptr, "get", NULL, _3);
-		zephir_check_temp_parameter(_3);
+	_12 = _10;
+	if (_12) {
+		ZEPHIR_INIT_NVAR(_2);
+		ZVAL_STRING(_2, "expires", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_13, this_ptr, "get", NULL, _2);
+		zephir_check_temp_parameter(_2);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_15, "time", NULL);
+		ZEPHIR_CALL_FUNCTION(&_14, "time", NULL);
 		zephir_check_call_status();
-		_13 = ZEPHIR_LT(_14, _15);
+		_12 = ZEPHIR_LT(_13, _14);
 	}
-	if (_13) {
+	if (_12) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL);
 		zephir_check_call_status();
 	}

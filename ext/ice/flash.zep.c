@@ -166,7 +166,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	ZEPHIR_INIT_VAR(body);
 	ZVAL_STRING(body, "", 1);
 	if (Z_TYPE_P(messages) == IS_ARRAY) {
-		zephir_is_iterable(messages, &_3, &_2, 0, 0, "ice/flash.zep", 68);
+		zephir_is_iterable(messages, &_3, &_2, 0, 0, "ice/flash.zep", 66);
 		for (
 		  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -231,7 +231,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		array_init_size(messages, 2);
 		zephir_array_fast_append(messages, messages);
 	}
-	zephir_is_iterable(messages, &_4, &_3, 0, 0, "ice/flash.zep", 103);
+	zephir_is_iterable(messages, &_4, &_3, 0, 0, "ice/flash.zep", 101);
 	for (
 	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_4, &_3)

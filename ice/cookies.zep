@@ -59,7 +59,7 @@ class Cookies
             if this->salt(key, value) == hash {
                 // Cookie signature is valid
                 if this->_encrypt {
-                    let value = this->_di->getCrypt()->decrypt(value);
+                    let value = this->_di->{"getCrypt"}()->decrypt(value);
                 }
 
                 return value;
@@ -90,7 +90,7 @@ class Cookies
 
         if this->_encrypt {
             if !empty value {
-                let value = this->_di->getCrypt()->encrypt(value);
+                let value = this->_di->{"getCrypt"}()->encrypt(value);
             }
         }
 
@@ -134,7 +134,7 @@ class Cookies
         }
 
         // Determine the user agent
-        let userAgent = this->_di->getRequest()->getUserAgent();
+        let userAgent = this->_di->{"getRequest"}()->getUserAgent();
 
         return sha1(userAgent . name . value . this->_salt);
     }

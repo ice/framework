@@ -33,7 +33,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/db/driver/pdo.zep.c
 	ice/di.zep.c
 	ice/di/access.zep.c
-	ice/di/diinterface.zep.c
 	ice/dispatcher.zep.c
 	ice/dump.zep.c
 	ice/exception.zep.c

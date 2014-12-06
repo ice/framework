@@ -1,10 +1,6 @@
 
 namespace Ice;
 
-use Ice\Arr;
-use Ice\Di;
-use Ice\Di\DiInterface;
-use Ice\Exception;
 use Ice\Validation\ValidationInterface;
 
 class Validation
@@ -155,7 +151,7 @@ class Validation
         fetch value, this->_data[field];
 
         if filtered && fetch filters, this->_filters[field] {
-            let filter = Di::$fetch()->getFilter(),
+            let filter = Di::$fetch()->{"getFilter"}(),
                 value = filter->sanitize(value, filters);
         }
 

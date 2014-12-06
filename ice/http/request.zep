@@ -3,7 +3,6 @@ namespace Ice\Http;
 
 use Ice\Arr;
 use Ice\Di;
-use Ice\Di\DiInterface;
 
 class Request extends Arr
 {
@@ -117,17 +116,19 @@ class Request extends Arr
         return ip;
     }
 
-    public function getGet(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
+    public function getQuery(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
         var value, filter;
 
         if !key {
+            this->_get->remove("_url");
+
             return this->_get;
         } else {
             let value = this->_get->get(key, defaultValue);
 
             if filters {
-                let filter = Di::$fetch()->getFilter(),
+                let filter = Di::$fetch()->{"getFilter"}(),
                     value = filter->sanitize(value, filters);
             }
 
@@ -149,7 +150,7 @@ class Request extends Arr
             let value = this->_post->get(key, defaultValue);
 
             if filters {
-                let filter = Di::$fetch()->getFilter(),
+                let filter = Di::$fetch()->{"getFilter"}(),
                     value = filter->sanitize(value, filters);
             }
 

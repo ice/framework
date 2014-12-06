@@ -32,11 +32,11 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
 PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 
 	zval *_6 = NULL;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_11 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_11 = NULL;
 	zend_bool _0;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *replace, *di = NULL, *db = NULL, *from = NULL, *custom = NULL, *except = NULL, *result = NULL, *id, *_1 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *replace, *di = NULL, *db = NULL, *from = NULL, *custom = NULL, *except = NULL, *result = NULL, *id, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
@@ -67,16 +67,15 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(di, _1);
 	ZEPHIR_CALL_METHOD(&db, di, "getdb", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_LONG(_3, 0);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "has", NULL, _3);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "has", NULL, _3);
 	zephir_check_call_status();
-	if (zephir_is_true(_1)) {
+	if (zephir_is_true(_2)) {
 		ZEPHIR_INIT_NVAR(_3);
 		ZVAL_LONG(_3, 0);
 		ZEPHIR_CALL_METHOD(&from, this_ptr, "get", NULL, _3);

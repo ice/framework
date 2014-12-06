@@ -32,7 +32,6 @@ zend_class_entry *ice_mvc_view_engine_engineinterface_ce;
 zend_class_entry *ice_auth_driver_driverinterface_ce;
 zend_class_entry *ice_db_dbinterface_ce;
 zend_class_entry *ice_log_loggerinterface_ce;
-zend_class_entry *ice_di_diinterface_ce;
 zend_class_entry *ice_http_response_headersinterface_ce;
 zend_class_entry *ice_http_response_responseinterface_ce;
 zend_class_entry *ice_mvc_route_parser_parserinterface_ce;
@@ -143,7 +142,6 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Auth_Driver_DriverInterface);
 	ZEPHIR_INIT(Ice_Db_DbInterface);
 	ZEPHIR_INIT(Ice_Log_LoggerInterface);
-	ZEPHIR_INIT(Ice_Di_DiInterface);
 	ZEPHIR_INIT(Ice_Http_Response_HeadersInterface);
 	ZEPHIR_INIT(Ice_Http_Response_ResponseInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_Parser_ParserInterface);

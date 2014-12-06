@@ -66,10 +66,10 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 	}
 	_0 = Z_TYPE_P(di) != IS_NULL;
 	if (_0) {
-		_0 = !zephir_instance_of_ev(di, ice_di_diinterface_ce TSRMLS_CC);
+		_0 = !zephir_instance_of_ev(di, ice_di_ce TSRMLS_CC);
 	}
 	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'di' must be an instance of 'Ice\\Di\\DiInterface'", "", 0);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'di' must be an instance of 'Ice\\Di'", "", 0);
 		return;
 	}
 	zephir_update_property_this(this_ptr, SL("_view"), view TSRMLS_CC);

@@ -207,4 +207,27 @@ class TagTest extends PHPUnit
         $expected = 'P_rch_l_rb_v_rd';
         $this->assertEquals($expected, $friendly);
     }
+
+    public function testSelect()
+    {
+        $options = [0 => 'Unactive', 1 => 'Active'];
+        $output = $this->tag->select(['status', $options]);
+        $expected = '<select id="status" name="status">' . PHP_EOL .
+            '<option value="0">Unactive</option>' . PHP_EOL .
+            '<option value="1">Active</option>' . PHP_EOL .
+            '</select>' . PHP_EOL;
+        $this->assertEquals($expected, $output);
+
+        $this->tag->setValue('timeZone', 'Europe/Warsaw');
+
+        $options = ['Europe' => ['Europe/London' => 'London', 'Europe/Warsaw' => 'Warsaw']];
+        $output = $this->tag->select(['timeZone', $options]);
+        $expected = '<select id="timeZone" name="timeZone">' . PHP_EOL .
+            '<optgroup label="Europe">' . PHP_EOL .
+            '<option value="Europe/London">London</option>' . PHP_EOL .
+            '<option value="Europe/Warsaw" selected="selected">Warsaw</option>' . PHP_EOL .
+            '</optgroup>' . PHP_EOL .
+            '</select>' . PHP_EOL;
+        $this->assertEquals($expected, $output);
+    }
 }

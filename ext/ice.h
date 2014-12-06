@@ -28,7 +28,6 @@
 #include "ice/db/driver/pdo.zep.h"
 #include "ice/di.zep.h"
 #include "ice/di/access.zep.h"
-#include "ice/di/diinterface.zep.h"
 #include "ice/dispatcher.zep.h"
 #include "ice/dump.zep.h"
 #include "ice/exception.zep.h"
