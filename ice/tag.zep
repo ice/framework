@@ -573,7 +573,7 @@ class Tag
 
                 if fetch tmp, attrs["type"] {
                     // Automatically check inputs
-                    if tmp == "checkbox" || tmp == "radio" {
+                    if attrs["value"] && (tmp == "checkbox" || tmp == "radio") {
                         let attrs["checked"] = "checked";
                     }
                 }
