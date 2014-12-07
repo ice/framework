@@ -1,11 +1,23 @@
 
 namespace Ice;
 
-use Ice\Validation\ValidationInterface;
+use Ice\Validation\Validator;
 
+/**
+ * Allows to validate array data.
+ *
+ * @package     Ice/Validation
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        Ice\Filter (if service is available)
+ * @uses        Ice\I18n (if service is available)
+ */
 class Validation
 {
 
+    protected _di { get };
     protected _data = [];
     protected _rules = [] { set };
     protected _validators = [];
@@ -14,7 +26,8 @@ class Validation
     protected _messages = [];
     protected _valid = true;
     protected _aliases = [] { set };
-    protected _translate = "__" { set };
+    protected _translate = true { set };
+    protected _humanLabels = false { set };
     protected _defaultMessages = [
         "alnum": "Field :field must contain only letters and numbers",
         "alpha": "Field :field must contain only letters",
@@ -42,12 +55,24 @@ class Validation
         "without": "Field :field must not occur together with :fields"
     ];
 
+    /**
+     * Validation constructor. Fetch Di and set the data if given
+     */
     public function __construct(array data = [])
     {
-        let this->_data = data;
+        let this->_di = Di::$fetch(),
+            this->_data = data;
     }
 
-    public function resolve(string alias, string field, var options = null)
+    /**
+     * Resolve one rule
+     *
+     * @param string alias
+     * @param string field
+     * @param mixed options
+     * @return void
+     */
+    public function resolve(string alias, string field, var options = null) -> void
     {
         var rule;
 
@@ -59,16 +84,24 @@ class Validation
             }
         }
 
-        let this->_rules[field][] = <ValidatorInterface> create_instance_params(rule, [options]);
+        let this->_rules[field][] = <Validator> create_instance_params(rule, [options]);
     }
 
-    public function rule(string field, var validators, var options = null)
+    /**
+     * Add one rule
+     *
+     * @param string field
+     * @param mixed validators
+     * @param mixed options
+     * @return void
+     */
+    public function rule(string field, var validators, var options = null) -> void
     {
         var validator, rules, rule, alias, values;
 
         switch typeof validators {
             case "object":
-                let this->_rules[field][] = <ValidatorInterface> validators;
+                let this->_rules[field][] = <Validator> validators;
             break;
             case "array":
                 for validator, options in validators {
@@ -101,7 +134,13 @@ class Validation
         }
     }
 
-    public function rules(array! validators)
+    /**
+     * Add multiple rules at once
+     *
+     * @param array validators
+     * @return void
+     */
+    public function rules(array! validators) -> void
     {
         var field, rules;
 
@@ -110,7 +149,13 @@ class Validation
         }
     }
 
-    public function validate(array data = [])
+    /**
+     * Validate the data
+     *
+     * @param array data Data to validate
+     * @return boolean
+     */
+    public function validate(array data = []) -> boolean
     {
         var field, rules, rule;
 
@@ -118,6 +163,7 @@ class Validation
             let this->_data = data;
         }
 
+        // Validate the rules
         for field, rules in this->_rules {
             for rule in rules {
                 if rule->validate(this, field)  === false {
@@ -134,63 +180,128 @@ class Validation
         return this->_valid;
     }
 
-    public function valid()
+    /**
+     * Check if validation passed
+     *
+     * @return boolean
+     */
+    public function valid() -> boolean
     {
         return this->_valid;
     }
 
-    public function hasValue(string! field)
+    /**
+     * Whether or not a value exists by field
+     *
+     * @param string field The data key
+     * @return boolean
+     */
+    public function hasValue(string! field) -> boolean
     {
         return isset this->_data[field];
     }
 
+    /**
+     * Get a value by field
+     *
+     * @param string field The data key
+     * @param boolean filtered Get the filtered value or original
+     * @return mixed
+     */
     public function getValue(string! field, boolean filtered = true)
     {
-        var value, filters, filter;
+        var value, filters;
 
         fetch value, this->_data[field];
 
-        if filtered && fetch filters, this->_filters[field] {
-            let filter = Di::$fetch()->{"getFilter"}(),
-                value = filter->sanitize(value, filters);
+        // Filter the value
+        if filtered && this->_di->has("filter") && fetch filters, this->_filters[field] {
+            let value = this->_di->get("filter")->sanitize(value, filters);
         }
 
         return value;
     }
 
-    public function getLabel(string! field)
+    /**
+     * Get the label of a field
+     * Humanize a label if humanLabels attribute and filter service is available
+     * Translate label if translate attribute and i18n service is available
+     *
+     * @param string field The data key
+     * @return string
+     */
+    public function getLabel(string! field) -> string
     {
         var label;
 
         if !fetch label, this->_labels[field] {
-            return field;
+            // Humanize the field
+            if this->_humanLabels && this->_di->has("filter") {
+                let label = this->_di->get("filter")->sanitize(field, "human");
+            } else {
+                let label = field;
+            }
         }
+
+        // Translate the label
+        if this->_translate && this->_di->has("i18n") {
+            let label = this->_di->get("i18n")->translate(label);
+        }
+
         return label;
     }
 
-    public function setDefaultMessages(array messages = [])
+    /**
+     * Set the default messages
+     *
+     * @param array messages
+     * @return void
+     */
+    public function setDefaultMessages(array messages = []) -> void
     {
         let this->_defaultMessages = array_merge(this->_defaultMessages, messages);
     }
 
-    public function getDefaultMessage(string! type)
+    /**
+     * Get a default message for the type
+     * Translate message if translate attribute and i18n service is available
+     *
+     * @param string type Type of message
+     * @return string
+     */
+    public function getDefaultMessage(string! type) -> string
     {
-        var message, translate;
+        var message;
 
         if !fetch message, this->_defaultMessages[type] {
             return this->_defaultMessages["default"];
         }
 
-        let translate = this->_translate;
+        // Translate the message
+        if this->_translate && this->_di->has("i18n") {
+            let message = this->_di->get("i18n")->translate(message);
+        }
 
-        return translate && function_exists(translate) ? {translate}(message) : message;
+        return message;
     }
 
-    public function addMessage(string! field, string message)
+    /**
+     * Add a message to the field
+     *
+     * @param string field
+     * @param string message
+     * @return void
+     */
+    public function addMessage(string! field, string message) -> void
     {
         let this->_messages[field][] = message;
     }
 
+    /**
+     * Get the validation's messages
+     *
+     * @return Arr
+     */
     public function getMessages() -> <Arr>
     {
         return new Arr(this->_messages);
