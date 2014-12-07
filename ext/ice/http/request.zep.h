@@ -8,6 +8,7 @@ PHP_METHOD(Ice_Http_Request, hasRequest);
 PHP_METHOD(Ice_Http_Request, hasPost);
 PHP_METHOD(Ice_Http_Request, hasGet);
 PHP_METHOD(Ice_Http_Request, hasServer);
+PHP_METHOD(Ice_Http_Request, hasFile);
 PHP_METHOD(Ice_Http_Request, isPost);
 PHP_METHOD(Ice_Http_Request, isGet);
 PHP_METHOD(Ice_Http_Request, isPut);
@@ -41,6 +42,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_hasserver, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_hasfile, 0, 0, 1)
+	ZEND_ARG_INFO(0, name)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_getquery, 0, 0, 0)
 	ZEND_ARG_INFO(0, key)
 	ZEND_ARG_INFO(0, filters)
@@ -71,6 +76,7 @@ ZEPHIR_INIT_FUNCS(ice_http_request_method_entry) {
 	PHP_ME(Ice_Http_Request, hasPost, arginfo_ice_http_request_haspost, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, hasGet, arginfo_ice_http_request_hasget, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, hasServer, arginfo_ice_http_request_hasserver, ZEND_ACC_PUBLIC|ZEND_ACC_FINAL)
+	PHP_ME(Ice_Http_Request, hasFile, arginfo_ice_http_request_hasfile, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, isPost, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, isGet, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, isPut, NULL, ZEND_ACC_PUBLIC)

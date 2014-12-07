@@ -42,6 +42,11 @@ class Request extends Arr
         return this->_server->has(name);
     }
 
+    public function hasFile(string! name) -> boolean
+    {
+        return this->_files->has(name);
+    }
+
     public function isPost() -> boolean
     {
         return this->getMethod() == "POST";
