@@ -8,8 +8,12 @@ PHP_METHOD(Ice_Mvc_Model, getDb);
 PHP_METHOD(Ice_Mvc_Model, setFrom);
 PHP_METHOD(Ice_Mvc_Model, setPrimary);
 PHP_METHOD(Ice_Mvc_Model, getPrimary);
+PHP_METHOD(Ice_Mvc_Model, setFilters);
+PHP_METHOD(Ice_Mvc_Model, getFilters);
 PHP_METHOD(Ice_Mvc_Model, setFields);
 PHP_METHOD(Ice_Mvc_Model, getFields);
+PHP_METHOD(Ice_Mvc_Model, setValidation);
+PHP_METHOD(Ice_Mvc_Model, getValidation);
 PHP_METHOD(Ice_Mvc_Model, getRelations);
 PHP_METHOD(Ice_Mvc_Model, setLabels);
 PHP_METHOD(Ice_Mvc_Model, getMessages);
@@ -42,8 +46,16 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setprimary, 0, 0, 1)
 	ZEND_ARG_INFO(0, primary)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfilters, 0, 0, 1)
+	ZEND_ARG_INFO(0, filters)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfields, 0, 0, 1)
 	ZEND_ARG_INFO(0, fields)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setvalidation, 0, 0, 1)
+	ZEND_ARG_INFO(0, validation)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setlabels, 0, 0, 1)
@@ -146,8 +158,12 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, setFrom, arginfo_ice_mvc_model_setfrom, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setPrimary, arginfo_ice_mvc_model_setprimary, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getPrimary, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, setFilters, arginfo_ice_mvc_model_setfilters, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getFilters, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFields, arginfo_ice_mvc_model_setfields, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getFields, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, setValidation, arginfo_ice_mvc_model_setvalidation, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getValidation, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getRelations, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setLabels, arginfo_ice_mvc_model_setlabels, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getMessages, NULL, ZEND_ACC_PUBLIC)
