@@ -84,7 +84,7 @@ abstract class Dispatcher
         var handler, response, handlerName, actionName, params, handlerSuffix, actionSuffix, handlerClass, actionMethod, fresh;
         int i = 0;
 
-        let response = this->_di->{"getResponse"}(),
+        let response = this->_di->get("response"),
             fresh = true,
             handler = null,
             handlerSuffix = this->_handlerSuffix,

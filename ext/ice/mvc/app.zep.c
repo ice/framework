@@ -28,8 +28,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
 
 	zend_declare_property_bool(ice_mvc_app_ce, SL("_autoRender"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_app_ce, SL("_defaultModule"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
 	zend_declare_property_null(ice_mvc_app_ce, SL("_modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
@@ -52,25 +50,6 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 
 
 	zephir_update_property_this(this_ptr, SL("_autoRender"), autoRender TSRMLS_CC);
-
-}
-
-PHP_METHOD(Ice_Mvc_App, getDefaultModule) {
-
-
-	RETURN_MEMBER(this_ptr, "_defaultModule");
-
-}
-
-PHP_METHOD(Ice_Mvc_App, setDefaultModule) {
-
-	zval *defaultModule;
-
-	zephir_fetch_params(0, 1, 0, &defaultModule);
-
-
-
-	zephir_update_property_this(this_ptr, SL("_defaultModule"), defaultModule TSRMLS_CC);
 
 }
 
@@ -149,7 +128,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	}
 	if (!(_3)) {
 		ZEPHIR_OBS_VAR(module);
-		zephir_array_fetch_string(&module, response, SL("module"), PH_NOISY, "ice/mvc/app.zep", 43 TSRMLS_CC);
+		zephir_array_fetch_string(&module, response, SL("module"), PH_NOISY, "ice/mvc/app.zep", 42 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(modules);
 		zephir_read_property_this(&modules, this_ptr, SL("_modules"), PH_NOISY_CC);
 		if (!(zephir_is_true(modules))) {
@@ -170,14 +149,14 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_8, _6);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_1, "ice/mvc/app.zep", 55 TSRMLS_CC);
+			zephir_throw_exception_debug(_1, "ice/mvc/app.zep", 54 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
-		zephir_array_fetch(&_9, modules, module, PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 58 TSRMLS_CC);
+		zephir_array_fetch(&_9, modules, module, PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 57 TSRMLS_CC);
 		ZEPHIR_CPY_WRT(module, _9);
 		if (Z_TYPE_P(module) != IS_ARRAY) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/mvc/app.zep", 61);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/mvc/app.zep", 60);
 			return;
 		}
 		ZEPHIR_OBS_VAR(path);
@@ -191,7 +170,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_8, _6);
 				zephir_check_call_status();
-				zephir_throw_exception_debug(_1, "ice/mvc/app.zep", 66 TSRMLS_CC);
+				zephir_throw_exception_debug(_1, "ice/mvc/app.zep", 65 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
@@ -240,16 +219,16 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmethod", NULL, method);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9, response, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 90 TSRMLS_CC);
+		zephir_array_fetch_string(&_9, response, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 89 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, _9);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_16, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 91 TSRMLS_CC);
+		zephir_array_fetch_string(&_16, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 90 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _16);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_17, response, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 92 TSRMLS_CC);
+		zephir_array_fetch_string(&_17, response, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 91 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _17);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_18, response, SL("params"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 93 TSRMLS_CC);
+		zephir_array_fetch_string(&_18, response, SL("params"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 92 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _18);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&response, dispatcher, "dispatch", NULL);
