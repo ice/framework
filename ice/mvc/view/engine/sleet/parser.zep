@@ -18,10 +18,11 @@ class Parser
         "capitalize": "ucfirst"
     ];
 
-    protected _env;
+    protected _env = [];
 
     const NORMAL = 0;
     const SHORTIF = 1;
+    const INARRAY = 2;
 
     public function __construct()
     {
@@ -42,7 +43,7 @@ class Parser
         }
 
         let this->_functions = array_merge(this->_functions, functions),
-            this->_env = Parser::NORMAL;
+            this->_env[] = Parser::NORMAL;
     }
 
     public function text(string text)
@@ -265,7 +266,7 @@ class Parser
                 case T_STRING:
                     let str = (string) token[1];
 
-                    if next == "(" && prev != "." && prev != ":" {
+                    if next == "(" && (prev != "." || typeof prev == "array" && prev[0] != T_DOUBLE_COLON) {
                         return isset this->_functions[str] ? this->_functions[str] : str;
                     }
                     switch str {
@@ -310,16 +311,24 @@ class Parser
                 case ".":
                     return "->";
                 case ":":
-                    switch this->_env {
+                    switch end(this->_env) {
                         case Parser::SHORTIF:
-                            let this->_env = Parser::NORMAL;
+                            array_pop(this->_env);
                             return " : ";
                         default:
                             return " => ";
                     }
                 case "?":
-                    let this->_env = Parser::SHORTIF;
+                    let this->_env[] = Parser::SHORTIF;
                     return " ? ";
+                case "[":
+                    let this->_env[] = Parser::INARRAY;
+                    return token;
+                case "]":
+                    if end(this->_env) == Parser::INARRAY {
+                        array_pop(this->_env);
+                    }
+                    return token;
                 default:
                     return token;
             }
