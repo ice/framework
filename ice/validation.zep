@@ -41,7 +41,6 @@ class Validation
         "fileMinResolution": "File :field must be at least :min resolution",
         "fileSize": "File :field exceeds the size of :max",
         "fileType": "File :field must be of type: :types",
-        "fileValid": "Field :field is not valid",
         "in": "Field :field must be a part of list: :values",
         "lengthMax": "Field :field must not exceed :max characters long",
         "lengthMin": "Field :field must be at least :min characters long",

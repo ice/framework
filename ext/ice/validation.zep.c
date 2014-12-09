@@ -156,7 +156,7 @@ PHP_METHOD(Ice_Validation, __construct) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 31);
+	array_init_size(_0, 29);
 	add_assoc_stringl_ex(_0, SS("alnum"), SL("Field :field must contain only letters and numbers"), 1);
 	add_assoc_stringl_ex(_0, SS("alpha"), SL("Field :field must contain only letters"), 1);
 	add_assoc_stringl_ex(_0, SS("between"), SL("Field :field must be within the range of :min to :max"), 1);
@@ -169,7 +169,6 @@ PHP_METHOD(Ice_Validation, __construct) {
 	add_assoc_stringl_ex(_0, SS("fileMinResolution"), SL("File :field must be at least :min resolution"), 1);
 	add_assoc_stringl_ex(_0, SS("fileSize"), SL("File :field exceeds the size of :max"), 1);
 	add_assoc_stringl_ex(_0, SS("fileType"), SL("File :field must be of type: :types"), 1);
-	add_assoc_stringl_ex(_0, SS("fileValid"), SL("Field :field is not valid"), 1);
 	add_assoc_stringl_ex(_0, SS("in"), SL("Field :field must be a part of list: :values"), 1);
 	add_assoc_stringl_ex(_0, SS("lengthMax"), SL("Field :field must not exceed :max characters long"), 1);
 	add_assoc_stringl_ex(_0, SS("lengthMin"), SL("Field :field must be at least :min characters long"), 1);
@@ -253,7 +252,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, _4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_2, "ice/validation.zep", 83 TSRMLS_CC);
+			zephir_throw_exception_debug(_2, "ice/validation.zep", 82 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -307,7 +306,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(_0, "array")) {
-			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 113);
+			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 112);
 			for (
 			  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -341,7 +340,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			} else {
 				ZEPHIR_INIT_VAR(rules);
 				zephir_fast_explode_str(rules, SL("|"), validators, LONG_MAX TSRMLS_CC);
-				zephir_is_iterable(rules, &_11, &_10, 0, 0, "ice/validation.zep", 132);
+				zephir_is_iterable(rules, &_11, &_10, 0, 0, "ice/validation.zep", 131);
 				for (
 				  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
 				  ; zephir_hash_move_forward_ex(_11, &_10)
@@ -394,7 +393,7 @@ PHP_METHOD(Ice_Validation, rules) {
 
 
 
-	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 150);
+	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 149);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -437,14 +436,14 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_update_property_this(this_ptr, SL("_data"), data TSRMLS_CC);
 	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 176);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 175);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(field, _2, _1);
 		ZEPHIR_GET_HVALUE(rules, _3);
-		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 173);
+		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 172);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -729,7 +728,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_defaultMessages"), PH_NOISY_CC);
 	if (!(zephir_array_isset_fetch(&message, _0, type, 0 TSRMLS_CC))) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_defaultMessages"), PH_NOISY_CC);
-		zephir_array_fetch_string(&_2, _1, SL("default"), PH_NOISY | PH_READONLY, "ice/validation.zep", 277 TSRMLS_CC);
+		zephir_array_fetch_string(&_2, _1, SL("default"), PH_NOISY | PH_READONLY, "ice/validation.zep", 276 TSRMLS_CC);
 		RETURN_CTOR(_2);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_translate"), PH_NOISY_CC);

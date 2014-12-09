@@ -62,7 +62,7 @@ class File extends Validator
             if this->has("messageValid") {
                 let message = this->get("messageValid");
             } else {
-                let message = validation->getDefaultMessage("fileValid");
+                let message = validation->getDefaultMessage("default");
             }
             
             let replace = [":field": label];
