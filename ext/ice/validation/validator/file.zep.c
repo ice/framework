@@ -224,7 +224,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_INIT_NVAR(_1);
-			ZVAL_STRING(_1, "fileValid", ZEPHIR_TEMP_PARAM_COPY);
+			ZVAL_STRING(_1, "default", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_CALL_METHOD(&message, validation, "getdefaultmessage", NULL, _1);
 			zephir_check_temp_parameter(_1);
 			zephir_check_call_status();

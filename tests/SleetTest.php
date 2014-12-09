@@ -89,7 +89,8 @@ class SleetTest extends PHPUnit
             // Mixed
             ['{{ "User " ~ a([user.name, trim(user[fullname])]) }}',
                 '<?php echo "User " . $this->tag->a([$user->name, trim($user[$fullname])]) ?>'],
-            ['{{ user["username"] ? "OK" : "FAIL" }}', '<?php echo $user["username"] ? "OK" : "FAIL" ?>'],
+            ['{{ __("Click :url", [":url": link_to([this.url.getStatic("i"), "Link" ]) ]) }}',
+                '<?php echo __("Click :url", [":url" => $this->tag->linkTo([$this->url->getStatic("i"), "Link"])]) ?>'],
             // CONTROL, ASSIGNMENTS, CONDITONS
             // Set statement
             ['{% set a = 1 %}', '<?php $a = 1; ?>'],
@@ -131,6 +132,11 @@ class SleetTest extends PHPUnit
             // If elseif
             ['{% if a==b %} hello {% elseif a==c %} world {% endif %}',
                 '<?php if($a == $b): ?> hello <?php elseif($a == $c): ?> world <?php endif ?>'],
+            // Short if
+            ['{{ user["username"] ? "OK" : "FAIL" }}', '<?php echo $user["username"] ? "OK" : "FAIL" ?>'],
+            ['{{ user["fullname"] ? user["fullname"] : user["username"] }}',
+                '<?php echo $user["fullname"] ? $user["fullname"] : $user["username"] ?>'],
+            ['{% set b = a ? ["key": "a"] : ["key": "b"] %}', '<?php $b = $a ? ["key" => "a"] : ["key" => "b"]; ?>'],
         ];
     }
 }

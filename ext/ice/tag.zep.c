@@ -1330,13 +1330,13 @@ PHP_METHOD(Ice_Tag, endTag) {
  */
 PHP_METHOD(Ice_Tag, prepareTag) {
 
-	HashTable *_9;
-	HashPosition _8;
+	HashTable *_11;
+	HashPosition _10;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL;
-	zend_bool single, _7, _11, _12;
+	zend_bool single, _8, _9, _13;
 	zval *attributes = NULL, *skip = NULL;
-	zval *name_param = NULL, *attributes_param = NULL, *skip_param = NULL, *single_param = NULL, *order, *keys = NULL, *attrs, *code = NULL, *tmp = NULL, *value = NULL, *key = NULL, *_0 = NULL, *_1 = NULL, *_5 = NULL, *_6 = NULL, **_10, *_13 = NULL, *_14;
+	zval *name_param = NULL, *attributes_param = NULL, *skip_param = NULL, *single_param = NULL, *order, *keys = NULL, *attrs, *code = NULL, *tmp = NULL, *value = NULL, *key = NULL, *_0 = NULL, *_1 = NULL, *_5 = NULL, *_6 = NULL, *_7, **_12, *_14 = NULL, *_15;
 	zval *name = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
@@ -1422,11 +1422,16 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 			zephir_array_update_string(&attrs, SL("value"), &_6, PH_COPY | PH_SEPARATE);
 			ZEPHIR_OBS_NVAR(tmp);
 			if (zephir_array_isset_string_fetch(&tmp, attrs, SS("type"), 0 TSRMLS_CC)) {
-				_7 = ZEPHIR_IS_STRING(tmp, "checkbox");
-				if (!(_7)) {
-					_7 = ZEPHIR_IS_STRING(tmp, "radio");
+				zephir_array_fetch_string(&_7, attrs, SL("value"), PH_NOISY | PH_READONLY, "ice/tag.zep", 576 TSRMLS_CC);
+				_8 = zephir_is_true(_7);
+				if (_8) {
+					_9 = ZEPHIR_IS_STRING(tmp, "checkbox");
+					if (!(_9)) {
+						_9 = ZEPHIR_IS_STRING(tmp, "radio");
+					}
+					_8 = _9;
 				}
-				if (_7) {
+				if (_8) {
 					ZEPHIR_INIT_NVAR(_0);
 					ZVAL_STRING(_0, "checked", 1);
 					zephir_array_update_string(&attrs, SL("checked"), &_0, PH_COPY | PH_SEPARATE);
@@ -1434,42 +1439,42 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 			}
 		}
 	}
-	zephir_is_iterable(attrs, &_9, &_8, 0, 0, "ice/tag.zep", 589);
+	zephir_is_iterable(attrs, &_11, &_10, 0, 0, "ice/tag.zep", 589);
 	for (
-	  ; zephir_hash_get_current_data_ex(_9, (void**) &_10, &_8) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_9, &_8)
+	  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_11, &_10)
 	) {
-		ZEPHIR_GET_HMKEY(key, _9, _8);
-		ZEPHIR_GET_HVALUE(value, _10);
-		_7 = Z_TYPE_P(key) == IS_STRING;
-		if (_7) {
-			_7 = Z_TYPE_P(value) != IS_NULL;
+		ZEPHIR_GET_HMKEY(key, _11, _10);
+		ZEPHIR_GET_HVALUE(value, _12);
+		_8 = Z_TYPE_P(key) == IS_STRING;
+		if (_8) {
+			_8 = Z_TYPE_P(value) != IS_NULL;
 		}
-		_11 = _7;
-		if (_11) {
-			_11 = !ZEPHIR_IS_FALSE_IDENTICAL(value);
+		_9 = _8;
+		if (_9) {
+			_9 = !ZEPHIR_IS_FALSE_IDENTICAL(value);
 		}
-		_12 = _11;
-		if (_12) {
-			_12 = !zephir_fast_in_array(key, skip TSRMLS_CC);
+		_13 = _9;
+		if (_13) {
+			_13 = !zephir_fast_in_array(key, skip TSRMLS_CC);
 		}
-		if (_12) {
-			ZEPHIR_INIT_LNVAR(_13);
-			ZEPHIR_CONCAT_SVSVS(_13, " ", key, "=\"", value, "\"");
-			zephir_concat_self(&code, _13 TSRMLS_CC);
+		if (_13) {
+			ZEPHIR_INIT_LNVAR(_14);
+			ZEPHIR_CONCAT_SVSVS(_14, " ", key, "=\"", value, "\"");
+			zephir_concat_self(&code, _14 TSRMLS_CC);
 		}
 	}
 	if (single) {
-		ZEPHIR_INIT_LNVAR(_13);
-		_14 = zephir_fetch_nproperty_this(this_ptr, SL("_docType"), PH_NOISY_CC);
-		if (ZEPHIR_GT_LONG(_14, 5)) {
-			ZEPHIR_INIT_NVAR(_13);
-			ZVAL_STRING(_13, " />", 1);
+		ZEPHIR_INIT_LNVAR(_14);
+		_15 = zephir_fetch_nproperty_this(this_ptr, SL("_docType"), PH_NOISY_CC);
+		if (ZEPHIR_GT_LONG(_15, 5)) {
+			ZEPHIR_INIT_NVAR(_14);
+			ZVAL_STRING(_14, " />", 1);
 		} else {
-			ZEPHIR_INIT_NVAR(_13);
-			ZVAL_STRING(_13, ">", 1);
+			ZEPHIR_INIT_NVAR(_14);
+			ZVAL_STRING(_14, ">", 1);
 		}
-		zephir_concat_self(&code, _13 TSRMLS_CC);
+		zephir_concat_self(&code, _14 TSRMLS_CC);
 	} else {
 		zephir_concat_self_str(&code, SL(">") TSRMLS_CC);
 	}

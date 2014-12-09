@@ -13,7 +13,9 @@ abstract class Model extends Arr
     protected _db { get };
     protected _from { set };
     protected _primary { set, get };
+    protected _filters = [] { set, get };
     protected _fields = [] { set, get };
+    protected _validation { set, get };
     protected _relations = [] { get };
     protected _labels = [] { set };
     protected _rules = [];
@@ -161,7 +163,7 @@ abstract class Model extends Arr
      */
     public function create(var fields = [], <Validation> extra = null)
     {
-        var status, validation, valid, extraValid, messages, extraMessages;
+        var status, valid, extraValid, messages, extraMessages;
 
         let fields = this->fields(fields),
             extraValid = false,
@@ -179,13 +181,16 @@ abstract class Model extends Arr
         this->_di->applyHook("model.before.validate", [this]);
 
         if count(this->_rules) {
-            let validation = new Validation();
+            if !(typeof this->_validation == "object" && (this->_validation instanceof Validation)) {
+                let this->_validation = new Validation();
+            }
 
-            validation->rules(this->_rules);
-            validation->setLabels(this->_labels);
+            this->_validation->rules(this->_rules);
+            this->_validation->setFilters(this->_filters);
+            this->_validation->setLabels(this->_labels);
 
-            let valid = validation->validate(this->getData()),
-                messages = validation->getMessages();
+            let valid = this->_validation->validate(this->getData()),
+                messages = this->_validation->getMessages();
         }
 
         if count(this->_rules) && !valid || extra && !extraValid {

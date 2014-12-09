@@ -12,7 +12,6 @@ class App extends Access
 {
 
     protected _autoRender = true { get, set };
-    protected _defaultModule { get, set };
     protected _modules { get, set };
 
     /**

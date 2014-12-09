@@ -191,6 +191,35 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 
 }
 
+PHP_METHOD(Ice_Http_Request, hasFile) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, *_0;
+	zval *name = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &name_param);
+
+	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(name, name_param);
+	} else {
+		ZEPHIR_INIT_VAR(name);
+		ZVAL_EMPTY_STRING(name);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_files"), PH_NOISY_CC);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "has", NULL, name);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
 PHP_METHOD(Ice_Http_Request, isPost) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
