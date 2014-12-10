@@ -22,55 +22,20 @@ class Console extends Access
      */
     public function handle(arguments = null)
     {
-        var router, handled, module, modules, $namespace, path, className, loader, dispatcher, task;
+        var router, response, dispatcher;
 
         let router = this->_di->{"getRouter"}(),
-            handled = router->handle(arguments),
-            module = handled["module"];
+            response = router->handle(arguments),
+            dispatcher = this->_di->{"getDispatcher"}();
 
-        let modules = this->_modules;
-        if !isset modules[module] {
-            throw new Exception(sprintf("Module '%s' isn't registered in the console container", module));
-        }
+        dispatcher->setModules(this->_modules);
+        dispatcher->setModule(response["module"]);
+        dispatcher->setHandler(response["handler"]);
+        dispatcher->setAction(response["action"]);
+        dispatcher->setParams(response["params"]);
 
-        let module = modules[module];
-        if typeof module != "array" {
-            throw new Exception("Module definition must be an array");
-        }
+        let response = dispatcher->dispatch();
 
-        if fetch path, module["path"] {
-            if !file_exists(path) {
-                throw new Exception(sprintf("Module definition path '%s' doesn't exist", path));
-            }
-        }
-
-        if !fetch className, module["className"] {
-            let className = "Module";
-        }
-
-        if !fetch $namespace, module["namespace"] {
-            let $namespace = className;
-        }
-
-        let loader = new Loader();
-        loader->addNamespace($namespace, path)->register();
-
-        let className = $namespace . "\\" . className,
-            module = new {className}(this->_di);
-
-        let dispatcher = this->_di->{"getDispatcher"}();
-        dispatcher->setDefaultNamespace($namespace . "\\" . dispatcher->getHandlerSuffix());
-
-        module->registerAutoloaders();
-        module->registerServices(this->_di);
-
-        dispatcher->setModule(handled["module"]);
-        dispatcher->setHandler(handled["handler"]);
-        dispatcher->setAction(handled["action"]);
-        dispatcher->setParams(handled["params"]);
-
-        let task = dispatcher->dispatch();
-
-        return task;
+        return response;
     }
 }

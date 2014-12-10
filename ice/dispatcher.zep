@@ -1,6 +1,8 @@
 
 namespace Ice;
 
+use Ice\Mvc\ModuleInterface;
+
 abstract class Dispatcher 
 {
 
@@ -13,6 +15,7 @@ abstract class Dispatcher
     protected _forwarded = false { get };
     protected _silent = false { set };
 
+    protected _modules = [] { get, set };
     protected _module = null { get, set };
     protected _handler = null { get, set };
     protected _action = null { get, set };
@@ -23,6 +26,7 @@ abstract class Dispatcher
     protected _handlerSuffix = "Handler" { get, set };
     protected _actionSuffix = "Action" { get, set };
 
+    protected _previousModule = null;
     protected _previousHandler = null;
     protected _previousAction = null;
 
@@ -81,7 +85,8 @@ abstract class Dispatcher
      */
     public function dispatch()
     {
-        var handler, response, handlerName, actionName, params, handlerSuffix, actionSuffix, handlerClass, actionMethod, fresh;
+        var handler, response, handlerName, actionName, params, handlerSuffix, actionSuffix, handlerClass, actionMethod;
+        var fresh, module, modules, moduleNamespace, path, moduleClass, loader;
         int i = 0;
 
         let response = this->_di->get("response"),
@@ -106,7 +111,51 @@ abstract class Dispatcher
                 throw new Exception("Dispatcher has detected a cyclic routing causing stability problems", self::DISPATCH_CYCLIC);
             }
 
-            let this->_finished = true;
+            let this->_finished = true,
+                modules = this->_modules;
+
+            // Set the default module
+            if !modules {
+                let modules = [
+                    "default": [
+                        "namespace": "App",
+                        "path": "../App/"
+                    ]
+                ];
+            }
+
+            if !fetch module, modules[this->_module] {
+                throw new Exception(["Module '%s' isn't registered in the application container", this->_module]);
+            }
+            
+            if typeof module != "array" {
+                throw new Exception("Module definition must be an array");
+            }
+
+            if fetch path, module["path"] {
+                if !file_exists(path) {
+                    throw new Exception(["Module definition path '%s' doesn't exist", path]);
+                }
+            }
+
+            if !fetch moduleClass, module["class"] {
+                let moduleClass = "Module";
+            }
+
+            if !fetch moduleNamespace, module["namespace"] {
+                let moduleNamespace = moduleClass;
+            }
+
+            let loader = new Loader();
+
+            loader->addNamespace(moduleNamespace, path)->register();
+
+            let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->_di]);
+
+            this->setDefaultNamespace(moduleNamespace . "\\" . this->getHandlerSuffix());
+
+            module->registerAutoloaders();
+            module->registerServices(this->_di);
 
             let handlerName = this->_handler,
                 actionName = this->_action,
@@ -154,7 +203,7 @@ abstract class Dispatcher
 
                     return response;
                 }
-                throw new Exception(sprintf("Action '%s' was not found on handler '%s'", actionName, handlerName), self::ACTION_NOT_FOUND);
+                throw new Exception(["Action '%s' was not found on handler '%s'", actionName, handlerName], self::ACTION_NOT_FOUND);
             }
 
             let params = this->_params;
@@ -183,13 +232,18 @@ abstract class Dispatcher
 
     /**
      * Forwards the execution flow to another controller/action
-     * Dispatchers are unique per module. Forwarding between modules is not allowed
      *
      * @param array forward
      */
     public function forward(array! forward)
     {
-        var handler, action, params;
+        var module, handler, action, params;
+
+        // Check if we need to forward to another module
+        if fetch module, forward["module"] {
+            let this->_previousModule = this->_module,
+                this->_module = module;
+        }
 
         // Check if we need to forward to another handler
         if fetch handler, forward["handler"] {
