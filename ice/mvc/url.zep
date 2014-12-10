@@ -48,8 +48,9 @@ class Url
         let baseUri = this->getBaseUri();
 
         if local {
-            if uri === false {
-                let uri = Di::$fetch()->{"getRequest"}()->get("_url");
+            // Get current URL if uri is false
+            if uri === false && isset _GET["_url"] {
+                let uri = _GET["_url"];
             } else {
                 let uri = baseUri . uri;
             }
