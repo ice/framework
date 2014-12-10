@@ -570,7 +570,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 		ZEPHIR_CONCAT_SV(_4, " GROUP BY ", _2);
 		zephir_concat_self(&sql, _4 TSRMLS_CC);
 	}
-	if (zephir_array_isset_string(options, SS("odrer"))) {
+	if (zephir_array_isset_string(options, SS("order"))) {
 		ZEPHIR_INIT_NVAR(_2);
 		zephir_array_fetch_string(&_3, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 206 TSRMLS_CC);
 		zephir_fast_join_str(_2, SL(", "), _3 TSRMLS_CC);

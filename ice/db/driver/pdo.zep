@@ -202,7 +202,7 @@ class Pdo implements DbInterface
         if isset options["group"] {
             let sql .= " GROUP BY " . join(", ", options["group"]);
         }
-        if isset options["odrer"] {
+        if isset options["order"] {
             let sql .= " ORDER BY " . join(", ", options["order"]);
         }
         if isset options["limit"] {
