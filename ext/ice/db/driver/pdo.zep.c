@@ -649,7 +649,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(key, _1, _0);
+		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SVS(_3, "`", key, "`");
@@ -723,7 +723,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(key, _1, _0);
+		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		ZEPHIR_INIT_LNVAR(_3);
 		ZEPHIR_CONCAT_SV(_3, ":", key);

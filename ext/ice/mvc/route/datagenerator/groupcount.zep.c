@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(regex, _1, _0);
+		ZEPHIR_GET_HMKEY(regex, _1, _0);
 		ZEPHIR_GET_HVALUE(route, _2);
 		ZEPHIR_OBS_NVAR(_3);
 		zephir_read_property(&_3, route, SL("variables"), PH_NOISY_CC);

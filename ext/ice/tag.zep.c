@@ -1299,7 +1299,7 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(param, _1, _0);
+		ZEPHIR_GET_HMKEY(param, _1, _0);
 		ZEPHIR_GET_HVALUE(key, _2);
 		if (zephir_is_numeric(key)) {
 			ZEPHIR_OBS_NVAR(value);

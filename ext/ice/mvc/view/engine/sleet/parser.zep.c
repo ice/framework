@@ -148,7 +148,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, text) {
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
 	) {
-		ZEPHIR_GET_HKEY(key, _3, _2);
+		ZEPHIR_GET_HMKEY(key, _3, _2);
 		ZEPHIR_GET_HVALUE(line, _4);
 		ZEPHIR_INIT_LNVAR(_5);
 		if (zephir_is_true(key)) {

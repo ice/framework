@@ -463,7 +463,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HKEY(key, _2, _1);
+		ZEPHIR_GET_HMKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
 		if (Z_TYPE_P(value) == IS_OBJECT) {
 			if ((zephir_method_exists_ex(value, SS("toarray") TSRMLS_CC) == SUCCESS)) {

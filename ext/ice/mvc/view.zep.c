@@ -329,7 +329,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HKEY(ext, _2, _1);
+		ZEPHIR_GET_HMKEY(ext, _2, _1);
 		ZEPHIR_GET_HVALUE(engine, _3);
 		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_viewsDir"), PH_NOISY_CC);
 		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
