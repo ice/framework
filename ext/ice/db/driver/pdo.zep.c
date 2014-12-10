@@ -140,7 +140,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
-	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1 = NULL, *_2;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -180,14 +180,21 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 	zephir_array_update_string(&options, SL("limit"), &_0, PH_COPY | PH_SEPARATE);
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, from, filters, options, fields);
 	zephir_check_call_status();
-	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_LONG(_2, 2);
-	ZEPHIR_CALL_METHOD(&_1, result, "fetch", NULL, _2);
+	ZEPHIR_INIT_VAR(_1);
+	ZEPHIR_CALL_METHOD(&_2, result, "rowcount", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, _1);
-	zephir_check_call_status();
-	RETURN_MM();
+	if (zephir_is_true(_2)) {
+		object_init_ex(_1, ice_arr_ce);
+		ZEPHIR_INIT_VAR(_4);
+		ZVAL_LONG(_4, 2);
+		ZEPHIR_CALL_METHOD(&_3, result, "fetch", NULL, _4);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, _3);
+		zephir_check_call_status();
+	} else {
+		ZVAL_BOOL(_1, 0);
+	}
+	RETURN_CCTOR(_1);
 
 }
 

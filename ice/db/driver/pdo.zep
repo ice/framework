@@ -42,7 +42,7 @@ class Pdo implements DbInterface
         let options["limit"] = 1,
             result = this->select(from, filters, options, fields);
 
-        return new Arr(result->$fetch(\Pdo::FETCH_ASSOC));
+        return result->rowCount() ? new Arr(result->$fetch(\Pdo::FETCH_ASSOC)) : false;
 
     }
 
