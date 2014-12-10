@@ -5,7 +5,6 @@ use Ice\Exception;
 use Ice\Loader;
 use Ice\Di\Access;
 use Ice\Mvc\Dispatcher;
-use Ice\Mvc\ModuleInterface;
 use Ice\Http\Response\ResponseInterface;
 
 class App extends Access
@@ -23,7 +22,7 @@ class App extends Access
      */
     public function handle(method = null, uri = null) -> <ResponseInterface> | boolean
     {
-        var router, request, response, module, modules, $namespace, path, $class, loader, dispatcher, controller, view;
+        var router, request, response, dispatcher, controller, view;
 
         let request = this->_di->{"getRequest"}();
         if method == null {
@@ -35,56 +34,11 @@ class App extends Access
         }
 
         let router = this->_di->{"getRouter"}(),
-            response = router->handle(method, uri);
+            response = router->handle(method, uri),
+            dispatcher = this->_di->{"getDispatcher"}();
 
         if !(typeof response == "object" && (response instanceof ResponseInterface)) {
-
-            let module = response["module"],
-                modules = this->_modules;
-
-            if !modules {
-                let modules = [
-                    "default": [
-                        "namespace": "App",
-                        "path": "../app/"
-                    ]];
-            }
-
-            if !isset modules[module] {
-                throw new Exception(sprintf("Module '%s' isn't registered in the application container", module));
-            }
-
-            let module = modules[module];
-            
-            if typeof module != "array" {
-                throw new Exception("Module definition must be an array");
-            }
-
-            if fetch path, module["path"] {
-                if !file_exists(path) {
-                    throw new Exception(sprintf("Module definition path '%s' doesn't exist", path));
-                }
-            }
-
-            if !fetch $class, module["class"] {
-                let $class = "Module";
-            }
-
-            if !fetch $namespace, module["namespace"] {
-                let $namespace = $class;
-            }
-
-            let loader = new Loader();
-            loader->addNamespace($namespace, path)->register();
-
-            let module = <ModuleInterface> create_instance_params($namespace . "\\" . $class, [this->_di]),
-                dispatcher = this->_di->{"getDispatcher"}();
-
-            dispatcher->setDefaultNamespace($namespace . "\\" . dispatcher->getHandlerSuffix());
-
-            module->registerAutoloaders();
-            module->registerServices(this->_di);
-
+            dispatcher->setModules(this->_modules);
             dispatcher->setMethod(method);
             dispatcher->setModule(response["module"]);
             dispatcher->setHandler(response["handler"]);

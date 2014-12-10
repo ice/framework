@@ -274,7 +274,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 PHP_METHOD(Ice_Mvc_Model, loadOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *filters, *result = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL;
+	zval *filters, *result = NULL, *_0, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &filters);
@@ -285,18 +285,15 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_from"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&result, _0, "findone", NULL, _1, filters);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_2, result, "count", NULL);
-	zephir_check_call_status();
-	if (!(zephir_is_true(_2))) {
-		RETURN_MM_BOOL(0);
-	} else {
-		ZEPHIR_CALL_METHOD(&_3, result, "all", NULL);
+	if (zephir_is_true(result)) {
+		ZEPHIR_CALL_METHOD(&_2, result, "all", NULL);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, _3);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, _2);
 		zephir_check_call_status();
 		RETURN_THIS();
+	} else {
+		RETURN_MM_BOOL(0);
 	}
-	ZEPHIR_MM_RESTORE();
 
 }
 

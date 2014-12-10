@@ -64,11 +64,11 @@ abstract class Model extends Arr
 
         let result = this->_db->findOne(this->_from, filters);
 
-        if !result->count() {
-            return false;
-        } else {
+        if result {
             this->replace(result->all());
             return this;
+        } else {
+            return false;
         }
     }
 

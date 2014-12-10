@@ -26,18 +26,16 @@ class Tag
     const XHTML20 = 10;
     const XHTML5 = 11;
 
+    protected _di { get };
     protected _values { get };
     protected _docType = 5 { set };
     protected _title = null { set, get };
     protected _titleSeparator = " - " { set, get };
-    protected _url;
+    protected _escape = true { set };
 
     public function __construct()
     {
-        var di;
-
-        let di = Di::$fetch(),
-            this->_url = di->{"getUrl"}();
+        let this->_di = Di::$fetch();
     }
 
     /**
@@ -195,8 +193,11 @@ class Tag
                 fetch action, parameters[defaultParams["action"]];
             }
 
+            // Send to current URL if action is false
             if action !== false {
-                let parameters["action"] = this->_url->get(action);
+                if this->_di->has("url") {
+                    let parameters["action"] = this->_di->get("url")->get(action);
+                }
             }
         }
 
@@ -254,7 +255,9 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            let parameters["src"] = this->_url->getStatic(src);
+            if this->_di->has("url") {
+                let parameters["src"] = this->_di->get("url")->getStatic(src);
+            }
         }
 
         return this->tagHtml("img", parameters, defaultParams, ["local"], null, false, false, true);
@@ -293,7 +296,9 @@ class Tag
 
         fetch query, parameters["query"];
 
-        let parameters["href"] = this->_url->get(href, query, local);
+        if this->_di->has("url") {
+            let parameters["href"] = this->_di->get("url")->get(href, query, local);
+        }
 
         return this->tagHtml("a", parameters, defaultParams, ["text", "local", "query"], "text", true);
     }
@@ -323,7 +328,9 @@ class Tag
                 fetch href, parameters[defaultParams["href"]];
             }
 
-            let parameters["href"] = this->_url->getStatic(href);
+            if this->_di->has("url") {
+                let parameters["href"] = this->_di->get("url")->getStatic(href);
+            }
         }
 
         return this->tagHtml("link", parameters, defaultParams, ["local"], null, false, true, true);
@@ -353,8 +360,8 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            if src {
-                let parameters["src"] = this->_url->getStatic(src);
+            if src && this->_di->has("url") {
+                let parameters["src"] = this->_di->get("url")->getStatic(src);
             }
         }
 
@@ -582,6 +589,9 @@ class Tag
 
         for key, value in attrs {
             if typeof key == "string" && value !== null && value !== false && !in_array(key, skip) {
+                if this->_escape && this->_di->has("filter") {
+                    let value = this->_di->get("filter")->sanitize(value, "escape");
+                }
                 let code .= " " . key . "=\"" . value. "\"";
             }
         }

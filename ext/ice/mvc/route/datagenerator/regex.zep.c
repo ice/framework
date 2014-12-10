@@ -114,7 +114,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HKEY(method, _2, _1);
+		ZEPHIR_GET_HMKEY(method, _2, _1);
 		ZEPHIR_GET_HVALUE(regexToRoutesMap, _3);
 		ZEPHIR_INIT_NVAR(_4);
 		ZVAL_LONG(_4, zephir_fast_count_int(regexToRoutesMap TSRMLS_CC));

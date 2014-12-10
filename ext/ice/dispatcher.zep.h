@@ -10,6 +10,8 @@ PHP_METHOD(Ice_Dispatcher, getLastHandler);
 PHP_METHOD(Ice_Dispatcher, getFinished);
 PHP_METHOD(Ice_Dispatcher, getForwarded);
 PHP_METHOD(Ice_Dispatcher, setSilent);
+PHP_METHOD(Ice_Dispatcher, getModules);
+PHP_METHOD(Ice_Dispatcher, setModules);
 PHP_METHOD(Ice_Dispatcher, getModule);
 PHP_METHOD(Ice_Dispatcher, setModule);
 PHP_METHOD(Ice_Dispatcher, getHandler);
@@ -37,6 +39,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setsilent, 0, 0, 1)
 	ZEND_ARG_INFO(0, silent)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setmodules, 0, 0, 1)
+	ZEND_ARG_INFO(0, modules)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setmodule, 0, 0, 1)
@@ -89,6 +95,8 @@ ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
 	PHP_ME(Ice_Dispatcher, getFinished, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getForwarded, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, setSilent, arginfo_ice_dispatcher_setsilent, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dispatcher, getModules, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dispatcher, setModules, arginfo_ice_dispatcher_setmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getModule, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, setModule, arginfo_ice_dispatcher_setmodule, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getHandler, NULL, ZEND_ACC_PUBLIC)

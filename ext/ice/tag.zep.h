@@ -3,12 +3,14 @@ extern zend_class_entry *ice_tag_ce;
 
 ZEPHIR_INIT_CLASS(Ice_Tag);
 
+PHP_METHOD(Ice_Tag, getDi);
 PHP_METHOD(Ice_Tag, getValues);
 PHP_METHOD(Ice_Tag, setDocType);
 PHP_METHOD(Ice_Tag, setTitle);
 PHP_METHOD(Ice_Tag, getTitle);
 PHP_METHOD(Ice_Tag, setTitleSeparator);
 PHP_METHOD(Ice_Tag, getTitleSeparator);
+PHP_METHOD(Ice_Tag, setEscape);
 PHP_METHOD(Ice_Tag, __construct);
 PHP_METHOD(Ice_Tag, appendTitle);
 PHP_METHOD(Ice_Tag, prependTitle);
@@ -50,6 +52,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_settitleseparator, 0, 0, 1)
 	ZEND_ARG_INFO(0, titleSeparator)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setescape, 0, 0, 1)
+	ZEND_ARG_INFO(0, escape)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_appendtitle, 0, 0, 1)
@@ -184,12 +190,14 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_friendlytitle, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
+	PHP_ME(Ice_Tag, getDi, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getValues, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setDocType, arginfo_ice_tag_setdoctype, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitle, arginfo_ice_tag_settitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitleSeparator, arginfo_ice_tag_settitleseparator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getTitleSeparator, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, setEscape, arginfo_ice_tag_setescape, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Tag, appendTitle, arginfo_ice_tag_appendtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, prependTitle, arginfo_ice_tag_prependtitle, ZEND_ACC_PUBLIC)

@@ -58,7 +58,7 @@ PHP_METHOD(Ice_Config, __construct) {
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
-		ZEPHIR_GET_HKEY(key, _1, _0);
+		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(key) != IS_STRING) {
 			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 21);
@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_4, &_3)
 			) {
-				ZEPHIR_GET_HKEY(subkey, _4, _3);
+				ZEPHIR_GET_HMKEY(subkey, _4, _3);
 				ZEPHIR_GET_HVALUE(subvalue, _5);
 				if (Z_TYPE_P(subkey) == IS_LONG) {
 					hasNumericKey = 1;
