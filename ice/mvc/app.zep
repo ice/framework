@@ -1,10 +1,7 @@
 
 namespace Ice\Mvc;
 
-use Ice\Exception;
-use Ice\Loader;
 use Ice\Di\Access;
-use Ice\Mvc\Dispatcher;
 use Ice\Http\Response\ResponseInterface;
 
 class App extends Access

@@ -16,6 +16,8 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/concat.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -26,6 +28,14 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Console, ice, cli_console, ice_di_access_ce, ice_cli_console_method_entry, 0);
 
 	zend_declare_property_null(ice_cli_console_ce, SL("_modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_cli_console_ce, SL("NORMAL"), 0 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_cli_console_ce, SL("BOLD_BRIGHT"), 1 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_cli_console_ce, SL("UNDERLINE"), 4 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_cli_console_ce, SL("INVERSE"), 7 TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -80,21 +90,108 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_modules"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodules", NULL, _2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 32 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 34 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, _3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 33 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 35 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _4);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 34 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 36 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _5);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_6, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 35 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 37 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _6);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, dispatcher, "dispatch", NULL);
 	zephir_check_call_status();
 	RETURN_CCTOR(response);
+
+}
+
+/**
+ * Returns the given text with the correct color codes for a foreground and optionally a background color.
+ * Colors: black, red, green, yellow, blue, magenta, cyan, lightgray, white*
+ *
+ * @param string text The text to color
+ * @param string color The foreground color
+ * @param int decoration Formatting type
+ * @param string bgColor The background color
+ * @return string Coded string
+ */
+PHP_METHOD(Ice_Cli_Console, color) {
+
+	int decoration;
+	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors, *bgColors, *colored, *e, *foreground, *background, _0, *_1 = NULL, *_2;
+	zval *text = NULL, *color = NULL, *bgColor = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 3, &text_param, &color_param, &decoration_param, &bgColor_param);
+
+	zephir_get_strval(text, text_param);
+	if (!color_param) {
+		ZEPHIR_INIT_VAR(color);
+		ZVAL_EMPTY_STRING(color);
+	} else {
+		zephir_get_strval(color, color_param);
+	}
+	if (!decoration_param) {
+		decoration = 0;
+	} else {
+		decoration = zephir_get_intval(decoration_param);
+	}
+	if (!bgColor_param) {
+		ZEPHIR_INIT_VAR(bgColor);
+		ZVAL_EMPTY_STRING(bgColor);
+	} else {
+		zephir_get_strval(bgColor, bgColor_param);
+	}
+
+
+	ZEPHIR_INIT_VAR(colors);
+	array_init_size(colors, 12);
+	add_assoc_long_ex(colors, SS("black"), 30);
+	add_assoc_long_ex(colors, SS("red"), 31);
+	add_assoc_long_ex(colors, SS("green"), 32);
+	add_assoc_long_ex(colors, SS("yellow"), 33);
+	add_assoc_long_ex(colors, SS("blue"), 34);
+	add_assoc_long_ex(colors, SS("magenta"), 35);
+	add_assoc_long_ex(colors, SS("cyan"), 36);
+	add_assoc_long_ex(colors, SS("lightgray"), 37);
+	add_assoc_long_ex(colors, SS("white"), 97);
+	ZEPHIR_INIT_VAR(bgColors);
+	array_init_size(bgColors, 12);
+	add_assoc_long_ex(bgColors, SS("black"), 40);
+	add_assoc_long_ex(bgColors, SS("red"), 41);
+	add_assoc_long_ex(bgColors, SS("green"), 42);
+	add_assoc_long_ex(bgColors, SS("yellow"), 43);
+	add_assoc_long_ex(bgColors, SS("blue"), 44);
+	add_assoc_long_ex(bgColors, SS("magenta"), 45);
+	add_assoc_long_ex(bgColors, SS("cyan"), 46);
+	add_assoc_long_ex(bgColors, SS("lightgray"), 47);
+	add_assoc_long_ex(bgColors, SS("white"), 107);
+	zephir_array_isset_fetch(&foreground, colors, color, 1 TSRMLS_CC);
+	zephir_array_isset_fetch(&background, bgColors, bgColor, 1 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(e);
+	ZVAL_STRING(e, "\e", 1);
+	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_LONG(&_0, decoration);
+	ZEPHIR_INIT_VAR(_1);
+	if (zephir_is_true(foreground)) {
+		ZEPHIR_INIT_NVAR(_1);
+		ZEPHIR_CONCAT_SV(_1, ";", foreground);
+	} else {
+		ZEPHIR_INIT_NVAR(_1);
+		ZVAL_STRING(_1, "", 1);
+	}
+	ZEPHIR_INIT_VAR(colored);
+	ZEPHIR_CONCAT_VSVVS(colored, e, "[", &_0, _1, "m");
+	if (zephir_is_true(background)) {
+		ZEPHIR_INIT_VAR(_2);
+		ZEPHIR_CONCAT_VSVS(_2, e, "[", background, "m");
+		zephir_concat_self(&colored, _2 TSRMLS_CC);
+	}
+	ZEPHIR_CONCAT_VVVS(return_value, colored, text, e, "[0m");
+	RETURN_MM();
 
 }
 

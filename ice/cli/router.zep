@@ -16,10 +16,10 @@ class Router
     protected _defaultHandler = "main" { get, set };
     protected _defaultAction = "main" { get, set };
 
-    protected _module = null { get };
-    protected _handler = null { get };
-    protected _action = null { get };
-    protected _params = null { get };
+    protected _module { get };
+    protected _handler { get };
+    protected _action { get };
+    protected _params = [] { get };
 
     public function setDefaults(array! defaults)
     {
@@ -47,46 +47,63 @@ class Router
      */
     public function handle(arguments = null) -> array
     {
-        var module, handler, action, params;
+        var params, argument;
 
         if typeof arguments != "array" {
             throw new Exception("Arguments must be an array");
         }
 
-        let module = this->_defaultModule,
-            handler = this->_defaultHandler,
-            action = this->_defaultAction,
+        // Set the defaults
+        let this->_module = this->_defaultModule,
+            this->_handler = this->_defaultHandler,
+            this->_action = this->_defaultAction,
             params = [];
 
-        switch count(arguments) {
-            case 1:
-                // Handle defaults
-            break;
-            case 2:
-                let module = arguments[1];
-            break;
-            case 3:
-                let module = arguments[1],
-                    handler = arguments[2];
-            break;
-            case 4:
-                let module = arguments[1],
-                    handler = arguments[2],
-                    action = arguments[3];
-            break;
-            default:
-                let module = arguments[1],
-                    handler = arguments[2],
-                    action = arguments[3],
-                    params = array_slice(arguments, 4);
-            break;
+        // Skip the first option, it is always the file executed
+        array_shift(arguments);
+
+        for argument in arguments {
+            // Get the option
+            if substr(argument, 0, 2) !== "--" {
+                // This is a positional argument
+                let params[] = argument;
+                continue;
+            }
+
+            // Remove the "--" prefix
+            let argument = substr(argument, 2);
+
+            if strpos(argument, "=") {
+                // Separate the name and value
+                let argument = explode("=", argument, 2),
+                    params[argument[0]] = argument[1];
+            } else {
+                let params[argument] = null;
+            }
         }
 
-        let this->_module = module,
-            this->_handler = handler,
-            this->_action = action,
-            this->_params = params;
+        if isset params["module"] && params["module"] {
+            let this->_module = params["module"];
 
-        return ["module": module, "handler": handler, "action": action, "params": params];
+            unset params["module"];
+        }
+
+        if isset params["handler"] && params["handler"] {
+            let this->_handler = params["handler"];
+            
+            unset params["handler"];
+        }
+
+        if isset params["action"] && params["action"] {
+            let this->_action = params["action"];
+            
+            unset params["action"];
+        }
+
+        if count(params) {
+            let this->_params = params;
+        }
+
+        return ["module": this->_module, "handler": this->_handler, "action": this->_action, "params": this->_params];
     }
 }
