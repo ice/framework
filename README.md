@@ -1,4 +1,4 @@
-## Ice framework
+## [Ice framework](http://www.iceframework.org)
 Simple and fast PHP framework delivered as C-extension.
 
 ### Stage
