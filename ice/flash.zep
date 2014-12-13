@@ -82,7 +82,7 @@ class Flash
     {
         var params, body, close, message;
 
-        let params = this->getOption(type),
+        let params = this->getOption(type, []),
             close = this->_tag->a(["#", "×", "class": "close"]),
             body = "";
 
@@ -92,7 +92,7 @@ class Flash
 
         for message in messages {
             if this->getOption("html") {
-                let body .= this->_tag->tagHtml("div", params, ["content": close . message],  ["content"], "content", true) . PHP_EOL;
+                let body .= this->_tag->tagHtml("div", params, ["content": close . message],  ["content"], "content", true, true);
             } else {
                 let body .= message . PHP_EOL;
             }

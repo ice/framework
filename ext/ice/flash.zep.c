@@ -195,12 +195,12 @@ PHP_METHOD(Ice_Flash, getMessages) {
  */
 PHP_METHOD(Ice_Flash, getMessage) {
 
-	zephir_fcall_cache_entry *_7 = NULL;
-	HashTable *_4;
-	HashPosition _3;
-	zval *_1, *_10 = NULL, *_12 = NULL;
+	zephir_fcall_cache_entry *_8 = NULL;
+	HashTable *_5;
+	HashPosition _4;
+	zval *_2, *_11 = NULL, *_13 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *type_param = NULL, *messages = NULL, *params = NULL, *body, *close = NULL, *message = NULL, *_0, *_2 = NULL, **_5, *_6 = NULL, *_8, *_9 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL;
+	zval *type_param = NULL, *messages = NULL, *params = NULL, *body, *close = NULL, *message = NULL, *_0, *_1, *_3 = NULL, **_6, *_7 = NULL, *_9, *_10 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -210,19 +210,21 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	ZEPHIR_SEPARATE_PARAM(messages);
 
 
-	ZEPHIR_CALL_METHOD(&params, this_ptr, "getoption", NULL, type);
+	ZEPHIR_INIT_VAR(_0);
+	array_init(_0);
+	ZEPHIR_CALL_METHOD(&params, this_ptr, "getoption", NULL, type, _0);
 	zephir_check_call_status();
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 4);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "#", 1);
-	zephir_array_fast_append(_1, _2);
-	ZEPHIR_INIT_NVAR(_2);
-	ZVAL_STRING(_2, "×", 1);
-	zephir_array_fast_append(_1, _2);
-	add_assoc_stringl_ex(_1, SS("class"), SL("close"), 1);
-	ZEPHIR_CALL_METHOD(&close, _0, "a", NULL, _1);
+	array_init_size(_2, 4);
+	ZEPHIR_INIT_VAR(_3);
+	ZVAL_STRING(_3, "#", 1);
+	zephir_array_fast_append(_2, _3);
+	ZEPHIR_INIT_NVAR(_3);
+	ZVAL_STRING(_3, "×", 1);
+	zephir_array_fast_append(_2, _3);
+	add_assoc_stringl_ex(_2, SS("class"), SL("close"), 1);
+	ZEPHIR_CALL_METHOD(&close, _1, "a", NULL, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(body);
 	ZVAL_STRING(body, "", 1);
@@ -231,50 +233,48 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		array_init_size(messages, 2);
 		zephir_array_fast_append(messages, messages);
 	}
-	zephir_is_iterable(messages, &_4, &_3, 0, 0, "ice/flash.zep", 101);
+	zephir_is_iterable(messages, &_5, &_4, 0, 0, "ice/flash.zep", 101);
 	for (
-	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_4, &_3)
+	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_5, &_4)
 	) {
-		ZEPHIR_GET_HVALUE(message, _5);
-		ZEPHIR_INIT_NVAR(_2);
-		ZVAL_STRING(_2, "html", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_6, this_ptr, "getoption", &_7, _2);
-		zephir_check_temp_parameter(_2);
+		ZEPHIR_GET_HVALUE(message, _6);
+		ZEPHIR_INIT_NVAR(_3);
+		ZVAL_STRING(_3, "html", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_7, this_ptr, "getoption", &_8, _3);
+		zephir_check_temp_parameter(_3);
 		zephir_check_call_status();
-		if (zephir_is_true(_6)) {
-			_8 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
-			ZEPHIR_INIT_NVAR(_10);
-			array_init_size(_10, 2);
-			ZEPHIR_INIT_LNVAR(_11);
-			ZEPHIR_CONCAT_VV(_11, close, message);
-			zephir_array_update_string(&_10, SL("content"), &_11, PH_COPY | PH_SEPARATE);
-			ZEPHIR_INIT_NVAR(_12);
-			array_init_size(_12, 2);
-			ZEPHIR_INIT_NVAR(_2);
-			ZVAL_STRING(_2, "content", 1);
-			zephir_array_fast_append(_12, _2);
-			ZEPHIR_INIT_NVAR(_2);
-			ZVAL_STRING(_2, "div", ZEPHIR_TEMP_PARAM_COPY);
+		if (zephir_is_true(_7)) {
+			_9 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
+			ZEPHIR_INIT_NVAR(_11);
+			array_init_size(_11, 2);
+			ZEPHIR_INIT_LNVAR(_12);
+			ZEPHIR_CONCAT_VV(_12, close, message);
+			zephir_array_update_string(&_11, SL("content"), &_12, PH_COPY | PH_SEPARATE);
 			ZEPHIR_INIT_NVAR(_13);
-			ZVAL_STRING(_13, "content", ZEPHIR_TEMP_PARAM_COPY);
+			array_init_size(_13, 2);
+			ZEPHIR_INIT_NVAR(_3);
+			ZVAL_STRING(_3, "content", 1);
+			zephir_array_fast_append(_13, _3);
+			ZEPHIR_INIT_NVAR(_3);
+			ZVAL_STRING(_3, "div", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_NVAR(_14);
-			ZVAL_BOOL(_14, 1);
-			ZEPHIR_CALL_METHOD(&_9, _8, "taghtml", NULL, _2, params, _10, _12, _13, _14);
-			zephir_check_temp_parameter(_2);
-			zephir_check_temp_parameter(_13);
+			ZVAL_STRING(_14, "content", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_INIT_NVAR(_15);
+			ZVAL_BOOL(_15, 1);
+			ZEPHIR_INIT_NVAR(_16);
+			ZVAL_BOOL(_16, 1);
+			ZEPHIR_CALL_METHOD(&_10, _9, "taghtml", NULL, _3, params, _11, _13, _14, _15, _16);
+			zephir_check_temp_parameter(_3);
+			zephir_check_temp_parameter(_14);
 			zephir_check_call_status();
-			ZEPHIR_INIT_NVAR(_2);
-			ZEPHIR_GET_CONSTANT(_2, "PHP_EOL");
-			ZEPHIR_INIT_LNVAR(_11);
-			ZEPHIR_CONCAT_VV(_11, _9, _2);
-			zephir_concat_self(&body, _11 TSRMLS_CC);
+			zephir_concat_self(&body, _10 TSRMLS_CC);
 		} else {
-			ZEPHIR_INIT_NVAR(_13);
-			ZEPHIR_GET_CONSTANT(_13, "PHP_EOL");
-			ZEPHIR_INIT_LNVAR(_11);
-			ZEPHIR_CONCAT_VV(_11, message, _13);
-			zephir_concat_self(&body, _11 TSRMLS_CC);
+			ZEPHIR_INIT_NVAR(_3);
+			ZEPHIR_GET_CONSTANT(_3, "PHP_EOL");
+			ZEPHIR_INIT_LNVAR(_12);
+			ZEPHIR_CONCAT_VV(_12, message, _3);
+			zephir_concat_self(&body, _12 TSRMLS_CC);
 		}
 	}
 	RETURN_CCTOR(body);
