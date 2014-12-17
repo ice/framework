@@ -177,7 +177,6 @@ abstract class Dispatcher
                 this->_activeHandler = handler,
                 actionMethod = this->getActiveMethod();
 
-
             if method_exists(handler, "before") {
                 handler->before();
 

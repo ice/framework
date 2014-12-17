@@ -34,6 +34,8 @@ class App extends Access
             response = router->handle(method, uri),
             dispatcher = this->_di->{"getDispatcher"}();
 
+        this->_di->applyHook("app.after.router.handle", [response]);
+
         if !(typeof response == "object" && (response instanceof ResponseInterface)) {
             dispatcher->setModules(this->_modules);
             dispatcher->setMethod(method);
@@ -44,7 +46,7 @@ class App extends Access
 
             let response = dispatcher->dispatch();
 
-            this->_di->applyHook("app.after.dispatch", [response]);
+            this->_di->applyHook("app.after.dispatcher.dispatch", [response]);
 
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
 
