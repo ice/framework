@@ -37,6 +37,8 @@ if test "$PHP_ICE" = "yes"; then
 	ice/dump.zep.c
 	ice/exception.zep.c
 	ice/filter.zep.c
+	ice/filter/css.zep.c
+	ice/filter/js.zep.c
 	ice/flash.zep.c
 	ice/http/request.zep.c
 	ice/http/request/requestinterface.zep.c
