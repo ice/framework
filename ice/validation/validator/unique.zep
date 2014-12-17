@@ -20,7 +20,6 @@ class Unique extends Validator
 
         let di = Di::$fetch(),
             db = di->{"getDb"}();
-            //db = di->{"get"}("db")->getDriver();
 
         if this->has(0) {
             let from = this->get(0);
@@ -52,7 +51,7 @@ class Unique extends Validator
             let result = db->findOne(from, [custom: value]);
         }
 
-        if result->count() {
+        if result {
             if this->has("label") {
                 let label = this->get("label");
             } else {

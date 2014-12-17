@@ -67,6 +67,15 @@ class Filter
         }
 
         switch filter {
+            case "cssmin":
+                let custom = create_instance("Ice\\Filter\\Css"),
+                    this->_filters["cssmin"] = custom;
+                return custom->sanitize(value);
+            case "jsmin":
+                let custom = create_instance("Ice\\Filter\\Js"),
+                    this->_filters["jsmin"] = custom;
+                return custom->sanitize(value);
+
             case "camelize":
                 return value->camelize();
             case "uncamelize":

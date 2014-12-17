@@ -624,7 +624,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(_9, 3);
 			ZEPHIR_CALL_METHOD(NULL, _8, "__construct", &_10, _11, _9);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 206 TSRMLS_CC);
+			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 205 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -640,7 +640,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZEPHIR_CALL_METHOD(NULL, _8, "__construct", &_10, _9, _34);
 			zephir_check_temp_parameter(_9);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 211 TSRMLS_CC);
+			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 210 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}

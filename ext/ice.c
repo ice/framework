@@ -70,6 +70,8 @@ zend_class_entry *ice_di_ce;
 zend_class_entry *ice_dump_ce;
 zend_class_entry *ice_exception_ce;
 zend_class_entry *ice_filter_ce;
+zend_class_entry *ice_filter_css_ce;
+zend_class_entry *ice_filter_js_ce;
 zend_class_entry *ice_flash_ce;
 zend_class_entry *ice_http_request_ce;
 zend_class_entry *ice_http_response_ce;
@@ -180,6 +182,8 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Dump);
 	ZEPHIR_INIT(Ice_Exception);
 	ZEPHIR_INIT(Ice_Filter);
+	ZEPHIR_INIT(Ice_Filter_Css);
+	ZEPHIR_INIT(Ice_Filter_Js);
 	ZEPHIR_INIT(Ice_Flash);
 	ZEPHIR_INIT(Ice_Http_Request);
 	ZEPHIR_INIT(Ice_Http_Response);

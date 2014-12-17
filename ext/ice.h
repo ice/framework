@@ -32,6 +32,8 @@
 #include "ice/dump.zep.h"
 #include "ice/exception.zep.h"
 #include "ice/filter.zep.h"
+#include "ice/filter/css.zep.h"
+#include "ice/filter/js.zep.h"
 #include "ice/flash.zep.h"
 #include "ice/http/request.zep.h"
 #include "ice/http/request/requestinterface.zep.h"

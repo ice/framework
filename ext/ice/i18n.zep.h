@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n);
 PHP_METHOD(Ice_I18n, __construct);
 PHP_METHOD(Ice_I18n, fetch);
 PHP_METHOD(Ice_I18n, lang);
+PHP_METHOD(Ice_I18n, iso);
 PHP_METHOD(Ice_I18n, get);
 PHP_METHOD(Ice_I18n, load);
 PHP_METHOD(Ice_I18n, _);
@@ -44,6 +45,7 @@ ZEPHIR_INIT_FUNCS(ice_i18n_method_entry) {
 	PHP_ME(Ice_I18n, __construct, arginfo_ice_i18n___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_I18n, fetch, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_I18n, lang, arginfo_ice_i18n_lang, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_I18n, iso, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, get, arginfo_ice_i18n_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, load, arginfo_ice_i18n_load, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_I18n, _, arginfo_ice_i18n__, ZEND_ACC_PUBLIC)
