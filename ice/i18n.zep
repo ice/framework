@@ -15,7 +15,7 @@ class I18n
     public function __construct(array options = [])
     {
         let this->_options = array_merge(this->_options, options),
-            self::_i18n = this;;
+            self::_i18n = this;
     }
 
     public static function $fetch()
@@ -38,6 +38,18 @@ class I18n
 
         return this->_options["lang"];
     }
+
+    /**
+     * Get ISO language code
+     *
+     * @return string
+     */
+    public function iso() -> string
+    {
+        return substr(this->_options["lang"], 0, 2);
+    }
+
+
 
     /**
      * Returns translation of a string. No parameters are replaced.
