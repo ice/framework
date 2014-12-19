@@ -172,37 +172,34 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 
-	zend_object_iterator *_4;
+	zend_object_iterator *_3;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1;
-	zval *token = NULL, *expired = NULL, *_2, *_3 = NULL;
+	zval *token = NULL, *expired = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(_0);
 	array_init_size(_0, 2);
 	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 3);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "<", 1);
-	zephir_array_fast_append(_1, _2);
-	ZEPHIR_CALL_FUNCTION(&_3, "time", NULL);
+	array_init_size(_1, 2);
+	ZEPHIR_CALL_FUNCTION(&_2, "time", NULL);
 	zephir_check_call_status();
-	zephir_array_fast_append(_1, _3);
+	zephir_array_update_string(&_1, SL("<"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_0, SL("expires"), &_1, PH_COPY | PH_SEPARATE);
 	ZEPHIR_CALL_METHOD(&expired, this_ptr, "load", NULL, _0);
 	zephir_check_call_status();
-	_4 = zephir_get_iterator(expired TSRMLS_CC);
-	_4->funcs->rewind(_4 TSRMLS_CC);
-	for (;_4->funcs->valid(_4 TSRMLS_CC) == SUCCESS && !EG(exception); _4->funcs->move_forward(_4 TSRMLS_CC)) {
+	_3 = zephir_get_iterator(expired TSRMLS_CC);
+	_3->funcs->rewind(_3 TSRMLS_CC);
+	for (;_3->funcs->valid(_3 TSRMLS_CC) == SUCCESS && !EG(exception); _3->funcs->move_forward(_3 TSRMLS_CC)) {
 		{ zval **tmp; 
-		_4->funcs->get_current_data(_4, &tmp TSRMLS_CC);
+		_3->funcs->get_current_data(_3, &tmp TSRMLS_CC);
 		token = *tmp;
 		}
 		ZEPHIR_CALL_METHOD(NULL, token, "remove", NULL);
 		zephir_check_call_status();
 	}
-	_4->funcs->dtor(_4 TSRMLS_CC);
+	_3->funcs->dtor(_3 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
