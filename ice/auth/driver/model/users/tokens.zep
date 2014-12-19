@@ -70,7 +70,7 @@ class Tokens extends Model
         var token, expired;
 
         let expired = this->load([
-            "expires": ["<", time()]
+            "expires": ["<": time()]
         ]);
 
         for token in iterator(expired) {
