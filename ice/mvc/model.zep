@@ -151,7 +151,10 @@ abstract class Model extends Arr
             }
         }
 
-        unset(fields[this->_db->getId()]);
+        if typeof this->_primary == "string" {
+            unset fields[this->_primary];
+        }
+
         return fields;
     }
 
