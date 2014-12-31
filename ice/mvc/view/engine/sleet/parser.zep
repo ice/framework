@@ -68,14 +68,12 @@ class Parser
             parsedLine = "";
 
         while start !== false {
-            //let split = str_split(line),
-            //let line = (string) line,
             let i = start + 1,
                 ch = line[i];
 
             switch ch {
                 case '{':
-                    // appand string before tokens, search close-symbol of the tag
+                    // append string before tokens, search close-symbol of the tag
                     let parsedLine .= substr(line, pos, (int) (start - pos)),
                         end = strpos(line, "}}", start + 2);
 
@@ -88,7 +86,7 @@ class Parser
                         parsedLine .= this->parse(substr(line, start, (int) (end - start)));
                 break;
                 case '%':
-                    // appand string before tokens, search close-symbol of the tag
+                    // append string before tokens, search close-symbol of the tag
                     let parsedLine .= substr(line, pos, (int) (start - pos)),
                         end = strpos(line, "%}", start + 2);
                    
@@ -100,12 +98,29 @@ class Parser
                     let end = end + 2,
                         parsedLine .= this->parse(substr(line, start, (int) (end - start)));
                 break;
+                case '#':
+                    // append string before comment, search close-symbol of the comment
+                    let parsedLine .= substr(line, pos, (int) (start - pos)),
+                        end = strpos(line, "#}", start + 2);
+                   
+                    if end === false {
+                        // If unexpected end of template
+                        throw new Exception(sprintf("Unclosed comment block on the line %d", no + 1));
+                    }
+
+                    let end = end + 2;
+                break;
+                default:
+                    // Ignore the tag
+                    let parsedLine .= substr(line, pos, (int) (start - pos + 1)),
+                        end = start + 1;
+                break;
             }
             // next tokens
             let pos = end,
                 start = strpos(line, "{", pos);
         }
-        // appand string after tokens
+        // append string after tokens
         let parsedLine .= substr(line, pos);
 
         return parsedLine;
