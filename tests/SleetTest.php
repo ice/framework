@@ -36,8 +36,12 @@ class SleetTest extends PHPUnit
          * input, expected parser output
          */
         return [
-            // ECHO
+            // Not parse
             ['hello', 'hello'],
+            ['{ hello }', '{ hello }'],
+            // Comments
+            ['lorem {# hello #}ipsum{# other comment #} dolor', 'lorem ipsum dolor'],
+            // ECHO
             ['{{ "hello" }}', '<?php echo "hello" ?>'],
             ['{{ "hello" }}{{ "hello" }}', '<?php echo "hello" ?><?php echo "hello" ?>'],
             ['{{ "hello" }}-{{ "hello" }}', '<?php echo "hello" ?>-<?php echo "hello" ?>'],
