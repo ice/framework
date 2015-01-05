@@ -10,7 +10,7 @@ class Unique extends Validator
 
     public function validate(<Validation> validation, string! field)
     {
-        var value, label, message, replace, di, db, from, custom, except, result, id;
+        var value, label, message, i18n, replace, di, db, from, custom, except, result, id;
 
         let value = validation->getValue(field);
 
@@ -62,6 +62,13 @@ class Unique extends Validator
                 let message = this->get("message");
             } else {
                 let message = validation->getDefaultMessage("unique");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
 
             let replace = [":field": label];

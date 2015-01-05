@@ -9,7 +9,7 @@ class Digit extends Validator
 
     public function validate(<Validation> validation, string! field)
     {
-        var value, label, message, replace;
+        var value, label, message, i18n, replace;
 
         let value = validation->getValue(field);
 
@@ -28,6 +28,13 @@ class Digit extends Validator
                 let message = this->get("message");
             } else {
                 let message = validation->getDefaultMessage("digit");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
 
             let replace = [":field": label];

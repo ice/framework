@@ -9,7 +9,7 @@ class Regex extends Validator
 
     public function validate(<Validation> validation, string! field)
     {
-        var value, label, message, replace, pattern, matches, failed;
+        var value, label, message, i18n, replace, pattern, matches, failed;
 
         let value = validation->getValue(field),
             matches = [];
@@ -41,6 +41,13 @@ class Regex extends Validator
                 let message = this->get("message");
             } else {
                 let message = validation->getDefaultMessage("regex");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
 
             let replace = [":field": label];

@@ -9,7 +9,7 @@ class Between extends Validator
 
     public function validate(<Validation> validation, string! field)
     {
-        var value, label, message, replace, min, max;
+        var value, label, message, i18n, replace, min, max;
 
         let value = validation->getValue(field);
 
@@ -29,17 +29,25 @@ class Between extends Validator
             let max = this->get("max");
         }
 
-        if this->has("label") {
-            let label = this->get("label");
-        } else {
-            let label = validation->getLabel(field);
-        }
 
         if value < min || value > max {
+            if this->has("label") {
+                let label = this->get("label");
+            } else {
+                let label = validation->getLabel(field);
+            }
+
             if this->has("message") {
                 let message = this->get("message");
             } else {
                 let message = validation->getDefaultMessage("between");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
 
             let replace = [":field": label, ":min":  min, ":max":  max];
