@@ -17,7 +17,7 @@ class File extends Validator
      */
     public function validate(<Validation> validation, string! field) -> boolean
     {
-        var value, message, label, replace, types, byteUnits, unit, maxSize, matches, bytes, mime, tmp, width, height, minResolution, maxResolution, minWidth, maxWidth, minHeight, maxHeight;
+        var value, message, label, i18n, replace, types, byteUnits, unit, maxSize, matches, bytes, mime, tmp, width, height, minResolution, maxResolution, minWidth, maxWidth, minHeight, maxHeight;
 
         let value = validation->getValue(field);
 
@@ -33,6 +33,13 @@ class File extends Validator
                 let message = this->get("messageIniSize");
             } else {
                 let message = validation->getDefaultMessage("fileIniSize");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
 
             let replace = [":field": label];
@@ -52,6 +59,13 @@ class File extends Validator
                 let message = validation->getDefaultMessage("fileEmpty");
             }
 
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
+            }
+
             let replace = [":field": label];
 
             validation->addMessage(field, strtr(message, replace));
@@ -63,6 +77,13 @@ class File extends Validator
                 let message = this->get("messageValid");
             } else {
                 let message = validation->getDefaultMessage("default");
+            }
+
+            // Translate strings
+            if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                let i18n = validation->getDi()->get("i18n"),
+                    label = i18n->translate(label),
+                    message = i18n->translate(message);
             }
             
             let replace = [":field": label];
@@ -90,6 +111,13 @@ class File extends Validator
                     let message = this->get("messageSize");
                 } else {
                     let message = validation->getDefaultMessage("fileSize");
+                }
+
+                // Translate strings
+                if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                    let i18n = validation->getDi()->get("i18n"),
+                        label = i18n->translate(label),
+                        message = i18n->translate(message);
                 }
 
                 let replace = [":field": label, ":max": maxSize];
@@ -122,6 +150,13 @@ class File extends Validator
                     let message = validation->getDefaultMessage("fileType");
                 }
 
+                // Translate strings
+                if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                    let i18n = validation->getDi()->get("i18n"),
+                        label = i18n->translate(label),
+                        message = i18n->translate(message);
+                }
+
                 let replace = [":field": label, ":types": join(", ", types)];
 
                 validation->addMessage(field, strtr(message, replace));
@@ -150,6 +185,13 @@ class File extends Validator
                     let message = validation->getDefaultMessage("fileMinResolution");
                 }
 
+                // Translate strings
+                if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                    let i18n = validation->getDi()->get("i18n"),
+                        label = i18n->translate(label),
+                        message = i18n->translate(message);
+                }
+
                 let replace = [":field": label, ":min": this->get("minResolution")];
 
                 validation->addMessage(field, strtr(message, replace));
@@ -167,6 +209,13 @@ class File extends Validator
                         let message = this->get("messageMaxResolution");
                     } else {
                         let message = validation->getDefaultMessage("fileMaxResolution");
+                    }
+
+                    // Translate strings
+                    if validation->getTranslate() === true && validation->getDi()->has("i18n") {
+                        let i18n = validation->getDi()->get("i18n"),
+                            label = i18n->translate(label),
+                            message = i18n->translate(message);
                     }
 
                     let replace = [":field": label, ":max": this->get("maxResolution")];

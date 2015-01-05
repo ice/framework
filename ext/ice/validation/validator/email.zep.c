@@ -31,11 +31,11 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Email) {
 
 PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_7 = NULL;
-	zend_bool _0;
+	zephir_nts_static zephir_fcall_cache_entry *_12 = NULL;
+	zend_bool _0, _7;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *replace, _1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace, _1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
@@ -104,12 +104,40 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
 		}
+		ZEPHIR_CALL_METHOD(&_6, validation, "gettranslate", NULL);
+		zephir_check_call_status();
+		_7 = ZEPHIR_IS_TRUE_IDENTICAL(_6);
+		if (_7) {
+			ZEPHIR_CALL_METHOD(&_8, validation, "getdi", NULL);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(_4);
+			ZVAL_STRING(_4, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&_9, _8, "has", NULL, _4);
+			zephir_check_temp_parameter(_4);
+			zephir_check_call_status();
+			_7 = zephir_is_true(_9);
+		}
+		if (_7) {
+			ZEPHIR_CALL_METHOD(&_10, validation, "getdi", NULL);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(_4);
+			ZVAL_STRING(_4, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&i18n, _10, "get", NULL, _4);
+			zephir_check_temp_parameter(_4);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_11, i18n, "translate", NULL, label);
+			zephir_check_call_status();
+			ZEPHIR_CPY_WRT(label, _11);
+			ZEPHIR_CALL_METHOD(&_11, i18n, "translate", NULL, message);
+			zephir_check_call_status();
+			ZEPHIR_CPY_WRT(message, _11);
+		}
 		ZEPHIR_INIT_VAR(replace);
 		array_init_size(replace, 2);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_6, "strtr", &_7, message, replace);
+		ZEPHIR_CALL_FUNCTION(&_10, "strtr", &_12, message, replace);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, field, _6);
+		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, field, _10);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}

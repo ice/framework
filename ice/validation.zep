@@ -26,7 +26,7 @@ class Validation
     protected _messages = [];
     protected _valid = true;
     protected _aliases = [] { set };
-    protected _translate = true { set };
+    protected _translate = true { set, get };
     protected _humanLabels = false { set };
     protected _defaultMessages = [
         "alnum": "Field :field must contain only letters and numbers",
@@ -224,7 +224,6 @@ class Validation
     /**
      * Get the label of a field
      * Humanize a label if humanLabels attribute and filter service is available
-     * Translate label if translate attribute and i18n service is available
      *
      * @param string field The data key
      * @return string
@@ -240,11 +239,6 @@ class Validation
             } else {
                 let label = field;
             }
-        }
-
-        // Translate the label
-        if this->_translate && this->_di->has("i18n") {
-            let label = this->_di->get("i18n")->translate(label);
         }
 
         return label;
@@ -263,7 +257,6 @@ class Validation
 
     /**
      * Get a default message for the type
-     * Translate message if translate attribute and i18n service is available
      *
      * @param string type Type of message
      * @return string
@@ -273,12 +266,7 @@ class Validation
         var message;
 
         if !fetch message, this->_defaultMessages[type] {
-            return this->_defaultMessages["default"];
-        }
-
-        // Translate the message
-        if this->_translate && this->_di->has("i18n") {
-            let message = this->_di->get("i18n")->translate(message);
+            let message = this->_defaultMessages["default"];
         }
 
         return message;
