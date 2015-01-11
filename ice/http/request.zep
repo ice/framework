@@ -126,6 +126,8 @@ class Request extends Arr
         var value, filter;
 
         if !key {
+            // Remove `_url` from GET
+            this->_get->set("_url", null);
             this->_get->remove("_url");
 
             return this->_get;
