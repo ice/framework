@@ -110,7 +110,7 @@ class Pagination extends Arr
         if this->get("current") > this->get("previous") {
             query->set("page", this->get("previous"));
 
-            let title = i18n ? i18n->_("previous") : null,
+            let title = i18n ? i18n->translate("previous") : null,
                 html .= "<li>" . this->_tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
@@ -121,10 +121,11 @@ class Pagination extends Arr
             if i !== this->get("current") {
                 query->set("page", i);
 
-                let title = i18n ? i18n->_("page: %d", [i]) : null,
+                let title = i18n ? i18n->translate("page: %d", [i]) : null,
                     html .= "<li>" . this->_tag->a([url, i, title, "query": query->all()]) . "</li>";
             } else {
-                let html .= "<li class=\"active\"><span>" . i . "</span></li>";
+                let title = i18n ? i18n->translate("current") : null,
+                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . i . "</span></li>";
             }
         }
 
@@ -132,7 +133,7 @@ class Pagination extends Arr
         if this->get("current") < this->get("next") {
             query->set("page", this->get("next"));
 
-            let title = i18n ? i18n->_("next") : null,
+            let title = i18n ? i18n->translate("next") : null,
                 html .= "<li>" . this->_tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
@@ -166,7 +167,7 @@ class Pagination extends Arr
         if this->get("current") != this->get("first") {
             query->remove("page");
 
-            let title = i18n ? i18n->_("first") : null,
+            let title = i18n ? i18n->translate("first") : null,
                 html .= "<li>" . this->_tag->a([url, "&laquo;", title, "query": query->all(), "rel": "first"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&laquo;</span></li>";
@@ -176,7 +177,7 @@ class Pagination extends Arr
         if this->get("current") > this->get("previous") {
             query->set("page", this->get("previous"));
 
-            let title = i18n ? i18n->_("previous") : null,
+            let title = i18n ? i18n->translate("previous") : null,
                 html .= "<li>" . this->_tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
@@ -187,10 +188,11 @@ class Pagination extends Arr
             if i !== this->get("current") {
                 query->set("page", i);
 
-                let title = i18n ? i18n->_("page: %d", [i]) : null,
+                let title = i18n ? i18n->translate("page: %d", [i]) : null,
                     html .= "<li>" . this->_tag->a([url, i, title, "query": query->all()]) . "</li>";
             } else {
-                let html .= "<li class=\"active\"><span>" . i . "</span></li>";
+                let title = i18n ? i18n->translate("current") : null,
+                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . i . "</span></li>";
             }
         }
 
@@ -198,7 +200,7 @@ class Pagination extends Arr
         if this->get("current") < this->get("next") {
             query->set("page", this->get("next"));
 
-            let title = i18n ? i18n->_("next") : null,
+            let title = i18n ? i18n->translate("next") : null,
                 html .= "<li>" . this->_tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
@@ -208,7 +210,7 @@ class Pagination extends Arr
         if this->get("current") != this->get("last") {
             query->set("page", this->get("last"));
 
-            let title = i18n ? i18n->_("last") : null,
+            let title = i18n ? i18n->translate("last") : null,
                 html .= "<li>" . this->_tag->a([url, "&raquo;", title, "query": query->all(), "rel": "last"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&raquo;</span></li>";
@@ -296,7 +298,7 @@ class Pagination extends Arr
         if this->get("current") != this->get("first") {
             query->remove("page");
 
-            let title = i18n ? i18n->_("first") : null,
+            let title = i18n ? i18n->translate("first") : null,
                 html .= "<li>" . this->_tag->a([url, "&laquo;", title, "query": query->all(), "rel": "first"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&laquo;</span></li>";
@@ -306,7 +308,7 @@ class Pagination extends Arr
         if this->get("current") > this->get("previous") {
             query->set("page", this->get("previous"));
 
-            let title = i18n ? i18n->_("previous") : null,
+            let title = i18n ? i18n->translate("previous") : null,
                 html .= "<li>" . this->_tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
@@ -317,10 +319,11 @@ class Pagination extends Arr
             if number !== this->get("current") {
                 query->set("page", number);
 
-                let title = i18n ? i18n->_("page: %d", [number]) : null,
+                let title = i18n ? i18n->translate("page: %d", [number]) : null,
                     html .= "<li>" . this->_tag->a([url, content, title, "query": query->all(), "class": content == "&hellip;" ? "text-muted" : ""]) . "</li>";
             } else {
-                let html .= "<li class=\"active\"><span>" . content . "</span></li>";
+                let title = i18n ? i18n->translate("current") : null,
+                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . content . "</span></li>";
             }
         }
 
@@ -328,7 +331,7 @@ class Pagination extends Arr
         if this->get("current") < this->get("next") {
             query->set("page", this->get("next"));
 
-            let title = i18n ? i18n->_("next") : null,
+            let title = i18n ? i18n->translate("next") : null,
                 html .= "<li>" . this->_tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
@@ -338,7 +341,7 @@ class Pagination extends Arr
         if this->get("current") != this->get("last") {
             query->set("page", this->get("last"));
 
-            let title = i18n ? i18n->_("last") : null,
+            let title = i18n ? i18n->translate("last") : null,
                 html .= "<li>" . this->_tag->a([url, "&raquo;", title, "query": query->all(), "rel": "last"]) . "</li>";
         } else {
             let html .= "<li class=\"disabled\"><span>&raquo;</span></li>";
