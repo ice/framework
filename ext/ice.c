@@ -261,11 +261,7 @@ static void php_zephir_init_globals(zend_ice_globals *zephir_globals TSRMLS_DC)
 	zephir_globals->active_symbol_table = NULL;
 
 	/* Cache Enabled */
-#if PHP_VERSION_ID < 50600
 	zephir_globals->cache_enabled = 1;
-#else
-	zephir_globals->cache_enabled = 0;
-#endif
 
 	/* Recursive Lock */
 	zephir_globals->recursive_lock = 0;

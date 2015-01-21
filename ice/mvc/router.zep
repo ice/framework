@@ -150,7 +150,7 @@ class Router
 
                     return response;
                 }
-                throw new Exception("The requested route could not be found", self::NOT_FOUND);
+                throw new Exception("The requested route could not be found", 404);
             case self::METHOD_NOT_ALLOWED:
                 if this->_silent {
                     // 405 Method Not Allowed
@@ -160,7 +160,7 @@ class Router
 
                     return response;
                 }
-                throw new Exception("A request was made of a resource using a request method not supported by that resource", self::METHOD_NOT_ALLOWED);
+                throw new Exception("A request was made of a resource using a request method not supported by that resource", 405);
             case self::FOUND:
                 let holders = route[1],
                     data = route[2];

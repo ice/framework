@@ -299,7 +299,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 	zend_class_entry *_7, *_10, *_21;
 	zend_bool _2, _3, _18, _19;
 	zval *options = NULL, *_1;
-	zval *routeDefinitionCallback = NULL, *options_param = NULL, *dispatcher = NULL, *data = NULL, *collector, *parser, *generator, *route = NULL, *handler = NULL, *_0, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8, *_9 = NULL, *_11, **_14, *_15, *_16, *_17, *_20 = NULL, *_22 = NULL, *_23;
+	zval *routeDefinitionCallback = NULL, *options_param = NULL, *dispatcher = NULL, *data = NULL, *collector, *parser, *generator, *route = NULL, *handler = NULL, *_0, *_4 = NULL, *_5, *_6 = NULL, *_8, *_9 = NULL, *_11, **_14, *_15, *_16, *_17, *_20 = NULL, *_22 = NULL, *_23;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &routeDefinitionCallback, &options_param);
@@ -428,8 +428,6 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		} else {
 			zephir_array_fetch_string(&_16, options, SL("cacheFile"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 111 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(_4);
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_BOOL(_5, 1);
 			zephir_var_export_ex(_4, &(data) TSRMLS_CC);
 			ZEPHIR_INIT_VAR(_23);
 			ZEPHIR_CONCAT_SVS(_23, "<?php return ", _4, ";");
@@ -510,7 +508,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 			ZEPHIR_INIT_VAR(_7);
 			ZVAL_STRING(_7, "The requested route could not be found", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_8);
-			ZVAL_LONG(_8, 0);
+			ZVAL_LONG(_8, 404);
 			ZEPHIR_CALL_METHOD(NULL, _5, "__construct", &_9, _7, _8);
 			zephir_check_temp_parameter(_7);
 			zephir_check_call_status();
@@ -541,7 +539,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 			ZEPHIR_INIT_NVAR(_7);
 			ZVAL_STRING(_7, "A request was made of a resource using a request method not supported by that resource", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_NVAR(_8);
-			ZVAL_LONG(_8, 2);
+			ZVAL_LONG(_8, 405);
 			ZEPHIR_CALL_METHOD(NULL, _5, "__construct", &_9, _7, _8);
 			zephir_check_temp_parameter(_7);
 			zephir_check_call_status();
