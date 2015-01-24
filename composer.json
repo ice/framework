@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.3.5",
-        "phalcon/zephir": "dev-master"
+        "phalcon/zephir": "dev-master#9b55e6a8c1d87c9367d06c9a4260c7097978474e"
     },
     "scripts": {
         "post-install-cmd": ["./install"],
