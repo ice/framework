@@ -65,6 +65,23 @@ class Di extends Arr
     }
 
     /**
+     * Set handlers for error, exeception and shutdown
+     */
+    public function errors(string className = "Ice\\Exception")
+    {
+        // Enable Ice exception handling, adds stack traces and error source.
+        set_exception_handler([className, "handler"]);
+
+        // Enable Ice error handling, converts all PHP errors to exceptions.
+        set_error_handler([className, "errorHandler"]);
+
+        // Enable Ice shutdown handler, which catches E_FATAL errors.
+        register_shutdown_function([className, "shutdownHandler"]);
+
+        return this;
+    }
+
+    /**
      * Assign hook
      *
      * @param string name The hook name
