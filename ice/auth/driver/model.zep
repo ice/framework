@@ -208,7 +208,7 @@ class Model extends Driver implements DriverInterface
      */
     public function logout(boolean destroy = false, boolean logoutAll = false) -> boolean
     {
-        var token, tokens, _token;
+        var token, tokens, user;
 
         let token = this->_cookies->get("auth_autologin");
 
@@ -219,15 +219,18 @@ class Model extends Driver implements DriverInterface
             // Clear the autologin token from the database
             let token = Tokens::findOne(["token": token]);
 
-            if token && logoutAll {
-                // Delete all user tokens. This isn't the most elegant solution but does the job
-                let tokens = Tokens::find(["user_id": token->{"user_id"}]);
-
-                for _token in iterator(tokens) {
-                    _token->remove();
-                }
-            } elseif token {
+            if token {
                 token->remove();
+            }
+        }
+
+        if logoutAll {
+            // Delete all user tokens
+            let tokens = new Tokens(),
+                user = this->getUser();
+
+            if user {
+                tokens->remove(["user_id": user->get("id")]);
             }
         }
 
