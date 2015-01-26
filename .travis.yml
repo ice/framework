@@ -14,14 +14,14 @@ before_script:
   - (./vendor/bin/zephir fullclean; ./vendor/bin/zephir generate)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && sudo make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
+  - phpenv config-rm xdebug.ini
 
 script:
-  - phpenv config-rm xdebug.ini
-  - valgrind --read-var-info=yes --error-exitcode=1 --fullpath-after= --track-origins=yes --leak-check=full ./vendor/bin/phpunit --debug -c tests/phpunit.xml --testsuite=all
+  - valgrind --read-var-info=yes --error-exitcode=1 --fullpath-after= --track-origins=yes --leak-check=full ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
 
 after_failure:
   - sudo apt-get -qq install gdb
-  - ./tests/ci/failure.sh
+  - gdb -quiet -command=tests/ci/gdb --args $(phpenv which php) vendor/bin/phpunit --debug --colors --configuration tests/phpunit.xml --testsuite=all
 
 notifications:
   email:
