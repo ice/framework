@@ -1,0 +1,5 @@
+set confirm off
+set pagination 0
+run
+thread apply all bt
+q
