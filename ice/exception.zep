@@ -70,6 +70,7 @@ class Exception extends \Exception
     {
         // Create new exceptin by this class
         create_instance_params(get_called_class(), [e->getMessage(), e->getCode(), e]);
+        exit(1);
     }
 
     /**

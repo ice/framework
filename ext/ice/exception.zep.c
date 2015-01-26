@@ -197,7 +197,7 @@ PHP_METHOD(Ice_Exception, handler) {
 
 	zval *_2;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *e, *_0, *_1, *_3 = NULL;
+	zval *e, *_0, *_1, *_3 = NULL, _4;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
@@ -222,6 +222,10 @@ PHP_METHOD(Ice_Exception, handler) {
 	zephir_array_fast_append(_2, e);
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_0, _1, _2 TSRMLS_CC);
 	zephir_check_call_status();
+	ZEPHIR_SINIT_VAR(_4);
+	ZVAL_LONG(&_4, 1);
+	zephir_exit(&_4);
+	ZEPHIR_MM_RESTORE();
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -245,7 +249,7 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 	zephir_check_call_status();
 	_1 = Z_TYPE_P(e) == IS_ARRAY;
 	if (_1) {
-		zephir_array_fetch_string(&_2, e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 85 TSRMLS_CC);
+		zephir_array_fetch_string(&_2, e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 86 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_3);
 		array_init_size(_3, 4);
 		ZEPHIR_INIT_VAR(_4);
@@ -266,10 +270,10 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_4);
 		object_init_ex(_4, zephir_get_internal_ce(SS("errorexception") TSRMLS_CC));
-		zephir_array_fetch_string(&_7, e, SL("message"), PH_NOISY | PH_READONLY, "ice/exception.zep", 90 TSRMLS_CC);
-		zephir_array_fetch_string(&_8, e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 90 TSRMLS_CC);
-		zephir_array_fetch_string(&_9, e, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 90 TSRMLS_CC);
-		zephir_array_fetch_string(&_10, e, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 90 TSRMLS_CC);
+		zephir_array_fetch_string(&_7, e, SL("message"), PH_NOISY | PH_READONLY, "ice/exception.zep", 91 TSRMLS_CC);
+		zephir_array_fetch_string(&_8, e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 91 TSRMLS_CC);
+		zephir_array_fetch_string(&_9, e, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 91 TSRMLS_CC);
+		zephir_array_fetch_string(&_10, e, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 91 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_11);
 		ZVAL_LONG(_11, 0);
 		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, _7, _8, _11, _9, _10);
