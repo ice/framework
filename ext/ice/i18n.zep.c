@@ -39,6 +39,11 @@ ZEPHIR_INIT_CLASS(Ice_I18n) {
 
 }
 
+/**
+ * I18n constructor.
+ *
+ * @param array options
+ */
 PHP_METHOD(Ice_I18n, __construct) {
 
 	zval *options_param = NULL, *_1, *_2, *_3;
@@ -73,6 +78,11 @@ PHP_METHOD(Ice_I18n, __construct) {
 
 }
 
+/**
+ * Return the last I18n created.
+ *
+ * @return I18n
+ */
 PHP_METHOD(Ice_I18n, fetch) {
 
 	zval *_0;
@@ -84,9 +94,9 @@ PHP_METHOD(Ice_I18n, fetch) {
 }
 
 /**
- * Get and set the target language
+ * Get and set the target language.
  *
- * @param string $lang new language setting
+ * @param string lang New language setting
  * @return string
  */
 PHP_METHOD(Ice_I18n, lang) {
@@ -119,13 +129,13 @@ PHP_METHOD(Ice_I18n, lang) {
 		zephir_update_property_array(this_ptr, SL("_options"), _4, _0 TSRMLS_CC);
 	}
 	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
-	zephir_array_fetch_string(&_6, _5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 39 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, _5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 58 TSRMLS_CC);
 	RETURN_CTOR(_6);
 
 }
 
 /**
- * Get ISO language code
+ * Get ISO language code.
  *
  * @return string
  */
@@ -138,7 +148,7 @@ PHP_METHOD(Ice_I18n, iso) {
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
-	zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 49 TSRMLS_CC);
+	zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 68 TSRMLS_CC);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_LONG(&_2, 0);
 	ZEPHIR_SINIT_VAR(_3);
@@ -153,8 +163,8 @@ PHP_METHOD(Ice_I18n, iso) {
  * Returns translation of a string. No parameters are replaced.
  * If no translation exists, the original string will be returned. 
  *
- * @param string $str text to translate
- * @param string $lang target language
+ * @param string str Text to translate
+ * @param string lang Target language
  * @return string
  */
 PHP_METHOD(Ice_I18n, get) {
@@ -181,7 +191,7 @@ PHP_METHOD(Ice_I18n, get) {
 	if (!(lang && Z_STRLEN_P(lang))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
-		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 70 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 89 TSRMLS_CC);
 		zephir_get_strval(_2, _1);
 		ZEPHIR_CPY_WRT(lang, _2);
 	}
@@ -189,7 +199,7 @@ PHP_METHOD(Ice_I18n, get) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_4);
 	if (zephir_array_isset(messages, str)) {
-		zephir_array_fetch(&_4, messages, str, PH_NOISY, "ice/i18n.zep", 77 TSRMLS_CC);
+		zephir_array_fetch(&_4, messages, str, PH_NOISY, "ice/i18n.zep", 96 TSRMLS_CC);
 	} else {
 		ZEPHIR_CPY_WRT(_4, str);
 	}
@@ -198,9 +208,9 @@ PHP_METHOD(Ice_I18n, get) {
 }
 
 /**
- * Load language from the file
+ * Load language from the file.
  *
- * @param string $lang language code
+ * @param string lang Language code
  * @return array
  */
 PHP_METHOD(Ice_I18n, load) {
@@ -235,7 +245,7 @@ PHP_METHOD(Ice_I18n, load) {
 	zephir_array_fast_append(_2, subdir);
 	zephir_array_fast_append(_2, lang);
 	zephir_array_fast_append(_2, parts);
-	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/i18n.zep", 117);
+	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/i18n.zep", 136);
 	for (
 	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_4, &_3)
@@ -247,7 +257,7 @@ PHP_METHOD(Ice_I18n, load) {
 			array_init_size(tail, 2);
 			zephir_array_fast_append(tail, tmp);
 		}
-		zephir_is_iterable(tail, &_7, &_6, 0, 0, "ice/i18n.zep", 115);
+		zephir_is_iterable(tail, &_7, &_6, 0, 0, "ice/i18n.zep", 134);
 		for (
 		  ; zephir_hash_get_current_data_ex(_7, (void**) &_8, &_6) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_7, &_6)
@@ -255,7 +265,7 @@ PHP_METHOD(Ice_I18n, load) {
 			ZEPHIR_GET_HVALUE(found, _8);
 			_9 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 			ZEPHIR_OBS_NVAR(_10);
-			zephir_array_fetch_string(&_10, _9, SL("dir"), PH_NOISY, "ice/i18n.zep", 107 TSRMLS_CC);
+			zephir_array_fetch_string(&_10, _9, SL("dir"), PH_NOISY, "ice/i18n.zep", 126 TSRMLS_CC);
 			zephir_get_strval(_11, _10);
 			ZEPHIR_INIT_NVAR(path);
 			ZEPHIR_CONCAT_VVS(path, _11, found, ".php");
@@ -271,13 +281,13 @@ PHP_METHOD(Ice_I18n, load) {
 	}
 	zephir_update_property_array(this_ptr, SL("_cache"), lang, messages TSRMLS_CC);
 	_9 = zephir_fetch_nproperty_this(this_ptr, SL("_cache"), PH_NOISY_CC);
-	zephir_array_fetch(&_13, _9, lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 119 TSRMLS_CC);
+	zephir_array_fetch(&_13, _9, lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 138 TSRMLS_CC);
 	RETURN_CTOR(_13);
 
 }
 
 /**
- * Alias of translate
+ * Alias of translate.
  */
 PHP_METHOD(Ice_I18n, _) {
 
@@ -323,10 +333,10 @@ PHP_METHOD(Ice_I18n, _) {
 /**
  * Translation/internationalization function. strtr() or sprintf is used for replacing parameters.
  *
- * @param string $string text to translate
- * @param array $values values to replace in the translated text
- * @param string $lang source language
- * @return  string
+ * @param string string Text to translate
+ * @param array values Values to replace in the translated text
+ * @param string lang Source language
+ * @return string
  */
 PHP_METHOD(Ice_I18n, translate) {
 
@@ -367,7 +377,7 @@ PHP_METHOD(Ice_I18n, translate) {
 	if (!(lang && Z_STRLEN_P(lang))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
-		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 141 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 160 TSRMLS_CC);
 		zephir_get_strval(_2, _1);
 		ZEPHIR_CPY_WRT(lang, _2);
 	}

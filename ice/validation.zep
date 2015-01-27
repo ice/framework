@@ -9,7 +9,7 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Filter (if service is available)
  * @uses        Ice\I18n (if service is available)
@@ -55,7 +55,9 @@ class Validation
     ];
 
     /**
-     * Validation constructor. Fetch Di and set the data if given
+     * Validation constructor. Fetch Di and set the data if given.
+     *
+     * @param array data Data to validate
      */
     public function __construct(array data = [])
     {
@@ -64,7 +66,7 @@ class Validation
     }
 
     /**
-     * Resolve one rule
+     * Resolve one rule.
      *
      * @param string alias
      * @param string field
@@ -87,7 +89,7 @@ class Validation
     }
 
     /**
-     * Add one rule
+     * Add one rule.
      *
      * @param string field
      * @param mixed validators
@@ -134,7 +136,7 @@ class Validation
     }
 
     /**
-     * Add multiple rules at once
+     * Add multiple rules at once.
      *
      * @param array validators
      * @return void
@@ -149,7 +151,7 @@ class Validation
     }
 
     /**
-     * Validate the data
+     * Validate the data.
      *
      * @param array data Data to validate
      * @return boolean
@@ -180,7 +182,7 @@ class Validation
     }
 
     /**
-     * Check if validation passed
+     * Check if validation passed.
      *
      * @return boolean
      */
@@ -190,7 +192,7 @@ class Validation
     }
 
     /**
-     * Whether or not a value exists by field
+     * Whether or not a value exists by field.
      *
      * @param string field The data key
      * @return boolean
@@ -201,7 +203,7 @@ class Validation
     }
 
     /**
-     * Get a value by field
+     * Get a value by field.
      *
      * @param string field The data key
      * @param boolean filtered Get the filtered value or original
@@ -222,7 +224,7 @@ class Validation
     }
 
     /**
-     * Get the label of a field
+     * Get the label of a field.
      * Humanize a label if humanLabels attribute and filter service is available
      *
      * @param string field The data key
@@ -245,7 +247,7 @@ class Validation
     }
 
     /**
-     * Set the default messages
+     * Set the default messages.
      *
      * @param array messages
      * @return void
@@ -256,7 +258,7 @@ class Validation
     }
 
     /**
-     * Get a default message for the type
+     * Get a default message for the type.
      *
      * @param string type Type of message
      * @return string
@@ -273,7 +275,7 @@ class Validation
     }
 
     /**
-     * Add a message to the field
+     * Add a message to the field.
      *
      * @param string field
      * @param string message
@@ -285,7 +287,7 @@ class Validation
     }
 
     /**
-     * Get the validation's messages
+     * Get the validation's messages.
      *
      * @return Arr
      */

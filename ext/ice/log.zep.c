@@ -14,6 +14,15 @@
 #include "kernel/main.h"
 
 
+/**
+ * PSR-3 logger class.
+ *
+ * @package     Ice/Log
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Log) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Log, ice, log, NULL, 0);

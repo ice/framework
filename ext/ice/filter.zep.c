@@ -25,6 +25,15 @@
 #include "kernel/concat.h"
 
 
+/**
+ * Filter component provides a set of commonly needed data filters.
+ *
+ * @package     Ice/Filter
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Filter) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Filter, ice, filter, ice_filter_method_entry, 0);
@@ -36,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Filter) {
 }
 
 /**
- * Adds a user-defined filter
+ * Adds a user-defined filter.
  *
  * @param string name
  * @param callable body
@@ -63,7 +72,7 @@ PHP_METHOD(Ice_Filter, add) {
 
 
 	if (Z_TYPE_P(body) != IS_OBJECT) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 18);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 27);
 		return;
 	}
 	zephir_update_property_array(this_ptr, SL("_filters"), name, body TSRMLS_CC);
@@ -72,7 +81,7 @@ PHP_METHOD(Ice_Filter, add) {
 }
 
 /**
- * Sanitizes a value with a specified single or set of filters
+ * Sanitizes a value with a specified single or set of filters.
  *
  * @param mixed value
  * @param mixed filters
@@ -99,7 +108,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
 		ZEPHIR_CPY_WRT(filters, _0);
 	}
 	if (Z_TYPE_P(filters) == IS_ARRAY) {
-		zephir_is_iterable(filters, &_2, &_1, 0, 0, "ice/filter.zep", 43);
+		zephir_is_iterable(filters, &_2, &_1, 0, 0, "ice/filter.zep", 52);
 		for (
 		  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -116,7 +125,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
 }
 
 /**
- * Internal sanitize
+ * Internal sanitize.
  *
  * @param mixed value
  * @param string filter
@@ -349,7 +358,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL, _8);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_3, "ice/filter.zep", 118 TSRMLS_CC);
+		zephir_throw_exception_debug(_3, "ice/filter.zep", 127 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	} while(0);

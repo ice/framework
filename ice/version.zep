@@ -2,12 +2,12 @@
 namespace Ice;
 
 /**
- * Get version of the framework
+ * Get version of the framework.
  *
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class Version
@@ -20,7 +20,7 @@ class Version
     const STABLE = 4;
 
     /**
-     * Get array version of the framework
+     * Get array version of the framework.
      *
      * @return array
      */
@@ -37,7 +37,7 @@ class Version
     }
 
     /**
-     * Get version of the framework
+     * Get version of the framework.
      * 
      * 1.0.0-dev
      * 1.0.0-alpha3
@@ -75,7 +75,7 @@ class Version
     }
 
     /**
-     * Get version id of the framework
+     * Get version id of the framework.
      * [major][minor(2 digits)][patch (2 digits)][stage][build], eg. id for 1.4.2-rc5 is 1040235
      *
      * @return string
@@ -88,5 +88,4 @@ class Version
 
         return current["major"] . sprintf("%02s", current["minor"]) . sprintf("%02s", current["patch"]) . current["stage"] . current["build"];
     }
-
 }

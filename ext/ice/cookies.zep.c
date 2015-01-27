@@ -22,6 +22,15 @@
 #include "kernel/exception.h"
 
 
+/**
+ * Cookie helper.
+ *
+ * @package     Ice/Cookies
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Cookies) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Cookies, ice, cookies, ice_cookies_method_entry, 0);
@@ -228,12 +237,12 @@ PHP_METHOD(Ice_Cookies, has) {
 }
 
 /**
- * Gets the value of a signed cookie. Cookies without signatures will not
- * be returned. If the cookie signature is present, but invalid, the cookie
+ * Gets the value of a signed cookie. 
+ * Cookies without signatures will not be returned. If the cookie signature is present, but invalid, the cookie
  * will be deleted.
  *
- * @param string key cookie name
- * @param mixed defaultValue default value to return
+ * @param string key Cookie name
+ * @param mixed defaultValue Default value to return
  */
 PHP_METHOD(Ice_Cookies, get) {
 
@@ -264,9 +273,9 @@ PHP_METHOD(Ice_Cookies, get) {
 		ZEPHIR_INIT_VAR(tmp);
 		zephir_fast_explode_str(tmp, SL("~"), cookie, 2  TSRMLS_CC);
 		ZEPHIR_OBS_VAR(hash);
-		zephir_array_fetch_long(&hash, tmp, 0, PH_NOISY, "ice/cookies.zep", 56 TSRMLS_CC);
+		zephir_array_fetch_long(&hash, tmp, 0, PH_NOISY, "ice/cookies.zep", 65 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(value);
-		zephir_array_fetch_long(&value, tmp, 1, PH_NOISY, "ice/cookies.zep", 57 TSRMLS_CC);
+		zephir_array_fetch_long(&value, tmp, 1, PH_NOISY, "ice/cookies.zep", 66 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&_2, this_ptr, "salt", NULL, key, value);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_EQUAL(_2, hash)) {
@@ -290,13 +299,13 @@ PHP_METHOD(Ice_Cookies, get) {
 }
 
 /**
- * Sets a signed cookie. Note that all cookie values must be strings and no
- * automatic serialization will be performed!
+ * Sets a signed cookie. 
+ * Note that all cookie values must be strings and no automatic serialization will be performed!
  *
- * @param string key name of cookie
- * @param string value value of cookie
- * @param integer lifetime expired time in seconds
- * @return  boolean
+ * @param string key Name of cookie
+ * @param string value Value of cookie
+ * @param integer lifetime Expired time in seconds
+ * @return boolean
  */
 PHP_METHOD(Ice_Cookies, set) {
 
@@ -386,11 +395,10 @@ PHP_METHOD(Ice_Cookies, remove) {
 /**
  * Generates a salt string for a cookie based on the name and value.
  *
- * @param   string $name name of cookie
- * @param   string $value value of cookie
- *
+ * @param string name Name of cookie
+ * @param string value Value of cookie
  * @throws Exception if salt is not configured
- * @return  string
+ * @return string
  */
 PHP_METHOD(Ice_Cookies, salt) {
 
@@ -405,7 +413,7 @@ PHP_METHOD(Ice_Cookies, salt) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_salt"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "A valid cookie salt is required.", "ice/cookies.zep", 133);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "A valid cookie salt is required.", "ice/cookies.zep", 141);
 		return;
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
@@ -432,8 +440,7 @@ PHP_METHOD(Ice_Cookies, salt) {
  * @param string path
  * @param string domain
  * @param boolean secure
- * @param boolean http)nly
- *
+ * @param boolean httpOnly
  * @return bool
  * @see setcookie
  */

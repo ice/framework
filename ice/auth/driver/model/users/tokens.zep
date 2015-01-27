@@ -11,7 +11,7 @@ use Ice\Validation;
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class Tokens extends Model

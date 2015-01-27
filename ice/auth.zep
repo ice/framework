@@ -4,6 +4,12 @@ namespace Ice;
 /**
  * User authorization library. Handles user login and logout, as well as secure password hashing.
  *
+ * @package     Ice/Auth
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ *
  *<code>
  *  $options = ['hash_key' => 'secret key'];
  *  $this->di->auth = new \Ice\Auth($options);
@@ -37,6 +43,13 @@ namespace Ice;
  *<code>
  *  // Log out a user
  *  $this->auth->logout();
+ *</code>
+ *
+ * Seet usage:
+ *<code>
+ *  {% if this.auth.loggedIn() %}
+ *      {{ this.auth.getUser().username }}
+ *  {% endif %}
  *</code>
  */
 class Auth

@@ -20,6 +20,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * Database component.
+ *
+ * @package     Ice/Db
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Db) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Db, ice, db, ice_db_method_entry, 0);
@@ -37,22 +46,30 @@ PHP_METHOD(Ice_Db, getDriver) {
 
 }
 
+/**
+ * Db constructor.
+ *
+ * @param DbInterface driver Database driver
+ */
 PHP_METHOD(Ice_Db, __construct) {
 
-	zval *db;
+	zval *driver;
 
-	zephir_fetch_params(0, 1, 0, &db);
+	zephir_fetch_params(0, 1, 0, &driver);
 
 
 
-	if (!(zephir_instance_of_ev(db, ice_db_dbinterface_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'db' must be an instance of 'Ice\\Db\\DbInterface'", "", 0);
+	if (!(zephir_instance_of_ev(driver, ice_db_dbinterface_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'driver' must be an instance of 'Ice\\Db\\DbInterface'", "", 0);
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("_driver"), db TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_driver"), driver TSRMLS_CC);
 
 }
 
+/**
+ * Magic call, call driver's method.
+ */
 PHP_METHOD(Ice_Db, __call) {
 
 	zval *_0;

@@ -28,7 +28,7 @@
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -58,6 +58,11 @@ PHP_METHOD(Ice_Pagination, getTag) {
 
 }
 
+/**
+ * Pagination constructor. Fetch di and tag.
+ *
+ * @param array options
+ */
 PHP_METHOD(Ice_Pagination, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -89,7 +94,7 @@ PHP_METHOD(Ice_Pagination, __construct) {
 }
 
 /**
- * Returns a slice of the resultset to show in the pagination
+ * Returns a slice of the resultset to show in the pagination.
  *
  * @return object Pagination
  */
@@ -115,7 +120,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 		_2 = !(zephir_instance_of_ev(items, ice_arr_ce TSRMLS_CC));
 	}
 	if (_2) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data for pagination", "ice/pagination.zep", 44);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data for pagination", "ice/pagination.zep", 49);
 		return;
 	}
 	if (zephir_instance_of_ev(items, ice_arr_ce TSRMLS_CC)) {
@@ -942,13 +947,13 @@ PHP_METHOD(Ice_Pagination, floating) {
 			i = _16;
 			ZEPHIR_INIT_NVAR(_1);
 			ZVAL_LONG(_1, i);
-			zephir_array_update_long(&links, i, &_1, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 273);
+			zephir_array_update_long(&links, i, &_1, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 278);
 		}
 	}
 	if (useN3) {
 		ZEPHIR_INIT_NVAR(_5);
 		ZVAL_STRING(_5, "&hellip;", 1);
-		zephir_array_update_long(&links, n3, &_5, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 277);
+		zephir_array_update_long(&links, n3, &_5, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 282);
 	}
 	ZEPHIR_CPY_WRT(_20, n5);
 	ZEPHIR_CPY_WRT(_19, n4);
@@ -967,13 +972,13 @@ PHP_METHOD(Ice_Pagination, floating) {
 			i = zephir_get_numberval(_19);
 			ZEPHIR_INIT_NVAR(_21);
 			ZVAL_LONG(_21, i);
-			zephir_array_update_long(&links, i, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 281);
+			zephir_array_update_long(&links, i, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 286);
 		}
 	}
 	if (useN6) {
 		ZEPHIR_INIT_NVAR(_21);
 		ZVAL_STRING(_21, "&hellip;", 1);
-		zephir_array_update_long(&links, n6, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 285);
+		zephir_array_update_long(&links, n6, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 290);
 	}
 	ZEPHIR_CPY_WRT(_24, n8);
 	ZEPHIR_CPY_WRT(_23, n7);
@@ -992,7 +997,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 			i = zephir_get_numberval(_23);
 			ZEPHIR_INIT_NVAR(_21);
 			ZVAL_LONG(_21, i);
-			zephir_array_update_long(&links, i, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 289);
+			zephir_array_update_long(&links, i, &_21, PH_COPY | PH_SEPARATE, "ice/pagination.zep", 294);
 		}
 	}
 	_25 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
@@ -1112,7 +1117,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	} else {
 		zephir_concat_self_str(&html, SL("<li class=\"disabled\"><span>&lsaquo;</span></li>") TSRMLS_CC);
 	}
-	zephir_is_iterable(links, &_41, &_40, 0, 0, "ice/pagination.zep", 331);
+	zephir_is_iterable(links, &_41, &_40, 0, 0, "ice/pagination.zep", 336);
 	for (
 	  ; zephir_hash_get_current_data_ex(_41, (void**) &_42, &_40) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_41, &_40)

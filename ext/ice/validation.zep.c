@@ -142,7 +142,9 @@ PHP_METHOD(Ice_Validation, setHumanLabels) {
 }
 
 /**
- * Validation constructor. Fetch Di and set the data if given
+ * Validation constructor. Fetch Di and set the data if given.
+ *
+ * @param array data Data to validate
  */
 PHP_METHOD(Ice_Validation, __construct) {
 
@@ -218,7 +220,7 @@ PHP_METHOD(Ice_Validation, __construct) {
 }
 
 /**
- * Resolve one rule
+ * Resolve one rule.
  *
  * @param string alias
  * @param string field
@@ -259,7 +261,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, _4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_2, "ice/validation.zep", 82 TSRMLS_CC);
+			zephir_throw_exception_debug(_2, "ice/validation.zep", 84 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -276,7 +278,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 }
 
 /**
- * Add one rule
+ * Add one rule.
  *
  * @param string field
  * @param mixed validators
@@ -313,7 +315,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(_0, "array")) {
-			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 112);
+			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 114);
 			for (
 			  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -347,7 +349,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			} else {
 				ZEPHIR_INIT_VAR(rules);
 				zephir_fast_explode_str(rules, SL("|"), validators, LONG_MAX TSRMLS_CC);
-				zephir_is_iterable(rules, &_11, &_10, 0, 0, "ice/validation.zep", 131);
+				zephir_is_iterable(rules, &_11, &_10, 0, 0, "ice/validation.zep", 133);
 				for (
 				  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
 				  ; zephir_hash_move_forward_ex(_11, &_10)
@@ -379,7 +381,7 @@ PHP_METHOD(Ice_Validation, rule) {
 }
 
 /**
- * Add multiple rules at once
+ * Add multiple rules at once.
  *
  * @param array validators
  * @return void
@@ -400,7 +402,7 @@ PHP_METHOD(Ice_Validation, rules) {
 
 
 
-	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 149);
+	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 151);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -415,7 +417,7 @@ PHP_METHOD(Ice_Validation, rules) {
 }
 
 /**
- * Validate the data
+ * Validate the data.
  *
  * @param array data Data to validate
  * @return boolean
@@ -443,14 +445,14 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_update_property_this(this_ptr, SL("_data"), data TSRMLS_CC);
 	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 175);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 177);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(field, _2, _1);
 		ZEPHIR_GET_HVALUE(rules, _3);
-		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 172);
+		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 174);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -472,7 +474,7 @@ PHP_METHOD(Ice_Validation, validate) {
 }
 
 /**
- * Check if validation passed
+ * Check if validation passed.
  *
  * @return boolean
  */
@@ -484,7 +486,7 @@ PHP_METHOD(Ice_Validation, valid) {
 }
 
 /**
- * Whether or not a value exists by field
+ * Whether or not a value exists by field.
  *
  * @param string field The data key
  * @return boolean
@@ -516,7 +518,7 @@ PHP_METHOD(Ice_Validation, hasValue) {
 }
 
 /**
- * Get a value by field
+ * Get a value by field.
  *
  * @param string field The data key
  * @param boolean filtered Get the filtered value or original
@@ -585,7 +587,7 @@ PHP_METHOD(Ice_Validation, getValue) {
 }
 
 /**
- * Get the label of a field
+ * Get the label of a field.
  * Humanize a label if humanLabels attribute and filter service is available
  *
  * @param string field The data key
@@ -649,7 +651,7 @@ PHP_METHOD(Ice_Validation, getLabel) {
 }
 
 /**
- * Set the default messages
+ * Set the default messages.
  *
  * @param array messages
  * @return void
@@ -679,7 +681,7 @@ PHP_METHOD(Ice_Validation, setDefaultMessages) {
 }
 
 /**
- * Get a default message for the type
+ * Get a default message for the type.
  *
  * @param string type Type of message
  * @return string
@@ -710,14 +712,14 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	if (!(zephir_array_isset_fetch(&message, _0, type, 0 TSRMLS_CC))) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_defaultMessages"), PH_NOISY_CC);
 		ZEPHIR_OBS_NVAR(message);
-		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 269 TSRMLS_CC);
+		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 271 TSRMLS_CC);
 	}
 	RETURN_CCTOR(message);
 
 }
 
 /**
- * Add a message to the field
+ * Add a message to the field.
  *
  * @param string field
  * @param string message
@@ -751,7 +753,7 @@ PHP_METHOD(Ice_Validation, addMessage) {
 }
 
 /**
- * Get the validation's messages
+ * Get the validation's messages.
  *
  * @return Arr
  */

@@ -1,12 +1,26 @@
 
 namespace Ice;
 
+/**
+ * Component that implements Dependency Injection and a container for the services.
+ *
+ * @package     Ice/Di
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Di extends Arr
 {
 
     protected static _di;
     protected _hooks = [];
 
+    /**
+     * Di constructor.
+     *
+     * @param array data Array of services
+     */
     public function __construct(array data = [])
     {
         parent::__construct(data);
@@ -15,7 +29,7 @@ class Di extends Arr
     }
 
     /**
-     * Return the last DI created
+     * Return the last DI created.
      *
      * @return Di
      */
@@ -24,6 +38,12 @@ class Di extends Arr
         return self::_di;
     }
 
+    /**
+     * Registers a service in the services container.
+     *
+     * @param string key Service name
+     * @param mixed value Definition
+     */
     public function set(string key, var value)
     {
         var service;
@@ -31,7 +51,13 @@ class Di extends Arr
             this->_data[key] = service;
     }
 
-    public function resolve(service)
+    /**
+     * Resolve service.
+     *
+     * @param mixed service Definition
+     * @return object Service
+     */
+    public function resolve(var service)
     {
         var params;
 
@@ -65,7 +91,11 @@ class Di extends Arr
     }
 
     /**
-     * Set handlers for error, exeception and shutdown
+     * Set handlers for error, exeception and shutdown.
+     * Class should contain method handler, errorHandler and shutdownHandler.
+     *
+     * @param string className
+     * @return object Di
      */
     public function errors(string className = "Ice\\Exception")
     {
@@ -82,7 +112,7 @@ class Di extends Arr
     }
 
     /**
-     * Assign hook
+     * Assign hook.
      *
      * @param string name The hook name
      * @param mixed callable A callable object
@@ -99,7 +129,7 @@ class Di extends Arr
         }
     }
     /**
-     * Invoke hook
+     * Invoke hook.
      *
      * @param string name The hook name
      * @param mixed hookArg Argument for hooked functions
@@ -128,14 +158,12 @@ class Di extends Arr
         }
     }
     /**
-     * Get hook listeners
+     * Get hook listeners.
+     * Return an array of registered hooks. If `$name` is a valid hook name, only the listeners attached to that hook
+     * are returned. Else, all listeners are returned as an associative array whose keys are hook names and whose values
+     * are arrays of listeners.
      *
-     * Return an array of registered hooks. If `$name` is a valid
-     * hook name, only the listeners attached to that hook are returned.
-     * Else, all listeners are returned as an associative array whose
-     * keys are hook names and whose values are arrays of listeners.
-     *
-     * @param  string     $name A hook name (Optional)
+     * @param string name A hook name (Optional)
      * @return array|null
      */
     public function getHooks(string name = null) -> array | null
@@ -147,11 +175,9 @@ class Di extends Arr
         }
     }
     /**
-     * Clear hook listeners
-     *
-     * Clear all listeners for all hooks. If `$name` is
-     * a valid hook name, only the listeners attached
-     * to that hook will be cleared.
+     * Clear hook listeners.
+     * Clear all listeners for all hooks. If `$name` is a valid hook name, only the listeners attached to that hook
+     * will be cleared.
      *
      * @param  string $name A hook name (Optional)
      */
@@ -169,7 +195,7 @@ class Di extends Arr
     }
 
     /**
-     * Magic method to get or set services using setters/getters
+     * Magic method to get or set services using setters/getters.
      *
      * @param string method
      * @param mixed arguments

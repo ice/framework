@@ -1,6 +1,15 @@
 
 namespace Ice;
 
+/**
+ * Shows HTML notifications related to different circumstances.
+ *
+ * @package     Ice/Flash
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Flash
 {
 
@@ -15,6 +24,11 @@ class Flash
         "html": true
     ];
 
+    /**
+     * Flash constructor. Fetch session and tag service from the di.
+     *
+     * @param array options
+     */
     public function __construct(array options = [])
     {
         var di;
@@ -46,7 +60,7 @@ class Flash
     }
 
     /**
-     * Display the messages
+     * Display the messages.
      *
      * @param boolean remove
      * @return string
@@ -73,12 +87,13 @@ class Flash
     }
 
     /**
-     * Get a message formatting it with HTML
+     * Get a message formatting it with HTML.
      *
      * @param string type
      * @param mixed message
+     * @return string
      */
-    public function getMessage(string type, var messages)
+    public function getMessage(string type, var messages) -> string
     {
         var params, body, close, message;
 
@@ -102,10 +117,11 @@ class Flash
     }
 
     /**
-     * Adds a message to the flash
+     * Adds a message to the flash.
      *
      * @param string type
      * @param string message
+     * @return void
      */
     public function message(string type, string message) -> void
     {
@@ -124,7 +140,7 @@ class Flash
     }
 
     /**
-     * Add success message
+     * Add success message.
      *
      * @param string message
      * @return void
@@ -135,7 +151,7 @@ class Flash
     }
 
     /**
-     * Alias of success message
+     * Alias of success message.
      */
     public function ok(string message) -> void
     {
@@ -143,7 +159,7 @@ class Flash
     }
 
     /**
-     * Add info message
+     * Add info message.
      *
      * @param string message
      * @return void
@@ -154,7 +170,7 @@ class Flash
     }
 
     /**
-     * Alias of info message
+     * Alias of info message.
      */
     public function notice(string message) -> void
     {
@@ -162,7 +178,7 @@ class Flash
     }
 
     /**
-     * Add warning message
+     * Add warning message.
      *
      * @param string message
      * @return void
@@ -173,7 +189,7 @@ class Flash
     }
 
     /**
-     * Alias of warning message
+     * Alias of warning message.
      */
     public function alert(string message) -> void
     {
@@ -181,7 +197,7 @@ class Flash
     }
 
     /**
-     * Add danger message
+     * Add danger message.
      *
      * @param string message
      * @return void
@@ -192,11 +208,10 @@ class Flash
     }
 
     /**
-     * Alias of danger message
+     * Alias of danger message.
      */
     public function error(string message) -> void
     {
         this->message("danger", message);
     }
-
 }

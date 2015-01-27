@@ -4,12 +4,12 @@ namespace Ice;
 use ArrayIterator;
 
 /**
- * Access class as array and the same time as object
+ * Access class as array and the same time as object.
  *
  * @package     Ice/Arr
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
@@ -17,13 +17,18 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
 
     protected _data = [] { get };
 
+    /**
+     * Arr constructor.
+     *
+     * @param array data Initial array
+     */
     public function __construct(array data = [])
     {
         let this->_data = data;
     }
 
     /**
-     * Whether or not an data exists by key
+     * Whether or not an data exists by key.
      *
      * @param string key The data key
      * @return boolean
@@ -34,7 +39,8 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Get a data by key
+     * Retrieve a single key from an array.
+     * If the key does not exist in the array, the default value will be returned.
      *
      * @param string key The data key
      * @param mixed defaultValue The value to return if data key does not exist
@@ -52,7 +58,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Assigns a value to the specified data
+     * Assigns a value to the specified data.
      *
      * @param string key The data key
      * @param mixed
@@ -64,7 +70,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Add data to set, replaces the existing data
+     * Add data to set, replaces the existing data.
      *
      * @param array
      * @return void
@@ -79,7 +85,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Fetch all data
+     * Fetch all data.
      *
      * @return array
      */
@@ -89,7 +95,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Set data, clears and overwrites the current data
+     * Set data, clears and overwrites the current data.
      *
      * @param array
      * @return void
@@ -100,7 +106,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Fetch set data keys
+     * Fetch set data keys.
      *
      * @return array
      */
@@ -110,7 +116,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Remove an data by key
+     * Remove an data by key.
      *
      * @param string key The data key
      * @return void
@@ -121,7 +127,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Clear all values
+     * Clear all values.
      *
      * @return void
      */
@@ -131,7 +137,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Count all elements in a data
+     * Count all elements in a data.
      *
      * @return int
      */
@@ -141,7 +147,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Get a data iterator
+     * Get a data iterator.
      *
      * return ArrayIterator
      */
@@ -245,7 +251,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Converts recursively the object to an array
+     * Converts recursively the object to an array.
      *
      * @return array
      */
@@ -269,7 +275,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Whether or not an offset exists
+     * Whether or not an offset exists.
      *
      * @param string An offset to check for
      * @return boolean
@@ -281,7 +287,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Returns the value at specified offset
+     * Returns the value at specified offset.
      *
      * @param string The offset to retrieve
      * @return mixed
@@ -293,7 +299,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Assigns a value to the specified offset
+     * Assigns a value to the specified offset.
      *
      * @param string The offset to assign the value to
      * @param mixed  The value to set
@@ -306,7 +312,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Unsets an offset
+     * Unsets an offset.
      *
      * @param string The offset to unset
      * @return void
@@ -317,11 +323,18 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         this->remove(offset);
     }
 
+    /**
+     * Magic isset, whether or not a key exists.
+     */
     public function __isset(string key) -> boolean
     {
         return this->has(key);
     }
 
+    /**
+     * Magic get, returns the value at specified key.
+     * First check if property exist.
+     */
     public function __get(key)
     {
         if isset this->{key} {
@@ -330,6 +343,10 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         return this->get(key);
     }
 
+    /**
+     * Magic set, assigns a value to the specified key.
+     * First check if property exist.
+     */
     public function __set(string key, var value) -> void
     {
         if isset this->{key} {
@@ -339,8 +356,11 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         }
     }
 
+    /**
+     * Magic unset, unsets a key.
+     */
     public function __unset(key) -> void
     {
-        this->remove(key);
+        unset this->_data[key];
     }
 }

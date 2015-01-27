@@ -2,13 +2,20 @@
 namespace Ice;
 
 /**
- * Exception class. Translates exceptions using the [I18n] class.
+ * Exception class.
+ *
+ * @package     Ice/Exception
+ * @category    Error
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 class Exception extends \Exception
 {
 
     /**
      * Creates a new exception.
+     * Translate exception's message using the [I18n] class.
      *
      * @param mixed message Error message
      * @param mixed code The exception code

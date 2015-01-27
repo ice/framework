@@ -286,6 +286,9 @@ PHP_METHOD(Ice_Dispatcher, setActionSuffix) {
 
 }
 
+/**
+ * Di constructor. Fetch Di and set it as a property.
+ */
 PHP_METHOD(Ice_Dispatcher, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -308,10 +311,10 @@ PHP_METHOD(Ice_Dispatcher, __construct) {
 }
 
 /**
- * Set a param by its name or numeric index
+ * Set a param by its name or numeric index.
  *
- * @param  mixed param
- * @param  mixed value
+ * @param mixed param
+ * @param mixed value
  */
 PHP_METHOD(Ice_Dispatcher, setParam) {
 
@@ -326,10 +329,10 @@ PHP_METHOD(Ice_Dispatcher, setParam) {
 }
 
 /**
- * Gets a param by its name or numeric index
+ * Gets a param by its name or numeric index.
  *
- * @param  mixed param
- * @param  mixed defaultValue
+ * @param mixed param
+ * @param mixed defaultValue
  * @return mixed
  */
 PHP_METHOD(Ice_Dispatcher, getParam) {
@@ -353,7 +356,7 @@ PHP_METHOD(Ice_Dispatcher, getParam) {
 }
 
 /**
- * Returns the current method to be/executed in the dispatcher
+ * Returns the current method to be/executed in the dispatcher.
  *
  * @return string
  */
@@ -370,7 +373,7 @@ PHP_METHOD(Ice_Dispatcher, getActiveMethod) {
 }
 
 /**
- * Dispatches a handle action taking into account the routing parameters
+ * Dispatches a handle action taking into account the routing parameters.
  *
  * @return object
  */
@@ -430,7 +433,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_10, _8, _9);
 			zephir_check_temp_parameter(_8);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 111 TSRMLS_CC);
+			zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 124 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -461,12 +464,12 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			zephir_array_fast_append(_11, _12);
 			ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_10, _11);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 128 TSRMLS_CC);
+			zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 141 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 		if (Z_TYPE_P(module) != IS_ARRAY) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 132);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 145);
 			return;
 		}
 		ZEPHIR_OBS_NVAR(path);
@@ -482,7 +485,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_array_fast_append(_11, path);
 				ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_10, _11);
 				zephir_check_call_status();
-				zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 137 TSRMLS_CC);
+				zephir_throw_exception_debug(_1, "ice/dispatcher.zep", 150 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
@@ -566,7 +569,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(_9, 2);
 			ZEPHIR_CALL_METHOD(NULL, _8, "__construct", &_10, _27, _9);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 172 TSRMLS_CC);
+			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 185 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -624,7 +627,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(_9, 3);
 			ZEPHIR_CALL_METHOD(NULL, _8, "__construct", &_10, _11, _9);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 205 TSRMLS_CC);
+			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 218 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -640,7 +643,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZEPHIR_CALL_METHOD(NULL, _8, "__construct", &_10, _9, _34);
 			zephir_check_temp_parameter(_9);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 210 TSRMLS_CC);
+			zephir_throw_exception_debug(_8, "ice/dispatcher.zep", 223 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -671,7 +674,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 }
 
 /**
- * Forwards the execution flow to another controller/action
+ * Forwards the execution flow to another module/controller/action.
  *
  * @param array forward
  */

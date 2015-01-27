@@ -19,6 +19,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * Text helper.
+ *
+ * @package     Ice/Text
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Text) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Text, ice, text, ice_text_method_entry, 0);
@@ -38,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Text) {
 }
 
 /**
- * Generates a random string based on the given type. Type is one of the constants
+ * Generates a random string based on the given type. Type is one of the constants.
  *
  * @param int type
  * @param int length
@@ -155,7 +164,7 @@ PHP_METHOD(Ice_Text, random) {
 		ZVAL_LONG(&_1, end);
 		ZEPHIR_CALL_FUNCTION(&_2, "mt_rand", &_8, &_0, &_1);
 		zephir_check_call_status();
-		zephir_array_fetch(&_7, pool, _2, PH_NOISY | PH_READONLY, "ice/text.zep", 52 TSRMLS_CC);
+		zephir_array_fetch(&_7, pool, _2, PH_NOISY | PH_READONLY, "ice/text.zep", 61 TSRMLS_CC);
 		zephir_concat_self(&str, _7 TSRMLS_CC);
 	}
 	RETURN_CCTOR(str);

@@ -43,6 +43,11 @@ PHP_METHOD(Ice_Arr, getData) {
 
 }
 
+/**
+ * Arr constructor.
+ *
+ * @param array data Initial array
+ */
 PHP_METHOD(Ice_Arr, __construct) {
 
 	zval *data_param = NULL, *_0;
@@ -68,7 +73,7 @@ PHP_METHOD(Ice_Arr, __construct) {
 }
 
 /**
- * Whether or not an data exists by key
+ * Whether or not an data exists by key.
  *
  * @param string key The data key
  * @return boolean
@@ -90,7 +95,8 @@ PHP_METHOD(Ice_Arr, has) {
 }
 
 /**
- * Get a data by key
+ * Retrieve a single key from an array.
+ * If the key does not exist in the array, the default value will be returned.
  *
  * @param string key The data key
  * @param mixed defaultValue The value to return if data key does not exist
@@ -120,7 +126,7 @@ PHP_METHOD(Ice_Arr, get) {
 }
 
 /**
- * Assigns a value to the specified data
+ * Assigns a value to the specified data.
  *
  * @param string key The data key
  * @param mixed
@@ -143,7 +149,7 @@ PHP_METHOD(Ice_Arr, set) {
 }
 
 /**
- * Add data to set, replaces the existing data
+ * Add data to set, replaces the existing data.
  *
  * @param array
  * @return void
@@ -164,7 +170,7 @@ PHP_METHOD(Ice_Arr, replace) {
 
 
 
-	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/arr.zep", 79);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/arr.zep", 85);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -179,7 +185,7 @@ PHP_METHOD(Ice_Arr, replace) {
 }
 
 /**
- * Fetch all data
+ * Fetch all data.
  *
  * @return array
  */
@@ -196,7 +202,7 @@ PHP_METHOD(Ice_Arr, all) {
 }
 
 /**
- * Set data, clears and overwrites the current data
+ * Set data, clears and overwrites the current data.
  *
  * @param array
  * @return void
@@ -224,7 +230,7 @@ PHP_METHOD(Ice_Arr, setData) {
 }
 
 /**
- * Fetch set data keys
+ * Fetch set data keys.
  *
  * @return array
  */
@@ -240,7 +246,7 @@ PHP_METHOD(Ice_Arr, keys) {
 }
 
 /**
- * Remove an data by key
+ * Remove an data by key.
  *
  * @param string key The data key
  * @return void
@@ -263,7 +269,7 @@ PHP_METHOD(Ice_Arr, remove) {
 }
 
 /**
- * Clear all values
+ * Clear all values.
  *
  * @return void
  */
@@ -281,7 +287,7 @@ PHP_METHOD(Ice_Arr, clear) {
 }
 
 /**
- * Count all elements in a data
+ * Count all elements in a data.
  *
  * @return int
  */
@@ -296,7 +302,7 @@ PHP_METHOD(Ice_Arr, count) {
 }
 
 /**
- * Get a data iterator
+ * Get a data iterator.
  *
  * return ArrayIterator
  */
@@ -364,7 +370,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 		ZEPHIR_CPY_WRT(keys, path);
 	} else {
 		if (zephir_array_key_exists(data, path TSRMLS_CC)) {
-			zephir_array_fetch(&_0, data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 183 TSRMLS_CC);
+			zephir_array_fetch(&_0, data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 189 TSRMLS_CC);
 			RETURN_CTOR(_0);
 		}
 		ZEPHIR_INIT_VAR(_1);
@@ -395,21 +401,21 @@ PHP_METHOD(Ice_Arr, getPath) {
 		if (zephir_array_isset(data, key)) {
 			if (zephir_is_true(keys)) {
 				ZEPHIR_OBS_NVAR(_8);
-				zephir_array_fetch(&_8, data, key, PH_NOISY, "ice/arr.zep", 204 TSRMLS_CC);
+				zephir_array_fetch(&_8, data, key, PH_NOISY, "ice/arr.zep", 210 TSRMLS_CC);
 				if (Z_TYPE_P(_8) == IS_ARRAY) {
-					zephir_array_fetch(&_0, data, key, PH_NOISY | PH_READONLY, "ice/arr.zep", 206 TSRMLS_CC);
+					zephir_array_fetch(&_0, data, key, PH_NOISY | PH_READONLY, "ice/arr.zep", 212 TSRMLS_CC);
 					ZEPHIR_CPY_WRT(data, _0);
 				} else {
 					break;
 				}
 			} else {
-				zephir_array_fetch(&_0, data, key, PH_NOISY | PH_READONLY, "ice/arr.zep", 213 TSRMLS_CC);
+				zephir_array_fetch(&_0, data, key, PH_NOISY | PH_READONLY, "ice/arr.zep", 219 TSRMLS_CC);
 				RETURN_CTOR(_0);
 			}
 		} else if (ZEPHIR_IS_STRING_IDENTICAL(key, "*")) {
 			ZEPHIR_INIT_NVAR(values);
 			array_init(values);
-			zephir_is_iterable(data, &_10, &_9, 0, 0, "ice/arr.zep", 230);
+			zephir_is_iterable(data, &_10, &_9, 0, 0, "ice/arr.zep", 236);
 			for (
 			  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_10, &_9)
@@ -423,7 +429,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 					ZEPHIR_CALL_METHOD(&value, _1, "getpath", &_13, keys);
 					zephir_check_call_status();
 					if (zephir_is_true(value)) {
-						zephir_array_append(&values, value, PH_SEPARATE, "ice/arr.zep", 226);
+						zephir_array_append(&values, value, PH_SEPARATE, "ice/arr.zep", 232);
 					}
 				}
 			}
@@ -442,7 +448,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 }
 
 /**
- * Converts recursively the object to an array
+ * Converts recursively the object to an array.
  *
  * @return array
  */
@@ -458,7 +464,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	ZEPHIR_INIT_VAR(tmp);
 	array_init(tmp);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/arr.zep", 268);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/arr.zep", 274);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -482,7 +488,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 }
 
 /**
- * Whether or not an offset exists
+ * Whether or not an offset exists.
  *
  * @param string An offset to check for
  * @return boolean
@@ -507,7 +513,7 @@ PHP_METHOD(Ice_Arr, offsetExists) {
 }
 
 /**
- * Returns the value at specified offset
+ * Returns the value at specified offset.
  *
  * @param string The offset to retrieve
  * @return mixed
@@ -532,7 +538,7 @@ PHP_METHOD(Ice_Arr, offsetGet) {
 }
 
 /**
- * Assigns a value to the specified offset
+ * Assigns a value to the specified offset.
  *
  * @param string The offset to assign the value to
  * @param mixed  The value to set
@@ -558,7 +564,7 @@ PHP_METHOD(Ice_Arr, offsetSet) {
 }
 
 /**
- * Unsets an offset
+ * Unsets an offset.
  *
  * @param string The offset to unset
  * @return void
@@ -582,6 +588,9 @@ PHP_METHOD(Ice_Arr, offsetUnset) {
 
 }
 
+/**
+ * Magic isset, whether or not a key exists.
+ */
 PHP_METHOD(Ice_Arr, __isset) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -600,6 +609,10 @@ PHP_METHOD(Ice_Arr, __isset) {
 
 }
 
+/**
+ * Magic get, returns the value at specified key.
+ * First check if property exist.
+ */
 PHP_METHOD(Ice_Arr, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -621,6 +634,10 @@ PHP_METHOD(Ice_Arr, __get) {
 
 }
 
+/**
+ * Magic set, assigns a value to the specified key.
+ * First check if property exist.
+ */
 PHP_METHOD(Ice_Arr, __set) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -643,19 +660,19 @@ PHP_METHOD(Ice_Arr, __set) {
 
 }
 
+/**
+ * Magic unset, unsets a key.
+ */
 PHP_METHOD(Ice_Arr, __unset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key;
+	zval *key, *_0;
 
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &key);
+	zephir_fetch_params(0, 1, 0, &key);
 
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, key);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+	zephir_array_unset(&_0, key, PH_SEPARATE);
 
 }
 

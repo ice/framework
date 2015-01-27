@@ -8,7 +8,7 @@ PHP_METHOD(Ice_Db, __construct);
 PHP_METHOD(Ice_Db, __call);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db___construct, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, db, Ice\\Db\\DbInterface, 0)
+	ZEND_ARG_OBJ_INFO(0, driver, Ice\\Db\\DbInterface, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db___call, 0, 0, 1)

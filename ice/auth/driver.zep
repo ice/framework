@@ -9,7 +9,7 @@ use Ice\Di;
  * @package     Ice/Auth
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Driver
