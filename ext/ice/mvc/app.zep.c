@@ -20,6 +20,15 @@
 #include "kernel/concat.h"
 
 
+/**
+ * This component allows to create MVC applications.
+ *
+ * @package     Ice/Mvc
+ * @category    Application
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, App, ice, mvc_app, ice_di_access_ce, ice_mvc_app_method_entry, 0);
@@ -71,11 +80,11 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 }
 
 /**
- * Handles a MVC request
+ * Handles a MVC request.
  *
  * @param string method
  * @param string uri
- * @return ResponseInterface
+ * @return ResponseInterface|boolean
  */
 PHP_METHOD(Ice_Mvc_App, handle) {
 
@@ -140,16 +149,16 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmethod", NULL, method);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_8, response, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 42 TSRMLS_CC);
+		zephir_array_fetch_string(&_8, response, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 51 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, _8);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_9, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 43 TSRMLS_CC);
+		zephir_array_fetch_string(&_9, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 52 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _9);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_10, response, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 44 TSRMLS_CC);
+		zephir_array_fetch_string(&_10, response, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 53 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _10);
 		zephir_check_call_status();
-		zephir_array_fetch_string(&_11, response, SL("params"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 45 TSRMLS_CC);
+		zephir_array_fetch_string(&_11, response, SL("params"), PH_NOISY | PH_READONLY, "ice/mvc/app.zep", 54 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _11);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&response, dispatcher, "dispatch", NULL);

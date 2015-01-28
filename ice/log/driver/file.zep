@@ -4,13 +4,24 @@ namespace Ice\Log\Driver;
 use Ice\Log\Driver;
 use Ice\Exception;
 
+/**
+ * File driver for the Logger.
+ *
+ * @package     Ice/Log
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class File extends Driver
 {
 
     protected _file;
 
     /**
-     * @param string $file Filename to log messages to (complete path)
+     * Logger file constructor.
+     *
+     * @param string file Filename to log messages to (complete path)
      * @throws Exception When logfile cannot be created or is not writeable
      */
     public function __construct(string file)
@@ -28,14 +39,14 @@ class File extends Driver
     }
 
     /**
-     * Logs with an arbitrary level
+     * Logs with an arbitrary level.
      *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param mixed level
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function log(var level, string message, array context = [])
+    public function log(var level, string message, array context = []) -> void
     {
         var line;
 
@@ -45,13 +56,13 @@ class File extends Driver
     }
 
     /**
-     * Interpolates context values into the message placeholders
+     * Interpolates context values into the message placeholders.
      *
-     * @param string $message
-     * @param array $context
+     * @param string message
+     * @param array context
      * @return string
      */
-    protected function interpolate(string message, array context = [])
+    protected function interpolate(string message, array context = []) -> string
     {
         var replace, key, value;
 

@@ -19,10 +19,14 @@
 
 /**
  * This is a simple Logger implementation that other Loggers can inherit from.
+ * It simply delegates all log-level-specific methods to the `log` method to reduce boilerplate code that a simple
+ * Logger that does the same thing with messages regardless of the error level has to implement.
  *
- * It simply delegates all log-level-specific methods to the `log` method to
- * reduce boilerplate code that a simple Logger that does the same thing with
- * messages regardless of the error level has to implement.
+ * @package     Ice/Log
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
 
@@ -36,9 +40,9 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
 /**
  * System is unusable.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, emergency) {
 
@@ -71,12 +75,11 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
 /**
  * Action must be taken immediately.
  *
- * Example: Entire website down, database unavailable, etc. This should
- * trigger the SMS alerts and wake you up.
+ * Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, alert) {
 
@@ -111,9 +114,9 @@ PHP_METHOD(Ice_Log_Driver, alert) {
  *
  * Example: Application component unavailable, unexpected exception.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, critical) {
 
@@ -144,12 +147,11 @@ PHP_METHOD(Ice_Log_Driver, critical) {
 }
 
 /**
- * Runtime errors that do not require immediate action but should typically
- * be logged and monitored.
+ * Runtime errors that do not require immediate action but should typically be logged and monitored.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, error) {
 
@@ -182,12 +184,11 @@ PHP_METHOD(Ice_Log_Driver, error) {
 /**
  * Exceptional occurrences that are not errors.
  *
- * Example: Use of deprecated APIs, poor use of an API, undesirable things
- * that are not necessarily wrong.
+ * Example: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, warning) {
 
@@ -220,9 +221,9 @@ PHP_METHOD(Ice_Log_Driver, warning) {
 /**
  * Normal but significant events.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, notice) {
 
@@ -257,9 +258,9 @@ PHP_METHOD(Ice_Log_Driver, notice) {
  *
  * Example: User logs in, SQL logs.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, info) {
 
@@ -292,9 +293,9 @@ PHP_METHOD(Ice_Log_Driver, info) {
 /**
  * Detailed debug information.
  *
- * @param string $message
- * @param array $context
- * @return null
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, debug) {
 
@@ -327,10 +328,10 @@ PHP_METHOD(Ice_Log_Driver, debug) {
 /**
  * Logs with an arbitrary level.
  *
- * @param mixed $level
- * @param string $message
- * @param array $context
- * @return null
+ * @param mixed level
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver, log) {
 

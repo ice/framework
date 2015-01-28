@@ -10,7 +10,7 @@ use Ice\Auth\Driver\DriverInterface;
  * @package     Ice/Auth
  * @category    Driver
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class File extends Driver implements DriverInterface
@@ -85,5 +85,4 @@ class File extends Driver implements DriverInterface
             return null;
         }
     }
-
 }

@@ -10,7 +10,7 @@ use Ice\Mvc\Model;
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class Users extends Model
@@ -19,7 +19,7 @@ class Users extends Model
     protected _from = "roles_users";
 
     /**
-     * Initialize roles-users relations
+     * Initialize roles-users relations.
      *
      * @return void
      */
@@ -37,5 +37,4 @@ class Users extends Model
             "alias": "Role"
         ]);
     }
-
 }

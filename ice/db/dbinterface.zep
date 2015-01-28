@@ -1,6 +1,15 @@
 
 namespace Ice\Db;
 
+/**
+ * Database driver interface.
+ *
+ * @package     Ice/Db
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 interface DbInterface
 {
 
@@ -13,4 +22,6 @@ interface DbInterface
     public function insert(string! from, array fields = []);
 
     public function update(string! from, var filters = [], array fields = []);
+
+    public function remove(string! from, var filters = []);
 }

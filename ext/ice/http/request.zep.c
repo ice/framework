@@ -20,6 +20,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * Inspect the current HTTP request.
+ *
+ * @package     Ice/Http
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Http_Request) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Http, Request, ice, http_request, ice_arr_ce, ice_http_request_method_entry, 0);
@@ -36,6 +45,9 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request) {
 
 }
 
+/**
+ * Request constructor. Fetch data from globals variables: _REQUEST, _SERVER, _POST, _GET and _FILES.
+ */
 PHP_METHOD(Ice_Http_Request, __construct) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
@@ -76,6 +88,12 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 
 }
 
+/**
+ * Check whether _REQUEST has index.
+ *
+ * @param string name Index name
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, hasRequest) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -104,6 +122,12 @@ PHP_METHOD(Ice_Http_Request, hasRequest) {
 
 }
 
+/**
+ * Check whether _POST has index.
+ *
+ * @param string name Index name
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, hasPost) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -133,6 +157,12 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
 
 }
 
+/**
+ * Check whether _GET has index.
+ *
+ * @param string name Index name
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, hasGet) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -162,6 +192,12 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
 
 }
 
+/**
+ * Check whether _SERVER has index.
+ *
+ * @param string name Index name
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, hasServer) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -191,6 +227,12 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 
 }
 
+/**
+ * Check whether _FILES has index.
+ *
+ * @param string name Index name
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, hasFile) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -220,104 +262,137 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 
 }
 
+/**
+ * Checks whether HTTP method is POST.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isPost) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "POST"));
 
 }
 
+/**
+ * Checks whether HTTP method is GET.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isGet) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "GET"));
 
 }
 
+/**
+ * Checks whether HTTP method is PUT.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isPut) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "PUT"));
 
 }
 
+/**
+ * Checks whether HTTP method is PATCH.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isPatch) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "PATCH"));
 
 }
 
+/**
+ * Checks whether HTTP method is HEAD.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isHead) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "HEAD"));
 
 }
 
+/**
+ * Checks whether HTTP method is DELETE.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isDelete) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "DELETE"));
 
 }
 
+/**
+ * Checks whether HTTP method is OPTIONS.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isOptions) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", &_1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmethod", NULL);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_STRING(_0, "OPTIONS"));
 
 }
 
+/**
+ * Checks whether request has been made using AJAX.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Http_Request, isAjax) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -335,6 +410,11 @@ PHP_METHOD(Ice_Http_Request, isAjax) {
 
 }
 
+/**
+ * Gets HTTP method which request has been made.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Http_Request, getMethod) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -355,6 +435,11 @@ PHP_METHOD(Ice_Http_Request, getMethod) {
 
 }
 
+/**
+ * Gets HTTP user agent used to made the request.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Http_Request, getUserAgent) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -375,6 +460,11 @@ PHP_METHOD(Ice_Http_Request, getUserAgent) {
 
 }
 
+/**
+ * Gets web page that refers active request.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Http_Request, getHTTPReferer) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -395,6 +485,11 @@ PHP_METHOD(Ice_Http_Request, getHTTPReferer) {
 
 }
 
+/**
+ * Gets most possible client IPv4 Address.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Http_Request, getClientAddress) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -439,6 +534,27 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 
 }
 
+/**
+ * Gets variable from _GET superglobal applying filters if needed.
+ * If no parameters are given, return all.
+ *
+ *<code>
+ *  //Returns value from $_GET["id"] without sanitizing
+ *  $id = $this->request->getQuery("id");
+ *
+ *  //Returns value from $_GET["title"] with sanitizing
+ *  $title = $this->request->getQuery("title", "escape|repeats");
+ *
+ *  //Returns value from $_GET["id"] with a default value
+ *  $id = $this->request->getQuery("id", null, 150);
+ *</code>
+ *
+ * @param string key Index to get
+ * @param string|array filters Filters to apply
+ * @param mixed defaultValue Default value if key not exist or value is empty and allowEmpty is false
+ * @param boolean allowEmpty
+ * @return mixed
+ */
 PHP_METHOD(Ice_Http_Request, getQuery) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
@@ -516,6 +632,27 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 
 }
 
+/**
+ * Gets variable from _POST superglobal applying filters if needed.
+ * If no parameters are given, return all.
+ *
+ *<code>
+ *  //Returns value from $_POST["id"] without sanitizing
+ *  $id = $this->request->getPost("id");
+ *
+ *  //Returns value from $_POST["title"] with sanitizing
+ *  $title = $this->request->getPost("title", "escape|repeats");
+ *
+ *  //Returns value from $_POST["id"] with a default value
+ *  $id = $this->request->getPost("id", null, 150);
+ *</code>
+ *
+ * @param string key Index to get
+ * @param string|array filters Filters to apply
+ * @param mixed defaultValue Default value if key not exist or value is empty and allowEmpty is false
+ * @param boolean allowEmpty
+ * @return mixed
+ */
 PHP_METHOD(Ice_Http_Request, getPost) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
@@ -579,6 +716,13 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 
 }
 
+/**
+ * Gets variable from _SERVER superglobal.
+ *
+ * @param string key
+ * @param mixed defaultValue
+ * @return mixed
+ */
 PHP_METHOD(Ice_Http_Request, getServer) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -611,6 +755,13 @@ PHP_METHOD(Ice_Http_Request, getServer) {
 
 }
 
+/**
+ * Gets variable from _FILES superglobal.
+ *
+ * @param string key
+ * @param mixed defaultValue
+ * @return mixed
+ */
 PHP_METHOD(Ice_Http_Request, getFiles) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

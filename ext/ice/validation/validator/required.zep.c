@@ -21,6 +21,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Required validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Required) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Required, ice, validation_validator_required, ice_validation_validator_ce, ice_validation_validator_required_method_entry, 0);
@@ -29,6 +38,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Required) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Required, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_10 = NULL;

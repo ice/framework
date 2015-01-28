@@ -7,10 +7,15 @@ use Ice\Mvc\Route\Collector;
 use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
 
 /**
- * Router is the standard framework router. Routing is the
- * process of taking a URI endpoint (that part of the URI which comes after the base URL) and
- * decomposing it into parameters to determine which module, controller, and
- * action of that controller should receive the request
+ * Router is the standard framework router. Routing is the process of taking a URI endpoint and decomposing it into
+ * parameters to determine which module, controller, and action of that controller should receive the request.
+ *
+ * @package     Ice/Router
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
 class Router
 {
@@ -37,11 +42,19 @@ class Router
     const FOUND = 1;
     const METHOD_NOT_ALLOWED = 2;
 
+    /**
+     * Router constructor. Fetch Di and set it as a property.
+     */
     public function __construct()
     {
         let this->_di = Di::$fetch();
     }
 
+    /**
+     * Set defaults values
+     *
+     * @param array defaults
+     */
     public function setDefaults(array! defaults)
     {
         var module, handler, action;
@@ -59,6 +72,12 @@ class Router
         }
     }
 
+    /**
+     * Prepare the FastRoute.
+     *
+     * @param object routeDefinitionCallback
+     * @param array options
+     */
     public function fastRoute(routeDefinitionCallback = null, array options = [])
     {
         var dispatcher, data, collector, parser, generator, route, handler;
@@ -120,12 +139,12 @@ class Router
     }
 
     /**
-     * Handles routing information received from the rewrite engine
+     * Handles routing information received from the FastRoute engine.
      *
      * @param string uri
-     * @return array
+     * @return mixed
      */
-    public function handle(method = null, uri = null) -> array
+    public function handle(method = null, uri = null)
     {
         var module, handler, action, params, holders, data, route, response;
 

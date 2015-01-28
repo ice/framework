@@ -1,6 +1,15 @@
 
 namespace Ice;
 
+/**
+ * Cookie helper.
+ *
+ * @package     Ice/Cookies
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Cookies
 {
 
@@ -33,12 +42,12 @@ class Cookies
     }
 
     /**
-     * Gets the value of a signed cookie. Cookies without signatures will not
-     * be returned. If the cookie signature is present, but invalid, the cookie
+     * Gets the value of a signed cookie. 
+     * Cookies without signatures will not be returned. If the cookie signature is present, but invalid, the cookie
      * will be deleted.
      *
-     * @param string key cookie name
-     * @param mixed defaultValue default value to return
+     * @param string key Cookie name
+     * @param mixed defaultValue Default value to return
      */
     public function get(string key, var defaultValue = null)
     {
@@ -73,13 +82,13 @@ class Cookies
     }
 
     /**
-     * Sets a signed cookie. Note that all cookie values must be strings and no
-     * automatic serialization will be performed!
+     * Sets a signed cookie. 
+     * Note that all cookie values must be strings and no automatic serialization will be performed!
      *
-     * @param string key name of cookie
-     * @param string value value of cookie
-     * @param integer lifetime expired time in seconds
-     * @return  boolean
+     * @param string key Name of cookie
+     * @param string value Value of cookie
+     * @param integer lifetime Expired time in seconds
+     * @return boolean
      */
     public function set(string key, string value, int lifetime = 0)
     {
@@ -118,11 +127,10 @@ class Cookies
     /**
      * Generates a salt string for a cookie based on the name and value.
      *
-     * @param   string $name name of cookie
-     * @param   string $value value of cookie
-     *
+     * @param string name Name of cookie
+     * @param string value Value of cookie
      * @throws Exception if salt is not configured
-     * @return  string
+     * @return string
      */
     public function salt(name, value) -> string
     {
@@ -149,8 +157,7 @@ class Cookies
      * @param string path
      * @param string domain
      * @param boolean secure
-     * @param boolean http)nly
-     *
+     * @param boolean httpOnly
      * @return bool
      * @see setcookie
      */
@@ -158,5 +165,4 @@ class Cookies
     {
         return setcookie(name, value, expire, path, domain, secure, httpOnly);
     }
-
 }

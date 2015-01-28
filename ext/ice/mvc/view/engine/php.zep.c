@@ -20,6 +20,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * PHP template engine.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View\\Engine, Php, ice, mvc_view_engine_php, ice_mvc_view_engine_ce, ice_mvc_view_engine_php_method_entry, 0);
@@ -28,6 +37,13 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
 
 }
 
+/**
+ * Render the PHP file.
+ *
+ * @param string path
+ * @param array data
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

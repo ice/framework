@@ -1,13 +1,22 @@
 
 namespace Ice;
 
+/**
+ * Filter component provides a set of commonly needed data filters.
+ *
+ * @package     Ice/Filter
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Filter
 {
 
     protected _filters;
 
     /**
-     * Adds a user-defined filter
+     * Adds a user-defined filter.
      *
      * @param string name
      * @param callable body
@@ -22,7 +31,7 @@ class Filter
     }
 
     /**
-     * Sanitizes a value with a specified single or set of filters
+     * Sanitizes a value with a specified single or set of filters.
      *
      * @param mixed value
      * @param mixed filters
@@ -46,7 +55,7 @@ class Filter
     }
 
     /**
-     * Internal sanitize
+     * Internal sanitize.
      *
      * @param mixed value
      * @param string filter
@@ -118,5 +127,4 @@ class Filter
                 throw new Exception(sprintf("Filter '%s' is not supported", filter));
         }
     }
-
 }

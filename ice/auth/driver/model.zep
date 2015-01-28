@@ -13,7 +13,7 @@ use Ice\Auth\Driver\Model\Users\Tokens;
  * @package     Ice/Auth
  * @category    Driver
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 class Model extends Driver implements DriverInterface

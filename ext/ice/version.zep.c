@@ -20,12 +20,12 @@
 
 
 /**
- * Get version of the framework
+ * Get version of the framework.
  *
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Version) {
@@ -47,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 }
 
 /**
- * Get array version of the framework
+ * Get array version of the framework.
  *
  * @return array
  */
@@ -65,7 +65,7 @@ PHP_METHOD(Ice_Version, current) {
 }
 
 /**
- * Get version of the framework
+ * Get version of the framework.
  * 
  * 1.0.0-dev
  * 1.0.0-alpha3
@@ -125,7 +125,7 @@ PHP_METHOD(Ice_Version, get) {
 }
 
 /**
- * Get version id of the framework
+ * Get version id of the framework.
  * [major][minor(2 digits)][patch (2 digits)][stage][build], eg. id for 1.4.2-rc5 is 1040235
  *
  * @return string

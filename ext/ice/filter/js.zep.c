@@ -16,6 +16,16 @@
 #include "kernel/memory.h"
 
 
+/**
+ * Minify js string.
+ *
+ * @package     Ice/Filter
+ * @category    Minification
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        jsmin.c www.crockford.com
+ */
 ZEPHIR_INIT_CLASS(Ice_Filter_Js) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Filter, Js, ice, filter_js, ice_filter_js_method_entry, 0);
@@ -24,6 +34,12 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Js) {
 
 }
 
+/**
+ * Minify the js.
+ *
+ * @param string js JS code to minify
+ * @return string
+ */
 PHP_METHOD(Ice_Filter_Js, sanitize) {
 
 	long _0;

@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Tag
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Mvc\Url
  */
@@ -33,13 +33,16 @@ class Tag
     protected _titleSeparator = " - " { set, get };
     protected _escape = true { set };
 
+    /**
+     * Tag constructor. Fetch Di and set it as a property.
+     */
     public function __construct()
     {
         let this->_di = Di::$fetch();
     }
 
     /**
-     * Appends a text to current document title
+     * Appends a text to current document title.
      *
      * @param string title
      * @param string separator
@@ -51,7 +54,7 @@ class Tag
     }
 
     /**
-     * Prepends a text to current document title
+     * Prepends a text to current document title.
      *
      * @param string title
      * @param string separator
@@ -63,7 +66,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="text"] tag
+     * Builds a HTML INPUT[type="text"] tag.
      *
      * @param array parameters
      * @return string
@@ -74,7 +77,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="password"] tag
+     * Builds a HTML INPUT[type="password"] tag.
      *
      * @param array parameters
      * @return string
@@ -85,7 +88,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="hidden"] tag
+     * Builds a HTML INPUT[type="hidden"] tag.
      *
      * @param array parameters
      * @return string
@@ -96,7 +99,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="file"] tag
+     * Builds a HTML INPUT[type="file"] tag.
      *
      * @param array parameters
      * @return string
@@ -107,7 +110,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="submit"] tag
+     * Builds a HTML INPUT[type="submit"] tag.
      *
      * @param array parameters
      * @return string
@@ -118,7 +121,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML BUTTON tag
+     * Builds a HTML BUTTON tag.
      *
      * @param array parameters
      * @return string
@@ -138,7 +141,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML INPUT[type="checkbox"] tag
+     * Builds a HTML INPUT[type="checkbox"] tag.
      *
      * @param array parameters
      * @return string
@@ -149,7 +152,7 @@ class Tag
     }
 
     /**
-     * Builds generic INPUT tags
+     * Builds generic INPUT tags.
      *
      * @param string type
      * @param array parameters
@@ -170,7 +173,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML FORM tag
+     * Builds a HTML FORM tag.
      *
      * @param array parameters
      * @return string
@@ -205,7 +208,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML TEXTAREA tag
+     * Builds a HTML TEXTAREA tag.
      *
      * @param array parameters
      * @return string
@@ -224,7 +227,7 @@ class Tag
     }
 
     /**
-     * Alias of the `img` method
+     * Alias of the `img` method.
      */
     public function image(array parameters) -> string
     {
@@ -232,7 +235,7 @@ class Tag
     }
 
     /**
-     * Builds HTML IMG tags
+     * Builds HTML IMG tags.
      *
      * @param array parameters
      * @return string
@@ -264,14 +267,14 @@ class Tag
     }
 
     /**
-     * Alias of the `a` method
+     * Alias of the `a` method.
      */
     public function linkTo(array parameters) -> string
     {
         return this->a(parameters);
     }
     /**
-     * Builds a HTML A tag using framework conventions
+     * Builds a HTML A tag using framework conventions.
      *
      * @param array parameters
      * @return string
@@ -304,7 +307,7 @@ class Tag
     }
 
     /**
-     * Builds a LINK[rel="stylesheet"] tag
+     * Builds a LINK[rel="stylesheet"] tag.
      *
      * @param array parameters
      * @return string
@@ -337,7 +340,7 @@ class Tag
     }
 
     /**
-     * Builds a SCRIPT[type="javascript"] tag
+     * Builds a SCRIPT[type="javascript"] tag.
      *
      * @param array parameters
      * @return string
@@ -369,7 +372,7 @@ class Tag
     }
 
     /**
-     * Builds a STYLE tag
+     * Builds a STYLE tag.
      *
      * @param array parameters
      * @return string
@@ -387,7 +390,7 @@ class Tag
     }
 
     /**
-     * Builds a SELECT tag
+     * Builds a SELECT tag.
      *
      * @param array parameters
      * @return string
@@ -486,7 +489,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML tag
+     * Builds a HTML tag.
      *
      * @param string name Name of tag
      * @param array parameters Parameters like id, style
@@ -545,7 +548,7 @@ class Tag
     }
 
     /**
-     * Builds a HTML close tag
+     * Builds a HTML close tag.
      *
      * @param string name
      * @param boolean eol
@@ -557,7 +560,7 @@ class Tag
     }
 
     /**
-     * Renders parameters keeping order in html attributes
+     * Renders parameters keeping order in html attributes.
      *
      * @param string name
      * @param array attributes
@@ -606,7 +609,7 @@ class Tag
     }
 
     /**
-     * Check if a helper has a default value set using Ice\Tag::setValues or value from _POST
+     * Check if a helper has a default value set using Ice\Tag::setValues or value from _POST.
      *
      * @param string name
      * @return boolean
@@ -627,7 +630,7 @@ class Tag
     }
 
     /**
-     * Assigns default values to generated tags by helpers
+     * Assigns default values to generated tags by helpers.
      *
      * @param string id
      * @param mixed value
@@ -644,7 +647,7 @@ class Tag
     }
 
     /**
-     * Assigns default values to generated tags by helpers
+     * Assigns default values to generated tags by helpers.
      *
      * @param array values
      * @param boolean merge
@@ -671,7 +674,8 @@ class Tag
     }
 
     /**
-     * Every helper calls this function to check whether a component has a predefined value using Ice\Tag::setValue or value from _POST
+     * Every helper calls this function to check whether a component has a predefined value using Ice\Tag::setValue
+     * or value from _POST.
      *
      * @param string name
      * @return mixed
@@ -692,7 +696,7 @@ class Tag
     }
 
     /**
-     * Converts texts into URL-friendly titles
+     * Converts texts into URL-friendly titles.
      *
      * @param string text
      * @param string separator
@@ -742,7 +746,7 @@ class Tag
     }
 
     /**
-     * Get the document type declaration of content
+     * Get the document type declaration of content.
      *
      * @return string
      */
@@ -765,5 +769,4 @@ class Tag
 
         return "";
     }
-
 }

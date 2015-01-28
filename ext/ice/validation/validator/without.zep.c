@@ -23,6 +23,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Without validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Without, ice, validation_validator_without, ice_validation_validator_ce, ice_validation_validator_without_method_entry, 0);
@@ -31,6 +40,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_14 = NULL;
@@ -85,10 +101,10 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		zephir_check_call_status();
 	}
 	if (Z_TYPE_P(fields) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Fields must be an array", "ice/validation/validator/without.zep", 29);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Fields must be an array", "ice/validation/validator/without.zep", 45);
 		return;
 	}
-	zephir_is_iterable(fields, &_3, &_2, 0, 0, "ice/validation/validator/without.zep", 40);
+	zephir_is_iterable(fields, &_3, &_2, 0, 0, "ice/validation/validator/without.zep", 56);
 	for (
 	  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -101,7 +117,7 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 			_6 = Z_TYPE_P(tmp) != IS_NULL;
 		}
 		if (_6) {
-			zephir_array_append(&except, without, PH_SEPARATE, "ice/validation/validator/without.zep", 36);
+			zephir_array_append(&except, without, PH_SEPARATE, "ice/validation/validator/without.zep", 52);
 		}
 	}
 	if (zephir_fast_count_int(except TSRMLS_CC)) {

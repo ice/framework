@@ -21,6 +21,15 @@
 #include "kernel/exception.h"
 
 
+/**
+ * Mongo driver.
+ *
+ * @package     Ice/Db
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Db_Driver_Mongo) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Db\\Driver, Mongo, ice, db_driver_mongo, ice_db_driver_mongo_method_entry, 0);
@@ -67,11 +76,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getClient) {
 }
 
 /**
- * Instantiate class
+ * Instantiate mongo connection.
  *
- * @param string $dsn
- * @param string $dbname
- * @param array $options
+ * @param string dsn
+ * @param string dbname
+ * @param array options
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 
@@ -113,15 +122,24 @@ PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 
 }
 
+/**
+ * Find one document that match criteria.
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ * @param array options Options to limit/group results
+ * @param array fields Fields to retrieve, if not specified get all
+ * @return Arr
+ */
 PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *result = NULL, *_0, *_1 = NULL, *_2 = NULL;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1 = NULL, *_2 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -138,17 +156,17 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
+	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
 	}
 
 
@@ -168,15 +186,30 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 
 }
 
+/**
+ * Find all documents that match criteria.
+ *
+ *<code>
+ *  $db->find("users", array("a" => 1, "b" => "q"));
+ *  $db->find("users", array("age" => array(">" => 33)));
+ *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
+ *</code>
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ * @param array options Options to limit/group results
+ * @param array fields Fields to retrieve, if not specified get all
+ * @return Arr
+ */
 PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *result = NULL, *_0 = NULL;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -193,17 +226,17 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
+	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
 	}
 
 
@@ -218,15 +251,23 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 
 }
 
+/**
+ * SELECT document(s) that match criteria.
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ * @param array options Options to limit/group results
+ * @param array fields Fields to retrieve, if not specified get all
+ */
 PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *options = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *options_param = NULL, *collection = NULL, *result = NULL, *_0, *_1, *_2, *_3 = NULL;
+	zval *options = NULL, *fields = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *collection = NULL, *result = NULL, *_0, *_1, *_2, *_3 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &from_param, &filters, &fields_param, &options_param);
+	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
@@ -243,17 +284,17 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 		ZEPHIR_INIT_VAR(filters);
 		array_init(filters);
 	}
-	if (!fields_param) {
-		ZEPHIR_INIT_VAR(fields);
-		array_init(fields);
-	} else {
-		zephir_get_arrval(fields, fields_param);
-	}
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(options);
 		array_init(options);
 	} else {
 		zephir_get_arrval(options, options_param);
+	}
+	if (!fields_param) {
+		ZEPHIR_INIT_VAR(fields);
+		array_init(fields);
+	} else {
+		zephir_get_arrval(fields, fields_param);
 	}
 
 
@@ -263,17 +304,17 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 	ZEPHIR_CALL_METHOD(&result, collection, "find", NULL, filters, fields);
 	zephir_check_call_status();
 	if (zephir_array_isset_string(options, SS("order"))) {
-		zephir_array_fetch_string(&_1, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 54 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 95 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, result, "sort", NULL, _1);
 		zephir_check_call_status();
 	}
 	if (zephir_array_isset_string(options, SS("limit"))) {
-		zephir_array_fetch_string(&_1, options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 57 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 98 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, result, "limit", NULL, _1);
 		zephir_check_call_status();
 	}
 	if (zephir_array_isset_string(options, SS("offset"))) {
-		zephir_array_fetch_string(&_1, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 60 TSRMLS_CC);
+		zephir_array_fetch_string(&_1, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 101 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, result, "skip", NULL, _1);
 		zephir_check_call_status();
 	}
@@ -285,6 +326,12 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 
 }
 
+/**
+ * INSERT document into collection.
+ *
+ * @param string from Collection name
+ * @param array fields Fields to insert, keys are the column names
+ */
 PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -323,6 +370,13 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 
 }
 
+/**
+ * UPDATE documents in the collection.
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ * @param array fields Fields to update, keys are the column names
+ */
 PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -360,6 +414,47 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 	ZEPHIR_CALL_METHOD(&collection, _0, "selectcollection", NULL, from);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, collection, "update", NULL, filters, fields);
+	zephir_check_call_status();
+	RETURN_CCTOR(status);
+
+}
+
+/**
+ * Remove documents from the collection.
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ */
+PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *from_param = NULL, *filters = NULL, *collection = NULL, *status = NULL, *_0;
+	zval *from = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &from_param, &filters);
+
+	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+
+	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+		zephir_get_strval(from, from_param);
+	} else {
+		ZEPHIR_INIT_VAR(from);
+		ZVAL_EMPTY_STRING(from);
+	}
+	if (!filters) {
+		ZEPHIR_INIT_VAR(filters);
+		array_init(filters);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_client"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&collection, _0, "selectcollection", NULL, from);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&status, collection, "remove", NULL, filters);
 	zephir_check_call_status();
 	RETURN_CCTOR(status);
 

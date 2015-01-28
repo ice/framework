@@ -187,6 +187,12 @@ PHP_METHOD(Ice_Mvc_Model, getMessages) {
 
 }
 
+/**
+ * Model constructor. Fetch Di and set it as a property.
+ *
+ * @param mixed filters
+ * @param array data
+ */
 PHP_METHOD(Ice_Mvc_Model, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -271,6 +277,11 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 
 }
 
+/**
+ * Load one result to the current object.
+ *
+ * @param mixed filters
+ */
 PHP_METHOD(Ice_Mvc_Model, loadOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -297,6 +308,12 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 
 }
 
+/**
+ * Load results to the current object.
+ *
+ * @param mixed filters
+ * @return Arr
+ */
 PHP_METHOD(Ice_Mvc_Model, load) {
 
 	zend_object_iterator *_3;
@@ -340,7 +357,7 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 			zephir_array_fast_append(_6, data);
 			ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_4, _5, _6 TSRMLS_CC);
 			zephir_check_call_status();
-			zephir_array_append(&instances, _4, PH_SEPARATE, "ice/mvc/model.zep", 84);
+			zephir_array_append(&instances, _4, PH_SEPARATE, "ice/mvc/model.zep", 111);
 		}
 		_3->funcs->dtor(_3 TSRMLS_CC);
 	}
@@ -351,6 +368,21 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 
 }
 
+/**
+ * Allows to query one record that match the specified conditions.
+ *
+ *<code>
+ *  //Get the user from users by id 2
+ *  $user = Users::findOne(2);
+ *  echo "The user name is ", $user->username;
+ *
+ *  //Get one active user with age > 18
+ *  $user = Users::findOne(array("status" => 1, "age" => array(">" => 18)));
+ *</code>
+ *
+ * @param array filters
+ * @return Model|false
+ */
 PHP_METHOD(Ice_Mvc_Model, findOne) {
 
 	zval *_0;
@@ -383,6 +415,17 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 
 }
 
+/**
+ * Allows to query all records that match the specified conditions.
+ *
+ *<code>
+ *  //Get all active users with age > 18
+ *  $user = Users::find(array("status" => 1, "age" => array(">" => 18)));
+ *</code>
+ *
+ * @param array filters
+ * @return Arr
+ */
 PHP_METHOD(Ice_Mvc_Model, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -414,6 +457,12 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 
 }
 
+/**
+ * Prepare fields for validation on create/update.
+ *
+ * @param mixed fields
+ * @return array
+ */
 PHP_METHOD(Ice_Mvc_Model, fields) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_8 = NULL, *_9 = NULL;
@@ -509,7 +558,15 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
 }
 
 /**
- * Insert a new object to the database
+ * Insert a new object to the database.
+ *
+ *<code>
+ *  //Creating a new user
+ *  $user = new Users();
+ *  $user->lastname = "Kowalski";
+ *  $user->status = 1;
+ *  $user->create();
+ *</code>
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
@@ -657,6 +714,19 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 
 }
 
+/**
+ * Update an existing object in the database.
+ *
+ *<code>
+ *  //Updating a user last name
+ *  $user = Users::findOne(100);
+ *  $user->lastname = "Nowak";
+ *  $user->update();
+ *</code>
+ *
+ * @param array fields Fields to save or valid fields
+ * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+ */
 PHP_METHOD(Ice_Mvc_Model, update) {
 
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -697,7 +767,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_read_property_this(&_2, this_ptr, SL("_primary"), PH_NOISY_CC);
 	if (Z_TYPE_P(_2) == IS_ARRAY) {
 		_3 = zephir_fetch_nproperty_this(this_ptr, SL("_primary"), PH_NOISY_CC);
-		zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/model.zep", 227);
+		zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/model.zep", 307);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -729,6 +799,26 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 
 }
 
+/**
+ * Inserts or updates a model instance. Returning true on success or false otherwise.
+ *
+ *<code>
+ *  //Creating a new user
+ *  $user = new Users();
+ *  $user->lastname = "Kowalski";
+ *  $user->status = 1;
+ *  $user->save();
+ *
+ *  //Updating a user last name
+ *  $user = Users::findOne(100);
+ *  $user->lastname = "Nowak";
+ *  $user->save();
+ *</code>
+ *
+ * @param array fields
+ * @param Validation extra
+ * @return boolean
+ */
 PHP_METHOD(Ice_Mvc_Model, save) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -769,6 +859,21 @@ PHP_METHOD(Ice_Mvc_Model, save) {
 
 }
 
+/**
+ * Removes a model instance(s). Returning true on success or false otherwise.
+ *
+ * <code>
+ *  //Remove current user
+ *  $user = Users::findOne(100);
+ *  $user->delete();
+ *  
+ *  //Remove all unactive users
+ *  $status = (new Users())->remove(["status" => 0]);
+ * </code>
+ *
+ * @param filters
+ * @return boolean
+ */
 PHP_METHOD(Ice_Mvc_Model, remove) {
 
 	zephir_fcall_cache_entry *_6 = NULL;
@@ -795,7 +900,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 		zephir_read_property_this(&_0, this_ptr, SL("_primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_ARRAY) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("_primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 260);
+			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 375);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -824,6 +929,12 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 
 }
 
+/**
+ * Get the record if exist.
+ *
+ * @param mixed filters
+ * @return Model|false
+ */
 PHP_METHOD(Ice_Mvc_Model, exists) {
 
 	zend_bool _7;
@@ -851,7 +962,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		zephir_read_property_this(&_0, this_ptr, SL("_primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_ARRAY) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("_primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 285);
+			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 406);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -904,6 +1015,11 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 
 }
 
+/**
+ * Get the last Db error.
+ *
+ * @return mixed
+ */
 PHP_METHOD(Ice_Mvc_Model, getError) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -918,6 +1034,29 @@ PHP_METHOD(Ice_Mvc_Model, getError) {
 
 }
 
+/**
+ * Setup a relation reverse 1-1 between two models.
+ *
+ *<code>
+ *  class Posts extends Model
+ *  {
+ *      public function initialize()
+ *      {
+ *          //Relation with user, be able to get post's author
+ *          $this->belongsTo('user_id', __NAMESPACE__ . '\Users', 'id', ['alias' => 'User']);
+ *      }
+ *  }
+ *
+ *  //Get post's author
+ *  $post = Posts::findOne(100);
+ *  echo $post->getUser()->username;
+ *</code>
+ *
+ * @param string field
+ * @param string referenceModel
+ * @param string referencedField
+ * @param array options
+ */
 PHP_METHOD(Ice_Mvc_Model, belongsTo) {
 
 	zval *options = NULL, *_0;
@@ -954,6 +1093,24 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
 
 }
 
+/**
+ * Setup a 1-1 relation between two models
+ *
+ *<code>
+ *  class Users extends Model
+ *  {
+ *      public function initialize()
+ *      {
+ *          $this->hasOne('id', __NAMESPACE__ . '\UsersDescriptions', 'user_id', ['alias' => 'Description']);
+ *      }
+ *  }
+ *</code>
+ *
+ * @param string field
+ * @param string referenceModel
+ * @param string referencedField
+ * @param array options
+ */
 PHP_METHOD(Ice_Mvc_Model, hasOne) {
 
 	zval *options = NULL, *_0;
@@ -990,6 +1147,31 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
 
 }
 
+/**
+ * Setup a relation 1-n between two models.
+ *
+ *<code>
+ *  class Users extends Model
+ *  {
+ *      public function initialize()
+ *      {
+ *          //Relation with posts, be able to get user's posts
+ *          $this->hasMany('id', __NAMESPACE__ . '\Posts', 'user_id', ['alias' => 'Posts']);
+ *      }
+ *  }
+ *
+ *  //Get user's posts
+ *  $user = Users::findOne(2);
+ *  foreach ($user->getPosts() as $post) {
+ *      echo $post->title;
+ *  }
+ *</code>
+ *
+ * @param string field
+ * @param string referenceModel
+ * @param string referencedField
+ * @param array options
+ */
 PHP_METHOD(Ice_Mvc_Model, hasMany) {
 
 	zval *options = NULL, *_0;
@@ -1026,6 +1208,12 @@ PHP_METHOD(Ice_Mvc_Model, hasMany) {
 
 }
 
+/**
+ * Get related models.
+ *
+ * @param string alias
+ * @param array filters
+ */
 PHP_METHOD(Ice_Mvc_Model, getRelated) {
 
 	zend_class_entry *_10;
@@ -1058,7 +1246,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, _3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "ice/mvc/model.zep", 358 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "ice/mvc/model.zep", 556 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1072,7 +1260,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	ZEPHIR_INIT_NVAR(_1);
 	zephir_get_class_ns(_1, referenceModel, 0 TSRMLS_CC);
 	zephir_uncamelize(from, _1);
-	zephir_array_fetch_string(&_5, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 367 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 565 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_5, 1) || ZEPHIR_IS_LONG(_5, 2)) {
 			ZEPHIR_INIT_VAR(_6);
@@ -1116,6 +1304,12 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 
 }
 
+/**
+ * Set rules for validation.
+ *
+ * @param array rules
+ * @param boolean merge
+ */
 PHP_METHOD(Ice_Mvc_Model, setRules) {
 
 	zend_bool merge;
@@ -1151,6 +1345,11 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 
 }
 
+/**
+ * Serialize the model's data.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_Model, serialize) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
@@ -1167,6 +1366,9 @@ PHP_METHOD(Ice_Mvc_Model, serialize) {
 
 }
 
+/**
+ * Unserialize and set the data.
+ */
 PHP_METHOD(Ice_Mvc_Model, unserialize) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -1189,11 +1391,14 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 			RETURN_MM_BOOL(1);
 		}
 	}
-	ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid serialization data", "ice/mvc/model.zep", 411);
+	ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid serialization data", "ice/mvc/model.zep", 623);
 	return;
 
 }
 
+/**
+ * Magic call to get related models.
+ */
 PHP_METHOD(Ice_Mvc_Model, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -1231,7 +1436,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, _1);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_5, "ice/mvc/model.zep", 424 TSRMLS_CC);
+	zephir_throw_exception_debug(_5, "ice/mvc/model.zep", 639 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 

@@ -19,6 +19,15 @@
 #include "kernel/array.h"
 
 
+/**
+ * Session helper.
+ *
+ * @package     Ice/Session
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Session) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Session, ice, session, ice_arr_ce, ice_session_method_entry, 0);
@@ -29,6 +38,9 @@ ZEPHIR_INIT_CLASS(Ice_Session) {
 
 }
 
+/**
+ * Session constructor. Start the session.
+ */
 PHP_METHOD(Ice_Session, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -41,6 +53,11 @@ PHP_METHOD(Ice_Session, __construct) {
 
 }
 
+/**
+ * Start the session.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Session, start) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -61,6 +78,11 @@ PHP_METHOD(Ice_Session, start) {
 
 }
 
+/**
+ * Check whether the session was started.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Session, isStarted) {
 
 
@@ -68,6 +90,11 @@ PHP_METHOD(Ice_Session, isStarted) {
 
 }
 
+/**
+ * Get session id.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Session, getId) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -80,6 +107,11 @@ PHP_METHOD(Ice_Session, getId) {
 
 }
 
+/**
+ * Regenerate session id.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Session, regenerate) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -92,6 +124,11 @@ PHP_METHOD(Ice_Session, regenerate) {
 
 }
 
+/**
+ * Destroy the session.
+ *
+ * @return boolean
+ */
 PHP_METHOD(Ice_Session, destroy) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -106,7 +143,8 @@ PHP_METHOD(Ice_Session, destroy) {
 }
 
 /**
- * No support for passing variables by reference yet #203
+ * Check whether session has the key.
+ * No support for passing variables by reference yet zephir/issues/203
  */
 PHP_METHOD(Ice_Session, has) {
 
@@ -124,6 +162,9 @@ PHP_METHOD(Ice_Session, has) {
 
 }
 
+/**
+ * Retrieve a single key from the session.
+ */
 PHP_METHOD(Ice_Session, get) {
 
 	zval *key_param = NULL, *defaultValue = NULL, *value, *_SESSION;
@@ -147,6 +188,9 @@ PHP_METHOD(Ice_Session, get) {
 
 }
 
+/**
+ * Assigns a value to the specified session key.
+ */
 PHP_METHOD(Ice_Session, set) {
 
 	int _0;
@@ -169,6 +213,9 @@ PHP_METHOD(Ice_Session, set) {
 
 }
 
+/**
+ * Remove session key.
+ */
 PHP_METHOD(Ice_Session, remove) {
 
 	zval *key_param = NULL, *_SESSION;

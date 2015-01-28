@@ -12,6 +12,15 @@
 #include "kernel/main.h"
 
 
+/**
+ * Database driver interface.
+ *
+ * @package     Ice/Db
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Db_DbInterface) {
 
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Db, DbInterface, ice, db_dbinterface, ice_db_dbinterface_method_entry);
@@ -29,4 +38,6 @@ ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, select);
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, insert);
 
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, update);
+
+ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, remove);
 

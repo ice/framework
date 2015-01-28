@@ -21,7 +21,13 @@
 
 
 /**
- * This component allows to create CLI applications
+ * This component allows to create CLI applications.
+ *
+ * @package     Ice/Cli
+ * @category    Application
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 
@@ -61,7 +67,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 }
 
 /**
- * Handle the whole command-line tasks
+ * Handle an command-line request.
  *
  * @param array arguments
  * @return mixed
@@ -90,16 +96,16 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_modules"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodules", NULL, _2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_3, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 34 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 40 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, _3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 35 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 41 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, _4);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 36 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 42 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, _5);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_6, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 37 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 43 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, _6);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, dispatcher, "dispatch", NULL);

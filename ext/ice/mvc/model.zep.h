@@ -172,7 +172,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, load, arginfo_ice_mvc_model_load, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, findOne, arginfo_ice_mvc_model_findone, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_Mvc_Model, find, arginfo_ice_mvc_model_find, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-	PHP_ME(Ice_Mvc_Model, fields, arginfo_ice_mvc_model_fields, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, fields, arginfo_ice_mvc_model_fields, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Model, create, arginfo_ice_mvc_model_create, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, update, arginfo_ice_mvc_model_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, save, arginfo_ice_mvc_model_save, ZEND_ACC_PUBLIC)

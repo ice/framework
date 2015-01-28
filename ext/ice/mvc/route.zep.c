@@ -19,6 +19,16 @@
 #include "kernel/fcall.h"
 
 
+/**
+ * This class represents every route added to the router.
+ *
+ * @package     Ice/Router
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        FastRoute http:/github.com/nikic/FastRoute
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Route, ice, mvc_route, ice_mvc_route_method_entry, 0);
@@ -38,10 +48,10 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route) {
 /**
  * Constructs a route (value object).
  *
- * @param string $httpMethod
- * @param mixed  $handler
- * @param string $regex
- * @param array  $variables
+ * @param string httpMethod
+ * @param mixed handler
+ * @param string regex
+ * @param array variables
  */
 PHP_METHOD(Ice_Mvc_Route, __construct) {
 
@@ -68,8 +78,7 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 /**
  * Tests whether this route matches the given string.
  *
- * @param string $str
- *
+ * @param string str
  * @return bool
  */
 PHP_METHOD(Ice_Mvc_Route, matches) {

@@ -36,6 +36,11 @@ ZEPHIR_INIT_CLASS(Ice_Flash) {
 
 }
 
+/**
+ * Flash constructor. Fetch session and tag service from the di.
+ *
+ * @param array options
+ */
 PHP_METHOD(Ice_Flash, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -131,7 +136,7 @@ PHP_METHOD(Ice_Flash, getOption) {
 }
 
 /**
- * Display the messages
+ * Display the messages.
  *
  * @param boolean remove
  * @return string
@@ -166,7 +171,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	ZEPHIR_INIT_VAR(body);
 	ZVAL_STRING(body, "", 1);
 	if (Z_TYPE_P(messages) == IS_ARRAY) {
-		zephir_is_iterable(messages, &_3, &_2, 0, 0, "ice/flash.zep", 66);
+		zephir_is_iterable(messages, &_3, &_2, 0, 0, "ice/flash.zep", 80);
 		for (
 		  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -188,10 +193,11 @@ PHP_METHOD(Ice_Flash, getMessages) {
 }
 
 /**
- * Get a message formatting it with HTML
+ * Get a message formatting it with HTML.
  *
  * @param string type
  * @param mixed message
+ * @return string
  */
 PHP_METHOD(Ice_Flash, getMessage) {
 
@@ -233,7 +239,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		array_init_size(messages, 2);
 		zephir_array_fast_append(messages, messages);
 	}
-	zephir_is_iterable(messages, &_5, &_4, 0, 0, "ice/flash.zep", 101);
+	zephir_is_iterable(messages, &_5, &_4, 0, 0, "ice/flash.zep", 116);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -282,10 +288,11 @@ PHP_METHOD(Ice_Flash, getMessage) {
 }
 
 /**
- * Adds a message to the flash
+ * Adds a message to the flash.
  *
  * @param string type
  * @param string message
+ * @return void
  */
 PHP_METHOD(Ice_Flash, message) {
 
@@ -324,7 +331,7 @@ PHP_METHOD(Ice_Flash, message) {
 }
 
 /**
- * Add success message
+ * Add success message.
  *
  * @param string message
  * @return void
@@ -351,7 +358,7 @@ PHP_METHOD(Ice_Flash, success) {
 }
 
 /**
- * Alias of success message
+ * Alias of success message.
  */
 PHP_METHOD(Ice_Flash, ok) {
 
@@ -375,7 +382,7 @@ PHP_METHOD(Ice_Flash, ok) {
 }
 
 /**
- * Add info message
+ * Add info message.
  *
  * @param string message
  * @return void
@@ -402,7 +409,7 @@ PHP_METHOD(Ice_Flash, info) {
 }
 
 /**
- * Alias of info message
+ * Alias of info message.
  */
 PHP_METHOD(Ice_Flash, notice) {
 
@@ -426,7 +433,7 @@ PHP_METHOD(Ice_Flash, notice) {
 }
 
 /**
- * Add warning message
+ * Add warning message.
  *
  * @param string message
  * @return void
@@ -453,7 +460,7 @@ PHP_METHOD(Ice_Flash, warning) {
 }
 
 /**
- * Alias of warning message
+ * Alias of warning message.
  */
 PHP_METHOD(Ice_Flash, alert) {
 
@@ -477,7 +484,7 @@ PHP_METHOD(Ice_Flash, alert) {
 }
 
 /**
- * Add danger message
+ * Add danger message.
  *
  * @param string message
  * @return void
@@ -504,7 +511,7 @@ PHP_METHOD(Ice_Flash, danger) {
 }
 
 /**
- * Alias of danger message
+ * Alias of danger message.
  */
 PHP_METHOD(Ice_Flash, error) {
 

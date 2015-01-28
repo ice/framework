@@ -25,7 +25,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users) {
@@ -37,7 +37,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users) {
 }
 
 /**
- * Initialize user's relations
+ * Initialize user's relations.
  *
  * @return void
  */
@@ -82,7 +82,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 }
 
 /**
- * Complete the login for a user by incrementing the logins and saving login timestamp
+ * Complete the login for a user by incrementing the logins and saving login timestamp.
  *
  * @return object this
  */
@@ -111,7 +111,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 }
 
 /**
- * Get user's role
+ * Get user's role.
  *
  * @param string name Role name to get
  * @return mixed

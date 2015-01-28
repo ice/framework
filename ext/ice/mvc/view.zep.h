@@ -85,7 +85,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_layout, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_setvar, 0, 0, 2)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 

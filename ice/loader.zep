@@ -1,6 +1,15 @@
 
 namespace Ice;
 
+/**
+ * PSR-4 autoloader class.
+ *
+ * @package     Ice/Loader
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Loader
 {
 
@@ -19,12 +28,10 @@ class Loader
     /**
      * Adds a base directory for a namespace prefix.
      *
-     * @param string $prefix The namespace prefix.
-     * @param string $baseDir A base directory for class files in the
-     * namespace.
-     * @param bool $prepend If true, prepend the base directory to the stack
-     * instead of appending it; this causes it to be searched first rather
-     * than last.
+     * @param string prefix The namespace prefix
+     * @param string baseDir A base directory for class files in the namespace
+     * @param bool prepend If true, prepend the base directory to the stack instead of appending it; this causes it to
+     * be searched first rather than last
      * @return Loader
      */
     public function addNamespace(string prefix, string baseDir, boolean prepend = false)
@@ -53,9 +60,8 @@ class Loader
     /**
      * Loads the class file for a given class name.
      *
-     * @param string $className The fully-qualified class name.
-     * @return mixed The mapped file name on success, or boolean false on
-     * failure.
+     * @param string className The fully-qualified class name
+     * @return mixed The mapped file name on success, or boolean false on failure
      */
     public function loadClass(string className)
     {
@@ -68,7 +74,6 @@ class Loader
         // class name to find a mapped file name
         let pos = strrpos(prefix, "\\");
         while pos !== false {
-
             // retain the trailing namespace separator in the prefix
             let prefix = substr(className, 0, pos + 1);
 
@@ -94,10 +99,9 @@ class Loader
     /**
      * Load the mapped file for a namespace prefix and relative class.
      * 
-     * @param string $prefix The namespace prefix.
-     * @param string $relative_class The relative class name.
-     * @return mixed Boolean false if no mapped file can be loaded, or the
-     * name of the mapped file that was loaded.
+     * @param string $prefix The namespace prefix
+     * @param string $relative_class The relative class name
+     * @return mixed Boolean false if no mapped file can be loaded, or the name of the mapped file that was loaded
      */
     protected function loadMappedFile(string prefix, string relativeClass)
     {
@@ -110,16 +114,11 @@ class Loader
 
         // look through base directories for this namespace prefix
         for baseDir in this->_prefixes[prefix] {
-
             // replace the namespace prefix with the base directory,
             // replace namespace separators with directory separators
             // in the relative class name, append with .php
-            let file = baseDir
-                  . str_replace("\\", DIRECTORY_SEPARATOR, relativeClass)
-                  . ".php",
-                file = baseDir
-                  . str_replace("\\", "/", relativeClass)
-                  . ".php";
+            let file = baseDir . str_replace("\\", DIRECTORY_SEPARATOR, relativeClass) . ".php",
+                file = baseDir . str_replace("\\", "/", relativeClass) . ".php";
 
             // if the mapped file exists, require it
             if this->requireFile(file) {
@@ -135,8 +134,8 @@ class Loader
     /**
      * If a file exists, require it from the file system.
      * 
-     * @param string $file The file to require.
-     * @return bool True if the file exists, false if not.
+     * @param string $file The file to require
+     * @return bool True if the file exists, false if not
      */
     protected function requireFile(string file)
     {

@@ -4,6 +4,15 @@ namespace Ice\Mvc;
 use Ice\Di\Access;
 use Ice\Http\Response\ResponseInterface;
 
+/**
+ * This component allows to create MVC applications.
+ *
+ * @package     Ice/Mvc
+ * @category    Application
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class App extends Access
 {
 
@@ -11,11 +20,11 @@ class App extends Access
     protected _modules { get, set };
 
     /**
-     * Handles a MVC request
+     * Handles a MVC request.
      *
      * @param string method
      * @param string uri
-     * @return ResponseInterface
+     * @return ResponseInterface|boolean
      */
     public function handle(method = null, uri = null) -> <ResponseInterface> | boolean
     {

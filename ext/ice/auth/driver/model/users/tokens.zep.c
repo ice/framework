@@ -27,7 +27,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
@@ -41,7 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
 }
 
 /**
- * Initialize token's relations, remove expired tokens
+ * Initialize token's relations, remove expired tokens.
  *
  * @return void
  */
@@ -123,7 +123,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 }
 
 /**
- * Generate a new unique token and create the token
+ * Generate a new unique token and create the token.
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Extra validation
@@ -166,7 +166,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 }
 
 /**
- * Deletes all expired tokens
+ * Deletes all expired tokens.
  *
  * @return void
  */
@@ -205,7 +205,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 }
 
 /**
- * Generate a new unique token and update the token
+ * Generate a new unique token and update the token.
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Extra validation
@@ -248,7 +248,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 }
 
 /**
- * Generate a new unique token
+ * Generate a new unique token.
  *
  * @return string
  * @uses Text::random()

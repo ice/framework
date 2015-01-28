@@ -21,6 +21,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Unique validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Unique, ice, validation_validator_unique, ice_validation_validator_ce, ice_validation_validator_unique_method_entry, 0);
@@ -29,6 +38,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 
 	zval *_6 = NULL;

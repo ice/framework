@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014 Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -17,6 +17,11 @@ class Pagination extends Arr
     protected _di { get };
     protected _tag { get };
 
+    /**
+     * Pagination constructor. Fetch di and tag.
+     *
+     * @param array options
+     */
     public function __construct(array options = [])
     {
         var di;
@@ -29,7 +34,7 @@ class Pagination extends Arr
     }
 
     /**
-     * Returns a slice of the resultset to show in the pagination
+     * Returns a slice of the resultset to show in the pagination.
      *
      * @return object Pagination
      */

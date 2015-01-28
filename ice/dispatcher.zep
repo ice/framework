@@ -3,6 +3,16 @@ namespace Ice;
 
 use Ice\Mvc\ModuleInterface;
 
+/**
+ * The base class for Ice\Mvc\Dispatcher and Ice\CLI\Dispatcher.
+ * For the response from router and in the specified module, create instance of handler with action and params.
+ *
+ * @package     Ice/Dispatcher
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 abstract class Dispatcher 
 {
 
@@ -35,16 +45,19 @@ abstract class Dispatcher
     const ACTION_NOT_FOUND = 3;
     const INVALID_PARAMS = 4;
 
+    /**
+     * Di constructor. Fetch Di and set it as a property.
+     */
     public function __construct()
     {
         let this->_di = Di::$fetch();
     }
 
     /**
-     * Set a param by its name or numeric index
+     * Set a param by its name or numeric index.
      *
-     * @param  mixed param
-     * @param  mixed value
+     * @param mixed param
+     * @param mixed value
      */
     public function setParam(var param, var value)
     {
@@ -52,10 +65,10 @@ abstract class Dispatcher
     }
 
     /**
-     * Gets a param by its name or numeric index
+     * Gets a param by its name or numeric index.
      *
-     * @param  mixed param
-     * @param  mixed defaultValue
+     * @param mixed param
+     * @param mixed defaultValue
      * @return mixed
      */
     public function getParam(param, defaultValue = null)
@@ -69,7 +82,7 @@ abstract class Dispatcher
     }
 
     /**
-     * Returns the current method to be/executed in the dispatcher
+     * Returns the current method to be/executed in the dispatcher.
      *
      * @return string
      */
@@ -79,7 +92,7 @@ abstract class Dispatcher
     }
 
     /**
-     * Dispatches a handle action taking into account the routing parameters
+     * Dispatches a handle action taking into account the routing parameters.
      *
      * @return object
      */
@@ -230,7 +243,7 @@ abstract class Dispatcher
     }
 
     /**
-     * Forwards the execution flow to another controller/action
+     * Forwards the execution flow to another module/controller/action.
      *
      * @param array forward
      */

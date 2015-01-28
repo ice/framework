@@ -1,6 +1,15 @@
 
 namespace Ice;
 
+/**
+ * Text helper.
+ *
+ * @package     Ice/Text
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Text
 {
 
@@ -11,7 +20,7 @@ class Text
     const NOZERO = 4;
 
     /**
-     * Generates a random string based on the given type. Type is one of the constants
+     * Generates a random string based on the given type. Type is one of the constants.
      *
      * @param int type
      * @param int length
@@ -54,5 +63,4 @@ class Text
 
         return str;
     }
-
 }

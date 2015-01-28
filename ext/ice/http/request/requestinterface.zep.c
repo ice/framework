@@ -12,6 +12,15 @@
 #include "kernel/main.h"
 
 
+/**
+ * Request interface.
+ *
+ * @package     Ice/Http
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Http_Request_RequestInterface) {
 
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Http\\Request, RequestInterface, ice, http_request_requestinterface, ice_http_request_requestinterface_method_entry);

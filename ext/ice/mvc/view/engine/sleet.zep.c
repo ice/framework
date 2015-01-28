@@ -25,6 +25,15 @@
 #include "kernel/require.h"
 
 
+/**
+ * Sleet template engine. Syntax is similar to Twig, Volt or Django.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View\\Engine, Sleet, ice, mvc_view_engine_sleet, ice_mvc_view_engine_ce, ice_mvc_view_engine_sleet_method_entry, 0);
@@ -42,6 +51,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 
 }
 
+/**
+ * Compile the .sleet file.
+ *
+ * @param string path Path to the file
+ * @return string Path to the compiled file
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -155,7 +170,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 			ZEPHIR_INIT_VAR(_21);
 			zephir_file_put_contents(_21, compiledPath, compiled TSRMLS_CC);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(_21)) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 65);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 80);
 				return;
 			}
 		}
@@ -164,6 +179,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 }
 
+/**
+ * Render the Slet file. Compile first.
+ *
+ * @param string path
+ * @param array data
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_2 = NULL, *_3 = NULL;

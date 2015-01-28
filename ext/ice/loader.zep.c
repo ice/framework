@@ -61,12 +61,10 @@ PHP_METHOD(Ice_Loader, register) {
 /**
  * Adds a base directory for a namespace prefix.
  *
- * @param string $prefix The namespace prefix.
- * @param string $baseDir A base directory for class files in the
- * namespace.
- * @param bool $prepend If true, prepend the base directory to the stack
- * instead of appending it; this causes it to be searched first rather
- * than last.
+ * @param string prefix The namespace prefix
+ * @param string baseDir A base directory for class files in the namespace
+ * @param bool prepend If true, prepend the base directory to the stack instead of appending it; this causes it to
+ * be searched first rather than last
  * @return Loader
  */
 PHP_METHOD(Ice_Loader, addNamespace) {
@@ -119,7 +117,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	}
 	if (prepend) {
 		_11 = zephir_fetch_nproperty_this(this_ptr, SL("_prefixes"), PH_NOISY_CC);
-		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 46 TSRMLS_CC);
+		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
 		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, baseDir);
 		zephir_check_call_status();
 		Z_SET_ISREF_P(_12);
@@ -128,7 +126,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		zephir_check_call_status();
 	} else {
 		_11 = zephir_fetch_nproperty_this(this_ptr, SL("_prefixes"), PH_NOISY_CC);
-		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 48 TSRMLS_CC);
+		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
 		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, baseDir);
 		zephir_check_call_status();
 		Z_SET_ISREF_P(_12);
@@ -143,9 +141,8 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 /**
  * Loads the class file for a given class name.
  *
- * @param string $className The fully-qualified class name.
- * @return mixed The mapped file name on success, or boolean false on
- * failure.
+ * @param string className The fully-qualified class name
+ * @return mixed The mapped file name on success, or boolean false on failure
  */
 PHP_METHOD(Ice_Loader, loadClass) {
 
@@ -202,10 +199,9 @@ PHP_METHOD(Ice_Loader, loadClass) {
 /**
  * Load the mapped file for a namespace prefix and relative class.
  * 
- * @param string $prefix The namespace prefix.
- * @param string $relative_class The relative class name.
- * @return mixed Boolean false if no mapped file can be loaded, or the
- * name of the mapped file that was loaded.
+ * @param string $prefix The namespace prefix
+ * @param string $relative_class The relative class name
+ * @return mixed Boolean false if no mapped file can be loaded, or the name of the mapped file that was loaded
  */
 PHP_METHOD(Ice_Loader, loadMappedFile) {
 
@@ -228,8 +224,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 		RETURN_MM_BOOL(0);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_prefixes"), PH_NOISY_CC);
-	zephir_array_fetch(&_2, _1, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 112 TSRMLS_CC);
-	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/loader.zep", 132);
+	zephir_array_fetch(&_2, _1, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 116 TSRMLS_CC);
+	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/loader.zep", 131);
 	for (
 	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_4, &_3)
@@ -264,8 +260,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 /**
  * If a file exists, require it from the file system.
  * 
- * @param string $file The file to require.
- * @return bool True if the file exists, false if not.
+ * @param string $file The file to require
+ * @return bool True if the file exists, false if not
  */
 PHP_METHOD(Ice_Loader, requireFile) {
 

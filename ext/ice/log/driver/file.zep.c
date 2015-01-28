@@ -24,6 +24,15 @@
 #include "kernel/array.h"
 
 
+/**
+ * File driver for the Logger.
+ *
+ * @package     Ice/Log
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Log\\Driver, File, ice, log_driver_file, ice_log_driver_ce, ice_log_driver_file_method_entry, 0);
@@ -35,7 +44,9 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 }
 
 /**
- * @param string $file Filename to log messages to (complete path)
+ * Logger file constructor.
+ *
+ * @param string file Filename to log messages to (complete path)
  * @throws Exception When logfile cannot be created or is not writeable
  */
 PHP_METHOD(Ice_Log_Driver_File, __construct) {
@@ -62,7 +73,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 			ZEPHIR_CONCAT_SVS(_3, "Log file ", file, " cannot be created");
 			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_4, _3);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_2, "ice/log/driver/file.zep", 20 TSRMLS_CC);
+			zephir_throw_exception_debug(_2, "ice/log/driver/file.zep", 31 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -76,7 +87,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 		ZEPHIR_CONCAT_SVS(_3, "Log file ", file, " is not writeable");
 		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_4, _3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_2, "ice/log/driver/file.zep", 24 TSRMLS_CC);
+		zephir_throw_exception_debug(_2, "ice/log/driver/file.zep", 35 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -86,12 +97,12 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 }
 
 /**
- * Logs with an arbitrary level
+ * Logs with an arbitrary level.
  *
- * @param mixed $level
- * @param string $message
- * @param array $context
- * @return null
+ * @param mixed level
+ * @param string message
+ * @param array context
+ * @return void
  */
 PHP_METHOD(Ice_Log_Driver_File, log) {
 
@@ -135,10 +146,10 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 }
 
 /**
- * Interpolates context values into the message placeholders
+ * Interpolates context values into the message placeholders.
  *
- * @param string $message
- * @param array $context
+ * @param string message
+ * @param array context
  * @return string
  */
 PHP_METHOD(Ice_Log_Driver_File, interpolate) {
@@ -165,7 +176,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 
 	ZEPHIR_INIT_VAR(replace);
 	array_init(replace);
-	zephir_is_iterable(context, &_1, &_0, 0, 0, "ice/log/driver/file.zep", 66);
+	zephir_is_iterable(context, &_1, &_0, 0, 0, "ice/log/driver/file.zep", 77);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)

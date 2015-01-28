@@ -21,6 +21,15 @@
 #include "kernel/string.h"
 
 
+/**
+ * This component allows to create URLs.
+ *
+ * @package     Ice/Mvc
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Url, ice, mvc_url, ice_mvc_url_method_entry, 0);
@@ -72,7 +81,7 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 }
 
 /**
- * Generates a URL for a static resource
+ * Generates a URL for a static resource.
  *
  * @param string uri
  * @return string
@@ -102,7 +111,7 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 }
 
 /**
- * Generates a URL
+ * Generates a URL.
  *
  * @param string uri
  * @param array|object args Optional arguments to be appended to the query string
@@ -165,7 +174,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 		if (_5) {
 			zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
 			ZEPHIR_OBS_NVAR(uri);
-			zephir_array_fetch_string(&uri, _GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 53 TSRMLS_CC);
+			zephir_array_fetch_string(&uri, _GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 62 TSRMLS_CC);
 		} else {
 			ZEPHIR_INIT_VAR(_6);
 			ZEPHIR_CONCAT_VV(_6, baseUri, uri);

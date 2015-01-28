@@ -6,10 +6,25 @@ use Ice\Mvc\View\Engine;
 use Ice\Mvc\View\ViewInterface;
 use Ice\Mvc\View\Engine\Sleet\Compiler;
 
+/**
+ * Sleet template engine. Syntax is similar to Twig, Volt or Django.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Sleet extends Engine
 {
     protected _compiler { get };
 
+    /**
+     * Compile the .sleet file.
+     *
+     * @param string path Path to the file
+     * @return string Path to the compiled file
+     */
     public function compile(string! path)
     {
         var compileDir, compile, trim, dir, file, compiledPath, old, compiled;
@@ -70,6 +85,13 @@ class Sleet extends Engine
         return compiledPath;
     }
 
+    /**
+     * Render the Slet file. Compile first.
+     *
+     * @param string path
+     * @param array data
+     * @return string
+     */
     public function render(string! path, array data = [])
     {
         let path = this->compile(path);
@@ -80,5 +102,4 @@ class Sleet extends Engine
         require path;
         return ob_get_clean();
     }
-
 }

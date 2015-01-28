@@ -19,6 +19,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * Sleet file compiler.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\View\\Engine\\Sleet, Compiler, ice, mvc_view_engine_sleet_compiler, ice_mvc_view_engine_sleet_compiler_method_entry, 0);
@@ -50,6 +59,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
 
 }
 
+/**
+ * Sleet compiler constructor. Set the view and parser.
+ *
+ * @param mixed view
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -73,6 +87,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
 }
 
+/**
+ * Compile the file.
+ *
+ * @param string path
+ * @return string Parsed content
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -96,6 +116,9 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 }
 
+/**
+ * Magic toString to get parsed content.
+ */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString) {
 
 

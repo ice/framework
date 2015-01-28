@@ -5,17 +5,23 @@ use Ice\Arr;
 use Ice\Http\Response\HeadersInterface;
 
 /**
- * This class is a bag to manage the response headers
+ * This class is a bag to manage the response headers.
+ *
+ * @package     Ice/Http
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 class Headers extends Arr implements HeadersInterface
 {
 
     /**
-     * Sends the headers to the client
+     * Sends the headers to the client.
      *
      * @return boolean
      */
-    public function send()
+    public function send() -> boolean
     {
         var header, value;
 

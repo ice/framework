@@ -1,6 +1,16 @@
 
 namespace Ice\Filter;
 
+/**
+ * Minify css string.
+ *
+ * @package     Ice/Filter
+ * @category    Minification
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        cssmin.c www.ryanday.org
+ */
 class Css
 {
 
@@ -12,10 +22,13 @@ class Css
     const COMMENT = 6;
 
     /**
-     * Minify the css
-     * removes comments, removes newlines and line feeds keeping, removes last semicolon from last property
+     * Minify the css.
+     * Removes comments, removes newlines and line feeds keeping, removes last semicolon from last property
+     *
+     * @param string css CSS code to minify
+     * @return string
      */
-    public function sanitize(string css)
+    public function sanitize(string css) -> string
     {
         string min = "";
         char c, next;

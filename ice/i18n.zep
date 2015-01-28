@@ -1,6 +1,15 @@
 
 namespace Ice;
 
+/**
+ * Internationalization (i18n) class.
+ *
+ * @package     Ice/I18n
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class I18n
 {
     
@@ -12,21 +21,31 @@ class I18n
         "dir": ""
     ];
 
+    /**
+     * I18n constructor.
+     *
+     * @param array options
+     */
     public function __construct(array options = [])
     {
         let this->_options = array_merge(this->_options, options),
             self::_i18n = this;
     }
 
+    /**
+     * Return the last I18n created.
+     *
+     * @return I18n
+     */
     public static function $fetch()
     {
         return self::_i18n;
     }
 
     /**
-     * Get and set the target language
+     * Get and set the target language.
      *
-     * @param string $lang new language setting
+     * @param string lang New language setting
      * @return string
      */
     public function lang(string lang = null) -> string
@@ -40,7 +59,7 @@ class I18n
     }
 
     /**
-     * Get ISO language code
+     * Get ISO language code.
      *
      * @return string
      */
@@ -55,8 +74,8 @@ class I18n
      * Returns translation of a string. No parameters are replaced.
      * If no translation exists, the original string will be returned. 
      *
-     * @param string $str text to translate
-     * @param string $lang target language
+     * @param string str Text to translate
+     * @param string lang Target language
      * @return string
      */
     public function get(string str, string lang = null) -> string
@@ -78,9 +97,9 @@ class I18n
     }
 
     /**
-     * Load language from the file
+     * Load language from the file.
      *
-     * @param string $lang language code
+     * @param string lang Language code
      * @return array
      */
     private function load(string lang) -> array
@@ -120,7 +139,7 @@ class I18n
     }
 
     /**
-     * Alias of translate
+     * Alias of translate.
      */
     public function _(string! str, array values = null, string lang = null) -> string
     {
@@ -130,10 +149,10 @@ class I18n
     /**
      * Translation/internationalization function. strtr() or sprintf is used for replacing parameters.
      *
-     * @param string $string text to translate
-     * @param array $values values to replace in the translated text
-     * @param string $lang source language
-     * @return  string
+     * @param string string Text to translate
+     * @param array values Values to replace in the translated text
+     * @param string lang Source language
+     * @return string
      */
     public function translate(string! str, array values = null, string lang = null) -> string
     {
