@@ -185,5 +185,4 @@ abstract class Driver
         // Double check
         return !this->loggedIn();
     }
-
 }

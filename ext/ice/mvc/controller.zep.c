@@ -17,6 +17,16 @@
 #include "kernel/memory.h"
 
 
+/**
+ * Every mvc controller should extend this class that encapsulates all the controller functionality.
+ * The Controller class should at least have a "indexAction" method.
+ *
+ * @package     Ice/Di/Access
+ * @category    Handler
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Controller) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Controller, ice, mvc_controller, ice_di_access_ce, ice_mvc_controller_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -25,6 +35,9 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Controller) {
 
 }
 
+/**
+ * Controller constructor. Run onConstruct() if method exist.
+ */
 PHP_METHOD(Ice_Mvc_Controller, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

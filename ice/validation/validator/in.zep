@@ -5,10 +5,26 @@ use Ice\Exception;
 use Ice\Validation;
 use Ice\Validation\Validator;
 
+/**
+ * In validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class $In extends Validator
 {
 
-    public function validate(<Validation> validation, string! field)
+    /**
+     * Validate the validator
+     *
+     * @param Validation validation
+     * @param string field
+     * @return boolean
+     */
+    public function validate(<Validation> validation, string! field) -> boolean
     {
         var value, label, message, i18n, replace, values;
 

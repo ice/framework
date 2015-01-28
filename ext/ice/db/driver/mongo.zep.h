@@ -13,6 +13,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find);
 PHP_METHOD(Ice_Db_Driver_Mongo, select);
 PHP_METHOD(Ice_Db_Driver_Mongo, insert);
 PHP_METHOD(Ice_Db_Driver_Mongo, update);
+PHP_METHOD(Ice_Db_Driver_Mongo, remove);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, dsn)
@@ -23,22 +24,22 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_findone, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_find, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_select, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_insert, 0, 0, 1)
@@ -52,6 +53,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_update, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_remove, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(ice_db_driver_mongo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Mongo, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, getType, NULL, ZEND_ACC_PUBLIC)
@@ -63,5 +69,6 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_mongo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Mongo, select, arginfo_ice_db_driver_mongo_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, insert, arginfo_ice_db_driver_mongo_insert, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, update, arginfo_ice_db_driver_mongo_update, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongo, remove, arginfo_ice_db_driver_mongo_remove, ZEND_ACC_PUBLIC)
   PHP_FE_END
 };

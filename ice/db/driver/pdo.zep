@@ -4,6 +4,15 @@ namespace Ice\Db\Driver;
 use Ice\Arr;
 use Ice\Db\DbInterface;
 
+/**
+ * Pdo driver.
+ *
+ * @package     Ice/Db
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Pdo implements DbInterface
 {
 
@@ -13,12 +22,12 @@ class Pdo implements DbInterface
     protected _client { get };
 
    /**
-    * Instantiate class
+    * Instantiate pdo connection.
     *
-    * @param string $dsn
-    * @param string $user
-    * @param string $password
-    * @param array $options
+    * @param string dsn
+    * @param string user
+    * @param string password
+    * @param array options
     */
     public function __construct(string dsn, string user = NULL, string password = NULL, array options = [])
     {
@@ -35,6 +44,15 @@ class Pdo implements DbInterface
         let this->_client = new \Pdo(dsn, user, password, options);
     }
 
+    /**
+     * Find one row that match criteria.
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @param array options Options to limit/group results
+     * @param array fields Fields to retrieve, if not specified get all
+     * @return Arr|false
+     */
     public function findOne(string! from, var filters = [], array options = [], array fields = [])
     {
         var result;
@@ -43,9 +61,28 @@ class Pdo implements DbInterface
             result = this->select(from, filters, options, fields);
 
         return result->rowCount() ? new Arr(result->$fetch(\Pdo::FETCH_ASSOC)) : false;
-
     }
 
+    /**
+     * Find all records that match criteria.
+     *
+     *<code>
+     *  //SELECT * FROM users WHERE a=1 and b="q"
+     *  $db->find("users", array("a" => 1, "b" => "q"));
+     * 
+     *  //SELECT * FROM users WHERE age>33 
+     *  $db->find("users", array("age" => array(">" => 33)));
+     * 
+     *  //SELECT * FROM users WHERE a=1 or b=2 
+     *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
+     *</code>
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @param array options Options to limit/group results
+     * @param array fields Fields to retrieve, if not specified get all
+     * @return Arr
+     */
     public function find(string! from, var filters = [], array options = [], array fields = [])
     {
         var result;
@@ -55,35 +92,13 @@ class Pdo implements DbInterface
         return new Arr(result->fetchAll(\Pdo::FETCH_ASSOC));
     }
 
-
-    protected function condition(key, value)
-    {
-        var prepared = [];
-
-        if typeof value == "array" {
-            let prepared["query"] = "`" . key . "` " . key(value) . " :" . key,
-                prepared["value"] = current(value);
-        } else {
-            let prepared["query"] = "`" . key . "` = :" . key,
-                prepared["value"] = value;
-        }
-
-        return prepared;
-    }
-
     /**
-     * Return records that match criteria
+     * Prepare SQL WHERE condition.
      *
-     * SELECT * FROM users WHERE a=1 and b="q"
-     * $db->users->find(array("a" => 1, "b" => "q"));
-     * 
-     * SELECT * FROM users WHERE age>33 
-     * $db->users->find(array("age" => array("$gt" => 33)));
-     * 
-     * SELECT * FROM users WHERE a=1 or b=2 
-     * $db->users->find(array("$or" => array(array("a" => 1), array("b" => 2))));
+     * @params mixed filters
+     * @params array values
      */
-    private function where(var filters = [], array values = [])
+    private function where(var filters = [], array values = []) -> array
     {
         var and, data, operator, key, item, value, or, is, index, i, sql;
 
@@ -185,6 +200,14 @@ class Pdo implements DbInterface
         return [sql, values];
     }
 
+    /**
+     * SELECT record(s) that match criteria.
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @param array options Options to limit/group results
+     * @param array fields Fields to retrieve, if not specified get all
+     */
     public function select(string! from, var filters = [], array options = [], array fields = [])
     {
         var columns, sql, filtered, values, query;
@@ -221,6 +244,12 @@ class Pdo implements DbInterface
         return query;
     }
 
+    /**
+     * INSERT record into table.
+     *
+     * @param string from Table name
+     * @param array fields Fields to insert, keys are the column names
+     */
     public function insert(string! from, array fields = [])
     {
         var key, value, columns, values, sql, query, status;
@@ -241,6 +270,13 @@ class Pdo implements DbInterface
         return status;
     }
 
+    /**
+     * UPDATE records in the table.
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @param array fields Fields to update, keys are the column names
+     */
     public function update(string! from, var filters = [], array fields = [])
     {
         var key, value, columns, values, filtered, sql, query, status;
@@ -263,6 +299,12 @@ class Pdo implements DbInterface
         return status;
     }
 
+    /**
+     * Remove records from the table.
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     */
     public function remove(string! from, var filters = [])
     {
         var filtered, sql, values, query, status;
@@ -277,11 +319,21 @@ class Pdo implements DbInterface
         return status;
     }
 
+    /**
+     * Get last inserted ID.
+     *
+     * @return int
+     */
     public function lastInsertId() -> int 
     {
         return (int) this->_client->lastInsertId();
     }
 
+    /**
+     * Get an error message.
+     *
+     * @return mixed
+     */
     public function getError()
     {
         var error;

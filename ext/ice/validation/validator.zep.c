@@ -34,6 +34,11 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator) {
 
 }
 
+/**
+ * Validator constructor.
+ *
+ * @param array options
+ */
 PHP_METHOD(Ice_Validation_Validator, __construct) {
 
 	zval *options_param = NULL, *_0;
@@ -58,10 +63,22 @@ PHP_METHOD(Ice_Validation_Validator, __construct) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ */
 PHP_METHOD(Ice_Validation_Validator, validate) {
 
 }
 
+/**
+ * Whether or not an option exists by key.
+ *
+ * @param string key The option key
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator, has) {
 
 	zval *key, *_0;
@@ -75,6 +92,13 @@ PHP_METHOD(Ice_Validation_Validator, has) {
 
 }
 
+/**
+ * Retrieve a single option.
+ *
+ * @param string key The data key
+ * @param mixed defaultValue The value to return if data key does not exist
+ * @return mixed
+ */
 PHP_METHOD(Ice_Validation_Validator, get) {
 
 	zval *key, *defaultValue = NULL, *value, *_0;
@@ -95,6 +119,13 @@ PHP_METHOD(Ice_Validation_Validator, get) {
 
 }
 
+/**
+ * Assigns a value to the specified option.
+ *
+ * @param string key The data key
+ * @param mixed value
+ * @return void
+ */
 PHP_METHOD(Ice_Validation_Validator, set) {
 
 	zval *key, *value;
@@ -107,6 +138,12 @@ PHP_METHOD(Ice_Validation_Validator, set) {
 
 }
 
+/**
+ * Get options by type.
+ *
+ * @param int keys Type of options
+ * @param array options
+ */
 PHP_METHOD(Ice_Validation_Validator, getOptions) {
 
 	HashTable *_2;
@@ -130,7 +167,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation/validator.zep", 65);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation/validator.zep", 111);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)

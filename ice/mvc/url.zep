@@ -3,6 +3,15 @@ namespace Ice\Mvc;
 
 use Ice\Di;
 
+/**
+ * This component allows to create URLs.
+ *
+ * @package     Ice/Mvc
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Url
 {
 
@@ -10,7 +19,7 @@ class Url
     protected _staticUri = "/" { get, set };
 
     /**
-     * Generates a URL for a static resource
+     * Generates a URL for a static resource.
      *
      * @param string uri
      * @return string
@@ -21,14 +30,14 @@ class Url
     }
 
     /**
-     * Generates a URL
+     * Generates a URL.
      *
      * @param string uri
      * @param array|object args Optional arguments to be appended to the query string
      * @param bool local
      * @return string
      */
-    public function get(var uri = null, var args = null, boolean local = true)
+    public function get(var uri = null, var args = null, boolean local = true) -> string
     {
         var baseUri, matched, queryString;
 
@@ -69,5 +78,4 @@ class Url
 
         return uri;
     }
-
 }

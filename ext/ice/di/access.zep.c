@@ -19,6 +19,16 @@
 #include "kernel/fcall.h"
 
 
+/**
+ * This class allows to access services in the services container by just only accessing a public property with the same
+ * name of a registered service.
+ *
+ * @package     Ice/Di
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Di, Access, ice, di_access, ice_di_access_method_entry, 0);
@@ -29,6 +39,11 @@ ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 
 }
 
+/**
+ * Access constructor. Fetch di if not specified.
+ *
+ * @param Di di
+ */
 PHP_METHOD(Ice_Di_Access, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -63,6 +78,9 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 
 }
 
+/**
+ * Magic get to easy retrieve service from the di.
+ */
 PHP_METHOD(Ice_Di_Access, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

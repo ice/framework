@@ -36,7 +36,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
 }
 
 /**
- * Initialize roles-users relations
+ * Initialize roles-users relations.
  *
  * @return void
  */

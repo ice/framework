@@ -16,6 +16,16 @@
 #include "kernel/memory.h"
 
 
+/**
+ * Minify css string.
+ *
+ * @package     Ice/Filter
+ * @category    Minification
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        cssmin.c www.ryanday.org
+ */
 ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Filter, Css, ice, filter_css, ice_filter_css_method_entry, 0);
@@ -37,8 +47,11 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
 }
 
 /**
- * Minify the css
- * removes comments, removes newlines and line feeds keeping, removes last semicolon from last property
+ * Minify the css.
+ * Removes comments, removes newlines and line feeds keeping, removes last semicolon from last property
+ *
+ * @param string css CSS code to minify
+ * @return string
  */
 PHP_METHOD(Ice_Filter_Css, sanitize) {
 

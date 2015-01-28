@@ -8,9 +8,13 @@ use Ice\Http\Request\RequestInterface;
 use Ice\Http\Response\ResponseInterface;
 
 /**
- * Response
+ * This class provides a simple interface around the HTTP response.
  *
- * This class provides a simple interface around the HTTP response
+ * @package     Ice/Http
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 class Response implements ResponseInterface
 {
@@ -89,10 +93,10 @@ class Response implements ResponseInterface
     ] { get };
 
     /**
-     * Constructor
+     * Response constructor. Fetch Di and set it as a property.
      *
-     * @param string $body The HTTP response body
-     * @param int $status The HTTP response status
+     * @param string body The HTTP response body
+     * @param int status The HTTP response status
      */
     public function __construct(string body = "", int status = 200)
     {
@@ -106,76 +110,74 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Get HTTP headers
+     * Get HTTP headers.
      *
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders() -> array
     {
         return this->_headers->all();
     }
 
     /**
-     * Does this request have a given header?
+     * Check whether request have a given header.
      *
-     * @param  string $name
-     * @return bool
+     * @param string name
+     * @return boolean
      */
-    public function hasHeader(string name)
+    public function hasHeader(string name) -> boolean
     {
         return this->_headers->has(name);
     }
 
     /**
-     * Get header value
+     * Get header value.
      *
-     * @param  string $name
+     * @param string name
      * @return string
      */
-    public function getHeader(string name)
+    public function getHeader(string name) -> string
     {
         return this->_headers->get(name);
     }
 
     /**
-     * Set header value
+     * Set header value.
      *
-     * @param string $name
-     * @param string $value
+     * @param string name
+     * @param string value
      */
-    public function setHeader(string name, string value)
+    public function setHeader(string name, string value) -> void
     {
         this->_headers->set(name, value);
     }
 
     /**
-     * Set multiple header values
+     * Set multiple header values.
      *
-     * @param array $headers
+     * @param array headers
      */
-    public function setHeaders(array headers)
+    public function setHeaders(array headers) -> void
     {
         this->_headers->replace(headers);
     }
 
     /**
-     * Remove header
+     * Remove header by index name.
      *
-     * @param string $name
+     * @param string name
      */
-    public function removeHeader(string name)
+    public function removeHeader(string name) -> void
     {
         this->_headers->remove(name);
     }
 
     /**
-     * Finalize response for delivery to client
+     * Finalize response for delivery to client.
+     * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
      *
-     * Apply final preparations to the resposne object
-     * so that it is suitable for delivery to the client.
-     *
-     * @param RequestInterface $request
-     * @return Response Self
+     * @param RequestInterface request
+     * @return Response
      */
     public function finalize(<RequestInterface> request)
     {
@@ -203,9 +205,9 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Send HTTP response headers
+     * Send HTTP response headers.
      *
-     * @return Response Self
+     * @return Response
      */
     public function send()
     {
@@ -223,13 +225,11 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Redirect
+     * Redirect to some location.
+     * This method prepares the response object to return an HTTP Redirect response to the client.
      *
-     * This method prepares the response object to return an HTTP Redirect response
-     * to the client.
-     *
-     * @param string $location The redirect destination
-     * @param int    $status The redirect HTTP status code
+     * @param string location The redirect destination
+     * @param int status The redirect HTTP status code
      */
     public function redirect(string location = null, int status = 302, boolean external = false)
     {
@@ -245,107 +245,107 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Helpers: Empty?
+     * Check whether status is for Empty.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isEmpty()
+    public function isEmpty() -> boolean
     {
         return in_array(this->_status, [201, 204, 304]);
     }
 
     /**
-     * Helpers: Informational?
+     * Check whether status is for Informational.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isInformational()
+    public function isInformational() -> boolean
     {
         return this->_status >= 100 && this->_status < 200;
     }
 
     /**
-     * Helpers: OK?
+     * Check whether status is for OK.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isOk()
+    public function isOk() -> boolean
     {
         return this->_status === 200;
     }
 
     /**
-     * Helpers: Successful?
+     * Check whether status is for Successful.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isSuccessful()
+    public function isSuccessful() -> boolean
     {
         return this->_status >= 200 && this->_status < 300;
     }
 
     /**
-     * Helpers: Redirect?
+     * Check whether status is for Redirect.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isRedirect()
+    public function isRedirect() -> boolean
     {
         return in_array(this->_status, [301, 302, 303, 307]);
     }
 
     /**
-     * Helpers: Redirection?
+     * Check whether status is for Redirection.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isRedirection()
+    public function isRedirection() -> boolean
     {
         return this->_status >= 300 && this->_status < 400;
     }
 
     /**
-     * Helpers: Forbidden?
+     * Check whether status is for Forbidden.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isForbidden()
+    public function isForbidden() -> boolean
     {
         return this->_status === 403;
     }
 
     /**
-     * Helpers: Not Found?
+     * Check whether status is for Not Found.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isNotFound()
+    public function isNotFound() -> boolean
     {
         return this->_status === 404;
     }
 
     /**
-     * Helpers: Client error?
+     * Check whether status is for Client error.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isClientError()
+    public function isClientError() -> boolean
     {
         return this->_status >= 400 && this->_status < 500;
     }
 
     /**
-     * Helpers: Server Error?
+     * Check whether status is for Server Error.
      *
-     * @return bool
+     * @return boolean
      */
-    public function isServerError()
+    public function isServerError() -> boolean
     {
         return this->_status >= 500 && this->_status < 600;
     }
 
     /**
-     * Response codes and associated messages
+     * Get message for Response codes.
      *
      * @param int code Status code
      * @return string
@@ -360,11 +360,11 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Convert response to string
+     * Magic toString, convert response to string.
      *
      * @return string
      */
-    public function __toString()
+    public function __toString() -> string
     {
         return this->_body;
     }

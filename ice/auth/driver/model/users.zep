@@ -17,7 +17,7 @@ class Users extends Model
 {
 
     /**
-     * Initialize user's relations
+     * Initialize user's relations.
      *
      * @return void
      */
@@ -33,7 +33,7 @@ class Users extends Model
     }
 
     /**
-     * Complete the login for a user by incrementing the logins and saving login timestamp
+     * Complete the login for a user by incrementing the logins and saving login timestamp.
      *
      * @return object this
      */
@@ -49,7 +49,7 @@ class Users extends Model
     }
 
     /**
-     * Get user's role
+     * Get user's role.
      *
      * @param string name Role name to get
      * @return mixed
@@ -70,5 +70,4 @@ class Users extends Model
         // Return the role if user has the role otherwise false
         return roles->count() ? roles->getIterator()->current() : false;
     }
-
 }

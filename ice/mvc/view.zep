@@ -6,6 +6,15 @@ use Ice\Exception;
 use Ice\Mvc\View\Engine\Php;
 use Ice\Mvc\View\ViewInterface;
 
+/**
+ * View is a class for working with the "view" portion of the model-view-controller pattern.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class View extends Arr implements ViewInterface
 {
 
@@ -18,6 +27,12 @@ class View extends Arr implements ViewInterface
     protected _file { set, get };
     protected _silent = false { set };
 
+    /**
+     * View constructor. Set the file and vars.
+     *
+     * @param string file
+     * @param array data
+     */
     public function __construct(file = null, array data = [])
     {
         if file != null {
@@ -26,6 +41,9 @@ class View extends Arr implements ViewInterface
         parent::__construct(data);
     }
 
+    /**
+     * Get registered engines.
+     */
     public function getEngines()
     {
         var ext, engine;
@@ -49,6 +67,13 @@ class View extends Arr implements ViewInterface
         return this->_engines;
     }
 
+    /**
+     * Try to render the view with vars for engines.
+     *
+     * @param string file
+     * @param array data
+     * @return string
+     */
     public function render(file = null, array data = [])
     {
         var ext, engine, engines, path, exists, content;
@@ -82,16 +107,37 @@ class View extends Arr implements ViewInterface
         return content;
     }
 
+    /**
+     * Load the view.
+     *
+     * @param string file Name of file without extension from the views dir
+     * @param array data Vars to send
+     * @return string
+     */
     public function load(string! file, array data = [])
     {
         return this->render(file, data);
     }
 
+    /**
+     * Load the partial view.
+     *
+     * @param string file Name of file without extension from the partials dir
+     * @param array data Vars to send
+     * @return string
+     */
     public function partial(string! file, array data = [])
     {
         return this->render(this->_partialsDir . file, data);
     }
 
+    /**
+     * Load the layout view.
+     *
+     * @param string file Name of file without extension from the layouts dir
+     * @param array data Vars to send
+     * @return string
+     */
     public function layout(var file = null, array data = [])
     {
         if !file {
@@ -100,16 +146,30 @@ class View extends Arr implements ViewInterface
         return this->render(this->_layoutsDir . file, data);
     }
 
-    public function setVar(string! key, value)
+    /**
+     * Set var to the view.
+     *
+     * @param string name
+     * @param mixed value
+     */
+    public function setVar(string! name, value)
     {
-        this->set(key, value);
+        this->set(name, value);
     }
 
+    /**
+     * Set multiple vars to the view.
+     *
+     * @param array vars
+     */
     public function setVars(array! vars)
     {
         this->replace(vars);
     }
 
+    /**
+     * Magic toStrint, get the rendered view.
+     */
     public function __toString()
     {
         return this->render();

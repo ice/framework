@@ -9,7 +9,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getClient);
 PHP_METHOD(Ice_Db_Driver_Pdo, __construct);
 PHP_METHOD(Ice_Db_Driver_Pdo, findOne);
 PHP_METHOD(Ice_Db_Driver_Pdo, find);
-PHP_METHOD(Ice_Db_Driver_Pdo, condition);
 PHP_METHOD(Ice_Db_Driver_Pdo, where);
 PHP_METHOD(Ice_Db_Driver_Pdo, select);
 PHP_METHOD(Ice_Db_Driver_Pdo, insert);
@@ -37,11 +36,6 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_find, 0, 0, 1)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
-ZEND_END_ARG_INFO()
-
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_condition, 0, 0, 2)
-	ZEND_ARG_INFO(0, key)
-	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_where, 0, 0, 0)
@@ -79,7 +73,6 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, __construct, arginfo_ice_db_driver_pdo___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Db_Driver_Pdo, findOne, arginfo_ice_db_driver_pdo_findone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, find, arginfo_ice_db_driver_pdo_find, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Db_Driver_Pdo, condition, arginfo_ice_db_driver_pdo_condition, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Db_Driver_Pdo, where, arginfo_ice_db_driver_pdo_where, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_Db_Driver_Pdo, select, arginfo_ice_db_driver_pdo_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, insert, arginfo_ice_db_driver_pdo_insert, ZEND_ACC_PUBLIC)

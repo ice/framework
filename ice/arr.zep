@@ -61,7 +61,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * Assigns a value to the specified data.
      *
      * @param string key The data key
-     * @param mixed
+     * @param mixed value
      * @return void
      */
     public function set(string key, var value) -> void
@@ -72,7 +72,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Add data to set, replaces the existing data.
      *
-     * @param array
+     * @param array data
      * @return void
      */
     public function replace(array! data) -> void
@@ -97,7 +97,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Set data, clears and overwrites the current data.
      *
-     * @param array
+     * @param array data
      * @return void
      */
     public function setData(array! data = []) -> void

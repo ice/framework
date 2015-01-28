@@ -19,7 +19,7 @@ class Users extends Model
     protected _from = "roles_users";
 
     /**
-     * Initialize roles-users relations
+     * Initialize roles-users relations.
      *
      * @return void
      */
@@ -37,5 +37,4 @@ class Users extends Model
             "alias": "Role"
         ]);
     }
-
 }

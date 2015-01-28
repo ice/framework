@@ -106,10 +106,10 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
 }
 
 /**
- * Constructor
+ * Response constructor. Fetch Di and set it as a property.
  *
- * @param string $body The HTTP response body
- * @param int $status The HTTP response status
+ * @param string body The HTTP response body
+ * @param int status The HTTP response status
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
@@ -224,7 +224,7 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 }
 
 /**
- * Get HTTP headers
+ * Get HTTP headers.
  *
  * @return array
  */
@@ -243,10 +243,10 @@ PHP_METHOD(Ice_Http_Response, getHeaders) {
 }
 
 /**
- * Does this request have a given header?
+ * Check whether request have a given header.
  *
- * @param  string $name
- * @return bool
+ * @param string name
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, hasHeader) {
 
@@ -268,9 +268,9 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
 }
 
 /**
- * Get header value
+ * Get header value.
  *
- * @param  string $name
+ * @param string name
  * @return string
  */
 PHP_METHOD(Ice_Http_Response, getHeader) {
@@ -293,10 +293,10 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
 }
 
 /**
- * Set header value
+ * Set header value.
  *
- * @param string $name
- * @param string $value
+ * @param string name
+ * @param string value
  */
 PHP_METHOD(Ice_Http_Response, setHeader) {
 
@@ -319,9 +319,9 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
 }
 
 /**
- * Set multiple header values
+ * Set multiple header values.
  *
- * @param array $headers
+ * @param array headers
  */
 PHP_METHOD(Ice_Http_Response, setHeaders) {
 
@@ -343,9 +343,9 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 }
 
 /**
- * Remove header
+ * Remove header by index name.
  *
- * @param string $name
+ * @param string name
  */
 PHP_METHOD(Ice_Http_Response, removeHeader) {
 
@@ -367,13 +367,11 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 }
 
 /**
- * Finalize response for delivery to client
+ * Finalize response for delivery to client.
+ * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
  *
- * Apply final preparations to the resposne object
- * so that it is suitable for delivery to the client.
- *
- * @param RequestInterface $request
- * @return Response Self
+ * @param RequestInterface request
+ * @return Response
  */
 PHP_METHOD(Ice_Http_Response, finalize) {
 
@@ -431,9 +429,9 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 }
 
 /**
- * Send HTTP response headers
+ * Send HTTP response headers.
  *
- * @return Response Self
+ * @return Response
  */
 PHP_METHOD(Ice_Http_Response, send) {
 
@@ -457,7 +455,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
 			ZEPHIR_OBS_VAR(_8);
 			zephir_read_property_this(&_8, this_ptr, SL("_status"), PH_NOISY_CC);
-			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 214 TSRMLS_CC);
+			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 216 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_9);
 			ZVAL_STRING(&_9, "Status: %d %s", 0);
 			ZEPHIR_CALL_FUNCTION(&_10, "sprintf", &_11, &_9, _5, _7);
@@ -471,7 +469,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
 			ZEPHIR_OBS_NVAR(_8);
 			zephir_read_property_this(&_8, this_ptr, SL("_status"), PH_NOISY_CC);
-			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 216 TSRMLS_CC);
+			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 218 TSRMLS_CC);
 			ZEPHIR_SINIT_NVAR(_9);
 			ZVAL_STRING(&_9, "%s %d %s", 0);
 			ZEPHIR_CALL_FUNCTION(&_13, "sprintf", &_11, &_9, _10, _5, _7);
@@ -488,13 +486,11 @@ PHP_METHOD(Ice_Http_Response, send) {
 }
 
 /**
- * Redirect
+ * Redirect to some location.
+ * This method prepares the response object to return an HTTP Redirect response to the client.
  *
- * This method prepares the response object to return an HTTP Redirect response
- * to the client.
- *
- * @param string $location The redirect destination
- * @param int    $status The redirect HTTP status code
+ * @param string location The redirect destination
+ * @param int status The redirect HTTP status code
  */
 PHP_METHOD(Ice_Http_Response, redirect) {
 
@@ -547,9 +543,9 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 }
 
 /**
- * Helpers: Empty?
+ * Check whether status is for Empty.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isEmpty) {
 
@@ -575,9 +571,9 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
 }
 
 /**
- * Helpers: Informational?
+ * Check whether status is for Informational.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isInformational) {
 
@@ -596,9 +592,9 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
 }
 
 /**
- * Helpers: OK?
+ * Check whether status is for OK.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isOk) {
 
@@ -611,9 +607,9 @@ PHP_METHOD(Ice_Http_Response, isOk) {
 }
 
 /**
- * Helpers: Successful?
+ * Check whether status is for Successful.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isSuccessful) {
 
@@ -632,9 +628,9 @@ PHP_METHOD(Ice_Http_Response, isSuccessful) {
 }
 
 /**
- * Helpers: Redirect?
+ * Check whether status is for Redirect.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isRedirect) {
 
@@ -663,9 +659,9 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
 }
 
 /**
- * Helpers: Redirection?
+ * Check whether status is for Redirection.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isRedirection) {
 
@@ -684,9 +680,9 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
 }
 
 /**
- * Helpers: Forbidden?
+ * Check whether status is for Forbidden.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isForbidden) {
 
@@ -699,9 +695,9 @@ PHP_METHOD(Ice_Http_Response, isForbidden) {
 }
 
 /**
- * Helpers: Not Found?
+ * Check whether status is for Not Found.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isNotFound) {
 
@@ -714,9 +710,9 @@ PHP_METHOD(Ice_Http_Response, isNotFound) {
 }
 
 /**
- * Helpers: Client error?
+ * Check whether status is for Client error.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isClientError) {
 
@@ -735,9 +731,9 @@ PHP_METHOD(Ice_Http_Response, isClientError) {
 }
 
 /**
- * Helpers: Server Error?
+ * Check whether status is for Server Error.
  *
- * @return bool
+ * @return boolean
  */
 PHP_METHOD(Ice_Http_Response, isServerError) {
 
@@ -756,7 +752,7 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 }
 
 /**
- * Response codes and associated messages
+ * Get message for Response codes.
  *
  * @param int code Status code
  * @return string
@@ -789,7 +785,7 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 }
 
 /**
- * Convert response to string
+ * Magic toString, convert response to string.
  *
  * @return string
  */

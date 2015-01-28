@@ -7,7 +7,7 @@ use Ice\Validation\Validator;
  * Allows to validate array data.
  *
  * @package     Ice/Validation
- * @category    Component
+ * @category    Security
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license

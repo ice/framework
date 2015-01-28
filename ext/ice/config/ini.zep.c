@@ -19,6 +19,15 @@
 #include "kernel/hash.h"
 
 
+/**
+ * Adapter for get config from ini files.
+ *
+ * @package     Ice/Config
+ * @category    Configuration
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Ini, ice, config_ini, ice_config_ce, ice_config_ini_method_entry, 0);
@@ -28,9 +37,9 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
 }
 
 /**
- * Config Ini adapter constructor
+ * Config ini constructor.
  *
- * @param string $file
+ * @param string file Path to the ini file
  */
 PHP_METHOD(Ice_Config_Ini, __construct) {
 
@@ -69,10 +78,9 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 }
 
 /**
- * Return real type from string
- * eg "true" => true
+ * Return real type from a string, eg. "true" => true.
  *
- * @param string $value
+ * @param string value
  * @return mixed
  */
 PHP_METHOD(Ice_Config_Ini, cast) {
@@ -124,6 +132,13 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 
 }
 
+/**
+ * Map the array recursively.
+ *
+ * @param object callback Callback to apply
+ * @param array data Data to convert
+ * @return array
+ */
 PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
@@ -138,7 +153,7 @@ PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 	ZEPHIR_SEPARATE_PARAM(data);
 
 
-	zephir_is_iterable(data, &_1, &_0, 1, 0, "ice/config/ini.zep", 70);
+	zephir_is_iterable(data, &_1, &_0, 1, 0, "ice/config/ini.zep", 86);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -146,12 +161,12 @@ PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
-			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 64 TSRMLS_CC);
+			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 80 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&_3, this_ptr, "arraymaprecursive", &_5, callback, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
 		} else {
-			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 67 TSRMLS_CC);
+			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 83 TSRMLS_CC);
 			ZEPHIR_CALL_FUNCTION(&_3, "call_user_func", &_6, callback, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);

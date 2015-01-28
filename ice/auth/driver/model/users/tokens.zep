@@ -20,7 +20,7 @@ class Tokens extends Model
     protected _from = "user_tokens";
 
     /**
-     * Initialize token's relations, remove expired tokens
+     * Initialize token's relations, remove expired tokens.
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class Tokens extends Model
     }
 
     /**
-     * Generate a new unique token and create the token
+     * Generate a new unique token and create the token.
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Extra validation
@@ -61,7 +61,7 @@ class Tokens extends Model
     }
 
     /**
-     * Deletes all expired tokens
+     * Deletes all expired tokens.
      *
      * @return void
      */
@@ -79,7 +79,7 @@ class Tokens extends Model
     }
 
     /**
-     * Generate a new unique token and update the token
+     * Generate a new unique token and update the token.
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Extra validation
@@ -93,7 +93,7 @@ class Tokens extends Model
     }
 
     /**
-     * Generate a new unique token
+     * Generate a new unique token.
      *
      * @return string
      * @uses Text::random()
@@ -108,5 +108,4 @@ class Tokens extends Model
 
         return token;
     }
-
 }

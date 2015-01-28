@@ -3,13 +3,22 @@ namespace Ice\Config;
 
 use Ice\Config;
 
+/**
+ * Adapter for get config from ini files.
+ *
+ * @package     Ice/Config
+ * @category    Configuration
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Ini extends Config
 {
 
     /**
-     * Config Ini adapter constructor
+     * Config ini constructor.
      *
-     * @param string $file
+     * @param string file Path to the ini file
      */
     public function __construct(string file = null)
     {
@@ -22,15 +31,15 @@ class Ini extends Config
     }
 
     /**
-     * Return real type from string
-     * eg "true" => true
+     * Return real type from a string, eg. "true" => true.
      *
-     * @param string $value
+     * @param string value
      * @return mixed
      */
     public function cast(value)
     {
         if typeof value == "string" {
+            // Try to convert to float/int
             if !preg_match("/[^0-9.]+/", value) {
                 if preg_match("/[.]+/", value) {
                     return (double) value;
@@ -55,7 +64,14 @@ class Ini extends Config
         return value;
     }
 
-    private function arrayMapRecursive(callback, data)
+    /**
+     * Map the array recursively.
+     *
+     * @param object callback Callback to apply
+     * @param array data Data to convert
+     * @return array
+     */
+    private function arrayMapRecursive(callback, data) -> array
     {
         var key, value;
 

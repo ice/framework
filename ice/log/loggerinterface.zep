@@ -15,6 +15,12 @@ namespace Ice\Log;
  *
  * See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
  * for the full interface specification.
+ *
+ * @package     Ice/Log
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 interface LoggerInterface
 {

@@ -4,7 +4,13 @@ namespace Ice\Cli;
 use Ice\Di\Access;
 
 /**
- * This component allows to create CLI applications
+ * This component allows to create CLI applications.
+ *
+ * @package     Ice/Cli
+ * @category    Application
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 class Console extends Access
 {
@@ -17,7 +23,7 @@ class Console extends Access
     const INVERSE = 7;
 
     /**
-     * Handle the whole command-line tasks
+     * Handle an command-line request.
      *
      * @param array arguments
      * @return mixed

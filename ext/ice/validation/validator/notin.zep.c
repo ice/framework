@@ -22,6 +22,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * NotIn validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_NotIn) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, NotIn, ice, validation_validator_notin, ice_validation_validator_ce, ice_validation_validator_notin_method_entry, 0);
@@ -30,6 +39,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_NotIn) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_NotIn, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_10 = NULL;
@@ -79,7 +95,7 @@ PHP_METHOD(Ice_Validation_Validator_NotIn, validate) {
 		zephir_check_call_status();
 	}
 	if (Z_TYPE_P(values) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Values must be an array", "ice/validation/validator/notin.zep", 28);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Values must be an array", "ice/validation/validator/notin.zep", 44);
 		return;
 	}
 	if (zephir_fast_in_array(value, values TSRMLS_CC)) {

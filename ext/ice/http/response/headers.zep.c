@@ -20,7 +20,13 @@
 
 
 /**
- * This class is a bag to manage the response headers
+ * This class is a bag to manage the response headers.
+ *
+ * @package     Ice/Http
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
 
@@ -32,7 +38,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
 }
 
 /**
- * Sends the headers to the client
+ * Sends the headers to the client.
  *
  * @return boolean
  */

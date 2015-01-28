@@ -21,6 +21,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Regex validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Regex) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Regex, ice, validation_validator_regex, ice_validation_validator_ce, ice_validation_validator_regex_method_entry, 0);
@@ -29,6 +38,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Regex) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_14 = NULL;
@@ -89,7 +105,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 	Z_UNSET_ISREF_P(matches);
 	zephir_check_call_status();
 	if (zephir_is_true(_3)) {
-		zephir_array_fetch_long(&_5, matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 28 TSRMLS_CC);
+		zephir_array_fetch_long(&_5, matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 44 TSRMLS_CC);
 		failed = !ZEPHIR_IS_EQUAL(_5, value);
 	} else {
 		failed = 1;

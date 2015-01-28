@@ -1,6 +1,15 @@
 
 namespace Ice\Http\Request;
 
+/**
+ * Request interface.
+ *
+ * @package     Ice/Http
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 interface RequestInterface
 {
 
@@ -10,7 +19,7 @@ interface RequestInterface
 
     public function hasGet(string! name) -> boolean;
 
-    public final function hasServer(string! name) -> boolean;
+    public function hasServer(string! name) -> boolean;
 
     public function isPost() -> boolean;
 
@@ -26,7 +35,7 @@ interface RequestInterface
 
     public function isOptions() -> boolean;
 
-    public final function getMethod() -> string;
+    public function getMethod() -> string;
 
     public function getUserAgent() -> string;
 

@@ -22,6 +22,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Length validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Length) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Length, ice, validation_validator_length, ice_validation_validator_ce, ice_validation_validator_length_method_entry, 0);
@@ -30,6 +39,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Length) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_13 = NULL;

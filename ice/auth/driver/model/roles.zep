@@ -16,7 +16,7 @@ class Roles extends Model
 {
 
     /**
-     * Initialize role's relations
+     * Initialize role's relations.
      *
      * @return void
      */
@@ -26,5 +26,4 @@ class Roles extends Model
             "alias": "RolesUsers"
         ]);
     }
-
 }

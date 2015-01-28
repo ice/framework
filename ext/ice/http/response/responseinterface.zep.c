@@ -12,6 +12,15 @@
 #include "kernel/main.h"
 
 
+/**
+ * Response interface.
+ *
+ * @package     Ice/Http
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Http_Response_ResponseInterface) {
 
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Http\\Response, ResponseInterface, ice, http_response_responseinterface, NULL);

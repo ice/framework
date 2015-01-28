@@ -5,13 +5,22 @@ use Ice\Exception;
 use Ice\Validation;
 use Ice\Validation\Validator;
 
+/**
+ * File validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class File extends Validator
 {
 
     /**
-     * Executes the validation
+     * Validate the validator
      *
-     * @param object validation
+     * @param Validation validation
      * @param string field
      * @return boolean
      */

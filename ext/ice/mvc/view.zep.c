@@ -25,6 +25,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * View is a class for working with the "view" portion of the model-view-controller pattern.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, View, ice, mvc_view, ice_arr_ce, ice_mvc_view_method_entry, 0);
@@ -188,6 +197,12 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
 
 }
 
+/**
+ * View constructor. Set the file and vars.
+ *
+ * @param string file
+ * @param array data
+ */
 PHP_METHOD(Ice_Mvc_View, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -218,6 +233,9 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 
 }
 
+/**
+ * Get registered engines.
+ */
 PHP_METHOD(Ice_Mvc_View, getEngines) {
 
 	zephir_fcall_cache_entry *_11 = NULL;
@@ -241,7 +259,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 		zephir_update_property_array(this_ptr, SL("_engines"), _2, _1 TSRMLS_CC);
 	}
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_engines"), PH_NOISY_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/view.zep", 49);
+	zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/view.zep", 67);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -276,7 +294,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_11, _9);
 				zephir_check_call_status();
-				zephir_throw_exception_debug(_1, "ice/mvc/view.zep", 45 TSRMLS_CC);
+				zephir_throw_exception_debug(_1, "ice/mvc/view.zep", 63 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
@@ -286,6 +304,13 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 
 }
 
+/**
+ * Try to render the view with vars for engines.
+ *
+ * @param string file
+ * @param array data
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View, render) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_12 = NULL;
@@ -319,12 +344,12 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
 	if (ZEPHIR_IS_EMPTY(_0)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 64);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 89);
 		return;
 	}
 	ZEPHIR_CALL_METHOD(&engines, this_ptr, "getengines", NULL);
 	zephir_check_call_status();
-	zephir_is_iterable(engines, &_2, &_1, 0, 0, "ice/mvc/view.zep", 79);
+	zephir_is_iterable(engines, &_2, &_1, 0, 0, "ice/mvc/view.zep", 104);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -360,7 +385,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _10, "__construct", &_13, _7);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_10, "ice/mvc/view.zep", 80 TSRMLS_CC);
+		zephir_throw_exception_debug(_10, "ice/mvc/view.zep", 105 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -368,6 +393,13 @@ PHP_METHOD(Ice_Mvc_View, render) {
 
 }
 
+/**
+ * Load the view.
+ *
+ * @param string file Name of file without extension from the views dir
+ * @param array data Vars to send
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View, load) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -403,6 +435,13 @@ PHP_METHOD(Ice_Mvc_View, load) {
 
 }
 
+/**
+ * Load the partial view.
+ *
+ * @param string file Name of file without extension from the partials dir
+ * @param array data Vars to send
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View, partial) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -441,6 +480,13 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 
 }
 
+/**
+ * Load the layout view.
+ *
+ * @param string file Name of file without extension from the layouts dir
+ * @param array data Vars to send
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View, layout) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -476,34 +522,45 @@ PHP_METHOD(Ice_Mvc_View, layout) {
 
 }
 
+/**
+ * Set var to the view.
+ *
+ * @param string name
+ * @param mixed value
+ */
 PHP_METHOD(Ice_Mvc_View, setVar) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *value;
-	zval *key = NULL;
+	zval *name_param = NULL, *value;
+	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &key_param, &value);
+	zephir_fetch_params(1, 2, 0, &name_param, &value);
 
-	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
+	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
-		zephir_get_strval(key, key_param);
+	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+		zephir_get_strval(name, name_param);
 	} else {
-		ZEPHIR_INIT_VAR(key);
-		ZVAL_EMPTY_STRING(key);
+		ZEPHIR_INIT_VAR(name);
+		ZVAL_EMPTY_STRING(name);
 	}
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, key, value);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, name, value);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
 }
 
+/**
+ * Set multiple vars to the view.
+ *
+ * @param array vars
+ */
 PHP_METHOD(Ice_Mvc_View, setVars) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -523,6 +580,9 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 
 }
 
+/**
+ * Magic toStrint, get the rendered view.
+ */
 PHP_METHOD(Ice_Mvc_View, __toString) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

@@ -5,21 +5,25 @@ use Ice\Log;
 
 /**
  * This is a simple Logger implementation that other Loggers can inherit from.
+ * It simply delegates all log-level-specific methods to the `log` method to reduce boilerplate code that a simple
+ * Logger that does the same thing with messages regardless of the error level has to implement.
  *
- * It simply delegates all log-level-specific methods to the `log` method to
- * reduce boilerplate code that a simple Logger that does the same thing with
- * messages regardless of the error level has to implement.
+ * @package     Ice/Log
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
  */
 abstract class Driver implements LoggerInterface
 {
     /**
      * System is unusable.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function emergency(string message, array context = [])
+    public function emergency(string message, array context = []) -> void
     {
         this->log(Log::EMERGENCY, message, context);
     }
@@ -27,14 +31,13 @@ abstract class Driver implements LoggerInterface
     /**
      * Action must be taken immediately.
      *
-     * Example: Entire website down, database unavailable, etc. This should
-     * trigger the SMS alerts and wake you up.
+     * Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function alert(string message, array context = [])
+    public function alert(string message, array context = []) -> void
     {
         this->log(Log::ALERT, message, context);
     }
@@ -44,24 +47,23 @@ abstract class Driver implements LoggerInterface
      *
      * Example: Application component unavailable, unexpected exception.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function critical(string message, array context = [])
+    public function critical(string message, array context = []) -> void
     {
         this->log(Log::CRITICAL, message, context);
     }
 
     /**
-     * Runtime errors that do not require immediate action but should typically
-     * be logged and monitored.
+     * Runtime errors that do not require immediate action but should typically be logged and monitored.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function error(string message, array context = [])
+    public function error(string message, array context = []) -> void
     {
         this->log(Log::ERROR, message, context);
     }
@@ -69,14 +71,13 @@ abstract class Driver implements LoggerInterface
     /**
      * Exceptional occurrences that are not errors.
      *
-     * Example: Use of deprecated APIs, poor use of an API, undesirable things
-     * that are not necessarily wrong.
+     * Example: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function warning(string message, array context = [])
+    public function warning(string message, array context = []) -> void
     {
         this->log(Log::WARNING, message, context);
     }
@@ -84,11 +85,11 @@ abstract class Driver implements LoggerInterface
     /**
      * Normal but significant events.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function notice(string message, array context = [])
+    public function notice(string message, array context = []) -> void
     {
         this->log(Log::NOTICE, message, context);
     }
@@ -98,11 +99,11 @@ abstract class Driver implements LoggerInterface
      *
      * Example: User logs in, SQL logs.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function info(string message, array context = [])
+    public function info(string message, array context = []) -> void
     {
         this->log(Log::INFO, message, context);
     }
@@ -110,11 +111,11 @@ abstract class Driver implements LoggerInterface
     /**
      * Detailed debug information.
      *
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public function debug(string message, array context = [])
+    public function debug(string message, array context = []) -> void
     {
         this->log(Log::DEBUG, message, context);
     }
@@ -122,10 +123,10 @@ abstract class Driver implements LoggerInterface
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return null
+     * @param mixed level
+     * @param string message
+     * @param array context
+     * @return void
      */
-    public abstract function log(var level, string message, array context = []);
+    public abstract function log(var level, string message, array context = []) -> void;
 }

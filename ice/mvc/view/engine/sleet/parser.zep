@@ -3,6 +3,15 @@ namespace Ice\Mvc\View\Engine\Sleet;
 
 use Ice\Exception;
 
+/**
+ * Sleet file parser.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 class Parser
 {
 
@@ -24,6 +33,9 @@ class Parser
     const SHORTIF = 1;
     const INARRAY = 2;
 
+    /**
+     * Sleet parser constructor. Fetch Ice\Tag methods.
+     */
     public function __construct()
     {
         var tag, methods, functions, method;
@@ -46,7 +58,13 @@ class Parser
             this->_env[] = Parser::NORMAL;
     }
 
-    public function text(string text)
+    /**
+     * Parse text, line by line.
+     *
+     * @param string text
+     * @return string Parsed text
+     */
+    public function text(string text) -> string
     {
         var parsed, key, line;
 
@@ -58,7 +76,14 @@ class Parser
         return parsed;
     }
 
-    public function line(string line, int no = 1)
+    /**
+     * Parse one line - detect the expressions.
+     *
+     * @param string line
+     * @param int no Line number
+     * @return string Parsed line
+     */
+    public function line(string line, int no = 1) -> string
     {
         var pos, start, parsedLine, end, ch;
         int i;
@@ -126,14 +151,20 @@ class Parser
         return parsedLine;
     }
 
-    public function parse(expresion)
+    /**
+     * Parse one sleet expression.
+     *
+     * @param string expression
+     * @return string
+     */
+    public function parse(string expression) -> string
     {
         var php, tokenized, tokens, token, first;
 
-        if starts_with(expresion, "{{") {
-            let php = "<?php echo " . substr(expresion, 2, -2);
+        if starts_with(expression, "{{") {
+            let php = "<?php echo " . substr(expression, 2, -2);
         } else {
-            let php = "<?php " . substr(expresion, 2, -2);
+            let php = "<?php " . substr(expression, 2, -2);
         }
 
         let tokenized = token_get_all(php),
@@ -194,27 +225,58 @@ class Parser
         return "";
     }
 
-    public function parseControl(control, expression)
+    /**
+     * Parse control expression.
+     *
+     * @param string control Control structure
+     * @param array expression Tokens
+     * @return string
+     */
+    private function parseControl(control, expression) -> string
     {
         return "<?php " . control . "(" . this->_parse(expression) . "): ?>";
     }
     
-    public function parseEcho($expression)
+    /**
+     * Parse echo expression.
+     *
+     * @param array expression Tokens
+     * @return string
+     */
+    private function parseEcho($expression) -> string
     {
         return "<?php echo " . this->_parse(expression) . " ?>";
     }
 
-    public function parseSet($expression)
+    /**
+     * Parse set expression.
+     *
+     * @param array expression Tokens
+     * @return string
+     */
+    private function parseSet($expression) -> string
     {
         return "<?php " . this->_parse(expression) . "; ?>";
     }
 
-    public function parseUse($expression)
+    /**
+     * Parse use expression.
+     *
+     * @param array expression Tokens
+     * @return string
+     */
+    private function parseUse($expression) -> string
     {
         return "<?php use " . this->_parse(expression) . "; ?>";
     }
 
-    private function _parse(tokens)
+    /**
+     * Internal tokens parse.
+     *
+     * @param array tokens
+     * @return string
+     */
+    private function _parse(tokens) -> string
     {
         var i, parsed, prev, next, token, filter, seek, filters;
 
@@ -260,6 +322,14 @@ class Parser
         return parsed;
     }
 
+    /**
+     * Internal token parse.
+     *
+     * @param mixed token
+     * @param mixed prev
+     * @param mixed next
+     * @return mixed
+     */
     private function _token(token, prev = null, next = null)
     {
         string str;
@@ -349,5 +419,4 @@ class Parser
             }
         }
     }
-
 }

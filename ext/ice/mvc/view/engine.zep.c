@@ -20,6 +20,15 @@
 #include "kernel/operators.h"
 
 
+/**
+ * View template engine.
+ *
+ * @package     Ice/View
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View, Engine, ice, mvc_view_engine, ice_di_access_ce, ice_mvc_view_engine_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -45,6 +54,9 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 
 }
 
+/**
+ * Engine constructor. Set the view and di object.
+ */
 PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -79,6 +91,11 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 }
 
+/**
+ * Get the view content.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -93,6 +110,12 @@ PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 }
 
+/**
+ * Load some view.
+ *
+ * @param string path
+ * @param array data
+ */
 PHP_METHOD(Ice_Mvc_View_Engine, load) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -129,6 +152,12 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
 
 }
 
+/**
+ * Load some partial view.
+ *
+ * @param string path
+ * @param array data
+ */
 PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -165,6 +194,12 @@ PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 
 }
 
+/**
+ * Render some view.
+ *
+ * @param string path
+ * @param array data
+ */
 PHP_METHOD(Ice_Mvc_View_Engine, render) {
 
 }

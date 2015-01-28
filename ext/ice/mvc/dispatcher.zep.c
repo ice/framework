@@ -19,6 +19,16 @@
 #include "kernel/fcall.h"
 
 
+/**
+ * Dispatching is the process of taking the request object, extracting the module name, controller name, action name,
+ * and optional parameters contained in it, and then instantiating a controller and calling an action on it.
+ *
+ * @package     Ice/Dispatcher
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Dispatcher, ice, mvc_dispatcher, ice_dispatcher_ce, ice_mvc_dispatcher_method_entry, 0);
@@ -50,6 +60,11 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 }
 
+/**
+ * Get active method, first check whether a method with the HTTP method as prefix exist.
+ *
+ * @return string
+ */
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	int ZEPHIR_LAST_CALL_STATUS;

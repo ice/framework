@@ -21,6 +21,15 @@
 #include "ext/spl/spl_exceptions.h"
 
 
+/**
+ * Digit validator.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Digit) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Digit, ice, validation_validator_digit, ice_validation_validator_ce, ice_validation_validator_digit_method_entry, 0);
@@ -29,6 +38,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Digit) {
 
 }
 
+/**
+ * Validate the validator
+ *
+ * @param Validation validation
+ * @param string field
+ * @return boolean
+ */
 PHP_METHOD(Ice_Validation_Validator_Digit, validate) {
 
 	zephir_nts_static zephir_fcall_cache_entry *_11 = NULL;

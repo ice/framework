@@ -129,7 +129,7 @@ PHP_METHOD(Ice_Arr, get) {
  * Assigns a value to the specified data.
  *
  * @param string key The data key
- * @param mixed
+ * @param mixed value
  * @return void
  */
 PHP_METHOD(Ice_Arr, set) {
@@ -151,7 +151,7 @@ PHP_METHOD(Ice_Arr, set) {
 /**
  * Add data to set, replaces the existing data.
  *
- * @param array
+ * @param array data
  * @return void
  */
 PHP_METHOD(Ice_Arr, replace) {
@@ -204,7 +204,7 @@ PHP_METHOD(Ice_Arr, all) {
 /**
  * Set data, clears and overwrites the current data.
  *
- * @param array
+ * @param array data
  * @return void
  */
 PHP_METHOD(Ice_Arr, setData) {

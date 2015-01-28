@@ -12,6 +12,15 @@
 #include "kernel/main.h"
 
 
+/**
+ * Module interface.
+ *
+ * @package     Ice/Mvc
+ * @category    Interface
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_ModuleInterface) {
 
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Mvc, ModuleInterface, ice, mvc_moduleinterface, ice_mvc_moduleinterface_method_entry);
