@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		}
 		if (ZEPHIR_IS_LONG(compile, 1)) {
 			ZEPHIR_INIT_NVAR(compile);
-			ZVAL_BOOL(compile, !(zephir_file_exists(compiledPath TSRMLS_CC) == SUCCESS));
+			ZVAL_BOOL(compile, !((zephir_file_exists(compiledPath TSRMLS_CC) == SUCCESS)));
 			break;
 		}
 		if (ZEPHIR_IS_LONG(compile, 2)) {

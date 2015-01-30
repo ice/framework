@@ -1,9 +1,9 @@
 {
     "namespace": "ice",
     "name": "ice",
-    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014 Ice Team.",
+    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2015 Ice Team.",
     "author": "Ice Team",
-    "version": "1.0.0-alpha2",
+    "version": "1.0.0-beta1",
     "verbose": false,
     "info": [
         {
@@ -17,8 +17,18 @@
         }
     ],
     "stubs": {
-        "path": "ide\/%version%\/%namespace%\/",
+        "path": "../ide/%version%/",
         "stubs-run-after-generate": false
+    },
+    "api": {
+        "path"  : "../doc/%version%/",
+        "theme" : {
+            "name":"zephir",
+            "options" :{
+                "github":"https://github.com/ice/framework",
+                "analytics":null
+            }
+        }
     },
     "warnings": {
         "unused-variable": true,

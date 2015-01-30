@@ -345,7 +345,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 	if (!(_2)) {
 		_3 = Z_TYPE_P(collector) == IS_OBJECT;
 		if (_3) {
-			_3 = !(zephir_instance_of_ev(collector, ice_mvc_route_collector_ce TSRMLS_CC));
+			_3 = !((zephir_instance_of_ev(collector, ice_mvc_route_collector_ce TSRMLS_CC)));
 		}
 		_2 = _3;
 	}
@@ -408,7 +408,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 	if (!(_18)) {
 		_19 = Z_TYPE_P(dispatcher) == IS_OBJECT;
 		if (_19) {
-			_19 = !(zephir_instance_of_ev(dispatcher, ice_mvc_route_dispatcher_dispatcherinterface_ce TSRMLS_CC));
+			_19 = !((zephir_instance_of_ev(dispatcher, ice_mvc_route_dispatcher_dispatcherinterface_ce TSRMLS_CC)));
 		}
 		_18 = _19;
 	}
