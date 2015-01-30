@@ -195,9 +195,9 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	if (_12) {
 		RETURN_MM_BOOL(1);
 	}
-	_12 = !zephir_array_isset_string(value, SS("error"));
+	_12 = !(zephir_array_isset_string(value, SS("error")));
 	if (!(_12)) {
-		_12 = !zephir_array_isset_string(value, SS("tmp_name"));
+		_12 = !(zephir_array_isset_string(value, SS("tmp_name")));
 	}
 	_21 = _12;
 	if (!(_21)) {
@@ -267,13 +267,13 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}
-	_12 = !zephir_array_isset_string(value, SS("name"));
+	_12 = !(zephir_array_isset_string(value, SS("name")));
 	if (!(_12)) {
-		_12 = !zephir_array_isset_string(value, SS("type"));
+		_12 = !(zephir_array_isset_string(value, SS("type")));
 	}
 	_26 = _12;
 	if (!(_26)) {
-		_26 = !zephir_array_isset_string(value, SS("size"));
+		_26 = !(zephir_array_isset_string(value, SS("size")));
 	}
 	if (_26) {
 		ZEPHIR_INIT_NVAR(_1);

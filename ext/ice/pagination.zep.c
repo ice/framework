@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	zephir_check_call_status();
 	_2 = Z_TYPE_P(items) != IS_ARRAY;
 	if (_2) {
-		_2 = !(zephir_instance_of_ev(items, ice_arr_ce TSRMLS_CC));
+		_2 = !((zephir_instance_of_ev(items, ice_arr_ce TSRMLS_CC)));
 	}
 	if (_2) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data for pagination", "ice/pagination.zep", 49);

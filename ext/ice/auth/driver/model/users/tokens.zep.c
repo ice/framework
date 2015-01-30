@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 
 	_0 = Z_TYPE_P(extra) != IS_NULL;
 	if (_0) {
-		_0 = !zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC);
+		_0 = !(zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC));
 	}
 	if (_0) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);
@@ -232,7 +232,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 
 	_0 = Z_TYPE_P(extra) != IS_NULL;
 	if (_0) {
-		_0 = !zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC);
+		_0 = !(zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC));
 	}
 	if (_0) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);

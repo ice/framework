@@ -1546,7 +1546,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 		}
 		_13 = _9;
 		if (_13) {
-			_13 = !zephir_fast_in_array(key, skip TSRMLS_CC);
+			_13 = !(zephir_fast_in_array(key, skip TSRMLS_CC));
 		}
 		if (_13) {
 			_14 = zephir_fetch_nproperty_this(this_ptr, SL("_escape"), PH_NOISY_CC);

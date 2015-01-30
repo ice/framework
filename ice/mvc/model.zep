@@ -295,10 +295,27 @@ abstract class Model extends Arr
      */
     public function update(var fields = [], <Validation> extra = null)
     {
-        var status, primary, key;
+        var status, primary, key, extraValid, extraMessages;
 
         let fields = this->fields(fields),
+            extraValid = false,
+            extraMessages = [],
             primary = [];
+
+        if extra {
+            let extraValid = extra->validate(),
+                extraMessages = extra->getMessages();
+        }
+
+        this->_di->applyHook("model.before.validate", [this]);
+
+        if extra && !extraValid {
+            let this->_messages = extraMessages;
+
+            return false;
+        }
+
+        this->_di->applyHook("model.after.validate", [this]);
 
         if typeof this->_primary == "array" {
             for key in this->_primary {

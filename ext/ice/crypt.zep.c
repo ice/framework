@@ -453,13 +453,13 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
 	zephir_get_arrval(data, data_param);
 
 
-	_0 = !zephir_array_isset_string(data, SS("iv"));
+	_0 = !(zephir_array_isset_string(data, SS("iv")));
 	if (!(_0)) {
-		_0 = !zephir_array_isset_string(data, SS("value"));
+		_0 = !(zephir_array_isset_string(data, SS("value")));
 	}
 	_1 = _0;
 	if (!(_1)) {
-		_1 = !zephir_array_isset_string(data, SS("mac"));
+		_1 = !(zephir_array_isset_string(data, SS("mac")));
 	}
 	RETURN_MM_BOOL(_1);
 

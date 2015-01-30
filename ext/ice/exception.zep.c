@@ -74,7 +74,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 
 	_0 = Z_TYPE_P(previous) != IS_NULL;
 	if (_0) {
-		_0 = !zephir_instance_of_ev(previous, zend_exception_get_default(TSRMLS_C) TSRMLS_CC);
+		_0 = !(zephir_instance_of_ev(previous, zend_exception_get_default(TSRMLS_C) TSRMLS_CC));
 	}
 	if (_0) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'previous' must be an instance of 'Exception'", "", 0);
