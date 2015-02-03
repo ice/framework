@@ -245,7 +245,7 @@ abstract class Model extends Arr
 
         if extra {
             let extraValid = extra->validate(),
-                extraMessages = extra->getMessages();
+                extraMessages = extra->getMessages()->all();
         }
 
         this->_di->applyHook("model.before.validate", [this]);
@@ -260,7 +260,7 @@ abstract class Model extends Arr
             this->_validation->setLabels(this->_labels);
 
             let valid = this->_validation->validate(this->getData()),
-                messages = this->_validation->getMessages();
+                messages = this->_validation->getMessages()->all();
         }
 
         if count(this->_rules) && !valid || extra && !extraValid {
@@ -304,7 +304,7 @@ abstract class Model extends Arr
 
         if extra {
             let extraValid = extra->validate(),
-                extraMessages = extra->getMessages();
+                extraMessages = extra->getMessages()->all();
         }
 
         this->_di->applyHook("model.before.validate", [this]);
