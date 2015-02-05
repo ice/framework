@@ -16,7 +16,7 @@ use Ice\Validation;
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
-abstract class Model extends Arr
+abstract class Model extends Arr implements \Serializable
 {
 
     protected _di { get };
@@ -621,23 +621,16 @@ abstract class Model extends Arr
      */
     public function serialize() -> string
     {
-        return serialize(this->all());
+        return serialize(this->_data);
     }
 
     /**
      * Unserialize and set the data.
      */
-    public function unserialize(var data)
+    public function unserialize(string! data)
     {
-        if typeof data == "string" {
-            let data = unserialize(data);
-
-            if typeof data == "array" {
-                this->setData(data);
-                return true;
-            }
-        }
-        throw new Exception("Invalid serialization data");
+        this->__construct();
+        let this->_data = unserialize(data);
     }
 
     /**

@@ -82,7 +82,7 @@ class Model extends Driver implements DriverInterface
         if user instanceof Users {
             user->completeLogin();
 
-            parent::completeLogin(user->serialize(), roles);
+            parent::completeLogin(serialize(user), roles);
         }
     }
 
@@ -94,7 +94,7 @@ class Model extends Driver implements DriverInterface
      */
     public function getUser(var defaultValue = null)
     {
-        var data, user;
+        var data;
 
         if !this->_user {
             let data = parent::getUser(defaultValue);
@@ -103,12 +103,7 @@ class Model extends Driver implements DriverInterface
                 // User isn't currently logged in
                 let this->_user = defaultValue;
             } else {
-                let user = create_instance(this->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"));
-
-                if typeof user == "object" && (user instanceof Users) {
-                    user->unserialize(data);
-                    let this->_user = user;
-                }
+                let this->_user = unserialize(data);
             }
         }
 
@@ -264,7 +259,7 @@ class Model extends Driver implements DriverInterface
                         roles[] = role->get("name");
                 }
 
-                parent::completeLogin(user->serialize(), roles);
+                parent::completeLogin(serialize(user), roles);
 
                 let this->_user = user;
             }
