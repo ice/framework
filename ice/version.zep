@@ -32,7 +32,7 @@ class Version
             "minor": 0,
             "patch": 0,
             "stage": Version::BETA,
-            "build": 1
+            "build": 2
         ];
     }
 
