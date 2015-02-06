@@ -1,17 +1,20 @@
 ## [Ice framework](http://www.iceframework.org)
 Simple and fast PHP framework delivered as C-extension.
 
+[![Latest Stable Version](https://poser.pugx.org/iceframework/framework/v/stable.svg)](https://packagist.org/packages/iceframework/framework) [![Total Downloads](https://poser.pugx.org/iceframework/framework/downloads.svg)](https://packagist.org/packages/iceframework/framework) [![Latest Unstable Version](https://poser.pugx.org/iceframework/framework/v/unstable.svg)](https://packagist.org/packages/iceframework/framework) [![License](https://poser.pugx.org/iceframework/framework/license.svg)](https://packagist.org/packages/iceframework/framework)
+
 ### Stage
 This is **dev** branch, we need to focus on the doc, tests, fixes and cleaning code, so we need your help.
 
 [![Build Status](https://travis-ci.org/ice/framework.svg?branch=dev)](https://travis-ci.org/ice/framework)
+[![Dependency Status](https://www.versioneye.com/user/projects/54d4f6963ca0840b19000383/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54d4f6963ca0840b19000383)
 
 ##### How to contribute?
 1. Fork the Ice framework repository.
 2. Create a new branch for each feature or improvement.
 3. Send a pull request from each feature branch to the **dev** branch*.
 
-*please do not send files from `/ext` directory, just those from thes `/ice`.
+*please do not send files from `/ext` directory, just those from the `/ice`.
 
 ### Installation
 Ice is a C extension, so you need to download a binary for your platform or compile it from source code.
@@ -133,4 +136,4 @@ sudo yum install re2c pcre-devel
 Ice is open-sourced software licensed under the New BSD License. See the LICENSE file for more information.
 
 ***
-Copyright (c) 2014 Ice Team.
+Copyright (c) 2014-2015 Ice Team.
