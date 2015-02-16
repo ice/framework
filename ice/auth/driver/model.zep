@@ -1,11 +1,14 @@
 
 namespace Ice\Auth\Driver;
 
+use Ice\Exception;
+use Ice\Auth\Social;
 use Ice\Auth\Driver;
 use Ice\Auth\Driver\DriverInterface;
 use Ice\Auth\Driver\Model\Roles;
 use Ice\Auth\Driver\Model\Users;
 use Ice\Auth\Driver\Model\Users\Tokens;
+use Ice\Auth\Driver\Model\Users\Social as UserSocial;
 
 /**
  * Model Auth driver.
@@ -121,9 +124,13 @@ class Model extends Driver implements DriverInterface
      * @param string role Role name
      * @return boolean
      */
-    public function hasRole(<Users> user, string role = "login") -> boolean
+    public function hasRole(var user, string role = "login") -> boolean
     {
-        return user->getRole(role) ? true : false;
+        if typeof user == "object" && (user instanceof Users) {
+            return user->getRole(role) ? true : false;
+        } else {
+            throw new Exception("User must be an object");
+        }
     }
 
     /**
@@ -192,6 +199,64 @@ class Model extends Driver implements DriverInterface
             // Username not specified or user not found
             return null;
         }
+    }
+
+    /**
+     * Logs a user in through social network.
+     *
+     * @param mixed social
+     * @param boolean remember enable autologin
+     * @return boolean
+     */
+    public function loginBy(<Social> social, boolean remember = false)
+    {
+        var user, userSocial, roles, userRoles, role, token, lifetime;
+
+        // Try to find record for this social response
+        let userSocial = UserSocial::findOne(["social_id": social->get("socialId"), "type": social->getAdapter()->getProvider()]);
+
+        // Check if record exist
+        if typeof userSocial == "object" && (userSocial instanceof UserSocial) {
+            let user = userSocial->{"getUser"}();
+
+            // Check if user is valid
+            if typeof user == "object" && (user instanceof Users) {
+                let userRoles = user->{"getRoles"}(),
+                    roles = [];
+
+                for role in iterator(userRoles) {
+                    let role = <Roles> role->{"getRole"}(),
+                        roles[] = role->get("name");
+                }
+
+                // Check if user has `login` role
+                if in_array("login", roles) {
+                    if remember {
+                        // Create a new autologin token
+                        let lifetime = this->getOption("lifetime"),
+                            token = new Tokens(),
+                            token->{"user_id"} = user->get("id"),
+                            token->{"useragent"} = sha1(this->_request->getUserAgent()),
+                            token->{"created"} = time(),
+                            token->{"expires"} = time() + lifetime;
+
+                        if token->create() === true {
+                            // Set the autologin cookie
+                            this->_cookies->set("auth_autologin", token->get("token"), token->get("expires"));
+                        }
+                    }
+
+                    this->completeLogin(user, roles);
+
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        // Social or user not found
+        return null;
     }
 
     /**

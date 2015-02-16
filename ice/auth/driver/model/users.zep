@@ -30,6 +30,10 @@ class Users extends Model
         this->hasMany("id", "Ice\\Auth\\Driver\\Model\\Roles\\Users", "user_id", [
             "alias": "Roles"
         ]);
+
+        this->hasOne("id", "Ice\\Auth\\Driver\\Model\\Users\\Social", "user_id", [
+            "alias": "Social"
+        ]);
     }
 
     /**

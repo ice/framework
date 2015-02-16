@@ -26,6 +26,7 @@
 
 
 
+zend_class_entry *ice_auth_social_socialinterface_ce;
 zend_class_entry *ice_mvc_route_datagenerator_datageneratorinterface_ce;
 zend_class_entry *ice_mvc_route_dispatcher_dispatcherinterface_ce;
 zend_class_entry *ice_mvc_view_engine_engineinterface_ce;
@@ -42,6 +43,7 @@ zend_class_entry *ice_arr_ce;
 zend_class_entry *ice_validation_validator_ce;
 zend_class_entry *ice_di_access_ce;
 zend_class_entry *ice_mvc_model_ce;
+zend_class_entry *ice_auth_social_adapter_ce;
 zend_class_entry *ice_auth_driver_ce;
 zend_class_entry *ice_dispatcher_ce;
 zend_class_entry *ice_mvc_view_engine_ce;
@@ -55,7 +57,12 @@ zend_class_entry *ice_auth_driver_model_ce;
 zend_class_entry *ice_auth_driver_model_roles_ce;
 zend_class_entry *ice_auth_driver_model_roles_users_ce;
 zend_class_entry *ice_auth_driver_model_users_ce;
+zend_class_entry *ice_auth_driver_model_users_social_ce;
 zend_class_entry *ice_auth_driver_model_users_tokens_ce;
+zend_class_entry *ice_auth_social_ce;
+zend_class_entry *ice_auth_social_facebook_ce;
+zend_class_entry *ice_auth_social_google_ce;
+zend_class_entry *ice_auth_social_twitter_ce;
 zend_class_entry *ice_cli_console_ce;
 zend_class_entry *ice_cli_dispatcher_ce;
 zend_class_entry *ice_cli_router_ce;
@@ -138,6 +145,7 @@ static PHP_MINIT_FUNCTION(ice)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_Dispatcher_DispatcherInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);
@@ -154,6 +162,7 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Validation_Validator);
 	ZEPHIR_INIT(Ice_Di_Access);
 	ZEPHIR_INIT(Ice_Mvc_Model);
+	ZEPHIR_INIT(Ice_Auth_Social_Adapter);
 	ZEPHIR_INIT(Ice_Auth_Driver);
 	ZEPHIR_INIT(Ice_Dispatcher);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine);
@@ -167,7 +176,12 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Auth_Driver_Model_Roles);
 	ZEPHIR_INIT(Ice_Auth_Driver_Model_Roles_Users);
 	ZEPHIR_INIT(Ice_Auth_Driver_Model_Users);
+	ZEPHIR_INIT(Ice_Auth_Driver_Model_Users_Social);
 	ZEPHIR_INIT(Ice_Auth_Driver_Model_Users_Tokens);
+	ZEPHIR_INIT(Ice_Auth_Social);
+	ZEPHIR_INIT(Ice_Auth_Social_Facebook);
+	ZEPHIR_INIT(Ice_Auth_Social_Google);
+	ZEPHIR_INIT(Ice_Auth_Social_Twitter);
 	ZEPHIR_INIT(Ice_Cli_Console);
 	ZEPHIR_INIT(Ice_Cli_Dispatcher);
 	ZEPHIR_INIT(Ice_Cli_Router);

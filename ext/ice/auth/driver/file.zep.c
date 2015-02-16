@@ -17,6 +17,7 @@
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/exception.h"
 
 
 /**
@@ -97,13 +98,11 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
 	zval *role = NULL;
-	zval *user_param = NULL, *role_param = NULL, *_0;
-	zval *user = NULL;
+	zval *user, *role_param = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &user_param, &role_param);
+	zephir_fetch_params(1, 1, 1, &user, &role_param);
 
-	zephir_get_arrval(user, user_param);
 	if (!role_param) {
 		ZEPHIR_INIT_VAR(role);
 		ZVAL_STRING(role, "login", 1);
@@ -112,8 +111,13 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 	}
 
 
-	zephir_array_fetch_string(&_0, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 55 TSRMLS_CC);
-	RETURN_MM_BOOL(zephir_fast_in_array(role, _0 TSRMLS_CC));
+	if (Z_TYPE_P(user) == IS_ARRAY) {
+		zephir_array_fetch_string(&_0, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 57 TSRMLS_CC);
+		RETURN_MM_BOOL(zephir_fast_in_array(role, _0 TSRMLS_CC));
+	} else {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an array", "ice/auth/driver/file.zep", 59);
+		return;
+	}
 
 }
 
@@ -154,11 +158,11 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 		_0 = zephir_array_isset_fetch(&user, _1, username, 0 TSRMLS_CC);
 	}
 	if (_0) {
-		zephir_array_fetch_string(&_2, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 75 TSRMLS_CC);
+		zephir_array_fetch_string(&_2, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 80 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&_3, this_ptr, "hash", NULL, password);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(_2, _3)) {
-			zephir_array_fetch_string(&_4, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 77 TSRMLS_CC);
+			zephir_array_fetch_string(&_4, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 82 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, username, _4);
 			zephir_check_call_status();
 			RETURN_MM_BOOL(1);

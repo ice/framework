@@ -106,7 +106,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 					ZEPHIR_CALL_METHOD(&_12, role, "get", &_13, _1);
 					zephir_check_temp_parameter(_1);
 					zephir_check_call_status();
-					zephir_array_append(&roles, _12, PH_SEPARATE, "ice/auth/driver/model.zep", 48);
+					zephir_array_append(&roles, _12, PH_SEPARATE, "ice/auth/driver/model.zep", 51);
 				}
 				_11->funcs->dtor(_11 TSRMLS_CC);
 				ZEPHIR_SINIT_VAR(_14);
@@ -232,8 +232,9 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
+	zend_bool _0;
 	zval *role = NULL;
-	zval *user, *role_param = NULL, *_0, *_1 = NULL;
+	zval *user, *role_param = NULL, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &user, &role_param);
@@ -246,19 +247,24 @@ PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
 	}
 
 
-	if (!(zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'user' must be an instance of 'Ice\\Auth\\Driver\\Model\\Users'", "", 0);
+	_0 = Z_TYPE_P(user) == IS_OBJECT;
+	if (_0) {
+		_0 = (zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC));
+	}
+	if (_0) {
+		ZEPHIR_INIT_VAR(_1);
+		ZEPHIR_CALL_METHOD(&_2, user, "getrole", NULL, role);
+		zephir_check_call_status();
+		if (zephir_is_true(_2)) {
+			ZVAL_BOOL(_1, 1);
+		} else {
+			ZVAL_BOOL(_1, 0);
+		}
+		RETURN_CCTOR(_1);
+	} else {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an object", "ice/auth/driver/model.zep", 132);
 		return;
 	}
-	ZEPHIR_INIT_VAR(_0);
-	ZEPHIR_CALL_METHOD(&_1, user, "getrole", NULL, role);
-	zephir_check_call_status();
-	if (zephir_is_true(_1)) {
-		ZVAL_BOOL(_0, 1);
-	} else {
-		ZVAL_BOOL(_0, 0);
-	}
-	RETURN_CCTOR(_0);
 
 }
 
@@ -350,7 +356,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				ZEPHIR_CALL_METHOD(&_8, role, "get", &_9, _0);
 				zephir_check_temp_parameter(_0);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _8, PH_SEPARATE, "ice/auth/driver/model.zep", 164);
+				zephir_array_append(&roles, _8, PH_SEPARATE, "ice/auth/driver/model.zep", 171);
 			}
 			_7->funcs->dtor(_7 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_10);
@@ -416,6 +422,151 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 	} else {
 		RETURN_MM_NULL();
 	}
+
+}
+
+/**
+ * Logs a user in through social network.
+ *
+ * @param mixed social
+ * @param boolean remember enable autologin
+ * @return boolean
+ */
+PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
+
+	zephir_fcall_cache_entry *_8 = NULL, *_16 = NULL;
+	zend_object_iterator *_7;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_1;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_14 = NULL;
+	zend_bool remember, _5, _6;
+	zval *social, *remember_param = NULL, *user = NULL, *userSocial = NULL, *roles, *userRoles = NULL, *role = NULL, *token, *lifetime = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, _9, *_10 = NULL, *_11, *_12 = NULL, *_13 = NULL, *_15 = NULL, *_17 = NULL, *_18, *_19, *_20 = NULL, *_21 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &social, &remember_param);
+
+	if (!remember_param) {
+		remember = 0;
+	} else {
+		remember = zephir_get_boolval(remember_param);
+	}
+
+
+	if (!(zephir_instance_of_ev(social, ice_auth_social_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'social' must be an instance of 'Ice\\Auth\\Social'", "", 0);
+		return;
+	}
+	ZEPHIR_INIT_VAR(_1);
+	array_init_size(_1, 3);
+	ZEPHIR_INIT_VAR(_3);
+	ZVAL_STRING(_3, "socialId", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_2, social, "get", NULL, _3);
+	zephir_check_temp_parameter(_3);
+	zephir_check_call_status();
+	zephir_array_update_string(&_1, SL("social_id"), &_2, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_METHOD(&_2, social, "getadapter", NULL);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_4, _2, "getprovider", NULL);
+	zephir_check_call_status();
+	zephir_array_update_string(&_1, SL("type"), &_4, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_CE_STATIC(&userSocial, ice_auth_driver_model_users_social_ce, "findone", &_0, _1);
+	zephir_check_call_status();
+	_5 = Z_TYPE_P(userSocial) == IS_OBJECT;
+	if (_5) {
+		_5 = (zephir_instance_of_ev(userSocial, ice_auth_driver_model_users_social_ce TSRMLS_CC));
+	}
+	if (_5) {
+		ZEPHIR_CALL_METHOD(&user, userSocial, "getuser", NULL);
+		zephir_check_call_status();
+		_6 = Z_TYPE_P(user) == IS_OBJECT;
+		if (_6) {
+			_6 = (zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC));
+		}
+		if (_6) {
+			ZEPHIR_CALL_METHOD(&userRoles, user, "getroles", NULL);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(roles);
+			array_init(roles);
+			_7 = zephir_get_iterator(userRoles TSRMLS_CC);
+			_7->funcs->rewind(_7 TSRMLS_CC);
+			for (;_7->funcs->valid(_7 TSRMLS_CC) == SUCCESS && !EG(exception); _7->funcs->move_forward(_7 TSRMLS_CC)) {
+				{ zval **tmp; 
+				_7->funcs->get_current_data(_7, &tmp TSRMLS_CC);
+				role = *tmp;
+				}
+				ZEPHIR_CALL_METHOD(&_4, role, "getrole", NULL);
+				zephir_check_call_status();
+				ZEPHIR_CPY_WRT(role, _4);
+				ZEPHIR_INIT_NVAR(_3);
+				ZVAL_STRING(_3, "name", ZEPHIR_TEMP_PARAM_COPY);
+				ZEPHIR_CALL_METHOD(&_4, role, "get", &_8, _3);
+				zephir_check_temp_parameter(_3);
+				zephir_check_call_status();
+				zephir_array_append(&roles, _4, PH_SEPARATE, "ice/auth/driver/model.zep", 229);
+			}
+			_7->funcs->dtor(_7 TSRMLS_CC);
+			ZEPHIR_SINIT_VAR(_9);
+			ZVAL_STRING(&_9, "login", 0);
+			if (zephir_fast_in_array(&_9, roles TSRMLS_CC)) {
+				if (remember) {
+					ZEPHIR_INIT_NVAR(_3);
+					ZVAL_STRING(_3, "lifetime", ZEPHIR_TEMP_PARAM_COPY);
+					ZEPHIR_CALL_METHOD(&lifetime, this_ptr, "getoption", NULL, _3);
+					zephir_check_temp_parameter(_3);
+					zephir_check_call_status();
+					ZEPHIR_INIT_VAR(token);
+					object_init_ex(token, ice_auth_driver_model_users_tokens_ce);
+					ZEPHIR_CALL_METHOD(NULL, token, "__construct", NULL);
+					zephir_check_call_status();
+					ZEPHIR_INIT_NVAR(_3);
+					ZVAL_STRING(_3, "id", ZEPHIR_TEMP_PARAM_COPY);
+					ZEPHIR_CALL_METHOD(&_10, user, "get", NULL, _3);
+					zephir_check_temp_parameter(_3);
+					zephir_check_call_status();
+					zephir_update_property_zval(token, SL("user_id"), _10 TSRMLS_CC);
+					_11 = zephir_fetch_nproperty_this(this_ptr, SL("_request"), PH_NOISY_CC);
+					ZEPHIR_CALL_METHOD(&_12, _11, "getuseragent", NULL);
+					zephir_check_call_status();
+					ZEPHIR_CALL_FUNCTION(&_13, "sha1", &_14, _12);
+					zephir_check_call_status();
+					zephir_update_property_zval(token, SL("useragent"), _13 TSRMLS_CC);
+					ZEPHIR_CALL_FUNCTION(&_15, "time", &_16);
+					zephir_check_call_status();
+					zephir_update_property_zval(token, SL("created"), _15 TSRMLS_CC);
+					ZEPHIR_CALL_FUNCTION(&_17, "time", &_16);
+					zephir_check_call_status();
+					ZEPHIR_INIT_VAR(_18);
+					zephir_add_function_ex(_18, _17, lifetime TSRMLS_CC);
+					zephir_update_property_zval(token, SL("expires"), _18 TSRMLS_CC);
+					ZEPHIR_CALL_METHOD(&_17, token, "create", NULL);
+					zephir_check_call_status();
+					if (ZEPHIR_IS_TRUE_IDENTICAL(_17)) {
+						_19 = zephir_fetch_nproperty_this(this_ptr, SL("_cookies"), PH_NOISY_CC);
+						ZEPHIR_INIT_NVAR(_3);
+						ZVAL_STRING(_3, "token", ZEPHIR_TEMP_PARAM_COPY);
+						ZEPHIR_CALL_METHOD(&_20, token, "get", &_8, _3);
+						zephir_check_temp_parameter(_3);
+						zephir_check_call_status();
+						ZEPHIR_INIT_NVAR(_3);
+						ZVAL_STRING(_3, "expires", ZEPHIR_TEMP_PARAM_COPY);
+						ZEPHIR_CALL_METHOD(&_21, token, "get", &_8, _3);
+						zephir_check_temp_parameter(_3);
+						zephir_check_call_status();
+						ZEPHIR_INIT_NVAR(_3);
+						ZVAL_STRING(_3, "auth_autologin", ZEPHIR_TEMP_PARAM_COPY);
+						ZEPHIR_CALL_METHOD(NULL, _19, "set", NULL, _3, _20, _21);
+						zephir_check_temp_parameter(_3);
+						zephir_check_call_status();
+					}
+				}
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, user, roles);
+				zephir_check_call_status();
+				RETURN_MM_BOOL(1);
+			}
+			RETURN_MM_BOOL(0);
+		}
+	}
+	RETURN_MM_NULL();
 
 }
 
@@ -560,7 +711,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 				ZEPHIR_CALL_METHOD(&_7, role, "get", &_8, _3);
 				zephir_check_temp_parameter(_3);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 259);
+				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 324);
 			}
 			_6->funcs->dtor(_6 TSRMLS_CC);
 			ZEPHIR_CALL_FUNCTION(&_7, "serialize", &_10, user);

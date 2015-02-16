@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1 = NULL, *_2 = NULL, *_3 = NULL;
-	zval *_0, *_4;
+	zval *_0, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 
@@ -73,6 +73,20 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _1, _2, _3, _4);
+	zephir_check_temp_parameter(_1);
+	zephir_check_temp_parameter(_2);
+	zephir_check_temp_parameter(_3);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_5);
+	array_init_size(_5, 2);
+	add_assoc_stringl_ex(_5, SS("alias"), SL("Social"), 1);
+	ZEPHIR_INIT_NVAR(_1);
+	ZVAL_STRING(_1, "id", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Users\\Social", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_NVAR(_3);
+	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, _1, _2, _3, _5);
 	zephir_check_temp_parameter(_1);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);

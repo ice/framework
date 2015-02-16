@@ -23,9 +23,15 @@
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_DriverInterface) {
 
-	ZEPHIR_REGISTER_INTERFACE(Ice\\Auth\\Driver, DriverInterface, ice, auth_driver_driverinterface, NULL);
+	ZEPHIR_REGISTER_INTERFACE(Ice\\Auth\\Driver, DriverInterface, ice, auth_driver_driverinterface, ice_auth_driver_driverinterface_method_entry);
 
 	return SUCCESS;
 
 }
+
+ZEPHIR_DOC_METHOD(Ice_Auth_Driver_DriverInterface, getUser);
+
+ZEPHIR_DOC_METHOD(Ice_Auth_Driver_DriverInterface, hasRole);
+
+ZEPHIR_DOC_METHOD(Ice_Auth_Driver_DriverInterface, login);
 

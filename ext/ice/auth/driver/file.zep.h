@@ -17,7 +17,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_file_getuser, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_file_hasrole, 0, 0, 1)
-	ZEND_ARG_ARRAY_INFO(0, user, 0)
+	ZEND_ARG_INFO(0, user)
 	ZEND_ARG_INFO(0, role)
 ZEND_END_ARG_INFO()
 
