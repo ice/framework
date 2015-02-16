@@ -18,7 +18,14 @@ if test "$PHP_ICE" = "yes"; then
 	ice/auth/driver/model/roles.zep.c
 	ice/auth/driver/model/roles/users.zep.c
 	ice/auth/driver/model/users.zep.c
+	ice/auth/driver/model/users/social.zep.c
 	ice/auth/driver/model/users/tokens.zep.c
+	ice/auth/social.zep.c
+	ice/auth/social/adapter.zep.c
+	ice/auth/social/facebook.zep.c
+	ice/auth/social/google.zep.c
+	ice/auth/social/socialinterface.zep.c
+	ice/auth/social/twitter.zep.c
 	ice/cli/console.zep.c
 	ice/cli/dispatcher.zep.c
 	ice/cli/router.zep.c

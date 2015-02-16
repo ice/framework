@@ -1,6 +1,7 @@
 
 namespace Ice\Auth\Driver;
 
+use Ice\Exception;
 use Ice\Auth\Driver;
 use Ice\Auth\Driver\DriverInterface;
 
@@ -50,9 +51,13 @@ class File extends Driver implements DriverInterface
      * @param string role Role name
      * @return boolean
      */
-    public function hasRole(array user, string role = "login") -> boolean
+    public function hasRole(var user, string role = "login") -> boolean
     {
-        return in_array(role, user["roles"]);
+        if typeof user == "array" {
+            return in_array(role, user["roles"]);
+        } else {
+            throw new Exception("User must be an array");
+        }
     }
 
     /**
