@@ -538,7 +538,7 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
  * Gets variable from _GET superglobal applying filters if needed.
  * If no parameters are given, return all.
  *
- *<code>
+ * <pre><code>
  *  //Returns value from $_GET["id"] without sanitizing
  *  $id = $this->request->getQuery("id");
  *
@@ -547,7 +547,7 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
  *
  *  //Returns value from $_GET["id"] with a default value
  *  $id = $this->request->getQuery("id", null, 150);
- *</code>
+ * </code></pre>
  *
  * @param string key Index to get
  * @param string|array filters Filters to apply
@@ -636,7 +636,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
  * Gets variable from _POST superglobal applying filters if needed.
  * If no parameters are given, return all.
  *
- *<code>
+ * <pre><code>
  *  //Returns value from $_POST["id"] without sanitizing
  *  $id = $this->request->getPost("id");
  *
@@ -645,7 +645,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
  *
  *  //Returns value from $_POST["id"] with a default value
  *  $id = $this->request->getPost("id", null, 150);
- *</code>
+ * </code></pre>
  *
  * @param string key Index to get
  * @param string|array filters Filters to apply
