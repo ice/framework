@@ -26,6 +26,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Adapter) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth\\Social, Adapter, ice, auth_social_adapter, ice_auth_social_adapter_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
+	zend_declare_property_null(ice_auth_social_adapter_ce, SL("_accessToken"), ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	zend_declare_property_null(ice_auth_social_adapter_ce, SL("_clientId"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(ice_auth_social_adapter_ce, SL("_clientSecret"), ZEND_ACC_PROTECTED TSRMLS_CC);
@@ -46,6 +48,25 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Adapter) {
 
 	zend_class_implements(ice_auth_social_adapter_ce TSRMLS_CC, 1, ice_auth_social_socialinterface_ce);
 	return SUCCESS;
+
+}
+
+PHP_METHOD(Ice_Auth_Social_Adapter, setAccessToken) {
+
+	zval *accessToken;
+
+	zephir_fetch_params(0, 1, 0, &accessToken);
+
+
+
+	zephir_update_property_this(this_ptr, SL("_accessToken"), accessToken TSRMLS_CC);
+
+}
+
+PHP_METHOD(Ice_Auth_Social_Adapter, getAccessToken) {
+
+
+	RETURN_MEMBER(this_ptr, "_accessToken");
 
 }
 
@@ -158,7 +179,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		zephir_array_fast_append(_12, _13);
 		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, _12);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_4, "ice/auth/social/adapter.zep", 59 TSRMLS_CC);
+		zephir_throw_exception_debug(_4, "ice/auth/social/adapter.zep", 60 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -242,7 +263,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, has) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
 	if (zephir_array_isset(_0, key)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
-		zephir_array_fetch(&_2, _1, key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 96 TSRMLS_CC);
+		zephir_array_fetch(&_2, _1, key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 97 TSRMLS_CC);
 		zephir_get_strval(key, _2);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_userInfo"), PH_NOISY_CC);
@@ -275,7 +296,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
 	if (zephir_array_isset(_0, key)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
-		zephir_array_fetch(&_2, _1, key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 116 TSRMLS_CC);
+		zephir_array_fetch(&_2, _1, key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 117 TSRMLS_CC);
 		zephir_get_strval(key, _2);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_userInfo"), PH_NOISY_CC);
@@ -302,8 +323,8 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getAuthUrl) {
 
 	ZEPHIR_CALL_METHOD(&config, this_ptr, "prepareauthparams", NULL);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_0, config, SL("auth_url"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 137 TSRMLS_CC);
-	zephir_array_fetch_string(&_1, config, SL("auth_params"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 137 TSRMLS_CC);
+	zephir_array_fetch_string(&_0, config, SL("auth_url"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 138 TSRMLS_CC);
+	zephir_array_fetch_string(&_1, config, SL("auth_params"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 138 TSRMLS_CC);
 	ZEPHIR_CALL_FUNCTION(&_2, "http_build_query", &_3, _1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_4, "urldecode", &_5, _2);
