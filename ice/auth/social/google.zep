@@ -70,10 +70,17 @@ class Google extends Adapter
                 "code":          _GET["code"]
             ];
 
-            let tokenInfo = this->call(parent::POST, "https://accounts.google.com/o/oauth2/token", params);
+            // Be able to store access_token in the session (invalid_grant: Code was already redeemed)
+            if !this->_accessToken {
+                let tokenInfo = this->call(parent::POST, "https://accounts.google.com/o/oauth2/token", params);
 
-            if isset tokenInfo["access_token"] {
-                let params["access_token"] = tokenInfo["access_token"],
+                if isset tokenInfo["access_token"] {
+                    let this->_accessToken = tokenInfo["access_token"];
+                }
+            }
+
+            if this->_accessToken {
+                let params["access_token"] = this->_accessToken,
                     userInfo = this->call(parent::GET, "https://www.googleapis.com/oauth2/v1/userinfo", params);
 
                 if isset userInfo[this->_socialFieldsMap["socialId"]] {

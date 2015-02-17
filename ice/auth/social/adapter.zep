@@ -16,6 +16,7 @@ use Ice\Exception;
 abstract class Adapter implements SocialInterface
 {
 
+    protected _accessToken { set, get };
     protected _clientId;
     protected _clientSecret;
     protected _redirectUri;
