@@ -10,22 +10,22 @@ namespace Ice;
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  *
- *<code>
+ * <pre><code>
  *  $foo = 123;
  *  echo (new \Ice\Dump())->variable($foo, "foo");
- *</code>
+ * </code></pre>
  * 
- *<code>
+ * <pre><code>
  *  $foo = "string";
  *  $bar = ["key" => "value"];
  *  $baz = new stdClass();
  *  echo (new \Ice\Dump())->vars($foo, $bar, $baz);
- *</code>
+ * </code></pre>
  *
  * Sleet usage:
- *<code>
+ * <pre><code>
  *  {{ dump('str', 1, 2.5, true, null, ['key': 'value']) }}
- *</code>
+ * </code></pre>
  */
 class Dump
 {
@@ -53,9 +53,9 @@ class Dump
     /**
      * Alias of vars() method
      *
-     *<code>
+     * <pre><code>
      *  echo (new \Ice\Dump())->all($foo, $bar, $baz);
-     *</code>
+     * </code></pre>
      *
      * @param mixed variable
      * @param ...
@@ -119,9 +119,9 @@ class Dump
     /**
      * Alias of variable() method
      *
-     *<code>
+     * <pre><code>
      *  echo (new \Ice\Dump())->one($foo, "foo");
-     *</code>
+     * </code></pre>
      *
      * @param mixed variable
      * @param string name
@@ -259,10 +259,10 @@ class Dump
      /**
      * Returns an HTML string of information about a single variable.
      *
-     *<code>
+     * <pre><code>
      *  $foo = 123;
      *  echo (new \Ice\Dump())->variable($foo, "foo");
-     *</code>
+     * </code></pre>
      *
      * @param mixed variable
      * @param string name
@@ -277,12 +277,12 @@ class Dump
      * Returns an HTML string of debugging information about any number of
      * variables, each wrapped in a "pre" tag.
      *
-     *<code>
+     * <pre><code>
      *  $foo = "string";
      *  $bar = ["key" => "value"];
      *  $baz = new stdClass();
      *  echo (new \Ice\Dump())->vars($foo, $bar, $baz);
-     *</code>
+     * </code></pre>
      *
      * @param mixed variable
      * @param ...

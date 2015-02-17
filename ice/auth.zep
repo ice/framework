@@ -10,7 +10,7 @@ namespace Ice;
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  *
- *<code>
+ * <pre><code>
  *  $options = ['hash_key' => 'secret key'];
  *  $this->di->auth = new \Ice\Auth($options);
  *
@@ -20,9 +20,9 @@ namespace Ice;
  *  } else {
  *      // Login successful
  *  }
- *</code>
+ * </code></pre>
  *
- *<code>
+ * <pre><code>
  *  if ($this->auth->loggedIn()) {
  *      // User is logged in, continue on
  *      $user = $this->auth->getUser();
@@ -30,27 +30,27 @@ namespace Ice;
  *  } else {
  *      // User isn't logged in, redirect to the login form.
  *  }
- *</code>
+ * </code></pre>
  *
- *<code>
+ * <pre><code>
  *  if ($this->auth->loggedIn('admin')) {
  *      // Admin privileges
  *  } else {
  *      // No access
  *  }
- *</code>
+ * </code></pre>
  *
- *<code>
+ * <pre><code>
  *  // Log out a user
  *  $this->auth->logout();
- *</code>
+ * </code></pre>
  *
  * Seet usage:
- *<code>
+ * <pre><code>
  *  {% if this.auth.loggedIn() %}
  *      {{ this.auth.getUser().username }}
  *  {% endif %}
- *</code>
+ * </code></pre>
  */
 class Auth
 {

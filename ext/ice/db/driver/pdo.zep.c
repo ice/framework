@@ -219,7 +219,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 /**
  * Find all records that match criteria.
  *
- *<code>
+ * <pre><code>
  *  //SELECT * FROM users WHERE a=1 and b="q"
  *  $db->find("users", array("a" => 1, "b" => "q"));
  * 
@@ -228,7 +228,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
  * 
  *  //SELECT * FROM users WHERE a=1 or b=2 
  *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
- *</code>
+ * </code></pre>
  *
  * @param string from Table name
  * @param mixed filters Filters to create WHERE conditions

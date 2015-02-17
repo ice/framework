@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_4);
 	array_init_size(_4, 2);
-	add_assoc_stringl_ex(_4, SS("alias"), SL("Social"), 1);
+	add_assoc_stringl_ex(_4, SS("alias"), SL("User"), 1);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "user_id", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);

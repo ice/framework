@@ -372,14 +372,14 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 /**
  * Allows to query one record that match the specified conditions.
  *
- *<code>
+ * <pre><code>
  *  //Get the user from users by id 2
  *  $user = Users::findOne(2);
  *  echo "The user name is ", $user->username;
  *
  *  //Get one active user with age > 18
  *  $user = Users::findOne(array("status" => 1, "age" => array(">" => 18)));
- *</code>
+ * </code></pre>
  *
  * @param array filters
  * @return Model|false
@@ -419,10 +419,10 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 /**
  * Allows to query all records that match the specified conditions.
  *
- *<code>
+ * <pre><code>
  *  //Get all active users with age > 18
  *  $user = Users::find(array("status" => 1, "age" => array(">" => 18)));
- *</code>
+ * </code></pre>
  *
  * @param array filters
  * @return Arr
@@ -561,13 +561,13 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
 /**
  * Insert a new object to the database.
  *
- *<code>
+ * <pre><code>
  *  //Creating a new user
  *  $user = new Users();
  *  $user->lastname = "Kowalski";
  *  $user->status = 1;
  *  $user->create();
- *</code>
+ * </code></pre>
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
@@ -722,12 +722,12 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 /**
  * Update an existing object in the database.
  *
- *<code>
+ * <pre><code>
  *  //Updating a user last name
  *  $user = Users::findOne(100);
  *  $user->lastname = "Nowak";
  *  $user->update();
- *</code>
+ * </code></pre>
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
@@ -846,7 +846,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 /**
  * Inserts or updates a model instance. Returning true on success or false otherwise.
  *
- *<code>
+ * <pre><code>
  *  //Creating a new user
  *  $user = new Users();
  *  $user->lastname = "Kowalski";
@@ -857,7 +857,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
  *  $user = Users::findOne(100);
  *  $user->lastname = "Nowak";
  *  $user->save();
- *</code>
+ * </code></pre>
  *
  * @param array fields
  * @param Validation extra
@@ -906,14 +906,14 @@ PHP_METHOD(Ice_Mvc_Model, save) {
 /**
  * Removes a model instance(s). Returning true on success or false otherwise.
  *
- * <code>
+ * <pre><code>
  *  //Remove current user
  *  $user = Users::findOne(100);
  *  $user->delete();
  *  
  *  //Remove all unactive users
  *  $status = (new Users())->remove(["status" => 0]);
- * </code>
+ * </code></pre>
  *
  * @param filters
  * @return boolean
@@ -1081,7 +1081,7 @@ PHP_METHOD(Ice_Mvc_Model, getError) {
 /**
  * Setup a relation reverse 1-1 between two models.
  *
- *<code>
+ * <pre><code>
  *  class Posts extends Model
  *  {
  *      public function initialize()
@@ -1094,7 +1094,7 @@ PHP_METHOD(Ice_Mvc_Model, getError) {
  *  //Get post's author
  *  $post = Posts::findOne(100);
  *  echo $post->getUser()->username;
- *</code>
+ * </code></pre>
  *
  * @param string field
  * @param string referenceModel
@@ -1140,7 +1140,7 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
 /**
  * Setup a 1-1 relation between two models
  *
- *<code>
+ * <pre><code>
  *  class Users extends Model
  *  {
  *      public function initialize()
@@ -1148,7 +1148,7 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
  *          $this->hasOne('id', __NAMESPACE__ . '\UsersDescriptions', 'user_id', ['alias' => 'Description']);
  *      }
  *  }
- *</code>
+ * </code></pre>
  *
  * @param string field
  * @param string referenceModel
@@ -1194,7 +1194,7 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
 /**
  * Setup a relation 1-n between two models.
  *
- *<code>
+ * <pre><code>
  *  class Users extends Model
  *  {
  *      public function initialize()
@@ -1209,7 +1209,7 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
  *  foreach ($user->getPosts() as $post) {
  *      echo $post->title;
  *  }
- *</code>
+ * </code></pre>
  *
  * @param string field
  * @param string referenceModel

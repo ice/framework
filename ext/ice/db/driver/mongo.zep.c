@@ -189,11 +189,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 /**
  * Find all documents that match criteria.
  *
- *<code>
+ * <pre><code>
  *  $db->find("users", array("a" => 1, "b" => "q"));
  *  $db->find("users", array("age" => array(">" => 33)));
  *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
- *</code>
+ * </code></pre>
  *
  * @param string from Collection name
  * @param mixed filters Criteria

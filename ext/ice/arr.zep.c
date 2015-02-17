@@ -324,15 +324,15 @@ PHP_METHOD(Ice_Arr, getIterator) {
 /**
  * Gets a value from an array using a dot separated path.
  *
- *<code>
+ * <pre><code>
  *  // Get the value of $array['foo']['bar']
  *  $value = (new Arr($array))->getPath('foo.bar');
- *</code>
+ * </code></pre>
  *
- *<code>
+ * <pre><code>
  *  // Get the values of "color" in theme
  *  $colors = (new Arr($array))->getPath('theme.*.color');
- *</code>
+ * </code></pre>
  *
  * @param mixed path Key path string (delimiter separated) or array of keys
  * @param mixed defaultValue Default value if the path is not set

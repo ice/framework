@@ -105,9 +105,9 @@ PHP_METHOD(Ice_Dump, __construct) {
 /**
  * Alias of vars() method
  *
- *<code>
+ * <pre><code>
  *  echo (new \Ice\Dump())->all($foo, $bar, $baz);
- *</code>
+ * </code></pre>
  *
  * @param mixed variable
  * @param ...
@@ -222,9 +222,9 @@ PHP_METHOD(Ice_Dump, setStyles) {
 /**
  * Alias of variable() method
  *
- *<code>
+ * <pre><code>
  *  echo (new \Ice\Dump())->one($foo, "foo");
- *</code>
+ * </code></pre>
  *
  * @param mixed variable
  * @param string name
@@ -758,10 +758,10 @@ PHP_METHOD(Ice_Dump, output) {
 /**
  * Returns an HTML string of information about a single variable.
  *
- *<code>
+ * <pre><code>
  *  $foo = 123;
  *  echo (new \Ice\Dump())->variable($foo, "foo");
- *</code>
+ * </code></pre>
  *
  * @param mixed variable
  * @param string name
@@ -809,12 +809,12 @@ PHP_METHOD(Ice_Dump, variable) {
  * Returns an HTML string of debugging information about any number of
  * variables, each wrapped in a "pre" tag.
  *
- *<code>
+ * <pre><code>
  *  $foo = "string";
  *  $bar = ["key" => "value"];
  *  $baz = new stdClass();
  *  echo (new \Ice\Dump())->vars($foo, $bar, $baz);
- *</code>
+ * </code></pre>
  *
  * @param mixed variable
  * @param ...
