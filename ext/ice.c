@@ -27,20 +27,20 @@
 
 
 zend_class_entry *ice_auth_social_socialinterface_ce;
-zend_class_entry *ice_mvc_route_datagenerator_datageneratorinterface_ce;
-zend_class_entry *ice_mvc_route_dispatcher_dispatcherinterface_ce;
 zend_class_entry *ice_mvc_view_engine_engineinterface_ce;
 zend_class_entry *ice_auth_driver_driverinterface_ce;
 zend_class_entry *ice_db_dbinterface_ce;
 zend_class_entry *ice_log_loggerinterface_ce;
+zend_class_entry *ice_mvc_route_datagenerator_datageneratorinterface_ce;
+zend_class_entry *ice_mvc_route_dispatcher_dispatcherinterface_ce;
 zend_class_entry *ice_http_response_headersinterface_ce;
 zend_class_entry *ice_http_response_responseinterface_ce;
 zend_class_entry *ice_mvc_route_parser_parserinterface_ce;
 zend_class_entry *ice_mvc_view_viewinterface_ce;
 zend_class_entry *ice_http_request_requestinterface_ce;
 zend_class_entry *ice_mvc_moduleinterface_ce;
-zend_class_entry *ice_arr_ce;
 zend_class_entry *ice_validation_validator_ce;
+zend_class_entry *ice_arr_ce;
 zend_class_entry *ice_di_access_ce;
 zend_class_entry *ice_mvc_model_ce;
 zend_class_entry *ice_auth_social_adapter_ce;
@@ -146,20 +146,20 @@ static PHP_MINIT_FUNCTION(ice)
 #endif
 
 	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
-	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface);
-	ZEPHIR_INIT(Ice_Mvc_Route_Dispatcher_DispatcherInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);
 	ZEPHIR_INIT(Ice_Auth_Driver_DriverInterface);
 	ZEPHIR_INIT(Ice_Db_DbInterface);
 	ZEPHIR_INIT(Ice_Log_LoggerInterface);
+	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface);
+	ZEPHIR_INIT(Ice_Mvc_Route_Dispatcher_DispatcherInterface);
 	ZEPHIR_INIT(Ice_Http_Response_HeadersInterface);
 	ZEPHIR_INIT(Ice_Http_Response_ResponseInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_Parser_ParserInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_ViewInterface);
 	ZEPHIR_INIT(Ice_Http_Request_RequestInterface);
 	ZEPHIR_INIT(Ice_Mvc_ModuleInterface);
-	ZEPHIR_INIT(Ice_Arr);
 	ZEPHIR_INIT(Ice_Validation_Validator);
+	ZEPHIR_INIT(Ice_Arr);
 	ZEPHIR_INIT(Ice_Di_Access);
 	ZEPHIR_INIT(Ice_Mvc_Model);
 	ZEPHIR_INIT(Ice_Auth_Social_Adapter);
@@ -338,12 +338,18 @@ static PHP_GSHUTDOWN_FUNCTION(ice)
 
 }
 
+
+zend_function_entry php_ice_functions[] = {
+ZEND_FE_END
+
+};
+
 zend_module_entry ice_module_entry = {
 	STANDARD_MODULE_HEADER_EX,
 	NULL,
 	NULL,
 	PHP_ICE_EXTNAME,
-	NULL,
+	php_ice_functions,
 	PHP_MINIT(ice),
 #ifndef ZEPHIR_RELEASE
 	PHP_MSHUTDOWN(ice),
