@@ -31,8 +31,8 @@ class Version
             "major": 1,
             "minor": 0,
             "patch": 0,
-            "stage": Version::RC,
-            "build": 3
+            "stage": Version::STABLE,
+            "build": 1
         ];
     }
 
