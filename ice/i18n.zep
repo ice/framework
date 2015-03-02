@@ -1,5 +1,11 @@
+function _(string! str, array values = null, var context = null, string lang = null)
+{
+    return I18n::$fetch()->translate(str, values, context, lang);
+}
 
 namespace Ice;
+
+use Ice\I18n\Plural;
 
 /**
  * Internationalization (i18n) class.
@@ -15,6 +21,7 @@ class I18n
     
     protected static _i18n;
     protected _cache = [];
+    protected _rules = [];
     protected _options = [
         "source": "en-gb",
         "lang": "en-gb",
@@ -61,26 +68,37 @@ class I18n
     /**
      * Get ISO language code.
      *
+     * @param string lang Language
+     * @param boolean country Get country code, by default gets language code
      * @return string
      */
-    public function iso() -> string
+    public function iso(var lang = null, boolean country = false) -> string
     {
-        return substr(this->_options["lang"], 0, 2);
+        var parts;
+
+        if !lang {
+            let lang = this->_options["lang"];
+        }
+
+        let parts = explode("-", strtolower(str_replace("_", "-", lang)));
+
+        return country && isset parts[1] ? parts[1] : parts[0];
     }
 
 
 
     /**
-     * Returns translation of a string. No parameters are replaced.
+     * Returns specified form of a string translation. No parameters are replaced.
      * If no translation exists, the original string will be returned. 
      *
      * @param string str Text to translate
+     * @param mixed form If NULL, looking for `other` form, else the very first form
      * @param string lang Target language
      * @return string
      */
-    public function get(string str, string lang = null) -> string
+    public function get(string str, var form = null, string lang = null) -> string
     {
-        var messages;
+        var messages, translation;
 
         let messages = [];
 
@@ -92,8 +110,27 @@ class I18n
         // Load the translation messages for this language
         let messages = this->load(lang);
 
-        // Return the translated string if it exists
-        return isset messages[str] ? messages[str] : str;
+        if isset messages[str] {
+            let translation = messages[str];
+
+            // If translation is array, return right context
+            if typeof translation == "array" {
+                // Get a value for the form key
+                if array_key_exists(form, translation) {
+                    return translation[form];
+                } elseif array_key_exists("other", translation) {
+                    return translation["other"];
+                }
+
+                // Return the very first form
+                return reset(translation);
+            }
+
+            return translation;
+        }
+
+        // If no translation exists, return the original string
+        return str;
     }
 
     /**
@@ -139,9 +176,79 @@ class I18n
     }
 
     /**
+     * Returns translation of a string with right plural form.
+     * If no translation exists, the original string will be returned.
+     * 
+     * @param string string
+     * @param int count
+     * @param string lang
+     * @return string
+     */
+    public function plural(string! str, int count = 0, string lang = null)
+    {
+        var rules, form, code;
+
+        let code = this->iso(lang);
+
+        if !fetch rules, this->_rules[code] {
+            // Get language code prefix
+            let this->_rules[code] = this->pluralRules(code),
+                rules = this->_rules[code];
+        }
+
+
+        let form = rules->getCategory(count);
+
+        // Return the translation for that form
+        return this->get(str, form, lang);
+    }
+
+    /**
+     * Plural rules lazy initialization.
+     * 
+     * @param string code Language code
+     * @return object
+     */
+    protected function pluralRules(string code)
+    {
+        if code === "pl" {
+            return new Plural\Polish;
+        } elseif code === "ar" {
+            return new Plural\Arabic;
+        } elseif in_array(code, ["cs", "sk"], true) {
+            return new Plural\Czech;
+        } elseif in_array(code, ["ru", "sr", "uk", "sh", "be", "hr", "bs"], true) {
+            return new Plural\Balkan;
+        } elseif in_array(code, ["fr", "ff", "kab"], true) {
+            return new Plural\French;
+        } elseif in_array(code, ["mo", "ro"], true) {
+            return new Plural\Romanian;
+        } elseif in_array(code, ["hi", "ln", "mg", "ak", "tl", "am", "bh", "wa", "ti", "guw", "fil", "nso"], true) {
+            return new Plural\Zero;
+        } elseif in_array(code, [
+            "en", "ny", "nr", "no", "om", "os", "ps", "pa", "nn", "or", "nl", "lg", "lb", "ky", "ml", "mr",
+            "ne", "nd", "nb", "pt", "rm", "ts", "tn", "tk", "ur", "vo", "zu", "xh", "ve", "te", "ta", "sq",
+            "so", "sn", "ss", "st", "sw", "sv", "ku", "mn", "et", "eo", "el", "eu", "fi", "fy", "fo", "ee",
+            "dv", "bg", "af", "bn", "ca", "de", "da", "gl", "es", "it", "is", "ks", "ha", "kk", "kl", "gu",
+            "brx", "mas", "teo", "chr", "cgg", "tig", "wae", "xog", "ast", "vun", "bem", "syr", "bez", "asa",
+            "rof", "ksb", "rwk", "haw", "pap", "gsw", "fur", "saq", "seh", "nyn", "kcg", "ssy", "kaj", "jmc",
+            "nah", "ckb"], true) {
+            return new Plural\One;
+        } elseif in_array(code, ["se", "kw", "iu", "smn", "sms", "smj", "sma", "naq", "smi"], true) {
+            return new Plural\Two;
+        } elseif in_array(code, [
+            "my", "sg", "ms", "lo", "kn", "ko", "th", "to", "yo", "zh", "wo", "vi", "tr", "az", "km", "id",
+            "ig", "fa", "dz", "bm", "bo", "ii", "hu", "ka", "jv", "ja", "kde", "ses", "sah", "kea"], true) {
+            return new Plural\None;
+        } else {
+            throw new Exception("Unknown language code: " . code);
+        }
+    }
+
+    /**
      * Alias of translate.
      */
-    public function _(string! str, array values = null, string lang = null) -> string
+    public function _(string! str, array values = null, var context = null, string lang = null) -> string
     {
         return this->translate(str, values, lang);
     }
@@ -151,17 +258,23 @@ class I18n
      *
      * @param string string Text to translate
      * @param array values Values to replace in the translated text
+     * @param mixed context String form or numeric count
      * @param string lang Source language
      * @return string
      */
-    public function translate(string! str, array values = null, string lang = null) -> string
+    public function translate(string! str, array values = null, var context = null, string lang = null) -> string
     {
         if !lang {
             let lang = (string) this->_options["lang"];
         }
 
-        // Get the translation for this message
-        let str = this->get(str, lang);
+        if is_numeric(context) {
+            // Get plural form
+            let str = this->plural(str, context, lang);
+        } else {
+            // Get custom form
+            let str = this->get(str, context, lang);
+        }
 
         if !count(values) {
             return str;
