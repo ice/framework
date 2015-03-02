@@ -1,7 +1,7 @@
-function _(string! str, array values = null, var context = null, string lang = null)
-{
-    return I18n::$fetch()->translate(str, values, context, lang);
-}
+// function _(string! str, array values = null, var context = null, string lang = null)
+// {
+//     return I18n::$fetch()->translate(str, values, context, lang);
+// }
 
 namespace Ice;
 
