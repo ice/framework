@@ -57,7 +57,7 @@ PHP_METHOD(Ice_Version, current) {
 	array_init_size(return_value, 7);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
-	add_assoc_long_ex(return_value, SS("patch"), 0);
+	add_assoc_long_ex(return_value, SS("patch"), 1);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
 	add_assoc_long_ex(return_value, SS("build"), 1);
 	return;
