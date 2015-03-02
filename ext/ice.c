@@ -26,6 +26,7 @@
 
 
 
+zend_class_entry *ice_i18n_plural_pluralinterface_ce;
 zend_class_entry *ice_auth_social_socialinterface_ce;
 zend_class_entry *ice_mvc_view_engine_engineinterface_ce;
 zend_class_entry *ice_auth_driver_driverinterface_ce;
@@ -84,6 +85,16 @@ zend_class_entry *ice_http_request_ce;
 zend_class_entry *ice_http_response_ce;
 zend_class_entry *ice_http_response_headers_ce;
 zend_class_entry *ice_i18n_ce;
+zend_class_entry *ice_i18n_plural_arabic_ce;
+zend_class_entry *ice_i18n_plural_balkan_ce;
+zend_class_entry *ice_i18n_plural_czech_ce;
+zend_class_entry *ice_i18n_plural_french_ce;
+zend_class_entry *ice_i18n_plural_none_ce;
+zend_class_entry *ice_i18n_plural_one_ce;
+zend_class_entry *ice_i18n_plural_polish_ce;
+zend_class_entry *ice_i18n_plural_romanian_ce;
+zend_class_entry *ice_i18n_plural_two_ce;
+zend_class_entry *ice_i18n_plural_zero_ce;
 zend_class_entry *ice_loader_ce;
 zend_class_entry *ice_log_ce;
 zend_class_entry *ice_log_driver_file_ce;
@@ -145,6 +156,7 @@ static PHP_MINIT_FUNCTION(ice)
 	setlocale(LC_ALL, "C");
 #endif
 
+	ZEPHIR_INIT(Ice_I18n_Plural_PluralInterface);
 	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);
 	ZEPHIR_INIT(Ice_Auth_Driver_DriverInterface);
@@ -203,6 +215,16 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Http_Response);
 	ZEPHIR_INIT(Ice_Http_Response_Headers);
 	ZEPHIR_INIT(Ice_I18n);
+	ZEPHIR_INIT(Ice_I18n_Plural_Arabic);
+	ZEPHIR_INIT(Ice_I18n_Plural_Balkan);
+	ZEPHIR_INIT(Ice_I18n_Plural_Czech);
+	ZEPHIR_INIT(Ice_I18n_Plural_French);
+	ZEPHIR_INIT(Ice_I18n_Plural_None);
+	ZEPHIR_INIT(Ice_I18n_Plural_One);
+	ZEPHIR_INIT(Ice_I18n_Plural_Polish);
+	ZEPHIR_INIT(Ice_I18n_Plural_Romanian);
+	ZEPHIR_INIT(Ice_I18n_Plural_Two);
+	ZEPHIR_INIT(Ice_I18n_Plural_Zero);
 	ZEPHIR_INIT(Ice_Loader);
 	ZEPHIR_INIT(Ice_Log);
 	ZEPHIR_INIT(Ice_Log_Driver_File);

@@ -54,6 +54,17 @@ if test "$PHP_ICE" = "yes"; then
 	ice/http/response/headersinterface.zep.c
 	ice/http/response/responseinterface.zep.c
 	ice/i18n.zep.c
+	ice/i18n/plural/arabic.zep.c
+	ice/i18n/plural/balkan.zep.c
+	ice/i18n/plural/czech.zep.c
+	ice/i18n/plural/french.zep.c
+	ice/i18n/plural/none.zep.c
+	ice/i18n/plural/one.zep.c
+	ice/i18n/plural/pluralinterface.zep.c
+	ice/i18n/plural/polish.zep.c
+	ice/i18n/plural/romanian.zep.c
+	ice/i18n/plural/two.zep.c
+	ice/i18n/plural/zero.zep.c
 	ice/loader.zep.c
 	ice/log.zep.c
 	ice/log/driver.zep.c

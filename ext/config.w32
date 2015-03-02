@@ -21,6 +21,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/http", "request.zep.c response.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/request", "requestinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/response", "headers.zep.c headersinterface.zep.c responseinterface.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/i18n/plural", "arabic.zep.c balkan.zep.c czech.zep.c french.zep.c none.zep.c one.zep.c pluralinterface.zep.c polish.zep.c romanian.zep.c two.zep.c zero.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/log", "driver.zep.c loggerinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/log/driver", "file.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc", "app.zep.c controller.zep.c dispatcher.zep.c model.zep.c moduleinterface.zep.c route.zep.c router.zep.c url.zep.c view.zep.c", "ice");
