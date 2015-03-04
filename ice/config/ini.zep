@@ -30,9 +30,9 @@ class Ini extends Config
         }
 
         let ini = parse_ini_file(data, true),
-            ini = this->arrayMapRecursive([this, "cast"], ini);
+            data = this->arrayMapRecursive([this, "cast"], ini);
 
-        parent::__construct(ini);
+        parent::__construct(data);
     }
 
     /**

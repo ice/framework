@@ -44,16 +44,18 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
  */
 PHP_METHOD(Ice_Config_Ini, __construct) {
 
-	zval *_2;
+	zval *_1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_4 = NULL, *_5 = NULL;
-	zval *data = NULL, *ini = NULL, *_1 = NULL, *_3;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_3 = NULL, *_4 = NULL;
+	zval *data = NULL, *ini = NULL, *_2;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
 
 	if (!data) {
-		data = ZEPHIR_GLOBAL(global_null);
+		ZEPHIR_CPY_WRT(data, ZEPHIR_GLOBAL(global_null));
+	} else {
+		ZEPHIR_SEPARATE_PARAM(data);
 	}
 
 
@@ -63,16 +65,15 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	}
 	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, data, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_1);
+	array_init_size(_1, 3);
+	zephir_array_fast_append(_1, this_ptr);
 	ZEPHIR_INIT_VAR(_2);
-	array_init_size(_2, 3);
-	zephir_array_fast_append(_2, this_ptr);
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_STRING(_3, "cast", 1);
-	zephir_array_fast_append(_2, _3);
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "arraymaprecursive", &_4, _2, ini);
+	ZVAL_STRING(_2, "cast", 1);
+	zephir_array_fast_append(_1, _2);
+	ZEPHIR_CALL_METHOD(&data, this_ptr, "arraymaprecursive", &_3, _1, ini);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(ini, _1);
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_5, ini);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_4, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
