@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
@@ -46,21 +47,21 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	zval *_2;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_4 = NULL, *_5 = NULL;
-	zval *file_param = NULL, *ini = NULL, *_1 = NULL, *_3;
-	zval *file = NULL;
+	zval *data = NULL, *ini = NULL, *_1 = NULL, *_3;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &file_param);
+	zephir_fetch_params(1, 0, 1, &data);
 
-	if (!file_param) {
-		ZEPHIR_INIT_VAR(file);
-		ZVAL_EMPTY_STRING(file);
-	} else {
-		zephir_get_strval(file, file_param);
+	if (!data) {
+		data = ZEPHIR_GLOBAL(global_null);
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, file, ZEPHIR_GLOBAL(global_true));
+	if (Z_TYPE_P(data) != IS_STRING) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 29);
+		return;
+	}
+	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, data, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	array_init_size(_2, 3);
@@ -153,7 +154,7 @@ PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 	ZEPHIR_SEPARATE_PARAM(data);
 
 
-	zephir_is_iterable(data, &_1, &_0, 1, 0, "ice/config/ini.zep", 86);
+	zephir_is_iterable(data, &_1, &_0, 1, 0, "ice/config/ini.zep", 91);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -161,12 +162,12 @@ PHP_METHOD(Ice_Config_Ini, arrayMapRecursive) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
-			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 80 TSRMLS_CC);
+			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 85 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&_3, this_ptr, "arraymaprecursive", &_5, callback, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
 		} else {
-			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 83 TSRMLS_CC);
+			zephir_array_fetch(&_4, data, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 88 TSRMLS_CC);
 			ZEPHIR_CALL_FUNCTION(&_3, "call_user_func", &_6, callback, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);

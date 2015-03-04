@@ -18,7 +18,7 @@ class Config extends Arr
      *
      * @param array data Initial config
      */
-    public function __construct(data = null)
+    public function __construct(var data = null)
     {
         var key, value,hasNumericKey, subkey, subvalue;
 
