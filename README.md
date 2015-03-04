@@ -29,6 +29,8 @@ There are two ways to compile Ice framework*:
 
 *before compilation please read the [Requirements](#requirements).
 
+***
+
 #### Compile from `/ext`:
 Clone and install from GitHub:
 ```sh
@@ -37,7 +39,7 @@ cd framework/ext/
 sudo ./install
 ```
 
-###### or install using composer:
+###### or install using [composer](https://getcomposer.org/):
 ```sh
 composer create-project iceframework/framework --no-dev
 ```
@@ -52,7 +54,7 @@ Finally restart the webserver
 ***
 
 #### Build by zephir* (generate, compile and install extension):
-###### By default `../vendor/bin/zephir` runns zephir. You must run zephir begin in the `/framework` directory to build Ice:
+###### By default `./vendor/bin/zephir` runns zephir. You must run zephir begin in the `/framework` directory to build Ice:
 ```sh
 cd framework/
 ./vendor/bin/zephir build
@@ -61,7 +63,7 @@ cd framework/
 *if you don't have zephir you need to compile zephir.
 
 ##### Compile zephir
-###### You can install zephir using [composer](https://getcomposer.org/). If you already have ice and you are inside `/framework` directory:
+###### You can install zephir using composer. If you already have ice and you are inside `/framework` directory:
 ```sh
 composer update
 ```
@@ -83,7 +85,7 @@ mkdir ../../bin && cd $_
 ln -s ../phalcon/zephir/bin/zephir
 ```
 
-###### Run zephir first time to install zephir:
+###### Run zephir first time:
 ```sh
 cd framework/
 ./vendor/bin/zephir
@@ -99,38 +101,23 @@ You can build from C-files or build by zephir
 * gnu make 3.81 or later
 * php development headers and tools
 
-Ubuntu:
-```sh
-sudo apt-get install php5-dev libpcre3-dev gcc make
-```
-
-Suse:
-```sh
-sudo zypper install php5-devel pcre-devel gcc make
-```
-
-CentOS/Fedora/RHEL
-```sh
-sudo yum install php-devel pcre-devel gcc make
-```
-
-##### To compile zephir-parser:
+##### To compile zephir-parser
 * json-c (from Github)
 * re2c
 
 Ubuntu:
 ```sh
-sudo apt-get install re2c libpcre3-dev
+sudo apt-get install php5-dev libpcre3-dev gcc make re2c
 ```
 
 Suse:
 ```sh
-sudo zypper install re2c pcre-devel
+sudo zypper install php5-devel pcre-devel gcc make re2c
 ```
 
 CentOS/Fedora/RHEL
 ```sh
-sudo yum install re2c pcre-devel
+sudo yum install php-devel pcre-devel gcc make re2c
 ```
 
 ### License
