@@ -8,7 +8,7 @@ PHP_METHOD(Ice_Config_Ini, cast);
 PHP_METHOD(Ice_Config_Ini, arrayMapRecursive);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_ini___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, file)
+	ZEND_ARG_INFO(0, data)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_ini_cast, 0, 0, 1)

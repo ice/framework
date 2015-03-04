@@ -37,16 +37,24 @@ class Collector
      *
      * The syntax used in the $route string depends on the used route parser.
      *
-     * @param string $httpMethod
+     * @param string|array $httpMethod
      * @param string $route
      * @param mixed  $handler
      */
-    public function addRoute(string httpMethod, string route, handler = null)
+    public function addRoute(var httpMethod, string route, handler = null)
     {
-        var routeData;
+        var routeData, method;
 
         let routeData = this->routeParser->parse(route);
-        this->dataGenerator->addRoute(httpMethod, routeData, handler);
+
+        if typeof httpMethod == "string" {
+            let method = httpMethod,
+                httpMethod = [method];
+        }
+
+        for method in httpMethod {
+            this->dataGenerator->addRoute(method, routeData, handler);
+        }
     }
 
     /**

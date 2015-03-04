@@ -2,6 +2,7 @@
 namespace Ice\Config;
 
 use Ice\Config;
+use Ice\Exception;
 
 /**
  * Adapter for get config from ini files.
@@ -20,11 +21,15 @@ class Ini extends Config
      *
      * @param string file Path to the ini file
      */
-    public function __construct(string file = null)
+    public function __construct(var data = null)
     {
         var ini;
 
-        let ini = parse_ini_file(file, true),
+        if typeof data != "string" {
+            throw new Exception("The file path must be a string");
+        }
+
+        let ini = parse_ini_file(data, true),
             ini = this->arrayMapRecursive([this, "cast"], ini);
 
         parent::__construct(ini);
