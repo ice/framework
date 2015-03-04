@@ -17,6 +17,8 @@
 #include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
+#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
@@ -125,20 +127,22 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
  *
  * The syntax used in the $route string depends on the used route parser.
  *
- * @param string $httpMethod
+ * @param string|array $httpMethod
  * @param string $route
  * @param mixed  $handler
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
+	HashTable *_2;
+	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *httpMethod_param = NULL, *route_param = NULL, *handler = NULL, *routeData = NULL, *_0, *_1;
-	zval *httpMethod = NULL, *route = NULL;
+	zval *route = NULL;
+	zval *httpMethod = NULL, *route_param = NULL, *handler = NULL, *routeData = NULL, *method = NULL, *_0, **_3, *_4;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 1, &httpMethod_param, &route_param, &handler);
+	zephir_fetch_params(1, 2, 1, &httpMethod, &route_param, &handler);
 
-	zephir_get_strval(httpMethod, httpMethod_param);
+	ZEPHIR_SEPARATE_PARAM(httpMethod);
 	zephir_get_strval(route, route_param);
 	if (!handler) {
 		handler = ZEPHIR_GLOBAL(global_null);
@@ -148,9 +152,22 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("routeParser"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&routeData, _0, "parse", NULL, route);
 	zephir_check_call_status();
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("dataGenerator"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, _1, "addroute", NULL, httpMethod, routeData, handler);
-	zephir_check_call_status();
+	if (Z_TYPE_P(httpMethod) == IS_STRING) {
+		ZEPHIR_CPY_WRT(method, httpMethod);
+		ZEPHIR_INIT_NVAR(httpMethod);
+		array_init_size(httpMethod, 2);
+		zephir_array_fast_append(httpMethod, method);
+	}
+	zephir_is_iterable(httpMethod, &_2, &_1, 0, 0, "ice/mvc/route/collector.zep", 58);
+	for (
+	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_2, &_1)
+	) {
+		ZEPHIR_GET_HVALUE(method, _3);
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("dataGenerator"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, _4, "addroute", NULL, method, routeData, handler);
+		zephir_check_call_status();
+	}
 	ZEPHIR_MM_RESTORE();
 
 }
