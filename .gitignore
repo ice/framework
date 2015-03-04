@@ -6,7 +6,6 @@
 /nbproject/
 *.sublime-project
 *.sublime-workspace
-/vendor/
 /composer.lock
 /compile-errors.log
 /compile.log

@@ -30,16 +30,16 @@ There are two ways to compile Ice framework*:
 *before compilation please read the [Requirements](#requirements).
 
 #### Compile from `/ext`:
-Install using composer:
-```sh
-composer require iceframework/framework:dev-dev
-```
-
-###### or clone and install manualy:
+Clone and install from GitHub:
 ```sh
 git clone https://github.com/ice/framework.git
 cd framework/ext/
 sudo ./install
+```
+
+###### or install using composer:
+```sh
+composer create-project iceframework/framework --no-dev
 ```
 
 ##### Add extension to your php.ini:
@@ -49,11 +49,13 @@ extension=ice.so
 
 Finally restart the webserver
 
+***
+
 #### Build by zephir* (generate, compile and install extension):
 ###### By default `../vendor/bin/zephir` runns zephir. You must run zephir begin in the `/framework` directory to build Ice:
 ```sh
 cd framework/
-../vendor/bin/zephir build
+./vendor/bin/zephir build
 ```
 
 *if you don't have zephir you need to compile zephir.
@@ -61,34 +63,33 @@ cd framework/
 ##### Compile zephir
 ###### You can install zephir using [composer](https://getcomposer.org/). If you already have ice and you are inside `/framework` directory:
 ```sh
-cd ../
-composer require phalcon/zephir
+composer update
 ```
 
 ###### or clone zephir repo:
 ```sh
+mkdir vendor/phalcon/ && cd $_
 git clone https://github.com/phalcon/zephir.git
-```
 
-###### Compile json-c:
-```sh
-cd vendor/phalcon/zephir/
-phpenv rehash
-git submodule --quiet update --init --recursive
+# Compile json-c:
+cd zephir/
+./install-json
 
-cd json-c/
-git checkout patch-1
-sh autogen.sh 2&>1 /dev/null
-./configure --silent
-make --silent
-sudo make --silent install
+# Install zephir
+./install
+
+# Create symbolic link
+mkdir ../../bin && cd $_
+ln -s ../phalcon/zephir/bin/zephir
 ```
 
 ###### Run zephir first time to install zephir:
 ```sh
 cd framework/
-../vendor/bin/zephir
+./vendor/bin/zephir
 ```
+
+***
 
 #### Requirements
 You can build from C-files or build by zephir
