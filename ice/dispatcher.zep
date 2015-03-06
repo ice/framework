@@ -27,6 +27,7 @@ abstract class Dispatcher
 
     protected _modules = [] { get, set };
     protected _module = null { get, set };
+    protected _namespace = null { get, set };
     protected _handler = null { get, set };
     protected _action = null { get, set };
 
@@ -127,48 +128,43 @@ abstract class Dispatcher
             let this->_finished = true,
                 modules = this->_modules;
 
-            // Set the default module
-            if !modules {
-                let modules = [
-                    "default": [
-                        "namespace": "App",
-                        "path": "../App/"
-                    ]
-                ];
-            }
-
-            if !fetch module, modules[this->_module] {
-                throw new Exception(["Module '%s' isn't registered in the application container", this->_module]);
-            }
-            
-            if typeof module != "array" {
-                throw new Exception("Module definition must be an array");
-            }
-
-            if fetch path, module["path"] {
-                if !file_exists(path) {
-                    throw new Exception(["Module definition path '%s' doesn't exist", path]);
+            if modules {
+                if !fetch module, modules[this->_module] {
+                    throw new Exception(["Module '%s' isn't registered in the application container", this->_module]);
                 }
+                
+                if typeof module != "array" {
+                    throw new Exception("Module definition must be an array");
+                }
+
+                if fetch path, module["path"] {
+                    if !file_exists(path) {
+                        throw new Exception(["Module definition path '%s' doesn't exist", path]);
+                    }
+                }
+
+                if !fetch moduleClass, module["class"] {
+                    let moduleClass = "Module";
+                }
+
+                if !fetch moduleNamespace, module["namespace"] {
+                    let moduleNamespace = moduleClass;
+                }
+
+                let loader = new Loader(),
+                    this->_namespace = moduleNamespace;
+
+                loader->addNamespace(moduleNamespace, path)->register();
+
+                let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->_di]);
+
+                module->registerAutoloaders();
+                module->registerServices(this->_di);
             }
 
-            if !fetch moduleClass, module["class"] {
-                let moduleClass = "Module";
+            if !this->_defaultNamespace {
+                this->setDefaultNamespace(this->_namespace . "\\" . this->getHandlerSuffix());
             }
-
-            if !fetch moduleNamespace, module["namespace"] {
-                let moduleNamespace = moduleClass;
-            }
-
-            let loader = new Loader();
-
-            loader->addNamespace(moduleNamespace, path)->register();
-
-            let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->_di]);
-
-            this->setDefaultNamespace(moduleNamespace . "\\" . this->getHandlerSuffix());
-
-            module->registerAutoloaders();
-            module->registerServices(this->_di);
 
             let handlerName = this->_handler,
                 actionName = this->_action,

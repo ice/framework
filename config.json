@@ -11,8 +11,8 @@
                 ["Website", "http://www.iceframework.org"],
                 ["Email", "info@iceframework.org"],
                 ["FreeNode", "#iceframework"],
-                ["Twitter", "iceframework"],
-                ["Github", "ice"]
+                ["Twitter, Packagist", "iceframework"],
+                ["GitHub", "ice"]
             ]
         }
     ],

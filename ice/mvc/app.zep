@@ -28,7 +28,7 @@ class App extends Access
      */
     public function handle(method = null, uri = null) -> <ResponseInterface> | boolean
     {
-        var router, request, response, dispatcher, controller, view;
+        var argv, router, request, response, dispatcher, controller, view;
 
         let request = this->_di->{"getRequest"}();
         if method == null {
@@ -37,6 +37,16 @@ class App extends Access
 
         if uri == null {
             let uri = request->get("_url");
+        }
+
+        // Set the default method & uri for the CLI
+        if !method && PHP_SAPI === "cli" {
+            let method = "GET",
+                argv = _SERVER["argv"];
+
+            if !uri && isset argv[1] {
+                let uri = argv[1];
+            }
         }
 
         let router = this->_di->{"getRouter"}(),
