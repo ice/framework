@@ -344,8 +344,8 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_row(2, "Website", "http://www.iceframework.org");
 	php_info_print_table_row(2, "Email", "info@iceframework.org");
 	php_info_print_table_row(2, "FreeNode", "#iceframework");
-	php_info_print_table_row(2, "Twitter", "iceframework");
-	php_info_print_table_row(2, "Github", "ice");
+	php_info_print_table_row(2, "Twitter, Packagist", "iceframework");
+	php_info_print_table_row(2, "GitHub", "ice");
 	php_info_print_table_end();
 
 }
