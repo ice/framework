@@ -324,7 +324,7 @@ class Pdo implements DbInterface
      *
      * @return int
      */
-    public function lastInsertId() -> int 
+    public function getLastInsertId() -> int
     {
         return (int) this->_client->lastInsertId();
     }

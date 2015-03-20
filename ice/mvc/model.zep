@@ -274,7 +274,7 @@ abstract class Model extends Arr implements \Serializable
         let status = this->_db->insert(this->_from, this->getData());
 
         if status {
-            this->set(this->_db->getId(), this->_db->lastInsertId());
+            this->set(this->_db->getId(), this->_db->getLastInsertId());
         }
 
         return status;
