@@ -18,8 +18,9 @@ class Mongo implements DbInterface
 
     protected _id = "_id" { get };
     protected _type = "NOSQL" { get };
-    protected _error { get };
+    protected _error;
     protected _client { get };
+    protected _lastInsertId { get };
 
    /**
     * Instantiate mongo connection.
@@ -47,9 +48,9 @@ class Mongo implements DbInterface
         var result;
 
         let options["limit"] = 1,
-            result = this->select(from, filters, fields, options);
+            result = this->select(from, filters, options, fields);
 
-        return new Arr(iterator_to_array(result->current()));
+        return result->count() ? new Arr(result->getNext()) : false;
     }
 
     /**
@@ -71,7 +72,7 @@ class Mongo implements DbInterface
     {
         var result;
 
-        let result = this->select(from, filters, fields, options);
+        let result = this->select(from, filters, options, fields);
 
         return new Arr(iterator_to_array(result));
     }
@@ -86,22 +87,39 @@ class Mongo implements DbInterface
      */
     public function select(string! from, var filters = [], array options = [], array fields = [])
     {
-        var collection, result;
+        var filtered, collection, result, tmp;
+
+        switch typeof filters {
+            case "array":
+                // Find by filters
+                let filtered = filters;
+            break;
+            case "integer":
+            case "string":
+                // Find by id
+                let filtered = [this->_id: new \MongoId(filters)];
+            break;
+            default:
+                // Find all
+                let filtered = [];
+            break;
+        }
 
         let collection = this->_client->selectcollection(from),
-            result = collection->find(filters, fields);
+            result = collection->find(filtered, fields);
 
         if isset options["order"] {
-            let result = result->sort(options["order"]);
+            let tmp = result,
+                result = tmp->sort(options["order"]);
         }
         if isset options["limit"] {
-            let result = result->limit(options["limit"]);
+            let tmp = result,
+                result = tmp->limit(options["limit"]);
         }
         if isset options["offset"] {
-            let result = result->skip(options["offset"]);
+            let tmp = result,
+                result = tmp->skip(options["offset"]);
         }
-
-        let this->_error = this->_client->lastError();
 
         return result;
     }
@@ -117,7 +135,8 @@ class Mongo implements DbInterface
         var collection, status;
 
         let collection = this->_client->selectcollection(from),
-            status = collection->insert(fields);
+            status = collection->insert(fields),
+            this->_lastInsertId = fields[this->_id];
 
         return status;
     }
@@ -153,5 +172,21 @@ class Mongo implements DbInterface
             status = collection->remove(filters);
 
         return status;
+    }
+
+    /**
+     * Get an error message.
+     *
+     * @return mixed
+     */
+    public function getError()
+    {
+        var error;
+
+        let this->_error = this->_client->lastError();
+
+        fetch error, this->_error["err"];
+
+        return error;
     }
 }

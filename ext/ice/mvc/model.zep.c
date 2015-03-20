@@ -710,7 +710,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 		ZEPHIR_CALL_METHOD(&_18, _12, "getid", NULL);
 		zephir_check_call_status();
 		_13 = zephir_fetch_nproperty_this(this_ptr, SL("_db"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_23, _13, "lastinsertid", NULL);
+		ZEPHIR_CALL_METHOD(&_23, _13, "getlastinsertid", NULL);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, _18, _23);
 		zephir_check_call_status();

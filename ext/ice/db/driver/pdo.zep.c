@@ -829,7 +829,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
  *
  * @return int
  */
-PHP_METHOD(Ice_Db_Driver_Pdo, lastInsertId) {
+PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1 = NULL;
