@@ -121,6 +121,8 @@ class Mongo implements DbInterface
                 result = tmp->skip(options["offset"]);
         }
 
+        let this->_error = this->_client->lastError();
+
         return result;
     }
 
@@ -136,9 +138,10 @@ class Mongo implements DbInterface
 
         let collection = this->_client->selectcollection(from),
             status = collection->insert(fields),
-            this->_lastInsertId = fields[this->_id];
+            this->_lastInsertId = fields[this->_id],
+            this->_error = status;
 
-        return status;
+        return status["err"] === null ? true : status;
     }
 
     /**
@@ -153,9 +156,10 @@ class Mongo implements DbInterface
         var collection, status;
 
         let collection = this->_client->selectcollection(from),
-            status = collection->update(filters, fields);
+            status = collection->update(filters, fields),
+            this->_error = status;
 
-        return status;
+        return status["err"] === null ? true : status;
     }
 
     /**
@@ -169,9 +173,10 @@ class Mongo implements DbInterface
         var collection, status;
 
         let collection = this->_client->selectcollection(from),
-            status = collection->remove(filters);
+            status = collection->remove(filters),
+            this->_error = status;
 
-        return status;
+        return status["err"] === null ? true : status;
     }
 
     /**
@@ -182,8 +187,6 @@ class Mongo implements DbInterface
     public function getError()
     {
         var error;
-
-        let this->_error = this->_client->lastError();
 
         fetch error, this->_error["err"];
 
