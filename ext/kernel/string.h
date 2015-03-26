@@ -26,6 +26,7 @@
 #define ZEPHIR_TRIM_LEFT  1
 #define ZEPHIR_TRIM_RIGHT 2
 #define ZEPHIR_TRIM_BOTH  3
+#define ZEPHIR_SUBSTR_NO_LENGTH 1
 
 /** Fast char position */
 int zephir_memnstr(const zval *haystack, const zval *needle ZEPHIR_DEBUG_PARAMS);
@@ -72,7 +73,7 @@ void zephir_unique_key(zval *return_value, zval *prefix, zval *value TSRMLS_DC);
 int zephir_spprintf(char **message, int max_len, char *format, ...);
 
 /* Substr */
-void zephir_substr(zval *return_value, zval *str, long from, long length);
+void zephir_substr(zval *return_value, zval *str, long from, long length, int flags);
 
 /** EOL */
 zval *zephir_eol(int eol TSRMLS_DC);
@@ -86,6 +87,7 @@ void zephir_base64_decode(zval *return_value, zval *data);
 
 /** Hash */
 void zephir_md5(zval *return_value, zval *str);
+void zephir_crc32(zval *return_value, zval *str TSRMLS_DC);
 
 /** JSON */
 int zephir_json_encode(zval *return_value, zval **return_value_ptr, zval *v, int opts TSRMLS_DC);

@@ -23,69 +23,72 @@ class Ini extends Config
      */
     public function __construct(var data = null)
     {
-        var ini;
+        var ini, raw;
 
         if typeof data != "string" {
             throw new Exception("The file path must be a string");
         }
 
         let ini = parse_ini_file(data, true),
-            data = this->arrayMapRecursive([this, "cast"], ini);
+            raw = parse_ini_file(data, true, INI_SCANNER_RAW),
+            data = this->map(ini, raw);
 
         parent::__construct(data);
     }
 
     /**
-     * Return real type from a string, eg. "true" => true.
+     * We have to cast values manually because parse_ini_file() has a poor implementation.
      *
-     * @param string value
+     * @param mixed ini The array casted by `parse_ini_file`
+     * @param mixed raw The same array but with raw strings
      * @return mixed
      */
-    public function cast(value)
+    private function cast(ini, raw)
     {
-        if typeof value == "string" {
-            // Try to convert to float/int
-            if !preg_match("/[^0-9.]+/", value) {
-                if preg_match("/[.]+/", value) {
-                    return (double) value;
+        if typeof ini == "string" {
+            // Decode true
+            if ini == "1" && (raw === "true" || raw === "yes" || raw === "on") {
+                return true;
+            }
+
+            // Decode false
+            if ini === "" && (raw === "false" || raw === "no" || raw === "off") {
+                return false;
+            }
+
+            // Decode null
+            if ini === "" && raw === "null" {
+                return null;
+            }
+
+            // Decode float/int
+            if is_numeric(ini) {
+                if preg_match("/[.]+/", ini) {
+                    return (double) ini;
                 } else {
-                    return (int) value;
+                    return (int) ini;
                 }
             }
-            switch value {
-                case "false":
-                case "FALSE":
-                    return false;
-                case "true":
-                case "TRUE":
-                    return true;
-                case "null":
-                case "NULL":
-                    return null;
-                default:
-                    return value;
-            }
         }
-        return value;
+        return ini;
     }
 
     /**
      * Map the array recursively.
      *
-     * @param object callback Callback to apply
-     * @param array data Data to convert
+     * @param array ini
+     * @param array raw
      * @return array
      */
-    private function arrayMapRecursive(callback, data) -> array
+    private function map(ini, raw)
     {
-        var key, value;
+        var key, value, data = [];
 
-        for key, value in data {
+        for key, value in ini {
             if typeof value == "array" {
-                let data[key] = this->arrayMapRecursive(callback, data[key]);
-            }
-            else {
-                let data[key] = call_user_func(callback, data[key]);
+                let data[key] = this->map(value, raw[key]);
+            } else {
+                let data[key] = this->cast(value, raw[key]);
             }
         }
         return data;

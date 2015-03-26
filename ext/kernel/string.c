@@ -34,6 +34,7 @@
 #include <ext/standard/php_http.h>
 #include "ext/standard/base64.h"
 #include "ext/standard/md5.h"
+#include "ext/standard/crc32.h"
 #include "ext/standard/url.h"
 #include "ext/standard/html.h"
 #include "ext/date/php_date.h"
@@ -917,9 +918,10 @@ int zephir_spprintf(char **message, int max_len, char *format, ...)
 /**
  * Makes a substr like the PHP function. This function SUPPORT negative from and length
  */
-void zephir_substr(zval *return_value, zval *str, long f, long l) {
-
-	long str_len;
+void zephir_substr(zval *return_value, zval *str, long f, long l, int flags) {
+	zval copy;
+	int use_copy = 0;
+	int str_len;
 
 	if (Z_TYPE_P(str) != IS_STRING) {
 
@@ -927,21 +929,22 @@ void zephir_substr(zval *return_value, zval *str, long f, long l) {
 			RETURN_FALSE;
 		}
 
-		if (Z_TYPE_P(str) == IS_LONG) {
-			RETURN_EMPTY_STRING();
+		if (Z_TYPE_P(str) != IS_STRING) {
+			zend_make_printable_zval(str, &copy, &use_copy);
+			if (use_copy) {
+				str = &copy;
+			}
 		}
-
-		zend_error(E_WARNING, "Invalid arguments supplied for zephir_substr()");
-		RETURN_FALSE;
 	}
 
 	str_len = Z_STRLEN_P(str);
+	if ((flags & ZEPHIR_SUBSTR_NO_LENGTH) == ZEPHIR_SUBSTR_NO_LENGTH) {
+		l = str_len;
+	}
 
 	if ((l < 0 && -l > str_len)) {
 		RETURN_FALSE;
 	} else if (l > str_len) {
-		l = str_len;
-	} else if (l == 0) {
 		l = str_len;
 	}
 
@@ -981,10 +984,6 @@ void zephir_substr(zval *return_value, zval *str, long f, long l) {
 
 	if ((f + l) > str_len) {
 		l = str_len - f;
-	}
-
-	if (l <= 0){
-		RETURN_EMPTY_STRING();
 	}
 
 	RETURN_STRINGL(Z_STRVAL_P(str) + f, l, 1);
@@ -1167,6 +1166,31 @@ void zephir_md5(zval *return_value, zval *str) {
 	make_digest(hexdigest, digest);
 
 	ZVAL_STRINGL(return_value, hexdigest, 32, 1);
+}
+
+void zephir_crc32(zval *return_value, zval *str TSRMLS_DC) {
+
+	zval copy;
+	int use_copy = 0;
+	size_t nr;
+	char *p;
+	php_uint32 crc;
+	php_uint32 crcinit = 0;
+
+	if (Z_TYPE_P(str) != IS_STRING) {
+		zend_make_printable_zval(str, &copy, &use_copy);
+		if (use_copy) {
+			str = &copy;
+		}
+	}
+	p = Z_STRVAL_P(str);
+	nr = Z_STRLEN_P(str);
+
+	crc = crcinit^0xFFFFFFFF;
+	for (; nr--; ++p) {
+		crc = ((crc >> 8) & 0x00FFFFFF) ^ crc32tab[(crc ^ (*p)) & 0xFF ];
+	}
+	RETVAL_LONG(crc^0xFFFFFFFF);
 }
 
 #if ZEPHIR_USE_PHP_PCRE
