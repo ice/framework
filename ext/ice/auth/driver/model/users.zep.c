@@ -16,6 +16,7 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/object.h"
+#include "kernel/time.h"
 #include "kernel/array.h"
 
 
@@ -103,7 +104,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0 = NULL, *_1 = NULL, *_2 = NULL;
+	zval *_0 = NULL, *_1 = NULL, *_2;
 
 	ZEPHIR_MM_GROW();
 
@@ -115,8 +116,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_LONG(_1, (zephir_get_numberval(_0) + 1));
 	zephir_update_property_zval(this_ptr, SL("logins"),  _1 TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_2, "time", NULL);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_2);
+	zephir_time(_2);
 	zephir_update_property_zval(this_ptr, SL("lastlogin"), _2 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL);
 	zephir_check_call_status();

@@ -138,10 +138,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL, *_5 = NULL, *_7 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	double round, ceil;
-	zval *count, *numParts = NULL, *_0 = NULL, *_1, _2 = zval_used_for_init, *_4, *_6;
+	zval *count, *numParts = NULL, *_0 = NULL, *_1, *_2, _3, *_4, *_6, _7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count);
@@ -153,21 +153,20 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	ZEPHIR_INIT_VAR(_1);
 	div_function(_1, count, _0 TSRMLS_CC);
 	round = zephir_get_numberval(_1);
-	ZEPHIR_SINIT_VAR(_2);
-	ZVAL_DOUBLE(&_2, round);
-	ZEPHIR_CALL_FUNCTION(&_0, "round", &_3, &_2);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_2);
+	ZEPHIR_SINIT_VAR(_3);
+	ZVAL_DOUBLE(&_3, round);
+	zephir_round(_2, &_3, NULL, NULL TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_LONG(_4, 1);
-	ZEPHIR_CALL_FUNCTION(&numParts, "max", &_5, _4, _0);
+	ZEPHIR_CALL_FUNCTION(&numParts, "max", &_5, _4, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_6);
 	div_function(_6, count, numParts TSRMLS_CC);
 	ceil = zephir_get_numberval(_6);
-	ZEPHIR_SINIT_NVAR(_2);
-	ZVAL_DOUBLE(&_2, ceil);
-	ZEPHIR_RETURN_CALL_FUNCTION("ceil", &_7, &_2);
-	zephir_check_call_status();
+	ZEPHIR_SINIT_VAR(_7);
+	ZVAL_DOUBLE(&_7, ceil);
+	zephir_ceil(return_value, &_7 TSRMLS_CC);
 	RETURN_MM();
 
 }
