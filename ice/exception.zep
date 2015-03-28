@@ -51,6 +51,65 @@ class Exception extends \Exception
     }
 
     /**
+     * Get the full trace as string.
+     *
+     * @param Exception $e
+     * @return string
+     */
+    public function getFullTraceAsString(<\Exception> e)
+    {
+        var output, frame, args, arg, node;
+        int count = 0;
+
+        let output = "";
+
+        for frame in e->getTrace() {
+            let args = "";
+
+            if isset frame["args"] {
+                let node = [];
+
+                for arg in frame["args"] {
+                    switch typeof arg {
+                        case "string":
+                            let node[] = "'" . arg . "'";
+                        break;
+                        case "array":
+                            let node[] = "Array";
+                        break;
+                        case "NULL":
+                            let node[] = "NULL";
+                        break;
+                        case "boolean":
+                            let node[] = arg ? "true" : "false";
+                        break;
+                        case "object":
+                            let node[] = "Object(" . get_class(arg) . ")";
+                        break;
+                        case "resource":
+                            let node[] = arg;
+                        break;
+                        default:
+                            let node[] = arg;
+                        break;
+                    }
+                }
+                let args = join(", ", node);
+            }
+
+            let output .= sprintf(
+                    "#%s %s: %s(%s)\n",
+                    count, 
+                    (isset frame["file"] ? frame["file"] . "(" . frame["line"] . ")" : "[internal function]"),
+                    (isset frame["class"] ? frame["class"] . frame["type"] . frame["function"] : frame["function"]),
+                    args
+                ),
+                count++;
+        }
+        return output;
+    }
+
+    /**
      * PHP error handler, converts all errors into ErrorExceptions. This handler respects error_reporting settings.
      *
      * @throws ErrorException

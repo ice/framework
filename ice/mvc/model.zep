@@ -621,7 +621,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function serialize() -> string
     {
-        return serialize(this->_data);
+        return json_encode(this->_data);
     }
 
     /**
@@ -630,7 +630,7 @@ abstract class Model extends Arr implements \Serializable
     public function unserialize(string! data)
     {
         this->__construct();
-        let this->_data = unserialize(data);
+        let this->_data = json_decode(data, true);
     }
 
     /**
