@@ -1371,16 +1371,12 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
  */
 PHP_METHOD(Ice_Mvc_Model, serialize) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	zval *_0;
 
-	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_FUNCTION("serialize", &_1, _0);
-	zephir_check_call_status();
-	RETURN_MM();
+	zephir_json_encode(return_value, &(return_value), _0, 0  TSRMLS_CC);
+	return;
 
 }
 
@@ -1389,9 +1385,8 @@ PHP_METHOD(Ice_Mvc_Model, serialize) {
  */
 PHP_METHOD(Ice_Mvc_Model, unserialize) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *data_param = NULL, *_0 = NULL;
+	zval *data_param = NULL, *_0;
 	zval *data = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -1412,8 +1407,8 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "__construct", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_0, "unserialize", &_1, data);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_0);
+	zephir_json_decode(_0, &(_0), data, zephir_get_intval(ZEPHIR_GLOBAL(global_true))  TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_data"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
