@@ -1,4 +1,7 @@
-// function _(string! str, array values = null, var context = null, string lang = null)
+/**
+ * Global alias of translate method.
+ */
+// function __(string! str, array values = null, var context = null, string lang = null)
 // {
 //     return I18n::$fetch()->translate(str, values, context, lang);
 // }

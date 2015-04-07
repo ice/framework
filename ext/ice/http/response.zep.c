@@ -16,6 +16,7 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
+#include "kernel/exception.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
 
@@ -384,6 +385,10 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 
 
 
+	if (!(zephir_instance_of_ev(request, ice_http_request_requestinterface_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'request' must be an instance of 'Ice\\Http\\Request\\RequestInterface'", "", 0);
+		return;
+	}
 	sendBody = 1;
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_status"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
