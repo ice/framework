@@ -17,12 +17,17 @@ class Di extends Arr
     protected _hooks = [];
 
     /**
-     * Di constructor.
+     * Di constructor. Sets root path.
      *
      * @param array data Array of services
      */
     public function __construct(array data = [])
     {
+        // Set the root path
+        if !defined("__ROOT__") {
+            define("__ROOT__", realpath("../"), false);
+        }
+
         parent::__construct(data);
 
         let self::_di = this;
