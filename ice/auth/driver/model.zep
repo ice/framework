@@ -105,8 +105,14 @@ class Model extends Driver implements DriverInterface
             if data === defaultValue {
                 // User isn't currently logged in
                 let this->_user = defaultValue;
-            } else {
-                let this->_user = unserialize(data);
+            } elseif typeof data == "string" {
+                var user;
+
+                let user = unserialize(data);
+
+                if user instanceof Users {
+                    let this->_user = user;
+                }
             }
         }
 

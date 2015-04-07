@@ -19,8 +19,8 @@
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/hash.h"
-#include "kernel/string.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 
 ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
@@ -173,8 +173,8 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	HashTable *_5;
 	HashPosition _4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
-	zval *arguments = NULL, *params, *argument = NULL, *_0, *_1, *_2, **_6, _7 = zval_used_for_init, _8 = zval_used_for_init, *_9 = NULL, _10 = zval_used_for_init, *_11 = NULL, _12 = zval_used_for_init, *_13 = NULL, *_14, *_15 = NULL, *_17, *_19;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL, *_10 = NULL;
+	zval *arguments = NULL, *params, *argument = NULL, *_0, *_1, *_2, **_6, _7 = zval_used_for_init, _8 = zval_used_for_init, *_9 = NULL, *_11 = NULL, *_12 = NULL, *_13 = NULL, *_14, *_15 = NULL, *_17, *_19;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &arguments);
@@ -210,22 +210,22 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 		ZVAL_LONG(&_7, 0);
 		ZEPHIR_SINIT_NVAR(_8);
 		ZVAL_LONG(&_8, 2);
-		ZEPHIR_INIT_NVAR(_9);
-		zephir_substr(_9, argument, 0 , 2 , 0);
+		ZEPHIR_CALL_FUNCTION(&_9, "substr", &_10, argument, &_7, &_8);
+		zephir_check_call_status();
 		if (!ZEPHIR_IS_STRING_IDENTICAL(_9, "--")) {
 			zephir_array_append(&params, argument, PH_SEPARATE, "ice/cli/router.zep", 81);
 			continue;
 		}
-		ZEPHIR_SINIT_NVAR(_10);
-		ZVAL_LONG(&_10, 2);
-		ZEPHIR_INIT_NVAR(_11);
-		zephir_substr(_11, argument, 2 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+		ZEPHIR_SINIT_NVAR(_7);
+		ZVAL_LONG(&_7, 2);
+		ZEPHIR_CALL_FUNCTION(&_11, "substr", &_10, argument, &_7);
+		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(argument, _11);
-		ZEPHIR_SINIT_NVAR(_12);
-		ZVAL_STRING(&_12, "=", 0);
-		ZEPHIR_INIT_NVAR(_11);
-		zephir_fast_strpos(_11, argument, &_12, 0 );
-		if (zephir_is_true(_11)) {
+		ZEPHIR_SINIT_NVAR(_7);
+		ZVAL_STRING(&_7, "=", 0);
+		ZEPHIR_INIT_NVAR(_12);
+		zephir_fast_strpos(_12, argument, &_7, 0 );
+		if (zephir_is_true(_12)) {
 			ZEPHIR_INIT_NVAR(_13);
 			zephir_fast_explode_str(_13, SL("="), argument, 2  TSRMLS_CC);
 			ZEPHIR_CPY_WRT(argument, _13);

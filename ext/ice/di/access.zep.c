@@ -12,10 +12,11 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/object.h"
+#include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "kernel/object.h"
 
 
 /**
@@ -46,8 +47,9 @@ ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 PHP_METHOD(Ice_Di_Access, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
-	zval *di = NULL, *_0 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zend_bool _0;
+	zval *di = NULL, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &di);
@@ -57,10 +59,18 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 	}
 
 
+	_0 = Z_TYPE_P(di) != IS_NULL;
+	if (_0) {
+		_0 = !(zephir_instance_of_ev(di, ice_di_ce TSRMLS_CC));
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'di' must be an instance of 'Ice\\Di'", "", 0);
+		return;
+	}
 	if (!(zephir_is_true(di))) {
-		ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1);
+		ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("_di"), _0 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("_di"), _1 TSRMLS_CC);
 	} else {
 		zephir_update_property_this(this_ptr, SL("_di"), di TSRMLS_CC);
 	}
