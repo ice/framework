@@ -197,8 +197,8 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
-	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value, _0, *_1, *_3 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL;
+	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value, _0, *_1 = NULL, *_4 = NULL;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -223,13 +223,13 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 	if (zephir_start_with_str(name, SL("get"))) {
 		ZEPHIR_SINIT_VAR(_0);
 		ZVAL_LONG(&_0, 3);
-		ZEPHIR_INIT_VAR(_1);
-		zephir_substr(_1, name, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CALL_FUNCTION(&key, "lcfirst", &_2, _1);
+		ZEPHIR_CALL_FUNCTION(&_1, "substr", &_2, name, &_0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_3, this_ptr, "has", NULL, key);
+		ZEPHIR_CALL_FUNCTION(&key, "lcfirst", &_3, _1);
 		zephir_check_call_status();
-		if (zephir_is_true(_3)) {
+		ZEPHIR_CALL_METHOD(&_4, this_ptr, "has", NULL, key);
+		zephir_check_call_status();
+		if (zephir_is_true(_4)) {
 			ZEPHIR_OBS_VAR(value);
 			zephir_array_isset_long_fetch(&value, arguments, 0, 0 TSRMLS_CC);
 			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, key, value);

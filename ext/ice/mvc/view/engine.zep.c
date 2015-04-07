@@ -14,9 +14,9 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/exception.h"
 #include "kernel/operators.h"
 
 
@@ -60,7 +60,8 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zend_bool _0;
 	zval *view, *di = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -71,8 +72,20 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 	}
 
 
+	if (!(zephir_instance_of_ev(view, ice_mvc_view_viewinterface_ce TSRMLS_CC))) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'view' must be an instance of 'Ice\\Mvc\\View\\ViewInterface'", "", 0);
+		return;
+	}
+	_0 = Z_TYPE_P(di) != IS_NULL;
+	if (_0) {
+		_0 = !(zephir_instance_of_ev(di, ice_di_ce TSRMLS_CC));
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'di' must be an instance of 'Ice\\Di'", "", 0);
+		return;
+	}
 	zephir_update_property_this(this_ptr, SL("_view"), view TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_engine_ce, this_ptr, "__construct", &_0, di);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_engine_ce, this_ptr, "__construct", &_1, di);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
