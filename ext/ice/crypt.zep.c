@@ -360,7 +360,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
  */
 PHP_METHOD(Ice_Crypt, stripPadding) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL, *_8 = NULL;
 	unsigned char _0;
 	int pad, len, ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, _1 = zval_used_for_init, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_6, _7;
@@ -389,7 +389,8 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 		ZVAL_LONG(&_1, 0);
 		ZEPHIR_SINIT_VAR(_7);
 		ZVAL_LONG(&_7, (len - pad));
-		zephir_substr(_4, value, 0 , zephir_get_intval(&_7), 0);
+		ZEPHIR_CALL_FUNCTION(&_4, "substr", &_8, value, &_1, &_7);
+		zephir_check_call_status();
 	} else {
 		ZEPHIR_CPY_WRT(_4, value);
 	}
@@ -406,9 +407,9 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
  */
 PHP_METHOD(Ice_Crypt, paddingIsValid) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	zval *value = NULL;
-	zval *pad_param = NULL, *value_param = NULL, *beforePad, *_0, _1, *_2, _3, *_4 = NULL;
+	zval *pad_param = NULL, *value_param = NULL, *beforePad, *_0 = NULL, _2 = zval_used_for_init, *_3 = NULL, *_4 = NULL;
 	int pad, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
@@ -420,15 +421,15 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 
 	ZEPHIR_INIT_VAR(beforePad);
 	ZVAL_LONG(beforePad, (zephir_fast_strlen_ev(value) - pad));
-	ZEPHIR_INIT_VAR(_0);
-	zephir_substr(_0, value, zephir_get_intval(beforePad), 0, ZEPHIR_SUBSTR_NO_LENGTH);
-	ZEPHIR_SINIT_VAR(_1);
-	ZVAL_LONG(&_1, -1);
-	ZEPHIR_INIT_VAR(_2);
-	zephir_substr(_2, value, -1 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-	ZEPHIR_SINIT_VAR(_3);
-	ZVAL_LONG(&_3, pad);
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", &_5, _2, &_3);
+	ZEPHIR_CALL_FUNCTION(&_0, "substr", &_1, value, beforePad);
+	zephir_check_call_status();
+	ZEPHIR_SINIT_VAR(_2);
+	ZVAL_LONG(&_2, -1);
+	ZEPHIR_CALL_FUNCTION(&_3, "substr", &_1, value, &_2);
+	zephir_check_call_status();
+	ZEPHIR_SINIT_NVAR(_2);
+	ZVAL_LONG(&_2, pad);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", &_5, _3, &_2);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(_0, _4));
 

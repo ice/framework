@@ -16,8 +16,8 @@
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
-#include "kernel/time.h"
 #include "kernel/object.h"
+#include "kernel/exception.h"
 #include "kernel/iterator.h"
 
 
@@ -51,7 +51,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	zephir_nts_static zephir_fcall_cache_entry *_8 = NULL;
 	zval *_4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, _5, _6, *_7 = NULL, *_9 = NULL, *_11 = NULL, *_13 = NULL;
+	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, _5, _6, *_7 = NULL, *_9 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -110,9 +110,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 		ZEPHIR_CALL_METHOD(&_13, this_ptr, "get", NULL, _2);
 		zephir_check_temp_parameter(_2);
 		zephir_check_call_status();
-		ZEPHIR_INIT_NVAR(_2);
-		zephir_time(_2);
-		_12 = ZEPHIR_LT(_13, _2);
+		ZEPHIR_CALL_FUNCTION(&_14, "time", NULL);
+		zephir_check_call_status();
+		_12 = ZEPHIR_LT(_13, _14);
 	}
 	if (_12) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL);
@@ -131,9 +131,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *extra = NULL, *_0 = NULL;
+	zend_bool _0;
+	zval *fields = NULL, *extra = NULL, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -147,10 +148,18 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_generate", NULL);
+	_0 = Z_TYPE_P(extra) != IS_NULL;
+	if (_0) {
+		_0 = !(zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC));
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);
+		return;
+	}
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate", NULL);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_1, fields);
+	zephir_update_property_zval(this_ptr, SL("token"), _1 TSRMLS_CC);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_2, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -166,7 +175,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	zend_object_iterator *_3;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1;
-	zval *token = NULL, *expired = NULL, *_2;
+	zval *token = NULL, *expired = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -174,8 +183,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	array_init_size(_0, 2);
 	ZEPHIR_INIT_VAR(_1);
 	array_init_size(_1, 2);
-	ZEPHIR_INIT_VAR(_2);
-	zephir_time(_2);
+	ZEPHIR_CALL_FUNCTION(&_2, "time", NULL);
+	zephir_check_call_status();
 	zephir_array_update_string(&_1, SL("<"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_0, SL("expires"), &_1, PH_COPY | PH_SEPARATE);
 	ZEPHIR_CALL_METHOD(&expired, this_ptr, "load", NULL, _0);
@@ -204,9 +213,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *extra = NULL, *_0 = NULL;
+	zend_bool _0;
+	zval *fields = NULL, *extra = NULL, *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -220,10 +230,18 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_generate", NULL);
+	_0 = Z_TYPE_P(extra) != IS_NULL;
+	if (_0) {
+		_0 = !(zephir_instance_of_ev(extra, ice_validation_ce TSRMLS_CC));
+	}
+	if (_0) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'extra' must be an instance of 'Ice\\Validation'", "", 0);
+		return;
+	}
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_generate", NULL);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_1, fields);
+	zephir_update_property_zval(this_ptr, SL("token"), _1 TSRMLS_CC);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_2, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
