@@ -75,6 +75,26 @@ abstract class Model extends Arr implements \Serializable
     }
 
     /**
+     * Get the id.
+     *
+     * @return mixed
+     */
+    public function getId()
+    {
+        return this->get(this->getIdKey());
+    }
+
+    /**
+     * Get the id key depending on db driver.
+     *
+     * @return string
+     */
+    public function getIdKey() -> string
+    {
+        return this->_db->getId();
+    }
+
+    /**
      * Load one result to the current object.
      *
      * @param mixed filters

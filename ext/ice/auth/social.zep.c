@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
@@ -59,10 +58,6 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 
 
 
-	if (!(zephir_instance_of_ev(adapter, ice_auth_social_socialinterface_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STRW(spl_ce_InvalidArgumentException, "Parameter 'adapter' must be an instance of 'Ice\\Auth\\Social\\SocialInterface'", "", 0);
-		return;
-	}
 	zephir_update_property_this(this_ptr, SL("_adapter"), adapter TSRMLS_CC);
 
 }
@@ -139,7 +134,7 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 3);
+	zephir_create_array(_0, 2, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_1);
 	zephir_read_property_this(&_1, this_ptr, SL("_adapter"), PH_NOISY_CC);
 	zephir_array_fast_append(_0, _1);

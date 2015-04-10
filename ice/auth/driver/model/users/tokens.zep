@@ -30,7 +30,7 @@ class Tokens extends Model
 
         let auth = this->getDi()->{"getAuth"}();
 
-        this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), "id", [
+        this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
             "alias": "User",
             "foreignKey": true
         ]);

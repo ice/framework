@@ -183,7 +183,7 @@ class Model extends Driver implements DriverInterface
                         // Create a new autologin token
                         let lifetime = this->getOption("lifetime"),
                             token = new Tokens(),
-                            token->{"user_id"} = user->get("id"),
+                            token->{"user_id"} = user->getId(),
                             token->{"useragent"} = sha1(this->_request->getUserAgent()),
                             token->{"created"} = time(),
                             token->{"expires"} = time() + lifetime;
@@ -241,7 +241,7 @@ class Model extends Driver implements DriverInterface
                         // Create a new autologin token
                         let lifetime = this->getOption("lifetime"),
                             token = new Tokens(),
-                            token->{"user_id"} = user->get("id"),
+                            token->{"user_id"} = user->getId(),
                             token->{"useragent"} = sha1(this->_request->getUserAgent()),
                             token->{"created"} = time(),
                             token->{"expires"} = time() + lifetime;
@@ -296,7 +296,7 @@ class Model extends Driver implements DriverInterface
                 user = this->getUser();
 
             if user {
-                tokens->remove(["user_id": user->get("id")]);
+                tokens->remove(["user_id": user->getId()]);
             }
         }
 

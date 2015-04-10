@@ -1,10 +1,16 @@
 /**
  * Global alias of translate method.
  */
-// function __(string! str, array values = null, var context = null, string lang = null)
-// {
-//     return I18n::$fetch()->translate(str, values, context, lang);
-// }
+function _t(string! str, array values = null, var context = null, string lang = null)
+{
+    var i18n;
+
+    let i18n = I18n::$fetch();
+
+    if i18n {
+        return i18n->translate(str, values, context, lang);
+    }
+}
 
 namespace Ice;
 

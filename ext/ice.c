@@ -360,8 +360,17 @@ static PHP_GSHUTDOWN_FUNCTION(ice)
 
 }
 
+PHP_FUNCTION(g_ice__t);
+ZEND_BEGIN_ARG_INFO_EX(arginfo_g_ice__t, 0, 0, 1)
+	ZEND_ARG_INFO(0, str)
+	ZEND_ARG_ARRAY_INFO(0, values, 1)
+	ZEND_ARG_INFO(0, context)
+	ZEND_ARG_INFO(0, lang)
+ZEND_END_ARG_INFO()
+
 
 zend_function_entry php_ice_functions[] = {
+ZEND_NAMED_FE(_t, ZEND_FN(g_ice__t), arginfo_g_ice__t)
 ZEND_FE_END
 
 };

@@ -156,6 +156,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4;
@@ -207,7 +208,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 		ZVAL_LONG(_4, 2);
 		ZEPHIR_CALL_METHOD(&_3, result, "fetch", NULL, _4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, _3);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_5, _3);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(_1, 0);
@@ -238,6 +239,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0 = NULL, *_1;
@@ -282,7 +284,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 	ZVAL_LONG(_1, 2);
 	ZEPHIR_CALL_METHOD(&_0, result, "fetchall", NULL, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, _0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", &_2, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -504,7 +506,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 		break;
 	} while(0);
 
-	array_init_size(return_value, 3);
+	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 	zephir_array_fast_append(return_value, sql);
 	zephir_array_fast_append(return_value, values);
 	RETURN_MM();

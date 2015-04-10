@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "ext/spl/spl_iterators.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
@@ -308,6 +309,7 @@ PHP_METHOD(Ice_Arr, count) {
  */
 PHP_METHOD(Ice_Arr, getIterator) {
 
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0;
 
@@ -315,7 +317,7 @@ PHP_METHOD(Ice_Arr, getIterator) {
 
 	object_init_ex(return_value, zephir_get_internal_ce(SS("arrayiterator") TSRMLS_CC));
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, _0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", &_1, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -343,9 +345,9 @@ PHP_METHOD(Ice_Arr, getPath) {
 
 	HashTable *_10;
 	HashPosition _9;
-	zephir_fcall_cache_entry *_6 = NULL, *_12 = NULL, *_13 = NULL;
+	zephir_fcall_cache_entry *_6 = NULL, *_12 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS, _7;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_13 = NULL;
 	zval *delimiter = NULL, *_2, *_3;
 	zval *path = NULL, *defaultValue = NULL, *delimiter_param = NULL, *data = NULL, *keys = NULL, *key = NULL, *_0, *_1 = NULL, *_5 = NULL, *_8 = NULL, *values = NULL, *value = NULL, *arr = NULL, **_11;
 

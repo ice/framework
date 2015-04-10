@@ -153,7 +153,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	zephir_check_call_status();
 	_6 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_7);
-	array_init_size(_7, 2);
+	zephir_create_array(_7, 1, 0 TSRMLS_CC);
 	zephir_array_fast_append(_7, response);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "app.after.router.handle", ZEPHIR_TEMP_PARAM_COPY);
@@ -186,7 +186,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		zephir_check_call_status();
 		_13 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_14);
-		array_init_size(_14, 2);
+		zephir_create_array(_14, 1, 0 TSRMLS_CC);
 		zephir_array_fast_append(_14, response);
 		ZEPHIR_INIT_NVAR(_1);
 		ZVAL_STRING(_1, "app.after.dispatcher.dispatch", ZEPHIR_TEMP_PARAM_COPY);
@@ -250,7 +250,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	}
 	_8 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_14);
-	array_init_size(_14, 2);
+	zephir_create_array(_14, 1, 0 TSRMLS_CC);
 	zephir_array_fast_append(_14, response);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "app.after.handle", ZEPHIR_TEMP_PARAM_COPY);
