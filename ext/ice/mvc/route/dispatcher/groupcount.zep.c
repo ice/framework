@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 			zephir_array_fetch_long(&_13, matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42 TSRMLS_CC);
 			zephir_array_update_zval(&vars, varName, &_13, PH_COPY | PH_SEPARATE);
 		}
-		array_init_size(return_value, 4);
+		zephir_create_array(return_value, 3, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(_14);
 		ZVAL_LONG(_14, 1);
 		zephir_array_fast_append(return_value, _14);
@@ -139,7 +139,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 		zephir_array_fast_append(return_value, vars);
 		RETURN_MM();
 	}
-	array_init_size(return_value, 2);
+	zephir_create_array(return_value, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_14);
 	ZVAL_LONG(_14, 0);
 	zephir_array_fast_append(return_value, _14);

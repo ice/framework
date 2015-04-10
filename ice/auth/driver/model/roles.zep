@@ -22,7 +22,7 @@ class Roles extends Model
      */
     public function initialize()
     {
-        this->hasMany("id", "Ice\\Auth\\Driver\\Model\\Roles\\Users", "role_id", [
+        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Roles\\Users", "role_id", [
             "alias": "RolesUsers"
         ]);
     }

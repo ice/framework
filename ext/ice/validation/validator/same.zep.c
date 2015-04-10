@@ -12,13 +12,12 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 
 
 /**
@@ -69,10 +68,6 @@ PHP_METHOD(Ice_Validation_Validator_Same, validate) {
 	}
 
 
-	if (!(zephir_instance_of_ev(validation, ice_validation_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'validation' must be an instance of 'Ice\\Validation'", "", 0);
-		return;
-	}
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, field);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
@@ -207,7 +202,7 @@ PHP_METHOD(Ice_Validation_Validator_Same, validate) {
 			ZEPHIR_CPY_WRT(message, _14);
 		}
 		ZEPHIR_INIT_VAR(replace);
-		array_init_size(replace, 3);
+		zephir_create_array(replace, 2, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":other"), &labelOther, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_FUNCTION(&_13, "strtr", &_15, message, replace);

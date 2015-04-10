@@ -238,13 +238,13 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
  */
 PHP_METHOD(Ice_Mvc_View, getEngines) {
 
-	zephir_fcall_cache_entry *_11 = NULL;
-	zephir_nts_static zephir_fcall_cache_entry *_10 = NULL;
-	zval *_7 = NULL;
-	HashTable *_5;
-	HashPosition _4;
+	zephir_fcall_cache_entry *_12 = NULL;
+	zval *_8 = NULL;
+	HashTable *_6;
+	HashPosition _5;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_11 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *ext = NULL, *engine = NULL, *_0, *_1 = NULL, *_2, *_3, **_6, _8 = zval_used_for_init, *_9 = NULL;
+	zval *ext = NULL, *engine = NULL, *_0, *_1 = NULL, *_3, *_4, **_7, _9 = zval_used_for_init, *_10 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -252,47 +252,47 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1);
 		object_init_ex(_1, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_2, this_ptr);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(_2);
-		ZVAL_STRING(_2, ".phtml", 1);
-		zephir_update_property_array(this_ptr, SL("_engines"), _2, _1 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_3);
+		ZVAL_STRING(_3, ".phtml", 1);
+		zephir_update_property_array(this_ptr, SL("_engines"), _3, _1 TSRMLS_CC);
 	}
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_engines"), PH_NOISY_CC);
-	zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/view.zep", 67);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_engines"), PH_NOISY_CC);
+	zephir_is_iterable(_4, &_6, &_5, 0, 0, "ice/mvc/view.zep", 67);
 	for (
-	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_5, &_4)
+	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_6, &_5)
 	) {
-		ZEPHIR_GET_HMKEY(ext, _5, _4);
-		ZEPHIR_GET_HVALUE(engine, _6);
+		ZEPHIR_GET_HMKEY(ext, _6, _5);
+		ZEPHIR_GET_HVALUE(engine, _7);
 		if (Z_TYPE_P(engine) == IS_OBJECT) {
 			if (zephir_instance_of_ev(engine, zend_ce_closure TSRMLS_CC)) {
 				ZEPHIR_INIT_NVAR(_1);
-				ZEPHIR_INIT_NVAR(_7);
-				array_init_size(_7, 2);
-				zephir_array_fast_append(_7, this_ptr);
-				ZEPHIR_CALL_USER_FUNC_ARRAY(_1, engine, _7);
+				ZEPHIR_INIT_NVAR(_8);
+				zephir_create_array(_8, 1, 0 TSRMLS_CC);
+				zephir_array_fast_append(_8, this_ptr);
+				ZEPHIR_CALL_USER_FUNC_ARRAY(_1, engine, _8);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
 			}
 		} else {
 			if (Z_TYPE_P(engine) == IS_STRING) {
 				ZEPHIR_INIT_NVAR(_1);
-				ZEPHIR_INIT_NVAR(_7);
-				array_init_size(_7, 2);
-				zephir_array_fast_append(_7, this_ptr);
-				ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, engine, _7 TSRMLS_CC);
+				ZEPHIR_INIT_NVAR(_8);
+				zephir_create_array(_8, 1, 0 TSRMLS_CC);
+				zephir_array_fast_append(_8, this_ptr);
+				ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, engine, _8 TSRMLS_CC);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
 			} else {
 				ZEPHIR_INIT_NVAR(_1);
 				object_init_ex(_1, ice_exception_ce);
-				ZEPHIR_SINIT_NVAR(_8);
-				ZVAL_STRING(&_8, "Invalid template engine registration for '%s' extension", 0);
-				ZEPHIR_CALL_FUNCTION(&_9, "sprintf", &_10, &_8, ext);
+				ZEPHIR_SINIT_NVAR(_9);
+				ZVAL_STRING(&_9, "Invalid template engine registration for '%s' extension", 0);
+				ZEPHIR_CALL_FUNCTION(&_10, "sprintf", &_11, &_9, ext);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_11, _9);
+				ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_12, _10);
 				zephir_check_call_status();
 				zephir_throw_exception_debug(_1, "ice/mvc/view.zep", 63 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
@@ -313,8 +313,8 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
  */
 PHP_METHOD(Ice_Mvc_View, render) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_12 = NULL;
-	zephir_fcall_cache_entry *_6 = NULL, *_8 = NULL, *_13 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_12 = NULL, *_13 = NULL;
+	zephir_fcall_cache_entry *_6 = NULL, *_8 = NULL;
 	HashTable *_2;
 	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;

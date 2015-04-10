@@ -18,6 +18,8 @@ PHP_METHOD(Ice_Mvc_Model, getRelations);
 PHP_METHOD(Ice_Mvc_Model, setLabels);
 PHP_METHOD(Ice_Mvc_Model, getMessages);
 PHP_METHOD(Ice_Mvc_Model, __construct);
+PHP_METHOD(Ice_Mvc_Model, getId);
+PHP_METHOD(Ice_Mvc_Model, getIdKey);
 PHP_METHOD(Ice_Mvc_Model, loadOne);
 PHP_METHOD(Ice_Mvc_Model, load);
 PHP_METHOD(Ice_Mvc_Model, findOne);
@@ -168,6 +170,8 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, setLabels, arginfo_ice_mvc_model_setlabels, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getMessages, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __construct, arginfo_ice_mvc_model___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Ice_Mvc_Model, getId, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getIdKey, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, loadOne, arginfo_ice_mvc_model_loadone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, load, arginfo_ice_mvc_model_load, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, findOne, arginfo_ice_mvc_model_findone, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)

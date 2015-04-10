@@ -50,8 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request) {
  */
 PHP_METHOD(Ice_Http_Request, __construct) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
-	zephir_fcall_cache_entry *_1 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_FILES, *_2, *_GET, *_3, *_POST, *_4, *_SERVER, *_REQUEST;
 
