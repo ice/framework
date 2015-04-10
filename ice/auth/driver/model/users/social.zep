@@ -28,7 +28,7 @@ class Social extends Model
 
         let auth = this->getDi()->{"getAuth"}();
 
-        this->hasOne("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), "id", [
+        this->hasOne("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
             "alias": "User"
         ]);
     }

@@ -23,15 +23,15 @@ class Users extends Model
      */
     public function initialize()
     {
-        this->hasMany("id", "Ice\\Auth\\Driver\\Model\\Users\\Tokens", "user_id", [
+        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Users\\Tokens", "user_id", [
             "alias": "Tokens"
         ]);
 
-        this->hasMany("id", "Ice\\Auth\\Driver\\Model\\Roles\\Users", "user_id", [
+        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Roles\\Users", "user_id", [
             "alias": "Roles"
         ]);
 
-        this->hasOne("id", "Ice\\Auth\\Driver\\Model\\Users\\Social", "user_id", [
+        this->hasOne(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Users\\Social", "user_id", [
             "alias": "Social"
         ]);
     }
@@ -69,7 +69,7 @@ class Users extends Model
             return null;
         }
 
-        let roles = this->{"getRoles"}(["role_id": role->get("id")]);
+        let roles = this->{"getRoles"}(["role_id": role->getId()]);
 
         // Return the role if user has the role otherwise false
         return roles->count() ? roles->getIterator()->current() : false;
