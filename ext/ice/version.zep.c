@@ -12,8 +12,8 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/concat.h"
@@ -54,7 +54,7 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 PHP_METHOD(Ice_Version, current) {
 
 
-	array_init_size(return_value, 7);
+	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
 	add_assoc_long_ex(return_value, SS("patch"), 7);

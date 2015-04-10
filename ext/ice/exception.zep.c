@@ -12,15 +12,15 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
 #include "kernel/hash.h"
 #include "kernel/concat.h"
+#include "kernel/object.h"
 #include "kernel/string.h"
+#include "kernel/exception.h"
 #include "kernel/exit.h"
 
 
@@ -51,11 +51,10 @@ ZEPHIR_INIT_CLASS(Ice_Exception) {
  */
 PHP_METHOD(Ice_Exception, __construct) {
 
-	zval *_10 = NULL;
+	zval *_9 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_7 = NULL, *_8 = NULL;
-	zend_bool _0;
-	zval *message = NULL, *code = NULL, *previous = NULL, *di = NULL, *values = NULL, *str = NULL, _2 = zval_used_for_init, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_9 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL, *_6 = NULL, *_7 = NULL;
+	zval *message = NULL, *code = NULL, *previous = NULL, *di = NULL, *values = NULL, *str = NULL, _1 = zval_used_for_init, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &message, &code, &previous);
@@ -75,20 +74,12 @@ PHP_METHOD(Ice_Exception, __construct) {
 	}
 
 
-	_0 = Z_TYPE_P(previous) != IS_NULL;
-	if (_0) {
-		_0 = !(zephir_instance_of_ev(previous, zend_exception_get_default(TSRMLS_C) TSRMLS_CC));
-	}
-	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'previous' must be an instance of 'Exception'", "", 0);
-		return;
-	}
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0);
 	zephir_check_call_status();
 	if (Z_TYPE_P(message) == IS_ARRAY) {
-		ZEPHIR_SINIT_VAR(_2);
-		ZVAL_LONG(&_2, 1);
-		ZEPHIR_CALL_FUNCTION(&values, "array_slice", &_3, message, &_2);
+		ZEPHIR_SINIT_VAR(_1);
+		ZVAL_LONG(&_1, 1);
+		ZEPHIR_CALL_FUNCTION(&values, "array_slice", &_2, message, &_1);
 		zephir_check_call_status();
 		ZEPHIR_OBS_VAR(str);
 		zephir_array_fetch_long(&str, message, 0, PH_NOISY, "ice/exception.zep", 32 TSRMLS_CC);
@@ -97,42 +88,42 @@ PHP_METHOD(Ice_Exception, __construct) {
 		ZVAL_NULL(values);
 		ZEPHIR_CPY_WRT(str, message);
 	}
-	ZEPHIR_INIT_VAR(_5);
-	ZVAL_STRING(_5, "i18n", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_4, di, "has", NULL, _5);
-	zephir_check_temp_parameter(_5);
+	ZEPHIR_INIT_VAR(_4);
+	ZVAL_STRING(_4, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_3, di, "has", NULL, _4);
+	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	if (zephir_is_true(_4)) {
-		ZEPHIR_INIT_NVAR(_5);
-		ZVAL_STRING(_5, "i18n", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_6, di, "get", NULL, _5);
-		zephir_check_temp_parameter(_5);
+	if (zephir_is_true(_3)) {
+		ZEPHIR_INIT_NVAR(_4);
+		ZVAL_STRING(_4, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_5, di, "get", NULL, _4);
+		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&message, _6, "translate", NULL, str, values);
+		ZEPHIR_CALL_METHOD(&message, _5, "translate", NULL, str, values);
 		zephir_check_call_status();
 	} else if (Z_TYPE_P(values) == IS_ARRAY) {
-		ZEPHIR_INIT_NVAR(_5);
-		zephir_array_keys(_5, values TSRMLS_CC);
-		ZEPHIR_SINIT_NVAR(_2);
-		ZVAL_STRING(&_2, "is_string", 0);
-		ZEPHIR_CALL_FUNCTION(&_6, "array_filter", &_7, _5, &_2);
+		ZEPHIR_INIT_NVAR(_4);
+		zephir_array_keys(_4, values TSRMLS_CC);
+		ZEPHIR_SINIT_NVAR(_1);
+		ZVAL_STRING(&_1, "is_string", 0);
+		ZEPHIR_CALL_FUNCTION(&_5, "array_filter", &_6, _4, &_1);
 		zephir_check_call_status();
-		if (zephir_fast_count_int(_6 TSRMLS_CC)) {
-			ZEPHIR_CALL_FUNCTION(&message, "strtr", &_8, str, values);
+		if (zephir_fast_count_int(_5 TSRMLS_CC)) {
+			ZEPHIR_CALL_FUNCTION(&message, "strtr", &_7, str, values);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_INIT_VAR(_9);
-			ZEPHIR_SINIT_NVAR(_2);
-			ZVAL_STRING(&_2, "sprintf", 0);
-			ZEPHIR_CALL_USER_FUNC_ARRAY(_9, &_2, message);
+			ZEPHIR_INIT_VAR(_8);
+			ZEPHIR_SINIT_NVAR(_1);
+			ZVAL_STRING(&_1, "sprintf", 0);
+			ZEPHIR_CALL_USER_FUNC_ARRAY(_8, &_1, message);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(message, _9);
+			ZEPHIR_CPY_WRT(message, _8);
 		}
 	}
-	zephir_get_strval(_10, message);
-	ZEPHIR_INIT_NVAR(_9);
-	ZVAL_LONG(_9, zephir_get_intval(code));
-	ZEPHIR_CALL_PARENT(NULL, ice_exception_ce, this_ptr, "__construct", NULL, _10, _9, previous);
+	zephir_get_strval(_9, message);
+	ZEPHIR_INIT_NVAR(_8);
+	ZVAL_LONG(_8, zephir_get_intval(code));
+	ZEPHIR_CALL_PARENT(NULL, ice_exception_ce, this_ptr, "__construct", NULL, _9, _8, previous);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -157,10 +148,6 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 
 
 
-	if (!(zephir_instance_of_ev(e, zend_exception_get_default(TSRMLS_C) TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'e' must be an instance of 'Exception'", "", 0);
-		return;
-	}
 	ZEPHIR_INIT_VAR(output);
 	ZVAL_STRING(output, "", 1);
 	ZEPHIR_CALL_METHOD(&_0, e, "gettrace", NULL);
@@ -278,7 +265,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
  */
 PHP_METHOD(Ice_Exception, errorHandler) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_6 = NULL;
 	zval *context = NULL;
 	zval *message = NULL, *file = NULL;
 	zval *code_param = NULL, *message_param = NULL, *file_param = NULL, *line_param = NULL, *context_param = NULL, *_0 = NULL, *_2, *_3, *_4, *_5;
@@ -319,7 +306,7 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 		ZVAL_LONG(_4, 0);
 		ZEPHIR_INIT_VAR(_5);
 		ZVAL_LONG(_5, line);
-		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, message, _3, _4, file, _5);
+		ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_6, message, _3, _4, file, _5);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_2, "ice/exception.zep", 123 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -346,15 +333,11 @@ PHP_METHOD(Ice_Exception, handler) {
 
 
 
-	if (!(zephir_instance_of_ev(e, zend_exception_get_default(TSRMLS_C) TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'e' must be an instance of 'Exception'", "", 0);
-		return;
-	}
 	ZEPHIR_INIT_VAR(_0);
 	ZEPHIR_INIT_VAR(_1);
 	zephir_get_called_class(_1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
-	array_init_size(_2, 4);
+	zephir_create_array(_2, 3, 0 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(&_3, e, "getmessage", NULL);
 	zephir_check_call_status();
 	zephir_array_fast_append(_2, _3);
@@ -382,8 +365,8 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 	zval *_3;
 	zend_bool _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_5 = NULL, *_6 = NULL;
-	zval *e = NULL, *_2, *_4 = NULL, *_7, *_8, *_9, *_10, *_11, _12;
+	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_5 = NULL, *_6 = NULL, *_12 = NULL;
+	zval *e = NULL, *_2, *_4 = NULL, *_7, *_8, *_9, *_10, *_11, _13;
 
 	ZEPHIR_MM_GROW();
 
@@ -393,7 +376,7 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 	if (_1) {
 		zephir_array_fetch_string(&_2, e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 152 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_3);
-		array_init_size(_3, 4);
+		zephir_create_array(_3, 3, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_4);
 		ZVAL_LONG(_4, 4);
 		zephir_array_fast_append(_3, _4);
@@ -418,13 +401,13 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		zephir_array_fetch_string(&_10, e, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 157 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_11);
 		ZVAL_LONG(_11, 0);
-		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, _7, _8, _11, _9, _10);
+		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", &_12, _7, _8, _11, _9, _10);
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(NULL, "handler", NULL, _4);
 		zephir_check_call_status();
-		ZEPHIR_SINIT_VAR(_12);
-		ZVAL_LONG(&_12, 1);
-		zephir_exit(&_12);
+		ZEPHIR_SINIT_VAR(_13);
+		ZVAL_LONG(&_13, 1);
+		zephir_exit(&_13);
 		ZEPHIR_MM_RESTORE();
 	}
 	ZEPHIR_MM_RESTORE();

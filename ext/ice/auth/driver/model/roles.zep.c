@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
+#include "kernel/array.h"
 
 
 /**
@@ -40,23 +41,22 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 
+	zval *_1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_1, *_2, *_3;
-	zval *_0;
+	zval *_0 = NULL, *_2, *_3;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 2);
-	add_assoc_stringl_ex(_0, SS("alias"), SL("RolesUsers"), 1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL);
+	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
-	ZVAL_STRING(_1, "id", ZEPHIR_TEMP_PARAM_COPY);
+	zephir_create_array(_1, 1, 0 TSRMLS_CC);
+	add_assoc_stringl_ex(_1, SS("alias"), SL("RolesUsers"), 1);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "role_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _1, _2, _3, _0);
-	zephir_check_temp_parameter(_1);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _0, _2, _3, _1);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();

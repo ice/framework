@@ -12,9 +12,9 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
-#include "kernel/operators.h"
 
 
 /**
@@ -58,7 +58,7 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, getCategory) {
 	count = zephir_get_intval(count_param);
 
 
-	i100 = (count % 100);
+	i100 = (long) (zephir_safe_mod_long_long(count, 100 TSRMLS_CC));
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_LONG(_1, count);
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, _1);

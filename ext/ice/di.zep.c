@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Di, set) {
  */
 PHP_METHOD(Ice_Di, resolve) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *service = NULL, *params, *_0 = NULL, *_1, _2, *_3 = NULL;
 
@@ -181,7 +181,7 @@ PHP_METHOD(Ice_Di, resolve) {
 		ZVAL_STRING(&_2, "Service '%s' cannot be resolved", 0);
 		ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, &_2, service);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, _3);
+		ZEPHIR_CALL_METHOD(NULL, _0, "__construct", &_5, _3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_0, "ice/di.zep", 92 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -219,7 +219,7 @@ PHP_METHOD(Ice_Di, errors) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 3);
+	zephir_create_array(_0, 2, 0 TSRMLS_CC);
 	zephir_array_fast_append(_0, className);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "handler", 1);
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", &_2, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
-	array_init_size(_3, 3);
+	zephir_create_array(_3, 2, 0 TSRMLS_CC);
 	zephir_array_fast_append(_3, className);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "errorHandler", 1);
@@ -235,7 +235,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", &_4, _3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_5);
-	array_init_size(_5, 3);
+	zephir_create_array(_5, 2, 0 TSRMLS_CC);
 	zephir_array_fast_append(_5, className);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "shutdownHandler", 1);
@@ -274,7 +274,7 @@ PHP_METHOD(Ice_Di, hook) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_hooks"), PH_NOISY_CC);
 	if (!(zephir_array_isset(_0, name))) {
 		ZEPHIR_INIT_VAR(_1);
-		array_init_size(_1, 2);
+		zephir_create_array(_1, 1, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_2);
 		array_init(_2);
 		zephir_array_fast_append(_1, _2);
@@ -317,7 +317,7 @@ PHP_METHOD(Ice_Di, applyHook) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_hooks"), PH_NOISY_CC);
 	if (!(zephir_array_isset(_0, name))) {
 		ZEPHIR_INIT_VAR(_1);
-		array_init_size(_1, 2);
+		zephir_create_array(_1, 1, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_2);
 		array_init(_2);
 		zephir_array_fast_append(_1, _2);
@@ -427,7 +427,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 	}
 	if (_0) {
 		ZEPHIR_INIT_VAR(_2);
-		array_init_size(_2, 2);
+		zephir_create_array(_2, 1, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_3);
 		array_init(_3);
 		zephir_array_fast_append(_2, _3);
@@ -443,7 +443,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 		) {
 			ZEPHIR_GET_HVALUE(key, _7);
 			ZEPHIR_INIT_NVAR(_2);
-			array_init_size(_2, 2);
+			zephir_create_array(_2, 1, 0 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(_8);
 			array_init(_8);
 			zephir_array_fast_append(_2, _8);
@@ -463,10 +463,9 @@ PHP_METHOD(Ice_Di, clearHooks) {
  */
 PHP_METHOD(Ice_Di, __call) {
 
-	zephir_fcall_cache_entry *_8 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL, *_7 = NULL;
-	zval *method_param = NULL, *arguments = NULL, *service = NULL, *value = NULL, _0 = zval_used_for_init, *_1 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_7 = NULL, *_8 = NULL;
+	zval *method_param = NULL, *arguments = NULL, *service = NULL, *value = NULL, _0 = zval_used_for_init, *_1 = NULL, *_3 = NULL, *_4, _5, *_6 = NULL;
 	zval *method = NULL, *_9;
 
 	ZEPHIR_MM_GROW();
@@ -491,28 +490,28 @@ PHP_METHOD(Ice_Di, __call) {
 	if (zephir_start_with_str(method, SL("get"))) {
 		ZEPHIR_SINIT_VAR(_0);
 		ZVAL_LONG(&_0, 3);
-		ZEPHIR_CALL_FUNCTION(&_1, "substr", &_2, method, &_0);
+		ZEPHIR_INIT_VAR(_1);
+		zephir_substr(_1, method, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+		ZEPHIR_CALL_FUNCTION(&service, "lcfirst", &_2, _1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&service, "lcfirst", &_3, _1);
+		ZEPHIR_CALL_METHOD(&_3, this_ptr, "has", NULL, service);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_4, this_ptr, "has", NULL, service);
-		zephir_check_call_status();
-		if (zephir_is_true(_4)) {
+		if (zephir_is_true(_3)) {
 			ZEPHIR_OBS_VAR(value);
 			zephir_array_isset_long_fetch(&value, arguments, 0, 0 TSRMLS_CC);
 			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, service, value);
 			zephir_check_call_status();
 			RETURN_MM();
 		} else {
-			ZEPHIR_INIT_VAR(_5);
-			object_init_ex(_5, ice_exception_ce);
-			ZEPHIR_SINIT_NVAR(_0);
-			ZVAL_STRING(&_0, "The '%s' service is required", 0);
-			ZEPHIR_CALL_FUNCTION(&_6, "sprintf", &_7, &_0, service);
+			ZEPHIR_INIT_VAR(_4);
+			object_init_ex(_4, ice_exception_ce);
+			ZEPHIR_SINIT_VAR(_5);
+			ZVAL_STRING(&_5, "The '%s' service is required", 0);
+			ZEPHIR_CALL_FUNCTION(&_6, "sprintf", &_7, &_5, service);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, _5, "__construct", &_8, _6);
+			ZEPHIR_CALL_METHOD(NULL, _4, "__construct", &_8, _6);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_5, "ice/di.zep", 222 TSRMLS_CC);
+			zephir_throw_exception_debug(_4, "ice/di.zep", 222 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -522,21 +521,21 @@ PHP_METHOD(Ice_Di, __call) {
 		zephir_array_isset_long_fetch(&value, arguments, 0, 0 TSRMLS_CC);
 		ZEPHIR_SINIT_NVAR(_0);
 		ZVAL_LONG(&_0, 3);
-		ZEPHIR_CALL_FUNCTION(&_1, "substr", &_2, method, &_0);
+		ZEPHIR_INIT_NVAR(_1);
+		zephir_substr(_1, method, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+		ZEPHIR_CALL_FUNCTION(&_3, "lcfirst", &_2, _1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_4, "lcfirst", &_3, _1);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, _4, value);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, _3, value);
 		zephir_check_call_status();
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_INIT_NVAR(_5);
-	object_init_ex(_5, ice_exception_ce);
+	ZEPHIR_INIT_NVAR(_1);
+	object_init_ex(_1, ice_exception_ce);
 	ZEPHIR_INIT_VAR(_9);
 	ZEPHIR_CONCAT_SVS(_9, "Call to undefined method or service '", method, "'");
-	ZEPHIR_CALL_METHOD(NULL, _5, "__construct", &_8, _9);
+	ZEPHIR_CALL_METHOD(NULL, _1, "__construct", &_8, _9);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_5, "ice/di.zep", 234 TSRMLS_CC);
+	zephir_throw_exception_debug(_1, "ice/di.zep", 234 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 

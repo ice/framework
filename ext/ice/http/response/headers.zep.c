@@ -58,9 +58,10 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 		_2->funcs->rewind(_2 TSRMLS_CC);
 		for (;_2->funcs->valid(_2 TSRMLS_CC) == SUCCESS && !EG(exception); _2->funcs->move_forward(_2 TSRMLS_CC)) {
 			ZEPHIR_GET_IMKEY(header, _2);
-			{ zval **tmp; 
-			_2->funcs->get_current_data(_2, &tmp TSRMLS_CC);
-			value = *tmp;
+			{
+				zval **ZEPHIR_TMP_ITERATOR_PTR;
+				_2->funcs->get_current_data(_2, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+				ZEPHIR_CPY_WRT(value, (*ZEPHIR_TMP_ITERATOR_PTR));
 			}
 			if (!(ZEPHIR_IS_EMPTY(value))) {
 				ZEPHIR_INIT_LNVAR(_3);

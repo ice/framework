@@ -68,25 +68,25 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_7 = NULL;
-	zval *action, *_0, *_1, *_2, *_3 = NULL, *_5, *_6;
+	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL;
+	zval *action, *_0, *_1, *_2, *_3, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(_0);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_method"), PH_NOISY_CC);
 	zephir_fast_strtolower(_0, _1);
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_action"), PH_NOISY_CC);
-	ZEPHIR_CALL_FUNCTION(&_3, "ucfirst", &_4, _2);
-	zephir_check_call_status();
-	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_actionSuffix"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_2);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_action"), PH_NOISY_CC);
+	zephir_ucfirst(_2, _3);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_actionSuffix"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(action);
-	ZEPHIR_CONCAT_VVV(action, _0, _3, _5);
-	_6 = zephir_fetch_nproperty_this(this_ptr, SL("_activeHandler"), PH_NOISY_CC);
-	if ((zephir_method_exists(_6, action TSRMLS_CC)  == SUCCESS)) {
+	ZEPHIR_CONCAT_VVV(action, _0, _2, _4);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_activeHandler"), PH_NOISY_CC);
+	if ((zephir_method_exists(_5, action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_7);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6);
 	zephir_check_call_status();
 	RETURN_MM();
 

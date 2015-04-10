@@ -407,13 +407,13 @@ PHP_METHOD(Ice_Tag, button) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 6);
+	zephir_create_array(defaultParams, 4, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("id"), 0);
 	add_assoc_long_ex(defaultParams, SS("name"), 0);
 	add_assoc_long_ex(defaultParams, SS("content"), 1);
 	add_assoc_stringl_ex(defaultParams, SS("type"), SL("submit"), 1);
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 2);
+	zephir_create_array(_0, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "content", 1);
 	zephir_array_fast_append(_0, _1);
@@ -481,7 +481,7 @@ PHP_METHOD(Ice_Tag, input) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 6);
+	zephir_create_array(defaultParams, 4, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("id"), 0);
 	add_assoc_long_ex(defaultParams, SS("name"), 0);
 	add_assoc_long_ex(defaultParams, SS("value"), 1);
@@ -524,7 +524,7 @@ PHP_METHOD(Ice_Tag, form) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 3);
+	zephir_create_array(defaultParams, 2, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("action"), 0);
 	add_assoc_stringl_ex(defaultParams, SS("method"), SL("post"), 1);
 	ZEPHIR_OBS_VAR(local);
@@ -560,7 +560,7 @@ PHP_METHOD(Ice_Tag, form) {
 		}
 	}
 	ZEPHIR_INIT_VAR(_7);
-	array_init_size(_7, 2);
+	zephir_create_array(_7, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "local", 1);
 	zephir_array_fast_append(_7, _3);
@@ -592,12 +592,12 @@ PHP_METHOD(Ice_Tag, textArea) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 4);
+	zephir_create_array(defaultParams, 3, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("id"), 0);
 	add_assoc_long_ex(defaultParams, SS("name"), 0);
 	add_assoc_long_ex(defaultParams, SS("content"), 1);
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 3);
+	zephir_create_array(_0, 2, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "content", 1);
 	zephir_array_fast_append(_0, _1);
@@ -658,7 +658,7 @@ PHP_METHOD(Ice_Tag, img) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 3);
+	zephir_create_array(defaultParams, 2, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("src"), 0);
 	add_assoc_long_ex(defaultParams, SS("alt"), 1);
 	ZEPHIR_OBS_VAR(local);
@@ -692,7 +692,7 @@ PHP_METHOD(Ice_Tag, img) {
 		}
 	}
 	ZEPHIR_INIT_VAR(_7);
-	array_init_size(_7, 2);
+	zephir_create_array(_7, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "local", 1);
 	zephir_array_fast_append(_7, _3);
@@ -753,7 +753,7 @@ PHP_METHOD(Ice_Tag, a) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 4);
+	zephir_create_array(defaultParams, 3, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("href"), 0);
 	add_assoc_long_ex(defaultParams, SS("text"), 1);
 	add_assoc_long_ex(defaultParams, SS("title"), 2);
@@ -788,7 +788,7 @@ PHP_METHOD(Ice_Tag, a) {
 		zephir_array_update_string(&parameters, SL("href"), &_6, PH_COPY | PH_SEPARATE);
 	}
 	ZEPHIR_INIT_VAR(_7);
-	array_init_size(_7, 4);
+	zephir_create_array(_7, 3, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "text", 1);
 	zephir_array_fast_append(_7, _3);
@@ -831,7 +831,7 @@ PHP_METHOD(Ice_Tag, link) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 4);
+	zephir_create_array(defaultParams, 3, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("href"), 0);
 	add_assoc_stringl_ex(defaultParams, SS("type"), SL("text/css"), 1);
 	add_assoc_stringl_ex(defaultParams, SS("rel"), SL("stylesheet"), 1);
@@ -866,7 +866,7 @@ PHP_METHOD(Ice_Tag, link) {
 		}
 	}
 	ZEPHIR_INIT_VAR(_7);
-	array_init_size(_7, 2);
+	zephir_create_array(_7, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "local", 1);
 	zephir_array_fast_append(_7, _3);
@@ -907,7 +907,7 @@ PHP_METHOD(Ice_Tag, script) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 3);
+	zephir_create_array(defaultParams, 2, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("src"), 0);
 	add_assoc_stringl_ex(defaultParams, SS("type"), SL("text/javascript"), 1);
 	ZEPHIR_OBS_VAR(local);
@@ -945,7 +945,7 @@ PHP_METHOD(Ice_Tag, script) {
 		}
 	}
 	ZEPHIR_INIT_VAR(_8);
-	array_init_size(_8, 3);
+	zephir_create_array(_8, 2, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_4);
 	ZVAL_STRING(_4, "local", 1);
 	zephir_array_fast_append(_8, _4);
@@ -988,11 +988,11 @@ PHP_METHOD(Ice_Tag, style) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 3);
+	zephir_create_array(defaultParams, 2, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("content"), 0);
 	add_assoc_stringl_ex(defaultParams, SS("type"), SL("text/css"), 1);
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 2);
+	zephir_create_array(_0, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "content", 1);
 	zephir_array_fast_append(_0, _1);
@@ -1035,7 +1035,7 @@ PHP_METHOD(Ice_Tag, select) {
 
 
 	ZEPHIR_INIT_VAR(defaultParams);
-	array_init_size(defaultParams, 4);
+	zephir_create_array(defaultParams, 3, 0 TSRMLS_CC);
 	add_assoc_long_ex(defaultParams, SS("id"), 0);
 	add_assoc_long_ex(defaultParams, SS("name"), 0);
 	add_assoc_long_ex(defaultParams, SS("options"), 1);
@@ -1071,7 +1071,7 @@ PHP_METHOD(Ice_Tag, select) {
 			array_init(selected);
 		} else {
 			ZEPHIR_INIT_VAR(tmp);
-			array_init_size(tmp, 2);
+			zephir_create_array(tmp, 1, 0 TSRMLS_CC);
 			zephir_get_strval(_3, selected);
 			zephir_array_fast_append(tmp, _3);
 			ZEPHIR_CPY_WRT(selected, tmp);
@@ -1090,7 +1090,7 @@ PHP_METHOD(Ice_Tag, select) {
 			ZEPHIR_GET_HVALUE(text, _6);
 			if (Z_TYPE_P(text) == IS_ARRAY) {
 				ZEPHIR_INIT_NVAR(group);
-				array_init_size(group, 2);
+				zephir_create_array(group, 1, 0 TSRMLS_CC);
 				zephir_array_update_string(&group, SL("label"), &value, PH_COPY | PH_SEPARATE);
 				ZEPHIR_INIT_NVAR(_options);
 				array_init(_options);
@@ -1104,7 +1104,7 @@ PHP_METHOD(Ice_Tag, select) {
 					zephir_get_strval(_10, _value);
 					ZEPHIR_CPY_WRT(_value, _10);
 					ZEPHIR_INIT_NVAR(option);
-					array_init_size(option, 2);
+					zephir_create_array(option, 1, 0 TSRMLS_CC);
 					zephir_array_update_string(&option, SL("value"), &_value, PH_COPY | PH_SEPARATE);
 					if (zephir_fast_in_array(_value, selected TSRMLS_CC)) {
 						ZEPHIR_INIT_NVAR(_2);
@@ -1115,7 +1115,7 @@ PHP_METHOD(Ice_Tag, select) {
 					ZEPHIR_INIT_NVAR(_12);
 					array_init(_12);
 					ZEPHIR_INIT_NVAR(_13);
-					array_init_size(_13, 2);
+					zephir_create_array(_13, 1, 0 TSRMLS_CC);
 					ZEPHIR_INIT_NVAR(_14);
 					ZVAL_STRING(_14, "content", 1);
 					zephir_array_fast_append(_13, _14);
@@ -1145,7 +1145,7 @@ PHP_METHOD(Ice_Tag, select) {
 				ZEPHIR_INIT_NVAR(_19);
 				array_init(_19);
 				ZEPHIR_INIT_NVAR(_13);
-				array_init_size(_13, 2);
+				zephir_create_array(_13, 1, 0 TSRMLS_CC);
 				ZEPHIR_INIT_NVAR(_20);
 				ZVAL_STRING(_20, "content", 1);
 				zephir_array_fast_append(_13, _20);
@@ -1164,7 +1164,7 @@ PHP_METHOD(Ice_Tag, select) {
 				zephir_get_strval(_23, value);
 				ZEPHIR_CPY_WRT(value, _23);
 				ZEPHIR_INIT_NVAR(option);
-				array_init_size(option, 2);
+				zephir_create_array(option, 1, 0 TSRMLS_CC);
 				zephir_array_update_string(&option, SL("value"), &value, PH_COPY | PH_SEPARATE);
 				if (zephir_fast_in_array(value, selected TSRMLS_CC)) {
 					ZEPHIR_INIT_NVAR(_19);
@@ -1175,7 +1175,7 @@ PHP_METHOD(Ice_Tag, select) {
 				ZEPHIR_INIT_NVAR(_12);
 				array_init(_12);
 				ZEPHIR_INIT_NVAR(_13);
-				array_init_size(_13, 2);
+				zephir_create_array(_13, 1, 0 TSRMLS_CC);
 				ZEPHIR_INIT_NVAR(_14);
 				ZVAL_STRING(_14, "content", 1);
 				zephir_array_fast_append(_13, _14);
@@ -1199,7 +1199,7 @@ PHP_METHOD(Ice_Tag, select) {
 		zephir_array_update_string(&parameters, SL("content"), &_14, PH_COPY | PH_SEPARATE);
 	}
 	ZEPHIR_INIT_VAR(_24);
-	array_init_size(_24, 4);
+	zephir_create_array(_24, 3, 0 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "content", 1);
 	zephir_array_fast_append(_24, _2);
@@ -1459,7 +1459,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 
 
 	ZEPHIR_INIT_VAR(order);
-	array_init_size(order, 14);
+	zephir_create_array(order, 11, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "rel", 1);
 	zephir_array_fast_append(order, _0);
@@ -1824,14 +1824,14 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 				ZEPHIR_INIT_NVAR(_10);
 				ZEPHIR_SINIT_NVAR(_0);
 				ZVAL_STRING(&_0, " ", 0);
-				zephir_fast_str_replace(_10, search, &_0, text TSRMLS_CC);
+				zephir_fast_str_replace(&_10, search, &_0, text TSRMLS_CC);
 				zephir_get_strval(text, _10);
 			}
 		} else {
 			ZEPHIR_INIT_NVAR(_10);
 			ZEPHIR_SINIT_NVAR(_3);
 			ZVAL_STRING(&_3, " ", 0);
-			zephir_fast_str_replace(_10, replace, &_3, text TSRMLS_CC);
+			zephir_fast_str_replace(&_10, replace, &_3, text TSRMLS_CC);
 			zephir_get_strval(text, _10);
 		}
 	}

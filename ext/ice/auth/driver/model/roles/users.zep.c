@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
 
 
 /**
@@ -42,9 +43,9 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 
-	zval *_4, *_5;
+	zval *_5, *_7;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_6;
+	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_6 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -60,30 +61,28 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_4);
-	array_init_size(_4, 2);
-	add_assoc_stringl_ex(_4, SS("alias"), SL("User"), 1);
-	ZEPHIR_INIT_NVAR(_2);
-	ZVAL_STRING(_2, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_NVAR(_3);
-	ZVAL_STRING(_3, "id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _2, _1, _3, _4);
-	zephir_check_temp_parameter(_2);
-	zephir_check_temp_parameter(_3);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_5);
-	array_init_size(_5, 2);
-	add_assoc_stringl_ex(_5, SS("alias"), SL("Role"), 1);
+	zephir_create_array(_5, 1, 0 TSRMLS_CC);
+	add_assoc_stringl_ex(_5, SS("alias"), SL("User"), 1);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "user_id", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _2, _1, _4, _5);
+	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getidkey", NULL);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_7);
+	zephir_create_array(_7, 1, 0 TSRMLS_CC);
+	add_assoc_stringl_ex(_7, SS("alias"), SL("Role"), 1);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "role_id", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "Ice\\Auth\\Driver\\Model\\Roles", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_6);
-	ZVAL_STRING(_6, "id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _2, _3, _6, _5);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, _2, _3, _6, _7);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
-	zephir_check_temp_parameter(_6);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

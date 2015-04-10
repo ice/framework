@@ -44,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Config) {
  */
 PHP_METHOD(Ice_Config, __construct) {
 
-	zephir_fcall_cache_entry *_7 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1, *_4;
 	HashPosition _0, _3;

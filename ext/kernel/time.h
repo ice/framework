@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2015 Zephir Team  (http://www.zephir-lang.com)      |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -12,17 +12,19 @@
   | obtain it through the world-wide-web, please send an email             |
   | to license@zephir-lang.com so we can send you a copy immediately.      |
   +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  +------------------------------------------------------------------------+
 */
 
-#ifndef ZEPHIR_KERNEL_PERSISTENT_H
-#define ZEPHIR_KERNEL_PERSISTENT_H
+#ifndef ZEPHIR_KERNEL_TIME_H
+#define ZEPHIR_KERNEL_TIME_H
 
 #include <php.h>
+#include <Zend/zend.h>
 
-int zephir_persistent_store(zval *service, zval *object TSRMLS_DC);
-int zephir_persistent_fetch(zval *return_value, zval *service TSRMLS_DC);
+#define MICRO_IN_SEC 1000000.00
 
+void zephir_time(zval *return_value);
+#ifdef HAVE_GETTIMEOFDAY
+void zephir_microtime(zval *return_value, zval *get_as_float TSRMLS_DC);
 #endif
+
+#endif /* ZEPHIR_KERNEL_TIME_H */
