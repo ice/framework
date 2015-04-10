@@ -14,7 +14,6 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/exception.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
@@ -66,7 +65,6 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool _0, _1;
 	zval *routeParser = NULL, *dataGenerator = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -84,22 +82,6 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 	}
 
 
-	_0 = Z_TYPE_P(routeParser) != IS_NULL;
-	if (_0) {
-		_0 = !(zephir_instance_of_ev(routeParser, ice_mvc_route_parser_parserinterface_ce TSRMLS_CC));
-	}
-	if (_0) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'routeParser' must be an instance of 'Ice\\Mvc\\Route\\Parser\\ParserInterface'", "", 0);
-		return;
-	}
-	_1 = Z_TYPE_P(dataGenerator) != IS_NULL;
-	if (_1) {
-		_1 = !(zephir_instance_of_ev(dataGenerator, ice_mvc_route_datagenerator_datageneratorinterface_ce TSRMLS_CC));
-	}
-	if (_1) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'dataGenerator' must be an instance of 'Ice\\Mvc\\Route\\DataGenerator\\DataGeneratorInterface'", "", 0);
-		return;
-	}
 	if (!(zephir_is_true(routeParser))) {
 		ZEPHIR_INIT_NVAR(routeParser);
 		object_init_ex(routeParser, ice_mvc_route_parser_std_ce);
@@ -155,7 +137,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	if (Z_TYPE_P(httpMethod) == IS_STRING) {
 		ZEPHIR_CPY_WRT(method, httpMethod);
 		ZEPHIR_INIT_NVAR(httpMethod);
-		array_init_size(httpMethod, 2);
+		zephir_create_array(httpMethod, 1, 0 TSRMLS_CC);
 		zephir_array_fast_append(httpMethod, method);
 	}
 	zephir_is_iterable(httpMethod, &_2, &_1, 0, 0, "ice/mvc/route/collector.zep", 58);

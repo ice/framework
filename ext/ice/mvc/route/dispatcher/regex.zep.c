@@ -90,12 +90,12 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchVariableRoute) {
 
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 
-	zephir_fcall_cache_entry *_7 = NULL;
-	HashTable *_5;
-	HashPosition _4;
+	HashTable *_6;
+	HashPosition _5;
+	zephir_fcall_cache_entry *_3 = NULL;
 	zend_bool _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *httpMethod, *uri, *varRouteData, *result = NULL, *allowedMethods, *method = NULL, *routeData = NULL, *_0, *_2, *_3, **_6, *_8 = NULL;
+	zval *httpMethod, *uri, *varRouteData, *result = NULL, *allowedMethods, *method = NULL, *routeData = NULL, *_0, *_2, *_4, **_7, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &httpMethod, &uri);
@@ -116,34 +116,34 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	}
 	if (zephir_array_isset(varRouteData, httpMethod)) {
 		zephir_array_fetch(&_2, varRouteData, httpMethod, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 32 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", NULL, _2, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, _2, uri);
 		zephir_check_call_status();
-		zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 34 TSRMLS_CC);
-		if (ZEPHIR_IS_LONG_IDENTICAL(_3, 1)) {
+		zephir_array_fetch_long(&_4, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 34 TSRMLS_CC);
+		if (ZEPHIR_IS_LONG_IDENTICAL(_4, 1)) {
 			RETURN_CCTOR(result);
 		}
 	} else if (_1) {
 		zephir_array_fetch_string(&_2, varRouteData, SL("GET"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 38 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", NULL, _2, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, _2, uri);
 		zephir_check_call_status();
-		zephir_array_fetch_long(&_3, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 40 TSRMLS_CC);
-		if (ZEPHIR_IS_LONG_IDENTICAL(_3, 1)) {
+		zephir_array_fetch_long(&_4, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 40 TSRMLS_CC);
+		if (ZEPHIR_IS_LONG_IDENTICAL(_4, 1)) {
 			RETURN_CCTOR(result);
 		}
 	}
 	ZEPHIR_INIT_VAR(allowedMethods);
 	array_init(allowedMethods);
-	zephir_is_iterable(varRouteData, &_5, &_4, 0, 0, "ice/mvc/route/dispatcher/regex.zep", 61);
+	zephir_is_iterable(varRouteData, &_6, &_5, 0, 0, "ice/mvc/route/dispatcher/regex.zep", 61);
 	for (
-	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_5, &_4)
+	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_6, &_5)
 	) {
-		ZEPHIR_GET_HMKEY(method, _5, _4);
-		ZEPHIR_GET_HVALUE(routeData, _6);
+		ZEPHIR_GET_HMKEY(method, _6, _5);
+		ZEPHIR_GET_HVALUE(routeData, _7);
 		if (ZEPHIR_IS_IDENTICAL(method, httpMethod)) {
 			continue;
 		}
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_7, routeData, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, routeData, uri);
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_2, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 56 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(_2, 1)) {
@@ -151,14 +151,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		}
 	}
 	if (zephir_is_true(allowedMethods)) {
-		array_init_size(return_value, 3);
+		zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_8);
 		ZVAL_LONG(_8, 2);
 		zephir_array_fast_append(return_value, _8);
 		zephir_array_fast_append(return_value, allowedMethods);
 		RETURN_MM();
 	} else {
-		array_init_size(return_value, 2);
+		zephir_create_array(return_value, 1, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(_8);
 		ZVAL_LONG(_8, 0);
 		zephir_array_fast_append(return_value, _8);
@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchStaticRoute) {
 		_1 = zephir_array_isset_string(routes, SS("GET"));
 	}
 	if (zephir_array_isset(routes, httpMethod)) {
-		array_init_size(return_value, 4);
+		zephir_create_array(return_value, 3, 0 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_2);
 		ZVAL_LONG(_2, 1);
 		zephir_array_fast_append(return_value, _2);
@@ -197,7 +197,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchStaticRoute) {
 		zephir_array_fast_append(return_value, _2);
 		RETURN_MM();
 	} else if (_1) {
-		array_init_size(return_value, 4);
+		zephir_create_array(return_value, 3, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(_2);
 		ZVAL_LONG(_2, 1);
 		zephir_array_fast_append(return_value, _2);
@@ -209,7 +209,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchStaticRoute) {
 		zephir_array_fast_append(return_value, _2);
 		RETURN_MM();
 	} else {
-		array_init_size(return_value, 3);
+		zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(_2);
 		ZVAL_LONG(_2, 2);
 		zephir_array_fast_append(return_value, _2);

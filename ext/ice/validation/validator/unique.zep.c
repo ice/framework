@@ -12,13 +12,12 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/object.h"
-#include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 
 
 /**
@@ -70,10 +69,6 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	}
 
 
-	if (!(zephir_instance_of_ev(validation, ice_validation_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'validation' must be an instance of 'Ice\\Validation'", "", 0);
-		return;
-	}
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, field);
 	zephir_check_call_status();
 	_0 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
@@ -140,17 +135,17 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	}
 	if (zephir_is_true(except)) {
 		ZEPHIR_INIT_VAR(id);
-		array_init_size(id, 2);
+		zephir_create_array(id, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&id, SL("!="), &except, PH_COPY | PH_SEPARATE);
 		ZEPHIR_INIT_VAR(_6);
-		array_init_size(_6, 3);
+		zephir_create_array(_6, 2, 0 TSRMLS_CC);
 		zephir_array_update_zval(&_6, custom, &value, PH_COPY);
 		zephir_array_update_string(&_6, SL("id"), &id, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _6);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(_6);
-		array_init_size(_6, 2);
+		zephir_create_array(_6, 1, 0 TSRMLS_CC);
 		zephir_array_update_zval(&_6, custom, &value, PH_COPY);
 		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _6);
 		zephir_check_call_status();
@@ -218,7 +213,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 			ZEPHIR_CPY_WRT(message, _14);
 		}
 		ZEPHIR_INIT_VAR(replace);
-		array_init_size(replace, 2);
+		zephir_create_array(replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_FUNCTION(&_13, "strtr", &_15, message, replace);
 		zephir_check_call_status();

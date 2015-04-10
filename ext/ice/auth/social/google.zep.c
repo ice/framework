@@ -15,9 +15,9 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
 #include "kernel/operators.h"
 #include "kernel/string.h"
-#include "kernel/array.h"
 
 
 /**
@@ -64,7 +64,7 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, this_ptr, "__construct", &_1, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
-	array_init_size(_2, 8);
+	zephir_create_array(_2, 6, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(_2, SS("socialId"), SL("id"), 1);
 	add_assoc_stringl_ex(_2, SS("email"), SL("email"), 1);
 	add_assoc_stringl_ex(_2, SS("name"), SL("name"), 1);
@@ -104,7 +104,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		zephir_array_fetch_string(&_6, _5, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45 TSRMLS_CC);
 		ZEPHIR_SINIT_NVAR(_2);
 		ZVAL_LONG(&_2, 0000);
-		zephir_fast_str_replace(_1, &_2, _3, _6 TSRMLS_CC);
+		zephir_fast_str_replace(&_1, &_2, _3, _6 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_7);
 		ZVAL_STRING(_7, "birthday", 1);
 		zephir_update_property_array(this_ptr, SL("_userInfo"), _7, _1 TSRMLS_CC);
@@ -139,7 +139,7 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
 	if (zephir_array_isset_string(_GET, SS("code"))) {
 		ZEPHIR_INIT_VAR(params);
-		array_init_size(params, 7);
+		zephir_create_array(params, 5, 0 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(_0);
 		zephir_read_property_this(&_0, this_ptr, SL("_clientId"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("client_id"), &_0, PH_COPY | PH_SEPARATE);
@@ -202,10 +202,10 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 
 	ZEPHIR_MM_GROW();
 
-	array_init_size(return_value, 3);
+	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(return_value, SS("auth_url"), SL("https://accounts.google.com/o/oauth2/auth"), 1);
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 6);
+	zephir_create_array(_0, 4, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_1);
 	zephir_read_property_this(&_1, this_ptr, SL("_redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("redirect_uri"), &_1, PH_COPY | PH_SEPARATE);

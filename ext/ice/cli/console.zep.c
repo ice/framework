@@ -154,7 +154,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 
 
 	ZEPHIR_INIT_VAR(colors);
-	array_init_size(colors, 12);
+	zephir_create_array(colors, 9, 0 TSRMLS_CC);
 	add_assoc_long_ex(colors, SS("black"), 30);
 	add_assoc_long_ex(colors, SS("red"), 31);
 	add_assoc_long_ex(colors, SS("green"), 32);
@@ -165,7 +165,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	add_assoc_long_ex(colors, SS("lightgray"), 37);
 	add_assoc_long_ex(colors, SS("white"), 97);
 	ZEPHIR_INIT_VAR(bgColors);
-	array_init_size(bgColors, 12);
+	zephir_create_array(bgColors, 9, 0 TSRMLS_CC);
 	add_assoc_long_ex(bgColors, SS("black"), 40);
 	add_assoc_long_ex(bgColors, SS("red"), 41);
 	add_assoc_long_ex(bgColors, SS("green"), 42);

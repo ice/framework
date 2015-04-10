@@ -14,10 +14,9 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
-#include "kernel/exception.h"
-#include "kernel/array.h"
 #include "kernel/string.h"
 
 ZEPHIR_INIT_CLASS(Ice_Http_Response) {
@@ -113,10 +112,10 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_4 = NULL;
 	zval *_0;
 	int status, ZEPHIR_LAST_CALL_STATUS;
-	zval *body_param = NULL, *status_param = NULL, *_1 = NULL, *_3, *_4, *_5, *_6;
+	zval *body_param = NULL, *status_param = NULL, *_1 = NULL, *_3, *_5, *_6, *_7;
 	zval *body = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -136,7 +135,7 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 76);
+	zephir_create_array(_0, 60, 0 TSRMLS_CC);
 	add_index_stringl(_0, 100, SL("Continue"), 1);
 	add_index_stringl(_0, 101, SL("Switching Protocols"), 1);
 	add_index_stringl(_0, 102, SL("Processing"), 1);
@@ -203,21 +202,21 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	zephir_update_property_this(this_ptr, SL("_di"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
 	object_init_ex(_3, ice_http_response_headers_ce);
-	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL);
+	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", &_4);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_headers"), _3 TSRMLS_CC);
-	ZEPHIR_INIT_ZVAL_NREF(_4);
-	ZVAL_LONG(_4, status);
-	zephir_update_property_this(this_ptr, SL("_status"), _4 TSRMLS_CC);
+	ZEPHIR_INIT_ZVAL_NREF(_5);
+	ZVAL_LONG(_5, status);
+	zephir_update_property_this(this_ptr, SL("_status"), _5 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_body"), body TSRMLS_CC);
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_headers"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_5);
-	ZVAL_STRING(_5, "Content-Type", ZEPHIR_TEMP_PARAM_COPY);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_headers"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_6);
-	ZVAL_STRING(_6, "text/html", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _4, "set", NULL, _5, _6);
-	zephir_check_temp_parameter(_5);
+	ZVAL_STRING(_6, "Content-Type", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_VAR(_7);
+	ZVAL_STRING(_7, "text/html", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _5, "set", NULL, _6, _7);
 	zephir_check_temp_parameter(_6);
+	zephir_check_temp_parameter(_7);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -385,14 +384,10 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 
 
 
-	if (!(zephir_instance_of_ev(request, ice_http_request_requestinterface_ce TSRMLS_CC))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(spl_ce_InvalidArgumentException, "Parameter 'request' must be an instance of 'Ice\\Http\\Request\\RequestInterface'", "", 0);
-		return;
-	}
 	sendBody = 1;
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_status"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 3);
+	zephir_create_array(_1, 2, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_LONG(_2, 204);
 	zephir_array_fast_append(_1, _2);
@@ -556,7 +551,7 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_status"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 4);
+	zephir_create_array(_1, 3, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_LONG(_2, 201);
 	zephir_array_fast_append(_1, _2);
@@ -641,7 +636,7 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_status"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 6);
+	zephir_create_array(_1, 4, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_LONG(_2, 301);
 	zephir_array_fast_append(_1, _2);

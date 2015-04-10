@@ -51,9 +51,8 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
  */
 PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
-	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL, *_5 = NULL;
 	zval *file_param = NULL, *_0 = NULL, *_2 = NULL;
 	zval *file = NULL, *_3 = NULL;
 

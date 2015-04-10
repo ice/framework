@@ -15,10 +15,11 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/array.h"
 #include "kernel/operators.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
-#include "kernel/array.h"
+#include "kernel/time.h"
 
 
 /**
@@ -65,7 +66,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, this_ptr, "__construct", &_1, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
-	array_init_size(_2, 7);
+	zephir_create_array(_2, 5, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(_2, SS("socialId"), SL("id"), 1);
 	add_assoc_stringl_ex(_2, SS("email"), SL("email"), 1);
 	add_assoc_stringl_ex(_2, SS("name"), SL("name"), 1);
@@ -163,7 +164,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 	}
 	if (_0) {
 		ZEPHIR_INIT_VAR(params);
-		array_init_size(params, 3);
+		zephir_create_array(params, 2, 0 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(_1);
 		zephir_array_fetch_string(&_1, _GET, SL("oauth_token"), PH_NOISY, "ice/auth/social/twitter.zep", 78 TSRMLS_CC);
 		zephir_array_update_string(&params, SL("oauth_token"), &_1, PH_COPY | PH_SEPARATE);
@@ -189,7 +190,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 			ZEPHIR_INIT_VAR(getDataUrl);
 			ZVAL_STRING(getDataUrl, "https://api.twitter.com/1.1/users/show.json", 1);
 			ZEPHIR_INIT_NVAR(params);
-			array_init_size(params, 4);
+			zephir_create_array(params, 3, 0 TSRMLS_CC);
 			ZEPHIR_OBS_NVAR(_1);
 			zephir_array_fetch_string(&_1, accessTokens, SL("oauth_token"), PH_NOISY, "ice/auth/social/twitter.zep", 91 TSRMLS_CC);
 			zephir_array_update_string(&params, SL("oauth_token"), &_1, PH_COPY | PH_SEPARATE);
@@ -232,7 +233,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZEPHIR_INIT_VAR(requestTokenUrl);
 	ZVAL_STRING(requestTokenUrl, "https://api.twitter.com/oauth/request_token", 1);
 	ZEPHIR_INIT_VAR(_0);
-	array_init_size(_0, 2);
+	zephir_create_array(_0, 1, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_1);
 	zephir_read_property_this(&_1, this_ptr, SL("_redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("oauth_callback"), &_1, PH_COPY | PH_SEPARATE);
@@ -248,10 +249,10 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", &_5, requestTokens, requestTokens);
 	Z_UNSET_ISREF_P(requestTokens);
 	zephir_check_call_status();
-	array_init_size(return_value, 3);
+	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(return_value, SS("auth_url"), SL("https://api.twitter.com/oauth/authenticate"), 1);
 	ZEPHIR_INIT_VAR(_6);
-	array_init_size(_6, 2);
+	zephir_create_array(_6, 1, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_7);
 	if (zephir_array_isset_string(requestTokens, SS("oauth_token"))) {
 		ZEPHIR_OBS_NVAR(_7);
@@ -274,9 +275,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_12 = NULL, *_18 = NULL, *_20 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL, *_8 = NULL, *_10 = NULL, *_12 = NULL, *_18 = NULL, *_20 = NULL;
 	zval *_1;
-	zval *url_param = NULL, *params = NULL, *oauthToken_param = NULL, *type_param = NULL, *sigBaseStr, *key, *_0, *_2, *_3 = NULL, *_5 = NULL, *_7 = NULL, *_11 = NULL, *_13 = NULL, *_14, _15 = zval_used_for_init, *_16 = NULL, *_17 = NULL, *_19 = NULL;
+	zval *url_param = NULL, *params = NULL, *oauthToken_param = NULL, *type_param = NULL, *sigBaseStr, *key, *_0, *_2, *_3 = NULL, *_4 = NULL, *_6 = NULL, *_9 = NULL, *_11 = NULL, *_13 = NULL, *_14, _15 = zval_used_for_init, *_16 = NULL, *_17 = NULL, *_19 = NULL;
 	zval *url = NULL, *oauthToken = NULL, *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -305,37 +306,37 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZEPHIR_INIT_VAR(_1);
-	array_init_size(_1, 8);
+	zephir_create_array(_1, 6, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_2);
 	zephir_read_property_this(&_2, this_ptr, SL("_clientId"), PH_NOISY_CC);
 	zephir_array_update_string(&_1, SL("oauth_consumer_key"), &_2, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_FUNCTION(&_3, "rand", &_4);
+	ZEPHIR_INIT_VAR(_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "rand", &_5);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_5, "uniqid", &_6, _3, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_6, "uniqid", &_7, _4, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_7, "md5", &_8, _5);
-	zephir_check_call_status();
-	zephir_array_update_string(&_1, SL("oauth_nonce"), &_7, PH_COPY | PH_SEPARATE);
+	zephir_md5(_3, _6);
+	zephir_array_update_string(&_1, SL("oauth_nonce"), &_3, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(_1, SS("oauth_signature_method"), SL("HMAC-SHA1"), 1);
-	ZEPHIR_CALL_FUNCTION(&_7, "time", NULL);
-	zephir_check_call_status();
-	zephir_array_update_string(&_1, SL("oauth_timestamp"), &_7, PH_COPY | PH_SEPARATE);
+	ZEPHIR_INIT_NVAR(_3);
+	zephir_time(_3);
+	zephir_array_update_string(&_1, SL("oauth_timestamp"), &_3, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_1, SL("oauth_token"), &oauthToken, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(_1, SS("oauth_version"), SL("1.0"), 1);
 	zephir_fast_array_merge(_0, &(_1), &(params) TSRMLS_CC);
 	ZEPHIR_CPY_WRT(params, _0);
 	Z_SET_ISREF_P(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "ksort", &_9, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "ksort", &_8, params);
 	Z_UNSET_ISREF_P(params);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_7, "urlencode", &_10, url);
+	ZEPHIR_CALL_FUNCTION(&_9, "urlencode", &_10, url);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_11, "http_build_query", &_12, params);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_13, "urlencode", &_10, _11);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(sigBaseStr);
-	ZEPHIR_CONCAT_VSVSV(sigBaseStr, type, "&", _7, "&", _13);
+	ZEPHIR_CONCAT_VSVSV(sigBaseStr, type, "&", _9, "&", _13);
 	_14 = zephir_fetch_nproperty_this(this_ptr, SL("_clientSecret"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(key);
 	ZEPHIR_CONCAT_VSV(key, _14, "&", oauthToken);
