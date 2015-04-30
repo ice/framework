@@ -17,7 +17,7 @@
 #include "kernel/array.h"
 #include "kernel/operators.h"
 #include "kernel/hash.h"
-#include "kernel/fcall.h"
+#include "kernel/string.h"
 
 
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_GroupCount) {
@@ -84,11 +84,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL;
-	HashTable *_1, *_11;
-	HashPosition _0, _10;
-	int i, j, ZEPHIR_LAST_CALL_STATUS;
-	zval *routeData, *uri, *data = NULL, *matches, *handler, *varName = NULL, *varNames, *vars = NULL, **_2, *_3, *_4 = NULL, *_6, *_7, *_8, *_9, **_12, *_13, *_14 = NULL;
+	HashTable *_1, *_10;
+	HashPosition _0, _9;
+	int i, j;
+	zval *routeData, *uri, *data = NULL, *matches, *handler, *varName = NULL, *varNames, *vars = NULL, **_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8, **_11, *_12, *_13 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &routeData, &uri);
@@ -103,46 +102,44 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HVALUE(data, _2);
-		zephir_array_fetch_string(&_3, data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
-		Z_SET_ISREF_P(matches);
-		ZEPHIR_CALL_FUNCTION(&_4, "preg_match", &_5, _3, uri, matches);
-		Z_UNSET_ISREF_P(matches);
-		zephir_check_call_status();
-		if (!(zephir_is_true(_4))) {
+		ZEPHIR_INIT_NVAR(_3);
+		zephir_array_fetch_string(&_4, data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
+		zephir_preg_match(_3, _4, uri, matches, 0, 0 , 0  TSRMLS_CC);
+		if (!(zephir_is_true(_3))) {
 			continue;
 		}
 		j = zephir_fast_count_int(matches TSRMLS_CC);
-		zephir_array_fetch_string(&_6, data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
-		zephir_array_fetch_long(&_7, _6, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
-		zephir_array_fetch_long(&handler, _7, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
-		zephir_array_fetch_string(&_8, data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
-		zephir_array_fetch_long(&_9, _8, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
-		zephir_array_fetch_long(&varNames, _9, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
+		zephir_array_fetch_string(&_5, data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
+		zephir_array_fetch_long(&_6, _5, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
+		zephir_array_fetch_long(&handler, _6, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34 TSRMLS_CC);
+		zephir_array_fetch_string(&_7, data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
+		zephir_array_fetch_long(&_8, _7, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
+		zephir_array_fetch_long(&varNames, _8, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(vars);
 		array_init(vars);
 		i = 0;
-		zephir_is_iterable(varNames, &_11, &_10, 0, 0, "ice/mvc/route/dispatcher/groupcount.zep", 45);
+		zephir_is_iterable(varNames, &_10, &_9, 0, 0, "ice/mvc/route/dispatcher/groupcount.zep", 45);
 		for (
-		  ; zephir_hash_get_current_data_ex(_11, (void**) &_12, &_10) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_11, &_10)
+		  ; zephir_hash_get_current_data_ex(_10, (void**) &_11, &_9) == SUCCESS
+		  ; zephir_hash_move_forward_ex(_10, &_9)
 		) {
-			ZEPHIR_GET_HVALUE(varName, _12);
+			ZEPHIR_GET_HVALUE(varName, _11);
 			i++;
-			zephir_array_fetch_long(&_13, matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42 TSRMLS_CC);
-			zephir_array_update_zval(&vars, varName, &_13, PH_COPY | PH_SEPARATE);
+			zephir_array_fetch_long(&_12, matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42 TSRMLS_CC);
+			zephir_array_update_zval(&vars, varName, &_12, PH_COPY | PH_SEPARATE);
 		}
 		zephir_create_array(return_value, 3, 0 TSRMLS_CC);
-		ZEPHIR_INIT_NVAR(_14);
-		ZVAL_LONG(_14, 1);
-		zephir_array_fast_append(return_value, _14);
+		ZEPHIR_INIT_NVAR(_13);
+		ZVAL_LONG(_13, 1);
+		zephir_array_fast_append(return_value, _13);
 		zephir_array_fast_append(return_value, handler);
 		zephir_array_fast_append(return_value, vars);
 		RETURN_MM();
 	}
 	zephir_create_array(return_value, 1, 0 TSRMLS_CC);
-	ZEPHIR_INIT_NVAR(_14);
-	ZVAL_LONG(_14, 0);
-	zephir_array_fast_append(return_value, _14);
+	ZEPHIR_INIT_NVAR(_3);
+	ZVAL_LONG(_3, 0);
+	zephir_array_fast_append(return_value, _3);
 	RETURN_MM();
 
 }

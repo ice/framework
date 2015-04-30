@@ -34,8 +34,8 @@ class Flash
         var di;
 
         let di = Di::$fetch(),
-            this->_session = di->{"getSession"}(),
-            this->_tag = di->{"getTag"}();
+            this->_session = di->get("session", null, true),
+            this->_tag = di->get("tag", null, true);
 
         if count(options) {
             let this->_options = options;

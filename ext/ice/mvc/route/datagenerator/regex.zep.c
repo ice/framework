@@ -166,8 +166,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	ceil = zephir_get_numberval(_6);
 	ZEPHIR_SINIT_VAR(_7);
 	ZVAL_DOUBLE(&_7, ceil);
-	zephir_ceil(return_value, &_7 TSRMLS_CC);
-	RETURN_MM();
+	RETURN_MM_DOUBLE(zephir_ceil(&_7 TSRMLS_CC));
 
 }
 

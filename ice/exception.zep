@@ -37,7 +37,7 @@ class Exception extends \Exception
 
         // Check if translation module is available.
         if di->has("i18n") {
-            let message = di->{"get"}("i18n")->translate(str, values);
+            let message = di->get("i18n", null, true)->translate(str, values);
         } elseif (typeof values == "array") {
             // Check if values is associative or sequential
             if count(array_filter(array_keys(values), "is_string")) {

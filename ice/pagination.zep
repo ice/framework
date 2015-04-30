@@ -30,7 +30,7 @@ class Pagination extends Arr
 
         let di = Di::$fetch(),
             this->_di = di,
-            this->_tag = di->{"getTag"}();
+            this->_tag = di->get("tag", null, true);
     }
 
     /**
@@ -108,7 +108,7 @@ class Pagination extends Arr
 
         // Prepare list
         let html = this->_tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->_di->{"getRequest"}()->getQuery(),
+            query = this->_di->get("request", null, true)->getQuery(),
             i18n = this->_di->get("i18n");
 
         // Prepare previous
@@ -165,7 +165,7 @@ class Pagination extends Arr
 
         // Prepare list
         let html = this->_tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->_di->{"getRequest"}()->getQuery(),
+            query = this->_di->get("request", null, true)->getQuery(),
             i18n = this->_di->get("i18n");
 
         // Prepare first
@@ -296,7 +296,7 @@ class Pagination extends Arr
 
         // Prepare list
         let html = this->_tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->_di->{"getRequest"}()->getQuery(),
+            query = this->_di->get("request", null, true)->getQuery(),
             i18n = this->_di->get("i18n");
 
         // Prepare first

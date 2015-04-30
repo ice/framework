@@ -14,15 +14,15 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/fcall.h"
+#include "kernel/string.h"
 #include "kernel/array.h"
+#include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "ext/pdo/php_pdo_driver.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/hash.h"
 #include "kernel/concat.h"
-#include "kernel/string.h"
 
 
 /**
@@ -82,11 +82,11 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getClient) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 
-	zend_bool _2;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_6 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL;
+	zend_bool _2;
 	zval *options = NULL;
-	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts, *_0 = NULL, *_3, _4, *_5 = NULL, *_7;
+	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts, *_0, _1, *_3, _4, *_5 = NULL, *_7 = NULL;
 	zval *dsn = NULL, *user = NULL, *password = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -116,12 +116,9 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	ZEPHIR_INIT_VAR(parts);
 	array_init(parts);
 	ZEPHIR_INIT_VAR(_0);
-	ZVAL_STRING(_0, "/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", ZEPHIR_TEMP_PARAM_COPY);
-	Z_SET_ISREF_P(parts);
-	ZEPHIR_CALL_FUNCTION(NULL, "preg_match", &_1, _0, dsn, parts);
-	zephir_check_temp_parameter(_0);
-	Z_UNSET_ISREF_P(parts);
-	zephir_check_call_status();
+	ZEPHIR_SINIT_VAR(_1);
+	ZVAL_STRING(&_1, "/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", 0);
+	zephir_preg_match(_0, &_1, dsn, parts, 0, 0 , 0  TSRMLS_CC);
 	_2 = zephir_array_isset_long(parts, 0);
 	if (_2) {
 		zephir_array_fetch_long(&_3, parts, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 40 TSRMLS_CC);
@@ -132,11 +129,11 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 		_2 = ZEPHIR_IS_STRING(_5, "mysql");
 	}
 	if (_2) {
-		ZEPHIR_INIT_NVAR(_0);
-		ZVAL_STRING(_0, "SET NAMES utf8;", 1);
-		zephir_array_update_long(&options, 1002, &_0, PH_COPY | PH_SEPARATE, "ice/db/driver/pdo.zep", 41);
+		ZEPHIR_INIT_VAR(_7);
+		ZVAL_STRING(_7, "SET NAMES utf8;", 1);
+		zephir_array_update_long(&options, 1002, &_7, PH_COPY | PH_SEPARATE, "ice/db/driver/pdo.zep", 41);
 	}
-	ZEPHIR_INIT_VAR(_7);
+	ZEPHIR_INIT_NVAR(_7);
 	object_init_ex(_7, php_pdo_get_dbh_ce());
 	ZEPHIR_CALL_METHOD(NULL, _7, "__construct", NULL, dsn, user, password, options);
 	zephir_check_call_status();

@@ -16,8 +16,8 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
-#include "kernel/concat.h"
 #include "kernel/string.h"
+#include "kernel/concat.h"
 #include "kernel/exception.h"
 #include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
@@ -49,11 +49,11 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_File) {
  */
 PHP_METHOD(Ice_Validation_Validator_File, validate) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_17 = NULL, *_25 = NULL, *_31 = NULL, *_33 = NULL, *_40 = NULL;
+	zephir_nts_static zephir_fcall_cache_entry *_17 = NULL, *_25 = NULL, *_33 = NULL, *_40 = NULL;
 	zend_bool _3, _4, _5, _7, _8, _12, _18, _19, _21, _23, _26, _28, _42, _43;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *message = NULL, *label = NULL, *i18n = NULL, *replace = NULL, *types = NULL, *byteUnits, *unit = NULL, *maxSize = NULL, *matches, *bytes, *mime = NULL, *tmp = NULL, *width, *height, *minResolution, *maxResolution, *minWidth = NULL, *maxWidth, *minHeight = NULL, *maxHeight, *_0 = NULL, *_1 = NULL, *_SERVER, *_2, *_POST, *_FILES, *_6, *_9, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_20, *_22, *_24, *_27 = NULL, *_29 = NULL, *_30, *_32, *_34 = NULL, *_35, _36 = zval_used_for_init, *_37, *_38 = NULL, *_39 = NULL, *_41 = NULL, *_44 = NULL, *_45 = NULL, *_46 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *message = NULL, *label = NULL, *i18n = NULL, *replace = NULL, *types = NULL, *byteUnits, *unit = NULL, *maxSize = NULL, *matches, *bytes, *mime = NULL, *tmp = NULL, *width, *height, *minResolution, *maxResolution, *minWidth = NULL, *maxWidth, *minHeight = NULL, *maxHeight, *_0 = NULL, *_1 = NULL, *_SERVER, *_2, *_POST, *_FILES, *_6, *_9, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_20, *_22, *_24, *_27 = NULL, *_29 = NULL, *_30, *_31, *_32, *_34 = NULL, *_35, _36 = zval_used_for_init, *_37, *_38 = NULL, *_39 = NULL, *_41 = NULL, *_44 = NULL, *_45 = NULL, *_46 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
@@ -355,14 +355,12 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZVAL_STRING(unit, "B", 1);
 		ZEPHIR_INIT_NVAR(_1);
 		ZEPHIR_INIT_VAR(_29);
-		zephir_array_keys(_29, byteUnits TSRMLS_CC);
-		zephir_fast_join_str(_1, SL("|"), _29 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_30);
-		ZEPHIR_CONCAT_SVS(_30, "/^([0-9]+(?:\\.[0-9]+)?)(", _1, ")?$/Di");
-		Z_SET_ISREF_P(matches);
-		ZEPHIR_CALL_FUNCTION(NULL, "preg_match", &_31, _30, maxSize, matches);
-		Z_UNSET_ISREF_P(matches);
-		zephir_check_call_status();
+		zephir_array_keys(_30, byteUnits TSRMLS_CC);
+		zephir_fast_join_str(_29, SL("|"), _30 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_31);
+		ZEPHIR_CONCAT_SVS(_31, "/^([0-9]+(?:\\.[0-9]+)?)(", _29, ")?$/Di");
+		zephir_preg_match(_1, _31, maxSize, matches, 0, 0 , 0  TSRMLS_CC);
 		if (zephir_array_isset_long(matches, 2)) {
 			ZEPHIR_OBS_NVAR(unit);
 			zephir_array_fetch_long(&unit, matches, 2, PH_NOISY, "ice/validation/validator/file.zep", 113 TSRMLS_CC);

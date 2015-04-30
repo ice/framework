@@ -16,7 +16,7 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/concat.h"
-#include "kernel/fcall.h"
+#include "kernel/string.h"
 
 
 /**
@@ -83,9 +83,7 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
  */
 PHP_METHOD(Ice_Mvc_Route, matches) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
-	zval *str_param = NULL, *regex = NULL, *_0, *_1, *_2 = NULL;
+	zval *str_param = NULL, *regex = NULL, *_0, *_1, *_2, *_3;
 	zval *str = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -98,9 +96,10 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_SVS(_1, "~^", _0, "$~");
 	ZEPHIR_CPY_WRT(regex, _1);
-	ZEPHIR_CALL_FUNCTION(&_2, "preg_match", &_3, regex, str);
-	zephir_check_call_status();
-	RETURN_MM_BOOL(zephir_get_boolval(_2));
+	ZEPHIR_INIT_VAR(_2);
+	ZEPHIR_INIT_VAR(_3);
+	zephir_preg_match(_3, regex, str, _2, 0, 0 , 0  TSRMLS_CC);
+	RETURN_MM_BOOL(zephir_get_boolval(_3));
 
 }
 
