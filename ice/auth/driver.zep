@@ -39,9 +39,9 @@ abstract class Driver
 
         let di = Di::$fetch(),
             this->_options = array_merge(this->_options, options),
-            this->_session = di->{"getSession"}(),
-            this->_cookies = di->{"getCookies"}(),
-            this->_request = di->{"getRequest"}();
+            this->_session = di->get("session", null, true),
+            this->_cookies = di->get("cookies", null, true),
+            this->_request = di->get("request", null, true);
     }
 
     /**

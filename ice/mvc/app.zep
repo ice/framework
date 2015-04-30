@@ -30,7 +30,7 @@ class App extends Access
     {
         var argv, router, request, response, dispatcher, controller, view;
 
-        let request = this->_di->{"getRequest"}();
+        let request = this->_di->get("request", null, true);
         if method == null {
             let method = request->getMethod();
         }
@@ -49,9 +49,9 @@ class App extends Access
             }
         }
 
-        let router = this->_di->{"getRouter"}(),
+        let router = this->_di->get("router", null, true),
             response = router->handle(method, uri),
-            dispatcher = this->_di->{"getDispatcher"}();
+            dispatcher = this->_di->get("dispatcher", null, true);
 
         this->_di->applyHook("app.after.router.handle", [response]);
 
@@ -70,7 +70,7 @@ class App extends Access
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
 
                 let controller = response,
-                    response = this->_di->{"getResponse"}(),
+                    response = this->_di->get("response", null, true),
                     view = controller->view;
 
                 if view->getContent() === null {
