@@ -43,33 +43,40 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 
-	zval *_5;
+	zval *_6;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL;
+	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&auth, _0, "getauth", NULL);
-	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "auth", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_2);
-	ZVAL_STRING(_2, "users", ZEPHIR_TEMP_PARAM_COPY);
+	ZVAL_NULL(_2);
 	ZEPHIR_INIT_VAR(_3);
-	ZVAL_STRING(_3, "Ice\\Auth\\Driver\\Model\\Users", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_1, auth, "getoption", NULL, _2, _3);
-	zephir_check_temp_parameter(_2);
-	zephir_check_temp_parameter(_3);
+	ZVAL_BOOL(_3, 1);
+	ZEPHIR_CALL_METHOD(&auth, _0, "get", NULL, _1, _2, _3);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL);
-	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_5);
-	zephir_create_array(_5, 1, 0 TSRMLS_CC);
-	add_assoc_stringl_ex(_5, SS("alias"), SL("User"), 1);
+	ZEPHIR_INIT_NVAR(_1);
+	ZVAL_STRING(_1, "users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_2);
-	ZVAL_STRING(_2, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, _2, _1, _4, _5);
+	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Users", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_4, auth, "getoption", NULL, _1, _2);
+	zephir_check_temp_parameter(_1);
 	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_5, this_ptr, "getidkey", NULL);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(_6);
+	zephir_create_array(_6, 1, 0 TSRMLS_CC);
+	add_assoc_stringl_ex(_6, SS("alias"), SL("User"), 1);
+	ZEPHIR_INIT_NVAR(_1);
+	ZVAL_STRING(_1, "user_id", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, _1, _4, _5, _6);
+	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

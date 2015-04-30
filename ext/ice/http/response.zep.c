@@ -491,7 +491,7 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 
 	zend_bool external;
 	int status, ZEPHIR_LAST_CALL_STATUS;
-	zval *location_param = NULL, *status_param = NULL, *external_param = NULL, *url = NULL, *_0 = NULL, *_1, *_2 = NULL;
+	zval *location_param = NULL, *status_param = NULL, *external_param = NULL, *url = NULL, *_0 = NULL, *_1, *_2, *_3, *_4 = NULL;
 	zval *location = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -521,11 +521,18 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	zephir_check_call_status();
 	if (!(external)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&url, _1, "geturl", NULL);
+		ZEPHIR_INIT_NVAR(_0);
+		ZVAL_STRING(_0, "url", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_VAR(_2);
+		ZVAL_NULL(_2);
+		ZEPHIR_INIT_VAR(_3);
+		ZVAL_BOOL(_3, 1);
+		ZEPHIR_CALL_METHOD(&url, _1, "get", NULL, _0, _2, _3);
+		zephir_check_temp_parameter(_0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_2, url, "get", NULL, location);
+		ZEPHIR_CALL_METHOD(&_4, url, "get", NULL, location);
 		zephir_check_call_status();
-		zephir_get_strval(location, _2);
+		zephir_get_strval(location, _4);
 	}
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_headers"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_0);

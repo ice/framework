@@ -163,7 +163,7 @@ class Router
             case self::NOT_FOUND:
                 if this->_silent {
                     // 404 Not Found
-                    let response = this->_di->{"getResponse"}();
+                    let response = this->_di->get("response", null, true);
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
 
@@ -173,7 +173,7 @@ class Router
             case self::METHOD_NOT_ALLOWED:
                 if this->_silent {
                     // 405 Method Not Allowed
-                    let response = this->_di->{"getResponse"}();
+                    let response = this->_di->get("response", null, true);
                     response->setStatus(405);
                     response->setBody(response->getMessage(405));
 

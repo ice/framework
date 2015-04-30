@@ -16,6 +16,7 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 #include "kernel/hash.h"
 #include "kernel/array.h"
 
@@ -85,10 +86,8 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
  */
 PHP_METHOD(Ice_Config_Ini, cast) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_9 = NULL;
 	zend_bool _0, _1, _2, _3, _4, _5, _6;
-	zval *ini, *raw, *_7, *_8 = NULL;
+	zval *ini, *raw, *_7, *_8, _9;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
@@ -135,10 +134,10 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 		}
 		if (zephir_is_numeric(ini)) {
 			ZEPHIR_INIT_VAR(_7);
-			ZVAL_STRING(_7, "/[.]+/", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_FUNCTION(&_8, "preg_match", &_9, _7, ini);
-			zephir_check_temp_parameter(_7);
-			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_8);
+			ZEPHIR_SINIT_VAR(_9);
+			ZVAL_STRING(&_9, "/[.]+/", 0);
+			zephir_preg_match(_8, &_9, ini, _7, 0, 0 , 0  TSRMLS_CC);
 			if (zephir_is_true(_8)) {
 				RETURN_MM_DOUBLE(zephir_get_doubleval(ini));
 			} else {

@@ -48,7 +48,7 @@ class Access
         }
 
         if di->has(property) {
-            let service = di->{"get"}(property),
+            let service = di->get(property),
                 this->{property} = service;
 
             return service;

@@ -48,7 +48,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
-	zval *options_param = NULL, *di = NULL, *_2, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL;
+	zval *options_param = NULL, *di = NULL, *_2, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL, *_9 = NULL;
 	zval *options = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -76,15 +76,36 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
 	zephir_fast_array_merge(_2, &(_3), &(options) TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_options"), _2 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_4, di, "getsession", NULL);
+	ZEPHIR_INIT_VAR(_5);
+	ZVAL_STRING(_5, "session", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_VAR(_6);
+	ZVAL_NULL(_6);
+	ZEPHIR_INIT_VAR(_7);
+	ZVAL_BOOL(_7, 1);
+	ZEPHIR_CALL_METHOD(&_4, di, "get", NULL, _5, _6, _7);
+	zephir_check_temp_parameter(_5);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_session"), _4 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_5, di, "getcookies", NULL);
+	ZEPHIR_INIT_NVAR(_5);
+	ZVAL_STRING(_5, "cookies", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_NVAR(_6);
+	ZVAL_NULL(_6);
+	ZEPHIR_INIT_NVAR(_7);
+	ZVAL_BOOL(_7, 1);
+	ZEPHIR_CALL_METHOD(&_8, di, "get", NULL, _5, _6, _7);
+	zephir_check_temp_parameter(_5);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_cookies"), _5 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_6, di, "getrequest", NULL);
+	zephir_update_property_this(this_ptr, SL("_cookies"), _8 TSRMLS_CC);
+	ZEPHIR_INIT_NVAR(_5);
+	ZVAL_STRING(_5, "request", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_NVAR(_6);
+	ZVAL_NULL(_6);
+	ZEPHIR_INIT_NVAR(_7);
+	ZVAL_BOOL(_7, 1);
+	ZEPHIR_CALL_METHOD(&_9, di, "get", NULL, _5, _6, _7);
+	zephir_check_temp_parameter(_5);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_request"), _6 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_request"), _9 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
