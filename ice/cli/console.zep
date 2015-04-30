@@ -32,9 +32,9 @@ class Console extends Access
     {
         var router, response, dispatcher;
 
-        let router = this->_di->{"getRouter"}(),
+        let router = this->_di->get("router", null, true),
             response = router->handle(arguments),
-            dispatcher = this->_di->{"getDispatcher"}();
+            dispatcher = this->_di->get("dispatcher", null, true);
 
         dispatcher->setModules(this->_modules);
         dispatcher->setModule(response["module"]);
