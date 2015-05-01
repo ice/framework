@@ -34,7 +34,7 @@ There are two ways to compile Ice framework*:
 #### Compile from `/ext`:
 Clone and install from GitHub:
 ```sh
-git clone https://github.com/ice/framework.git
+git clone --depth=1 https://github.com/ice/framework.git
 cd framework/ext/
 sudo ./install
 ```
