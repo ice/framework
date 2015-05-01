@@ -33,7 +33,7 @@ class Router
 
     protected _ready = false;
     protected _silent = false { set };
-    protected _options { get, set };
+    protected _options = [] { get, set };
     protected _routes { get, set };
     protected _collector { get, set };
     protected _dispatcher { get, set };
@@ -74,34 +74,26 @@ class Router
 
     /**
      * Prepare the FastRoute.
-     *
-     * @param object routeDefinitionCallback
-     * @param array options
      */
-    public function fastRoute(routeDefinitionCallback = null, array options = [])
+    public function fastRoute()
     {
-        var dispatcher, data, collector, parser, generator, route, handler;
+        var options, dispatcher, data, collector, parser, generator, route, handler;
 
         let options = array_merge([
             "routeParser": "Ice\\Mvc\\Route\\Parser\\Std",
             "dataGenerator": "Ice\\Mvc\\Route\\DataGenerator\\GroupCount",
             "dispatcher":"Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
             "cache": false
-        ], options);
+        ], this->_options);
 
-        let this->_options = options;
+        let this->_options = options,
+            collector = this->_collector;
 
-
-        let collector = this->_collector;
         if typeof collector != "object" || typeof collector == "object" && !(collector instanceof Collector) {
             fetch parser, options["routeParser"];
             fetch generator, options["dataGenerator"];
 
             let this->_collector = new Collector(new {parser}(), new {generator}());
-        }
-
-        if typeof routeDefinitionCallback == "callable" {
-            {routeDefinitionCallback}(this->_collector);
         }
 
         if !this->_routes {
@@ -114,6 +106,7 @@ class Router
         }
 
         let dispatcher = this->_dispatcher;
+
         if typeof dispatcher != "object" || typeof dispatcher == "object" && !(dispatcher instanceof DispatcherInterface) {
             let dispatcher = options["dispatcher"],
                 this->_dispatcher = new {dispatcher}();
@@ -127,6 +120,8 @@ class Router
             if file_exists(options["cacheFile"]) {
                 let data = require options["cacheFile"];
             } else {
+                let data = this->_collector->getData();
+
                 file_put_contents(options["cacheFile"], "<?php return " . var_export(data, true) . ";");
             }
         } else {
