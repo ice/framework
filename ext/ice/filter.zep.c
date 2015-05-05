@@ -285,16 +285,16 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 			ZVAL_LONG(&_2, 520);
 			ZEPHIR_SINIT_NVAR(_10);
 			ZVAL_LONG(&_10, 4096);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_11, value, &_2, &_10);
+			ZEPHIR_CALL_FUNCTION(&_8, "filter_var", &_11, value, &_2, &_10);
 			zephir_check_call_status();
-			RETURN_MM();
+			RETURN_MM_DOUBLE(zephir_get_doubleval(_8));
 		}
 		if (ZEPHIR_IS_STRING(filter, "int")) {
 			ZEPHIR_SINIT_NVAR(_2);
 			ZVAL_LONG(&_2, 519);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_11, value, &_2);
+			ZEPHIR_CALL_FUNCTION(&_8, "filter_var", &_11, value, &_2);
 			zephir_check_call_status();
-			RETURN_MM();
+			RETURN_MM_LONG(zephir_get_intval(_8));
 		}
 		if (ZEPHIR_IS_STRING(filter, "string")) {
 			ZEPHIR_SINIT_NVAR(_2);
