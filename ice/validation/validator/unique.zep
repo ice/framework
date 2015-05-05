@@ -61,8 +61,8 @@ class Unique extends Validator
         }
 
         if except {
-            let id = ["!=": except],
-                result = db->findOne(from, [custom: value, "id": id]);
+            let id = ["!=": db->getIdValue(except)],
+                result = db->findOne(from, [custom: value, db->getId(): id]);
         } else {
             let result = db->findOne(from, [custom: value]);
         }

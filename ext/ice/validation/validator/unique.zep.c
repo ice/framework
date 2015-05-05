@@ -46,12 +46,12 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
  */
 PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 
-	zval *_8 = NULL;
+	zval *_9 = NULL;
 	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_17 = NULL;
 	zend_bool _0, _12;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace, *di = NULL, *db = NULL, *from = NULL, *custom = NULL, *except = NULL, *result = NULL, *id, *_2 = NULL, *_3, *_4, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace, *di = NULL, *db = NULL, *from = NULL, *custom = NULL, *except = NULL, *result = NULL, *id, *_2 = NULL, *_3, *_4, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
@@ -143,27 +143,31 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	if (zephir_is_true(except)) {
 		ZEPHIR_INIT_VAR(id);
 		zephir_create_array(id, 1, 0 TSRMLS_CC);
-		zephir_array_update_string(&id, SL("!="), &except, PH_COPY | PH_SEPARATE);
-		ZEPHIR_INIT_VAR(_8);
-		zephir_create_array(_8, 2, 0 TSRMLS_CC);
-		zephir_array_update_zval(&_8, custom, &value, PH_COPY);
-		zephir_array_update_string(&_8, SL("id"), &id, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _8);
+		ZEPHIR_CALL_METHOD(&_8, db, "getidvalue", NULL, except);
+		zephir_check_call_status();
+		zephir_array_update_string(&id, SL("!="), &_8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_INIT_VAR(_9);
+		zephir_create_array(_9, 2, 0 TSRMLS_CC);
+		zephir_array_update_zval(&_9, custom, &value, PH_COPY);
+		ZEPHIR_CALL_METHOD(&_8, db, "getid", NULL);
+		zephir_check_call_status();
+		zephir_array_update_zval(&_9, _8, &id, PH_COPY);
+		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _9);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_INIT_NVAR(_8);
-		zephir_create_array(_8, 1, 0 TSRMLS_CC);
-		zephir_array_update_zval(&_8, custom, &value, PH_COPY);
-		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _8);
+		ZEPHIR_INIT_NVAR(_9);
+		zephir_create_array(_9, 1, 0 TSRMLS_CC);
+		zephir_array_update_zval(&_9, custom, &value, PH_COPY);
+		ZEPHIR_CALL_METHOD(&result, db, "findone", NULL, from, _9);
 		zephir_check_call_status();
 	}
 	if (zephir_is_true(result)) {
 		ZEPHIR_INIT_NVAR(_2);
 		ZVAL_STRING(_2, "label", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_9, this_ptr, "has", NULL, _2);
+		ZEPHIR_CALL_METHOD(&_8, this_ptr, "has", NULL, _2);
 		zephir_check_temp_parameter(_2);
 		zephir_check_call_status();
-		if (zephir_is_true(_9)) {
+		if (zephir_is_true(_8)) {
 			ZEPHIR_INIT_NVAR(_2);
 			ZVAL_STRING(_2, "label", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_CALL_METHOD(&label, this_ptr, "get", NULL, _2);

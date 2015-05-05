@@ -22,16 +22,27 @@ class Mongo implements DbInterface
     protected _client { get };
     protected _lastInsertId { get };
 
-   /**
-    * Instantiate mongo connection.
-    *
-    * @param string dsn
-    * @param string dbname
-    * @param array options
-    */
+    /**
+     * Instantiate mongo connection.
+     *
+     * @param string dsn
+     * @param string dbname
+     * @param array options
+     */
     public function __construct(string dsn, string dbname = NULL, array options = [])
     {
         let this->_client = new \MongoDB(new \MongoClient(dsn, options), dbname);
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @param string id
+     * @return object
+     */
+    public function getIdValue(string id) -> object
+    {
+        return new \MongoId(id);
     }
 
     /**
@@ -97,7 +108,7 @@ class Mongo implements DbInterface
             case "integer":
             case "string":
                 // Find by id
-                let filtered = [this->_id: new \MongoId(filters)];
+                let filtered = [this->_id: this->getIdValue(filters)];
             break;
             default:
                 // Find all
