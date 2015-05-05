@@ -21,14 +21,14 @@ class Pdo implements DbInterface
     protected _error;
     protected _client { get };
 
-   /**
-    * Instantiate pdo connection.
-    *
-    * @param string dsn
-    * @param string user
-    * @param string password
-    * @param array options
-    */
+    /**
+     * Instantiate pdo connection.
+     *
+     * @param string dsn
+     * @param string user
+     * @param string password
+     * @param array options
+     */
     public function __construct(string dsn, string user = NULL, string password = NULL, array options = [])
     {
         var parts;
@@ -42,6 +42,17 @@ class Pdo implements DbInterface
         }
 
         let this->_client = new \Pdo(dsn, user, password, options);
+    }
+
+    /**
+     * Get the id value.
+     *
+     * @param string id
+     * @return int
+     */
+    public function getIdValue(id) -> int
+    {
+        return (int) id;
     }
 
     /**
