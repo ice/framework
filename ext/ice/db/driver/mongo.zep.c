@@ -123,6 +123,31 @@ PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 }
 
 /**
+ * Get the id value.
+ *
+ * @param string id
+ * @return object
+ */
+PHP_METHOD(Ice_Db_Driver_Mongo, getIdValue) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *id_param = NULL;
+	zval *id = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &id_param);
+
+	zephir_get_strval(id, id_param);
+
+
+	object_init_ex(return_value, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, id);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Find one document that match criteria.
  *
  * @param string from Collection name
@@ -270,7 +295,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
-	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *filtered = NULL, *collection = NULL, *result = NULL, *tmp = NULL, *_0, *_1, *_2, *_3, *_4, *_5, *_6 = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *filtered = NULL, *collection = NULL, *result = NULL, *tmp = NULL, *_0, *_1, *_2 = NULL, *_3, *_4, *_5;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -317,9 +342,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 			zephir_create_array(filtered, 1, 0 TSRMLS_CC);
 			ZEPHIR_OBS_VAR(_1);
 			zephir_read_property_this(&_1, this_ptr, SL("_id"), PH_NOISY_CC);
-			ZEPHIR_INIT_VAR(_2);
-			object_init_ex(_2, zephir_get_internal_ce(SS("mongoid") TSRMLS_CC));
-			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, filters);
+			ZEPHIR_CALL_METHOD(&_2, this_ptr, "getidvalue", NULL, filters);
 			zephir_check_call_status();
 			zephir_array_update_zval(&filtered, _1, &_2, PH_COPY);
 			break;
@@ -336,26 +359,26 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 	zephir_check_call_status();
 	if (zephir_array_isset_string(options, SS("order"))) {
 		ZEPHIR_CPY_WRT(tmp, result);
-		zephir_array_fetch_string(&_4, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 113 TSRMLS_CC);
+		zephir_array_fetch_string(&_4, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 124 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, tmp, "sort", NULL, _4);
 		zephir_check_call_status();
 	}
 	if (zephir_array_isset_string(options, SS("limit"))) {
 		ZEPHIR_CPY_WRT(tmp, result);
-		zephir_array_fetch_string(&_4, options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 117 TSRMLS_CC);
+		zephir_array_fetch_string(&_4, options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 128 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, tmp, "limit", NULL, _4);
 		zephir_check_call_status();
 	}
 	if (zephir_array_isset_string(options, SS("offset"))) {
 		ZEPHIR_CPY_WRT(tmp, result);
-		zephir_array_fetch_string(&_4, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 121 TSRMLS_CC);
+		zephir_array_fetch_string(&_4, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 132 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&result, tmp, "skip", NULL, _4);
 		zephir_check_call_status();
 	}
 	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_client"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_6, _5, "lasterror", NULL);
+	ZEPHIR_CALL_METHOD(&_2, _5, "lasterror", NULL);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_error"), _6 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_error"), _2 TSRMLS_CC);
 	RETURN_CCTOR(result);
 
 }
@@ -402,11 +425,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(_2);
 	zephir_read_property_this(&_2, this_ptr, SL("_id"), PH_NOISY_CC);
-	zephir_array_fetch(&_1, fields, _2, PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 141 TSRMLS_CC);
+	zephir_array_fetch(&_1, fields, _2, PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 152 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_lastInsertId"), _1 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
-	zephir_array_fetch_string(&_4, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 144 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 155 TSRMLS_CC);
 	if (Z_TYPE_P(_4) == IS_NULL) {
 		ZVAL_BOOL(_3, 1);
 	} else {
@@ -463,7 +486,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
-	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 162 TSRMLS_CC);
+	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 173 TSRMLS_CC);
 	if (Z_TYPE_P(_2) == IS_NULL) {
 		ZVAL_BOOL(_1, 1);
 	} else {
@@ -512,7 +535,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
-	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 179 TSRMLS_CC);
+	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 190 TSRMLS_CC);
 	if (Z_TYPE_P(_2) == IS_NULL) {
 		ZVAL_BOOL(_1, 1);
 	} else {

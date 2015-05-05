@@ -8,6 +8,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getType);
 PHP_METHOD(Ice_Db_Driver_Mongo, getClient);
 PHP_METHOD(Ice_Db_Driver_Mongo, getLastInsertId);
 PHP_METHOD(Ice_Db_Driver_Mongo, __construct);
+PHP_METHOD(Ice_Db_Driver_Mongo, getIdValue);
 PHP_METHOD(Ice_Db_Driver_Mongo, findOne);
 PHP_METHOD(Ice_Db_Driver_Mongo, find);
 PHP_METHOD(Ice_Db_Driver_Mongo, select);
@@ -20,6 +21,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo___construct, 0, 0, 1)
 	ZEND_ARG_INFO(0, dsn)
 	ZEND_ARG_INFO(0, dbname)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_getidvalue, 0, 0, 1)
+	ZEND_ARG_INFO(0, id)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongo_findone, 0, 0, 1)
@@ -65,6 +70,7 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_mongo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Mongo, getClient, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, getLastInsertId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, __construct, arginfo_ice_db_driver_mongo___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Ice_Db_Driver_Mongo, getIdValue, arginfo_ice_db_driver_mongo_getidvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, findOne, arginfo_ice_db_driver_mongo_findone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, find, arginfo_ice_db_driver_mongo_find, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, select, arginfo_ice_db_driver_mongo_select, ZEND_ACC_PUBLIC)
