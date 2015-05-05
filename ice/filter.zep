@@ -104,9 +104,9 @@ class Filter
             case "email":
                 return filter_var(value, FILTER_SANITIZE_EMAIL);
             case "float":
-                return filter_var(value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                return (double) filter_var(value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             case "int":
-                return filter_var(value, FILTER_SANITIZE_NUMBER_INT);
+                return (int) filter_var(value, FILTER_SANITIZE_NUMBER_INT);
             case "string":
                 return filter_var(value, FILTER_SANITIZE_STRING);
 
