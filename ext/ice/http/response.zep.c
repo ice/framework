@@ -366,6 +366,28 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 }
 
 /**
+ * Set body content.
+ *
+ * @param string content
+ * @return object Response
+ */
+PHP_METHOD(Ice_Http_Response, setContent) {
+
+	zval *contet_param = NULL;
+	zval *contet = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &contet_param);
+
+	zephir_get_strval(contet, contet_param);
+
+
+	zephir_update_property_this(this_ptr, SL("_body"), contet TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
+/**
  * Finalize response for delivery to client.
  * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
  *
@@ -450,7 +472,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
 			ZEPHIR_OBS_VAR(_8);
 			zephir_read_property_this(&_8, this_ptr, SL("_status"), PH_NOISY_CC);
-			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 216 TSRMLS_CC);
+			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 229 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_9);
 			ZVAL_STRING(&_9, "Status: %d %s", 0);
 			ZEPHIR_CALL_FUNCTION(&_10, "sprintf", &_11, &_9, _5, _7);
@@ -464,7 +486,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
 			ZEPHIR_OBS_NVAR(_8);
 			zephir_read_property_this(&_8, this_ptr, SL("_status"), PH_NOISY_CC);
-			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 218 TSRMLS_CC);
+			zephir_array_fetch(&_7, _6, _8, PH_NOISY | PH_READONLY, "ice/http/response.zep", 231 TSRMLS_CC);
 			ZEPHIR_SINIT_NVAR(_9);
 			ZVAL_STRING(&_9, "%s %d %s", 0);
 			ZEPHIR_CALL_FUNCTION(&_13, "sprintf", &_11, &_9, _10, _5, _7);

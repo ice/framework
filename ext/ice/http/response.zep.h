@@ -17,6 +17,7 @@ PHP_METHOD(Ice_Http_Response, getHeader);
 PHP_METHOD(Ice_Http_Response, setHeader);
 PHP_METHOD(Ice_Http_Response, setHeaders);
 PHP_METHOD(Ice_Http_Response, removeHeader);
+PHP_METHOD(Ice_Http_Response, setContent);
 PHP_METHOD(Ice_Http_Response, finalize);
 PHP_METHOD(Ice_Http_Response, send);
 PHP_METHOD(Ice_Http_Response, redirect);
@@ -71,6 +72,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_removeheader, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setcontent, 0, 0, 1)
+	ZEND_ARG_INFO(0, contet)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_finalize, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, request, Ice\\Http\\Request\\RequestInterface, 0)
 ZEND_END_ARG_INFO()
@@ -100,6 +105,7 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, setHeader, arginfo_ice_http_response_setheader, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setHeaders, arginfo_ice_http_response_setheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, removeHeader, arginfo_ice_http_response_removeheader, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, setContent, arginfo_ice_http_response_setcontent, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, finalize, arginfo_ice_http_response_finalize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, send, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, redirect, arginfo_ice_http_response_redirect, ZEND_ACC_PUBLIC)
