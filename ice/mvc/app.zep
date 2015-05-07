@@ -28,7 +28,7 @@ class App extends Access
      */
     public function handle(method = null, uri = null) -> <ResponseInterface> | boolean
     {
-        var argv, router, request, response, dispatcher, controller, view;
+        var argv, router, request, response, dispatcher, returned, controller, view;
 
         let request = this->_di->get("request", null, true);
         if method == null {
@@ -63,29 +63,34 @@ class App extends Access
             dispatcher->setAction(response["action"]);
             dispatcher->setParams(response["params"]);
 
-            let response = dispatcher->dispatch();
+            let response = dispatcher->dispatch(),
+                returned = dispatcher->getReturnedValue();
+
+            if typeof returned == "object" && (returned instanceof ResponseInterface) {
+                let response = returned;
+            }
 
             this->_di->applyHook("app.after.dispatcher.dispatch", [response]);
 
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
-
                 let controller = response,
                     response = this->_di->get("response", null, true),
                     view = controller->view;
 
-                if view->getContent() === null {
-                    if !view->getFile() {
-                        view->setSilent(true);
-                        view->setFile(dispatcher->getHandler() . "/" . dispatcher->getAction());
-                    }
-                    if !view->count() {
-                        view->replace(dispatcher->getParams());
-                    }
-
-                    view->setContent(view->render());
-                }
-
+                // Load views and set the response body if auto render
                 if this->_autoRender {
+                    if view->getContent() === null {
+                        if !view->getFile() {
+                            view->setSilent(true);
+                            view->setFile(dispatcher->getHandler() . "/" . dispatcher->getAction());
+                        }
+                        if !view->count() {
+                            view->replace(dispatcher->getParams());
+                        }
+
+                        view->setContent(view->render());
+                    }
+
                     response->setBody(view->layout(view->getMainView()));
                 }
             }

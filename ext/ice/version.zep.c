@@ -57,7 +57,7 @@ PHP_METHOD(Ice_Version, current) {
 	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
-	add_assoc_long_ex(return_value, SS("patch"), 11);
+	add_assoc_long_ex(return_value, SS("patch"), 12);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
 	add_assoc_long_ex(return_value, SS("build"), 1);
 	return;

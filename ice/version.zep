@@ -30,7 +30,7 @@ class Version
         return [
             "major": 1,
             "minor": 0,
-            "patch": 11,
+            "patch": 12,
             "stage": Version::STABLE,
             "build": 1
         ];

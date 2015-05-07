@@ -173,6 +173,19 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Set body content.
+     *
+     * @param string content
+     * @return object Response
+     */
+    public function setContent(string contet) -> object
+    {
+        let this->_body = contet;
+
+        return this;
+    }
+
+    /**
      * Finalize response for delivery to client.
      * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
      *
