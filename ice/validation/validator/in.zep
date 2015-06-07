@@ -13,12 +13,27 @@ use Ice\Validation\Validator;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *
+ *  $validation->rules([
+ *      'status' => 'in:1,2,3,4'
+ *  ]);
+ *
+ *  $valid = $validation->validate($_POST);
+ *
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * <code><pre>
  */
 class $In extends Validator
 {
 
     /**
      * Validate the validator
+     * Options: label, values, message
      *
      * @param Validation validation
      * @param string field

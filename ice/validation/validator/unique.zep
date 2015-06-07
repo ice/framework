@@ -13,12 +13,32 @@ use Ice\Validation\Validator;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *
+ *  $validation->rules([
+ *      'userName' => [
+ *          'unique' => [
+ *              'from' => 'users',
+ *              'custom' => 'username'
+ *          ],
+ *      ]
+ *  ]);
+ *
+ *  $valid = $validation->validate($_POST);
+ *
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * <code><pre>
  */
 class Unique extends Validator
 {
 
     /**
      * Validate the validator
+     * Options: label, from, custom, except, message
      *
      * @param Validation validation
      * @param string field

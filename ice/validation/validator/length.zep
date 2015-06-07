@@ -12,12 +12,34 @@ use Ice\Validation\Validator;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *
+ *  $validation->rules([
+ *      'title' => 'length:10,100',
+ *      'content' => [
+ *          'length' => [
+ *              'max' => 1000,
+ *              'messageMin' => 'Too long!',
+ *              'label' => 'Desctiption'
+ *          ]
+ *      ]
+ *  ]);
+ *
+ *  $valid = $validation->validate($_POST);
+ *
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * <code><pre>
  */
 class Length extends Validator
 {
 
     /**
      * Validate the validator
+     * Options: label, min, max, messageMin, messageMax
      *
      * @param Validation validation
      * @param string field
