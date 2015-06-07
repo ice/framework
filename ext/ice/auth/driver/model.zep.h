@@ -51,5 +51,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_model_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model, loginBy, arginfo_ice_auth_driver_model_loginby, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model, logout, arginfo_ice_auth_driver_model_logout, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model, refreshUser, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

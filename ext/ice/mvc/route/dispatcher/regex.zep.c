@@ -104,7 +104,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_staticRouteMap"), PH_NOISY_CC);
 	if (zephir_array_isset(_0, uri)) {
-		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dispatchstaticroute", NULL, httpMethod, uri);
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dispatchstaticroute", NULL, 0, httpMethod, uri);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -116,7 +116,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	}
 	if (zephir_array_isset(varRouteData, httpMethod)) {
 		zephir_array_fetch(&_2, varRouteData, httpMethod, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 32 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, _2, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, 0, _2, uri);
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_4, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 34 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(_4, 1)) {
@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		}
 	} else if (_1) {
 		zephir_array_fetch_string(&_2, varRouteData, SL("GET"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 38 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, _2, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, 0, _2, uri);
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_4, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 40 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(_4, 1)) {
@@ -143,7 +143,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		if (ZEPHIR_IS_IDENTICAL(method, httpMethod)) {
 			continue;
 		}
-		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, routeData, uri);
+		ZEPHIR_CALL_METHOD(&result, this_ptr, "dispatchvariableroute", &_3, 0, routeData, uri);
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_2, result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 56 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(_2, 1)) {

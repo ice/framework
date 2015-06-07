@@ -25,5 +25,5 @@ ZEPHIR_INIT_FUNCS(ice_config_ini_method_entry) {
 	PHP_ME(Ice_Config_Ini, __construct, arginfo_ice_config_ini___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Config_Ini, cast, arginfo_ice_config_ini_cast, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_Config_Ini, map, arginfo_ice_config_ini_map, ZEND_ACC_PRIVATE)
-  PHP_FE_END
+	PHP_FE_END
 };

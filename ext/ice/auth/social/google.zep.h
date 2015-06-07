@@ -17,5 +17,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_social_google_method_entry) {
 	PHP_ME(Ice_Auth_Social_Google, getBirthday, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Google, authenticate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Google, prepareAuthParams, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

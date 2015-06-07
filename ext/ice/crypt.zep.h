@@ -96,5 +96,5 @@ ZEPHIR_INIT_FUNCS(ice_crypt_method_entry) {
 	PHP_ME(Ice_Crypt, setKey, arginfo_ice_crypt_setkey, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Crypt, setCipher, arginfo_ice_crypt_setcipher, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Crypt, setMode, arginfo_ice_crypt_setmode, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

@@ -47,5 +47,5 @@ ZEPHIR_INIT_FUNCS(ice_db_dbinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Db_DbInterface, insert, arginfo_ice_db_dbinterface_insert)
 	PHP_ABSTRACT_ME(Ice_Db_DbInterface, update, arginfo_ice_db_dbinterface_update)
 	PHP_ABSTRACT_ME(Ice_Db_DbInterface, remove, arginfo_ice_db_dbinterface_remove)
-  PHP_FE_END
+	PHP_FE_END
 };

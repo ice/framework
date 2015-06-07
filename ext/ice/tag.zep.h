@@ -228,5 +228,5 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, getValue, arginfo_ice_tag_getvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, friendlyTitle, arginfo_ice_tag_friendlytitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getDocType, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

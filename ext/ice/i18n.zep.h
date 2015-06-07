@@ -72,5 +72,5 @@ ZEPHIR_INIT_FUNCS(ice_i18n_method_entry) {
 	PHP_ME(Ice_I18n, pluralRules, arginfo_ice_i18n_pluralrules, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_I18n, _, arginfo_ice_i18n__, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n, translate, arginfo_ice_i18n_translate, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

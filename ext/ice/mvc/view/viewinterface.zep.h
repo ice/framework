@@ -11,5 +11,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_mvc_view_viewinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Mvc_View_ViewInterface, getEngines, NULL)
 	PHP_ABSTRACT_ME(Ice_Mvc_View_ViewInterface, render, arginfo_ice_mvc_view_viewinterface_render)
-  PHP_FE_END
+	PHP_FE_END
 };

@@ -50,7 +50,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	zephir_create_array(_1, 1, 0 TSRMLS_CC);
@@ -59,11 +59,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Users\\Tokens", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _0, _2, _3, _1);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, _0, _2, _3, _1);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_5);
 	zephir_create_array(_5, 1, 0 TSRMLS_CC);
@@ -72,11 +72,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _4, _2, _3, _5);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, _4, _2, _3, _5);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getidkey", NULL);
+	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_7);
 	zephir_create_array(_7, 1, 0 TSRMLS_CC);
@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Users\\Social", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
 	ZVAL_STRING(_3, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, _6, _2, _3, _7);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, 0, _6, _2, _3, _7);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
@@ -107,7 +107,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "logins", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, _1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
@@ -116,7 +116,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	ZEPHIR_INIT_VAR(_2);
 	zephir_time(_2);
 	zephir_update_property_zval(this_ptr, SL("lastlogin"), _2 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL, 0);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -132,7 +132,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_2, *_3;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL;
 	zval *name_param = NULL, *role = NULL, *roles = NULL, *_0 = NULL, *_4 = NULL, *_5 = NULL;
 	zval *name = NULL;
 
@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 1, 0 TSRMLS_CC);
 	zephir_array_update_string(&_2, SL("name"), &name, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_auth_driver_model_roles_ce, "findone", &_1, _2);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_auth_driver_model_roles_ce, "findone", &_1, 11, _2);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(role, _0);
 	if (!(zephir_is_true(role))) {
@@ -158,18 +158,18 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	}
 	ZEPHIR_INIT_VAR(_3);
 	zephir_create_array(_3, 1, 0 TSRMLS_CC);
-	ZEPHIR_CALL_METHOD(&_0, role, "getid", NULL);
+	ZEPHIR_CALL_METHOD(&_0, role, "getid", NULL, 0);
 	zephir_check_call_status();
 	zephir_array_update_string(&_3, SL("role_id"), &_0, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&roles, this_ptr, "getroles", NULL, _3);
+	ZEPHIR_CALL_METHOD(&roles, this_ptr, "getroles", NULL, 0, _3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_4);
-	ZEPHIR_CALL_METHOD(&_0, roles, "count", NULL);
+	ZEPHIR_CALL_METHOD(&_0, roles, "count", NULL, 0);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_CALL_METHOD(&_5, roles, "getiterator", NULL);
+		ZEPHIR_CALL_METHOD(&_5, roles, "getiterator", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_4, _5, "current", NULL);
+		ZEPHIR_CALL_METHOD(&_4, _5, "current", NULL, 0);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(_4, 0);

@@ -44,36 +44,36 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
  */
 PHP_METHOD(Ice_Http_Response_Headers, send) {
 
-	zend_object_iterator *_2;
+	zephir_fcall_cache_entry *_3 = NULL;
+	zend_object_iterator *_1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL;
-	zval *header = NULL, *value = NULL, *_0 = NULL, *_3 = NULL;
+	zval *header = NULL, *value = NULL, *_0 = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", &_1);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 90);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
-		_2 = zephir_get_iterator(this_ptr TSRMLS_CC);
-		_2->funcs->rewind(_2 TSRMLS_CC);
-		for (;_2->funcs->valid(_2 TSRMLS_CC) == SUCCESS && !EG(exception); _2->funcs->move_forward(_2 TSRMLS_CC)) {
-			ZEPHIR_GET_IMKEY(header, _2);
+		_1 = zephir_get_iterator(this_ptr TSRMLS_CC);
+		_1->funcs->rewind(_1 TSRMLS_CC);
+		for (;_1->funcs->valid(_1 TSRMLS_CC) == SUCCESS && !EG(exception); _1->funcs->move_forward(_1 TSRMLS_CC)) {
+			ZEPHIR_GET_IMKEY(header, _1);
 			{
 				zval **ZEPHIR_TMP_ITERATOR_PTR;
-				_2->funcs->get_current_data(_2, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
+				_1->funcs->get_current_data(_1, &ZEPHIR_TMP_ITERATOR_PTR TSRMLS_CC);
 				ZEPHIR_CPY_WRT(value, (*ZEPHIR_TMP_ITERATOR_PTR));
 			}
 			if (!(ZEPHIR_IS_EMPTY(value))) {
-				ZEPHIR_INIT_LNVAR(_3);
-				ZEPHIR_CONCAT_VSV(_3, header, ": ", value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_4, _3, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_INIT_LNVAR(_2);
+				ZEPHIR_CONCAT_VSV(_2, header, ": ", value);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 91, _2, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_4, header, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 91, header, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
 			}
 		}
-		_2->funcs->dtor(_2 TSRMLS_CC);
+		_1->funcs->dtor(_1 TSRMLS_CC);
 		RETURN_MM_BOOL(1);
 	}
 	RETURN_MM_BOOL(0);

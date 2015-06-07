@@ -44,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Config) {
  */
 PHP_METHOD(Ice_Config, __construct) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_7 = NULL;
+	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1, *_4;
 	HashPosition _0, _3;
@@ -97,7 +97,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			} else {
 				ZEPHIR_INIT_NVAR(_6);
 				object_init_ex(_6, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, value);
+				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, 41, value);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("_data"), key, _6 TSRMLS_CC);
 			}

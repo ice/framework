@@ -68,6 +68,14 @@ class Tag
     /**
      * Builds a HTML INPUT[type="text"] tag.
      *
+     * <pre><code>
+     *  // Phtml <input type="text" id="some" name="some" value="some_value">
+     *  $this->tag->textField(['some', 'some_value']);
+     *  
+     *  // Sleet <input type="text" id="some1" name="some" value="some_value" class="field" style="width: 100%">
+     *  {{ text_field(['some', 'some_value', 'id' => 'some1', 'class' => 'field', 'style' => 'width: 100%']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -78,6 +86,14 @@ class Tag
 
     /**
      * Builds a HTML INPUT[type="password"] tag.
+     *
+     * <pre><code>
+     *  // Phtml <input type="password" id="pass" name="pass" class="form-control">
+     *  $this->tag->passwordField(['pass', 'class': 'form-control']);
+     *  
+     *  // Sleet <input type="password" id="pass" name="pass" placeholder="My secret password">
+     *  {{ password_field(['pass', 'placeholder': 'My secret password']) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -90,6 +106,14 @@ class Tag
     /**
      * Builds a HTML INPUT[type="hidden"] tag.
      *
+     * <pre><code>
+     *  // Phtml <input type="hidden" id="secret" name="secret" value="some value">
+     *  $this->tag->hiddenField(['secret', 'some value']);
+     *  
+     *  // Sleet <input type="hidden" id="my_id" name="secret" value="hidden value">
+     *  {{ hidden_field(['secret', 'hidden value', 'id': 'my_id']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -100,6 +124,11 @@ class Tag
 
     /**
      * Builds a HTML INPUT[type="file"] tag.
+     *
+     * <pre><code>
+     *  // Sleet <input type="file" id="some" name="some" >
+     *  {{ file_field(['some']) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -112,6 +141,14 @@ class Tag
     /**
      * Builds a HTML INPUT[type="submit"] tag.
      *
+     * <pre><code>
+     *  // Phtml <input type="submit" id="some" name="some" value="Submit">
+     *  $this->tag->submitButton(['some', 'Submit']);
+     *  
+     *  // Sleet <input type="submit" id="some1" name="some" value="Submit" class="btn">
+     *  {{ submit_button(['some', 'value' => 'Submit', 'id' => 'some1', 'class' => 'btn']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -122,6 +159,14 @@ class Tag
 
     /**
      * Builds a HTML BUTTON tag.
+     *
+     * <pre><code>
+     *  // Phtml <button type="submit" id="some" name="some">content</button>
+     *  $this->tag->button(['some', 'content']);
+     *  
+     *  // Sleet <button type="button" id="some1" name="some"><i class="icon">+</i> Submit</button>
+     *  {{ button(['some', '<i class="icon">+</i> ' . 'Submit', 'type' => 'button', 'id' => 'some1']) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -142,6 +187,14 @@ class Tag
 
     /**
      * Builds a HTML INPUT[type="checkbox"] tag.
+     *
+     * <pre><code>
+     *  // Phtml <input type="checkbox" id="agree" name="agree" value="yes">
+     *  $this->tag->checkField(['agree', 'yes']);
+     *  
+     *  // Sleet <input type="checkbox" id="remember" name="remember" value="on" checked="checked">
+     *  {{ check_field(['remember', 'on', 'checked': 'checked']) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -174,6 +227,20 @@ class Tag
 
     /**
      * Builds a HTML FORM tag.
+     *
+     * <pre><code>
+     *  // Phtml <form action="/post/add" method="post">
+     *  $this->tag->form(['post/add']);
+     *  
+     *  // <form action="http://example.com" method="post">
+     *  $this->tag->form(['http://example.com', 'local' => false]);
+     *  
+     *  // Sleet <form method="post">
+     *  {{ form([false]) }}
+     *  
+     *  // <form action="/post/add" class="form-horizontal" method="post" enctype="multipart/form-data">
+     *  {{ form(['post/add', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal']) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -210,6 +277,14 @@ class Tag
     /**
      * Builds a HTML TEXTAREA tag.
      *
+     * <pre><code>
+     *  // Phtml <textarea id="description" name="description">content</textarea>
+     *  $this->tag->textArea(['description', 'content']);
+     *  
+     *  // Sleet <textarea id="some" name="some" placeholder="Say something"></textarea>
+     *  {{ text_area(['some', 'placeholder' => 'Say something']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -236,6 +311,14 @@ class Tag
 
     /**
      * Builds HTML IMG tags.
+     *
+     * <pre><code>
+     *  // Phtml <img src="/img/logo.png" alt="Logo">
+     *  $this->tag->img(['img/logo.png', 'Logo']);
+     *  
+     *  // Sleet <img src="http://example.com/img/logo.png" alt="Logo">
+     *  {{ image(['http://example.com/img/logo.png', 'Logo', 'local' => false]) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -273,8 +356,17 @@ class Tag
     {
         return this->a(parameters);
     }
+
     /**
      * Builds a HTML A tag using framework conventions.
+     *
+     * <pre><code>
+     *  // Phtml <a href="/post/add" title="Add a post">Add</a>
+     *  $this->tag->a(['post/add', 'Add', 'Add a post']);
+     *  
+     *  // Sleet <a href="http://google.com">Google</a>
+     *  {{ link_to(['http://google.com', 'Google', 'local' => false]) }}
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -309,6 +401,14 @@ class Tag
     /**
      * Builds a LINK[rel="stylesheet"] tag.
      *
+     * <pre><code>
+     *  // Phtml <link rel="stylesheet" type="text/css" href="/css/app.css">
+     *  $this->tag->link(['css/app.css']);
+     *  
+     *  // Sleet <link rel="icon" type="image/x-icon" href="http://example.com/favicon.ico">
+     *  {{ link(['http://example.com/favicon.ico', 'type' => 'image/x-icon', 'rel' => 'icon', 'local' => false]) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -342,6 +442,14 @@ class Tag
     /**
      * Builds a SCRIPT[type="javascript"] tag.
      *
+     * <pre><code>
+     *  // Phtml <script type="text/javascript" src="/js/plugins.js"></script>
+     *  $this->tag->script(['js/plugins.js']);
+     *  
+     *  // Sleet <script type="text/javascript">alert("OK");</script>
+     *  {{ script(['content' => 'alert("OK");']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -374,6 +482,11 @@ class Tag
     /**
      * Builds a STYLE tag.
      *
+     * <pre><code>
+     *  // Sleet <style type="text/css">body { color: #444 }</style>
+     *  {{ style(['body { color: #444 }']) }}
+     * </code></pre>
+     *
      * @param array parameters
      * @return string
      */
@@ -391,6 +504,11 @@ class Tag
 
     /**
      * Builds a SELECT tag.
+     *
+     * <pre><code>
+     *  $countries = [1 => 'England', 2 => 'Poland'];
+     *  $this->tag->select('country', $countries);
+     * </code></pre>
      *
      * @param array parameters
      * @return string
@@ -550,6 +668,11 @@ class Tag
     /**
      * Builds a HTML close tag.
      *
+     * <pre><code>
+     *  // Sleet </form>
+     *  {{ end_tag('form') }}
+     * </code></pre>
+     *
      * @param string name
      * @param boolean eol
      * @return string
@@ -698,6 +821,12 @@ class Tag
     /**
      * Converts texts into URL-friendly titles.
      *
+     * <pre><code>
+     *  $title = "Mess'd up --text-- just (to) stress /test/ ?our! `little` \\clean\\ url fun.ction!?-->";
+     *  // 'messd-up-text-just-to-stress-test-our-little-clean-url-function'
+     *  $friendly = $this->tag->friendlyTitle($title);
+     * </code></pre>
+     *
      * @param string text
      * @param string separator
      * @param boolean lowercase
@@ -752,7 +881,6 @@ class Tag
      */
     public function getDocType() -> string
     {
-
         switch this->_docType {
             case self::HTML32:  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">" . PHP_EOL;
             case self::HTML401_STRICT:  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"" . PHP_EOL . "\t\"http://www.w3.org/TR/html4/strict.dtd\">" . PHP_EOL;

@@ -65,7 +65,7 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "emergency", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -102,7 +102,7 @@ PHP_METHOD(Ice_Log_Driver, alert) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "alert", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -139,7 +139,7 @@ PHP_METHOD(Ice_Log_Driver, critical) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "critical", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -174,7 +174,7 @@ PHP_METHOD(Ice_Log_Driver, error) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "error", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -211,7 +211,7 @@ PHP_METHOD(Ice_Log_Driver, warning) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "warning", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -246,7 +246,7 @@ PHP_METHOD(Ice_Log_Driver, notice) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "notice", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -283,7 +283,7 @@ PHP_METHOD(Ice_Log_Driver, info) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "info", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -318,7 +318,7 @@ PHP_METHOD(Ice_Log_Driver, debug) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "debug", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, _0, message, context);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, _0, message, context);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();

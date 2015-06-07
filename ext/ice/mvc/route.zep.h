@@ -20,5 +20,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_mvc_route_method_entry) {
 	PHP_ME(Ice_Mvc_Route, __construct, arginfo_ice_mvc_route___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Route, matches, arginfo_ice_mvc_route_matches, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

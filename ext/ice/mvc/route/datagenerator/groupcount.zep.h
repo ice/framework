@@ -13,5 +13,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_mvc_route_datagenerator_groupcount_method_entry) {
 	PHP_ME(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize, NULL, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk, arginfo_ice_mvc_route_datagenerator_groupcount_processchunk, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

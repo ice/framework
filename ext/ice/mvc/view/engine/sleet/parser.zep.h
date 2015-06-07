@@ -65,5 +65,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_view_engine_sleet_parser_method_entry) {
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, parseUse, arginfo_ice_mvc_view_engine_sleet_parser_parseuse, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, _parse, arginfo_ice_mvc_view_engine_sleet_parser__parse, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, _token, arginfo_ice_mvc_view_engine_sleet_parser__token, ZEND_ACC_PRIVATE)
-  PHP_FE_END
+	PHP_FE_END
 };

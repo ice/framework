@@ -25,5 +25,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_tokens_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, update, arginfo_ice_auth_driver_model_users_tokens_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, _generate, NULL, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

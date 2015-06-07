@@ -11,5 +11,5 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_filter_css_method_entry) {
 	PHP_ME(Ice_Filter_Css, sanitize, arginfo_ice_filter_css_sanitize, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

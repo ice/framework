@@ -122,5 +122,5 @@ ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
 	PHP_ME(Ice_Arr, __get, arginfo_ice_arr___get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, __set, arginfo_ice_arr___set, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, __unset, arginfo_ice_arr___unset, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

@@ -17,5 +17,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_social_facebook_method_entry) {
 	PHP_ME(Ice_Auth_Social_Facebook, getImage, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Facebook, authenticate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Facebook, prepareAuthParams, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

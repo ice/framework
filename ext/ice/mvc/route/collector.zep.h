@@ -34,5 +34,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_collector_method_entry) {
 	PHP_ME(Ice_Mvc_Route_Collector, __construct, arginfo_ice_mvc_route_collector___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Route_Collector, addRoute, arginfo_ice_mvc_route_collector_addroute, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Route_Collector, getData, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

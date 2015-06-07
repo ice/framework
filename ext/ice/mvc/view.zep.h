@@ -117,5 +117,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_view_method_entry) {
 	PHP_ME(Ice_Mvc_View, setVar, arginfo_ice_mvc_view_setvar, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, setVars, arginfo_ice_mvc_view_setvars, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

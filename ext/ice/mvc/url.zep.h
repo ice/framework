@@ -35,5 +35,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_url_method_entry) {
 	PHP_ME(Ice_Mvc_Url, setStaticUri, arginfo_ice_mvc_url_setstaticuri, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, getStatic, arginfo_ice_mvc_url_getstatic, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, get, arginfo_ice_mvc_url_get, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

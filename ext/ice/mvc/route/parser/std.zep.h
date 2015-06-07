@@ -11,5 +11,5 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_route_parser_std_method_entry) {
 	PHP_ME(Ice_Mvc_Route_Parser_Std, parse, arginfo_ice_mvc_route_parser_std_parse, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

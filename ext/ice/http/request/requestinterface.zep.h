@@ -58,5 +58,5 @@ ZEPHIR_INIT_FUNCS(ice_http_request_requestinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Http_Request_RequestInterface, request, arginfo_ice_http_request_requestinterface_request)
 	PHP_ABSTRACT_ME(Ice_Http_Request_RequestInterface, post, arginfo_ice_http_request_requestinterface_post)
 	PHP_ABSTRACT_ME(Ice_Http_Request_RequestInterface, server, arginfo_ice_http_request_requestinterface_server)
-  PHP_FE_END
+	PHP_FE_END
 };
