@@ -59,9 +59,9 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
+	zephir_fcall_cache_entry *_14 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_7 = NULL, *_9 = NULL, *_12 = NULL, *_13 = NULL, *_15 = NULL, *_19 = NULL, *_20 = NULL, *_21 = NULL;
-	zval *path_param = NULL, *compileDir, *compile = NULL, *trim, *dir, *file = NULL, *compiledPath, *old = NULL, *compiled = NULL, *_0, *_1, *_2, *_3, _4, *_5, *_6 = NULL, *_8 = NULL, _10, _11 = zval_used_for_init, *_14, *_16, *_17 = NULL, *_18 = NULL;
+	zval *path_param = NULL, *compileDir, *compile = NULL, *trim, *dir, *file = NULL, *compiledPath, *old = NULL, *compiled = NULL, *_0, *_1, *_2, *_3, _4, *_5, *_6 = NULL, *_7 = NULL, _8, _9 = zval_used_for_init, *_10, *_11, *_12 = NULL, *_13 = NULL;
 	zval *path = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -94,18 +94,18 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZVAL_STRING(&_4, "/", 0);
 	zephir_fast_trim(_3, compileDir, &_4, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_5);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", &_7, path);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 119, path);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_8, "realpath", &_9, _6);
+	ZEPHIR_CALL_FUNCTION(&_7, "realpath", NULL, 60, _6);
 	zephir_check_call_status();
-	ZEPHIR_SINIT_VAR(_10);
-	ZVAL_STRING(&_10, "", 0);
-	zephir_fast_str_replace(&_5, trim, &_10, _8 TSRMLS_CC);
+	ZEPHIR_SINIT_VAR(_8);
+	ZVAL_STRING(&_8, "", 0);
+	zephir_fast_str_replace(&_5, trim, &_8, _7 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(dir);
 	ZEPHIR_CONCAT_VV(dir, _3, _5);
-	ZEPHIR_SINIT_VAR(_11);
-	ZVAL_STRING(&_11, ".sleet", 0);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", &_12, path, &_11);
+	ZEPHIR_SINIT_VAR(_9);
+	ZVAL_STRING(&_9, ".sleet", 0);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 120, path, &_9);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(compiledPath);
 	ZEPHIR_CONCAT_VSVS(compiledPath, dir, "/", file, ".phtml");
@@ -125,7 +125,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 				ZEPHIR_INIT_NVAR(compile);
 				ZVAL_BOOL(compile, 1);
 			} else {
-				ZEPHIR_CALL_FUNCTION(&compile, "md5_file", &_13, compiledPath);
+				ZEPHIR_CALL_FUNCTION(&compile, "md5_file", NULL, 121, compiledPath);
 				zephir_check_call_status();
 			}
 			break;
@@ -136,40 +136,40 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	} while(0);
 
 	if (zephir_is_true(compile)) {
-		ZEPHIR_INIT_VAR(_14);
-		object_init_ex(_14, ice_mvc_view_engine_sleet_compiler_ce);
-		ZEPHIR_CALL_METHOD(NULL, _14, "__construct", &_15, this_ptr);
+		ZEPHIR_INIT_VAR(_10);
+		object_init_ex(_10, ice_mvc_view_engine_sleet_compiler_ce);
+		ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 122, this_ptr);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("_compiler"), _14 TSRMLS_CC);
-		_16 = zephir_fetch_nproperty_this(this_ptr, SL("_compiler"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&compiled, _16, "compile", NULL, path);
+		zephir_update_property_this(this_ptr, SL("_compiler"), _10 TSRMLS_CC);
+		_11 = zephir_fetch_nproperty_this(this_ptr, SL("_compiler"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&compiled, _11, "compile", NULL, 0, path);
 		zephir_check_call_status();
 		if (Z_TYPE_P(compile) == IS_STRING) {
-			ZEPHIR_INIT_VAR(_17);
-			zephir_md5(_17, compiled);
-			if (!ZEPHIR_IS_EQUAL(compile, _17)) {
+			ZEPHIR_INIT_VAR(_12);
+			zephir_md5(_12, compiled);
+			if (!ZEPHIR_IS_EQUAL(compile, _12)) {
 				ZEPHIR_INIT_NVAR(compile);
 				ZVAL_BOOL(compile, 1);
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(compile)) {
-			ZEPHIR_CALL_FUNCTION(&_18, "is_dir", &_19, dir);
+			ZEPHIR_CALL_FUNCTION(&_13, "is_dir", NULL, 123, dir);
 			zephir_check_call_status();
-			if (!(zephir_is_true(_18))) {
-				ZEPHIR_SINIT_NVAR(_11);
-				ZVAL_LONG(&_11, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_20, &_11);
+			if (!(zephir_is_true(_13))) {
+				ZEPHIR_SINIT_NVAR(_9);
+				ZVAL_LONG(&_9, 0);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 124, &_9);
 				zephir_check_call_status();
-				ZEPHIR_SINIT_NVAR(_11);
-				ZVAL_LONG(&_11, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", &_21, dir, &_11, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_SINIT_NVAR(_9);
+				ZVAL_LONG(&_9, 0777);
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 125, dir, &_9, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_20, old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 124, old);
 				zephir_check_call_status();
 			}
-			ZEPHIR_INIT_NVAR(_17);
-			zephir_file_put_contents(_17, compiledPath, compiled TSRMLS_CC);
-			if (ZEPHIR_IS_FALSE_IDENTICAL(_17)) {
+			ZEPHIR_INIT_NVAR(_12);
+			zephir_file_put_contents(_12, compiledPath, compiled TSRMLS_CC);
+			if (ZEPHIR_IS_FALSE_IDENTICAL(_12)) {
 				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 80);
 				return;
 			}
@@ -188,7 +188,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_2 = NULL, *_3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *path_param = NULL, *data_param = NULL, *_0 = NULL;
@@ -216,19 +215,19 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "compile", NULL, path);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "compile", NULL, 0, path);
 	zephir_check_call_status();
 	zephir_get_strval(path, _0);
 	Z_SET_ISREF_P(data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", &_1, data);
+	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 116, data);
 	Z_UNSET_ISREF_P(data);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", &_2);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 117);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", &_3);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 118);
 	zephir_check_call_status();
 	RETURN_MM();
 

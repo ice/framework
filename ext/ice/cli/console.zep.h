@@ -28,5 +28,5 @@ ZEPHIR_INIT_FUNCS(ice_cli_console_method_entry) {
 	PHP_ME(Ice_Cli_Console, setModules, arginfo_ice_cli_console_setmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Console, handle, arginfo_ice_cli_console_handle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Console, color, arginfo_ice_cli_console_color, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-  PHP_FE_END
+	PHP_FE_END
 };

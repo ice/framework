@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
 	ZEPHIR_MM_GROW();
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_adapter"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "authenticate", NULL);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "authenticate", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -104,7 +104,7 @@ PHP_METHOD(Ice_Auth_Social, get) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_adapter"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_METHOD(_0, "get", NULL, key, defaultValue);
+	ZEPHIR_RETURN_CALL_METHOD(_0, "get", NULL, 0, key, defaultValue);
 	zephir_check_call_status();
 	RETURN_MM();
 

@@ -58,5 +58,5 @@ ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, output, arginfo_ice_dump_output, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Dump, variable, arginfo_ice_dump_variable, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, vars, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

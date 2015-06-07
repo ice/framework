@@ -12,6 +12,25 @@ use Ice\Validation\Validator;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *  
+ *  $validation->rules([
+ *      'username' => 'alnum',
+ *      'prefix' => [
+ *          'alnum' => [
+ *              'message' => 'Field :field must be alphanumeric'
+ *          ]
+ *      ]
+ *  ]);
+ *  
+ *  $valid = $validation->validate($_POST);
+ *  
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * <code><pre>
  */
 class Alnum extends Validator
 {

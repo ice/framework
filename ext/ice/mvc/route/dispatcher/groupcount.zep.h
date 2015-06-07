@@ -30,5 +30,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_dispatcher_groupcount_method_entry) {
 	PHP_ME(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData, arginfo_ice_mvc_route_dispatcher_groupcount_setvariableroutedata, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Route_Dispatcher_GroupCount, __construct, arginfo_ice_mvc_route_dispatcher_groupcount___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute, arginfo_ice_mvc_route_dispatcher_groupcount_dispatchvariableroute, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

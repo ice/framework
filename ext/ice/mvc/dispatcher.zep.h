@@ -15,5 +15,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_dispatcher_method_entry) {
 	PHP_ME(Ice_Mvc_Dispatcher, getMethod, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Dispatcher, setMethod, arginfo_ice_mvc_dispatcher_setmethod, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Dispatcher, getActiveMethod, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

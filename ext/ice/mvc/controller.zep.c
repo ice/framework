@@ -41,14 +41,14 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Controller) {
 PHP_METHOD(Ice_Mvc_Controller, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL;
+	zephir_fcall_cache_entry *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_controller_ce, this_ptr, "__construct", &_0);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_controller_ce, this_ptr, "__construct", &_0, 40);
 	zephir_check_call_status();
 	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();

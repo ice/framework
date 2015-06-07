@@ -13,13 +13,30 @@ use Ice\Validation\Validator;
  * @license     http://iceframework.org/license
  * @uses        Ice\Filter (if service is available)
  * @uses        Ice\I18n (if service is available)
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *  
+ *  $validation->rules([
+ *      'fullName' => 'required',
+ *      'email' => 'required|email',
+ *      'repeatEmail' => 'same:email',
+ *      'about' => 'required|length:10,5000',
+ *  ]);
+ *  
+ *  $valid = $validation->validate($_POST);
+ *  
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * <code><pre>
  */
 class Validation
 {
 
     protected _di { get };
     protected _data = [];
-    protected _rules = [] { set };
+    protected _rules = [] { set, get };
     protected _validators = [];
     protected _filters = [] { set };
     protected _labels = [] { set };
@@ -91,6 +108,19 @@ class Validation
     /**
      * Add one rule.
      *
+     * <pre><code>
+     *  $validation = new Ice\Validation();
+     *  
+     *  $validation->rule('email', 'required|email');
+     *  $validation->rule('content', [
+     *      'length' => [
+     *          'max' => 1000,
+     *          'messageMin' => 'Too long!',
+     *          'label' => 'Desctiption'
+     *      ]
+     *  ]);
+     * </code></pre>
+     *
      * @param string field
      * @param mixed validators
      * @param mixed options
@@ -137,6 +167,21 @@ class Validation
 
     /**
      * Add multiple rules at once.
+     *
+     * <pre><code>
+     *  $validation = new Ice\Validation();
+     *  
+     *  $validation->rules([
+     *      'username' => 'required|length:4,24|notIn:admin,user,root|unique:users',
+     *      'password'  => 'required|length:5,32',
+     *      'repeatPassword'  => 'same:password',
+     *      'email'  => 'email',
+     *      'status'  => 'required|digit|in:0,1,2',
+     *      'website'  => 'url',
+     *      'title'  => 'length:,100',
+     *      'age'  => 'required|between:18,21',
+     *  ]);
+     * </code></pre>
      *
      * @param array validators
      * @return void

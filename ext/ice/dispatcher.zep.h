@@ -125,5 +125,5 @@ ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
 	PHP_ME(Ice_Dispatcher, getActiveMethod, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, dispatch, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, forward, arginfo_ice_dispatcher_forward, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

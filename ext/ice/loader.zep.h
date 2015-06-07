@@ -36,5 +36,5 @@ ZEPHIR_INIT_FUNCS(ice_loader_method_entry) {
 	PHP_ME(Ice_Loader, loadMappedFile, arginfo_ice_loader_loadmappedfile, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Loader, requireFile, arginfo_ice_loader_requirefile, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Loader, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-  PHP_FE_END
+	PHP_FE_END
 };

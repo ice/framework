@@ -95,7 +95,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 	zval *_14;
 	zend_bool _7, _12;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL, *_15 = NULL;
+	zephir_fcall_cache_entry *_2 = NULL;
 	zval *config = NULL, *_0, *clientId, *clientSecret, *redirectUri, *tmp = NULL, *_1 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6, *_8 = NULL, *_9, *_10 = NULL, *_11, *_13;
 
 	ZEPHIR_MM_GROW();
@@ -113,7 +113,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 	array_init(_0);
 	zephir_update_property_this(this_ptr, SL("_socialFieldsMap"), _0 TSRMLS_CC);
 	if (!(zephir_fast_count_int(config TSRMLS_CC))) {
-		ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2);
+		ZEPHIR_CALL_CE_STATIC(&_1, ice_di_ce, "fetch", &_2, 8);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_4);
 		ZVAL_STRING(_4, "config", ZEPHIR_TEMP_PARAM_COPY);
@@ -121,26 +121,26 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		ZVAL_NULL(_5);
 		ZEPHIR_INIT_VAR(_6);
 		ZVAL_BOOL(_6, 1);
-		ZEPHIR_CALL_METHOD(&_3, _1, "get", NULL, _4, _5, _6);
+		ZEPHIR_CALL_METHOD(&_3, _1, "get", NULL, 0, _4, _5, _6);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_4);
 		ZVAL_STRING(_4, "auth", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&tmp, _3, "get", NULL, _4);
+		ZEPHIR_CALL_METHOD(&tmp, _3, "get", NULL, 0, _4);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		_7 = zephir_is_true(tmp);
 		if (_7) {
 			_9 = zephir_fetch_nproperty_this(this_ptr, SL("_provider"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_8, tmp, "has", NULL, _9);
+			ZEPHIR_CALL_METHOD(&_8, tmp, "has", NULL, 0, _9);
 			zephir_check_call_status();
 			_7 = zephir_is_true(_8);
 		}
 		if (_7) {
 			_11 = zephir_fetch_nproperty_this(this_ptr, SL("_provider"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_10, tmp, "get", NULL, _11);
+			ZEPHIR_CALL_METHOD(&_10, tmp, "get", NULL, 0, _11);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&config, _10, "toarray", NULL);
+			ZEPHIR_CALL_METHOD(&config, _10, "toarray", NULL, 0);
 			zephir_check_call_status();
 		}
 	}
@@ -184,7 +184,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		ZEPHIR_INIT_NVAR(_5);
 		ZVAL_STRING(_5, "redirect_uri", 1);
 		zephir_array_fast_append(_14, _5);
-		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", &_15, _14);
+		ZEPHIR_CALL_METHOD(NULL, _4, "__construct", NULL, 2, _14);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_4, "ice/auth/social/adapter.zep", 60 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -204,8 +204,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
-	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value, _0, *_1, *_3 = NULL;
+	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value, _0, *_1, *_2 = NULL;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -232,14 +231,14 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 		ZVAL_LONG(&_0, 3);
 		ZEPHIR_INIT_VAR(_1);
 		zephir_substr(_1, name, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CALL_FUNCTION(&key, "lcfirst", &_2, _1);
+		ZEPHIR_CALL_FUNCTION(&key, "lcfirst", NULL, 23, _1);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_3, this_ptr, "has", NULL, key);
+		ZEPHIR_CALL_METHOD(&_2, this_ptr, "has", NULL, 0, key);
 		zephir_check_call_status();
-		if (zephir_is_true(_3)) {
+		if (zephir_is_true(_2)) {
 			ZEPHIR_OBS_VAR(value);
 			zephir_array_isset_long_fetch(&value, arguments, 0, 0 TSRMLS_CC);
-			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, key, value);
+			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, key, value);
 			zephir_check_call_status();
 			RETURN_MM();
 		} else {
@@ -322,21 +321,20 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
  */
 PHP_METHOD(Ice_Auth_Social_Adapter, getAuthUrl) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL, *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *config = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL;
+	zval *config = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&config, this_ptr, "prepareauthparams", NULL);
+	ZEPHIR_CALL_METHOD(&config, this_ptr, "prepareauthparams", NULL, 0);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_0, config, SL("auth_url"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 138 TSRMLS_CC);
 	zephir_array_fetch_string(&_1, config, SL("auth_params"), PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 138 TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_2, "http_build_query", &_3, _1);
+	ZEPHIR_CALL_FUNCTION(&_2, "http_build_query", NULL, 24, _1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_4, "urldecode", &_5, _2);
+	ZEPHIR_CALL_FUNCTION(&_3, "urldecode", NULL, 25, _2);
 	zephir_check_call_status();
-	ZEPHIR_CONCAT_VSV(return_value, _0, "?", _4);
+	ZEPHIR_CONCAT_VSV(return_value, _0, "?", _3);
 	RETURN_MM();
 
 }
@@ -352,8 +350,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getAuthUrl) {
  */
 PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 
-	zephir_fcall_cache_entry *_6 = NULL;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_6 = NULL;
 	zend_bool parse;
 	zval *params = NULL;
 	zval *url = NULL;
@@ -377,50 +374,50 @@ PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL);
+	ZEPHIR_CALL_FUNCTION(&curl, "curl_init", NULL, 26);
 	zephir_check_call_status();
 	if (method == 0) {
-		ZEPHIR_CALL_FUNCTION(&_0, "http_build_query", &_1, params);
+		ZEPHIR_CALL_FUNCTION(&_0, "http_build_query", &_1, 24, params);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_2, "urldecode", &_3, _0);
+		ZEPHIR_CALL_FUNCTION(&_2, "urldecode", &_3, 25, _0);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_4);
 		ZEPHIR_CONCAT_VSV(_4, url, "?", _2);
 		ZEPHIR_SINIT_VAR(_5);
 		ZVAL_LONG(&_5, 10002);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, _4);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, _4);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_SINIT_NVAR(_5);
 		ZVAL_LONG(&_5, 10002);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, url);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, url);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_5);
 		ZVAL_LONG(&_5, 47);
 		ZEPHIR_SINIT_VAR(_7);
 		ZVAL_LONG(&_7, 1);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, &_7);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, &_7);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_0, "http_build_query", &_1, params);
+		ZEPHIR_CALL_FUNCTION(&_0, "http_build_query", &_1, 24, params);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_2, "urldecode", &_3, _0);
+		ZEPHIR_CALL_FUNCTION(&_2, "urldecode", &_3, 25, _0);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_5);
 		ZVAL_LONG(&_5, 10015);
-		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, _2);
+		ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, _2);
 		zephir_check_call_status();
 	}
 	ZEPHIR_SINIT_NVAR(_5);
 	ZVAL_LONG(&_5, 19913);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_5);
 	ZVAL_LONG(&_5, 64);
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, curl, &_5, ZEPHIR_GLOBAL(global_false));
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_setopt", &_6, 27, curl, &_5, ZEPHIR_GLOBAL(global_false));
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&result, "curl_exec", NULL, curl);
+	ZEPHIR_CALL_FUNCTION(&result, "curl_exec", NULL, 28, curl);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, curl);
+	ZEPHIR_CALL_FUNCTION(NULL, "curl_close", NULL, 29, curl);
 	zephir_check_call_status();
 	if (parse) {
 		ZEPHIR_INIT_VAR(_8);

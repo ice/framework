@@ -44,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Flash) {
 PHP_METHOD(Ice_Flash, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_2 = NULL;
+	zephir_fcall_cache_entry *_2 = NULL;
 	zval *options_param = NULL, *di = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL;
 	zval *options = NULL, *_0, *_1 = NULL;
 
@@ -80,7 +80,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 	zephir_array_update_string(&_0, SL("danger"), &_1, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_0, SL("html"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
 	zephir_update_property_this(this_ptr, SL("_options"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_2);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_2, 8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_STRING(_4, "session", ZEPHIR_TEMP_PARAM_COPY);
@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 	ZVAL_NULL(_5);
 	ZEPHIR_INIT_VAR(_6);
 	ZVAL_BOOL(_6, 1);
-	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _4, _5, _6);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_session"), _3 TSRMLS_CC);
@@ -98,7 +98,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 	ZVAL_NULL(_5);
 	ZEPHIR_INIT_NVAR(_6);
 	ZVAL_BOOL(_6, 1);
-	ZEPHIR_CALL_METHOD(&_7, di, "get", NULL, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(&_7, di, "get", NULL, 0, _4, _5, _6);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_tag"), _7 TSRMLS_CC);
@@ -176,11 +176,11 @@ PHP_METHOD(Ice_Flash, getMessages) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "session_key", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, _0);
+	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_session"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&messages, _1, "get", NULL, key);
+	ZEPHIR_CALL_METHOD(&messages, _1, "get", NULL, 0, key);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(body);
 	ZVAL_STRING(body, "", 1);
@@ -192,14 +192,14 @@ PHP_METHOD(Ice_Flash, getMessages) {
 		) {
 			ZEPHIR_GET_HMKEY(type, _3, _2);
 			ZEPHIR_GET_HVALUE(message, _4);
-			ZEPHIR_CALL_METHOD(&_5, this_ptr, "getmessage", &_6, type, message);
+			ZEPHIR_CALL_METHOD(&_5, this_ptr, "getmessage", &_6, 0, type, message);
 			zephir_check_call_status();
 			zephir_concat_self(&body, _5 TSRMLS_CC);
 		}
 	}
 	if (remove) {
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("_session"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, _7, "remove", NULL, key);
+		ZEPHIR_CALL_METHOD(NULL, _7, "remove", NULL, 0, key);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(body);
@@ -232,7 +232,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
-	ZEPHIR_CALL_METHOD(&params, this_ptr, "getoption", &_1, type, _0);
+	ZEPHIR_CALL_METHOD(&params, this_ptr, "getoption", &_1, 0, type, _0);
 	zephir_check_call_status();
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_tag"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_3);
@@ -244,7 +244,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	ZVAL_STRING(_4, "×", 1);
 	zephir_array_fast_append(_3, _4);
 	add_assoc_stringl_ex(_3, SS("class"), SL("close"), 1);
-	ZEPHIR_CALL_METHOD(&close, _2, "a", NULL, _3);
+	ZEPHIR_CALL_METHOD(&close, _2, "a", NULL, 0, _3);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(body);
 	ZVAL_STRING(body, "", 1);
@@ -261,7 +261,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		ZEPHIR_GET_HVALUE(message, _7);
 		ZEPHIR_INIT_NVAR(_4);
 		ZVAL_STRING(_4, "html", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_8, this_ptr, "getoption", &_1, _4);
+		ZEPHIR_CALL_METHOD(&_8, this_ptr, "getoption", &_1, 0, _4);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		if (zephir_is_true(_8)) {
@@ -284,7 +284,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 			ZVAL_BOOL(_15, 1);
 			ZEPHIR_INIT_NVAR(_16);
 			ZVAL_BOOL(_16, 1);
-			ZEPHIR_CALL_METHOD(&_10, _9, "taghtml", NULL, _4, params, _11, _13, _14, _15, _16);
+			ZEPHIR_CALL_METHOD(&_10, _9, "taghtml", NULL, 0, _4, params, _11, _13, _14, _15, _16);
 			zephir_check_temp_parameter(_4);
 			zephir_check_temp_parameter(_14);
 			zephir_check_call_status();
@@ -323,13 +323,13 @@ PHP_METHOD(Ice_Flash, message) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "session_key", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, _0);
+	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_session"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_0);
 	array_init(_0);
-	ZEPHIR_CALL_METHOD(&messages, _1, "get", NULL, key, _0);
+	ZEPHIR_CALL_METHOD(&messages, _1, "get", NULL, 0, key, _0);
 	zephir_check_call_status();
 	if (!(zephir_array_isset(messages, type))) {
 		ZEPHIR_INIT_VAR(_2);
@@ -338,7 +338,7 @@ PHP_METHOD(Ice_Flash, message) {
 	}
 	zephir_array_update_multi(&messages, &message TSRMLS_CC, SL("za"), 2, type);
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_session"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, _3, "set", NULL, key, messages);
+	ZEPHIR_CALL_METHOD(NULL, _3, "set", NULL, 0, key, messages);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -364,7 +364,7 @@ PHP_METHOD(Ice_Flash, success) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "success", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -388,7 +388,7 @@ PHP_METHOD(Ice_Flash, ok) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "success", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -415,7 +415,7 @@ PHP_METHOD(Ice_Flash, info) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "info", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -439,7 +439,7 @@ PHP_METHOD(Ice_Flash, notice) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "info", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -466,7 +466,7 @@ PHP_METHOD(Ice_Flash, warning) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "warning", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -490,7 +490,7 @@ PHP_METHOD(Ice_Flash, alert) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "warning", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -517,7 +517,7 @@ PHP_METHOD(Ice_Flash, danger) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "danger", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -541,7 +541,7 @@ PHP_METHOD(Ice_Flash, error) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "danger", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, _0, message);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, _0, message);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();

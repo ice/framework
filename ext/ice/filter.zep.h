@@ -26,5 +26,5 @@ ZEPHIR_INIT_FUNCS(ice_filter_method_entry) {
 	PHP_ME(Ice_Filter, add, arginfo_ice_filter_add, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Filter, sanitize, arginfo_ice_filter_sanitize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Filter, _sanitize, arginfo_ice_filter__sanitize, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

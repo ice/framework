@@ -86,5 +86,5 @@ ZEPHIR_INIT_FUNCS(ice_flash_method_entry) {
 	PHP_ME(Ice_Flash, alert, arginfo_ice_flash_alert, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Flash, danger, arginfo_ice_flash_danger, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Flash, error, arginfo_ice_flash_error, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

@@ -61,5 +61,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_datagenerator_regex_method_entry) {
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute, arginfo_ice_mvc_route_datagenerator_regex_addvariableroute, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute, arginfo_ice_mvc_route_datagenerator_regex_buildregexforroute, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-  PHP_FE_END
+	PHP_FE_END
 };

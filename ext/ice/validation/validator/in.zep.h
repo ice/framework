@@ -12,5 +12,5 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_validator_in_method_entry) {
 	PHP_ME(Ice_Validation_Validator_In, validate, arginfo_ice_validation_validator_in_validate, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };
