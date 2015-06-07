@@ -86,5 +86,5 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, remove, arginfo_ice_db_driver_pdo_remove, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getLastInsertId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getError, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

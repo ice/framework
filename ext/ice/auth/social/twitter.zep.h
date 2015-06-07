@@ -28,5 +28,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_social_twitter_method_entry) {
 	PHP_ME(Ice_Auth_Social_Twitter, authenticate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Twitter, prepareAuthParams, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Twitter, prepareUrlParams, arginfo_ice_auth_social_twitter_prepareurlparams, ZEND_ACC_PRIVATE)
-  PHP_FE_END
+	PHP_FE_END
 };

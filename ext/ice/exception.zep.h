@@ -37,5 +37,5 @@ ZEPHIR_INIT_FUNCS(ice_exception_method_entry) {
 	PHP_ME(Ice_Exception, errorHandler, arginfo_ice_exception_errorhandler, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_Exception, handler, arginfo_ice_exception_handler, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_Exception, shutdownHandler, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-  PHP_FE_END
+	PHP_FE_END
 };

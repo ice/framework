@@ -40,5 +40,5 @@ ZEPHIR_INIT_FUNCS(ice_pagination_method_entry) {
 	PHP_ME(Ice_Pagination, minimal, arginfo_ice_pagination_minimal, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Pagination, basic, arginfo_ice_pagination_basic, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Pagination, floating, arginfo_ice_pagination_floating, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

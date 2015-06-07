@@ -20,6 +20,7 @@
 #include <Zend/zend_exceptions.h>
 #include <Zend/zend_interfaces.h>
 
+#include "kernel/globals.h"
 #include "kernel/main.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
@@ -302,6 +303,9 @@ static void php_zephir_init_globals(zend_ice_globals *zephir_globals TSRMLS_DC)
 	/* Recursive Lock */
 	zephir_globals->recursive_lock = 0;
 
+	/* Static cache */
+	memset(zephir_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
+
 
 }
 
@@ -314,6 +318,7 @@ static PHP_RINIT_FUNCTION(ice)
 	//zephir_init_interned_strings(TSRMLS_C);
 
 	zephir_initialize_memory(zephir_globals_ptr TSRMLS_CC);
+
 
 	return SUCCESS;
 }
@@ -337,6 +342,7 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_header(2, PHP_ICE_NAME, "enabled");
 	php_info_print_table_row(2, "Author", PHP_ICE_AUTHOR);
 	php_info_print_table_row(2, "Version", PHP_ICE_VERSION);
+	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_ICE_ZEPVERSION);
 	php_info_print_table_end();
 

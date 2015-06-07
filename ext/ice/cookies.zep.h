@@ -113,5 +113,5 @@ ZEPHIR_INIT_FUNCS(ice_cookies_method_entry) {
 	PHP_ME(Ice_Cookies, remove, arginfo_ice_cookies_remove, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, salt, arginfo_ice_cookies_salt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, _setcookie, arginfo_ice_cookies__setcookie, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

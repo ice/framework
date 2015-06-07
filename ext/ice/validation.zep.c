@@ -74,6 +74,13 @@ PHP_METHOD(Ice_Validation, setRules) {
 
 }
 
+PHP_METHOD(Ice_Validation, getRules) {
+
+
+	RETURN_MEMBER(this_ptr, "_rules");
+
+}
+
 PHP_METHOD(Ice_Validation, setFilters) {
 
 	zval *filters;
@@ -149,7 +156,7 @@ PHP_METHOD(Ice_Validation, setHumanLabels) {
 PHP_METHOD(Ice_Validation, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_9 = NULL;
+	zephir_fcall_cache_entry *_9 = NULL;
 	zval *data_param = NULL, *_1, *_2, *_3, *_4, *_5, *_6, *_7, *_8 = NULL;
 	zval *data = NULL, *_0;
 
@@ -211,7 +218,7 @@ PHP_METHOD(Ice_Validation, __construct) {
 	ZEPHIR_INIT_VAR(_7);
 	array_init(_7);
 	zephir_update_property_this(this_ptr, SL("_data"), _7 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_8, ice_di_ce, "fetch", &_9);
+	ZEPHIR_CALL_CE_STATIC(&_8, ice_di_ce, "fetch", &_9, 8);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("_di"), _8 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_data"), data TSRMLS_CC);
@@ -229,9 +236,8 @@ PHP_METHOD(Ice_Validation, __construct) {
  */
 PHP_METHOD(Ice_Validation, resolve) {
 
-	zval *_7;
+	zval *_5;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
 	zval *alias_param = NULL, *field_param = NULL, *options = NULL, *rule = NULL, *_0, *_1 = NULL, *_2, _3, *_4 = NULL;
 	zval *alias = NULL, *field = NULL;
 
@@ -257,20 +263,20 @@ PHP_METHOD(Ice_Validation, resolve) {
 			object_init_ex(_2, ice_exception_ce);
 			ZEPHIR_SINIT_VAR(_3);
 			ZVAL_STRING(&_3, "Validator %s not found", 0);
-			ZEPHIR_CALL_FUNCTION(&_4, "sprintf", &_5, &_3, alias);
+			ZEPHIR_CALL_FUNCTION(&_4, "sprintf", NULL, 1, &_3, alias);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_6, _4);
+			ZEPHIR_CALL_METHOD(NULL, _2, "__construct", NULL, 2, _4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(_2, "ice/validation.zep", 84 TSRMLS_CC);
+			zephir_throw_exception_debug(_2, "ice/validation.zep", 101 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 	}
 	ZEPHIR_INIT_NVAR(_1);
-	ZEPHIR_INIT_VAR(_7);
-	zephir_create_array(_7, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_7, options);
-	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, rule, _7 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_5);
+	zephir_create_array(_5, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_5, options);
+	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, rule, _5 TSRMLS_CC);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("_rules"), &_1 TSRMLS_CC, SL("za"), 1, field);
 	ZEPHIR_MM_RESTORE();
@@ -280,6 +286,19 @@ PHP_METHOD(Ice_Validation, resolve) {
 /**
  * Add one rule.
  *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *
+ *  $validation->rule('email', 'required|email');
+ *  $validation->rule('content', [
+ *      'length' => [
+ *          'max' => 1000,
+ *          'messageMin' => 'Too long!',
+ *          'label' => 'Desctiption'
+ *      ]
+ *  ]);
+ * <code><pre>
+ *
  * @param string field
  * @param mixed validators
  * @param mixed options
@@ -287,9 +306,8 @@ PHP_METHOD(Ice_Validation, resolve) {
  */
 PHP_METHOD(Ice_Validation, rule) {
 
-	zephir_fcall_cache_entry *_10 = NULL;
 	zend_bool _7;
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL, *_14 = NULL;
+	zephir_fcall_cache_entry *_4 = NULL, *_10 = NULL, *_14 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_2, *_12;
 	HashPosition _1, _11;
@@ -315,7 +333,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(_0, "array")) {
-			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 114);
+			zephir_is_iterable(validators, &_2, &_1, 0, 0, "ice/validation.zep", 144);
 			for (
 			  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_2, &_1)
@@ -325,7 +343,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, field, validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 156, field, validator, options);
 				zephir_check_call_status();
 			}
 			break;
@@ -344,12 +362,12 @@ PHP_METHOD(Ice_Validation, rule) {
 				_7 = ZEPHIR_IS_FALSE_IDENTICAL(_9);
 			}
 			if (_7) {
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "resolve", &_10, validators, field, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "resolve", &_10, 0, validators, field, options);
 				zephir_check_call_status();
 			} else {
 				ZEPHIR_INIT_VAR(rules);
 				zephir_fast_explode_str(rules, SL("|"), validators, LONG_MAX TSRMLS_CC);
-				zephir_is_iterable(rules, &_12, &_11, 0, 0, "ice/validation.zep", 133);
+				zephir_is_iterable(rules, &_12, &_11, 0, 0, "ice/validation.zep", 163);
 				for (
 				  ; zephir_hash_get_current_data_ex(_12, (void**) &_13, &_11) == SUCCESS
 				  ; zephir_hash_move_forward_ex(_12, &_11)
@@ -358,7 +376,7 @@ PHP_METHOD(Ice_Validation, rule) {
 					ZEPHIR_INIT_NVAR(options);
 					zephir_fast_explode_str(options, SL(":"), rule, LONG_MAX TSRMLS_CC);
 					Z_SET_ISREF_P(options);
-					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_14, options);
+					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_14, 4, options);
 					Z_UNSET_ISREF_P(options);
 					zephir_check_call_status();
 					if (!ZEPHIR_IS_STRING(alias, "regex")) {
@@ -368,7 +386,7 @@ PHP_METHOD(Ice_Validation, rule) {
 							zephir_fast_explode_str(options, SL(","), values, LONG_MAX TSRMLS_CC);
 						}
 					}
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "resolve", &_10, alias, field, options);
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "resolve", &_10, 0, alias, field, options);
 					zephir_check_call_status();
 				}
 			}
@@ -382,6 +400,21 @@ PHP_METHOD(Ice_Validation, rule) {
 
 /**
  * Add multiple rules at once.
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *
+ *  $validation->rules([
+ *      'username' => 'required|length:4,24|notIn:admin,user,root|unique:users',
+ *      'password'  => 'required|length:5,32',
+ *      'repeatPassword'  => 'same:password',
+ *      'email'  => 'email',
+ *      'status'  => 'required|digit|in:0,1,2',
+ *      'website'  => 'url',
+ *      'title'  => 'length:,100',
+ *      'age'  => 'required|between:18,21',
+ *  ]);
+ * <code><pre>
  *
  * @param array validators
  * @return void
@@ -402,14 +435,14 @@ PHP_METHOD(Ice_Validation, rules) {
 
 
 
-	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 151);
+	zephir_is_iterable(validators, &_1, &_0, 0, 0, "ice/validation.zep", 196);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(field, _1, _0);
 		ZEPHIR_GET_HVALUE(rules, _2);
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_3, field, rules);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_3, 0, field, rules);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -445,20 +478,20 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_update_property_this(this_ptr, SL("_data"), data TSRMLS_CC);
 	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 177);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation.zep", 222);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(field, _2, _1);
 		ZEPHIR_GET_HVALUE(rules, _3);
-		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 174);
+		zephir_is_iterable(rules, &_5, &_4, 0, 0, "ice/validation.zep", 219);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
 		) {
 			ZEPHIR_GET_HVALUE(rule, _6);
-			ZEPHIR_CALL_METHOD(&_7, rule, "validate", NULL, this_ptr, field);
+			ZEPHIR_CALL_METHOD(&_7, rule, "validate", NULL, 0, this_ptr, field);
 			zephir_check_call_status();
 			if (ZEPHIR_IS_FALSE_IDENTICAL(_7)) {
 				zephir_update_property_this(this_ptr, SL("_valid"), (0) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
@@ -560,7 +593,7 @@ PHP_METHOD(Ice_Validation, getValue) {
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_4);
 		ZVAL_STRING(_4, "filter", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_3, _2, "has", NULL, _4);
+		ZEPHIR_CALL_METHOD(&_3, _2, "has", NULL, 0, _4);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
 		_1 = zephir_is_true(_3);
@@ -575,10 +608,10 @@ PHP_METHOD(Ice_Validation, getValue) {
 		_7 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_4);
 		ZVAL_STRING(_4, "filter", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_8, _7, "get", NULL, _4);
+		ZEPHIR_CALL_METHOD(&_8, _7, "get", NULL, 0, _4);
 		zephir_check_temp_parameter(_4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_9, _8, "sanitize", NULL, value, filters);
+		ZEPHIR_CALL_METHOD(&_9, _8, "sanitize", NULL, 0, value, filters);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(value, _9);
 	}
@@ -625,7 +658,7 @@ PHP_METHOD(Ice_Validation, getLabel) {
 			_3 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 			ZEPHIR_INIT_VAR(_5);
 			ZVAL_STRING(_5, "filter", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&_4, _3, "has", NULL, _5);
+			ZEPHIR_CALL_METHOD(&_4, _3, "has", NULL, 0, _5);
 			zephir_check_temp_parameter(_5);
 			zephir_check_call_status();
 			_2 = zephir_is_true(_4);
@@ -634,12 +667,12 @@ PHP_METHOD(Ice_Validation, getLabel) {
 			_6 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
 			ZEPHIR_INIT_NVAR(_5);
 			ZVAL_STRING(_5, "filter", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&_7, _6, "get", NULL, _5);
+			ZEPHIR_CALL_METHOD(&_7, _6, "get", NULL, 0, _5);
 			zephir_check_temp_parameter(_5);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(_5);
 			ZVAL_STRING(_5, "human", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&label, _7, "sanitize", NULL, field, _5);
+			ZEPHIR_CALL_METHOD(&label, _7, "sanitize", NULL, 0, field, _5);
 			zephir_check_temp_parameter(_5);
 			zephir_check_call_status();
 		} else {
@@ -712,7 +745,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	if (!(zephir_array_isset_fetch(&message, _0, type, 0 TSRMLS_CC))) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_defaultMessages"), PH_NOISY_CC);
 		ZEPHIR_OBS_NVAR(message);
-		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 271 TSRMLS_CC);
+		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 316 TSRMLS_CC);
 	}
 	RETURN_CCTOR(message);
 
@@ -759,7 +792,6 @@ PHP_METHOD(Ice_Validation, addMessage) {
  */
 PHP_METHOD(Ice_Validation, getMessages) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0;
 
@@ -767,7 +799,7 @@ PHP_METHOD(Ice_Validation, getMessages) {
 
 	object_init_ex(return_value, ice_arr_ce);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", &_1, _0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 

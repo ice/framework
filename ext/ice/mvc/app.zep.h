@@ -28,5 +28,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_app_method_entry) {
 	PHP_ME(Ice_Mvc_App, getModules, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_App, setModules, arginfo_ice_mvc_app_setmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_App, handle, arginfo_ice_mvc_app_handle, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

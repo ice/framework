@@ -17,5 +17,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_i18n_plural_balkan_method_entry) {
 	PHP_ME(Ice_I18n_Plural_Balkan, getCategory, arginfo_ice_i18n_plural_balkan_getcategory, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_I18n_Plural_Balkan, isInt, arginfo_ice_i18n_plural_balkan_isint, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

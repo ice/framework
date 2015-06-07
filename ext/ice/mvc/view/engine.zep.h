@@ -41,5 +41,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_view_engine_method_entry) {
 	PHP_ME(Ice_Mvc_View_Engine, load, arginfo_ice_mvc_view_engine_load, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine, partial, arginfo_ice_mvc_view_engine_partial, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine, render, arginfo_ice_mvc_view_engine_render, ZEND_ACC_PUBLIC|ZEND_ACC_ABSTRACT)
-  PHP_FE_END
+	PHP_FE_END
 };

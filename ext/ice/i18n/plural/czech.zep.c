@@ -60,7 +60,7 @@ PHP_METHOD(Ice_I18n_Plural_Czech, getCategory) {
 
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_LONG(_1, count);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, _1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, _1);
 	zephir_check_call_status();
 	_2 = zephir_is_true(_0);
 	if (_2) {

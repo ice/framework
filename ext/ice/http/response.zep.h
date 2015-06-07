@@ -121,5 +121,5 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, isServerError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessage, arginfo_ice_http_response_getmessage, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __toString, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

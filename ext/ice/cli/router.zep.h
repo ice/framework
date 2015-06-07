@@ -51,5 +51,5 @@ ZEPHIR_INIT_FUNCS(ice_cli_router_method_entry) {
 	PHP_ME(Ice_Cli_Router, setDefaults, arginfo_ice_cli_router_setdefaults, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Router, handle, arginfo_ice_cli_router_handle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Router, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-  PHP_FE_END
+	PHP_FE_END
 };

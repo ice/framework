@@ -63,7 +63,7 @@ PHP_METHOD(Ice_I18n_Plural_Arabic, getCategory) {
 
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_LONG(_0, count);
-	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, _0);
+	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, 0, _0);
 	zephir_check_call_status();
 	i100 = (long) (zephir_safe_mod_long_long(count, 100 TSRMLS_CC));
 	_1 = zephir_is_true(isInt);

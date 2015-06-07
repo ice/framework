@@ -9,7 +9,7 @@ if test "$PHP_ICE" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
-	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/arr.zep.c
+	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/arr.zep.c
 	ice/auth.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c

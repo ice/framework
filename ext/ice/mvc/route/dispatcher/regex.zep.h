@@ -44,5 +44,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_dispatcher_regex_method_entry) {
 	PHP_ME(Ice_Mvc_Route_Dispatcher_Regex, dispatchVariableRoute, arginfo_ice_mvc_route_dispatcher_regex_dispatchvariableroute, ZEND_ACC_PROTECTED|ZEND_ACC_ABSTRACT)
 	PHP_ME(Ice_Mvc_Route_Dispatcher_Regex, dispatch, arginfo_ice_mvc_route_dispatcher_regex_dispatch, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Route_Dispatcher_Regex, dispatchStaticRoute, arginfo_ice_mvc_route_dispatcher_regex_dispatchstaticroute, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

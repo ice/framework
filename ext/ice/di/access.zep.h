@@ -17,5 +17,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_di_access_method_entry) {
 	PHP_ME(Ice_Di_Access, __construct, arginfo_ice_di_access___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Di_Access, __get, arginfo_ice_di_access___get, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

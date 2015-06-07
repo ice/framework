@@ -43,5 +43,5 @@ ZEPHIR_INIT_FUNCS(ice_session_method_entry) {
 	PHP_ME(Ice_Session, get, arginfo_ice_session_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Session, set, arginfo_ice_session_set, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Session, remove, arginfo_ice_session_remove, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };
