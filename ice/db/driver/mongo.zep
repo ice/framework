@@ -2,6 +2,7 @@
 namespace Ice\Db\Driver;
 
 use Ice\Arr;
+use Ice\Exception;
 use Ice\Db\DbInterface;
 
 /**
@@ -101,6 +102,14 @@ class Mongo implements DbInterface
         var filtered, collection, result, tmp;
 
         switch typeof filters {
+            case "object":
+                // Find by MongoId
+                if filters instanceof \MongoId {
+                    let filtered = [this->_id: filters];
+                } else {
+                    throw new Exception("Object must be an MongoId instance");
+                }
+            break;
             case "array":
                 // Find by filters
                 let filtered = filters;
