@@ -16,7 +16,7 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'picture' => [
  *          'file' => [
@@ -27,9 +27,9 @@ use Ice\Validation\Validator;
  *          ]
  *      ]
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_FILES);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

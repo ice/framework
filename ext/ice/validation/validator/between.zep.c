@@ -31,7 +31,7 @@
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'age' => 'between:18,21',
  *      'height' => [
@@ -41,9 +41,9 @@
  *          ]
  *      ]
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

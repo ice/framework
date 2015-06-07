@@ -15,14 +15,14 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'email' => 'required|email',
  *      'repeatEmail' => 'same:email'
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

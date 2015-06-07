@@ -288,7 +288,7 @@ PHP_METHOD(Ice_Validation, resolve) {
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rule('email', 'required|email');
  *  $validation->rule('content', [
  *      'length' => [
@@ -297,7 +297,7 @@ PHP_METHOD(Ice_Validation, resolve) {
  *          'label' => 'Desctiption'
  *      ]
  *  ]);
- * <code><pre>
+ * </code></pre>
  *
  * @param string field
  * @param mixed validators
@@ -403,7 +403,7 @@ PHP_METHOD(Ice_Validation, rule) {
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'username' => 'required|length:4,24|notIn:admin,user,root|unique:users',
  *      'password'  => 'required|length:5,32',
@@ -414,7 +414,7 @@ PHP_METHOD(Ice_Validation, rule) {
  *      'title'  => 'length:,100',
  *      'age'  => 'required|between:18,21',
  *  ]);
- * <code><pre>
+ * </code></pre>
  *
  * @param array validators
  * @return void

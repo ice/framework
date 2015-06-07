@@ -15,7 +15,7 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'username' => 'alpha',
  *      'prefix' => [
@@ -24,9 +24,9 @@ use Ice\Validation\Validator;
  *          ]
  *      ]
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

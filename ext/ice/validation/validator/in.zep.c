@@ -32,13 +32,13 @@
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'status' => 'in:1,2,3,4'
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

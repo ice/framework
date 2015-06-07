@@ -32,7 +32,7 @@
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'status' => 'notIn:unactive,removed',
  *      'username' => [
@@ -43,9 +43,9 @@
  *          ],
  *      ]
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
