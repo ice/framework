@@ -46,7 +46,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 
 	zval *_2;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_1 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -61,7 +61,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "facebook", 1);
 	zephir_update_property_this(this_ptr, SL("_provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 30, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 6, 0 TSRMLS_CC);
@@ -90,13 +90,13 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "has", NULL, _1);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "has", NULL, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
 		ZEPHIR_INIT_NVAR(_1);
 		ZVAL_STRING(_1, "id", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_2, this_ptr, "get", NULL, _1);
+		ZEPHIR_CALL_METHOD(&_2, this_ptr, "get", NULL, 0, _1);
 		zephir_check_temp_parameter(_1);
 		zephir_check_call_status();
 		ZEPHIR_CONCAT_SVS(return_value, "http://graph.facebook.com/", _2, "/picture?type=large");
@@ -113,17 +113,16 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
  */
 PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_6 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params = NULL, *tokenInfo, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_8, *_9;
-	zend_bool result, _7;
+	zval *params = NULL, *tokenInfo, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_7, *_8;
+	zend_bool result, _6;
 
 	ZEPHIR_MM_GROW();
+	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
 
 	result = 0;
 	ZEPHIR_INIT_VAR(tokenInfo);
 	ZVAL_NULL(tokenInfo);
-	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
 	if (zephir_array_isset_string(_GET, SS("code"))) {
 		ZEPHIR_INIT_VAR(params);
 		zephir_create_array(params, 4, 0 TSRMLS_CC);
@@ -147,24 +146,24 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			ZVAL_STRING(_4, "https://graph.facebook.com/oauth/access_token", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_5);
 			ZVAL_BOOL(_5, 0);
-			ZEPHIR_CALL_METHOD(&_2, this_ptr, "call", NULL, _3, _4, params, _5);
+			ZEPHIR_CALL_METHOD(&_2, this_ptr, "call", NULL, 0, _3, _4, params, _5);
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
 			Z_SET_ISREF_P(tokenInfo);
-			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", &_6, _2, tokenInfo);
+			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 31, _2, tokenInfo);
 			Z_UNSET_ISREF_P(tokenInfo);
 			zephir_check_call_status();
-			_7 = zephir_fast_count_int(tokenInfo TSRMLS_CC) > 0;
-			if (_7) {
-				_7 = zephir_array_isset_string(tokenInfo, SS("access_token"));
+			_6 = zephir_fast_count_int(tokenInfo TSRMLS_CC) > 0;
+			if (_6) {
+				_6 = zephir_array_isset_string(tokenInfo, SS("access_token"));
 			}
-			if (_7) {
-				zephir_array_fetch_string(&_8, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/facebook.zep", 76 TSRMLS_CC);
-				zephir_update_property_this(this_ptr, SL("_accessToken"), _8 TSRMLS_CC);
+			if (_6) {
+				zephir_array_fetch_string(&_7, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/facebook.zep", 76 TSRMLS_CC);
+				zephir_update_property_this(this_ptr, SL("_accessToken"), _7 TSRMLS_CC);
 			}
 		}
-		_9 = zephir_fetch_nproperty_this(this_ptr, SL("_accessToken"), PH_NOISY_CC);
-		if (zephir_is_true(_9)) {
+		_8 = zephir_fetch_nproperty_this(this_ptr, SL("_accessToken"), PH_NOISY_CC);
+		if (zephir_is_true(_8)) {
 			ZEPHIR_INIT_NVAR(params);
 			zephir_create_array(params, 1, 0 TSRMLS_CC);
 			ZEPHIR_OBS_NVAR(_0);
@@ -174,7 +173,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			ZVAL_LONG(_3, 0);
 			ZEPHIR_INIT_NVAR(_4);
 			ZVAL_STRING(_4, "https://graph.facebook.com/me", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, _3, _4, params);
+			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _3, _4, params);
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(userInfo, SS("id"))) {

@@ -59,5 +59,5 @@ ZEPHIR_INIT_FUNCS(ice_log_loggerinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Log_LoggerInterface, info, arginfo_ice_log_loggerinterface_info)
 	PHP_ABSTRACT_ME(Ice_Log_LoggerInterface, debug, arginfo_ice_log_loggerinterface_debug)
 	PHP_ABSTRACT_ME(Ice_Log_LoggerInterface, log, arginfo_ice_log_loggerinterface_log)
-  PHP_FE_END
+	PHP_FE_END
 };

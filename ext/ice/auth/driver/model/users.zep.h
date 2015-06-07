@@ -15,5 +15,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model_Users, initialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users, completeLogin, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users, getRole, arginfo_ice_auth_driver_model_users_getrole, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

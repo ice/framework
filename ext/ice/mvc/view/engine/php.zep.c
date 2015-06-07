@@ -47,7 +47,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
 PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_nts_static zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL, *_2 = NULL;
 	zval *data = NULL;
 	zval *path_param = NULL, *data_param = NULL;
 	zval *path = NULL;
@@ -75,15 +74,15 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 
 	Z_SET_ISREF_P(data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", &_0, data);
+	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 116, data);
 	Z_UNSET_ISREF_P(data);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", &_1);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 117);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 118);
 	zephir_check_call_status();
 	RETURN_MM();
 

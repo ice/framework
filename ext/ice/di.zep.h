@@ -66,5 +66,5 @@ ZEPHIR_INIT_FUNCS(ice_di_method_entry) {
 	PHP_ME(Ice_Di, getHooks, arginfo_ice_di_gethooks, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Di, clearHooks, arginfo_ice_di_clearhooks, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Di, __call, arginfo_ice_di___call, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

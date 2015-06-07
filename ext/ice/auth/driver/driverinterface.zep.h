@@ -22,5 +22,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_driverinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Auth_Driver_DriverInterface, getUser, arginfo_ice_auth_driver_driverinterface_getuser)
 	PHP_ABSTRACT_ME(Ice_Auth_Driver_DriverInterface, hasRole, arginfo_ice_auth_driver_driverinterface_hasrole)
 	PHP_ABSTRACT_ME(Ice_Auth_Driver_DriverInterface, login, arginfo_ice_auth_driver_driverinterface_login)
-  PHP_FE_END
+	PHP_FE_END
 };

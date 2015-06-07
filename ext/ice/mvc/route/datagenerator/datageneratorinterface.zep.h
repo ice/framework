@@ -12,5 +12,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_mvc_route_datagenerator_datageneratorinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface, addRoute, arginfo_ice_mvc_route_datagenerator_datageneratorinterface_addroute)
 	PHP_ABSTRACT_ME(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface, getData, NULL)
-  PHP_FE_END
+	PHP_FE_END
 };

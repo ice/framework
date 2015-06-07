@@ -49,7 +49,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "auth", ZEPHIR_TEMP_PARAM_COPY);
@@ -57,25 +57,25 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 	ZVAL_NULL(_2);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_BOOL(_3, 1);
-	ZEPHIR_CALL_METHOD(&auth, _0, "get", NULL, _1, _2, _3);
+	ZEPHIR_CALL_METHOD(&auth, _0, "get", NULL, 0, _1, _2, _3);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Users", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&_4, auth, "getoption", NULL, _1, _2);
+	ZEPHIR_CALL_METHOD(&_4, auth, "getoption", NULL, 0, _1, _2);
 	zephir_check_temp_parameter(_1);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_5, this_ptr, "getidkey", NULL);
+	ZEPHIR_CALL_METHOD(&_5, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_6);
 	zephir_create_array(_6, 1, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(_6, SS("alias"), SL("User"), 1);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "user_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, _1, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, 0, _1, _4, _5, _6);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -103,7 +103,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "type", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setprimary", NULL, _0);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setprimary", NULL, 0, _0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

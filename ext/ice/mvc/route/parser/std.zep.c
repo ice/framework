@@ -40,12 +40,11 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_Std) {
 
 PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 
-	zval *_13 = NULL;
-	HashTable *_5;
-	HashPosition _4;
-	zephir_nts_static zephir_fcall_cache_entry *_3 = NULL;
+	zval *_12 = NULL;
+	HashTable *_4;
+	HashPosition _3;
 	int offset = 0, ZEPHIR_LAST_CALL_STATUS;
-	zval *route, *matches, *routeData, *value = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, **_6, *_7, *_8, *_9, *_10, _11 = zval_used_for_init, _12 = zval_used_for_init, *_14 = NULL, *_15 = NULL, *_16, *_17, *_18, *_19, *_20;
+	zval *route, *matches, *routeData, *value = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, **_5, *_6, *_7, *_8, *_9, _10 = zval_used_for_init, _11 = zval_used_for_init, *_13 = NULL, *_14 = NULL, *_15, *_16, *_17, *_18, *_19;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
@@ -59,7 +58,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_LONG(_1, (256 | 2));
 	Z_SET_ISREF_P(matches);
-	ZEPHIR_CALL_FUNCTION(&_2, "preg_match_all", &_3, _0, route, matches, _1);
+	ZEPHIR_CALL_FUNCTION(&_2, "preg_match_all", NULL, 113, _0, route, matches, _1);
 	zephir_check_temp_parameter(_0);
 	Z_UNSET_ISREF_P(matches);
 	zephir_check_call_status();
@@ -70,54 +69,54 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	}
 	ZEPHIR_INIT_VAR(routeData);
 	array_init(routeData);
-	zephir_is_iterable(matches, &_5, &_4, 0, 0, "ice/mvc/route/parser/std.zep", 41);
+	zephir_is_iterable(matches, &_4, &_3, 0, 0, "ice/mvc/route/parser/std.zep", 41);
 	for (
-	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_5, &_4)
+	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_4, &_3)
 	) {
-		ZEPHIR_GET_HVALUE(value, _6);
-		zephir_array_fetch_long(&_7, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 29 TSRMLS_CC);
-		zephir_array_fetch_long(&_8, _7, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 29 TSRMLS_CC);
-		if (ZEPHIR_GT_LONG(_8, offset)) {
-			zephir_array_fetch_long(&_9, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 30 TSRMLS_CC);
-			zephir_array_fetch_long(&_10, _9, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 30 TSRMLS_CC);
+		ZEPHIR_GET_HVALUE(value, _5);
+		zephir_array_fetch_long(&_6, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 29 TSRMLS_CC);
+		zephir_array_fetch_long(&_7, _6, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 29 TSRMLS_CC);
+		if (ZEPHIR_GT_LONG(_7, offset)) {
+			zephir_array_fetch_long(&_8, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 30 TSRMLS_CC);
+			zephir_array_fetch_long(&_9, _8, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 30 TSRMLS_CC);
+			ZEPHIR_SINIT_NVAR(_10);
+			ZVAL_LONG(&_10, offset);
 			ZEPHIR_SINIT_NVAR(_11);
-			ZVAL_LONG(&_11, offset);
-			ZEPHIR_SINIT_NVAR(_12);
-			ZVAL_LONG(&_12, (zephir_get_numberval(_10) - offset));
+			ZVAL_LONG(&_11, (zephir_get_numberval(_9) - offset));
 			ZEPHIR_INIT_NVAR(_0);
-			zephir_substr(_0, route, zephir_get_intval(&_11), zephir_get_intval(&_12), 0);
+			zephir_substr(_0, route, zephir_get_intval(&_10), zephir_get_intval(&_11), 0);
 			zephir_array_append(&routeData, _0, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 30);
 		}
-		ZEPHIR_INIT_NVAR(_13);
-		zephir_create_array(_13, 2, 0 TSRMLS_CC);
-		zephir_array_fetch_long(&_9, value, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 34 TSRMLS_CC);
-		ZEPHIR_OBS_NVAR(_14);
-		zephir_array_fetch_long(&_14, _9, 0, PH_NOISY, "ice/mvc/route/parser/std.zep", 34 TSRMLS_CC);
-		zephir_array_fast_append(_13, _14);
-		ZEPHIR_INIT_LNVAR(_15);
+		ZEPHIR_INIT_NVAR(_12);
+		zephir_create_array(_12, 2, 0 TSRMLS_CC);
+		zephir_array_fetch_long(&_8, value, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 34 TSRMLS_CC);
+		ZEPHIR_OBS_NVAR(_13);
+		zephir_array_fetch_long(&_13, _8, 0, PH_NOISY, "ice/mvc/route/parser/std.zep", 34 TSRMLS_CC);
+		zephir_array_fast_append(_12, _13);
+		ZEPHIR_INIT_LNVAR(_14);
 		if (zephir_array_isset_long(value, 2)) {
-			ZEPHIR_INIT_NVAR(_15);
-			zephir_array_fetch_long(&_10, value, 2, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 35 TSRMLS_CC);
-			zephir_array_fetch_long(&_16, _10, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 35 TSRMLS_CC);
-			zephir_fast_trim(_15, _16, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
+			zephir_array_fetch_long(&_9, value, 2, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 35 TSRMLS_CC);
+			zephir_array_fetch_long(&_15, _9, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 35 TSRMLS_CC);
+			ZEPHIR_INIT_NVAR(_14);
+			zephir_fast_trim(_14, _15, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
 		} else {
-			ZEPHIR_INIT_NVAR(_15);
-			ZVAL_STRING(_15, "[^/]+", 1);
+			ZEPHIR_INIT_NVAR(_14);
+			ZVAL_STRING(_14, "[^/]+", 1);
 		}
-		zephir_array_fast_append(_13, _15);
-		zephir_array_append(&routeData, _13, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 36);
-		zephir_array_fetch_long(&_17, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
-		zephir_array_fetch_long(&_18, _17, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
-		zephir_array_fetch_long(&_19, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
-		zephir_array_fetch_long(&_20, _19, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
-		offset = (zephir_get_numberval(_18) + zephir_fast_strlen_ev(_20));
+		zephir_array_fast_append(_12, _14);
+		zephir_array_append(&routeData, _12, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 36);
+		zephir_array_fetch_long(&_16, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
+		zephir_array_fetch_long(&_17, _16, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
+		zephir_array_fetch_long(&_18, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
+		zephir_array_fetch_long(&_19, _18, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 38 TSRMLS_CC);
+		offset = (zephir_get_numberval(_17) + zephir_fast_strlen_ev(_19));
 	}
 	if (offset != zephir_fast_strlen_ev(route)) {
-		ZEPHIR_SINIT_NVAR(_11);
-		ZVAL_LONG(&_11, offset);
+		ZEPHIR_SINIT_NVAR(_10);
+		ZVAL_LONG(&_10, offset);
 		ZEPHIR_INIT_NVAR(_1);
-		zephir_substr(_1, route, zephir_get_intval(&_11), 0, ZEPHIR_SUBSTR_NO_LENGTH);
+		zephir_substr(_1, route, zephir_get_intval(&_10), 0, ZEPHIR_SUBSTR_NO_LENGTH);
 		zephir_array_append(&routeData, _1, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 42);
 	}
 	RETURN_CCTOR(routeData);

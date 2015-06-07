@@ -20,5 +20,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_view_engine_sleet_method_entry) {
 	PHP_ME(Ice_Mvc_View_Engine_Sleet, getCompiler, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet, compile, arginfo_ice_mvc_view_engine_sleet_compile, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet, render, arginfo_ice_mvc_view_engine_sleet_render, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

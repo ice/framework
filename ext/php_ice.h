@@ -11,10 +11,10 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.0.12"
+#define PHP_ICE_VERSION     "1.0.13"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.6.2a"
+#define PHP_ICE_ZEPVERSION  "0.6.3a"
 #define PHP_ICE_DESCRIPTION "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2015 Ice Team."
 
 
@@ -33,6 +33,8 @@ ZEND_BEGIN_MODULE_GLOBALS(ice)
 
 	/** Function cache */
 	HashTable *fcache;
+
+	zephir_fcall_cache_entry *scache[ZEPHIR_MAX_CACHE_SLOTS];
 
 	/* Cache enabled */
 	unsigned int cache_enabled;

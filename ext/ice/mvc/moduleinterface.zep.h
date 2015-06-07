@@ -10,5 +10,5 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_mvc_moduleinterface_method_entry) {
 	PHP_ABSTRACT_ME(Ice_Mvc_ModuleInterface, registerAutoloaders, NULL)
 	PHP_ABSTRACT_ME(Ice_Mvc_ModuleInterface, registerServices, arginfo_ice_mvc_moduleinterface_registerservices)
-  PHP_FE_END
+	PHP_FE_END
 };

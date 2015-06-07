@@ -47,7 +47,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	zephir_create_array(_1, 1, 0 TSRMLS_CC);
@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 	ZVAL_STRING(_2, "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "role_id", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, _0, _2, _3, _1);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, _0, _2, _3, _1);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();

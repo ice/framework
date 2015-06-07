@@ -191,5 +191,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, serialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, unserialize, arginfo_ice_mvc_model_unserialize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __call, arginfo_ice_mvc_model___call, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

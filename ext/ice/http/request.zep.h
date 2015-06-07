@@ -93,5 +93,5 @@ ZEPHIR_INIT_FUNCS(ice_http_request_method_entry) {
 	PHP_ME(Ice_Http_Request, getPost, arginfo_ice_http_request_getpost, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getServer, arginfo_ice_http_request_getserver, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, getFiles, arginfo_ice_http_request_getfiles, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

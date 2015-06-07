@@ -78,5 +78,5 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_mongo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Mongo, update, arginfo_ice_db_driver_mongo_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, remove, arginfo_ice_db_driver_mongo_remove, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongo, getError, NULL, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

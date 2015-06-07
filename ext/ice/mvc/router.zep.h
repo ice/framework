@@ -94,5 +94,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_router_method_entry) {
 	PHP_ME(Ice_Mvc_Router, setDefaults, arginfo_ice_mvc_router_setdefaults, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, fastRoute, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, handle, arginfo_ice_mvc_router_handle, ZEND_ACC_PUBLIC)
-  PHP_FE_END
+	PHP_FE_END
 };

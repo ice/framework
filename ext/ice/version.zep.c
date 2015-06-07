@@ -57,7 +57,7 @@ PHP_METHOD(Ice_Version, current) {
 	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
-	add_assoc_long_ex(return_value, SS("patch"), 12);
+	add_assoc_long_ex(return_value, SS("patch"), 13);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
 	add_assoc_long_ex(return_value, SS("build"), 1);
 	return;
@@ -82,7 +82,7 @@ PHP_METHOD(Ice_Version, get) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_SELF(&current, "current", NULL);
+	ZEPHIR_CALL_SELF(&current, "current", NULL, 0);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_0, current, SL("stage"), PH_NOISY | PH_READONLY, "ice/version.zep", 56 TSRMLS_CC);
 	do {
@@ -132,24 +132,24 @@ PHP_METHOD(Ice_Version, get) {
  */
 PHP_METHOD(Ice_Version, id) {
 
-	zephir_nts_static zephir_fcall_cache_entry *_4 = NULL;
+	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *current = NULL, *_0, *_1, _2 = zval_used_for_init, *_3 = NULL, *_5, *_6 = NULL, *_7, *_8;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_SELF(&current, "current", NULL);
+	ZEPHIR_CALL_SELF(&current, "current", NULL, 0);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_0, current, SL("major"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
 	zephir_array_fetch_string(&_1, current, SL("minor"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_STRING(&_2, "%02s", 0);
-	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, &_2, _1);
+	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 1, &_2, _1);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_5, current, SL("patch"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
 	ZEPHIR_SINIT_NVAR(_2);
 	ZVAL_STRING(&_2, "%02s", 0);
-	ZEPHIR_CALL_FUNCTION(&_6, "sprintf", &_4, &_2, _5);
+	ZEPHIR_CALL_FUNCTION(&_6, "sprintf", &_4, 1, &_2, _5);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_7, current, SL("stage"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
 	zephir_array_fetch_string(&_8, current, SL("build"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);

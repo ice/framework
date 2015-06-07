@@ -54,5 +54,5 @@ ZEPHIR_INIT_FUNCS(ice_auth_social_adapter_method_entry) {
 	PHP_ME(Ice_Auth_Social_Adapter, get, arginfo_ice_auth_social_adapter_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, getAuthUrl, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, call, arginfo_ice_auth_social_adapter_call, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };

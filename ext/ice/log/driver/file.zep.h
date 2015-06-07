@@ -26,5 +26,5 @@ ZEPHIR_INIT_FUNCS(ice_log_driver_file_method_entry) {
 	PHP_ME(Ice_Log_Driver_File, __construct, arginfo_ice_log_driver_file___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Log_Driver_File, log, arginfo_ice_log_driver_file_log, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Log_Driver_File, interpolate, arginfo_ice_log_driver_file_interpolate, ZEND_ACC_PROTECTED)
-  PHP_FE_END
+	PHP_FE_END
 };
