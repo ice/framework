@@ -35,7 +35,7 @@
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'picture' => [
  *          'file' => [
@@ -46,9 +46,9 @@
  *          ]
  *      ]
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_FILES);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

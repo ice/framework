@@ -16,16 +16,16 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *
+ *  
  *  $validation->rules([
  *      'fullName' => 'required',
  *      'email' => 'required|email',
  *      'repeatEmail' => 'same:email',
  *      'about' => 'required|length:10,5000',
  *  ]);
- *
+ *  
  *  $valid = $validation->validate($_POST);
- *
+ *  
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -110,7 +110,7 @@ class Validation
      *
      * <pre><code>
      *  $validation = new Ice\Validation();
-     *
+     *  
      *  $validation->rule('email', 'required|email');
      *  $validation->rule('content', [
      *      'length' => [
@@ -119,7 +119,7 @@ class Validation
      *          'label' => 'Desctiption'
      *      ]
      *  ]);
-     * <code><pre>
+     * </code></pre>
      *
      * @param string field
      * @param mixed validators
@@ -170,7 +170,7 @@ class Validation
      *
      * <pre><code>
      *  $validation = new Ice\Validation();
-     *
+     *  
      *  $validation->rules([
      *      'username' => 'required|length:4,24|notIn:admin,user,root|unique:users',
      *      'password'  => 'required|length:5,32',
@@ -181,7 +181,7 @@ class Validation
      *      'title'  => 'length:,100',
      *      'age'  => 'required|between:18,21',
      *  ]);
-     * <code><pre>
+     * </code></pre>
      *
      * @param array validators
      * @return void
