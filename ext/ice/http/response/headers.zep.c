@@ -17,6 +17,7 @@
 #include "kernel/operators.h"
 #include "kernel/iterator.h"
 #include "kernel/concat.h"
+#include "kernel/object.h"
 
 
 /**
@@ -31,6 +32,8 @@
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Http\\Response, Headers, ice, http_response_headers, ice_arr_ce, ice_http_response_headers_method_entry, 0);
+
+	ice_http_response_headers_ce->create_object = zephir_init_properties;
 
 	zend_class_implements(ice_http_response_headers_ce TSRMLS_CC, 1, ice_http_response_headersinterface_ce);
 	return SUCCESS;
@@ -51,7 +54,7 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 90);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 98);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
 		_1 = zephir_get_iterator(this_ptr TSRMLS_CC);
@@ -66,10 +69,10 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 			if (!(ZEPHIR_IS_EMPTY(value))) {
 				ZEPHIR_INIT_LNVAR(_2);
 				ZEPHIR_CONCAT_VSV(_2, header, ": ", value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 91, _2, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 99, _2, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 91, header, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 99, header, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
 			}
 		}
@@ -77,6 +80,27 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 		RETURN_MM_BOOL(1);
 	}
 	RETURN_MM_BOOL(0);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

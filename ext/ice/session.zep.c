@@ -34,6 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Session) {
 
 	zend_declare_property_bool(ice_session_ce, SL("_started"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_session_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -65,7 +66,7 @@ PHP_METHOD(Ice_Session, start) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 90);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 98);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 146);
@@ -166,16 +167,22 @@ PHP_METHOD(Ice_Session, has) {
  */
 PHP_METHOD(Ice_Session, get) {
 
-	zval *key_param = NULL, *defaultValue = NULL, *value, *_SESSION;
+	zend_bool required;
+	zval *key_param = NULL, *defaultValue = NULL, *required_param = NULL, *value, *_SESSION;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SESSION, SS("_SESSION") TSRMLS_CC);
-	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
+	zephir_fetch_params(1, 1, 2, &key_param, &defaultValue, &required_param);
 
 	zephir_get_strval(key, key_param);
 	if (!defaultValue) {
 		defaultValue = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!required_param) {
+		required = 0;
+	} else {
+		required = zephir_get_boolval(required_param);
 	}
 
 
@@ -229,6 +236,27 @@ PHP_METHOD(Ice_Session, remove) {
 
 	zephir_array_unset(&_SESSION, key, PH_SEPARATE);
 	ZEPHIR_MM_RESTORE();
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

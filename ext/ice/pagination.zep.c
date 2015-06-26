@@ -41,6 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Pagination) {
 
 	zend_declare_property_null(ice_pagination_ce, SL("_tag"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_pagination_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -165,7 +166,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	ZVAL_LONG(&_8, (limit * ((page - 1))));
 	ZEPHIR_SINIT_VAR(_9);
 	ZVAL_LONG(&_9, limit);
-	ZEPHIR_CALL_FUNCTION(&_10, "array_slice", NULL, 77, data, &_8, &_9);
+	ZEPHIR_CALL_FUNCTION(&_10, "array_slice", NULL, 86, data, &_8, &_9);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "items", ZEPHIR_TEMP_PARAM_COPY);
@@ -897,7 +898,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZVAL_LONG(_1, 1);
 	ZEPHIR_INIT_VAR(_5);
 	ZVAL_LONG(_5, ((zephir_get_numberval(_4) - countOut) + 1));
-	ZEPHIR_CALL_FUNCTION(&n7, "max", &_6, 109, _1, _5);
+	ZEPHIR_CALL_FUNCTION(&n7, "max", &_6, 31, _1, _5);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "pages", ZEPHIR_TEMP_PARAM_COPY);
@@ -913,7 +914,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZVAL_LONG(_1, (zephir_get_numberval(n2) + 1));
 	ZEPHIR_INIT_NVAR(_5);
 	ZVAL_LONG(_5, (zephir_get_numberval(_7) - countIn));
-	ZEPHIR_CALL_FUNCTION(&n4, "max", &_6, 109, _1, _5);
+	ZEPHIR_CALL_FUNCTION(&n4, "max", &_6, 31, _1, _5);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "current", ZEPHIR_TEMP_PARAM_COPY);
@@ -1322,6 +1323,27 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	zephir_concat_self(&html, _35 TSRMLS_CC);
 	RETURN_CCTOR(html);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

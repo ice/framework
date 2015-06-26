@@ -27,6 +27,7 @@ PHP_METHOD(Ice_Mvc_Router, __construct);
 PHP_METHOD(Ice_Mvc_Router, setDefaults);
 PHP_METHOD(Ice_Mvc_Router, fastRoute);
 PHP_METHOD(Ice_Mvc_Router, handle);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_setdefaultmodule, 0, 0, 1)
 	ZEND_ARG_INFO(0, defaultModule)

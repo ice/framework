@@ -39,6 +39,7 @@ PHP_METHOD(Ice_Mvc_Model, setRules);
 PHP_METHOD(Ice_Mvc_Model, serialize);
 PHP_METHOD(Ice_Mvc_Model, unserialize);
 PHP_METHOD(Ice_Mvc_Model, __call);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfrom, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)

@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini);
 PHP_METHOD(Ice_Config_Ini, __construct);
 PHP_METHOD(Ice_Config_Ini, cast);
 PHP_METHOD(Ice_Config_Ini, map);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_ini___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, data)

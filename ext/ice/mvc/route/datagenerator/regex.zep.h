@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute);
-PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, __construct);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_datagenerator_regex_processchunk, 0, 0, 1)
 	ZEND_ARG_INFO(0, regexToRoutesMap)
@@ -60,6 +60,5 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_datagenerator_regex_method_entry) {
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute, arginfo_ice_mvc_route_datagenerator_regex_addstaticroute, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute, arginfo_ice_mvc_route_datagenerator_regex_addvariableroute, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute, arginfo_ice_mvc_route_datagenerator_regex_buildregexforroute, ZEND_ACC_PROTECTED)
-	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_FE_END
 };

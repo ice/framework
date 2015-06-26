@@ -26,6 +26,7 @@ PHP_METHOD(Ice_Mvc_View, layout);
 PHP_METHOD(Ice_Mvc_View, setVar);
 PHP_METHOD(Ice_Mvc_View, setVars);
 PHP_METHOD(Ice_Mvc_View, __toString);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_setengines, 0, 0, 1)
 	ZEND_ARG_INFO(0, engines)
