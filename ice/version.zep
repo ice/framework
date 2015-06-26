@@ -9,6 +9,7 @@ namespace Ice;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
 class Version
 {
@@ -18,74 +19,84 @@ class Version
     const BETA = 2;
     const RC = 3;
     const STABLE = 4;
+    // Don't forget to update config.json and run zephir fullclean
+    const MAJOR = 1;
+    const MINOR = 0;
+    const PATCH = 14;
+    const STAGE = self::STABLE;
+    const BUILD = 1;
 
     /**
-     * Get array version of the framework.
+     * Get version array.
      *
      * @return array
      */
     public static function current() -> array
     {
-        // Don't forget to update config.json and run zephir fullclean
         return [
-            "major": 1,
-            "minor": 0,
-            "patch": 13,
-            "stage": Version::STABLE,
-            "build": 1
+            "major": self::MAJOR,
+            "minor": self::MINOR,
+            "patch": self::PATCH,
+            "stage": self::STAGE,
+            "build": self::BUILD
         ];
     }
 
     /**
-     * Get version of the framework.
+     * Get version string.
      * 
      * 1.0.0-dev
-     * 1.0.0-alpha3
-     * 1.0.0-beta2
-     * 1.0.0-rc5
+     * 1.0.0-alpha.3
+     * 1.0.0-beta.2
+     * 1.0.0-rc.5
      * 1.0.0
      *
      * @return string
      */
     public static function get() -> string
     {
-        var current, suffix;
+        var suffix;
 
-        let current = self::current();
-
-        switch current["stage"] {
-            case Version::DEV:
+        switch self::STAGE {
+            case self::DEV:
                 let suffix = "-dev";
             break;
-            case Version::ALPHA:
-                let suffix = "-alpha" . current["build"];
+            case self::ALPHA:
+                let suffix = "-alpha." . self::BUILD;
             break;
-            case Version::BETA:
-                let suffix = "-beta" . current["build"];
+            case self::BETA:
+                let suffix = "-beta." . self::BUILD;
             break;
-            case Version::RC:
-                let suffix = "-RC" . current["build"];
+            case self::RC:
+                let suffix = "-rc." . self::BUILD;
             break;
-            case Version::STABLE:
+            case self::STABLE:
                 let suffix = "";
             break;
         }
 
-        return current["major"] . "." . current["minor"] . "." . current["patch"] . suffix;
+        return self::MAJOR . "." . self::MINOR . "." . self::PATCH . suffix;
     }
 
     /**
-     * Get version id of the framework.
-     * [major][minor(2 digits)][patch (2 digits)][stage][build], eg. id for 1.4.2-rc5 is 1040235
+     * Get version id.
      *
-     * @return string
+     * [major][minor(2 digits)][patch (2 digits)][stage][build]
+     * eg. id for 1.4.12-rc.5 is 1041235
+     *
+     * @return int
      */
-    public static function id() -> string
+    public static function id() -> int
     {
-        var current;
+        var id;
 
-        let current = self::current();
+        let id = 
+            self::MAJOR . 
+            sprintf("%02s", self::MINOR) . 
+            sprintf("%02s", self::PATCH) . 
+            self::STAGE . 
+            self::BUILD;
 
-        return current["major"] . sprintf("%02s", current["minor"]) . sprintf("%02s", current["patch"]) . current["stage"] . current["build"];
+        return (int) id;
     }
 }

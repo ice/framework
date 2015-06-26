@@ -41,6 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request) {
 
 	zend_declare_property_null(ice_http_request_ce, SL("_server"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_http_request_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -516,11 +517,11 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 87, client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 95, client, &_4);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 87, forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 95, forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(_5)) {
 		ZEPHIR_CPY_WRT(ip, client);
@@ -804,6 +805,27 @@ PHP_METHOD(Ice_Http_Request, getFiles) {
 		zephir_read_property_this(&_0, this_ptr, SL("_files"), PH_NOISY_CC);
 	}
 	RETURN_CCTOR(_0);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

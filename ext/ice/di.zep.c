@@ -13,9 +13,9 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "kernel/object.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
+#include "kernel/object.h"
 #include "Zend/zend_closures.h"
 #include "kernel/array.h"
 #include "kernel/exception.h"
@@ -32,6 +32,7 @@ ZEPHIR_INIT_CLASS(Ice_Di) {
 
 	zend_declare_property_null(ice_di_ce, SL("_hooks"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_di_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -43,9 +44,9 @@ ZEPHIR_INIT_CLASS(Ice_Di) {
  */
 PHP_METHOD(Ice_Di, __construct) {
 
-	zephir_fcall_cache_entry *_4 = NULL;
+	zephir_fcall_cache_entry *_3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *data_param = NULL, *_0, _1 = zval_used_for_init, *_2 = NULL, *_3 = NULL;
+	zval *data_param = NULL, _0 = zval_used_for_init, *_1 = NULL, *_2 = NULL;
 	zval *data = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -59,24 +60,21 @@ PHP_METHOD(Ice_Di, __construct) {
 	}
 
 
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("_hooks"), _0 TSRMLS_CC);
-	ZEPHIR_SINIT_VAR(_1);
-	ZVAL_STRING(&_1, "__ROOT__", 0);
-	ZEPHIR_CALL_FUNCTION(&_2, "defined", NULL, 59, &_1);
+	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_STRING(&_0, "__ROOT__", 0);
+	ZEPHIR_CALL_FUNCTION(&_1, "defined", NULL, 69, &_0);
 	zephir_check_call_status();
-	if (!(zephir_is_true(_2))) {
-		ZEPHIR_SINIT_NVAR(_1);
-		ZVAL_STRING(&_1, "../", 0);
-		ZEPHIR_CALL_FUNCTION(&_3, "realpath", NULL, 60, &_1);
+	if (!(zephir_is_true(_1))) {
+		ZEPHIR_SINIT_NVAR(_0);
+		ZVAL_STRING(&_0, "../", 0);
+		ZEPHIR_CALL_FUNCTION(&_2, "realpath", NULL, 70, &_0);
 		zephir_check_call_status();
-		ZEPHIR_SINIT_NVAR(_1);
-		ZVAL_STRING(&_1, "__ROOT__", 0);
-		ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 61, &_1, _3, ZEPHIR_GLOBAL(global_false));
+		ZEPHIR_SINIT_NVAR(_0);
+		ZVAL_STRING(&_0, "__ROOT__", 0);
+		ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 71, &_0, _2, ZEPHIR_GLOBAL(global_false));
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_4, 6, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_3, 6, data);
 	zephir_check_call_status();
 	zephir_update_static_property_ce(ice_di_ce, SL("_di"), &this_ptr TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -222,7 +220,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "handler", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 62, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 72, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 2, 0 TSRMLS_CC);
@@ -230,7 +228,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "errorHandler", 1);
 	zephir_array_fast_append(_2, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 63, _2);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 73, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	zephir_create_array(_3, 2, 0 TSRMLS_CC);
@@ -238,7 +236,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "shutdownHandler", 1);
 	zephir_array_fast_append(_3, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 64, _3);
+	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 74, _3);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -490,7 +488,7 @@ PHP_METHOD(Ice_Di, __call) {
 		ZVAL_LONG(&_0, 3);
 		ZEPHIR_INIT_VAR(_1);
 		zephir_substr(_1, method, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CALL_FUNCTION(&service, "lcfirst", &_2, 23, _1);
+		ZEPHIR_CALL_FUNCTION(&service, "lcfirst", &_2, 18, _1);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_3, this_ptr, "has", NULL, 0, service);
 		zephir_check_call_status();
@@ -521,7 +519,7 @@ PHP_METHOD(Ice_Di, __call) {
 		ZVAL_LONG(&_0, 3);
 		ZEPHIR_INIT_NVAR(_1);
 		zephir_substr(_1, method, 3 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CALL_FUNCTION(&_3, "lcfirst", &_2, 23, _1);
+		ZEPHIR_CALL_FUNCTION(&_3, "lcfirst", &_2, 18, _1);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, _3, value);
 		zephir_check_call_status();
@@ -536,6 +534,33 @@ PHP_METHOD(Ice_Di, __call) {
 	zephir_throw_exception_debug(_1, "ice/di.zep", 234 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1 = NULL, *_2;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_hooks"), PH_NOISY_CC);
+		if (Z_TYPE_P(_2) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_hooks"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

@@ -33,6 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Social, Google, ice, auth_social_google, ice_auth_social_adapter_ce, ice_auth_social_google_method_entry, 0);
 
+	ice_auth_social_google_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -61,7 +62,7 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "google", 1);
 	zephir_update_property_this(this_ptr, SL("_provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, this_ptr, "__construct", &_1, 30, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, this_ptr, "__construct", &_1, 45, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 6, 0 TSRMLS_CC);
@@ -98,7 +99,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		ZEPHIR_INIT_NVAR(_1);
 		ZEPHIR_SINIT_VAR(_2);
 		ZVAL_STRING(&_2, "Y", 0);
-		ZEPHIR_CALL_FUNCTION(&_3, "date", &_4, 32, &_2);
+		ZEPHIR_CALL_FUNCTION(&_3, "date", &_4, 47, &_2);
 		zephir_check_call_status();
 		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_userInfo"), PH_NOISY_CC);
 		zephir_array_fetch_string(&_6, _5, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45 TSRMLS_CC);
@@ -110,11 +111,11 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		zephir_update_property_array(this_ptr, SL("_userInfo"), _7, _1 TSRMLS_CC);
 		_8 = zephir_fetch_nproperty_this(this_ptr, SL("_userInfo"), PH_NOISY_CC);
 		zephir_array_fetch_string(&_9, _8, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 47 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_10, "strtotime", NULL, 33, _9);
+		ZEPHIR_CALL_FUNCTION(&_10, "strtotime", NULL, 48, _9);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_VAR(_11);
 		ZVAL_STRING(&_11, "d.m.Y", 0);
-		ZEPHIR_RETURN_CALL_FUNCTION("date", &_4, 32, &_11, _10);
+		ZEPHIR_RETURN_CALL_FUNCTION("date", &_4, 47, &_11, _10);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -216,6 +217,27 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 	add_assoc_stringl_ex(_0, SS("scope"), SL("https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"), 1);
 	zephir_array_update_string(&return_value, SL("auth_params"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_socialFieldsMap"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

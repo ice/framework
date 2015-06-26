@@ -46,7 +46,7 @@ PHP_METHOD(Ice_Cli_Task, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(NULL, ice_cli_task_ce, this_ptr, "__construct", &_0, 40);
+	ZEPHIR_CALL_PARENT(NULL, ice_cli_task_ce, this_ptr, "__construct", &_0, 27);
 	zephir_check_call_status();
 	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);

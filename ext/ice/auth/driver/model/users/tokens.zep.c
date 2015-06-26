@@ -37,6 +37,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
 
 	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("_from"), "user_tokens", ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_auth_driver_model_users_tokens_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -154,7 +155,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_1, 20, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_1, 42, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -228,7 +229,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_1, 21, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_1, 43, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -256,9 +257,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, _generate) {
 		ZVAL_LONG(_3, 32);
 		ZEPHIR_CALL_CE_STATIC(&_0, ice_text_ce, "random", &_1, 0, _2, _3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_4, "uniqid", &_5, 22, _0, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(&_4, "uniqid", &_5, 44, _0, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_6, 12, _4);
+		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_6, 36, _4);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_8);
 		zephir_create_array(_8, 1, 0 TSRMLS_CC);
@@ -267,6 +268,63 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, _generate) {
 		zephir_check_call_status();
 	} while (zephir_is_true(_0));
 	RETURN_CCTOR(token);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1 = NULL, *_2, *_3, *_4, *_5, *_6, *_7;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_messages"), _1 TSRMLS_CC);
+		}
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
+		if (Z_TYPE_P(_2) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_rules"), _1 TSRMLS_CC);
+		}
+		_3 = zephir_fetch_nproperty_this(this_ptr, SL("_labels"), PH_NOISY_CC);
+		if (Z_TYPE_P(_3) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_labels"), _1 TSRMLS_CC);
+		}
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_relations"), PH_NOISY_CC);
+		if (Z_TYPE_P(_4) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_relations"), _1 TSRMLS_CC);
+		}
+		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_fields"), PH_NOISY_CC);
+		if (Z_TYPE_P(_5) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_fields"), _1 TSRMLS_CC);
+		}
+		_6 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_6) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		_7 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+		if (Z_TYPE_P(_7) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_filters"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

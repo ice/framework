@@ -507,6 +507,41 @@ PHP_METHOD(Ice_Tag, checkField) {
 }
 
 /**
+ * Builds a HTML INPUT[type="radio"] tag.
+ *
+ * <pre><code>
+ *  // Phtml <input type="radio" id="sex" name="sex" value="male">
+ *  $this->tag->radioField(['sex', 'male']);
+ *  
+ *  // Sleet <input type="radio" id="sex" name="sex" value="female" checked="checked">
+ *  {{ radio_field(['sex', 'female', 'checked': 'checked']) }}
+ * </code></pre>
+ *
+ * @param array parameters
+ * @return string
+ */
+PHP_METHOD(Ice_Tag, radioField) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *parameters_param = NULL, *_0;
+	zval *parameters = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &parameters_param);
+
+	zephir_get_arrval(parameters, parameters_param);
+
+
+	ZEPHIR_INIT_VAR(_0);
+	ZVAL_STRING(_0, "radio", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 150, _0, parameters);
+	zephir_check_temp_parameter(_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Builds generic INPUT tags.
  *
  * @param string type
@@ -597,7 +632,7 @@ PHP_METHOD(Ice_Tag, form) {
 		ZEPHIR_OBS_VAR(action);
 		if (!(zephir_array_isset_string_fetch(&action, parameters, SS("action"), 0 TSRMLS_CC))) {
 			ZEPHIR_OBS_NVAR(action);
-			zephir_array_fetch_string(&_0, defaultParams, SL("action"), PH_READONLY, "ice/tag.zep", 263 TSRMLS_CC);
+			zephir_array_fetch_string(&_0, defaultParams, SL("action"), PH_READONLY, "ice/tag.zep", 282 TSRMLS_CC);
 			zephir_array_isset_fetch(&action, parameters, _0, 0 TSRMLS_CC);
 		}
 		if (!ZEPHIR_IS_FALSE_IDENTICAL(action)) {
@@ -747,7 +782,7 @@ PHP_METHOD(Ice_Tag, img) {
 		ZEPHIR_OBS_VAR(src);
 		if (!(zephir_array_isset_string_fetch(&src, parameters, SS("src"), 0 TSRMLS_CC))) {
 			ZEPHIR_OBS_NVAR(src);
-			zephir_array_fetch_string(&_0, defaultParams, SL("src"), PH_READONLY, "ice/tag.zep", 341 TSRMLS_CC);
+			zephir_array_fetch_string(&_0, defaultParams, SL("src"), PH_READONLY, "ice/tag.zep", 360 TSRMLS_CC);
 			zephir_array_isset_fetch(&src, parameters, _0, 0 TSRMLS_CC);
 		}
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
@@ -845,7 +880,7 @@ PHP_METHOD(Ice_Tag, a) {
 	ZEPHIR_OBS_VAR(href);
 	if (!(zephir_array_isset_string_fetch(&href, parameters, SS("href"), 0 TSRMLS_CC))) {
 		ZEPHIR_OBS_NVAR(href);
-		zephir_array_fetch_string(&_0, defaultParams, SL("href"), PH_READONLY, "ice/tag.zep", 385 TSRMLS_CC);
+		zephir_array_fetch_string(&_0, defaultParams, SL("href"), PH_READONLY, "ice/tag.zep", 404 TSRMLS_CC);
 		zephir_array_isset_fetch(&href, parameters, _0, 0 TSRMLS_CC);
 	}
 	ZEPHIR_OBS_VAR(local);
@@ -937,7 +972,7 @@ PHP_METHOD(Ice_Tag, link) {
 		ZEPHIR_OBS_VAR(href);
 		if (!(zephir_array_isset_string_fetch(&href, parameters, SS("href"), 0 TSRMLS_CC))) {
 			ZEPHIR_OBS_NVAR(href);
-			zephir_array_fetch_string(&_0, defaultParams, SL("href"), PH_READONLY, "ice/tag.zep", 431 TSRMLS_CC);
+			zephir_array_fetch_string(&_0, defaultParams, SL("href"), PH_READONLY, "ice/tag.zep", 450 TSRMLS_CC);
 			zephir_array_isset_fetch(&href, parameters, _0, 0 TSRMLS_CC);
 		}
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
@@ -1020,7 +1055,7 @@ PHP_METHOD(Ice_Tag, script) {
 		ZEPHIR_OBS_VAR(src);
 		if (!(zephir_array_isset_string_fetch(&src, parameters, SS("src"), 0 TSRMLS_CC))) {
 			ZEPHIR_OBS_NVAR(src);
-			zephir_array_fetch_string(&_0, defaultParams, SL("src"), PH_READONLY, "ice/tag.zep", 471 TSRMLS_CC);
+			zephir_array_fetch_string(&_0, defaultParams, SL("src"), PH_READONLY, "ice/tag.zep", 490 TSRMLS_CC);
 			zephir_array_isset_fetch(&src, parameters, _0, 0 TSRMLS_CC);
 		}
 		_1 = zephir_is_true(src);
@@ -1153,13 +1188,13 @@ PHP_METHOD(Ice_Tag, select) {
 	ZEPHIR_OBS_VAR(name);
 	if (!(zephir_array_isset_string_fetch(&name, parameters, SS("name"), 0 TSRMLS_CC))) {
 		ZEPHIR_OBS_NVAR(name);
-		zephir_array_fetch_string(&_0, defaultParams, SL("name"), PH_READONLY, "ice/tag.zep", 527 TSRMLS_CC);
+		zephir_array_fetch_string(&_0, defaultParams, SL("name"), PH_READONLY, "ice/tag.zep", 546 TSRMLS_CC);
 		zephir_array_isset_fetch(&name, parameters, _0, 0 TSRMLS_CC);
 	}
 	ZEPHIR_OBS_VAR(options);
 	if (!(zephir_array_isset_string_fetch(&options, parameters, SS("options"), 0 TSRMLS_CC))) {
 		ZEPHIR_OBS_NVAR(options);
-		zephir_array_fetch_string(&_0, defaultParams, SL("options"), PH_READONLY, "ice/tag.zep", 531 TSRMLS_CC);
+		zephir_array_fetch_string(&_0, defaultParams, SL("options"), PH_READONLY, "ice/tag.zep", 550 TSRMLS_CC);
 		zephir_array_isset_fetch(&options, parameters, _0, 0 TSRMLS_CC);
 	}
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "hasvalue", NULL, 0, name);
@@ -1192,7 +1227,7 @@ PHP_METHOD(Ice_Tag, select) {
 		ZEPHIR_INIT_NVAR(options);
 		ZVAL_STRING(options, "", 1);
 	} else {
-		zephir_is_iterable(options, &_5, &_4, 1, 0, "ice/tag.zep", 603);
+		zephir_is_iterable(options, &_5, &_4, 1, 0, "ice/tag.zep", 622);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -1205,7 +1240,7 @@ PHP_METHOD(Ice_Tag, select) {
 				zephir_array_update_string(&group, SL("label"), &value, PH_COPY | PH_SEPARATE);
 				ZEPHIR_INIT_NVAR(_options);
 				array_init(_options);
-				zephir_is_iterable(text, &_8, &_7, 0, 0, "ice/tag.zep", 582);
+				zephir_is_iterable(text, &_8, &_7, 0, 0, "ice/tag.zep", 601);
 				for (
 				  ; zephir_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
 				  ; zephir_hash_move_forward_ex(_8, &_7)
@@ -1240,7 +1275,7 @@ PHP_METHOD(Ice_Tag, select) {
 					zephir_check_temp_parameter(_14);
 					zephir_check_temp_parameter(_15);
 					zephir_check_call_status();
-					zephir_array_append(&_options, _11, PH_SEPARATE, "ice/tag.zep", 578);
+					zephir_array_append(&_options, _11, PH_SEPARATE, "ice/tag.zep", 597);
 				}
 				ZEPHIR_INIT_NVAR(_12);
 				ZEPHIR_GET_CONSTANT(_12, "PHP_EOL");
@@ -1408,7 +1443,7 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 	ZEPHIR_INIT_VAR(attributes);
 	array_init(attributes);
 	ZEPHIR_CPY_WRT(params, parameters);
-	zephir_is_iterable(defaultParams, &_1, &_0, 0, 0, "ice/tag.zep", 639);
+	zephir_is_iterable(defaultParams, &_1, &_0, 0, 0, "ice/tag.zep", 658);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_1, &_0)
@@ -1424,7 +1459,7 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 			zephir_array_update_zval(&attributes, param, &key, PH_COPY | PH_SEPARATE);
 		}
 	}
-	zephir_is_iterable(defaultParams, &_4, &_3, 0, 0, "ice/tag.zep", 643);
+	zephir_is_iterable(defaultParams, &_4, &_3, 0, 0, "ice/tag.zep", 662);
 	for (
 	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_4, &_3)
@@ -1449,13 +1484,13 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 		}
 		_8 = _7;
 		if (_8) {
-			zephir_array_fetch_string(&_10, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 652 TSRMLS_CC);
+			zephir_array_fetch_string(&_10, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 671 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&_9, this_ptr, "hasvalue", NULL, 0, _10);
 			zephir_check_call_status();
 			_8 = zephir_is_true(_9);
 		}
 		if (_8) {
-			zephir_array_fetch_string(&_11, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 653 TSRMLS_CC);
+			zephir_array_fetch_string(&_11, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 672 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(&value, this_ptr, "getvalue", NULL, 0, _11);
 			zephir_check_call_status();
 		} else {
@@ -1608,9 +1643,9 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 	ZEPHIR_INIT_NVAR(_0);
 	ZVAL_STRING(_0, "style", 1);
 	zephir_array_fast_append(order, _0);
-	ZEPHIR_CALL_FUNCTION(&_1, "array_flip", NULL, 106, order);
+	ZEPHIR_CALL_FUNCTION(&_1, "array_flip", NULL, 11, order);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&keys, "array_intersect_key", NULL, 107, _1, attributes);
+	ZEPHIR_CALL_FUNCTION(&keys, "array_intersect_key", NULL, 12, _1, attributes);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(attrs);
 	zephir_fast_array_merge(attrs, &(keys), &(attributes) TSRMLS_CC);
@@ -1627,7 +1662,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 			zephir_array_update_string(&attrs, SL("value"), &_4, PH_COPY | PH_SEPARATE);
 			ZEPHIR_OBS_NVAR(tmp);
 			if (zephir_array_isset_string_fetch(&tmp, attrs, SS("type"), 0 TSRMLS_CC)) {
-				zephir_array_fetch_string(&_5, attrs, SL("value"), PH_NOISY | PH_READONLY, "ice/tag.zep", 709 TSRMLS_CC);
+				zephir_array_fetch_string(&_5, attrs, SL("value"), PH_NOISY | PH_READONLY, "ice/tag.zep", 728 TSRMLS_CC);
 				_6 = zephir_is_true(_5);
 				if (_6) {
 					_7 = ZEPHIR_IS_STRING(tmp, "checkbox");
@@ -1644,7 +1679,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 			}
 		}
 	}
-	zephir_is_iterable(attrs, &_9, &_8, 0, 0, "ice/tag.zep", 725);
+	zephir_is_iterable(attrs, &_9, &_8, 0, 0, "ice/tag.zep", 744);
 	for (
 	  ; zephir_hash_get_current_data_ex(_9, (void**) &_10, &_8) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_9, &_8)
@@ -1777,7 +1812,7 @@ PHP_METHOD(Ice_Tag, setValue) {
 			_0 = Z_TYPE_P(value) == IS_OBJECT;
 		}
 		if (_0) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only scalar values can be assigned to UI components", "ice/tag.zep", 766);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only scalar values can be assigned to UI components", "ice/tag.zep", 785);
 			return;
 		}
 	}
@@ -1811,7 +1846,7 @@ PHP_METHOD(Ice_Tag, setValues) {
 
 
 	if (1 != 1) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "An array is required as default values", "ice/tag.zep", 784);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "An array is required as default values", "ice/tag.zep", 803);
 		return;
 	}
 	if (merge) {
@@ -1932,11 +1967,11 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 			_6 = Z_TYPE_P(replace) != IS_STRING;
 		}
 		if (_6) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Parameter replace must be an array or a string", "ice/tag.zep", 849);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Parameter replace must be an array or a string", "ice/tag.zep", 868);
 			return;
 		}
 		if (Z_TYPE_P(replace) == IS_ARRAY) {
-			zephir_is_iterable(replace, &_8, &_7, 0, 0, "ice/tag.zep", 856);
+			zephir_is_iterable(replace, &_8, &_7, 0, 0, "ice/tag.zep", 875);
 			for (
 			  ; zephir_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_8, &_7)
@@ -1960,7 +1995,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZVAL_STRING(_11, "/[^a-zA-Z0-9\\/_|+ -]/", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_12);
 	ZVAL_STRING(_12, "", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_13, 84, _11, _12, text);
+	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_13, 92, _11, _12, text);
 	zephir_check_temp_parameter(_11);
 	zephir_check_temp_parameter(_12);
 	zephir_check_call_status();
@@ -1971,7 +2006,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	}
 	ZEPHIR_INIT_NVAR(_11);
 	ZVAL_STRING(_11, "/[\\/_|+ -]+/", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_FUNCTION(&_5, "preg_replace", &_13, 84, _11, separator, friendly);
+	ZEPHIR_CALL_FUNCTION(&_5, "preg_replace", &_13, 92, _11, separator, friendly);
 	zephir_check_temp_parameter(_11);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(friendly, _5);

@@ -205,6 +205,25 @@ class Tag
     }
 
     /**
+     * Builds a HTML INPUT[type="radio"] tag.
+     *
+     * <pre><code>
+     *  // Phtml <input type="radio" id="sex" name="sex" value="male">
+     *  $this->tag->radioField(['sex', 'male']);
+     *  
+     *  // Sleet <input type="radio" id="sex" name="sex" value="female" checked="checked">
+     *  {{ radio_field(['sex', 'female', 'checked': 'checked']) }}
+     * </code></pre>
+     *
+     * @param array parameters
+     * @return string
+     */
+    public function radioField(array parameters) -> string
+    {
+        return this->input("radio", parameters);
+    }
+
+    /**
      * Builds generic INPUT tags.
      *
      * @param string type

@@ -139,6 +139,10 @@ zend_class_entry *ice_version_ce;
 
 ZEND_DECLARE_MODULE_GLOBALS(ice)
 
+PHP_INI_BEGIN()
+	
+PHP_INI_END()
+
 static PHP_MINIT_FUNCTION(ice)
 {
 #if PHP_VERSION_ID < 50500
@@ -156,7 +160,7 @@ static PHP_MINIT_FUNCTION(ice)
 
 	setlocale(LC_ALL, "C");
 #endif
-
+	REGISTER_INI_ENTRIES();
 	ZEPHIR_INIT(Ice_I18n_Plural_PluralInterface);
 	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);
@@ -279,7 +283,7 @@ static PHP_MSHUTDOWN_FUNCTION(ice)
 {
 
 	zephir_deinitialize_memory(TSRMLS_C);
-
+	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
 }
 #endif
@@ -287,24 +291,24 @@ static PHP_MSHUTDOWN_FUNCTION(ice)
 /**
  * Initialize globals on each request or each thread started
  */
-static void php_zephir_init_globals(zend_ice_globals *zephir_globals TSRMLS_DC)
+static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 {
-	zephir_globals->initialized = 0;
+	ice_globals->initialized = 0;
 
 	/* Memory options */
-	zephir_globals->active_memory = NULL;
+	ice_globals->active_memory = NULL;
 
 	/* Virtual Symbol Tables */
-	zephir_globals->active_symbol_table = NULL;
+	ice_globals->active_symbol_table = NULL;
 
 	/* Cache Enabled */
-	zephir_globals->cache_enabled = 1;
+	ice_globals->cache_enabled = 1;
 
 	/* Recursive Lock */
-	zephir_globals->recursive_lock = 0;
+	ice_globals->recursive_lock = 0;
 
 	/* Static cache */
-	memset(zephir_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
+	memset(ice_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
 
 }
@@ -312,12 +316,12 @@ static void php_zephir_init_globals(zend_ice_globals *zephir_globals TSRMLS_DC)
 static PHP_RINIT_FUNCTION(ice)
 {
 
-	zend_ice_globals *zephir_globals_ptr = ZEPHIR_VGLOBAL;
+	zend_ice_globals *ice_globals_ptr = ZEPHIR_VGLOBAL;
 
-	php_zephir_init_globals(zephir_globals_ptr TSRMLS_CC);
+	php_zephir_init_globals(ice_globals_ptr TSRMLS_CC);
 	//zephir_init_interned_strings(TSRMLS_C);
 
-	zephir_initialize_memory(zephir_globals_ptr TSRMLS_CC);
+	zephir_initialize_memory(ice_globals_ptr TSRMLS_CC);
 
 
 	return SUCCESS;
@@ -345,7 +349,6 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_ICE_ZEPVERSION);
 	php_info_print_table_end();
-
 	php_info_print_table_start();
 	php_info_print_table_row(2, "Website", "http://www.iceframework.org");
 	php_info_print_table_row(2, "Email", "info@iceframework.org");
@@ -354,6 +357,7 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_row(2, "GitHub", "ice");
 	php_info_print_table_end();
 
+	DISPLAY_INI_ENTRIES();
 }
 
 static PHP_GINIT_FUNCTION(ice)

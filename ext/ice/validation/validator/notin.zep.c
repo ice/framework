@@ -19,6 +19,7 @@
 #include "kernel/array.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/object.h"
 
 
 /**
@@ -49,12 +50,13 @@
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
- * <code><pre>
+ * </code></pre>
  */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator_NotIn) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, NotIn, ice, validation_validator_notin, ice_validation_validator_ce, ice_validation_validator_notin_method_entry, 0);
 
+	ice_validation_validator_notin_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -182,13 +184,34 @@ PHP_METHOD(Ice_Validation_Validator_NotIn, validate) {
 		ZEPHIR_INIT_NVAR(_1);
 		zephir_fast_join_str(_1, SL(", "), values TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":values"), &_1, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_8, "strtr", NULL, 67, message, replace);
+		ZEPHIR_CALL_FUNCTION(&_8, "strtr", NULL, 76, message, replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, field, _8);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

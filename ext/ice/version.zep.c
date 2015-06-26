@@ -13,10 +13,10 @@
 
 #include "kernel/main.h"
 #include "kernel/array.h"
-#include "kernel/fcall.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/concat.h"
+#include "kernel/fcall.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -27,6 +27,7 @@
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
+ * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
 ZEPHIR_INIT_CLASS(Ice_Version) {
 
@@ -42,12 +43,22 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zend_declare_class_constant_long(ice_version_ce, SL("STABLE"), 4 TSRMLS_CC);
 
+	zend_declare_class_constant_long(ice_version_ce, SL("MAJOR"), 1 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_version_ce, SL("MINOR"), 0 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_version_ce, SL("PATCH"), 14 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_version_ce, SL("STAGE"), 4 TSRMLS_CC);
+
+	zend_declare_class_constant_long(ice_version_ce, SL("BUILD"), 1 TSRMLS_CC);
+
 	return SUCCESS;
 
 }
 
 /**
- * Get array version of the framework.
+ * Get version array.
  *
  * @return array
  */
@@ -57,7 +68,7 @@ PHP_METHOD(Ice_Version, current) {
 	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
-	add_assoc_long_ex(return_value, SS("patch"), 13);
+	add_assoc_long_ex(return_value, SS("patch"), 14);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
 	add_assoc_long_ex(return_value, SS("build"), 1);
 	return;
@@ -65,96 +76,110 @@ PHP_METHOD(Ice_Version, current) {
 }
 
 /**
- * Get version of the framework.
+ * Get version string.
  * 
  * 1.0.0-dev
- * 1.0.0-alpha3
- * 1.0.0-beta2
- * 1.0.0-rc5
+ * 1.0.0-alpha.3
+ * 1.0.0-beta.2
+ * 1.0.0-rc.5
  * 1.0.0
  *
  * @return string
  */
 PHP_METHOD(Ice_Version, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *current = NULL, *suffix = NULL, *_0, *_1, *_2, *_3;
+	zval *_2 = NULL;
+	int _0;
+	zval *suffix = NULL, _1 = zval_used_for_init, _3, _4;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_SELF(&current, "current", NULL, 0);
-	zephir_check_call_status();
-	zephir_array_fetch_string(&_0, current, SL("stage"), PH_NOISY | PH_READONLY, "ice/version.zep", 56 TSRMLS_CC);
 	do {
-		if (ZEPHIR_IS_LONG(_0, 0)) {
+		_0 = 4;
+		if (_0 == 0) {
 			ZEPHIR_INIT_VAR(suffix);
 			ZVAL_STRING(suffix, "-dev", 1);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_0, 1)) {
-			zephir_array_fetch_string(&_1, current, SL("build"), PH_NOISY | PH_READONLY, "ice/version.zep", 61 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(suffix);
-			ZEPHIR_CONCAT_SV(suffix, "-alpha", _1);
+		if (_0 == 1) {
+			ZEPHIR_SINIT_VAR(_1);
+			ZVAL_LONG(&_1, 1);
+			ZEPHIR_INIT_VAR(_2);
+			ZEPHIR_CONCAT_SV(_2, "-alpha.", &_1);
+			ZEPHIR_CPY_WRT(suffix, _2);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_0, 2)) {
-			zephir_array_fetch_string(&_1, current, SL("build"), PH_NOISY | PH_READONLY, "ice/version.zep", 64 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(suffix);
-			ZEPHIR_CONCAT_SV(suffix, "-beta", _1);
+		if (_0 == 2) {
+			ZEPHIR_SINIT_NVAR(_1);
+			ZVAL_LONG(&_1, 1);
+			ZEPHIR_INIT_LNVAR(_2);
+			ZEPHIR_CONCAT_SV(_2, "-beta.", &_1);
+			ZEPHIR_CPY_WRT(suffix, _2);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_0, 3)) {
-			zephir_array_fetch_string(&_1, current, SL("build"), PH_NOISY | PH_READONLY, "ice/version.zep", 67 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(suffix);
-			ZEPHIR_CONCAT_SV(suffix, "-RC", _1);
+		if (_0 == 3) {
+			ZEPHIR_SINIT_NVAR(_1);
+			ZVAL_LONG(&_1, 1);
+			ZEPHIR_INIT_LNVAR(_2);
+			ZEPHIR_CONCAT_SV(_2, "-rc.", &_1);
+			ZEPHIR_CPY_WRT(suffix, _2);
 			break;
 		}
-		if (ZEPHIR_IS_LONG(_0, 4)) {
+		if (_0 == 4) {
 			ZEPHIR_INIT_NVAR(suffix);
 			ZVAL_STRING(suffix, "", 1);
 			break;
 		}
 	} while(0);
 
-	zephir_array_fetch_string(&_1, current, SL("major"), PH_NOISY | PH_READONLY, "ice/version.zep", 74 TSRMLS_CC);
-	zephir_array_fetch_string(&_2, current, SL("minor"), PH_NOISY | PH_READONLY, "ice/version.zep", 74 TSRMLS_CC);
-	zephir_array_fetch_string(&_3, current, SL("patch"), PH_NOISY | PH_READONLY, "ice/version.zep", 74 TSRMLS_CC);
-	ZEPHIR_CONCAT_VSVSVV(return_value, _1, ".", _2, ".", _3, suffix);
+	ZEPHIR_SINIT_NVAR(_1);
+	ZVAL_LONG(&_1, 1);
+	ZEPHIR_SINIT_VAR(_3);
+	ZVAL_LONG(&_3, 0);
+	ZEPHIR_SINIT_VAR(_4);
+	ZVAL_LONG(&_4, 14);
+	ZEPHIR_CONCAT_VSVSVV(return_value, &_1, ".", &_3, ".", &_4, suffix);
 	RETURN_MM();
 
 }
 
 /**
- * Get version id of the framework.
- * [major][minor(2 digits)][patch (2 digits)][stage][build], eg. id for 1.4.2-rc5 is 1040235
+ * Get version id.
  *
- * @return string
+ * [major][minor(2 digits)][patch (2 digits)][stage][build]
+ * eg. id for 1.4.12-rc.5 is 1041235
+ *
+ * @return int
  */
 PHP_METHOD(Ice_Version, id) {
 
-	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *current = NULL, *_0, *_1, _2 = zval_used_for_init, *_3 = NULL, *_5, *_6 = NULL, *_7, *_8;
+	zephir_fcall_cache_entry *_4 = NULL;
+	zval *id, _0, _1 = zval_used_for_init, _2 = zval_used_for_init, *_3 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_SELF(&current, "current", NULL, 0);
-	zephir_check_call_status();
-	zephir_array_fetch_string(&_0, current, SL("major"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
-	zephir_array_fetch_string(&_1, current, SL("minor"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
+	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_LONG(&_0, 1);
+	ZEPHIR_SINIT_VAR(_1);
+	ZVAL_STRING(&_1, "%02s", 0);
 	ZEPHIR_SINIT_VAR(_2);
-	ZVAL_STRING(&_2, "%02s", 0);
-	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 1, &_2, _1);
+	ZVAL_LONG(&_2, 0);
+	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 1, &_1, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, current, SL("patch"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
+	ZEPHIR_SINIT_NVAR(_1);
+	ZVAL_STRING(&_1, "%02s", 0);
 	ZEPHIR_SINIT_NVAR(_2);
-	ZVAL_STRING(&_2, "%02s", 0);
-	ZEPHIR_CALL_FUNCTION(&_6, "sprintf", &_4, 1, &_2, _5);
+	ZVAL_LONG(&_2, 14);
+	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 1, &_1, &_2);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_7, current, SL("stage"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
-	zephir_array_fetch_string(&_8, current, SL("build"), PH_NOISY | PH_READONLY, "ice/version.zep", 89 TSRMLS_CC);
-	ZEPHIR_CONCAT_VVVVV(return_value, _0, _3, _6, _7, _8);
-	RETURN_MM();
+	ZEPHIR_SINIT_NVAR(_1);
+	ZVAL_LONG(&_1, 4);
+	ZEPHIR_SINIT_NVAR(_2);
+	ZVAL_LONG(&_2, 1);
+	ZEPHIR_INIT_VAR(id);
+	ZEPHIR_CONCAT_VVVVV(id, &_0, _3, _5, &_1, &_2);
+	RETURN_MM_LONG(zephir_get_intval(id));
 
 }
 

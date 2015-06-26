@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users);
 PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize);
 PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin);
 PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_getrole, 0, 0, 0)
 	ZEND_ARG_INFO(0, name)
