@@ -12,12 +12,13 @@ namespace Ice;
  */
 class Version
 {
-
     const DEV = 0;
     const ALPHA = 1;
     const BETA = 2;
     const RC = 3;
     const STABLE = 4;
+    
+    const STAGE = self::STABLE;
 
     /**
      * Get array version of the framework.
