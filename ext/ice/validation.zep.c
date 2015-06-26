@@ -14,9 +14,9 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
+#include "kernel/array.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/exception.h"
@@ -51,6 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation) {
 
 	zend_declare_property_null(ice_validation_ce, SL("_defaultMessages"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_validation_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -156,9 +157,9 @@ PHP_METHOD(Ice_Validation, setHumanLabels) {
 PHP_METHOD(Ice_Validation, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_9 = NULL;
-	zval *data_param = NULL, *_1, *_2, *_3, *_4, *_5, *_6, *_7, *_8 = NULL;
-	zval *data = NULL, *_0;
+	zephir_fcall_cache_entry *_1 = NULL;
+	zval *data_param = NULL, *_0 = NULL;
+	zval *data = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data_param);
@@ -171,56 +172,9 @@ PHP_METHOD(Ice_Validation, __construct) {
 	}
 
 
-	ZEPHIR_INIT_VAR(_0);
-	zephir_create_array(_0, 23, 0 TSRMLS_CC);
-	add_assoc_stringl_ex(_0, SS("alnum"), SL("Field :field must contain only letters and numbers"), 1);
-	add_assoc_stringl_ex(_0, SS("alpha"), SL("Field :field must contain only letters"), 1);
-	add_assoc_stringl_ex(_0, SS("between"), SL("Field :field must be within the range of :min to :max"), 1);
-	add_assoc_stringl_ex(_0, SS("digit"), SL("Field :field must be numeric"), 1);
-	add_assoc_stringl_ex(_0, SS("default"), SL("Field :field is not valid"), 1);
-	add_assoc_stringl_ex(_0, SS("email"), SL("Field :field must be an email address"), 1);
-	add_assoc_stringl_ex(_0, SS("fileEmpty"), SL("Field :field must not be empty"), 1);
-	add_assoc_stringl_ex(_0, SS("fileIniSize"), SL("File :field exceeds the maximum file size"), 1);
-	add_assoc_stringl_ex(_0, SS("fileMaxResolution"), SL("File :field must not exceed :max resolution"), 1);
-	add_assoc_stringl_ex(_0, SS("fileMinResolution"), SL("File :field must be at least :min resolution"), 1);
-	add_assoc_stringl_ex(_0, SS("fileSize"), SL("File :field exceeds the size of :max"), 1);
-	add_assoc_stringl_ex(_0, SS("fileType"), SL("File :field must be of type: :types"), 1);
-	add_assoc_stringl_ex(_0, SS("in"), SL("Field :field must be a part of list: :values"), 1);
-	add_assoc_stringl_ex(_0, SS("lengthMax"), SL("Field :field must not exceed :max characters long"), 1);
-	add_assoc_stringl_ex(_0, SS("lengthMin"), SL("Field :field must be at least :min characters long"), 1);
-	add_assoc_stringl_ex(_0, SS("notIn"), SL("Field :field must not be a part of list: :values"), 1);
-	add_assoc_stringl_ex(_0, SS("regex"), SL("Field :field does not match the required format"), 1);
-	add_assoc_stringl_ex(_0, SS("required"), SL("Field :field is required"), 1);
-	add_assoc_stringl_ex(_0, SS("same"), SL("Field :field and :other must match"), 1);
-	add_assoc_stringl_ex(_0, SS("unique"), SL("Field :field must be unique"), 1);
-	add_assoc_stringl_ex(_0, SS("url"), SL("Field :field must be a url"), 1);
-	add_assoc_stringl_ex(_0, SS("with"), SL("Field :field must occur together with :fields"), 1);
-	add_assoc_stringl_ex(_0, SS("without"), SL("Field :field must not occur together with :fields"), 1);
-	zephir_update_property_this(this_ptr, SL("_defaultMessages"), _0 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_1);
-	array_init(_1);
-	zephir_update_property_this(this_ptr, SL("_aliases"), _1 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_2);
-	array_init(_2);
-	zephir_update_property_this(this_ptr, SL("_messages"), _2 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_3);
-	array_init(_3);
-	zephir_update_property_this(this_ptr, SL("_labels"), _3 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_4);
-	array_init(_4);
-	zephir_update_property_this(this_ptr, SL("_filters"), _4 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_5);
-	array_init(_5);
-	zephir_update_property_this(this_ptr, SL("_validators"), _5 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_6);
-	array_init(_6);
-	zephir_update_property_this(this_ptr, SL("_rules"), _6 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_7);
-	array_init(_7);
-	zephir_update_property_this(this_ptr, SL("_data"), _7 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_8, ice_di_ce, "fetch", &_9, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_di"), _8 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_di"), _0 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_data"), data TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
@@ -802,6 +756,93 @@ PHP_METHOD(Ice_Validation, getMessages) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, _0);
 	zephir_check_call_status();
 	RETURN_MM();
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_1;
+		zval *_0, *_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8, *_9;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_defaultMessages"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			zephir_create_array(_1, 23, 0 TSRMLS_CC);
+			add_assoc_stringl_ex(_1, SS("alnum"), SL("Field :field must contain only letters and numbers"), 1);
+			add_assoc_stringl_ex(_1, SS("alpha"), SL("Field :field must contain only letters"), 1);
+			add_assoc_stringl_ex(_1, SS("between"), SL("Field :field must be within the range of :min to :max"), 1);
+			add_assoc_stringl_ex(_1, SS("digit"), SL("Field :field must be numeric"), 1);
+			add_assoc_stringl_ex(_1, SS("default"), SL("Field :field is not valid"), 1);
+			add_assoc_stringl_ex(_1, SS("email"), SL("Field :field must be an email address"), 1);
+			add_assoc_stringl_ex(_1, SS("fileEmpty"), SL("Field :field must not be empty"), 1);
+			add_assoc_stringl_ex(_1, SS("fileIniSize"), SL("File :field exceeds the maximum file size"), 1);
+			add_assoc_stringl_ex(_1, SS("fileMaxResolution"), SL("File :field must not exceed :max resolution"), 1);
+			add_assoc_stringl_ex(_1, SS("fileMinResolution"), SL("File :field must be at least :min resolution"), 1);
+			add_assoc_stringl_ex(_1, SS("fileSize"), SL("File :field exceeds the size of :max"), 1);
+			add_assoc_stringl_ex(_1, SS("fileType"), SL("File :field must be of type: :types"), 1);
+			add_assoc_stringl_ex(_1, SS("in"), SL("Field :field must be a part of list: :values"), 1);
+			add_assoc_stringl_ex(_1, SS("lengthMax"), SL("Field :field must not exceed :max characters long"), 1);
+			add_assoc_stringl_ex(_1, SS("lengthMin"), SL("Field :field must be at least :min characters long"), 1);
+			add_assoc_stringl_ex(_1, SS("notIn"), SL("Field :field must not be a part of list: :values"), 1);
+			add_assoc_stringl_ex(_1, SS("regex"), SL("Field :field does not match the required format"), 1);
+			add_assoc_stringl_ex(_1, SS("required"), SL("Field :field is required"), 1);
+			add_assoc_stringl_ex(_1, SS("same"), SL("Field :field and :other must match"), 1);
+			add_assoc_stringl_ex(_1, SS("unique"), SL("Field :field must be unique"), 1);
+			add_assoc_stringl_ex(_1, SS("url"), SL("Field :field must be a url"), 1);
+			add_assoc_stringl_ex(_1, SS("with"), SL("Field :field must occur together with :fields"), 1);
+			add_assoc_stringl_ex(_1, SS("without"), SL("Field :field must not occur together with :fields"), 1);
+			zephir_update_property_this(this_ptr, SL("_defaultMessages"), _1 TSRMLS_CC);
+		}
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_aliases"), PH_NOISY_CC);
+		if (Z_TYPE_P(_2) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_aliases"), _3 TSRMLS_CC);
+		}
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_messages"), PH_NOISY_CC);
+		if (Z_TYPE_P(_4) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_messages"), _3 TSRMLS_CC);
+		}
+		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_labels"), PH_NOISY_CC);
+		if (Z_TYPE_P(_5) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_labels"), _3 TSRMLS_CC);
+		}
+		_6 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+		if (Z_TYPE_P(_6) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_filters"), _3 TSRMLS_CC);
+		}
+		_7 = zephir_fetch_nproperty_this(this_ptr, SL("_validators"), PH_NOISY_CC);
+		if (Z_TYPE_P(_7) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_validators"), _3 TSRMLS_CC);
+		}
+		_8 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
+		if (Z_TYPE_P(_8) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_rules"), _3 TSRMLS_CC);
+		}
+		_9 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_9) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_3);
+			array_init(_3);
+			zephir_update_property_this(this_ptr, SL("_data"), _3 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

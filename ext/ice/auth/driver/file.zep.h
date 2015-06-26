@@ -7,6 +7,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers);
 PHP_METHOD(Ice_Auth_Driver_File, getUser);
 PHP_METHOD(Ice_Auth_Driver_File, hasRole);
 PHP_METHOD(Ice_Auth_Driver_File, login);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_file_setusers, 0, 0, 1)
 	ZEND_ARG_INFO(0, users)

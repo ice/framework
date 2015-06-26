@@ -65,6 +65,7 @@ ZEPHIR_INIT_CLASS(Ice_Dispatcher) {
 
 	zend_declare_property_null(ice_dispatcher_ce, SL("_previousAction"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_dispatcher_ce->create_object = zephir_init_properties;
 	zend_declare_class_constant_long(ice_dispatcher_ce, SL("DISPATCH_CYCLIC"), 1 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_dispatcher_ce, SL("HANDLER_NOT_FOUND"), 2 TSRMLS_CC);
@@ -313,20 +314,14 @@ PHP_METHOD(Ice_Dispatcher, setActionSuffix) {
 PHP_METHOD(Ice_Dispatcher, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_3 = NULL;
-	zval *_0, *_1, *_2 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL;
+	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("_params"), _0 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_1);
-	array_init(_1);
-	zephir_update_property_this(this_ptr, SL("_modules"), _1 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_2, ice_di_ce, "fetch", &_3, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_di"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -518,7 +513,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_check_call_status();
 			}
 			zephir_update_property_this(this_ptr, SL("_namespace"), moduleNamespace TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_5, loader, "addnamespace", &_13, 65, moduleNamespace, path);
+			ZEPHIR_CALL_METHOD(&_5, loader, "addnamespace", &_13, 26, moduleNamespace, path);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _5, "register", NULL, 0);
 			zephir_check_call_status();
@@ -727,6 +722,33 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	}
 	zephir_update_property_this(this_ptr, SL("_finished"), (0) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("_forwarded"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1 = NULL, *_2;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_params"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_params"), _1 TSRMLS_CC);
+		}
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_modules"), PH_NOISY_CC);
+		if (Z_TYPE_P(_2) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_modules"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

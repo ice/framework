@@ -8,7 +8,7 @@ PHP_METHOD(Ice_Loader, addNamespace);
 PHP_METHOD(Ice_Loader, loadClass);
 PHP_METHOD(Ice_Loader, loadMappedFile);
 PHP_METHOD(Ice_Loader, requireFile);
-PHP_METHOD(Ice_Loader, __construct);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_addnamespace, 0, 0, 2)
 	ZEND_ARG_INFO(0, prefix)
@@ -35,6 +35,5 @@ ZEPHIR_INIT_FUNCS(ice_loader_method_entry) {
 	PHP_ME(Ice_Loader, loadClass, arginfo_ice_loader_loadclass, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Loader, loadMappedFile, arginfo_ice_loader_loadmappedfile, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Loader, requireFile, arginfo_ice_loader_requirefile, ZEND_ACC_PROTECTED)
-	PHP_ME(Ice_Loader, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_FE_END
 };

@@ -4,6 +4,7 @@ extern zend_class_entry *ice_http_response_headers_ce;
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers);
 
 PHP_METHOD(Ice_Http_Response_Headers, send);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEPHIR_INIT_FUNCS(ice_http_response_headers_method_entry) {
 	PHP_ME(Ice_Http_Response_Headers, send, NULL, ZEND_ACC_PUBLIC)

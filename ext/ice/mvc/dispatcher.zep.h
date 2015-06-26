@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher);
 PHP_METHOD(Ice_Mvc_Dispatcher, getMethod);
 PHP_METHOD(Ice_Mvc_Dispatcher, setMethod);
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_dispatcher_setmethod, 0, 0, 1)
 	ZEND_ARG_INFO(0, method)

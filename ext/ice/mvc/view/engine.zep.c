@@ -72,7 +72,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 
 	zephir_update_property_this(this_ptr, SL("_view"), view TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_engine_ce, this_ptr, "__construct", &_0, 40, di);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_engine_ce, this_ptr, "__construct", &_0, 27, di);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

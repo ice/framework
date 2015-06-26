@@ -13,6 +13,7 @@ PHP_METHOD(Ice_Session, has);
 PHP_METHOD(Ice_Session, get);
 PHP_METHOD(Ice_Session, set);
 PHP_METHOD(Ice_Session, remove);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_session_has, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
@@ -21,6 +22,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_session_get, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
 	ZEND_ARG_INFO(0, defaultValue)
+	ZEND_ARG_INFO(0, required)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_session_set, 0, 0, 2)

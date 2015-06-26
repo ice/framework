@@ -9,10 +9,31 @@ if test "$PHP_ICE" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
-	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/arr.zep.c
-	ice/auth.zep.c
+	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/hash.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/extended/array.c kernel/string.c kernel/fcall.c kernel/extended/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/validation/validator.zep.c
+	ice/arr.zep.c
+	ice/i18n/plural/pluralinterface.zep.c
+	ice/di/access.zep.c
+	ice/mvc/model.zep.c
+	ice/auth/social/socialinterface.zep.c
+	ice/auth/social/adapter.zep.c
+	ice/mvc/view/engine/engineinterface.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c
+	ice/db/dbinterface.zep.c
+	ice/dispatcher.zep.c
+	ice/log/loggerinterface.zep.c
+	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
+	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
+	ice/mvc/view/engine.zep.c
+	ice/config.zep.c
+	ice/http/response/headersinterface.zep.c
+	ice/http/response/responseinterface.zep.c
+	ice/log/driver.zep.c
+	ice/mvc/route/datagenerator/regex.zep.c
+	ice/mvc/route/dispatcher/regex.zep.c
+	ice/mvc/route/parser/parserinterface.zep.c
+	ice/mvc/view/viewinterface.zep.c
+	ice/auth.zep.c
 	ice/auth/driver/file.zep.c
 	ice/auth/driver/model.zep.c
 	ice/auth/driver/model/roles.zep.c
@@ -21,26 +42,20 @@ if test "$PHP_ICE" = "yes"; then
 	ice/auth/driver/model/users/social.zep.c
 	ice/auth/driver/model/users/tokens.zep.c
 	ice/auth/social.zep.c
-	ice/auth/social/adapter.zep.c
 	ice/auth/social/facebook.zep.c
 	ice/auth/social/google.zep.c
-	ice/auth/social/socialinterface.zep.c
 	ice/auth/social/twitter.zep.c
 	ice/cli/console.zep.c
 	ice/cli/dispatcher.zep.c
 	ice/cli/router.zep.c
 	ice/cli/task.zep.c
-	ice/config.zep.c
 	ice/config/ini.zep.c
 	ice/cookies.zep.c
 	ice/crypt.zep.c
 	ice/db.zep.c
-	ice/db/dbinterface.zep.c
 	ice/db/driver/mongo.zep.c
 	ice/db/driver/pdo.zep.c
 	ice/di.zep.c
-	ice/di/access.zep.c
-	ice/dispatcher.zep.c
 	ice/dump.zep.c
 	ice/exception.zep.c
 	ice/filter.zep.c
@@ -51,8 +66,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/http/request/requestinterface.zep.c
 	ice/http/response.zep.c
 	ice/http/response/headers.zep.c
-	ice/http/response/headersinterface.zep.c
-	ice/http/response/responseinterface.zep.c
 	ice/i18n.zep.c
 	ice/i18n/plural/arabic.zep.c
 	ice/i18n/plural/balkan.zep.c
@@ -60,47 +73,34 @@ if test "$PHP_ICE" = "yes"; then
 	ice/i18n/plural/french.zep.c
 	ice/i18n/plural/none.zep.c
 	ice/i18n/plural/one.zep.c
-	ice/i18n/plural/pluralinterface.zep.c
 	ice/i18n/plural/polish.zep.c
 	ice/i18n/plural/romanian.zep.c
 	ice/i18n/plural/two.zep.c
 	ice/i18n/plural/zero.zep.c
 	ice/loader.zep.c
 	ice/log.zep.c
-	ice/log/driver.zep.c
 	ice/log/driver/file.zep.c
-	ice/log/loggerinterface.zep.c
 	ice/mvc/app.zep.c
 	ice/mvc/controller.zep.c
 	ice/mvc/dispatcher.zep.c
-	ice/mvc/model.zep.c
 	ice/mvc/moduleinterface.zep.c
 	ice/mvc/route.zep.c
 	ice/mvc/route/collector.zep.c
-	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
 	ice/mvc/route/datagenerator/groupcount.zep.c
-	ice/mvc/route/datagenerator/regex.zep.c
-	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
 	ice/mvc/route/dispatcher/groupcount.zep.c
-	ice/mvc/route/dispatcher/regex.zep.c
-	ice/mvc/route/parser/parserinterface.zep.c
 	ice/mvc/route/parser/std.zep.c
 	ice/mvc/router.zep.c
 	ice/mvc/url.zep.c
 	ice/mvc/view.zep.c
-	ice/mvc/view/engine.zep.c
-	ice/mvc/view/engine/engineinterface.zep.c
 	ice/mvc/view/engine/php.zep.c
 	ice/mvc/view/engine/sleet.zep.c
 	ice/mvc/view/engine/sleet/compiler.zep.c
 	ice/mvc/view/engine/sleet/parser.zep.c
-	ice/mvc/view/viewinterface.zep.c
 	ice/pagination.zep.c
 	ice/session.zep.c
 	ice/tag.zep.c
 	ice/text.zep.c
 	ice/validation.zep.c
-	ice/validation/validator.zep.c
 	ice/validation/validator/alnum.zep.c
 	ice/validation/validator/alpha.zep.c
 	ice/validation/validator/between.zep.c
