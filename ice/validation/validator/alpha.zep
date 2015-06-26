@@ -30,7 +30,7 @@ use Ice\Validation\Validator;
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
- * <code><pre>
+ * </code></pre>
  */
 class Alpha extends Validator
 {
