@@ -12,10 +12,10 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/object.h"
-#include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
@@ -34,6 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
 
 	zend_declare_property_null(ice_auth_driver_ce, SL("_options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_auth_driver_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -47,9 +48,9 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
 PHP_METHOD(Ice_Auth_Driver, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL;
-	zval *options_param = NULL, *di = NULL, *_2, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL, *_9 = NULL;
-	zval *options = NULL, *_0;
+	zephir_fcall_cache_entry *_0 = NULL;
+	zval *options_param = NULL, *di = NULL, *_1, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL;
+	zval *options = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
@@ -62,50 +63,42 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	}
 
 
-	ZEPHIR_INIT_VAR(_0);
-	zephir_create_array(_0, 5, 0 TSRMLS_CC);
-	add_assoc_stringl_ex(_0, SS("hash_method"), SL("sha256"), 1);
-	add_assoc_stringl_ex(_0, SS("hash_key"), SL(""), 1);
-	add_assoc_stringl_ex(_0, SS("session_key"), SL("auth_user"), 1);
-	add_assoc_stringl_ex(_0, SS("session_roles"), SL("auth_user_roles"), 1);
-	add_assoc_long_ex(_0, SS("lifetime"), 1209600);
-	zephir_update_property_this(this_ptr, SL("_options"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 8);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 8);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_2);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
-	zephir_fast_array_merge(_2, &(_3), &(options) TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_options"), _2 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_1);
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	zephir_fast_array_merge(_1, &(_2), &(options) TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_4);
+	ZVAL_STRING(_4, "session", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_5);
-	ZVAL_STRING(_5, "session", ZEPHIR_TEMP_PARAM_COPY);
+	ZVAL_NULL(_5);
 	ZEPHIR_INIT_VAR(_6);
-	ZVAL_NULL(_6);
-	ZEPHIR_INIT_VAR(_7);
-	ZVAL_BOOL(_7, 1);
-	ZEPHIR_CALL_METHOD(&_4, di, "get", NULL, 0, _5, _6, _7);
-	zephir_check_temp_parameter(_5);
+	ZVAL_BOOL(_6, 1);
+	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _4, _5, _6);
+	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_session"), _4 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_session"), _3 TSRMLS_CC);
+	ZEPHIR_INIT_NVAR(_4);
+	ZVAL_STRING(_4, "cookies", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_5);
-	ZVAL_STRING(_5, "cookies", ZEPHIR_TEMP_PARAM_COPY);
+	ZVAL_NULL(_5);
 	ZEPHIR_INIT_NVAR(_6);
-	ZVAL_NULL(_6);
-	ZEPHIR_INIT_NVAR(_7);
-	ZVAL_BOOL(_7, 1);
-	ZEPHIR_CALL_METHOD(&_8, di, "get", NULL, 0, _5, _6, _7);
-	zephir_check_temp_parameter(_5);
+	ZVAL_BOOL(_6, 1);
+	ZEPHIR_CALL_METHOD(&_7, di, "get", NULL, 0, _4, _5, _6);
+	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_cookies"), _8 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_cookies"), _7 TSRMLS_CC);
+	ZEPHIR_INIT_NVAR(_4);
+	ZVAL_STRING(_4, "request", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_5);
-	ZVAL_STRING(_5, "request", ZEPHIR_TEMP_PARAM_COPY);
+	ZVAL_NULL(_5);
 	ZEPHIR_INIT_NVAR(_6);
-	ZVAL_NULL(_6);
-	ZEPHIR_INIT_NVAR(_7);
-	ZVAL_BOOL(_7, 1);
-	ZEPHIR_CALL_METHOD(&_9, di, "get", NULL, 0, _5, _6, _7);
-	zephir_check_temp_parameter(_5);
+	ZVAL_BOOL(_6, 1);
+	ZEPHIR_CALL_METHOD(&_8, di, "get", NULL, 0, _4, _5, _6);
+	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_request"), _9 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_request"), _8 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -289,7 +282,7 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getoption", &_2, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 9, _0, password, _3);
+	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 25, _0, password, _3);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -405,6 +398,33 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "loggedin", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!zephir_is_true(_1));
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_1;
+		zval *_0;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			zephir_create_array(_1, 5, 0 TSRMLS_CC);
+			add_assoc_stringl_ex(_1, SS("hash_method"), SL("sha256"), 1);
+			add_assoc_stringl_ex(_1, SS("hash_key"), SL(""), 1);
+			add_assoc_stringl_ex(_1, SS("session_key"), SL("auth_user"), 1);
+			add_assoc_stringl_ex(_1, SS("session_roles"), SL("auth_user_roles"), 1);
+			add_assoc_long_ex(_1, SS("lifetime"), 1209600);
+			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

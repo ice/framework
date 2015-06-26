@@ -21,6 +21,7 @@ PHP_METHOD(Ice_Tag, fileField);
 PHP_METHOD(Ice_Tag, submitButton);
 PHP_METHOD(Ice_Tag, button);
 PHP_METHOD(Ice_Tag, checkField);
+PHP_METHOD(Ice_Tag, radioField);
 PHP_METHOD(Ice_Tag, input);
 PHP_METHOD(Ice_Tag, form);
 PHP_METHOD(Ice_Tag, textArea);
@@ -93,6 +94,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_button, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_checkfield, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_radiofield, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
@@ -208,6 +213,7 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, submitButton, arginfo_ice_tag_submitbutton, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, button, arginfo_ice_tag_button, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, checkField, arginfo_ice_tag_checkfield, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, radioField, arginfo_ice_tag_radiofield, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, input, arginfo_ice_tag_input, ZEND_ACC_PRIVATE)
 	PHP_ME(Ice_Tag, form, arginfo_ice_tag_form, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, textArea, arginfo_ice_tag_textarea, ZEND_ACC_PUBLIC)

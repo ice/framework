@@ -60,6 +60,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Router) {
 
 	zend_declare_property_null(ice_mvc_router_ce, SL("_dispatcher"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	ice_mvc_router_ce->create_object = zephir_init_properties;
 	zend_declare_class_constant_long(ice_mvc_router_ce, SL("NOT_FOUND"), 0 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_mvc_router_ce, SL("FOUND"), 1 TSRMLS_CC);
@@ -256,20 +257,14 @@ PHP_METHOD(Ice_Mvc_Router, setDispatcher) {
 PHP_METHOD(Ice_Mvc_Router, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_3 = NULL;
-	zval *_0, *_1, *_2 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL;
+	zval *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_INIT_VAR(_0);
-	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("_options"), _0 TSRMLS_CC);
-	ZEPHIR_INIT_VAR(_1);
-	array_init(_1);
-	zephir_update_property_this(this_ptr, SL("_params"), _1 TSRMLS_CC);
-	ZEPHIR_CALL_CE_STATIC(&_2, ice_di_ce, "fetch", &_3, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("_di"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("_di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -633,6 +628,33 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 	zephir_array_update_string(&return_value, SL("action"), &action, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&return_value, SL("params"), &params, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1 = NULL, *_2;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+		}
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_params"), PH_NOISY_CC);
+		if (Z_TYPE_P(_2) == IS_NULL) {
+			ZEPHIR_INIT_NVAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_params"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

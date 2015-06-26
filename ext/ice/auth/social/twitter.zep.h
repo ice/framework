@@ -9,6 +9,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, getImage);
 PHP_METHOD(Ice_Auth_Social_Twitter, authenticate);
 PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams);
 PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_social_twitter___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, config)

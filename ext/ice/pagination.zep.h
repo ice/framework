@@ -10,6 +10,7 @@ PHP_METHOD(Ice_Pagination, calculate);
 PHP_METHOD(Ice_Pagination, minimal);
 PHP_METHOD(Ice_Pagination, basic);
 PHP_METHOD(Ice_Pagination, floating);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)

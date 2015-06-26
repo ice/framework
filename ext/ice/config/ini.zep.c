@@ -19,6 +19,7 @@
 #include "kernel/string.h"
 #include "kernel/hash.h"
 #include "kernel/array.h"
+#include "kernel/object.h"
 
 
 /**
@@ -34,6 +35,7 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Ini, ice, config_ini, ice_config_ce, ice_config_ini_method_entry, 0);
 
+	ice_config_ini_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -63,15 +65,15 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 29);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 42, data, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 53, data, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_LONG(&_1, 1);
-	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 42, data, ZEPHIR_GLOBAL(global_true), &_1);
+	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 53, data, ZEPHIR_GLOBAL(global_true), &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&data, this_ptr, "map", NULL, 43, ini, raw);
+	ZEPHIR_CALL_METHOD(&data, this_ptr, "map", NULL, 54, ini, raw);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 41, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 28, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -181,17 +183,38 @@ PHP_METHOD(Ice_Config_Ini, map) {
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
 			zephir_array_fetch(&_4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3, this_ptr, "map", &_5, 43, value, _4);
+			ZEPHIR_CALL_METHOD(&_3, this_ptr, "map", &_5, 54, value, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
 		} else {
 			zephir_array_fetch(&_4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3, this_ptr, "cast", &_6, 44, value, _4);
+			ZEPHIR_CALL_METHOD(&_3, this_ptr, "cast", &_6, 55, value, _4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
 		}
 	}
 	RETURN_CCTOR(data);
+
+}
+
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval *_0, *_1;
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval *this_ptr = NULL;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		if (Z_TYPE_P(_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(_1);
+			array_init(_1);
+			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJVAL_P(this_ptr);
+	}
 
 }
 

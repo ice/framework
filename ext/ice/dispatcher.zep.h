@@ -34,6 +34,7 @@ PHP_METHOD(Ice_Dispatcher, getParam);
 PHP_METHOD(Ice_Dispatcher, getActiveMethod);
 PHP_METHOD(Ice_Dispatcher, dispatch);
 PHP_METHOD(Ice_Dispatcher, forward);
+static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setdefaultnamespace, 0, 0, 1)
 	ZEND_ARG_INFO(0, defaultNamespace)
