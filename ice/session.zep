@@ -93,7 +93,7 @@ class Session extends Arr
     /**
      * Retrieve a single key from the session.
      */
-    public function get(string key, var defaultValue = null)
+    public function get(string key, var defaultValue = null, boolean required = false)
     {
         var value;
 
