@@ -17,7 +17,7 @@ use Ice\Auth\Driver\DriverInterface;
 class File extends Driver implements DriverInterface
 {
 
-    protected _users { set };
+    protected users { set };
 
     /**
      * Gets the currently logged in user from the session. Returns NULL if no user is currently logged in.
@@ -29,19 +29,19 @@ class File extends Driver implements DriverInterface
     {
         var username, user;
 
-        if !this->_user {
+        if !this->user {
             let username = parent::getUser(defaultValue);
 
             if username === defaultValue {
                 // User isn't currently logged in
-                let this->_user = defaultValue;
+                let this->user = defaultValue;
             } else {
-                fetch user, this->_users[username];
-                let this->_user = user;
+                fetch user, this->users[username];
+                let this->user = user;
             }
         }
 
-        return this->_user;
+        return this->user;
     }
 
     /**
@@ -76,7 +76,7 @@ class File extends Driver implements DriverInterface
             return false;
         }
 
-        if username && fetch user, this->_users[username] {
+        if username && fetch user, this->users[username] {
             if user["password"] === this->hash(password) {
                 // Complete the login
                 this->completeLogin(username, user["roles"]);

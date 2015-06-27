@@ -26,9 +26,9 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\Route\\Dispatcher, Regex, ice, mvc_route_dispatcher_regex, ice_mvc_route_dispatcher_regex_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("_staticRouteMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("staticRouteMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("_variableRouteData"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("variableRouteData"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_class_implements(ice_mvc_route_dispatcher_regex_ce TSRMLS_CC, 1, ice_mvc_route_dispatcher_dispatcherinterface_ce);
 	return SUCCESS;
@@ -43,7 +43,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_staticRouteMap"), staticRouteMap TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("staticRouteMap"), staticRouteMap TSRMLS_CC);
 
 }
 
@@ -55,7 +55,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_variableRouteData"), variableRouteData TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("variableRouteData"), variableRouteData TSRMLS_CC);
 
 }
 
@@ -77,9 +77,9 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 
 
 	zephir_array_fetch_long(&_0, data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 15 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_staticRouteMap"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("staticRouteMap"), _0 TSRMLS_CC);
 	zephir_array_fetch_long(&_1, data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 16 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_variableRouteData"), _1 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("variableRouteData"), _1 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -102,14 +102,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_staticRouteMap"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("staticRouteMap"), PH_NOISY_CC);
 	if (zephir_array_isset(_0, uri)) {
 		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dispatchstaticroute", NULL, 0, httpMethod, uri);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
 	ZEPHIR_OBS_VAR(varRouteData);
-	zephir_read_property_this(&varRouteData, this_ptr, SL("_variableRouteData"), PH_NOISY_CC);
+	zephir_read_property_this(&varRouteData, this_ptr, SL("variableRouteData"), PH_NOISY_CC);
 	_1 = ZEPHIR_IS_STRING_IDENTICAL(httpMethod, "HEAD");
 	if (_1) {
 		_1 = zephir_array_isset_string(varRouteData, SS("GET"));
@@ -177,7 +177,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchStaticRoute) {
 
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_staticRouteMap"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("staticRouteMap"), PH_NOISY_CC);
 	ZEPHIR_OBS_VAR(routes);
 	zephir_array_fetch(&routes, _0, uri, PH_NOISY, "ice/mvc/route/dispatcher/regex.zep", 72 TSRMLS_CC);
 	_1 = ZEPHIR_IS_STRING_IDENTICAL(httpMethod, "HEAD");

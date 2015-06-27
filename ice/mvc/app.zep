@@ -16,8 +16,8 @@ use Ice\Http\Response\ResponseInterface;
 class App extends Access
 {
 
-    protected _autoRender = true { get, set };
-    protected _modules { get, set };
+    protected autoRender = true { get, set };
+    protected modules { get, set };
 
     /**
      * Handles a MVC request.
@@ -30,7 +30,7 @@ class App extends Access
     {
         var argv, router, request, response, dispatcher, returned, controller, view;
 
-        let request = this->_di->get("request", null, true);
+        let request = this->di->get("request", null, true);
         if method == null {
             let method = request->getMethod();
         }
@@ -49,14 +49,14 @@ class App extends Access
             }
         }
 
-        let router = this->_di->get("router", null, true),
+        let router = this->di->get("router", null, true),
             response = router->handle(method, uri),
-            dispatcher = this->_di->get("dispatcher", null, true);
+            dispatcher = this->di->get("dispatcher", null, true);
 
-        this->_di->applyHook("app.after.router.handle", [response]);
+        this->di->applyHook("app.after.router.handle", [response]);
 
         if !(typeof response == "object" && (response instanceof ResponseInterface)) {
-            dispatcher->setModules(this->_modules);
+            dispatcher->setModules(this->modules);
             dispatcher->setMethod(method);
             dispatcher->setModule(response["module"]);
             dispatcher->setHandler(response["handler"]);
@@ -70,15 +70,15 @@ class App extends Access
                 let response = returned;
             }
 
-            this->_di->applyHook("app.after.dispatcher.dispatch", [response]);
+            this->di->applyHook("app.after.dispatcher.dispatch", [response]);
 
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
                 let controller = response,
-                    response = this->_di->get("response", null, true),
+                    response = this->di->get("response", null, true),
                     view = controller->view;
 
                 // Load views and set the response body if auto render
-                if this->_autoRender {
+                if this->autoRender {
                     if view->getContent() === null {
                         if !view->getFile() {
                             view->setSilent(true);
@@ -96,7 +96,7 @@ class App extends Access
             }
         }
 
-        this->_di->applyHook("app.after.handle", [response]);
+        this->di->applyHook("app.after.handle", [response]);
 
         return response->send();
     }

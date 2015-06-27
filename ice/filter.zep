@@ -13,7 +13,7 @@ namespace Ice;
 class Filter
 {
 
-    protected _filters;
+    protected filters;
 
     /**
      * Adds a user-defined filter.
@@ -27,7 +27,7 @@ class Filter
             throw new Exception("Filter must be an object");
         }
 
-        let this->_filters[name] = body;
+        let this->filters[name] = body;
     }
 
     /**
@@ -47,7 +47,7 @@ class Filter
 
         if typeof filters == "array" {
             for filter in filters {
-                let value = this->_sanitize(value, filter);
+                let value = this->doSanitize(value, filter);
             }
         }
         
@@ -61,12 +61,12 @@ class Filter
      * @param string filter
      * @return mixed
      */
-    protected function _sanitize(string value, string! filter)
+    protected function doSanitize(string value, string! filter)
     {
         var custom;
 
         // Try a user-defined filter first
-        if fetch custom, this->_filters[filter] {
+        if fetch custom, this->filters[filter] {
             // If the filter is a closure we call it in the PHP userland
             if custom instanceof \Closure {
                 return call_user_func_array(custom, [value]);
@@ -78,11 +78,11 @@ class Filter
         switch filter {
             case "cssmin":
                 let custom = create_instance("Ice\\Filter\\Css"),
-                    this->_filters["cssmin"] = custom;
+                    this->filters["cssmin"] = custom;
                 return custom->sanitize(value);
             case "jsmin":
                 let custom = create_instance("Ice\\Filter\\Js"),
-                    this->_filters["jsmin"] = custom;
+                    this->filters["jsmin"] = custom;
                 return custom->sanitize(value);
 
             case "camelize":

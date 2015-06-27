@@ -17,7 +17,7 @@ use Ice\Mvc\View\Engine\Sleet\Compiler;
  */
 class Sleet extends Engine
 {
-    protected _compiler { get };
+    protected compiler { get };
 
     /**
      * Compile the .sleet file.
@@ -29,9 +29,9 @@ class Sleet extends Engine
     {
         var compileDir, compile, trim, dir, file, compiledPath, old, compiled;
 
-        fetch trim, this->_options["trimPath"];
-        fetch compileDir, this->_options["compileDir"];
-        fetch compile, this->_options["compile"];
+        fetch trim, this->options["trimPath"];
+        fetch compileDir, this->options["compileDir"];
+        fetch compile, this->options["compile"];
 
         let dir = rtrim(compileDir, DIRECTORY_SEPARATOR) . str_replace(trim, "", realpath(dirname(path))),
             file = basename(path, ".sleet"),
@@ -58,8 +58,8 @@ class Sleet extends Engine
         }
 
         if compile {
-            let this->_compiler = new Compiler(this),
-                compiled = this->_compiler->compile(path);
+            let this->compiler = new Compiler(this),
+                compiled = this->compiler->compile(path);
 
             // Check if file was changed
             if typeof compile == "string" {

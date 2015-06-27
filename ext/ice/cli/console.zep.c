@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Console, ice, cli_console, ice_di_access_ce, ice_cli_console_method_entry, 0);
 
-	zend_declare_property_null(ice_cli_console_ce, SL("_modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_console_ce, SL("modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_cli_console_ce, SL("NORMAL"), 0 TSRMLS_CC);
 
@@ -50,7 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 PHP_METHOD(Ice_Cli_Console, getModules) {
 
 
-	RETURN_MEMBER(this_ptr, "_modules");
+	RETURN_MEMBER(this_ptr, "modules");
 
 }
 
@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_modules"), modules TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("modules"), modules TSRMLS_CC);
 
 }
 
@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "router", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_2);
@@ -97,7 +97,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, router, "handle", NULL, 0, arguments);
 	zephir_check_call_status();
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "dispatcher", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_2);
@@ -107,7 +107,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	ZEPHIR_CALL_METHOD(&dispatcher, _4, "get", NULL, 0, _1, _2, _3);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_modules"), PH_NOISY_CC);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("modules"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodules", NULL, 0, _5);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_6, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 40 TSRMLS_CC);

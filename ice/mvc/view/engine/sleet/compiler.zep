@@ -13,10 +13,10 @@ namespace Ice\Mvc\View\Engine\Sleet;
 class Compiler
 {
 
-    protected _view;
-    protected _content;
-    protected _parsed;
-    protected _parser { get };
+    protected view;
+    protected content;
+    protected parsed;
+    protected parser { get };
 
     const NEVER = 0;
     const NOT_EXIST = 1;
@@ -30,8 +30,8 @@ class Compiler
      */
     public function __construct(view = null)
     {
-        let this->_view = view,
-            this->_parser = new Parser();
+        let this->view = view,
+            this->parser = new Parser();
     }
 
     /**
@@ -45,10 +45,10 @@ class Compiler
         var content;
 
         let content = file_get_contents(path),
-            this->_content = content,
-            this->_parsed = this->_parser->text(content);
+            this->content = content,
+            this->parsed = this->parser->text(content);
 
-        return this->_parsed;
+        return this->parsed;
     }
 
     /**
@@ -56,6 +56,6 @@ class Compiler
      */
     public function __toString()
     {
-        return this->_parsed;
+        return this->parsed;
     }
 }

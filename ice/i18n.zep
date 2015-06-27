@@ -28,10 +28,10 @@ use Ice\I18n\Plural;
 class I18n
 {
     
-    protected static _i18n;
-    protected _cache = [];
-    protected _rules = [];
-    protected _options = [
+    protected static i18n;
+    protected cache = [];
+    protected rules = [];
+    protected options = [
         "source": "en-gb",
         "lang": "en-gb",
         "dir": ""
@@ -44,8 +44,8 @@ class I18n
      */
     public function __construct(array options = [])
     {
-        let this->_options = array_merge(this->_options, options),
-            self::_i18n = this;
+        let this->options = array_merge(this->options, options),
+            self::i18n = this;
     }
 
     /**
@@ -55,7 +55,7 @@ class I18n
      */
     public static function $fetch()
     {
-        return self::_i18n;
+        return self::i18n;
     }
 
     /**
@@ -68,10 +68,10 @@ class I18n
     {
         // Normalize the language
         if lang {
-            let this->_options["lang"] = strtolower(str_replace("_", "-", lang));
+            let this->options["lang"] = strtolower(str_replace("_", "-", lang));
         }
 
-        return this->_options["lang"];
+        return this->options["lang"];
     }
 
     /**
@@ -86,7 +86,7 @@ class I18n
         var parts;
 
         if !lang {
-            let lang = this->_options["lang"];
+            let lang = this->options["lang"];
         }
 
         let parts = explode("-", strtolower(str_replace("_", "-", lang)));
@@ -113,7 +113,7 @@ class I18n
 
         if !lang {
             // Use the global target language
-            let lang = (string) this->_options["lang"];
+            let lang = (string) this->options["lang"];
         }
 
         // Load the translation messages for this language
@@ -153,7 +153,7 @@ class I18n
         var cache, parts, subdir, tail, tmp, found, path, messages;
 
         // Load from the cache
-        if fetch cache, this->_cache[lang] {
+        if fetch cache, this->cache[lang] {
             return cache;
         }
 
@@ -169,7 +169,7 @@ class I18n
             }
 
             for found in tail {
-                let path = (string) this->_options["dir"] . found . ".php";
+                let path = (string) this->options["dir"] . found . ".php";
 
                 if file_exists(path) {
                     let messages = require path;
@@ -179,9 +179,9 @@ class I18n
             }
         }
 
-        let this->_cache[lang] = messages;
+        let this->cache[lang] = messages;
 
-        return this->_cache[lang];
+        return this->cache[lang];
     }
 
     /**
@@ -199,10 +199,10 @@ class I18n
 
         let code = this->iso(lang);
 
-        if !fetch rules, this->_rules[code] {
+        if !fetch rules, this->rules[code] {
             // Get language code prefix
-            let this->_rules[code] = this->pluralRules(code),
-                rules = this->_rules[code];
+            let this->rules[code] = this->pluralRules(code),
+                rules = this->rules[code];
         }
 
 
@@ -274,7 +274,7 @@ class I18n
     public function translate(string! str, array values = null, var context = null, string lang = null) -> string
     {
         if !lang {
-            let lang = (string) this->_options["lang"];
+            let lang = (string) this->options["lang"];
         }
 
         if is_numeric(context) {

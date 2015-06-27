@@ -17,7 +17,7 @@ use Ice\Validation;
 class Tokens extends Model
 {
 
-    protected _from = "user_tokens";
+    protected from = "user_tokens";
 
     /**
      * Initialize token's relations, remove expired tokens.
@@ -55,7 +55,7 @@ class Tokens extends Model
      */
     public function create(var fields = [], <Validation> extra = null)
     {
-        let this->{"token"} = this->_generate();
+        let this->{"token"} = this->generate();
 
         return parent::create(fields);
     }
@@ -87,7 +87,7 @@ class Tokens extends Model
      */
     public function update(var fields = [], <Validation> extra = null)
     {
-        let this->{"token"} = this->_generate();
+        let this->{"token"} = this->generate();
 
         return parent::update(fields);
     }
@@ -98,7 +98,7 @@ class Tokens extends Model
      * @return string
      * @uses Text::random()
      */
-    protected function _generate() -> string
+    protected function generate() -> string
     {
         var token;
 

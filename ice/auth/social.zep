@@ -15,7 +15,7 @@ use Ice\Auth\Social\SocialInterface;
 class Social
 {
 
-    protected _adapter { get };
+    protected adapter { get };
 
     /**
      * Constructor.
@@ -24,7 +24,7 @@ class Social
      */
     public function __construct(<SocialInterface> adapter)
     {
-        let this->_adapter = adapter;
+        let this->adapter = adapter;
     }
 
     /**
@@ -34,7 +34,7 @@ class Social
      */
     public function authenticate()
     {
-        return this->_adapter->authenticate();
+        return this->adapter->authenticate();
     }
 
     /**
@@ -46,7 +46,7 @@ class Social
      */
     public function get(string key, var defaultValue = null)
     {
-        return this->_adapter->get(key, defaultValue);
+        return this->adapter->get(key, defaultValue);
     }
 
     /**
@@ -57,6 +57,6 @@ class Social
      * @return mixed
      */
     public function __call(string method, arguments = null) {
-        return call_user_func_array([this->_adapter, method], arguments);
+        return call_user_func_array([this->adapter, method], arguments);
     }
 }

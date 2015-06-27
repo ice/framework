@@ -37,7 +37,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Log\\Driver, File, ice, log_driver_file, ice_log_driver_ce, ice_log_driver_file_method_entry, 0);
 
-	zend_declare_property_null(ice_log_driver_file_ce, SL("_file"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_log_driver_file_ce, SL("file"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -90,7 +90,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("_file"), file TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -134,7 +134,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	ZEPHIR_GET_CONSTANT(_4, "PHP_EOL");
 	ZEPHIR_INIT_VAR(line);
 	ZEPHIR_CONCAT_SVSVSVV(line, "[", _1, "] ", _2, ": ", _3, _4);
-	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 	ZEPHIR_SINIT_NVAR(_0);
 	ZVAL_LONG(&_0, 8);
 	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 111, _5, line, &_0);

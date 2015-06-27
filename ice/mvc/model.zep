@@ -19,17 +19,17 @@ use Ice\Validation;
 abstract class Model extends Arr implements \Serializable
 {
 
-    protected _di { get };
-    protected _db { get };
-    protected _from { set };
-    protected _primary { set, get };
-    protected _filters = [] { set, get };
-    protected _fields = [] { set, get };
-    protected _validation { set, get };
-    protected _relations = [] { get };
-    protected _labels = [] { set };
-    protected _rules = [];
-    protected _messages = [] { get };
+    protected di { get };
+    protected db { get };
+    protected from { set };
+    protected primary { set, get };
+    protected filters = [] { set, get };
+    protected fields = [] { set, get };
+    protected validation { set, get };
+    protected relations = [] { get };
+    protected labels = [] { set };
+    protected rules = [];
+    protected messages = [] { get };
 
     const BELONGS_TO = 1;
     const HAS_ONE = 2;
@@ -46,19 +46,19 @@ abstract class Model extends Arr implements \Serializable
         var di;
 
         let di = Di::$fetch(),
-            this->_di = di,
-            this->_db = di->get("db", null, true);
+            this->di = di,
+            this->db = di->get("db", null, true);
 
-        let data = array_merge(array_fill_keys(this->_fields, null), data);
+        let data = array_merge(array_fill_keys(this->fields, null), data);
 
         parent::__construct(data);
 
-        if !this->_from {
-            let this->_from = uncamelize(get_class_ns(this));
+        if !this->from {
+            let this->from = uncamelize(get_class_ns(this));
         }
 
-        if !this->_primary {
-            let this->_primary = this->_db->getId();
+        if !this->primary {
+            let this->primary = this->db->getId();
         }
 
         if method_exists(this, "onConstruct") {
@@ -91,7 +91,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function getIdKey() -> string
     {
-        return this->_db->getId();
+        return this->db->getId();
     }
 
     /**
@@ -103,7 +103,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var result;
 
-        let result = this->_db->findOne(this->_from, filters);
+        let result = this->db->findOne(this->from, filters);
 
         if result {
             this->replace(result->all());
@@ -123,7 +123,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var result, instances, data;
 
-        let result = this->_db->find(this->_from, filters, options),
+        let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
@@ -194,7 +194,7 @@ abstract class Model extends Arr implements \Serializable
     protected function fields(var fields = [])
     {
         // Check if model has defined valid fields
-        if !count(this->_fields) {
+        if !count(this->fields) {
             // No defined model's fields
             // Check if fields param has any elements
             if !count(fields) {
@@ -216,22 +216,22 @@ abstract class Model extends Arr implements \Serializable
             // Check if fields param has any elements
             if !count(fields) {
                 // Get all valid model's data as fields
-                let fields = array_intersect_key(this->all(), array_flip(this->_fields));
+                let fields = array_intersect_key(this->all(), array_flip(this->fields));
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
                 if count(array_filter(array_keys(fields), "is_string")) {
                     // Merge model data with fields values, get only valid model's fields
-                    let fields = array_intersect_key(array_merge(this->all(), fields), array_flip(this->_fields));
+                    let fields = array_intersect_key(array_merge(this->all(), fields), array_flip(this->fields));
                 } else {
                     // Use fields as only valid keys, get only valid model's fields
-                    let fields = array_intersect_key(this->all(), array_flip(fields), array_flip(this->_fields));
+                    let fields = array_intersect_key(this->all(), array_flip(fields), array_flip(this->fields));
                 }
             }
         }
 
-        if typeof this->_primary == "string" {
-            unset fields[this->_primary];
+        if typeof this->primary == "string" {
+            unset fields[this->primary];
         }
 
         return fields;
@@ -268,33 +268,33 @@ abstract class Model extends Arr implements \Serializable
                 extraMessages = extra->getMessages()->all();
         }
 
-        this->_di->applyHook("model.before.validate", [this]);
+        this->di->applyHook("model.before.validate", [this]);
 
-        if count(this->_rules) {
-            if !(typeof this->_validation == "object" && (this->_validation instanceof Validation)) {
-                let this->_validation = new Validation();
+        if count(this->rules) {
+            if !(typeof this->validation == "object" && (this->validation instanceof Validation)) {
+                let this->validation = new Validation();
             }
 
-            this->_validation->rules(this->_rules);
-            this->_validation->setFilters(this->_filters);
-            this->_validation->setLabels(this->_labels);
+            this->validation->rules(this->rules);
+            this->validation->setFilters(this->filters);
+            this->validation->setLabels(this->labels);
 
-            let valid = this->_validation->validate(this->getData()),
-                messages = this->_validation->getMessages()->all();
+            let valid = this->validation->validate(this->getData()),
+                messages = this->validation->getMessages()->all();
         }
 
-        if count(this->_rules) && !valid || extra && !extraValid {
-            let this->_messages = array_merge(extraMessages, messages);
+        if count(this->rules) && !valid || extra && !extraValid {
+            let this->messages = array_merge(extraMessages, messages);
 
             return false;
         }
 
-        this->_di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate", [this]);
 
-        let status = this->_db->insert(this->_from, this->getData());
+        let status = this->db->insert(this->from, this->getData());
 
         if status {
-            this->set(this->_db->getId(), this->_db->getLastInsertId());
+            this->set(this->db->getId(), this->db->getLastInsertId());
         }
 
         return status;
@@ -327,25 +327,25 @@ abstract class Model extends Arr implements \Serializable
                 extraMessages = extra->getMessages()->all();
         }
 
-        this->_di->applyHook("model.before.validate", [this]);
+        this->di->applyHook("model.before.validate", [this]);
 
         if extra && !extraValid {
-            let this->_messages = extraMessages;
+            let this->messages = extraMessages;
 
             return false;
         }
 
-        this->_di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate", [this]);
 
-        if typeof this->_primary == "array" {
-            for key in this->_primary {
+        if typeof this->primary == "array" {
+            for key in this->primary {
                 let primary[key] = this->get(key);
             }
         } else {
-            let primary = [this->_primary: this->get(this->_primary)];
+            let primary = [this->primary: this->get(this->primary)];
         }
 
-        let status = this->_db->update(this->_from, primary, fields);
+        let status = this->db->update(this->from, primary, fields);
 
         if status {
             this->replace(fields);
@@ -405,16 +405,16 @@ abstract class Model extends Arr implements \Serializable
         if !filters {
             let filters = [];
 
-            if typeof this->_primary == "array" {
-                for key in this->_primary {
+            if typeof this->primary == "array" {
+                for key in this->primary {
                     let filters[key] = this->get(key);
                 }
             } else {
-                let filters = [this->_primary: this->get(this->_primary)];
+                let filters = [this->primary: this->get(this->primary)];
             }
         }
 
-        let status = this->_db->remove(this->_from, filters);
+        let status = this->db->remove(this->from, filters);
 
         return status;
     }
@@ -432,8 +432,8 @@ abstract class Model extends Arr implements \Serializable
         if !filters {
             let filters = [];
 
-            if typeof this->_primary == "array" {
-                for key in this->_primary {
+            if typeof this->primary == "array" {
+                for key in this->primary {
                     if this->has(key) && this->get(key) {
                         let filters[key] = this->get(key);
                     } else {
@@ -441,8 +441,8 @@ abstract class Model extends Arr implements \Serializable
                     }
                 }
             } else {
-                if this->has(this->_primary) && this->get(this->_primary) {
-                    let filters = [this->_primary: this->get(this->_primary)];
+                if this->has(this->primary) && this->get(this->primary) {
+                    let filters = [this->primary: this->get(this->primary)];
                 } else {
                     return false;
                 }
@@ -459,7 +459,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function getError()
     {
-        return this->_db->getError();
+        return this->db->getError();
     }
 
     /**
@@ -493,7 +493,7 @@ abstract class Model extends Arr implements \Serializable
             let alias = referenceModel;
         }
 
-        let this->_relations[alias] = [
+        let this->relations[alias] = [
             "type": self::BELONGS_TO,
             "field": field,
             "referenceModel": referenceModel,
@@ -528,7 +528,7 @@ abstract class Model extends Arr implements \Serializable
             let alias = referenceModel;
         }
 
-        let this->_relations[alias] = [
+        let this->relations[alias] = [
             "type": self::HAS_ONE,
             "field": field,
             "referenceModel": referenceModel,
@@ -570,7 +570,7 @@ abstract class Model extends Arr implements \Serializable
             let alias = referenceModel;
         }
 
-        let this->_relations[alias] = [
+        let this->relations[alias] = [
             "type": self::HAS_MANY,
             "field": field,
             "referenceModel": referenceModel,
@@ -589,7 +589,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var relation, field, referenceModel, referencedField, from, result;
 
-        if !fetch relation, this->_relations[alias] {
+        if !fetch relation, this->relations[alias] {
             throw new Exception(sprintf("Alias '%s' not found", alias));
         }
 
@@ -628,9 +628,9 @@ abstract class Model extends Arr implements \Serializable
     public function setRules(array! rules = [], boolean merge = true)
     {
         if merge {
-            let this->_rules = array_merge(this->_rules, rules);
+            let this->rules = array_merge(this->rules, rules);
         } else {
-            let this->_rules = rules;
+            let this->rules = rules;
         }
     }
 
@@ -641,7 +641,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function serialize() -> string
     {
-        return base64_encode(serialize(this->_data));
+        return base64_encode(serialize(this->data));
     }
 
     /**
@@ -650,7 +650,7 @@ abstract class Model extends Arr implements \Serializable
     public function unserialize(string! data)
     {
         this->__construct();
-        let this->_data = unserialize(base64_decode(data));
+        let this->data = unserialize(base64_decode(data));
     }
 
     /**

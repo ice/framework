@@ -61,7 +61,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "facebook", 1);
-	zephir_update_property_this(this_ptr, SL("_provider"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("provider"), _0 TSRMLS_CC);
 	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 45, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
@@ -72,7 +72,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	add_assoc_stringl_ex(_2, SS("sex"), SL("gender"), 1);
 	add_assoc_stringl_ex(_2, SS("socialPage"), SL("link"), 1);
 	add_assoc_stringl_ex(_2, SS("birthday"), SL("birthday"), 1);
-	zephir_update_property_this(this_ptr, SL("_socialFieldsMap"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("socialFieldsMap"), _2 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -128,18 +128,18 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 		ZEPHIR_INIT_VAR(params);
 		zephir_create_array(params, 4, 0 TSRMLS_CC);
 		ZEPHIR_OBS_VAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("_clientId"), PH_NOISY_CC);
+		zephir_read_property_this(&_0, this_ptr, SL("clientId"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("client_id"), &_0, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("_redirectUri"), PH_NOISY_CC);
+		zephir_read_property_this(&_0, this_ptr, SL("redirectUri"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("redirect_uri"), &_0, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("_clientSecret"), PH_NOISY_CC);
+		zephir_read_property_this(&_0, this_ptr, SL("clientSecret"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("client_secret"), &_0, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(_0);
 		zephir_array_fetch_string(&_0, _GET, SL("code"), PH_NOISY, "ice/auth/social/facebook.zep", 69 TSRMLS_CC);
 		zephir_array_update_string(&params, SL("code"), &_0, PH_COPY | PH_SEPARATE);
-		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_accessToken"), PH_NOISY_CC);
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
 		if (!(zephir_is_true(_1))) {
 			ZEPHIR_INIT_VAR(_3);
 			ZVAL_LONG(_3, 0);
@@ -160,15 +160,15 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			}
 			if (_6) {
 				zephir_array_fetch_string(&_7, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/facebook.zep", 76 TSRMLS_CC);
-				zephir_update_property_this(this_ptr, SL("_accessToken"), _7 TSRMLS_CC);
+				zephir_update_property_this(this_ptr, SL("accessToken"), _7 TSRMLS_CC);
 			}
 		}
-		_8 = zephir_fetch_nproperty_this(this_ptr, SL("_accessToken"), PH_NOISY_CC);
+		_8 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
 		if (zephir_is_true(_8)) {
 			ZEPHIR_INIT_NVAR(params);
 			zephir_create_array(params, 1, 0 TSRMLS_CC);
 			ZEPHIR_OBS_NVAR(_0);
-			zephir_read_property_this(&_0, this_ptr, SL("_accessToken"), PH_NOISY_CC);
+			zephir_read_property_this(&_0, this_ptr, SL("accessToken"), PH_NOISY_CC);
 			zephir_array_update_string(&params, SL("access_token"), &_0, PH_COPY | PH_SEPARATE);
 			ZEPHIR_INIT_NVAR(_3);
 			ZVAL_LONG(_3, 0);
@@ -178,7 +178,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(userInfo, SS("id"))) {
-				zephir_update_property_this(this_ptr, SL("_userInfo"), userInfo TSRMLS_CC);
+				zephir_update_property_this(this_ptr, SL("userInfo"), userInfo TSRMLS_CC);
 				result = 1;
 			}
 		}
@@ -204,10 +204,10 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 	ZEPHIR_INIT_VAR(_0);
 	zephir_create_array(_0, 4, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_1);
-	zephir_read_property_this(&_1, this_ptr, SL("_clientId"), PH_NOISY_CC);
+	zephir_read_property_this(&_1, this_ptr, SL("clientId"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("client_id"), &_1, PH_COPY | PH_SEPARATE);
 	ZEPHIR_OBS_NVAR(_1);
-	zephir_read_property_this(&_1, this_ptr, SL("_redirectUri"), PH_NOISY_CC);
+	zephir_read_property_this(&_1, this_ptr, SL("redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("redirect_uri"), &_1, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(_0, SS("response_type"), SL("code"), 1);
 	add_assoc_stringl_ex(_0, SS("scope"), SL("email,user_birthday"), 1);
@@ -225,11 +225,11 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_socialFieldsMap"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("socialFieldsMap"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("_socialFieldsMap"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("socialFieldsMap"), _1 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

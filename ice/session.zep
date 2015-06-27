@@ -13,7 +13,7 @@ namespace Ice;
 class Session extends Arr
 {
 
-    protected _started = false;
+    protected started = false;
 
     /**
      * Session constructor. Start the session.
@@ -22,7 +22,7 @@ class Session extends Arr
     {
         this->start();
 
-        //let this->_data = &_SESSION;
+        //let this->data = &_SESSION;
     }
 
     /**
@@ -34,7 +34,7 @@ class Session extends Arr
     {
         if !headers_sent() {
             session_start();
-            let this->_started = true;
+            let this->started = true;
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ class Session extends Arr
      */
     public function isStarted() -> boolean
     {
-        return this->_started;
+        return this->started;
     }
 
     /**
@@ -77,7 +77,7 @@ class Session extends Arr
      */
     public function destroy() -> boolean
     {
-        let this->_started = false;
+        let this->started = false;
         return session_destroy();
     }
 

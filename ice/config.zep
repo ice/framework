@@ -45,12 +45,12 @@ class Config extends Arr
                     }
                 }
                 if hasNumericKey {
-                    let this->_data[key] = value;
+                    let this->data[key] = value;
                 } else {
-                    let this->_data[key] = new Config(value);
+                    let this->data[key] = new Config(value);
                 }
             } else {
-                let this->_data[key] = value;
+                let this->data[key] = value;
             }
         }
     }

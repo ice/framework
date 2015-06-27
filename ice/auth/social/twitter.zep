@@ -20,18 +20,18 @@ class Twitter extends Adapter
      */
     public function __construct(config = [])
     {
-        let this->_provider = "twitter";
+        let this->provider = "twitter";
 
         parent::__construct(config);
 
-        let this->_socialFieldsMap = [
+        let this->socialFieldsMap = [
                 "socialId": "id",
                 "email":    "email",
                 "name":     "name",
                 "sex":      "sex",
                 "birthday": "bdate"
             ],
-            this->_responseType = "oauth_token";
+            this->responseType = "oauth_token";
     }
 
     /**
@@ -96,7 +96,7 @@ class Twitter extends Adapter
                     userInfo = this->call(parent::GET, getDataUrl, params);
 
                 if isset userInfo["id"] {
-                    let this->_userInfo = userInfo,
+                    let this->userInfo = userInfo,
                         result = true;
                 }
             }
@@ -114,7 +114,7 @@ class Twitter extends Adapter
         var requestTokenUrl, requestTokens, params;
 
         let requestTokenUrl = "https://api.twitter.com/oauth/request_token",
-            params = this->prepareUrlParams(requestTokenUrl, ["oauth_callback": this->_redirectUri]),
+            params = this->prepareUrlParams(requestTokenUrl, ["oauth_callback": this->redirectUri]),
             requestTokens = this->call(parent::GET, requestTokenUrl, params, false);
 
         parse_str(requestTokens, requestTokens);
@@ -135,7 +135,7 @@ class Twitter extends Adapter
         var sigBaseStr, key;
 
         let params = array_merge([
-            "oauth_consumer_key":     this->_clientId,
+            "oauth_consumer_key":     this->clientId,
             "oauth_nonce":            md5(uniqid(rand(), true)),
             "oauth_signature_method": "HMAC-SHA1",
             "oauth_timestamp":        time(),
@@ -146,7 +146,7 @@ class Twitter extends Adapter
         ksort(params);
 
         let sigBaseStr = type . "&" . urlencode(url) . "&" . urlencode(http_build_query(params)),
-            key = this->_clientSecret . "&" . oauthToken,
+            key = this->clientSecret . "&" . oauthToken,
             params["oauth_signature"] = base64_encode(hash_hmac("sha1", sigBaseStr, key, true)),
             params = array_map("urlencode", params);
 
