@@ -26,19 +26,19 @@ class Tag
     const XHTML20 = 10;
     const XHTML5 = 11;
 
-    protected _di { get };
-    protected _values { get };
-    protected _docType = 5 { set };
-    protected _title = null { set, get };
-    protected _titleSeparator = " - " { set, get };
-    protected _escape = true { set };
+    protected di { get };
+    protected values { get };
+    protected docType = 5 { set };
+    protected title = null { set, get };
+    protected titleSeparator = " - " { set, get };
+    protected escape = true { set };
 
     /**
      * Tag constructor. Fetch Di and set it as a property.
      */
     public function __construct()
     {
-        let this->_di = Di::$fetch();
+        let this->di = Di::$fetch();
     }
 
     /**
@@ -50,7 +50,7 @@ class Tag
      */
     public function appendTitle(string title, string separator = null) -> void
     {
-        let this->_title = this->_title . (separator ? separator : this->_titleSeparator) . title;
+        let this->title = this->title . (separator ? separator : this->titleSeparator) . title;
     }
 
     /**
@@ -62,7 +62,7 @@ class Tag
      */
     public function prependTitle(string title, string separator = null) -> void
     {
-        let this->_title = title . (separator ? separator : this->_titleSeparator) . this->_title;
+        let this->title = title . (separator ? separator : this->titleSeparator) . this->title;
     }
 
     /**
@@ -284,8 +284,8 @@ class Tag
 
             // Send to current URL if action is false
             if action !== false {
-                if this->_di->has("url") {
-                    let parameters["action"] = this->_di->get("url")->get(action);
+                if this->di->has("url") {
+                    let parameters["action"] = this->di->get("url")->get(action);
                 }
             }
         }
@@ -360,8 +360,8 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            if this->_di->has("url") {
-                let parameters["src"] = this->_di->get("url")->getStatic(src);
+            if this->di->has("url") {
+                let parameters["src"] = this->di->get("url")->getStatic(src);
             }
         }
 
@@ -410,8 +410,8 @@ class Tag
 
         fetch query, parameters["query"];
 
-        if this->_di->has("url") {
-            let parameters["href"] = this->_di->get("url")->get(href, query, local);
+        if this->di->has("url") {
+            let parameters["href"] = this->di->get("url")->get(href, query, local);
         }
 
         return this->tagHtml("a", parameters, defaultParams, ["text", "local", "query"], "text", true);
@@ -450,8 +450,8 @@ class Tag
                 fetch href, parameters[defaultParams["href"]];
             }
 
-            if this->_di->has("url") {
-                let parameters["href"] = this->_di->get("url")->getStatic(href);
+            if this->di->has("url") {
+                let parameters["href"] = this->di->get("url")->getStatic(href);
             }
         }
 
@@ -490,8 +490,8 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            if src && this->_di->has("url") {
-                let parameters["src"] = this->_di->get("url")->getStatic(src);
+            if src && this->di->has("url") {
+                let parameters["src"] = this->di->get("url")->getStatic(src);
             }
         }
 
@@ -534,7 +534,7 @@ class Tag
      */
     public function select(array parameters)
     {
-        var defaultParams, name, options, option, selected, tmp, value, text, group, _value, _text, _options;
+        var defaultParams, name, options, option, selected, tmp, value, text, group, subvalue, subtext, suboptions;
 
         let defaultParams = [
             "id": 0,
@@ -578,27 +578,27 @@ class Tag
                     let group = ["label": value];
 
                     // Create a new list of options
-                    let _options = [];
+                    let suboptions = [];
 
-                    for _value, _text in text {
+                    for subvalue, subtext in text {
                         // Force value to be string
-                        let _value = (string) _value;
+                        let subvalue = (string) subvalue;
 
                         // Create a new attribute set for this option
-                        let option = ["value": _value];
+                        let option = ["value": subvalue];
 
-                        if in_array(_value, selected) {
+                        if in_array(subvalue, selected) {
                             // This option is selected
                             let option["selected"] = "selected";
                         }
 
                         // Change the option to the HTML string
-                        let option["content"] = _text,
-                            _options[] = this->tagHtml("option", option, [], ["content"], "content", true);
+                        let option["content"] = subtext,
+                            suboptions[] = this->tagHtml("option", option, [], ["content"], "content", true);
                     }
 
                     // Compile the options into a string
-                    let group["content"] = PHP_EOL . implode(PHP_EOL, _options) . PHP_EOL,
+                    let group["content"] = PHP_EOL . implode(PHP_EOL, suboptions) . PHP_EOL,
                         options[value] = this->tagHtml("optgroup", group, [], ["content"], "content", true);
                 } else {
                     // Force value to be string
@@ -734,15 +734,15 @@ class Tag
 
         for key, value in attrs {
             if typeof key == "string" && value !== null && value !== false && !in_array(key, skip) {
-                if this->_escape && this->_di->has("filter") {
-                    let value = this->_di->get("filter")->sanitize(value, "escape");
+                if this->escape && this->di->has("filter") {
+                    let value = this->di->get("filter")->sanitize(value, "escape");
                 }
                 let code .= " " . key . "=\"" . value. "\"";
             }
         }
 
         if single {
-            let code .= this->_docType > self::HTML5 ? " />" : ">";
+            let code .= this->docType > self::HTML5 ? " />" : ">";
         } else {
             let code .= ">";
         }
@@ -763,7 +763,7 @@ class Tag
             return true;
         } else {
             // Check if there is a predefined value for it
-            if isset this->_values[name] {
+            if isset this->values[name] {
                 return true;
             }
         }
@@ -785,7 +785,7 @@ class Tag
                 throw new Exception("Only scalar values can be assigned to UI components");
             }
         }
-        let this->_values[id] = value;
+        let this->values[id] = value;
     }
 
     /**
@@ -804,14 +804,14 @@ class Tag
         }
 
         if merge {
-            let current = this->_values;
+            let current = this->values;
             if typeof current == "array" {
-                let this->_values = array_merge(current, values);
+                let this->values = array_merge(current, values);
             } else {
-                let this->_values = values;
+                let this->values = values;
             }
         } else {
-            let this->_values = values;
+            let this->values = values;
         }
     }
 
@@ -829,7 +829,7 @@ class Tag
         // Check if there is a predefined value for it
         if !fetch value, _POST[name] {
             // Check if there is a post value for the item
-            if !fetch value, this->_values[name] {
+            if !fetch value, this->values[name] {
                 return null;
             }
         }
@@ -900,7 +900,7 @@ class Tag
      */
     public function getDocType() -> string
     {
-        switch this->_docType {
+        switch this->docType {
             case self::HTML32:  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">" . PHP_EOL;
             case self::HTML401_STRICT:  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"" . PHP_EOL . "\t\"http://www.w3.org/TR/html4/strict.dtd\">" . PHP_EOL;
             case self::HTML401_TRANSITIONAL:  return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"" . PHP_EOL . "\t\"http://www.w3.org/TR/html4/loose.dtd\">" . PHP_EOL;

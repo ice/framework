@@ -15,7 +15,7 @@ use ArrayIterator;
 class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
 {
 
-    protected _data = [] { get };
+    protected data = [] { get };
 
     /**
      * Arr constructor.
@@ -24,7 +24,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __construct(array data = [])
     {
-        let this->_data = data;
+        let this->data = data;
     }
 
     /**
@@ -35,7 +35,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function has(string key) -> boolean
     {
-        return isset this->_data[key];
+        return isset this->data[key];
     }
 
     /**
@@ -55,7 +55,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
             throw new Exception(sprintf("The '%s' key is required", key));
         }
 
-        if fetch value, this->_data[key] {
+        if fetch value, this->data[key] {
             return value;
         }
 
@@ -71,7 +71,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function set(string key, var value) -> void
     {
-        let this->_data[key] = value;
+        let this->data[key] = value;
     }
 
     /**
@@ -107,7 +107,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function setData(array! data = []) -> void
     {
-        let this->_data = data;
+        let this->data = data;
     }
 
     /**
@@ -117,7 +117,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function keys() -> array
     {
-        return array_keys(this->_data);
+        return array_keys(this->data);
     }
 
     /**
@@ -128,7 +128,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function remove(string key) -> void
     {
-        unset this->_data[key];
+        unset this->data[key];
     }
 
     /**
@@ -138,7 +138,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function clear() -> void
     {
-        let this->_data = [];
+        let this->data = [];
     }
 
     /**
@@ -148,7 +148,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function count() -> int
     {
-        return count(this->_data);
+        return count(this->data);
     }
 
     /**
@@ -158,7 +158,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function getIterator() -> <ArrayIterator>
     {
-        return new ArrayIterator(this->_data);
+        return new ArrayIterator(this->data);
     }
 
     /**
@@ -183,7 +183,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     {
         var data, keys, key;
 
-        let data = this->_data;
+        let data = this->data;
 
         if typeof path == "array" {
             // The path has already been separated into keys
@@ -265,7 +265,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         var key, value, tmp;
 
         let tmp = [];
-        for key, value in this->_data {
+        for key, value in this->data {
             if typeof value == "object" {
                 if method_exists(value, "toArray") {
                     let tmp[key] = value->toArray();
@@ -366,6 +366,6 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __unset(key) -> void
     {
-        unset this->_data[key];
+        unset this->data[key];
     }
 }

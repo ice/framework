@@ -26,11 +26,11 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Parser) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\View\\Engine\\Sleet, Parser, ice, mvc_view_engine_sleet_parser, ice_mvc_view_engine_sleet_parser_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("_functions"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("functions"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("_filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("_env"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_parser_ce, SL("env"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	ice_mvc_view_engine_sleet_parser_ce->create_object = zephir_init_properties;
 	zend_declare_class_constant_long(ice_mvc_view_engine_sleet_parser_ce, SL("NORMAL"), 0 TSRMLS_CC);
@@ -100,12 +100,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, __construct) {
 
 	}
 	ZEPHIR_INIT_VAR(_11);
-	_12 = zephir_fetch_nproperty_this(this_ptr, SL("_functions"), PH_NOISY_CC);
+	_12 = zephir_fetch_nproperty_this(this_ptr, SL("functions"), PH_NOISY_CC);
 	zephir_fast_array_merge(_11, &(_12), &(functions) TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_functions"), _11 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("functions"), _11 TSRMLS_CC);
 	ZEPHIR_INIT_ZVAL_NREF(_13);
 	ZVAL_LONG(_13, 0);
-	zephir_update_property_array_append(this_ptr, SL("_env"), _13 TSRMLS_CC);
+	zephir_update_property_array_append(this_ptr, SL("env"), _13 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -498,7 +498,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseControl) {
 
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_parse", NULL, 134, expression);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "doparse", NULL, 134, expression);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSVS(return_value, "<?php ", control, "(", _0, "): ?>");
 	RETURN_MM();
@@ -521,7 +521,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseEcho) {
 
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_parse", NULL, 134, expression);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "doparse", NULL, 134, expression);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVS(return_value, "<?php echo ", _0, " ?>");
 	RETURN_MM();
@@ -544,7 +544,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseSet) {
 
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_parse", NULL, 134, expression);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "doparse", NULL, 134, expression);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVS(return_value, "<?php ", _0, "; ?>");
 	RETURN_MM();
@@ -567,7 +567,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseUse) {
 
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "_parse", NULL, 134, expression);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "doparse", NULL, 134, expression);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVS(return_value, "<?php use ", _0, "; ?>");
 	RETURN_MM();
@@ -580,7 +580,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseUse) {
  * @param array tokens
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _parse) {
+PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, doParse) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_2 = NULL, *_5 = NULL, *_7 = NULL, *_9 = NULL, *_17 = NULL, *_19 = NULL, *_20 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -632,10 +632,10 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _parse) {
 			ZEPHIR_CALL_METHOD(&filter, i, "offsetget", &_9, 139, seek);
 			zephir_check_call_status();
 			ZEPHIR_INIT_LNVAR(_11);
-			_12 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+			_12 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 			zephir_array_fetch_long(&_13, filter, 1, PH_READONLY, "ice/mvc/view/engine/sleet/parser.zep", 294 TSRMLS_CC);
 			if (zephir_array_isset(_12, _13)) {
-				_14 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+				_14 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 				ZEPHIR_OBS_NVAR(_11);
 				ZEPHIR_OBS_NVAR(_15);
 				zephir_array_fetch_long(&_15, filter, 1, PH_NOISY, "ice/mvc/view/engine/sleet/parser.zep", 294 TSRMLS_CC);
@@ -699,13 +699,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _parse) {
 			ZVAL_STRING(_6, "unstrip_special", 1);
 			zephir_array_fast_append(filters, _6);
 			if (zephir_fast_in_array(filter, filters TSRMLS_CC)) {
-				ZEPHIR_CALL_METHOD(&_16, this_ptr, "_token", &_17, 140, token, prev, next);
+				ZEPHIR_CALL_METHOD(&_16, this_ptr, "token", &_17, 140, token, prev, next);
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_11);
 				ZEPHIR_CONCAT_SVSVS(_11, "$this->filter->sanitize(", _16, ", '", filter, "'");
 				zephir_concat_self(&parsed, _11 TSRMLS_CC);
 			} else {
-				ZEPHIR_CALL_METHOD(&_16, this_ptr, "_token", &_17, 140, token, prev, next);
+				ZEPHIR_CALL_METHOD(&_16, this_ptr, "token", &_17, 140, token, prev, next);
 				zephir_check_call_status();
 				ZEPHIR_INIT_LNVAR(_18);
 				ZEPHIR_CONCAT_VSV(_18, filter, "(", _16);
@@ -737,7 +737,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _parse) {
 			zephir_check_call_status();
 			continue;
 		}
-		ZEPHIR_CALL_METHOD(&_10, this_ptr, "_token", &_17, 140, token, prev, next);
+		ZEPHIR_CALL_METHOD(&_10, this_ptr, "token", &_17, 140, token, prev, next);
 		zephir_check_call_status();
 		zephir_concat_self(&parsed, _10 TSRMLS_CC);
 		ZEPHIR_CPY_WRT(prev, token);
@@ -756,7 +756,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _parse) {
  * @param mixed next
  * @return mixed
  */
-PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _token) {
+PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 
 	zephir_fcall_cache_entry *_16 = NULL, *_17 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
@@ -810,9 +810,9 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _token) {
 				}
 				if (_4) {
 					ZEPHIR_INIT_VAR(_7);
-					_8 = zephir_fetch_nproperty_this(this_ptr, SL("_functions"), PH_NOISY_CC);
+					_8 = zephir_fetch_nproperty_this(this_ptr, SL("functions"), PH_NOISY_CC);
 					if (zephir_array_isset(_8, str)) {
-						_9 = zephir_fetch_nproperty_this(this_ptr, SL("_functions"), PH_NOISY_CC);
+						_9 = zephir_fetch_nproperty_this(this_ptr, SL("functions"), PH_NOISY_CC);
 						zephir_array_fetch(&_7, _9, str, PH_NOISY, "ice/mvc/view/engine/sleet/parser.zep", 355 TSRMLS_CC);
 					} else {
 						ZEPHIR_CPY_WRT(_7, str);
@@ -888,14 +888,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _token) {
 				RETURN_MM_STRING("->", 1);
 			}
 			if (ZEPHIR_IS_STRING(token, ":")) {
-				_8 = zephir_fetch_nproperty_this(this_ptr, SL("_env"), PH_NOISY_CC);
+				_8 = zephir_fetch_nproperty_this(this_ptr, SL("env"), PH_NOISY_CC);
 				Z_SET_ISREF_P(_8);
 				ZEPHIR_CALL_FUNCTION(&_14, "end", &_16, 81, _8);
 				Z_UNSET_ISREF_P(_8);
 				zephir_check_call_status();
 				do {
 					if (ZEPHIR_IS_LONG(_14, 1)) {
-						_9 = zephir_fetch_nproperty_this(this_ptr, SL("_env"), PH_NOISY_CC);
+						_9 = zephir_fetch_nproperty_this(this_ptr, SL("env"), PH_NOISY_CC);
 						Z_SET_ISREF_P(_9);
 						ZEPHIR_CALL_FUNCTION(NULL, "array_pop", &_17, 144, _9);
 						Z_UNSET_ISREF_P(_9);
@@ -909,24 +909,24 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, _token) {
 			if (ZEPHIR_IS_STRING(token, "?")) {
 				ZEPHIR_INIT_ZVAL_NREF(_8);
 				ZVAL_LONG(_8, 1);
-				zephir_update_property_array_append(this_ptr, SL("_env"), _8 TSRMLS_CC);
+				zephir_update_property_array_append(this_ptr, SL("env"), _8 TSRMLS_CC);
 				RETURN_MM_STRING(" ? ", 1);
 			}
 			if (ZEPHIR_IS_STRING(token, "[")) {
 				ZEPHIR_INIT_ZVAL_NREF(_8);
 				ZVAL_LONG(_8, 2);
-				zephir_update_property_array_append(this_ptr, SL("_env"), _8 TSRMLS_CC);
+				zephir_update_property_array_append(this_ptr, SL("env"), _8 TSRMLS_CC);
 				RETVAL_ZVAL(token, 1, 0);
 				RETURN_MM();
 			}
 			if (ZEPHIR_IS_STRING(token, "]")) {
-				_8 = zephir_fetch_nproperty_this(this_ptr, SL("_env"), PH_NOISY_CC);
+				_8 = zephir_fetch_nproperty_this(this_ptr, SL("env"), PH_NOISY_CC);
 				Z_SET_ISREF_P(_8);
 				ZEPHIR_CALL_FUNCTION(&_14, "end", &_16, 81, _8);
 				Z_UNSET_ISREF_P(_8);
 				zephir_check_call_status();
 				if (ZEPHIR_IS_LONG(_14, 2)) {
-					_9 = zephir_fetch_nproperty_this(this_ptr, SL("_env"), PH_NOISY_CC);
+					_9 = zephir_fetch_nproperty_this(this_ptr, SL("env"), PH_NOISY_CC);
 					Z_SET_ISREF_P(_9);
 					ZEPHIR_CALL_FUNCTION(NULL, "array_pop", &_17, 144, _9);
 					Z_UNSET_ISREF_P(_9);
@@ -954,20 +954,20 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_env"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("env"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("_env"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("env"), _1 TSRMLS_CC);
 		}
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3);
 			zephir_create_array(_3, 1, 0 TSRMLS_CC);
 			add_assoc_stringl_ex(_3, SS("capitalize"), SL("ucfirst"), 1);
-			zephir_update_property_this(this_ptr, SL("_filters"), _3 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("filters"), _3 TSRMLS_CC);
 		}
-		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_functions"), PH_NOISY_CC);
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("functions"), PH_NOISY_CC);
 		if (Z_TYPE_P(_4) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(_3);
 			zephir_create_array(_3, 5, 0 TSRMLS_CC);
@@ -976,7 +976,7 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 			add_assoc_stringl_ex(_3, SS("load"), SL("$this->load"), 1);
 			add_assoc_stringl_ex(_3, SS("dump"), SL("$this->dump->vars"), 1);
 			add_assoc_stringl_ex(_3, SS("version"), SL("Ice\\Version::get"), 1);
-			zephir_update_property_this(this_ptr, SL("_functions"), _3 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("functions"), _3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

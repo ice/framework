@@ -14,10 +14,10 @@ namespace Ice;
 class Crypt
 {
 
-    protected _key;
-    protected _cipher = "aes-256";
-    protected _mode = "cbc";
-    protected _block = 16;
+    protected key;
+    protected cipher = "aes-256";
+    protected mode = "cbc";
+    protected block = 16;
 
     /**
      * Create a new encrypter instance.
@@ -27,7 +27,7 @@ class Crypt
      */
     public function __construct(string key)
     {
-        let this->_key = key;
+        let this->key = key;
     }
 
     /**
@@ -42,7 +42,7 @@ class Crypt
 
         let iv = this->generateInputVector(),
             value = this->addPadding(serialize(text)),
-            value = base64_encode(this->_encrypt(value, iv));
+            value = base64_encode(this->doEncrypt(value, iv));
 
         // Once we have the encrypted value we will go ahead base64_encode the input
         // vector and create the MAC for the encrypted value so we can verify its
@@ -74,9 +74,9 @@ class Crypt
      * @param string iv
      * @return string
      */
-    protected function _encrypt(string value, string iv) -> string
+    protected function doEncrypt(string value, string iv) -> string
     {
-        return openssl_encrypt(value, this->_cipher . "-" . this->_mode, this->_key, OPENSSL_RAW_DATA, iv);
+        return openssl_encrypt(value, this->cipher . "-" . this->mode, this->key, OPENSSL_RAW_DATA, iv);
     }
 
     /**
@@ -97,7 +97,7 @@ class Crypt
         let value = base64_decode(payload["value"]),
             iv = base64_decode(payload["iv"]);
 
-        return unserialize(this->stripPadding(this->_decrypt(value, iv)));
+        return unserialize(this->stripPadding(this->doDecrypt(value, iv)));
     }
 
     /**
@@ -107,9 +107,9 @@ class Crypt
      * @param string iv
      * @return string
      */
-    protected function _decrypt(string value, string iv) -> string
+    protected function doDecrypt(string value, string iv) -> string
     {
-        return openssl_decrypt(value, this->_cipher . "-" . this->_mode, this->_key, OPENSSL_RAW_DATA, iv);
+        return openssl_decrypt(value, this->cipher . "-" . this->mode, this->key, OPENSSL_RAW_DATA, iv);
     }
 
     /**
@@ -147,7 +147,7 @@ class Crypt
      */
     protected function hash(string value) -> string
     {
-        return hash_hmac("sha256", value, this->_key);
+        return hash_hmac("sha256", value, this->key);
     }
 
     /**
@@ -161,7 +161,7 @@ class Crypt
         var pad, len;
 
         let len = strlen(value),
-            pad = this->_block - (len % this->_block);
+            pad = this->block - (len % this->block);
 
         return value . str_repeat(chr(pad), pad);
     }
@@ -216,7 +216,7 @@ class Crypt
      */
     protected function getIvSize() -> int
     {
-        return openssl_cipher_iv_length(this->_cipher . "-" . this->_mode);
+        return openssl_cipher_iv_length(this->cipher . "-" . this->mode);
     }
 
     /**
@@ -227,7 +227,7 @@ class Crypt
      */
     public function setKey(string key)
     {
-        let this->_key = key;
+        let this->key = key;
     }
 
     /**
@@ -238,7 +238,7 @@ class Crypt
      */
     public function setCipher(string cipher)
     {
-        let this->_cipher = cipher;
+        let this->cipher = cipher;
     }
 
     /**
@@ -249,6 +249,6 @@ class Crypt
      */
     public function setMode(string mode)
     {
-        let this->_mode = mode;
+        let this->mode = mode;
     }
 }

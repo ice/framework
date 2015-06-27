@@ -38,7 +38,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View\\Engine, Sleet, ice, mvc_view_engine_sleet, ice_mvc_view_engine_ce, ice_mvc_view_engine_sleet_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_ce, SL("_compiler"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_ce, SL("compiler"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -47,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 
 
-	RETURN_MEMBER(this_ptr, "_compiler");
+	RETURN_MEMBER(this_ptr, "compiler");
 
 }
 
@@ -81,13 +81,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 
 	ZEPHIR_OBS_VAR(trim);
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_array_isset_string_fetch(&trim, _0, SS("trimPath"), 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(compileDir);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_array_isset_string_fetch(&compileDir, _1, SS("compileDir"), 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(compile);
-	_2 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_array_isset_string_fetch(&compile, _2, SS("compile"), 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
 	ZEPHIR_SINIT_VAR(_4);
@@ -140,8 +140,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		object_init_ex(_10, ice_mvc_view_engine_sleet_compiler_ce);
 		ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 122, this_ptr);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("_compiler"), _10 TSRMLS_CC);
-		_11 = zephir_fetch_nproperty_this(this_ptr, SL("_compiler"), PH_NOISY_CC);
+		zephir_update_property_this(this_ptr, SL("compiler"), _10 TSRMLS_CC);
+		_11 = zephir_fetch_nproperty_this(this_ptr, SL("compiler"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&compiled, _11, "compile", NULL, 0, path);
 		zephir_check_call_status();
 		if (Z_TYPE_P(compile) == IS_STRING) {

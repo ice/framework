@@ -6,9 +6,9 @@ ZEPHIR_INIT_CLASS(Ice_Crypt);
 PHP_METHOD(Ice_Crypt, __construct);
 PHP_METHOD(Ice_Crypt, encrypt);
 PHP_METHOD(Ice_Crypt, generateInputVector);
-PHP_METHOD(Ice_Crypt, _encrypt);
+PHP_METHOD(Ice_Crypt, doEncrypt);
 PHP_METHOD(Ice_Crypt, decrypt);
-PHP_METHOD(Ice_Crypt, _decrypt);
+PHP_METHOD(Ice_Crypt, doDecrypt);
 PHP_METHOD(Ice_Crypt, getJsonPayload);
 PHP_METHOD(Ice_Crypt, hash);
 PHP_METHOD(Ice_Crypt, addPadding);
@@ -28,7 +28,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_encrypt, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt__encrypt, 0, 0, 2)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_doencrypt, 0, 0, 2)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, iv)
 ZEND_END_ARG_INFO()
@@ -37,7 +37,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_decrypt, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt__decrypt, 0, 0, 2)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_dodecrypt, 0, 0, 2)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, iv)
 ZEND_END_ARG_INFO()
@@ -83,9 +83,9 @@ ZEPHIR_INIT_FUNCS(ice_crypt_method_entry) {
 	PHP_ME(Ice_Crypt, __construct, arginfo_ice_crypt___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Crypt, encrypt, arginfo_ice_crypt_encrypt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Crypt, generateInputVector, NULL, ZEND_ACC_PROTECTED)
-	PHP_ME(Ice_Crypt, _encrypt, arginfo_ice_crypt__encrypt, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Crypt, doEncrypt, arginfo_ice_crypt_doencrypt, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, decrypt, arginfo_ice_crypt_decrypt, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Crypt, _decrypt, arginfo_ice_crypt__decrypt, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Crypt, doDecrypt, arginfo_ice_crypt_dodecrypt, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, getJsonPayload, arginfo_ice_crypt_getjsonpayload, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, hash, arginfo_ice_crypt_hash, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, addPadding, arginfo_ice_crypt_addpadding, ZEND_ACC_PROTECTED)

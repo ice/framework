@@ -13,9 +13,9 @@ namespace Ice;
 class Flash
 {
 
-    protected _session;
-    protected _tag;
-    protected _options = [
+    protected session;
+    protected tag;
+    protected options = [
         "session_key": "_flash",
         "success": ["class": "alert alert-success"],
         "info": ["class": "alert alert-info"],
@@ -34,11 +34,11 @@ class Flash
         var di;
 
         let di = Di::$fetch(),
-            this->_session = di->get("session", null, true),
-            this->_tag = di->get("tag", null, true);
+            this->session = di->get("session", null, true),
+            this->tag = di->get("tag", null, true);
 
         if count(options) {
-            let this->_options = options;
+            let this->options = options;
         }
     }
 
@@ -53,7 +53,7 @@ class Flash
     {
         var value;
 
-        if fetch value, this->_options[key] {
+        if fetch value, this->options[key] {
             return value;
         }
         return defaultValue;
@@ -70,7 +70,7 @@ class Flash
         var key, type, message, messages, body;
 
         let key = this->getOption("session_key"),
-            messages = this->_session->get(key),
+            messages = this->session->get(key),
             body = "";
 
         if typeof messages == "array" {
@@ -80,7 +80,7 @@ class Flash
         }
 
         if remove {
-            this->_session->remove(key);
+            this->session->remove(key);
         }
 
         return body;
@@ -98,7 +98,7 @@ class Flash
         var params, body, close, message;
 
         let params = this->getOption(type, []),
-            close = this->_tag->a(["#", "×", "class": "close"]),
+            close = this->tag->a(["#", "×", "class": "close"]),
             body = "";
 
         if typeof messages != "array" {
@@ -107,7 +107,7 @@ class Flash
 
         for message in messages {
             if this->getOption("html") {
-                let body .= this->_tag->tagHtml("div", params, ["content": close . message],  ["content"], "content", true, true);
+                let body .= this->tag->tagHtml("div", params, ["content": close . message],  ["content"], "content", true, true);
             } else {
                 let body .= message . PHP_EOL;
             }
@@ -128,7 +128,7 @@ class Flash
         var key, messages;
 
         let key = this->getOption("session_key"),
-            messages = this->_session->get(key, []);
+            messages = this->session->get(key, []);
 
         if !isset messages[type] {
             let messages[type] = [];
@@ -136,7 +136,7 @@ class Flash
 
         let messages[type][] = message;
 
-        this->_session->set(key, messages);
+        this->session->set(key, messages);
     }
 
     /**

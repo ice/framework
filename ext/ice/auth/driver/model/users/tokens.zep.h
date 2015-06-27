@@ -7,7 +7,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize);
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create);
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired);
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update);
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, _generate);
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate);
 static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_create, 0, 0, 0)
@@ -25,6 +25,6 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_tokens_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, create, arginfo_ice_auth_driver_model_users_tokens_create, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, update, arginfo_ice_auth_driver_model_users_tokens_update, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, _generate, NULL, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, generate, NULL, ZEND_ACC_PROTECTED)
 	PHP_FE_END
 };

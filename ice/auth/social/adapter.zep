@@ -16,14 +16,14 @@ use Ice\Exception;
 abstract class Adapter implements SocialInterface
 {
 
-    protected _accessToken { set, get };
-    protected _clientId;
-    protected _clientSecret;
-    protected _redirectUri;
-    protected _provider { get };
-    protected _socialFieldsMap = [];
-    protected _userInfo;
-    protected _responseType = "code" { get };
+    protected accessToken { set, get };
+    protected clientId;
+    protected clientSecret;
+    protected redirectUri;
+    protected provider { get };
+    protected socialFieldsMap = [];
+    protected userInfo;
+    protected responseType = "code" { get };
 
     const GET = 0;
     const POST = 1;
@@ -41,22 +41,22 @@ abstract class Adapter implements SocialInterface
         if !count(config) {
             let tmp = Di::$fetch()->get("config", null, true)->get("auth");
 
-            if tmp && tmp->has(this->_provider) {
-                let config = tmp->get(this->_provider)->toArray();
+            if tmp && tmp->has(this->provider) {
+                let config = tmp->get(this->provider)->toArray();
             }
         }
 
         if fetch clientId, config["client_id"] {
-            let this->_clientId = clientId;
+            let this->clientId = clientId;
         }
         if fetch clientSecret, config["client_secret"] {
-            let this->_clientSecret = clientSecret;
+            let this->clientSecret = clientSecret;
         }
         if fetch redirectUri, config["redirect_uri"] {
-            let this->_redirectUri = redirectUri;
+            let this->redirectUri = redirectUri;
         }
 
-        if !this->_clientId || !this->_clientSecret || !this->_redirectUri {
+        if !this->clientId || !this->clientSecret || !this->redirectUri {
             throw new Exception(["Option `%s`, `%s`, `%s` are required", "client_id", "client_secret", "redirect_uri"]);
         }
     }
@@ -93,11 +93,11 @@ abstract class Adapter implements SocialInterface
     public function has(string key) -> boolean
     {
         // Unify the key between adapters
-        if isset this->_socialFieldsMap[key] {
-            let key = this->_socialFieldsMap[key];
+        if isset this->socialFieldsMap[key] {
+            let key = this->socialFieldsMap[key];
         }
 
-        return isset this->_userInfo[key];
+        return isset this->userInfo[key];
     }
 
     /**
@@ -113,11 +113,11 @@ abstract class Adapter implements SocialInterface
         var value;
 
         // Unify the key between adapters
-        if isset this->_socialFieldsMap[key] {
-            let key = this->_socialFieldsMap[key];
+        if isset this->socialFieldsMap[key] {
+            let key = this->socialFieldsMap[key];
         }
 
-        if fetch value, this->_userInfo[key] {
+        if fetch value, this->userInfo[key] {
             return value;
         }
 

@@ -13,8 +13,8 @@ namespace Ice;
 class Di extends Arr
 {
 
-    protected static _di;
-    protected _hooks = [];
+    protected static di;
+    protected hooks = [];
 
     /**
      * Di constructor. Sets root path.
@@ -30,7 +30,7 @@ class Di extends Arr
 
         parent::__construct(data);
 
-        let self::_di = this;
+        let self::di = this;
     }
 
     /**
@@ -40,7 +40,7 @@ class Di extends Arr
      */
     public static function $fetch() -> <Di>
     {
-        return self::_di;
+        return self::di;
     }
 
     /**
@@ -53,7 +53,7 @@ class Di extends Arr
     {
         var service;
         let service = this->resolve(value),
-            this->_data[key] = service;
+            this->data[key] = service;
     }
 
     /**
@@ -125,12 +125,12 @@ class Di extends Arr
      */
     public function hook(string name, var callback, int priority = 10)
     {
-        if !isset this->_hooks[name] {
-            let this->_hooks[name] = [[]];
+        if !isset this->hooks[name] {
+            let this->hooks[name] = [[]];
         }
 
         if typeof callback == "callable" {
-            let this->_hooks[name][priority][] = callback;
+            let this->hooks[name][priority][] = callback;
         }
     }
     /**
@@ -143,17 +143,17 @@ class Di extends Arr
     {
         var priority, callback;
 
-        if !isset this->_hooks[name] {
-            let this->_hooks[name] = [[]];
+        if !isset this->hooks[name] {
+            let this->hooks[name] = [[]];
         }
 
-        if !empty this->_hooks[name] {
+        if !empty this->hooks[name] {
             // Sort by priority, low to high, if there's more than one priority
-            //if count(this->_hooks[name]) > 1 {
-            //    ksort(this->_hooks[name]);
+            //if count(this->hooks[name]) > 1 {
+            //    ksort(this->hooks[name]);
             //}
 
-            for priority in this->_hooks[name] {
+            for priority in this->hooks[name] {
                 if !empty priority {
                     for callback in priority {
                         call_user_func_array(callback, args);
@@ -174,9 +174,9 @@ class Di extends Arr
     public function getHooks(string name = null) -> array | null
     {
         if name {
-            return isset this->_hooks[name] ? this->_hooks[name] : null;
+            return isset this->hooks[name] ? this->hooks[name] : null;
         } else {
-            return this->_hooks;
+            return this->hooks;
         }
     }
     /**
@@ -190,11 +190,11 @@ class Di extends Arr
     {
         var key;
 
-        if name && isset this->_hooks[name] {
-            let this->_hooks[name] = [[]];
+        if name && isset this->hooks[name] {
+            let this->hooks[name] = [[]];
         } else {
-            for key in array_keys(this->_hooks) {
-                let this->_hooks[key] = [[]];
+            for key in array_keys(this->hooks) {
+                let this->hooks[key] = [[]];
             }
         }
     }

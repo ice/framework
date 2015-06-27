@@ -15,7 +15,7 @@ use Ice\Di\Access;
 class Console extends Access
 {
 
-    protected _modules { get, set };
+    protected modules { get, set };
 
     const NORMAL = 0;
     const BOLD_BRIGHT = 1;
@@ -32,11 +32,11 @@ class Console extends Access
     {
         var router, response, dispatcher;
 
-        let router = this->_di->get("router", null, true),
+        let router = this->di->get("router", null, true),
             response = router->handle(arguments),
-            dispatcher = this->_di->get("dispatcher", null, true);
+            dispatcher = this->di->get("dispatcher", null, true);
 
-        dispatcher->setModules(this->_modules);
+        dispatcher->setModules(this->modules);
         dispatcher->setModule(response["module"]);
         dispatcher->setHandler(response["handler"]);
         dispatcher->setAction(response["action"]);

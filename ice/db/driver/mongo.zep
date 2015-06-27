@@ -17,11 +17,11 @@ use Ice\Db\DbInterface;
 class Mongo implements DbInterface
 {
 
-    protected _id = "_id" { get };
-    protected _type = "NOSQL" { get };
-    protected _error;
-    protected _client { get };
-    protected _lastInsertId { get };
+    protected id = "_id" { get };
+    protected type = "NOSQL" { get };
+    protected error;
+    protected client { get };
+    protected lastInsertId { get };
 
     /**
      * Instantiate mongo connection.
@@ -32,7 +32,7 @@ class Mongo implements DbInterface
      */
     public function __construct(string dsn, string dbname = NULL, array options = [])
     {
-        let this->_client = new \MongoDB(new \MongoClient(dsn, options), dbname);
+        let this->client = new \MongoDB(new \MongoClient(dsn, options), dbname);
     }
 
     /**
@@ -105,7 +105,7 @@ class Mongo implements DbInterface
             case "object":
                 // Find by MongoId
                 if filters instanceof \MongoId {
-                    let filtered = [this->_id: filters];
+                    let filtered = [this->id: filters];
                 } else {
                     throw new Exception("Object must be an MongoId instance");
                 }
@@ -117,7 +117,7 @@ class Mongo implements DbInterface
             case "integer":
             case "string":
                 // Find by id
-                let filtered = [this->_id: this->getIdValue(filters)];
+                let filtered = [this->id: this->getIdValue(filters)];
             break;
             default:
                 // Find all
@@ -125,7 +125,7 @@ class Mongo implements DbInterface
             break;
         }
 
-        let collection = this->_client->selectcollection(from),
+        let collection = this->client->selectcollection(from),
             result = collection->find(filtered, fields);
 
         if isset options["order"] {
@@ -141,7 +141,7 @@ class Mongo implements DbInterface
                 result = tmp->skip(options["offset"]);
         }
 
-        let this->_error = this->_client->lastError();
+        let this->error = this->client->lastError();
 
         return result;
     }
@@ -156,10 +156,10 @@ class Mongo implements DbInterface
     {
         var collection, status;
 
-        let collection = this->_client->selectcollection(from),
+        let collection = this->client->selectcollection(from),
             status = collection->insert(fields),
-            this->_lastInsertId = fields[this->_id],
-            this->_error = status;
+            this->lastInsertId = fields[this->id],
+            this->error = status;
 
         return status["err"] === null ? true : status;
     }
@@ -175,9 +175,9 @@ class Mongo implements DbInterface
     {
         var collection, status;
 
-        let collection = this->_client->selectcollection(from),
+        let collection = this->client->selectcollection(from),
             status = collection->update(filters, fields),
-            this->_error = status;
+            this->error = status;
 
         return status["err"] === null ? true : status;
     }
@@ -192,9 +192,9 @@ class Mongo implements DbInterface
     {
         var collection, status;
 
-        let collection = this->_client->selectcollection(from),
+        let collection = this->client->selectcollection(from),
             status = collection->remove(filters),
-            this->_error = status;
+            this->error = status;
 
         return status["err"] === null ? true : status;
     }
@@ -208,7 +208,7 @@ class Mongo implements DbInterface
     {
         var error;
 
-        fetch error, this->_error["err"];
+        fetch error, this->error["err"];
 
         return error;
     }

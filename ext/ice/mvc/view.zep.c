@@ -38,21 +38,21 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, View, ice, mvc_view, ice_arr_ce, ice_mvc_view_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_view_ce, SL("_engines"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_ce, SL("engines"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_view_ce, SL("_content"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_ce, SL("content"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_mvc_view_ce, SL("_mainView"), "index", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_view_ce, SL("mainView"), "index", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_mvc_view_ce, SL("_layoutsDir"), "layouts/", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_view_ce, SL("layoutsDir"), "layouts/", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_mvc_view_ce, SL("_partialsDir"), "partials/", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_view_ce, SL("partialsDir"), "partials/", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_view_ce, SL("_viewsDir"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_ce, SL("viewsDir"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_view_ce, SL("_file"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_ce, SL("file"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_bool(ice_mvc_view_ce, SL("_silent"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_bool(ice_mvc_view_ce, SL("silent"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	ice_mvc_view_ce->create_object = zephir_init_properties;
 
@@ -69,7 +69,7 @@ PHP_METHOD(Ice_Mvc_View, setEngines) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_engines"), engines TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("engines"), engines TSRMLS_CC);
 
 }
 
@@ -81,14 +81,14 @@ PHP_METHOD(Ice_Mvc_View, setContent) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_content"), content TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("content"), content TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getContent) {
 
 
-	RETURN_MEMBER(this_ptr, "_content");
+	RETURN_MEMBER(this_ptr, "content");
 
 }
 
@@ -100,14 +100,14 @@ PHP_METHOD(Ice_Mvc_View, setMainView) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_mainView"), mainView TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("mainView"), mainView TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getMainView) {
 
 
-	RETURN_MEMBER(this_ptr, "_mainView");
+	RETURN_MEMBER(this_ptr, "mainView");
 
 }
 
@@ -119,14 +119,14 @@ PHP_METHOD(Ice_Mvc_View, setLayoutsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_layoutsDir"), layoutsDir TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("layoutsDir"), layoutsDir TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getLayoutsDir) {
 
 
-	RETURN_MEMBER(this_ptr, "_layoutsDir");
+	RETURN_MEMBER(this_ptr, "layoutsDir");
 
 }
 
@@ -138,14 +138,14 @@ PHP_METHOD(Ice_Mvc_View, setPartialsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_partialsDir"), partialsDir TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("partialsDir"), partialsDir TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getPartialsDir) {
 
 
-	RETURN_MEMBER(this_ptr, "_partialsDir");
+	RETURN_MEMBER(this_ptr, "partialsDir");
 
 }
 
@@ -157,14 +157,14 @@ PHP_METHOD(Ice_Mvc_View, setViewsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_viewsDir"), viewsDir TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("viewsDir"), viewsDir TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getViewsDir) {
 
 
-	RETURN_MEMBER(this_ptr, "_viewsDir");
+	RETURN_MEMBER(this_ptr, "viewsDir");
 
 }
 
@@ -176,14 +176,14 @@ PHP_METHOD(Ice_Mvc_View, setFile) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_file"), file TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_View, getFile) {
 
 
-	RETURN_MEMBER(this_ptr, "_file");
+	RETURN_MEMBER(this_ptr, "file");
 
 }
 
@@ -195,7 +195,7 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_silent"), silent TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("silent"), silent TSRMLS_CC);
 
 }
 
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 
 
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_this(this_ptr, SL("_file"), file TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
 	}
 	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, this_ptr, "__construct", &_0, 6, data);
 	zephir_check_call_status();
@@ -249,7 +249,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 
 	ZEPHIR_MM_GROW();
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_engines"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("engines"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1);
 		object_init_ex(_1, ice_mvc_view_engine_php_ce);
@@ -257,9 +257,9 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2);
 		ZVAL_STRING(_2, ".phtml", 1);
-		zephir_update_property_array(this_ptr, SL("_engines"), _2, _1 TSRMLS_CC);
+		zephir_update_property_array(this_ptr, SL("engines"), _2, _1 TSRMLS_CC);
 	}
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_engines"), PH_NOISY_CC);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("engines"), PH_NOISY_CC);
 	zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/view.zep", 67);
 	for (
 	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
@@ -275,7 +275,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				zephir_array_fast_append(_7, this_ptr);
 				ZEPHIR_CALL_USER_FUNC_ARRAY(_1, engine, _7);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("engines"), ext, _1 TSRMLS_CC);
 			}
 		} else {
 			if (Z_TYPE_P(engine) == IS_STRING) {
@@ -285,7 +285,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				zephir_array_fast_append(_7, this_ptr);
 				ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_1, engine, _7 TSRMLS_CC);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("_engines"), ext, _1 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("engines"), ext, _1 TSRMLS_CC);
 			} else {
 				ZEPHIR_INIT_NVAR(_1);
 				object_init_ex(_1, ice_exception_ce);
@@ -301,7 +301,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 			}
 		}
 	}
-	RETURN_MM_MEMBER(this_ptr, "_engines");
+	RETURN_MM_MEMBER(this_ptr, "engines");
 
 }
 
@@ -340,9 +340,9 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	ZEPHIR_INIT_VAR(content);
 	ZVAL_NULL(content);
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_this(this_ptr, SL("_file"), file TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
 	}
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 	if (ZEPHIR_IS_EMPTY(_0)) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 89);
 		return;
@@ -356,8 +356,8 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	) {
 		ZEPHIR_GET_HMKEY(ext, _2, _1);
 		ZEPHIR_GET_HVALUE(engine, _3);
-		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_viewsDir"), PH_NOISY_CC);
-		_5 = zephir_fetch_nproperty_this(this_ptr, SL("_file"), PH_NOISY_CC);
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("viewsDir"), PH_NOISY_CC);
+		_5 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(path);
 		ZEPHIR_CONCAT_VVV(path, _4, _5, ext);
 		if ((zephir_file_exists(path TSRMLS_CC) == SUCCESS)) {
@@ -371,7 +371,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 			break;
 		}
 	}
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("_silent"), PH_NOISY_CC);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("silent"), PH_NOISY_CC);
 	_9 = !zephir_is_true(_4);
 	if (_9) {
 		_9 = !exists;
@@ -471,7 +471,7 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_partialsDir"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("partialsDir"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_VV(_1, _0, file);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, _1, data);
@@ -511,9 +511,9 @@ PHP_METHOD(Ice_Mvc_View, layout) {
 
 	if (!(zephir_is_true(file))) {
 		ZEPHIR_OBS_NVAR(file);
-		zephir_read_property_this(&file, this_ptr, SL("_mainView"), PH_NOISY_CC);
+		zephir_read_property_this(&file, this_ptr, SL("mainView"), PH_NOISY_CC);
 	}
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_layoutsDir"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("layoutsDir"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_CONCAT_VV(_1, _0, file);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, _1, data);
@@ -604,11 +604,11 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);
