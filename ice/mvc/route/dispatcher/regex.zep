@@ -7,13 +7,13 @@ use Ice\Mvc\Router;
 abstract class Regex implements DispatcherInterface
 {
 
-    protected _staticRouteMap { set };
-    protected _variableRouteData { set };
+    protected staticRouteMap { set };
+    protected variableRouteData { set };
 
     public function setData(array! data = [])
     {
-        let this->_staticRouteMap = data[0],
-            this->_variableRouteData = data[1];
+        let this->staticRouteMap = data[0],
+            this->variableRouteData = data[1];
     }
 
     protected abstract function dispatchVariableRoute(routeData, uri);
@@ -22,11 +22,11 @@ abstract class Regex implements DispatcherInterface
     {
         var varRouteData, result, allowedMethods, method, routeData;
 
-        if isset this->_staticRouteMap[uri] {
+        if isset this->staticRouteMap[uri] {
             return this->dispatchStaticRoute(httpMethod, uri);
         }
 
-        let varRouteData = this->_variableRouteData;
+        let varRouteData = this->variableRouteData;
 
         if isset varRouteData[httpMethod] {
             let result = this->dispatchVariableRoute(varRouteData[httpMethod], uri);
@@ -69,7 +69,7 @@ abstract class Regex implements DispatcherInterface
     {
         var routes;
 
-        let routes = this->_staticRouteMap[uri];
+        let routes = this->staticRouteMap[uri];
 
         if isset routes[httpMethod] {
             return [Router::FOUND, routes[httpMethod], []];

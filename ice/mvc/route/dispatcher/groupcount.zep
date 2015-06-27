@@ -7,14 +7,14 @@ use Ice\Mvc\Router;
 class GroupCount extends Regex
 {
 
-    protected _staticRouteMap { set };
-    protected _variableRouteData { set };
+    protected staticRouteMap { set };
+    protected variableRouteData { set };
 
     public function __construct(array data = [])
     {
         if count(data) {
-            let this->_staticRouteMap = data[0],
-                this->_variableRouteData = data[1];
+            let this->staticRouteMap = data[0],
+                this->variableRouteData = data[1];
         }
     }
 

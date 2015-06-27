@@ -20,11 +20,11 @@ class Facebook extends Adapter
      */
     public function __construct(config = [])
     {
-        let this->_provider = "facebook";
+        let this->provider = "facebook";
 
         parent::__construct(config);
 
-        let this->_socialFieldsMap = [
+        let this->socialFieldsMap = [
             "socialId":   "id",
             "email":      "email",
             "name":       "name",
@@ -62,27 +62,27 @@ class Facebook extends Adapter
 
         if isset _GET["code"] {
             let params = [
-                "client_id":     this->_clientId,
-                "redirect_uri":  this->_redirectUri,
-                "client_secret": this->_clientSecret,
+                "client_id":     this->clientId,
+                "redirect_uri":  this->redirectUri,
+                "client_secret": this->clientSecret,
                 "code":          _GET["code"]
             ];
 
             // Be able to store access_token in the session (message: This_authorization_code_has_expired_)
-            if !this->_accessToken {
+            if !this->accessToken {
                 parse_str(this->call(parent::GET, "https://graph.facebook.com/oauth/access_token", params, false), tokenInfo);
                 
                 if count(tokenInfo) > 0 && isset tokenInfo["access_token"] {
-                    let this->_accessToken = tokenInfo["access_token"];
+                    let this->accessToken = tokenInfo["access_token"];
                 }                
             }
 
-            if this->_accessToken {
-                let params = ["access_token": this->_accessToken],
+            if this->accessToken {
+                let params = ["access_token": this->accessToken],
                     userInfo = this->call(parent::GET, "https://graph.facebook.com/me", params);
 
                 if isset userInfo["id"] {
-                    let this->_userInfo = userInfo,
+                    let this->userInfo = userInfo,
                         result = true;
                 }
             }
@@ -100,8 +100,8 @@ class Facebook extends Adapter
         return [
             "auth_url":    "https://www.facebook.com/dialog/oauth",
             "auth_params": [
-                "client_id":     this->_clientId,
-                "redirect_uri":  this->_redirectUri,
+                "client_id":     this->clientId,
+                "redirect_uri":  this->redirectUri,
                 "response_type": "code",
                 "scope":         "email,user_birthday"
             ]

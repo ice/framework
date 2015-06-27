@@ -15,7 +15,7 @@ use Ice\Db\DbInterface;
 class Db
 {
 
-    protected _driver { get };
+    protected driver { get };
 
     /**
      * Db constructor.
@@ -24,13 +24,13 @@ class Db
      */
     public function __construct(<DbInterface> driver)
     {
-        let this->_driver = driver;
+        let this->driver = driver;
     }
 
     /**
      * Magic call, call driver's method.
      */
     public function __call(string method, arguments = null) {
-        return call_user_func_array([this->_driver, method], arguments);
+        return call_user_func_array([this->driver, method], arguments);
     }
 }

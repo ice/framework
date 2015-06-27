@@ -30,9 +30,9 @@ namespace Ice;
 class Dump
 {
 
-    protected _detailed = false { get, set };
-    protected _methods = [];
-    protected _styles = [];
+    protected detailed = false { get, set };
+    protected methods = [];
+    protected styles = [];
 
     /**
      * Dump constructor
@@ -46,7 +46,7 @@ class Dump
             throw new Exception("The styles must be an array");
         }
         this->setStyles(styles);
-        let this->_detailed = detailed;
+        let this->detailed = detailed;
     }
 
 
@@ -76,7 +76,7 @@ class Dump
     {
         var style;
 
-        if fetch style, this->_styles[type] {
+        if fetch style, this->styles[type] {
             return style;
         } else {
             return "color:gray";
@@ -112,8 +112,8 @@ class Dump
             "str": "color:teal"
         ];
 
-        let this->_styles = array_merge(defaultStyles, styles);
-        return this->_styles;
+        let this->styles = array_merge(defaultStyles, styles);
+        return this->styles;
     }
 
     /**
@@ -176,7 +176,7 @@ class Dump
             }
             let output .= " (\n";
 
-            if !this->_detailed {
+            if !this->detailed {
                 for key, value in get_object_vars(variable) {
                     let output .= str_repeat(space, tab) . strtr("-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = ", [":style": this->getStyle("obj"), ":key": key, ":type": "public"]);
                     let output .= this->output(value, "", tab + 1) . "\n";
@@ -212,12 +212,12 @@ class Dump
             let attr = get_class_methods(variable);
             let output .= str_repeat(space, tab) . strtr(":class <b style=':style'>methods</b>: (<span style=':style'>:count</span>) (\n", [":style": this->getStyle("obj"), ":class": className, ":count": count(attr)]);
 
-            if (in_array(className, this->_methods)) {
+            if (in_array(className, this->methods)) {
                 let output .= str_repeat(space, tab) . "[already listed]\n";
             } else {
                 for value in attr {
-                    if !in_array(className, this->_methods) {
-                        let this->_methods[] = className;
+                    if !in_array(className, this->methods) {
+                        let this->methods[] = className;
                     }
                     if value == "__construct" {
                         let output .= str_repeat(space, tab + 1) . strtr("-><span style=':style'>:method</span>(); [<b style=':style'>constructor</b>]\n", [":style": this->getStyle("obj"), ":method": value]);

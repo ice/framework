@@ -24,9 +24,9 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_GroupCount) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\Route\\Dispatcher, GroupCount, ice, mvc_route_dispatcher_groupcount, ice_mvc_route_dispatcher_regex_ce, ice_mvc_route_dispatcher_groupcount_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_route_dispatcher_groupcount_ce, SL("_staticRouteMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_route_dispatcher_groupcount_ce, SL("staticRouteMap"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_route_dispatcher_groupcount_ce, SL("_variableRouteData"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_route_dispatcher_groupcount_ce, SL("variableRouteData"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -40,7 +40,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_staticRouteMap"), staticRouteMap TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("staticRouteMap"), staticRouteMap TSRMLS_CC);
 
 }
 
@@ -52,7 +52,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_variableRouteData"), variableRouteData TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("variableRouteData"), variableRouteData TSRMLS_CC);
 
 }
 
@@ -74,9 +74,9 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 	if (zephir_fast_count_int(data TSRMLS_CC)) {
 		zephir_array_fetch_long(&_0, data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 16 TSRMLS_CC);
-		zephir_update_property_this(this_ptr, SL("_staticRouteMap"), _0 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("staticRouteMap"), _0 TSRMLS_CC);
 		zephir_array_fetch_long(&_1, data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 17 TSRMLS_CC);
-		zephir_update_property_this(this_ptr, SL("_variableRouteData"), _1 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("variableRouteData"), _1 TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 

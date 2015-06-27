@@ -15,7 +15,7 @@ use Ice\Validation;
 abstract class Validator
 {
     
-    protected _options = [];
+    protected options = [];
 
     const ALL = 0;
     const NUMERIC = 1;
@@ -28,7 +28,7 @@ abstract class Validator
      */
     public function __construct(array options = [])
     {
-        let this->_options = options;
+        let this->options = options;
     }
 
     /**
@@ -47,7 +47,7 @@ abstract class Validator
      */
     public function has(var key) -> boolean
     {
-        return isset this->_options[key];
+        return isset this->options[key];
     }
 
     /**
@@ -61,7 +61,7 @@ abstract class Validator
     {
         var value;
 
-        if fetch value, this->_options[key] {
+        if fetch value, this->options[key] {
             return value;
         }
 
@@ -77,7 +77,7 @@ abstract class Validator
      */
     public function set(var key, var value)
     {
-        let this->_options[key] = value;
+        let this->options[key] = value;
     }
 
     /**
@@ -90,7 +90,7 @@ abstract class Validator
     {
         var key, value;
 
-        for key, value in this->_options {
+        for key, value in this->options {
             switch keys {
                 case self::NUMERIC: 
                     if typeof key == "integer" {

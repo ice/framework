@@ -34,18 +34,18 @@ use Ice\Validation\Validator;
 class Validation
 {
 
-    protected _di { get };
-    protected _data = [];
-    protected _rules = [] { set, get };
-    protected _validators = [];
-    protected _filters = [] { set };
-    protected _labels = [] { set };
-    protected _messages = [];
-    protected _valid = true;
-    protected _aliases = [] { set };
-    protected _translate = true { set, get };
-    protected _humanLabels = false { set };
-    protected _defaultMessages = [
+    protected di { get };
+    protected data = [];
+    protected rules = [] { set, get };
+    protected validators = [];
+    protected filters = [] { set };
+    protected labels = [] { set };
+    protected messages = [];
+    protected valid = true;
+    protected aliases = [] { set };
+    protected translate = true { set, get };
+    protected humanLabels = false { set };
+    protected defaultMessages = [
         "alnum": "Field :field must contain only letters and numbers",
         "alpha": "Field :field must contain only letters",
         "between": "Field :field must be within the range of :min to :max",
@@ -78,8 +78,8 @@ class Validation
      */
     public function __construct(array data = [])
     {
-        let this->_di = Di::$fetch(),
-            this->_data = data;
+        let this->di = Di::$fetch(),
+            this->data = data;
     }
 
     /**
@@ -94,7 +94,7 @@ class Validation
     {
         var rule;
 
-        if !fetch rule, this->_aliases[alias] {
+        if !fetch rule, this->aliases[alias] {
             let rule = "Ice\\Validation\\Validator\\" . camelize(alias);
 
             if !class_exists(rule) {
@@ -102,7 +102,7 @@ class Validation
             }
         }
 
-        let this->_rules[field][] = <Validator> create_instance_params(rule, [options]);
+        let this->rules[field][] = <Validator> create_instance_params(rule, [options]);
     }
 
     /**
@@ -132,7 +132,7 @@ class Validation
 
         switch typeof validators {
             case "object":
-                let this->_rules[field][] = <Validator> validators;
+                let this->rules[field][] = <Validator> validators;
             break;
             case "array":
                 for validator, options in validators {
@@ -206,24 +206,24 @@ class Validation
         var field, rules, rule;
 
         if count(data) {
-            let this->_data = data;
+            let this->data = data;
         }
 
         // Validate the rules
-        for field, rules in this->_rules {
+        for field, rules in this->rules {
             for rule in rules {
                 if rule->validate(this, field)  === false {
-                    let this->_valid = false;
+                    let this->valid = false;
                 }
             }
         }
 
         // Double check
-        if count(this->_messages) {
-            let this->_valid = false;
+        if count(this->messages) {
+            let this->valid = false;
         }
 
-        return this->_valid;
+        return this->valid;
     }
 
     /**
@@ -233,7 +233,7 @@ class Validation
      */
     public function valid() -> boolean
     {
-        return this->_valid;
+        return this->valid;
     }
 
     /**
@@ -244,7 +244,7 @@ class Validation
      */
     public function hasValue(string! field) -> boolean
     {
-        return isset this->_data[field];
+        return isset this->data[field];
     }
 
     /**
@@ -258,11 +258,11 @@ class Validation
     {
         var value, filters;
 
-        fetch value, this->_data[field];
+        fetch value, this->data[field];
 
         // Filter the value
-        if filtered && this->_di->has("filter") && fetch filters, this->_filters[field] {
-            let value = this->_di->get("filter")->sanitize(value, filters);
+        if filtered && this->di->has("filter") && fetch filters, this->filters[field] {
+            let value = this->di->get("filter")->sanitize(value, filters);
         }
 
         return value;
@@ -279,10 +279,10 @@ class Validation
     {
         var label;
 
-        if !fetch label, this->_labels[field] {
+        if !fetch label, this->labels[field] {
             // Humanize the field
-            if this->_humanLabels && this->_di->has("filter") {
-                let label = this->_di->get("filter")->sanitize(field, "human");
+            if this->humanLabels && this->di->has("filter") {
+                let label = this->di->get("filter")->sanitize(field, "human");
             } else {
                 let label = field;
             }
@@ -299,7 +299,7 @@ class Validation
      */
     public function setDefaultMessages(array messages = []) -> void
     {
-        let this->_defaultMessages = array_merge(this->_defaultMessages, messages);
+        let this->defaultMessages = array_merge(this->defaultMessages, messages);
     }
 
     /**
@@ -312,8 +312,8 @@ class Validation
     {
         var message;
 
-        if !fetch message, this->_defaultMessages[type] {
-            let message = this->_defaultMessages["default"];
+        if !fetch message, this->defaultMessages[type] {
+            let message = this->defaultMessages["default"];
         }
 
         return message;
@@ -328,7 +328,7 @@ class Validation
      */
     public function addMessage(string! field, string message) -> void
     {
-        let this->_messages[field][] = message;
+        let this->messages[field][] = message;
     }
 
     /**
@@ -338,6 +338,6 @@ class Validation
      */
     public function getMessages() -> <Arr>
     {
-        return new Arr(this->_messages);
+        return new Arr(this->messages);
     }
 }

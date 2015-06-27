@@ -31,7 +31,7 @@ class Model extends Driver implements DriverInterface
     {
         var token, user, userRoles, roles, role;
 
-        let token = this->_cookies->get("auth_autologin");
+        let token = this->cookies->get("auth_autologin");
 
         if token {
             // Find the token
@@ -41,7 +41,7 @@ class Model extends Driver implements DriverInterface
                 // Get user for the token
                 let user = token->{"getUser"}();
 
-                if user && token->{"useragent"} === sha1(this->_request->getUserAgent()) {
+                if user && token->{"useragent"} === sha1(this->request->getUserAgent()) {
                     // Get user's roles
                     let userRoles = user->{"getRoles"}(),
                         roles = [];
@@ -56,7 +56,7 @@ class Model extends Driver implements DriverInterface
                         token->update();
 
                         // Set the new token
-                        this->_cookies->set("auth_autologin", token->{"token"}, token->{"expires"});
+                        this->cookies->set("auth_autologin", token->{"token"}, token->{"expires"});
 
                         // Complete the login with the found data
                         this->completeLogin(user, roles);
@@ -99,28 +99,28 @@ class Model extends Driver implements DriverInterface
     {
         var data;
 
-        if !this->_user {
+        if !this->user {
             let data = parent::getUser(defaultValue);
 
             if data === defaultValue {
                 // User isn't currently logged in
-                let this->_user = defaultValue;
+                let this->user = defaultValue;
             } elseif typeof data == "string" {
                 var user;
 
                 let user = unserialize(data);
 
                 if user instanceof Users {
-                    let this->_user = user;
+                    let this->user = user;
                 }
             }
         }
 
-        if !this->_user {
-            let this->_user = this->autoLogin();
+        if !this->user {
+            let this->user = this->autoLogin();
         }
 
-        return this->_user;
+        return this->user;
     }
 
     /**
@@ -184,13 +184,13 @@ class Model extends Driver implements DriverInterface
                         let lifetime = this->getOption("lifetime"),
                             token = new Tokens(),
                             token->{"user_id"} = user->getId(),
-                            token->{"useragent"} = sha1(this->_request->getUserAgent()),
+                            token->{"useragent"} = sha1(this->request->getUserAgent()),
                             token->{"created"} = time(),
                             token->{"expires"} = time() + lifetime;
 
                         if token->create() === true {
                             // Set the autologin cookie
-                            this->_cookies->set("auth_autologin", token->get("token"), token->get("expires"));
+                            this->cookies->set("auth_autologin", token->get("token"), token->get("expires"));
                         }
                     }
 
@@ -242,13 +242,13 @@ class Model extends Driver implements DriverInterface
                         let lifetime = this->getOption("lifetime"),
                             token = new Tokens(),
                             token->{"user_id"} = user->getId(),
-                            token->{"useragent"} = sha1(this->_request->getUserAgent()),
+                            token->{"useragent"} = sha1(this->request->getUserAgent()),
                             token->{"created"} = time(),
                             token->{"expires"} = time() + lifetime;
 
                         if token->create() === true {
                             // Set the autologin cookie
-                            this->_cookies->set("auth_autologin", token->get("token"), token->get("expires"));
+                            this->cookies->set("auth_autologin", token->get("token"), token->get("expires"));
                         }
                     }
 
@@ -276,11 +276,11 @@ class Model extends Driver implements DriverInterface
     {
         var token, tokens, user;
 
-        let token = this->_cookies->get("auth_autologin");
+        let token = this->cookies->get("auth_autologin");
 
         if token {
             // Delete the autologin cookie to prevent re-login
-            this->_cookies->remove("auth_autologin");
+            this->cookies->remove("auth_autologin");
 
             // Clear the autologin token from the database
             let token = Tokens::findOne(["token": token]);
@@ -332,7 +332,7 @@ class Model extends Driver implements DriverInterface
 
                 parent::completeLogin(serialize(user), roles);
 
-                let this->_user = user;
+                let this->user = user;
             }
         }
 

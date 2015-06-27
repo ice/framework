@@ -19,12 +19,12 @@ use Ice\Http\Response\ResponseInterface;
 class Response implements ResponseInterface
 {
 
-    protected _di;
-    protected _protocolVersion = "HTTP/1.1" { get, set };
-    protected _status = 200 { get, set };
-    protected _headers;
-    protected _body { get, set };
-    protected _messages = [
+    protected di;
+    protected protocolVersion = "HTTP/1.1" { get, set };
+    protected status = 200 { get, set };
+    protected headers;
+    protected body { get, set };
+    protected messages = [
         //Informational 1xx
         100: "Continue",
         101: "Switching Protocols",
@@ -100,13 +100,13 @@ class Response implements ResponseInterface
      */
     public function __construct(string body = "", int status = 200)
     {
-        let this->_di = Di::$fetch();
+        let this->di = Di::$fetch();
 
-        let this->_headers = new Headers(),
-            this->_status = status,
-            this->_body = body;
+        let this->headers = new Headers(),
+            this->status = status,
+            this->body = body;
 
-        this->_headers->set("Content-Type", "text/html");
+        this->headers->set("Content-Type", "text/html");
     }
 
     /**
@@ -116,7 +116,7 @@ class Response implements ResponseInterface
      */
     public function getHeaders() -> array
     {
-        return this->_headers->all();
+        return this->headers->all();
     }
 
     /**
@@ -127,7 +127,7 @@ class Response implements ResponseInterface
      */
     public function hasHeader(string name) -> boolean
     {
-        return this->_headers->has(name);
+        return this->headers->has(name);
     }
 
     /**
@@ -138,7 +138,7 @@ class Response implements ResponseInterface
      */
     public function getHeader(string name) -> string
     {
-        return this->_headers->get(name);
+        return this->headers->get(name);
     }
 
     /**
@@ -149,7 +149,7 @@ class Response implements ResponseInterface
      */
     public function setHeader(string name, string value) -> void
     {
-        this->_headers->set(name, value);
+        this->headers->set(name, value);
     }
 
     /**
@@ -159,7 +159,7 @@ class Response implements ResponseInterface
      */
     public function setHeaders(array headers) -> void
     {
-        this->_headers->replace(headers);
+        this->headers->replace(headers);
     }
 
     /**
@@ -169,7 +169,7 @@ class Response implements ResponseInterface
      */
     public function removeHeader(string name) -> void
     {
-        this->_headers->remove(name);
+        this->headers->remove(name);
     }
 
     /**
@@ -180,7 +180,7 @@ class Response implements ResponseInterface
      */
     public function setContent(string contet) -> object
     {
-        let this->_body = contet;
+        let this->body = contet;
 
         return this;
     }
@@ -198,9 +198,9 @@ class Response implements ResponseInterface
 
         let sendBody = true;
 
-        if in_array(this->_status, [204, 304]) {
-            this->_headers->remove("Content-Type");
-            this->_headers->remove("Content-Length");
+        if in_array(this->status, [204, 304]) {
+            this->headers->remove("Content-Type");
+            this->headers->remove("Content-Length");
             let sendBody = false;
         }
 
@@ -211,7 +211,7 @@ class Response implements ResponseInterface
 
         // Truncate body if it should not be sent with response
         if !sendBody {
-            let this->_body = "";
+            let this->body = "";
         }
 
         return this;
@@ -226,12 +226,12 @@ class Response implements ResponseInterface
     {
         if !headers_sent() {
             if strpos(PHP_SAPI, "cgi") === 0 {
-                header(sprintf("Status: %d %s", this->_status, this->_messages[this->_status]));
+                header(sprintf("Status: %d %s", this->status, this->messages[this->status]));
             } else {
-                header(sprintf("%s %d %s", this->getProtocolVersion(), this->_status, this->_messages[this->_status]));
+                header(sprintf("%s %d %s", this->getProtocolVersion(), this->status, this->messages[this->status]));
             }
 
-            this->_headers->send();
+            this->headers->send();
         }
 
         return this;
@@ -251,10 +251,10 @@ class Response implements ResponseInterface
         this->setStatus(status);
 
         if !external {
-            let url = this->_di->get("url", null, true),
+            let url = this->di->get("url", null, true),
                 location = url->get(location);
         }
-        this->_headers->set("Location", location);
+        this->headers->set("Location", location);
     }
 
     /**
@@ -264,7 +264,7 @@ class Response implements ResponseInterface
      */
     public function isEmpty() -> boolean
     {
-        return in_array(this->_status, [201, 204, 304]);
+        return in_array(this->status, [201, 204, 304]);
     }
 
     /**
@@ -274,7 +274,7 @@ class Response implements ResponseInterface
      */
     public function isInformational() -> boolean
     {
-        return this->_status >= 100 && this->_status < 200;
+        return this->status >= 100 && this->status < 200;
     }
 
     /**
@@ -284,7 +284,7 @@ class Response implements ResponseInterface
      */
     public function isOk() -> boolean
     {
-        return this->_status === 200;
+        return this->status === 200;
     }
 
     /**
@@ -294,7 +294,7 @@ class Response implements ResponseInterface
      */
     public function isSuccessful() -> boolean
     {
-        return this->_status >= 200 && this->_status < 300;
+        return this->status >= 200 && this->status < 300;
     }
 
     /**
@@ -304,7 +304,7 @@ class Response implements ResponseInterface
      */
     public function isRedirect() -> boolean
     {
-        return in_array(this->_status, [301, 302, 303, 307]);
+        return in_array(this->status, [301, 302, 303, 307]);
     }
 
     /**
@@ -314,7 +314,7 @@ class Response implements ResponseInterface
      */
     public function isRedirection() -> boolean
     {
-        return this->_status >= 300 && this->_status < 400;
+        return this->status >= 300 && this->status < 400;
     }
 
     /**
@@ -324,7 +324,7 @@ class Response implements ResponseInterface
      */
     public function isForbidden() -> boolean
     {
-        return this->_status === 403;
+        return this->status === 403;
     }
 
     /**
@@ -334,7 +334,7 @@ class Response implements ResponseInterface
      */
     public function isNotFound() -> boolean
     {
-        return this->_status === 404;
+        return this->status === 404;
     }
 
     /**
@@ -344,7 +344,7 @@ class Response implements ResponseInterface
      */
     public function isClientError() -> boolean
     {
-        return this->_status >= 400 && this->_status < 500;
+        return this->status >= 400 && this->status < 500;
     }
 
     /**
@@ -354,7 +354,7 @@ class Response implements ResponseInterface
      */
     public function isServerError() -> boolean
     {
-        return this->_status >= 500 && this->_status < 600;
+        return this->status >= 500 && this->status < 600;
     }
 
     /**
@@ -367,7 +367,7 @@ class Response implements ResponseInterface
     {
         var message;
 
-        fetch message, this->_messages[code];
+        fetch message, this->messages[code];
 
         return message ? message : "";
     }
@@ -379,6 +379,6 @@ class Response implements ResponseInterface
      */
     public function __toString() -> string
     {
-        return this->_body;
+        return this->body;
     }
 }

@@ -16,14 +16,14 @@ use Ice\Exception;
 class Router
 {
 
-    protected _defaultModule = "shell" { get, set };
-    protected _defaultHandler = "main" { get, set };
-    protected _defaultAction = "main" { get, set };
+    protected defaultModule = "shell" { get, set };
+    protected defaultHandler = "main" { get, set };
+    protected defaultAction = "main" { get, set };
 
-    protected _module { get };
-    protected _handler { get };
-    protected _action { get };
-    protected _params = [] { get };
+    protected module { get };
+    protected handler { get };
+    protected action { get };
+    protected params = [] { get };
 
     /**
      * Set defaults values
@@ -35,15 +35,15 @@ class Router
         var module, handler, action;
 
         if fetch module, defaults["module"] {
-            let this->_defaultModule = module;
+            let this->defaultModule = module;
         }
 
         if fetch handler, defaults["handler"] {
-            let this->_defaultHandler = handler;
+            let this->defaultHandler = handler;
         }
 
         if fetch action, defaults["action"] {
-            let this->_defaultAction = action;
+            let this->defaultAction = action;
         }
     }
 
@@ -66,9 +66,9 @@ class Router
         }
 
         // Set the defaults
-        let this->_module = this->_defaultModule,
-            this->_handler = this->_defaultHandler,
-            this->_action = this->_defaultAction,
+        let this->module = this->defaultModule,
+            this->handler = this->defaultHandler,
+            this->action = this->defaultAction,
             params = [];
 
         // Skip the first option, it is always the file executed
@@ -95,27 +95,27 @@ class Router
         }
 
         if isset params["module"] && params["module"] {
-            let this->_module = params["module"];
+            let this->module = params["module"];
 
             unset params["module"];
         }
 
         if isset params["handler"] && params["handler"] {
-            let this->_handler = params["handler"];
+            let this->handler = params["handler"];
             
             unset params["handler"];
         }
 
         if isset params["action"] && params["action"] {
-            let this->_action = params["action"];
+            let this->action = params["action"];
             
             unset params["action"];
         }
 
         if count(params) {
-            let this->_params = params;
+            let this->params = params;
         }
 
-        return ["module": this->_module, "handler": this->_handler, "action": this->_action, "params": this->_params];
+        return ["module": this->module, "handler": this->handler, "action": this->action, "params": this->params];
     }
 }

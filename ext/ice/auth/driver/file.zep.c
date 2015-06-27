@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_File) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver, File, ice, auth_driver_file, ice_auth_driver_ce, ice_auth_driver_file_method_entry, 0);
 
-	zend_declare_property_null(ice_auth_driver_file_ce, SL("_users"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_auth_driver_file_ce, SL("users"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	ice_auth_driver_file_ce->create_object = zephir_init_properties;
 
@@ -50,7 +50,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_users"), users TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("users"), users TSRMLS_CC);
 
 }
 
@@ -74,19 +74,19 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_user"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 34, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(username, defaultValue)) {
-			zephir_update_property_this(this_ptr, SL("_user"), defaultValue TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("user"), defaultValue TSRMLS_CC);
 		} else {
-			_2 = zephir_fetch_nproperty_this(this_ptr, SL("_users"), PH_NOISY_CC);
+			_2 = zephir_fetch_nproperty_this(this_ptr, SL("users"), PH_NOISY_CC);
 			zephir_array_isset_fetch(&user, _2, username, 1 TSRMLS_CC);
-			zephir_update_property_this(this_ptr, SL("_user"), user TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("user"), user TSRMLS_CC);
 		}
 	}
-	RETURN_MM_MEMBER(this_ptr, "_user");
+	RETURN_MM_MEMBER(this_ptr, "user");
 
 }
 
@@ -156,7 +156,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	_0 = zephir_is_true(username);
 	if (_0) {
 		ZEPHIR_OBS_VAR(user);
-		_1 = zephir_fetch_nproperty_this(this_ptr, SL("_users"), PH_NOISY_CC);
+		_1 = zephir_fetch_nproperty_this(this_ptr, SL("users"), PH_NOISY_CC);
 		_0 = zephir_array_isset_fetch(&user, _1, username, 0 TSRMLS_CC);
 	}
 	if (_0) {
@@ -186,7 +186,7 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			zephir_create_array(_1, 5, 0 TSRMLS_CC);
@@ -195,7 +195,7 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 			add_assoc_stringl_ex(_1, SS("session_key"), SL("auth_user"), 1);
 			add_assoc_stringl_ex(_1, SS("session_roles"), SL("auth_user_roles"), 1);
 			add_assoc_long_ex(_1, SS("lifetime"), 1209600);
-			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("options"), _1 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

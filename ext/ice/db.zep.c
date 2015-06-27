@@ -32,7 +32,7 @@ ZEPHIR_INIT_CLASS(Ice_Db) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Db, ice, db, ice_db_method_entry, 0);
 
-	zend_declare_property_null(ice_db_ce, SL("_driver"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_db_ce, SL("driver"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -41,7 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Db) {
 PHP_METHOD(Ice_Db, getDriver) {
 
 
-	RETURN_MEMBER(this_ptr, "_driver");
+	RETURN_MEMBER(this_ptr, "driver");
 
 }
 
@@ -58,7 +58,7 @@ PHP_METHOD(Ice_Db, __construct) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_driver"), driver TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
 
 }
 
@@ -84,7 +84,7 @@ PHP_METHOD(Ice_Db, __call) {
 	ZEPHIR_INIT_VAR(_0);
 	zephir_create_array(_0, 2, 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(_1);
-	zephir_read_property_this(&_1, this_ptr, SL("_driver"), PH_NOISY_CC);
+	zephir_read_property_this(&_1, this_ptr, SL("driver"), PH_NOISY_CC);
 	zephir_array_fast_append(_0, _1);
 	zephir_array_fast_append(_0, method);
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, _0, arguments);

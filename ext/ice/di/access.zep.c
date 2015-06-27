@@ -32,7 +32,7 @@ ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Di, Access, ice, di_access, ice_di_access_method_entry, 0);
 
-	zend_declare_property_null(ice_di_access_ce, SL("_di"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_di_access_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -60,9 +60,9 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 	if (!(zephir_is_true(di))) {
 		ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("_di"), _0 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
 	} else {
-		zephir_update_property_this(this_ptr, SL("_di"), di TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -74,7 +74,7 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 PHP_METHOD(Ice_Di_Access, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *property_param = NULL, *di, *service = NULL, *_0 = NULL;
+	zval *property_param = NULL, *di = NULL, *service = NULL, *_0, *_1 = NULL;
 	zval *property = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -83,15 +83,15 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	zephir_get_strval(property, property_param);
 
 
-	ZEPHIR_OBS_VAR(di);
-	zephir_read_property_this(&di, this_ptr, SL("_di"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_CPY_WRT(di, _0);
 	if (ZEPHIR_IS_STRING(property, "di")) {
 		zephir_update_property_zval(this_ptr, SL("di"), di TSRMLS_CC);
 		RETURN_CCTOR(di);
 	}
-	ZEPHIR_CALL_METHOD(&_0, di, "has", NULL, 0, property);
+	ZEPHIR_CALL_METHOD(&_1, di, "has", NULL, 0, property);
 	zephir_check_call_status();
-	if (zephir_is_true(_0)) {
+	if (zephir_is_true(_1)) {
 		ZEPHIR_CALL_METHOD(&service, di, "get", NULL, 0, property);
 		zephir_check_call_status();
 		zephir_update_property_zval_zval(this_ptr, property, service TSRMLS_CC);

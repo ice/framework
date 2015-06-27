@@ -18,15 +18,15 @@ use Ice\Mvc\View\Engine\EngineInterface;
 abstract class Engine extends Access implements EngineInterface
 {
     
-    protected _view;
-    protected _options { set };
+    protected view;
+    protected options { set };
 
     /**
      * Engine constructor. Set the view and di object.
      */
     public function __construct(<ViewInterface> view, <Di> di = null)
     {
-        let this->_view = view;
+        let this->view = view;
         parent::__construct(di);
     }
 
@@ -37,7 +37,7 @@ abstract class Engine extends Access implements EngineInterface
      */
     public function getContent() -> string
     {
-        return this->_view->getContent();
+        return this->view->getContent();
     }
 
     /**
@@ -48,7 +48,7 @@ abstract class Engine extends Access implements EngineInterface
      */
     public function load(string! path, array data = []) -> string
     {
-        return this->_view->load(path, data);
+        return this->view->load(path, data);
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class Engine extends Access implements EngineInterface
      */
     public function partial(string! path, array data = []) -> string
     {
-        return this->_view->partial(path, data);
+        return this->view->partial(path, data);
     }
 
     /**

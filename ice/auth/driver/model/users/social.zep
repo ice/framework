@@ -15,7 +15,7 @@ use Ice\Mvc\Model;
 class Social extends Model
 {
 
-    protected _from = "user_social";
+    protected from = "user_social";
 
     /**
      * Initialize relations.

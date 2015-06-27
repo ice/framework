@@ -18,14 +18,14 @@ use Ice\Mvc\View\ViewInterface;
 class View extends Arr implements ViewInterface
 {
 
-    protected _engines { set };
-    protected _content { set, get };
-    protected _mainView = "index" { set, get };
-    protected _layoutsDir = "layouts/" { set, get };
-    protected _partialsDir = "partials/" { set, get };
-    protected _viewsDir { set, get };
-    protected _file { set, get };
-    protected _silent = false { set };
+    protected engines { set };
+    protected content { set, get };
+    protected mainView = "index" { set, get };
+    protected layoutsDir = "layouts/" { set, get };
+    protected partialsDir = "partials/" { set, get };
+    protected viewsDir { set, get };
+    protected file { set, get };
+    protected silent = false { set };
 
     /**
      * View constructor. Set the file and vars.
@@ -36,7 +36,7 @@ class View extends Arr implements ViewInterface
     public function __construct(file = null, array data = [])
     {
         if file != null {
-            let this->_file = file;
+            let this->file = file;
         }
         parent::__construct(data);
     }
@@ -48,23 +48,23 @@ class View extends Arr implements ViewInterface
     {
         var ext, engine;
 
-        if !this->_engines {
-            let this->_engines[".phtml"] = new Php(this);
+        if !this->engines {
+            let this->engines[".phtml"] = new Php(this);
         }
-        for ext, engine in this->_engines {
+        for ext, engine in this->engines {
             if typeof engine == "object" {
                 if engine instanceof \Closure {
-                    let this->_engines[ext] = call_user_func_array(engine, [this]);
+                    let this->engines[ext] = call_user_func_array(engine, [this]);
                 }
             } else {
                 if typeof engine == "string" {
-                    let this->_engines[ext] = create_instance_params(engine, [this]);
+                    let this->engines[ext] = create_instance_params(engine, [this]);
                 } else {
                     throw new Exception(sprintf("Invalid template engine registration for '%s' extension", ext));
                 }
             }
         }
-        return this->_engines;
+        return this->engines;
     }
 
     /**
@@ -82,17 +82,17 @@ class View extends Arr implements ViewInterface
             content = null;
 
         if file !== null {
-            let this->_file = file;
+            let this->file = file;
         }
 
-        if empty this->_file {
+        if empty this->file {
             throw new Exception("You must set the file to use within your view before rendering");
         }
 
         let engines = this->getEngines();
 
         for ext, engine in engines {
-            let path = this->_viewsDir . this->_file . ext;
+            let path = this->viewsDir . this->file . ext;
             if file_exists(path) {
                 let exists = true;
                 this->replace(data);
@@ -101,7 +101,7 @@ class View extends Arr implements ViewInterface
             }
         }
 
-        if !this->_silent && !exists {
+        if !this->silent && !exists {
             throw new Exception(sprintf("The requested view %s could not be found", path));
         }
         return content;
@@ -128,7 +128,7 @@ class View extends Arr implements ViewInterface
      */
     public function partial(string! file, array data = [])
     {
-        return this->render(this->_partialsDir . file, data);
+        return this->render(this->partialsDir . file, data);
     }
 
     /**
@@ -141,9 +141,9 @@ class View extends Arr implements ViewInterface
     public function layout(var file = null, array data = [])
     {
         if !file {
-            let file = this->_mainView;
+            let file = this->mainView;
         }
-        return this->render(this->_layoutsDir . file, data);
+        return this->render(this->layoutsDir . file, data);
     }
 
     /**

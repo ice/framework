@@ -33,9 +33,9 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, App, ice, mvc_app, ice_di_access_ce, ice_mvc_app_method_entry, 0);
 
-	zend_declare_property_bool(ice_mvc_app_ce, SL("_autoRender"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_bool(ice_mvc_app_ce, SL("autoRender"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_mvc_app_ce, SL("_modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_app_ce, SL("modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -44,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
 PHP_METHOD(Ice_Mvc_App, getAutoRender) {
 
 
-	RETURN_MEMBER(this_ptr, "_autoRender");
+	RETURN_MEMBER(this_ptr, "autoRender");
 
 }
 
@@ -56,14 +56,14 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_autoRender"), autoRender TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("autoRender"), autoRender TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_App, getModules) {
 
 
-	RETURN_MEMBER(this_ptr, "_modules");
+	RETURN_MEMBER(this_ptr, "modules");
 
 }
 
@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_modules"), modules TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("modules"), modules TSRMLS_CC);
 
 }
 
@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "request", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_2);
@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 			zephir_array_fetch_long(&uri, argv, 1, PH_NOISY, "ice/mvc/app.zep", 48 TSRMLS_CC);
 		}
 	}
-	_6 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_6 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "router", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
@@ -162,7 +162,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, router, "handle", NULL, 0, method, uri);
 	zephir_check_call_status();
-	_8 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_8 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "dispatcher", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_NVAR(_3);
@@ -172,7 +172,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	ZEPHIR_CALL_METHOD(&dispatcher, _8, "get", NULL, 0, _2, _3, _7);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	_9 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_9 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_10);
 	zephir_create_array(_10, 1, 0 TSRMLS_CC);
 	zephir_array_fast_append(_10, response);
@@ -186,7 +186,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		_5 = (zephir_instance_of_ev(response, ice_http_response_responseinterface_ce TSRMLS_CC));
 	}
 	if (!(_5)) {
-		_11 = zephir_fetch_nproperty_this(this_ptr, SL("_modules"), PH_NOISY_CC);
+		_11 = zephir_fetch_nproperty_this(this_ptr, SL("modules"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodules", NULL, 0, _11);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmethod", NULL, 0, method);
@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		if (_16) {
 			ZEPHIR_CPY_WRT(response, returned);
 		}
-		_17 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+		_17 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_18);
 		zephir_create_array(_18, 1, 0 TSRMLS_CC);
 		zephir_array_fast_append(_18, response);
@@ -229,7 +229,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		}
 		if (!(_19)) {
 			ZEPHIR_CPY_WRT(controller, response);
-			_20 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+			_20 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 			ZEPHIR_INIT_NVAR(_2);
 			ZVAL_STRING(_2, "response", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_NVAR(_3);
@@ -242,7 +242,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 			ZEPHIR_OBS_VAR(_21);
 			zephir_read_property(&_21, controller, SL("view"), PH_NOISY_CC);
 			ZEPHIR_CPY_WRT(view, _21);
-			_22 = zephir_fetch_nproperty_this(this_ptr, SL("_autoRender"), PH_NOISY_CC);
+			_22 = zephir_fetch_nproperty_this(this_ptr, SL("autoRender"), PH_NOISY_CC);
 			if (zephir_is_true(_22)) {
 				ZEPHIR_CALL_METHOD(&_23, view, "getcontent", NULL, 0);
 				zephir_check_call_status();
@@ -285,7 +285,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 			}
 		}
 	}
-	_11 = zephir_fetch_nproperty_this(this_ptr, SL("_di"), PH_NOISY_CC);
+	_11 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_18);
 	zephir_create_array(_18, 1, 0 TSRMLS_CC);
 	zephir_array_fast_append(_18, response);
