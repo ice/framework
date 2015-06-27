@@ -16,7 +16,7 @@ use Ice\Mvc\Model;
 class Users extends Model
 {
 
-    protected _from = "roles_users";
+    protected from = "roles_users";
 
     /**
      * Initialize roles-users relations.

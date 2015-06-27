@@ -38,7 +38,7 @@ ZEPHIR_INIT_CLASS(Ice_Filter) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Filter, ice, filter, ice_filter_method_entry, 0);
 
-	zend_declare_property_null(ice_filter_ce, SL("_filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_filter_ce, SL("filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Filter, add) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 27);
 		return;
 	}
-	zephir_update_property_array(this_ptr, SL("_filters"), name, body TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("filters"), name, body TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -114,7 +114,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
 		  ; zephir_hash_move_forward_ex(_2, &_1)
 		) {
 			ZEPHIR_GET_HVALUE(filter, _3);
-			ZEPHIR_CALL_METHOD(&_4, this_ptr, "_sanitize", &_5, 0, value, filter);
+			ZEPHIR_CALL_METHOD(&_4, this_ptr, "dosanitize", &_5, 0, value, filter);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(value, _4);
 		}
@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
  * @param string filter
  * @return mixed
  */
-PHP_METHOD(Ice_Filter, _sanitize) {
+PHP_METHOD(Ice_Filter, doSanitize) {
 
 	zephir_fcall_cache_entry *_9 = NULL, *_11 = NULL;
 	zval *_1 = NULL, *_12;
@@ -157,7 +157,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 
 
 	ZEPHIR_OBS_VAR(custom);
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_filters"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
 	if (zephir_array_isset_fetch(&custom, _0, filter, 0 TSRMLS_CC)) {
 		if (zephir_instance_of_ev(custom, zend_ce_closure TSRMLS_CC)) {
 			ZEPHIR_INIT_VAR(_1);
@@ -180,7 +180,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(_3);
 			ZVAL_STRING(_3, "cssmin", 1);
-			zephir_update_property_array(this_ptr, SL("_filters"), _3, custom TSRMLS_CC);
+			zephir_update_property_array(this_ptr, SL("filters"), _3, custom TSRMLS_CC);
 			ZEPHIR_RETURN_CALL_METHOD(custom, "sanitize", NULL, 0, value);
 			zephir_check_call_status();
 			RETURN_MM();
@@ -193,7 +193,7 @@ PHP_METHOD(Ice_Filter, _sanitize) {
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(_3);
 			ZVAL_STRING(_3, "jsmin", 1);
-			zephir_update_property_array(this_ptr, SL("_filters"), _3, custom TSRMLS_CC);
+			zephir_update_property_array(this_ptr, SL("filters"), _3, custom TSRMLS_CC);
 			ZEPHIR_RETURN_CALL_METHOD(custom, "sanitize", NULL, 0, value);
 			zephir_check_call_status();
 			RETURN_MM();

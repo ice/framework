@@ -16,20 +16,20 @@ use Ice\Di;
 class Request extends Arr
 {
 
-    protected _files;
-    protected _get;
-    protected _post;
-    protected _server;
+    protected files;
+    protected get;
+    protected post;
+    protected server;
 
     /**
      * Request constructor. Fetch data from globals variables: _REQUEST, _SERVER, _POST, _GET and _FILES.
      */
     public function __construct()
     {
-        let this->_files = new Arr(_FILES),
-            this->_get = new Arr(_GET),
-            this->_post = new Arr(_POST),
-            this->_server = new Arr(_SERVER);
+        let this->files = new Arr(_FILES),
+            this->get = new Arr(_GET),
+            this->post = new Arr(_POST),
+            this->server = new Arr(_SERVER);
 
         parent::__construct(_REQUEST);
     }
@@ -53,7 +53,7 @@ class Request extends Arr
      */
     public function hasPost(string! name) -> boolean
     {
-        return this->_post->has(name);
+        return this->post->has(name);
     }
 
     /**
@@ -64,7 +64,7 @@ class Request extends Arr
      */
     public function hasGet(string! name) -> boolean
     {
-        return this->_get->has(name);
+        return this->get->has(name);
     }
 
     /**
@@ -75,7 +75,7 @@ class Request extends Arr
      */
     public function hasServer(string! name) -> boolean
     {
-        return this->_server->has(name);
+        return this->server->has(name);
     }
 
     /**
@@ -86,7 +86,7 @@ class Request extends Arr
      */
     public function hasFile(string! name) -> boolean
     {
-        return this->_files->has(name);
+        return this->files->has(name);
     }
 
     /**
@@ -166,7 +166,7 @@ class Request extends Arr
      */
     public function isAjax() -> boolean
     {
-        return this->_server->get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest";
+        return this->server->get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest";
     }
 
     /**
@@ -176,7 +176,7 @@ class Request extends Arr
      */
     public function getMethod() -> string
     {
-        return this->_server->get("REQUEST_METHOD", "");
+        return this->server->get("REQUEST_METHOD", "");
     }
 
     /**
@@ -186,7 +186,7 @@ class Request extends Arr
      */
     public function getUserAgent() -> string
     {
-        return this->_server->get("HTTP_USER_AGENT", "");
+        return this->server->get("HTTP_USER_AGENT", "");
     }
 
     /**
@@ -196,7 +196,7 @@ class Request extends Arr
      */
     public function getHTTPReferer() -> string
     {
-        return this->_server->get("HTTP_REFERER", "");
+        return this->server->get("HTTP_REFERER", "");
     }
 
     /**
@@ -208,9 +208,9 @@ class Request extends Arr
     {
         var client, forward, remote, ip;
 
-        let client = this->_server->get("HTTP_CLIENT_IP"),
-            forward = this->_server->get("HTTP_X_FORWARDED_FOR"),
-            remote = this->_server->get("REMOTE_ADDR");
+        let client = this->server->get("HTTP_CLIENT_IP"),
+            forward = this->server->get("HTTP_X_FORWARDED_FOR"),
+            remote = this->server->get("REMOTE_ADDR");
 
         if filter_var(client, FILTER_VALIDATE_IP) {
             let ip = client;
@@ -250,12 +250,12 @@ class Request extends Arr
 
         if !key {
             // Remove `_url` from GET
-            this->_get->set("_url", null);
-            this->_get->remove("_url");
+            this->get->set("_url", null);
+            this->get->remove("_url");
 
-            return this->_get;
+            return this->get;
         } else {
-            let value = this->_get->get(key, defaultValue);
+            let value = this->get->get(key, defaultValue);
 
             if filters {
                 let filter = Di::$fetch()->get("filter", null, true),
@@ -296,9 +296,9 @@ class Request extends Arr
         var value, filter;
 
         if !key {
-            return this->_post;
+            return this->post;
         } else {
-            let value = this->_post->get(key, defaultValue);
+            let value = this->post->get(key, defaultValue);
 
             if filters {
                 let filter = Di::$fetch()->get("filter", null, true),
@@ -322,7 +322,7 @@ class Request extends Arr
      */
     public function getServer(string key = null, var defaultValue = null)
     {
-        return key ? this->_server->get(key, defaultValue) : this->_server;
+        return key ? this->server->get(key, defaultValue) : this->server;
     }
 
     /**
@@ -334,6 +334,6 @@ class Request extends Arr
      */
     public function getFiles(string key = null, var defaultValue = null)
     {
-        return key ? this->_files->get(key, defaultValue) : this->_files;
+        return key ? this->files->get(key, defaultValue) : this->files;
     }
 }

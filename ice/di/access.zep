@@ -16,7 +16,7 @@ use Ice\Di;
 class Access
 {
 
-    protected _di;
+    protected di;
 
     /**
      * Access constructor. Fetch di if not specified.
@@ -26,9 +26,9 @@ class Access
     public function __construct(<Di> di = null)
     {
         if !di {
-            let this->_di = Di::$fetch();
+            let this->di = Di::$fetch();
         } else {
-            let this->_di = di;
+            let this->di = di;
         }
     }
 
@@ -39,7 +39,7 @@ class Access
     {
         var di, service;
 
-        let di = this->_di;
+        let di = this->di;
 
         if property == "di" {
             let this->{"di"} = di;

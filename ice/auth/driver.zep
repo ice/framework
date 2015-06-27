@@ -15,11 +15,11 @@ use Ice\Di;
 abstract class Driver
 {
 
-    protected _session;
-    protected _cookies;
-    protected _request;
-    protected _user;
-    protected _options = [
+    protected session;
+    protected cookies;
+    protected request;
+    protected user;
+    protected options = [
         "hash_method": "sha256",
         "hash_key": "",
         "session_key": "auth_user",
@@ -38,10 +38,10 @@ abstract class Driver
         var di;
 
         let di = Di::$fetch(),
-            this->_options = array_merge(this->_options, options),
-            this->_session = di->get("session", null, true),
-            this->_cookies = di->get("cookies", null, true),
-            this->_request = di->get("request", null, true);
+            this->options = array_merge(this->options, options),
+            this->session = di->get("session", null, true),
+            this->cookies = di->get("cookies", null, true),
+            this->request = di->get("request", null, true);
     }
 
     /**
@@ -68,17 +68,17 @@ abstract class Driver
         var sessionRoles;
 
         // Regenerate session_id
-        this->_session->regenerate();
+        this->session->regenerate();
 
         // Store user in session
-        this->_session->set(this->getOption("session_key", "auth_user"), user);
+        this->session->set(this->getOption("session_key", "auth_user"), user);
 
         // Check in session can improve performance
         let sessionRoles = this->getOption("session_roles");
 
         // Store user's roles in session
         if sessionRoles {
-            this->_session->set(sessionRoles, roles);
+            this->session->set(sessionRoles, roles);
         }
     }
 
@@ -93,7 +93,7 @@ abstract class Driver
     {
         var value;
 
-        if fetch value, this->_options[key] {
+        if fetch value, this->options[key] {
             return value;
         }
         return defaultValue;
@@ -107,7 +107,7 @@ abstract class Driver
      */
     public function getUser(var defaultValue = null)
     {
-        return this->_session->get(this->getOption("session_key"), defaultValue);
+        return this->session->get(this->getOption("session_key"), defaultValue);
     }
 
     /**
@@ -146,7 +146,7 @@ abstract class Driver
             let sessionRoles = this->getOption("session_roles");
 
             if sessionRoles {
-                let roles = this->_session->get(sessionRoles);
+                let roles = this->session->get(sessionRoles);
                 return in_array(role, roles);
             } else {
                 return this->{"hasRole"}(user, role);
@@ -167,19 +167,19 @@ abstract class Driver
 
         if destroy === true {
             // Destroy the session completely
-            this->_session->destroy();
+            this->session->destroy();
         } else {
             // Remove the user from the session
-            this->_session->remove(this->getOption("session_key"));
+            this->session->remove(this->getOption("session_key"));
 
             let sessionRoles = this->getOption("session_roles");
 
             if sessionRoles {
-                this->_session->remove(sessionRoles);
+                this->session->remove(sessionRoles);
             }
 
             // Regenerate session_id
-            this->_session->regenerate();
+            this->session->regenerate();
         }
 
         // Double check

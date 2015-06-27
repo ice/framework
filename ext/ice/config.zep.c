@@ -94,16 +94,16 @@ PHP_METHOD(Ice_Config, __construct) {
 				}
 			}
 			if (hasNumericKey) {
-				zephir_update_property_array(this_ptr, SL("_data"), key, value TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("data"), key, value TSRMLS_CC);
 			} else {
 				ZEPHIR_INIT_NVAR(_6);
 				object_init_ex(_6, ice_config_ce);
 				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, 28, value);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("_data"), key, _6 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("data"), key, _6 TSRMLS_CC);
 			}
 		} else {
-			zephir_update_property_array(this_ptr, SL("_data"), key, value TSRMLS_CC);
+			zephir_update_property_array(this_ptr, SL("data"), key, value TSRMLS_CC);
 		}
 	}
 	ZEPHIR_MM_RESTORE();
@@ -119,11 +119,11 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_data"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("_data"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

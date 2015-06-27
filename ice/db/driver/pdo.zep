@@ -16,10 +16,10 @@ use Ice\Db\DbInterface;
 class Pdo implements DbInterface
 {
 
-    protected _id = "id" { get };
-    protected _type = "SQL" { get };
-    protected _error;
-    protected _client { get };
+    protected id = "id" { get };
+    protected type = "SQL" { get };
+    protected error;
+    protected client { get };
 
     /**
      * Instantiate pdo connection.
@@ -41,7 +41,7 @@ class Pdo implements DbInterface
             let options[\PDO::MYSQL_ATTR_INIT_COMMAND] = "SET NAMES utf8;";
         }
 
-        let this->_client = new \Pdo(dsn, user, password, options);
+        let this->client = new \Pdo(dsn, user, password, options);
     }
 
     /**
@@ -246,11 +246,11 @@ class Pdo implements DbInterface
             let sql .= " OFFSET " . options["offset"];
         }
 
-        let query = this->_client->prepare(sql);
+        let query = this->client->prepare(sql);
 
         query->execute(values);
 
-        let this->_error = query->errorInfo();
+        let this->error = query->errorInfo();
 
         return query;
     }
@@ -274,9 +274,9 @@ class Pdo implements DbInterface
         }
 
         let sql = "INSERT INTO `" . from . "` (" . join(", ", columns) . ") VALUES (" . join(", ", array_keys(values)) . ")",
-            query = this->_client->prepare(sql),
+            query = this->client->prepare(sql),
             status = query->execute(values),
-            this->_error = query->errorInfo();
+            this->error = query->errorInfo();
      
         return status;
     }
@@ -303,9 +303,9 @@ class Pdo implements DbInterface
         let filtered = this->where(filters, values),
             sql = "UPDATE `" . from . "` SET " . join(", ", columns) . " WHERE " . filtered[0],
             values = array_merge(values, filtered[1]),
-            query = this->_client->prepare(sql),
+            query = this->client->prepare(sql),
             status = query->execute(values),
-            this->_error = query->errorInfo();
+            this->error = query->errorInfo();
 
         return status;
     }
@@ -323,9 +323,9 @@ class Pdo implements DbInterface
         let filtered = this->where(filters),
             sql = "DELETE FROM `" . from . "` WHERE " . filtered[0],
             values = filtered[1],
-            query = this->_client->prepare(sql),
+            query = this->client->prepare(sql),
             status = query->execute(values),
-            this->_error = query->errorInfo();
+            this->error = query->errorInfo();
 
         return status;
     }
@@ -337,7 +337,7 @@ class Pdo implements DbInterface
      */
     public function getLastInsertId() -> int
     {
-        return (int) this->_client->lastInsertId();
+        return (int) this->client->lastInsertId();
     }
 
     /**
@@ -349,7 +349,7 @@ class Pdo implements DbInterface
     {
         var error;
 
-        fetch error, this->_error[0];
+        fetch error, this->error[0];
 
         return error;
     }

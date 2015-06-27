@@ -34,9 +34,9 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Url, ice, mvc_url, ice_mvc_url_method_entry, 0);
 
-	zend_declare_property_string(ice_mvc_url_ce, SL("_baseUri"), "/", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_url_ce, SL("baseUri"), "/", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_mvc_url_ce, SL("_staticUri"), "/", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_url_ce, SL("staticUri"), "/", ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
 PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
 
 
-	RETURN_MEMBER(this_ptr, "_baseUri");
+	RETURN_MEMBER(this_ptr, "baseUri");
 
 }
 
@@ -57,14 +57,14 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_baseUri"), baseUri TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("baseUri"), baseUri TSRMLS_CC);
 
 }
 
 PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
 
 
-	RETURN_MEMBER(this_ptr, "_staticUri");
+	RETURN_MEMBER(this_ptr, "staticUri");
 
 }
 
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("_staticUri"), staticUri TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("staticUri"), staticUri TSRMLS_CC);
 
 }
 

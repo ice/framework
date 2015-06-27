@@ -22,7 +22,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Validation, Validator, ice, validation_validator, ice_validation_validator_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(ice_validation_validator_ce, SL("_options"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_validation_validator_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	ice_validation_validator_ce->create_object = zephir_init_properties;
 	zend_declare_class_constant_long(ice_validation_validator_ce, SL("ALL"), 0 TSRMLS_CC);
@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Validation_Validator, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("_options"), options TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Validation_Validator, has) {
 
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	RETURN_BOOL(zephir_array_isset(_0, key));
 
 }
@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Validation_Validator, get) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	if (zephir_array_isset_fetch(&value, _0, key, 1 TSRMLS_CC)) {
 		RETURN_CTORW(value);
 	}
@@ -132,7 +132,7 @@ PHP_METHOD(Ice_Validation_Validator, set) {
 
 
 
-	zephir_update_property_array(this_ptr, SL("_options"), key, value TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("options"), key, value TSRMLS_CC);
 
 }
 
@@ -164,7 +164,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation/validator.zep", 111);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
@@ -203,11 +203,11 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("options"), _1 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

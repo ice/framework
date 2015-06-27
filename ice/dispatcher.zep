@@ -16,30 +16,30 @@ use Ice\Mvc\ModuleInterface;
 abstract class Dispatcher 
 {
 
-    protected _di;
-    protected _defaultNamespace { get, set };
-    protected _activeHandler { get };
-    protected _lastHandler { get };
+    protected di;
+    protected defaultNamespace { get, set };
+    protected activeHandler { get };
+    protected lastHandler { get };
 
-    protected _finished { get };
-    protected _forwarded = false { get };
-    protected _silent = false { set };
+    protected finished { get };
+    protected forwarded = false { get };
+    protected silent = false { set };
 
-    protected _modules = [] { get, set };
-    protected _module = null { get, set };
-    protected _namespace = null { get, set };
-    protected _handler = null { get, set };
-    protected _action = null { get, set };
+    protected modules = [] { get, set };
+    protected module = null { get, set };
+    protected $namespace = null { get, set };
+    protected handler = null { get, set };
+    protected action = null { get, set };
 
-    protected _params = [] { get, set };
-    protected _returnedValue = null { get, set };
+    protected params = [] { get, set };
+    protected returnedValue = null { get, set };
 
-    protected _handlerSuffix = "Handler" { get, set };
-    protected _actionSuffix = "Action" { get, set };
+    protected handlerSuffix = "Handler" { get, set };
+    protected actionSuffix = "Action" { get, set };
 
-    protected _previousModule = null;
-    protected _previousHandler = null;
-    protected _previousAction = null;
+    protected previousModule = null;
+    protected previousHandler = null;
+    protected previousAction = null;
 
     const DISPATCH_CYCLIC = 1;
     const HANDLER_NOT_FOUND = 2;
@@ -51,7 +51,7 @@ abstract class Dispatcher
      */
     public function __construct()
     {
-        let this->_di = Di::$fetch();
+        let this->di = Di::$fetch();
     }
 
     /**
@@ -62,7 +62,7 @@ abstract class Dispatcher
      */
     public function setParam(var param, var value)
     {
-        let this->_params[param] = value;
+        let this->params[param] = value;
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class Dispatcher
     {
         var value;
 
-        if fetch value, this->_params[param] {
+        if fetch value, this->params[param] {
             return value;
         }
         return defaultValue;
@@ -89,7 +89,7 @@ abstract class Dispatcher
      */
     public function getActiveMethod() -> string
     {
-        return this->_action . this->_actionSuffix;
+        return this->action . this->actionSuffix;
     }
 
     /**
@@ -99,23 +99,22 @@ abstract class Dispatcher
      */
     public function dispatch()
     {
-        var handler, response, handlerName, actionName, params, handlerSuffix, actionSuffix, handlerClass, actionMethod;
+        var handler, response, handlerName, actionName, params, handlerSuffix, handlerClass, actionMethod;
         var fresh, module, modules, moduleNamespace, path, moduleClass, loader;
         int i = 0;
 
-        let response = this->_di->get("response"),
+        let response = this->di->get("response"),
             fresh = true,
             handler = null,
-            handlerSuffix = this->_handlerSuffix,
-            actionSuffix = this->_actionSuffix,
-            this->_finished = false;
+            handlerSuffix = this->handlerSuffix,
+            this->finished = false;
 
-        while !this->_finished {
+        while !this->finished {
             let i++;
 
             // Throw an exception after 16 consecutive forwards
             if i == 16 {
-                if this->_silent {
+                if this->silent {
                     // 508 Loop Detected
                     response->setStatus(508);
                     response->setBody(response->getMessage(508));
@@ -125,12 +124,12 @@ abstract class Dispatcher
                 throw new Exception("Dispatcher has detected a cyclic routing causing stability problems", self::DISPATCH_CYCLIC);
             }
 
-            let this->_finished = true,
-                modules = this->_modules;
+            let this->finished = true,
+                modules = this->modules;
 
             if modules {
-                if !fetch module, modules[this->_module] {
-                    throw new Exception(["Module '%s' isn't registered in the application container", this->_module]);
+                if !fetch module, modules[this->module] {
+                    throw new Exception(["Module '%s' isn't registered in the application container", this->module]);
                 }
                 
                 if typeof module != "array" {
@@ -152,26 +151,26 @@ abstract class Dispatcher
                 }
 
                 let loader = new Loader(),
-                    this->_namespace = moduleNamespace;
+                    this->$namespace = moduleNamespace;
 
                 loader->addNamespace(moduleNamespace, path)->register();
 
-                let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->_di]);
+                let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->di]);
 
                 module->registerAutoloaders();
-                module->registerServices(this->_di);
+                module->registerServices(this->di);
             }
 
-            if !this->_defaultNamespace {
-                this->setDefaultNamespace(this->_namespace . "\\" . this->getHandlerSuffix());
+            if !this->defaultNamespace {
+                this->setDefaultNamespace(this->$namespace . "\\" . this->getHandlerSuffix());
             }
 
-            let handlerName = this->_handler,
-                actionName = this->_action,
-                handlerClass = this->_defaultNamespace . "\\" . ucfirst(camelize(handlerName)) . handlerSuffix;
+            let handlerName = this->handler,
+                actionName = this->action,
+                handlerClass = this->defaultNamespace . "\\" . ucfirst(camelize(handlerName)) . handlerSuffix;
 
             if !class_exists(handlerClass) {
-                if this->_silent {
+                if this->silent {
                     // 404 Not Found
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
@@ -181,15 +180,15 @@ abstract class Dispatcher
                 throw new Exception(["%s handler class cannot be loaded", handlerClass], self::HANDLER_NOT_FOUND);
             }
 
-            let this->_lastHandler = handler,
+            let this->lastHandler = handler,
                 handler = new {handlerClass}(),
-                this->_activeHandler = handler,
+                this->activeHandler = handler,
                 actionMethod = this->getActiveMethod();
 
             if method_exists(handler, "before") {
                 handler->before();
 
-                if this->_finished === false {
+                if this->finished === false {
                     continue;
                 }
             }
@@ -204,7 +203,7 @@ abstract class Dispatcher
 
             // Check if the method exists in the handler
             if !method_exists(handler, actionMethod) {
-                if this->_silent {
+                if this->silent {
                     // 404 Not Found
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
@@ -214,21 +213,21 @@ abstract class Dispatcher
                 throw new Exception(["Action '%s' was not found on handler '%s'", actionName, handlerName], self::ACTION_NOT_FOUND);
             }
 
-            let params = this->_params;
+            let params = this->params;
             if typeof params != "array" {
                 throw new Exception("Action parameters must be an array", self::INVALID_PARAMS);
             }
 
-            let this->_returnedValue = call_user_func_array([handler, actionMethod], params);
+            let this->returnedValue = call_user_func_array([handler, actionMethod], params);
 
-            if this->_finished === false {
+            if this->finished === false {
                 continue;
             }
 
             if method_exists(handler, "after") {
                 handler->after();
 
-                if this->_finished === false {
+                if this->finished === false {
                     continue;
                 }
             }
@@ -249,28 +248,28 @@ abstract class Dispatcher
 
         // Check if we need to forward to another module
         if fetch module, forward["module"] {
-            let this->_previousModule = this->_module,
-                this->_module = module;
+            let this->previousModule = this->module,
+                this->module = module;
         }
 
         // Check if we need to forward to another handler
         if fetch handler, forward["handler"] {
-            let this->_previousHandler = this->_handler,
-                this->_handler = handler;
+            let this->previousHandler = this->handler,
+                this->handler = handler;
         }
 
         // Check if we need to forward to another action
         if fetch action, forward["action"] {
-            let this->_previousAction = this->_action,
-                this->_action = action;
+            let this->previousAction = this->action,
+                this->action = action;
         }
 
         // Check if we need to forward changing the current parameters
         if fetch params, forward["params"] {
-            let this->_params = params;
+            let this->params = params;
         }
 
-        let this->_finished = false,
-            this->_forwarded = true;
+        let this->finished = false,
+            this->forwarded = true;
     }
 }

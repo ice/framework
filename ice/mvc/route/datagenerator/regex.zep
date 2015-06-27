@@ -8,8 +8,8 @@ use Ice\Mvc\Route;
 abstract class Regex implements DataGeneratorInterface
 {
 
-    protected _staticRoutes = [];
-    protected _methodToRegexToRoutesMap = [];
+    protected staticRoutes = [];
+    protected methodToRegexToRoutesMap = [];
 
     protected abstract function getApproxChunkSize();
     protected abstract function processChunk(regexToRoutesMap);
@@ -25,11 +25,11 @@ abstract class Regex implements DataGeneratorInterface
 
     public function getData()
     {
-        if empty this->_methodToRegexToRoutesMap {
-            return [this->_staticRoutes, []];
+        if empty this->methodToRegexToRoutesMap {
+            return [this->staticRoutes, []];
         }
 
-        return [this->_staticRoutes, this->generateVariableRouteData()];
+        return [this->staticRoutes, this->generateVariableRouteData()];
     }
 
     protected function generateVariableRouteData()
@@ -38,7 +38,7 @@ abstract class Regex implements DataGeneratorInterface
 
         let data = [];
 
-        for method, regexToRoutesMap in this->_methodToRegexToRoutesMap {
+        for method, regexToRoutesMap in this->methodToRegexToRoutesMap {
             let chunkSize = this->computeChunkSize(count(regexToRoutesMap)),
                 chunks = array_chunk(regexToRoutesMap, chunkSize, true),
                 data[method] = array_map([this, "processChunk"], chunks);
@@ -70,14 +70,14 @@ abstract class Regex implements DataGeneratorInterface
 
         let routeStr = routeData[0];
 
-        if isset this->_staticRoutes[routeStr] && isset this->_staticRoutes[routeStr][httpMethod] {
+        if isset this->staticRoutes[routeStr] && isset this->staticRoutes[routeStr][httpMethod] {
             throw new Exception(sprintf("Cannot register two routes matching '%s' for method '%s'",
                 routeStr, httpMethod
             ));
         }
 
-        if isset this->_methodToRegexToRoutesMap[httpMethod] {
-            for route in this->_methodToRegexToRoutesMap[httpMethod] {
+        if isset this->methodToRegexToRoutesMap[httpMethod] {
+            for route in this->methodToRegexToRoutesMap[httpMethod] {
                 if route->matches(routeStr) {
                     throw new Exception(sprintf(
                         "Static route '%s' is shadowed by previously defined variable route '%s' for method '%s'",
@@ -87,7 +87,7 @@ abstract class Regex implements DataGeneratorInterface
             }
         }
 
-        let this->_staticRoutes[routeStr][httpMethod] = handler;
+        let this->staticRoutes[routeStr][httpMethod] = handler;
     }
 
     protected function addVariableRoute(httpMethod, routeData, handler)
@@ -97,14 +97,14 @@ abstract class Regex implements DataGeneratorInterface
         let regex = this->buildRegexForRoute(routeData)[0],
             variables = this->buildRegexForRoute(routeData)[1];
 
-        if isset this->_methodToRegexToRoutesMap[httpMethod] && isset this->_methodToRegexToRoutesMap[httpMethod][regex] {
+        if isset this->methodToRegexToRoutesMap[httpMethod] && isset this->methodToRegexToRoutesMap[httpMethod][regex] {
             throw new Exception(sprintf(
                 "Cannot register two routes matching '%s' for method '%s'",
                 regex, httpMethod
             ));
         }
 
-        let this->_methodToRegexToRoutesMap[httpMethod][regex] = new Route(
+        let this->methodToRegexToRoutesMap[httpMethod][regex] = new Route(
             httpMethod, handler, regex, variables
         );
     }

@@ -20,11 +20,11 @@ class Google extends Adapter
      */
     public function __construct(config = [])
     {
-        let this->_provider = "google";
+        let this->provider = "google";
 
         parent::__construct(config);
 
-        let this->_socialFieldsMap = [
+        let this->socialFieldsMap = [
             "socialId":   "id",
             "email":      "email",
             "name":       "name",
@@ -42,9 +42,9 @@ class Google extends Adapter
     public function getBirthday()
     {
         if this->has("birthday") {
-            let this->_userInfo["birthday"] = str_replace("0000", date("Y"), this->_userInfo["birthday"]);
+            let this->userInfo["birthday"] = str_replace("0000", date("Y"), this->userInfo["birthday"]);
 
-            return date("d.m.Y", strtotime(this->_userInfo["birthday"]));
+            return date("d.m.Y", strtotime(this->userInfo["birthday"]));
         }
 
         return null;
@@ -63,28 +63,28 @@ class Google extends Adapter
 
         if isset _GET["code"] {
             let params = [
-                "client_id":     this->_clientId,
-                "client_secret": this->_clientSecret,
-                "redirect_uri":  this->_redirectUri,
+                "client_id":     this->clientId,
+                "client_secret": this->clientSecret,
+                "redirect_uri":  this->redirectUri,
                 "grant_type":    "authorization_code",
                 "code":          _GET["code"]
             ];
 
             // Be able to store access_token in the session (invalid_grant: Code was already redeemed)
-            if !this->_accessToken {
+            if !this->accessToken {
                 let tokenInfo = this->call(parent::POST, "https://accounts.google.com/o/oauth2/token", params);
 
                 if isset tokenInfo["access_token"] {
-                    let this->_accessToken = tokenInfo["access_token"];
+                    let this->accessToken = tokenInfo["access_token"];
                 }
             }
 
-            if this->_accessToken {
-                let params["access_token"] = this->_accessToken,
+            if this->accessToken {
+                let params["access_token"] = this->accessToken,
                     userInfo = this->call(parent::GET, "https://www.googleapis.com/oauth2/v1/userinfo", params);
 
-                if isset userInfo[this->_socialFieldsMap["socialId"]] {
-                    let this->_userInfo = userInfo,
+                if isset userInfo[this->socialFieldsMap["socialId"]] {
+                    let this->userInfo = userInfo,
                         result = true;
                 }
             }
@@ -102,9 +102,9 @@ class Google extends Adapter
         return [
             "auth_url":    "https://accounts.google.com/o/oauth2/auth",
             "auth_params": [
-                "redirect_uri":  this->_redirectUri,
+                "redirect_uri":  this->redirectUri,
                 "response_type": "code",
-                "client_id":     this->_clientId,
+                "client_id":     this->clientId,
                 "scope":         "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
             ]
         ];

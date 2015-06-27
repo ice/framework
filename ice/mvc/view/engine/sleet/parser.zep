@@ -15,7 +15,7 @@ use Ice\Exception;
 class Parser
 {
 
-    protected _functions = [
+    protected functions = [
         "content": "$this->getContent",
         "partial": "$this->partial",
         "load": "$this->load",
@@ -23,11 +23,11 @@ class Parser
         "version": "Ice\\Version::get"
     ];
 
-    protected _filters = [
+    protected filters = [
         "capitalize": "ucfirst"
     ];
 
-    protected _env = [];
+    protected env = [];
 
     const NORMAL = 0;
     const SHORTIF = 1;
@@ -54,8 +54,8 @@ class Parser
             }
         }
 
-        let this->_functions = array_merge(this->_functions, functions),
-            this->_env[] = Parser::NORMAL;
+        let this->functions = array_merge(this->functions, functions),
+            this->env[] = Parser::NORMAL;
     }
 
     /**
@@ -234,7 +234,7 @@ class Parser
      */
     private function parseControl(control, expression) -> string
     {
-        return "<?php " . control . "(" . this->_parse(expression) . "): ?>";
+        return "<?php " . control . "(" . this->doParse(expression) . "): ?>";
     }
     
     /**
@@ -245,7 +245,7 @@ class Parser
      */
     private function parseEcho($expression) -> string
     {
-        return "<?php echo " . this->_parse(expression) . " ?>";
+        return "<?php echo " . this->doParse(expression) . " ?>";
     }
 
     /**
@@ -256,7 +256,7 @@ class Parser
      */
     private function parseSet($expression) -> string
     {
-        return "<?php " . this->_parse(expression) . "; ?>";
+        return "<?php " . this->doParse(expression) . "; ?>";
     }
 
     /**
@@ -267,7 +267,7 @@ class Parser
      */
     private function parseUse($expression) -> string
     {
-        return "<?php use " . this->_parse(expression) . "; ?>";
+        return "<?php use " . this->doParse(expression) . "; ?>";
     }
 
     /**
@@ -276,7 +276,7 @@ class Parser
      * @param array tokens
      * @return string
      */
-    private function _parse(tokens) -> string
+    private function doParse(tokens) -> string
     {
         var i, parsed, prev, next, token, filter, seek, filters;
 
@@ -291,13 +291,13 @@ class Parser
             if next == "|" {
                 let seek = i->key() + 2,
                     filter = i->offsetGet(seek),
-                    filter = isset this->_filters[filter[1]] ? this->_filters[filter[1]] : filter[1],
+                    filter = isset this->filters[filter[1]] ? this->filters[filter[1]] : filter[1],
                     filters = ["camelize", "uncamelize", "human", "lower", "upper", "alnum", "alpha", "email", "float", "int", "string", "strip_repeats", "e", "escape", "strip_special", "unescape", "unstrip_special"];
 
                 if in_array(filter, filters) {
-                    let parsed .=  "$this->filter->sanitize(" . this->_token(token, prev, next) . ", '" . filter . "'";
+                    let parsed .=  "$this->filter->sanitize(" . this->token(token, prev, next) . ", '" . filter . "'";
                 } else {
-                    let parsed .= filter . "(" . this->_token(token, prev, next);
+                    let parsed .= filter . "(" . this->token(token, prev, next);
                 }
                 
                 let next = i->offsetExists(seek + 1) ? i->offsetGet(seek + 1) : null;
@@ -314,7 +314,7 @@ class Parser
                 continue;
             }
             
-            let parsed .= this->_token(token, prev, next),
+            let parsed .= this->token(token, prev, next),
                 prev = token;
 
             i->next();
@@ -330,7 +330,7 @@ class Parser
      * @param mixed next
      * @return mixed
      */
-    private function _token(token, prev = null, next = null)
+    private function token(token, prev = null, next = null)
     {
         string str;
 
@@ -352,7 +352,7 @@ class Parser
                     let str = (string) token[1];
 
                     if next == "(" && (prev != "." || typeof prev == "array" && prev[0] != T_DOUBLE_COLON) {
-                        return isset this->_functions[str] ? this->_functions[str] : str;
+                        return isset this->functions[str] ? this->functions[str] : str;
                     }
                     switch str {
                         case "in":
@@ -396,22 +396,22 @@ class Parser
                 case ".":
                     return "->";
                 case ":":
-                    switch end(this->_env) {
+                    switch end(this->env) {
                         case Parser::SHORTIF:
-                            array_pop(this->_env);
+                            array_pop(this->env);
                             return " : ";
                         default:
                             return " => ";
                     }
                 case "?":
-                    let this->_env[] = Parser::SHORTIF;
+                    let this->env[] = Parser::SHORTIF;
                     return " ? ";
                 case "[":
-                    let this->_env[] = Parser::INARRAY;
+                    let this->env[] = Parser::INARRAY;
                     return token;
                 case "]":
-                    if end(this->_env) == Parser::INARRAY {
-                        array_pop(this->_env);
+                    if end(this->env) == Parser::INARRAY {
+                        array_pop(this->env);
                     }
                     return token;
                 default:

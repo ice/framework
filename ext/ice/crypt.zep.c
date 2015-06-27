@@ -36,13 +36,13 @@ ZEPHIR_INIT_CLASS(Ice_Crypt) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Crypt, ice, crypt, ice_crypt_method_entry, 0);
 
-	zend_declare_property_null(ice_crypt_ce, SL("_key"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_crypt_ce, SL("key"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_crypt_ce, SL("_cipher"), "aes-256", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_crypt_ce, SL("cipher"), "aes-256", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_string(ice_crypt_ce, SL("_mode"), "cbc", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_crypt_ce, SL("mode"), "cbc", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_long(ice_crypt_ce, SL("_block"), 16, ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_long(ice_crypt_ce, SL("block"), 16, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -65,7 +65,7 @@ PHP_METHOD(Ice_Crypt, __construct) {
 	zephir_get_strval(key, key_param);
 
 
-	zephir_update_property_this(this_ptr, SL("_key"), key TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -96,7 +96,7 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&value, this_ptr, "addpadding", NULL, 0, _0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_1, this_ptr, "_encrypt", NULL, 0, value, iv);
+	ZEPHIR_CALL_METHOD(&_1, this_ptr, "doencrypt", NULL, 0, value, iv);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&value, "base64_encode", &_2, 15, _1);
 	zephir_check_call_status();
@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
  * @param string iv
  * @return string
  */
-PHP_METHOD(Ice_Crypt, _encrypt) {
+PHP_METHOD(Ice_Crypt, doEncrypt) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, *_0, *_1, *_2, *_3, _4;
@@ -158,11 +158,11 @@ PHP_METHOD(Ice_Crypt, _encrypt) {
 	zephir_get_strval(iv, iv_param);
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_cipher"), PH_NOISY_CC);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_mode"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cipher"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("mode"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZEPHIR_CONCAT_VSV(_2, _0, "-", _1);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("key"), PH_NOISY_CC);
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 1);
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 58, value, _2, _3, &_4, iv);
@@ -198,7 +198,7 @@ PHP_METHOD(Ice_Crypt, decrypt) {
 	zephir_array_fetch_string(&_2, payload, SL("iv"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 98 TSRMLS_CC);
 	ZEPHIR_CALL_FUNCTION(&iv, "base64_decode", &_1, 16, _2);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, this_ptr, "_decrypt", NULL, 0, value, iv);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "dodecrypt", NULL, 0, value, iv);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_3, this_ptr, "strippadding", NULL, 0, _4);
 	zephir_check_call_status();
@@ -215,7 +215,7 @@ PHP_METHOD(Ice_Crypt, decrypt) {
  * @param string iv
  * @return string
  */
-PHP_METHOD(Ice_Crypt, _decrypt) {
+PHP_METHOD(Ice_Crypt, doDecrypt) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, *_0, *_1, *_2, *_3, _4;
@@ -228,11 +228,11 @@ PHP_METHOD(Ice_Crypt, _decrypt) {
 	zephir_get_strval(iv, iv_param);
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_cipher"), PH_NOISY_CC);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_mode"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cipher"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("mode"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZEPHIR_CONCAT_VSV(_2, _0, "-", _1);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("key"), PH_NOISY_CC);
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 1);
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 59, value, _2, _3, &_4, iv);
@@ -306,7 +306,7 @@ PHP_METHOD(Ice_Crypt, hash) {
 	zephir_get_strval(value, value_param);
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_key"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("key"), PH_NOISY_CC);
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_STRING(&_1, "sha256", 0);
 	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 25, &_1, value, _0);
@@ -335,8 +335,8 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 
 	ZEPHIR_INIT_VAR(len);
 	ZVAL_LONG(len, zephir_fast_strlen_ev(value));
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_block"), PH_NOISY_CC);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_block"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("block"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("block"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
 	mod_function(_2, len, _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(pad);
@@ -472,8 +472,8 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 
 	ZEPHIR_MM_GROW();
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_cipher"), PH_NOISY_CC);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_mode"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cipher"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("mode"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZEPHIR_CONCAT_VSV(_2, _0, "-", _1);
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 63, _2);
@@ -499,7 +499,7 @@ PHP_METHOD(Ice_Crypt, setKey) {
 	zephir_get_strval(key, key_param);
 
 
-	zephir_update_property_this(this_ptr, SL("_key"), key TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -521,7 +521,7 @@ PHP_METHOD(Ice_Crypt, setCipher) {
 	zephir_get_strval(cipher, cipher_param);
 
 
-	zephir_update_property_this(this_ptr, SL("_cipher"), cipher TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("cipher"), cipher TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -543,7 +543,7 @@ PHP_METHOD(Ice_Crypt, setMode) {
 	zephir_get_strval(mode, mode_param);
 
 
-	zephir_update_property_this(this_ptr, SL("_mode"), mode TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("mode"), mode TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

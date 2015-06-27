@@ -13,7 +13,7 @@ namespace Ice;
 class Loader
 {
 
-    protected _prefixes = [];
+    protected prefixes = [];
 
     /**
      * Register loader with SPL autoloader stack.
@@ -44,15 +44,15 @@ class Loader
             baseDir = rtrim(baseDir, DIRECTORY_SEPARATOR) . "/";
 
         // initialize the namespace prefix array
-        if !isset this->_prefixes[prefix] {
-            let this->_prefixes[prefix] = [];
+        if !isset this->prefixes[prefix] {
+            let this->prefixes[prefix] = [];
         }
 
         // retain the base directory for the namespace prefix
         if prepend {
-            array_unshift(this->_prefixes[prefix], utf8_encode(baseDir));
+            array_unshift(this->prefixes[prefix], utf8_encode(baseDir));
         } else {
-            array_push(this->_prefixes[prefix], utf8_encode(baseDir));
+            array_push(this->prefixes[prefix], utf8_encode(baseDir));
         }
         return this;
     }
@@ -108,12 +108,12 @@ class Loader
         var baseDir, file;
 
         // are there any base directories for this namespace prefix?
-        if !isset this->_prefixes[prefix] {
+        if !isset this->prefixes[prefix] {
             return false;
         }
 
         // look through base directories for this namespace prefix
-        for baseDir in this->_prefixes[prefix] {
+        for baseDir in this->prefixes[prefix] {
             // replace the namespace prefix with the base directory,
             // replace namespace separators with directory separators
             // in the relative class name, append with .php

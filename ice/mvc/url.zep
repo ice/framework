@@ -15,8 +15,8 @@ use Ice\Di;
 class Url
 {
 
-    protected _baseUri = "/" { get, set };
-    protected _staticUri = "/" { get, set };
+    protected baseUri = "/" { get, set };
+    protected staticUri = "/" { get, set };
 
     /**
      * Generates a URL for a static resource.

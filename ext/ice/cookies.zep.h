@@ -23,7 +23,7 @@ PHP_METHOD(Ice_Cookies, get);
 PHP_METHOD(Ice_Cookies, set);
 PHP_METHOD(Ice_Cookies, remove);
 PHP_METHOD(Ice_Cookies, salt);
-PHP_METHOD(Ice_Cookies, _setcookie);
+PHP_METHOD(Ice_Cookies, setcookie);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cookies_setsalt, 0, 0, 1)
 	ZEND_ARG_INFO(0, salt)
@@ -81,7 +81,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cookies_salt, 0, 0, 2)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cookies__setcookie, 0, 0, 7)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cookies_setcookie, 0, 0, 7)
 	ZEND_ARG_INFO(0, name)
 	ZEND_ARG_INFO(0, value)
 	ZEND_ARG_INFO(0, expire)
@@ -112,6 +112,6 @@ ZEPHIR_INIT_FUNCS(ice_cookies_method_entry) {
 	PHP_ME(Ice_Cookies, set, arginfo_ice_cookies_set, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, remove, arginfo_ice_cookies_remove, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, salt, arginfo_ice_cookies_salt, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Cookies, _setcookie, arginfo_ice_cookies__setcookie, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Cookies, setcookie, arginfo_ice_cookies_setcookie, ZEND_ACC_PROTECTED)
 	PHP_FE_END
 };

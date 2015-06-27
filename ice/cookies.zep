@@ -13,21 +13,21 @@ namespace Ice;
 class Cookies
 {
 
-    protected _di;
-    protected _salt { get, set };
-    protected _expiration = 0 { get, set };
-    protected _path = "/" { get, set };
-    protected _domain = null { get, set };
-    protected _secure = false { get, set };
-    protected _httpOnly = false { get, set };
-    protected _encrypt = true { get, set };
+    protected di;
+    protected salt { get, set };
+    protected expiration = 0 { get, set };
+    protected path = "/" { get, set };
+    protected domain = null { get, set };
+    protected secure = false { get, set };
+    protected httpOnly = false { get, set };
+    protected encrypt = true { get, set };
 
     public function __construct(string salt = null)
     {
-        let this->_di = Di::$fetch();
-        let this->_salt = salt;
+        let this->di = Di::$fetch();
+        let this->salt = salt;
 
-        //let this->_data = &_COOKIE;
+        //let this->data = &_COOKIE;
     }
 
     /**
@@ -67,8 +67,8 @@ class Cookies
 
             if this->salt(key, value) == hash {
                 // Cookie signature is valid
-                if this->_encrypt {
-                    let value = this->_di->get("crypt", null, true)->decrypt(value);
+                if this->encrypt {
+                    let value = this->di->get("crypt", null, true)->decrypt(value);
                 }
 
                 return value;
@@ -94,19 +94,19 @@ class Cookies
     {
         if !lifetime {
             // Use the default expiration
-            let lifetime = (int) this->_expiration;
+            let lifetime = (int) this->expiration;
         }
 
-        if this->_encrypt {
+        if this->encrypt {
             if !empty value {
-                let value = this->_di->get("crypt", null, true)->encrypt(value);
+                let value = this->di->get("crypt", null, true)->encrypt(value);
             }
         }
 
         // Add the salt to the cookie value
         let value = this->salt(key, value) . "~" . value;
 
-        return this->_setcookie(key, value, lifetime, this->_path, this->_domain, this->_secure, this->_httpOnly);
+        return this->setcookie(key, value, lifetime, this->path, this->domain, this->secure, this->httpOnly);
     }
 
     /**
@@ -121,7 +121,7 @@ class Cookies
         unset _COOKIE[key];
 
         // Nullify the cookie and make it expire
-        return this->_setcookie(key, null, -86400, this->_path, this->_domain, this->_secure, this->_httpOnly);
+        return this->setcookie(key, null, -86400, this->path, this->domain, this->secure, this->httpOnly);
     }
 
     /**
@@ -137,14 +137,14 @@ class Cookies
         var userAgent;
 
         // Require a valid salt
-        if !this->_salt {
+        if !this->salt {
             throw new Exception("A valid cookie salt is required.");
         }
 
         // Determine the user agent
-        let userAgent = this->_di->get("request", null, true)->getUserAgent();
+        let userAgent = this->di->get("request", null, true)->getUserAgent();
 
-        return sha1(userAgent . name . value . this->_salt);
+        return sha1(userAgent . name . value . this->salt);
     }
 
     /**
@@ -161,7 +161,7 @@ class Cookies
      * @return bool
      * @see setcookie
      */
-    protected function _setcookie(string name, string value, int expire, string path, string domain, boolean secure, boolean httpOnly)
+    protected function setcookie(string name, string value, int expire, string path, string domain, boolean secure, boolean httpOnly)
     {
         return setcookie(name, value, expire, path, domain, secure, httpOnly);
     }

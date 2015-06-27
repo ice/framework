@@ -29,13 +29,13 @@ ZEPHIR_INIT_CLASS(Ice_I18n) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, I18n, ice, i18n, ice_i18n_method_entry, 0);
 
-	zend_declare_property_null(ice_i18n_ce, SL("_i18n"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
+	zend_declare_property_null(ice_i18n_ce, SL("i18n"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC TSRMLS_CC);
 
-	zend_declare_property_null(ice_i18n_ce, SL("_cache"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_i18n_ce, SL("cache"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_i18n_ce, SL("_rules"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_i18n_ce, SL("rules"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_i18n_ce, SL("_options"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_i18n_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	ice_i18n_ce->create_object = zephir_init_properties;
 	return SUCCESS;
@@ -64,10 +64,10 @@ PHP_METHOD(Ice_I18n, __construct) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_fast_array_merge(_0, &(_1), &(options) TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("_options"), _0 TSRMLS_CC);
-	zephir_update_static_property_ce(ice_i18n_ce, SL("_i18n"), &this_ptr TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("options"), _0 TSRMLS_CC);
+	zephir_update_static_property_ce(ice_i18n_ce, SL("i18n"), &this_ptr TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -82,7 +82,7 @@ PHP_METHOD(Ice_I18n, fetch) {
 	zval *_0;
 
 
-	_0 = zephir_fetch_static_property_ce(ice_i18n_ce, SL("_i18n") TSRMLS_CC);
+	_0 = zephir_fetch_static_property_ce(ice_i18n_ce, SL("i18n") TSRMLS_CC);
 	RETURN_CTORW(_0);
 
 }
@@ -120,9 +120,9 @@ PHP_METHOD(Ice_I18n, lang) {
 		zephir_fast_strtolower(_0, _1);
 		ZEPHIR_INIT_VAR(_4);
 		ZVAL_STRING(_4, "lang", 1);
-		zephir_update_property_array(this_ptr, SL("_options"), _4, _0 TSRMLS_CC);
+		zephir_update_property_array(this_ptr, SL("options"), _4, _0 TSRMLS_CC);
 	}
-	_5 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_array_fetch_string(&_6, _5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 74 TSRMLS_CC);
 	RETURN_CTOR(_6);
 
@@ -156,7 +156,7 @@ PHP_METHOD(Ice_I18n, iso) {
 
 
 	if (!(zephir_is_true(lang))) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		ZEPHIR_OBS_NVAR(lang);
 		zephir_array_fetch_string(&lang, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 89 TSRMLS_CC);
 	}
@@ -217,7 +217,7 @@ PHP_METHOD(Ice_I18n, get) {
 	ZEPHIR_INIT_VAR(messages);
 	array_init(messages);
 	if (!(lang && Z_STRLEN_P(lang))) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
 		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 116 TSRMLS_CC);
 		zephir_get_strval(_2, _1);
@@ -271,7 +271,7 @@ PHP_METHOD(Ice_I18n, load) {
 
 
 	ZEPHIR_OBS_VAR(cache);
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_cache"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("cache"), PH_NOISY_CC);
 	if (zephir_array_isset_fetch(&cache, _0, lang, 0 TSRMLS_CC)) {
 		RETURN_CCTOR(cache);
 	}
@@ -306,7 +306,7 @@ PHP_METHOD(Ice_I18n, load) {
 		  ; zephir_hash_move_forward_ex(_7, &_6)
 		) {
 			ZEPHIR_GET_HVALUE(found, _8);
-			_9 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+			_9 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 			ZEPHIR_OBS_NVAR(_10);
 			zephir_array_fetch_string(&_10, _9, SL("dir"), PH_NOISY, "ice/i18n.zep", 172 TSRMLS_CC);
 			zephir_get_strval(_11, _10);
@@ -322,8 +322,8 @@ PHP_METHOD(Ice_I18n, load) {
 			}
 		}
 	}
-	zephir_update_property_array(this_ptr, SL("_cache"), lang, messages TSRMLS_CC);
-	_9 = zephir_fetch_nproperty_this(this_ptr, SL("_cache"), PH_NOISY_CC);
+	zephir_update_property_array(this_ptr, SL("cache"), lang, messages TSRMLS_CC);
+	_9 = zephir_fetch_nproperty_this(this_ptr, SL("cache"), PH_NOISY_CC);
 	zephir_array_fetch(&_13, _9, lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 184 TSRMLS_CC);
 	RETURN_CTOR(_13);
 
@@ -341,7 +341,7 @@ PHP_METHOD(Ice_I18n, load) {
 PHP_METHOD(Ice_I18n, plural) {
 
 	int count, ZEPHIR_LAST_CALL_STATUS;
-	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, *rules = NULL, *form = NULL, *code = NULL, *_0, *_1 = NULL, *_2, *_3;
+	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, *rules = NULL, *form = NULL, *code = NULL, *_0, *_1 = NULL, *_2, *_3, *_4;
 	zval *str = NULL, *lang = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -374,18 +374,18 @@ PHP_METHOD(Ice_I18n, plural) {
 	ZEPHIR_CALL_METHOD(&code, this_ptr, "iso", NULL, 0, lang);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(rules);
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 	if (!(zephir_array_isset_fetch(&rules, _0, code, 0 TSRMLS_CC))) {
 		ZEPHIR_CALL_METHOD(&_1, this_ptr, "pluralrules", NULL, 0, code);
 		zephir_check_call_status();
-		zephir_update_property_array(this_ptr, SL("_rules"), code, _1 TSRMLS_CC);
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
-		ZEPHIR_OBS_NVAR(rules);
-		zephir_array_fetch(&rules, _2, code, PH_NOISY, "ice/i18n.zep", 205 TSRMLS_CC);
+		zephir_update_property_array(this_ptr, SL("rules"), code, _1 TSRMLS_CC);
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+		zephir_array_fetch(&_3, _2, code, PH_NOISY | PH_READONLY, "ice/i18n.zep", 205 TSRMLS_CC);
+		ZEPHIR_CPY_WRT(rules, _3);
 	}
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_LONG(_3, count);
-	ZEPHIR_CALL_METHOD(&form, rules, "getcategory", NULL, 0, _3);
+	ZEPHIR_INIT_VAR(_4);
+	ZVAL_LONG(_4, count);
+	ZEPHIR_CALL_METHOD(&form, rules, "getcategory", NULL, 0, _4);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, str, form, lang);
 	zephir_check_call_status();
@@ -1100,7 +1100,7 @@ PHP_METHOD(Ice_I18n, translate) {
 
 
 	if (!(lang && Z_STRLEN_P(lang))) {
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
 		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 277 TSRMLS_CC);
 		zephir_get_strval(_2, _1);
@@ -1154,26 +1154,26 @@ static zend_object_value zephir_init_properties(zend_class_entry *class_type TSR
 	{
 		zval *this_ptr = NULL;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("_options"), PH_NOISY_CC);
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1);
 			zephir_create_array(_1, 3, 0 TSRMLS_CC);
 			add_assoc_stringl_ex(_1, SS("source"), SL("en-gb"), 1);
 			add_assoc_stringl_ex(_1, SS("lang"), SL("en-gb"), 1);
 			add_assoc_stringl_ex(_1, SS("dir"), SL(""), 1);
-			zephir_update_property_this(this_ptr, SL("_options"), _1 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("options"), _1 TSRMLS_CC);
 		}
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("_rules"), PH_NOISY_CC);
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3);
 			array_init(_3);
-			zephir_update_property_this(this_ptr, SL("_rules"), _3 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("rules"), _3 TSRMLS_CC);
 		}
-		_4 = zephir_fetch_nproperty_this(this_ptr, SL("_cache"), PH_NOISY_CC);
+		_4 = zephir_fetch_nproperty_this(this_ptr, SL("cache"), PH_NOISY_CC);
 		if (Z_TYPE_P(_4) == IS_NULL) {
 			ZEPHIR_INIT_NVAR(_3);
 			array_init(_3);
-			zephir_update_property_this(this_ptr, SL("_cache"), _3 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("cache"), _3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

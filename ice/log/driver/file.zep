@@ -16,7 +16,7 @@ use Ice\Exception;
 class File extends Driver
 {
 
-    protected _file;
+    protected file;
 
     /**
      * Logger file constructor.
@@ -35,7 +35,7 @@ class File extends Driver
             throw new Exception("Log file " . file . " is not writeable");
         }
         
-        let this->_file = file;
+        let this->file = file;
     }
 
     /**
@@ -52,7 +52,7 @@ class File extends Driver
 
         let line = "[" . date("Y-m-d H:i:s") . "] " . strtoupper(level) . ": " . this->interpolate(message, context) . PHP_EOL;
 
-        file_put_contents(this->_file, line, FILE_APPEND);
+        file_put_contents(this->file, line, FILE_APPEND);
     }
 
     /**

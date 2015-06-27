@@ -17,8 +17,8 @@ use Ice\Mvc\Route\Collector;
 class Dispatcher extends \Ice\Dispatcher
 {
 
-    protected _method { get, set };
-    protected _handlerSuffix = "Controller";
+    protected method { get, set };
+    protected handlerSuffix = "Controller";
 
     /**
      * Get active method, first check whether a method with the HTTP method as prefix exist.
@@ -29,8 +29,8 @@ class Dispatcher extends \Ice\Dispatcher
     {
         var action;
 
-        let action = strtolower(this->_method) . ucfirst(this->_action) . this->_actionSuffix;
-        if method_exists(this->_activeHandler, action) {
+        let action = strtolower(this->method) . ucfirst(this->action) . this->actionSuffix;
+        if method_exists(this->activeHandler, action) {
             return action;
         }
 
