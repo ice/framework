@@ -620,6 +620,46 @@ abstract class Model extends Arr implements \Serializable
     }
 
     /**
+     * Get rules for validation.
+     *
+     * <pre><code>
+     *  // Get rules for one field
+     *  $this->getRules('password');
+     *  
+     *  // Get rules for multiple fields
+     *  $this->getRules(['fullName', 'about']);
+     *  
+     *  // Get all rules
+     *  $this->getRules();
+     * </code></pre>
+     *
+     * @param mixed fields
+     * @return mixed
+     */
+    public function getRules(fields = null)
+    {
+        var rules, field;
+
+        if fields {
+            if typeof fields == "array" {
+                let rules = [];
+
+                for field in fields {
+                    if isset this->rules[field] {
+                        let rules[field] = this->rules[field];
+                    }
+                }
+
+                return rules;
+            } elseif typeof fields == "string" && isset this->rules[fields] {
+                return this->rules[fields];
+            }
+        }
+
+        return this->rules;
+    }
+
+    /**
      * Set rules for validation.
      *
      * @param array rules

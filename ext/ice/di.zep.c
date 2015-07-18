@@ -24,6 +24,16 @@
 #include "kernel/concat.h"
 #include "ext/spl/spl_exceptions.h"
 
+
+/**
+ * Component that implements Dependency Injection and a container for the services.
+ *
+ * @package     Ice/Di
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Di) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Di, ice, di, ice_arr_ce, ice_di_method_entry, 0);
@@ -32,7 +42,7 @@ ZEPHIR_INIT_CLASS(Ice_Di) {
 
 	zend_declare_property_null(ice_di_ce, SL("hooks"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_di_ce->create_object = zephir_init_properties;
+	ice_di_ce->create_object = zephir_init_properties_Ice_Di;
 	return SUCCESS;
 
 }
@@ -537,7 +547,7 @@ PHP_METHOD(Ice_Di, __call) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1 = NULL, *_2;
 

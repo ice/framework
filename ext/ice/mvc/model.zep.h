@@ -35,11 +35,12 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo);
 PHP_METHOD(Ice_Mvc_Model, hasOne);
 PHP_METHOD(Ice_Mvc_Model, hasMany);
 PHP_METHOD(Ice_Mvc_Model, getRelated);
+PHP_METHOD(Ice_Mvc_Model, getRules);
 PHP_METHOD(Ice_Mvc_Model, setRules);
 PHP_METHOD(Ice_Mvc_Model, serialize);
 PHP_METHOD(Ice_Mvc_Model, unserialize);
 PHP_METHOD(Ice_Mvc_Model, __call);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
+static zend_object_value zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfrom, 0, 0, 1)
 	ZEND_ARG_INFO(0, from)
@@ -141,6 +142,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrelated, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, filters, 1)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrules, 0, 0, 0)
+	ZEND_ARG_INFO(0, fields)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, rules, 1)
 	ZEND_ARG_INFO(0, merge)
@@ -188,6 +193,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, hasOne, arginfo_ice_mvc_model_hasone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, hasMany, arginfo_ice_mvc_model_hasmany, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getRelated, arginfo_ice_mvc_model_getrelated, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getRules, arginfo_ice_mvc_model_getrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setRules, arginfo_ice_mvc_model_setrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, serialize, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, unserialize, arginfo_ice_mvc_model_unserialize, ZEND_ACC_PUBLIC)
