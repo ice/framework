@@ -22,6 +22,17 @@
 #include "kernel/string.h"
 #include "kernel/operators.h"
 
+
+/**
+ * Router is the standard framework router. Routing is the process of taking a command-line arguments and decomposing it
+ * into parameters to determine which module, task, and action of that task should receive the request.
+ *
+ * @package     Ice/Router
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Cli, Router, ice, cli_router, ice_cli_router_method_entry, 0);
@@ -40,7 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
 	zend_declare_property_null(ice_cli_router_ce, SL("params"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_cli_router_ce->create_object = zephir_init_properties;
+	ice_cli_router_ce->create_object = zephir_init_properties_Ice_Cli_Router;
 	return SUCCESS;
 
 }
@@ -287,7 +298,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Cli_Router(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1;
 

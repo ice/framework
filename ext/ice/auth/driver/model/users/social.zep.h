@@ -5,7 +5,6 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social);
 
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize);
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_social_method_entry) {
 	PHP_ME(Ice_Auth_Driver_Model_Users_Social, initialize, NULL, ZEND_ACC_PUBLIC)

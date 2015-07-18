@@ -26,7 +26,7 @@ PHP_METHOD(Ice_Arr, __isset);
 PHP_METHOD(Ice_Arr, __get);
 PHP_METHOD(Ice_Arr, __set);
 PHP_METHOD(Ice_Arr, __unset);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
+static zend_object_value zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)

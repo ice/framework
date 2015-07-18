@@ -23,6 +23,17 @@
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
 
+
+/**
+ * Model connects business objects and database tables to create a persistable domain model where logic and data are
+ * presented in one wrapping (ORM & ODM).
+ *
+ * @package     Ice/Db
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Model) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Model, ice, mvc_model, ice_arr_ce, ice_mvc_model_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -49,7 +60,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Model) {
 
 	zend_declare_property_null(ice_mvc_model_ce, SL("messages"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_mvc_model_ce->create_object = zephir_init_properties;
+	ice_mvc_model_ce->create_object = zephir_init_properties_Ice_Mvc_Model;
 	zend_declare_class_constant_long(ice_mvc_model_ce, SL("BELONGS_TO"), 1 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_mvc_model_ce, SL("HAS_ONE"), 2 TSRMLS_CC);
@@ -1353,6 +1364,71 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 }
 
 /**
+ * Get rules for validation.
+ *
+ * <pre><code>
+ *  // Get rules for one field
+ *  $this->getRules('password');
+ *  
+ *  // Get rules for multiple fields
+ *  $this->getRules(['fullName', 'about']);
+ *  
+ *  // Get all rules
+ *  $this->getRules();
+ * </code></pre>
+ *
+ * @param mixed fields
+ * @return mixed
+ */
+PHP_METHOD(Ice_Mvc_Model, getRules) {
+
+	HashTable *_3;
+	HashPosition _2;
+	zend_bool _0;
+	zval *fields = NULL, *rules, *field = NULL, *_1, **_4, *_5, *_6, *_7;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &fields);
+
+	if (!fields) {
+		fields = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	if (zephir_is_true(fields)) {
+		_0 = Z_TYPE_P(fields) == IS_STRING;
+		if (_0) {
+			_1 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+			_0 = zephir_array_isset(_1, fields);
+		}
+		if (Z_TYPE_P(fields) == IS_ARRAY) {
+			ZEPHIR_INIT_VAR(rules);
+			array_init(rules);
+			zephir_is_iterable(fields, &_3, &_2, 0, 0, "ice/mvc/model.zep", 653);
+			for (
+			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
+			  ; zephir_hash_move_forward_ex(_3, &_2)
+			) {
+				ZEPHIR_GET_HVALUE(field, _4);
+				_5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+				if (zephir_array_isset(_5, field)) {
+					_6 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+					zephir_array_fetch(&_7, _6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 649 TSRMLS_CC);
+					zephir_array_update_zval(&rules, field, &_7, PH_COPY | PH_SEPARATE);
+				}
+			}
+			RETURN_CCTOR(rules);
+		} else if (_0) {
+			_5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+			zephir_array_fetch(&_7, _5, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 655 TSRMLS_CC);
+			RETURN_CTOR(_7);
+		}
+	}
+	RETURN_MM_MEMBER(this_ptr, "rules");
+
+}
+
+/**
  * Set rules for validation.
  *
  * @param array rules
@@ -1489,13 +1565,13 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 2, _3);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_0, "ice/mvc/model.zep", 669 TSRMLS_CC);
+	zephir_throw_exception_debug(_0, "ice/mvc/model.zep", 709 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1 = NULL, *_2, *_3, *_4, *_5, *_6, *_7;
 

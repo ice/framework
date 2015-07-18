@@ -54,8 +54,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View) {
 
 	zend_declare_property_bool(ice_mvc_view_ce, SL("silent"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_mvc_view_ce->create_object = zephir_init_properties;
-
 	zend_class_implements(ice_mvc_view_ce TSRMLS_CC, 1, ice_mvc_view_viewinterface_ce);
 	return SUCCESS;
 
@@ -253,7 +251,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1);
 		object_init_ex(_1, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 115, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 117, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2);
 		ZVAL_STRING(_2, ".phtml", 1);
@@ -592,27 +590,6 @@ PHP_METHOD(Ice_Mvc_View, __toString) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
-}
-
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
-
-		zval *_0, *_1;
-
-		ZEPHIR_MM_GROW();
-	
-	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
-		if (Z_TYPE_P(_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_1);
-			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
-		}
-		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
-	}
 
 }
 

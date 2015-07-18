@@ -23,6 +23,35 @@
 #include "kernel/hash.h"
 #include "ext/spl/spl_exceptions.h"
 
+
+/**
+ * Allows to validate array data.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        Ice\Filter (if service is available)
+ * @uses        Ice\I18n (if service is available)
+ *
+ * <pre><code>
+ *  $validation = new Ice\Validation();
+ *  
+ *  $validation->rules([
+ *      'fullName' => 'required',
+ *      'email' => 'required|email',
+ *      'repeatEmail' => 'same:email',
+ *      'about' => 'required|length:10,5000',
+ *  ]);
+ *  
+ *  $valid = $validation->validate($_POST);
+ *  
+ *  if (!$valid) {
+ *      $messages = $validation->getMessages();
+ *  }
+ * </code></pre>
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Validation, ice, validation, ice_validation_method_entry, 0);
@@ -51,7 +80,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation) {
 
 	zend_declare_property_null(ice_validation_ce, SL("defaultMessages"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_validation_ce->create_object = zephir_init_properties;
+	ice_validation_ce->create_object = zephir_init_properties_Ice_Validation;
 	return SUCCESS;
 
 }
@@ -297,7 +326,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 156, field, validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 158, field, validator, options);
 				zephir_check_call_status();
 			}
 			break;
@@ -759,7 +788,7 @@ PHP_METHOD(Ice_Validation, getMessages) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Validation(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
 		zval *_0, *_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8, *_9;

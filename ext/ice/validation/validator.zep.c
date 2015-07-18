@@ -18,13 +18,23 @@
 #include "kernel/array.h"
 #include "kernel/hash.h"
 
+
+/**
+ * Validator is a base class for validators.
+ *
+ * @package     Ice/Validation
+ * @category    Security
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Validation, Validator, ice, validation_validator, ice_validation_validator_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(ice_validation_validator_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_validation_validator_ce->create_object = zephir_init_properties;
+	ice_validation_validator_ce->create_object = zephir_init_properties_Ice_Validation_Validator;
 	zend_declare_class_constant_long(ice_validation_validator_ce, SL("ALL"), 0 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_validation_validator_ce, SL("NUMERIC"), 1 TSRMLS_CC);
@@ -194,7 +204,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Validation_Validator(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1;
 

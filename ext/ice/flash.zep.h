@@ -16,7 +16,7 @@ PHP_METHOD(Ice_Flash, warning);
 PHP_METHOD(Ice_Flash, alert);
 PHP_METHOD(Ice_Flash, danger);
 PHP_METHOD(Ice_Flash, error);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
+static zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_flash___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)

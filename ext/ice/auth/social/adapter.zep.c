@@ -22,6 +22,16 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/concat.h"
 
+
+/**
+ * Auth social adapter.
+ *
+ * @package     Ice/Auth
+ * @category    Adapter
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Auth_Social_Adapter) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth\\Social, Adapter, ice, auth_social_adapter, ice_auth_social_adapter_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -42,7 +52,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Adapter) {
 
 	zend_declare_property_string(ice_auth_social_adapter_ce, SL("responseType"), "code", ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_auth_social_adapter_ce->create_object = zephir_init_properties;
+	ice_auth_social_adapter_ce->create_object = zephir_init_properties_Ice_Auth_Social_Adapter;
 	zend_declare_class_constant_long(ice_auth_social_adapter_ce, SL("GET"), 0 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_auth_social_adapter_ce, SL("POST"), 1 TSRMLS_CC);
@@ -426,7 +436,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Auth_Social_Adapter(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1;
 

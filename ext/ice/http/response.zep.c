@@ -19,6 +19,16 @@
 #include "kernel/array.h"
 #include "kernel/string.h"
 
+
+/**
+ * This class provides a simple interface around the HTTP response.
+ *
+ * @package     Ice/Http
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Http_Response) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Http, Response, ice, http_response, ice_http_response_method_entry, 0);
@@ -35,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response) {
 
 	zend_declare_property_null(ice_http_response_ce, SL("messages"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_http_response_ce->create_object = zephir_init_properties;
+	ice_http_response_ce->create_object = zephir_init_properties_Ice_Http_Response;
 
 	zend_class_implements(ice_http_response_ce TSRMLS_CC, 1, ice_http_response_responseinterface_ce);
 	return SUCCESS;
@@ -758,7 +768,7 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
 		zval *_0;
