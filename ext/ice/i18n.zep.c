@@ -25,6 +25,19 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 
+
+/**
+ * Global alias of translate method.
+ */
+/**
+ * Internationalization (i18n) class.
+ *
+ * @package     Ice/I18n
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_I18n) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, I18n, ice, i18n, ice_i18n_method_entry, 0);
@@ -37,7 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n) {
 
 	zend_declare_property_null(ice_i18n_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_i18n_ce->create_object = zephir_init_properties;
+	ice_i18n_ce->create_object = zephir_init_properties_Ice_I18n;
 	return SUCCESS;
 
 }
@@ -1144,7 +1157,7 @@ PHP_METHOD(Ice_I18n, translate) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
 		zval *_0, *_2, *_3 = NULL, *_4;

@@ -34,7 +34,6 @@ ZEPHIR_INIT_CLASS(Ice_Session) {
 
 	zend_declare_property_bool(ice_session_ce, SL("started"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_session_ce->create_object = zephir_init_properties;
 	return SUCCESS;
 
 }
@@ -69,7 +68,7 @@ PHP_METHOD(Ice_Session, start) {
 	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 98);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 146);
+		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 148);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("started"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 		RETURN_MM_BOOL(1);
@@ -101,7 +100,7 @@ PHP_METHOD(Ice_Session, getId) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 147);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 149);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -118,7 +117,7 @@ PHP_METHOD(Ice_Session, regenerate) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 148);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 150);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -136,7 +135,7 @@ PHP_METHOD(Ice_Session, destroy) {
 	ZEPHIR_MM_GROW();
 
 	zephir_update_property_this(this_ptr, SL("started"), (0) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 149);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 151);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -236,27 +235,6 @@ PHP_METHOD(Ice_Session, remove) {
 
 	zephir_array_unset(&_SESSION, key, PH_SEPARATE);
 	ZEPHIR_MM_RESTORE();
-
-}
-
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
-
-		zval *_0, *_1;
-
-		ZEPHIR_MM_GROW();
-	
-	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
-		if (Z_TYPE_P(_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_1);
-			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("data"), _1 TSRMLS_CC);
-		}
-		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
-	}
 
 }
 

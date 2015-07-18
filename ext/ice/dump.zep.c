@@ -23,6 +23,33 @@
 #include "kernel/hash.h"
 #include "kernel/string.h"
 
+
+/**
+ * Dumps information about a variable(s)
+ *
+ * @package     Ice/Dump
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ *
+ * <pre><code>
+ *  $foo = 123;
+ *  echo (new \Ice\Dump())->variable($foo, "foo");
+ * </code></pre>
+ * 
+ * <pre><code>
+ *  $foo = "string";
+ *  $bar = ["key" => "value"];
+ *  $baz = new stdClass();
+ *  echo (new \Ice\Dump())->vars($foo, $bar, $baz);
+ * </code></pre>
+ *
+ * Sleet usage:
+ * <pre><code>
+ *  {{ dump('str', 1, 2.5, true, null, ['key': 'value']) }}
+ * </code></pre>
+ */
 ZEPHIR_INIT_CLASS(Ice_Dump) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Dump, ice, dump, ice_dump_method_entry, 0);
@@ -33,7 +60,7 @@ ZEPHIR_INIT_CLASS(Ice_Dump) {
 
 	zend_declare_property_null(ice_dump_ce, SL("styles"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_dump_ce->create_object = zephir_init_properties;
+	ice_dump_ce->create_object = zephir_init_properties_Ice_Dump;
 	return SUCCESS;
 
 }
@@ -839,7 +866,7 @@ PHP_METHOD(Ice_Dump, vars) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1 = NULL, *_2;
 

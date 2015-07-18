@@ -11,7 +11,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, login);
 PHP_METHOD(Ice_Auth_Driver_Model, loginBy);
 PHP_METHOD(Ice_Auth_Driver_Model, logout);
 PHP_METHOD(Ice_Auth_Driver_Model, refreshUser);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_completelogin, 0, 0, 1)
 	ZEND_ARG_INFO(0, user)

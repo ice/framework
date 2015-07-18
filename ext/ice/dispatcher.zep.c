@@ -23,6 +23,17 @@
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
 
+
+/**
+ * The base class for Ice\Mvc\Dispatcher and Ice\CLI\Dispatcher.
+ * For the response from router and in the specified module, create instance of handler with action and params.
+ *
+ * @package     Ice/Dispatcher
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Dispatcher) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Dispatcher, ice, dispatcher, ice_dispatcher_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -65,7 +76,7 @@ ZEPHIR_INIT_CLASS(Ice_Dispatcher) {
 
 	zend_declare_property_null(ice_dispatcher_ce, SL("previousAction"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_dispatcher_ce->create_object = zephir_init_properties;
+	ice_dispatcher_ce->create_object = zephir_init_properties_Ice_Dispatcher;
 	zend_declare_class_constant_long(ice_dispatcher_ce, SL("DISPATCH_CYCLIC"), 1 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_dispatcher_ce, SL("HANDLER_NOT_FOUND"), 2 TSRMLS_CC);
@@ -723,7 +734,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1 = NULL, *_2;
 

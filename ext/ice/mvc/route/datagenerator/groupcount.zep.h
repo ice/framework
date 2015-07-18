@@ -5,7 +5,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount);
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_datagenerator_groupcount_processchunk, 0, 0, 1)
 	ZEND_ARG_INFO(0, regexToRoutesMap)
