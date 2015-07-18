@@ -53,7 +53,7 @@ class Std implements ParserInterface
      */
     private function parsePlaceholders(route)
     {
-        var matches, routeData, aSet, offset;
+        var matches, routeData, value, offset;
 
         let matches = [];
 
@@ -64,16 +64,16 @@ class Std implements ParserInterface
         let offset = 0,
             routeData = [];
 
-        for aSet in matches {
-            if aSet[0][1] > offset {
-                let routeData[] = substr(route, offset, aSet[0][1] - offset);
+        for value in matches {
+            if value[0][1] > offset {
+                let routeData[] = substr(route, offset, value[0][1] - offset);
             }
 
             let routeData[] = [
-                aSet[1][0],
-                isset(aSet[2]) ? trim(aSet[2][0]) : self::DEFAULT_DISPATCH_REGEX
+                value[1][0],
+                isset(value[2]) ? trim(value[2][0]) : self::DEFAULT_DISPATCH_REGEX
             ];
-            let offset = aSet[0][1] + strlen(aSet[0][0]);
+            let offset = value[0][1] + strlen(value[0][0]);
         }
 
         if offset != strlen(route) {

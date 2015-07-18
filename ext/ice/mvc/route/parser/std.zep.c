@@ -116,7 +116,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	HashPosition _3;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0;
-	zval *route, *matches, *routeData, *aSet = NULL, *offset = NULL, *_1 = NULL, *_2 = NULL, **_5, *_6, *_7, *_8, *_9, _10 = zval_used_for_init, *_12 = NULL, *_13 = NULL, *_14, *_15, *_16, *_17, *_18, *_19;
+	zval *route, *matches, *routeData, *value = NULL, *offset = NULL, *_1 = NULL, *_2 = NULL, **_5, *_6, *_7, *_8, *_9, _10 = zval_used_for_init, *_12 = NULL, *_13 = NULL, *_14, *_15, *_16, *_17, *_18, *_19;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
@@ -147,11 +147,11 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_4, &_3)
 	) {
-		ZEPHIR_GET_HVALUE(aSet, _5);
-		zephir_array_fetch_long(&_6, aSet, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 68 TSRMLS_CC);
+		ZEPHIR_GET_HVALUE(value, _5);
+		zephir_array_fetch_long(&_6, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 68 TSRMLS_CC);
 		zephir_array_fetch_long(&_7, _6, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 68 TSRMLS_CC);
 		if (ZEPHIR_GT(_7, offset)) {
-			zephir_array_fetch_long(&_8, aSet, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 69 TSRMLS_CC);
+			zephir_array_fetch_long(&_8, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 69 TSRMLS_CC);
 			zephir_array_fetch_long(&_9, _8, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 69 TSRMLS_CC);
 			ZEPHIR_SINIT_NVAR(_10);
 			sub_function(&_10, _9, offset TSRMLS_CC);
@@ -161,13 +161,13 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 		}
 		ZEPHIR_INIT_NVAR(_11);
 		zephir_create_array(_11, 2, 0 TSRMLS_CC);
-		zephir_array_fetch_long(&_8, aSet, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 73 TSRMLS_CC);
+		zephir_array_fetch_long(&_8, value, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 73 TSRMLS_CC);
 		ZEPHIR_OBS_NVAR(_12);
 		zephir_array_fetch_long(&_12, _8, 0, PH_NOISY, "ice/mvc/route/parser/std.zep", 73 TSRMLS_CC);
 		zephir_array_fast_append(_11, _12);
 		ZEPHIR_INIT_LNVAR(_13);
-		if (zephir_array_isset_long(aSet, 2)) {
-			zephir_array_fetch_long(&_9, aSet, 2, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 74 TSRMLS_CC);
+		if (zephir_array_isset_long(value, 2)) {
+			zephir_array_fetch_long(&_9, value, 2, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 74 TSRMLS_CC);
 			zephir_array_fetch_long(&_14, _9, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 74 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(_13);
 			zephir_fast_trim(_13, _14, NULL , ZEPHIR_TRIM_BOTH TSRMLS_CC);
@@ -177,9 +177,9 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 		}
 		zephir_array_fast_append(_11, _13);
 		zephir_array_append(&routeData, _11, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 75);
-		zephir_array_fetch_long(&_15, aSet, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
+		zephir_array_fetch_long(&_15, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
 		zephir_array_fetch_long(&_16, _15, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
-		zephir_array_fetch_long(&_17, aSet, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
+		zephir_array_fetch_long(&_17, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
 		zephir_array_fetch_long(&_18, _17, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 76 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(offset);
 		ZVAL_LONG(offset, (zephir_get_numberval(_16) + zephir_fast_strlen_ev(_18)));
