@@ -24,13 +24,23 @@
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
+
+/**
+ * Access class as array and the same time as object.
+ *
+ * @package     Ice/Arr
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Arr) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Arr, ice, arr, ice_arr_method_entry, 0);
 
 	zend_declare_property_null(ice_arr_ce, SL("data"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_arr_ce->create_object = zephir_init_properties;
+	ice_arr_ce->create_object = zephir_init_properties_Ice_Arr;
 
 	zend_class_implements(ice_arr_ce TSRMLS_CC, 1, zend_ce_arrayaccess);
 	zend_class_implements(ice_arr_ce TSRMLS_CC, 1, spl_ce_Countable);
@@ -702,7 +712,7 @@ PHP_METHOD(Ice_Arr, __unset) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1;
 

@@ -15,7 +15,7 @@ PHP_METHOD(Ice_Cli_Router, getAction);
 PHP_METHOD(Ice_Cli_Router, getParams);
 PHP_METHOD(Ice_Cli_Router, setDefaults);
 PHP_METHOD(Ice_Cli_Router, handle);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
+static zend_object_value zephir_init_properties_Ice_Cli_Router(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_router_setdefaultmodule, 0, 0, 1)
 	ZEND_ARG_INFO(0, defaultModule)

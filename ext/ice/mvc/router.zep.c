@@ -26,6 +26,18 @@
 #include "kernel/variables.h"
 #include "kernel/string.h"
 
+
+/**
+ * Router is the standard framework router. Routing is the process of taking a URI endpoint and decomposing it into
+ * parameters to determine which module, controller, and action of that controller should receive the request.
+ *
+ * @package     Ice/Router
+ * @category    Component
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ * @uses        FastRoute http:/github.com/nikic/FastRoute
+ */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Router) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Router, ice, mvc_router, ice_mvc_router_method_entry, 0);
@@ -60,7 +72,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Router) {
 
 	zend_declare_property_null(ice_mvc_router_ce, SL("dispatcher"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_mvc_router_ce->create_object = zephir_init_properties;
+	ice_mvc_router_ce->create_object = zephir_init_properties_Ice_Mvc_Router;
 	zend_declare_class_constant_long(ice_mvc_router_ce, SL("NOT_FOUND"), 0 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_mvc_router_ce, SL("FOUND"), 1 TSRMLS_CC);
@@ -355,7 +367,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 			ZEPHIR_CALL_METHOD(NULL, _9, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
-		ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 114, _6, _9);
+		ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 116, _6, _9);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("collector"), _5 TSRMLS_CC);
 	}
@@ -422,6 +434,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 			ZEPHIR_CALL_METHOD(&data, _12, "getdata", NULL, 0);
 			zephir_check_call_status();
 			zephir_array_fetch_string(&_17, options, SL("cacheFile"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 125 TSRMLS_CC);
+			ZEPHIR_INIT_NVAR(_5);
 			ZEPHIR_INIT_NVAR(_5);
 			zephir_var_export_ex(_5, &(data) TSRMLS_CC);
 			ZEPHIR_INIT_VAR(_24);
@@ -631,7 +644,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Mvc_Router(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1 = NULL, *_2;
 

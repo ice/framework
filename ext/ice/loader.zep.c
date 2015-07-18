@@ -23,13 +23,23 @@
 #include "kernel/file.h"
 #include "kernel/require.h"
 
+
+/**
+ * PSR-4 autoloader class.
+ *
+ * @package     Ice/Loader
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Loader) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Loader, ice, loader, ice_loader_method_entry, 0);
 
 	zend_declare_property_null(ice_loader_ce, SL("prefixes"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_loader_ce->create_object = zephir_init_properties;
+	ice_loader_ce->create_object = zephir_init_properties_Ice_Loader;
 	return SUCCESS;
 
 }
@@ -283,7 +293,7 @@ PHP_METHOD(Ice_Loader, requireFile) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Loader(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1;
 

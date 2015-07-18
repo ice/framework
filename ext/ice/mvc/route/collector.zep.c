@@ -115,11 +115,11 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
-	HashTable *_2;
-	HashPosition _1;
+	HashTable *_2, *_5;
+	HashPosition _1, _4;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *route = NULL;
-	zval *httpMethod = NULL, *route_param = NULL, *handler = NULL, *routeData = NULL, *method = NULL, *_0, **_3, *_4;
+	zval *httpMethod = NULL, *route_param = NULL, *handler = NULL, *routeDatas = NULL, *routeData = NULL, *method = NULL, *_0, **_3, **_6, *_7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &httpMethod, &route_param, &handler);
@@ -132,7 +132,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("routeParser"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&routeData, _0, "parse", NULL, 0, route);
+	ZEPHIR_CALL_METHOD(&routeDatas, _0, "parse", NULL, 0, route);
 	zephir_check_call_status();
 	if (Z_TYPE_P(httpMethod) == IS_STRING) {
 		ZEPHIR_CPY_WRT(method, httpMethod);
@@ -140,15 +140,22 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 		zephir_create_array(httpMethod, 1, 0 TSRMLS_CC);
 		zephir_array_fast_append(httpMethod, method);
 	}
-	zephir_is_iterable(httpMethod, &_2, &_1, 0, 0, "ice/mvc/route/collector.zep", 58);
+	zephir_is_iterable(httpMethod, &_2, &_1, 0, 0, "ice/mvc/route/collector.zep", 60);
 	for (
 	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HVALUE(method, _3);
-		_4 = zephir_fetch_nproperty_this(this_ptr, SL("dataGenerator"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, _4, "addroute", NULL, 0, method, routeData, handler);
-		zephir_check_call_status();
+		zephir_is_iterable(routeDatas, &_5, &_4, 0, 0, "ice/mvc/route/collector.zep", 59);
+		for (
+		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
+		  ; zephir_hash_move_forward_ex(_5, &_4)
+		) {
+			ZEPHIR_GET_HVALUE(routeData, _6);
+			_7 = zephir_fetch_nproperty_this(this_ptr, SL("dataGenerator"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(NULL, _7, "addroute", NULL, 0, method, routeData, handler);
+			zephir_check_call_status();
+		}
 	}
 	ZEPHIR_MM_RESTORE();
 

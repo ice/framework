@@ -20,6 +20,16 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 
+
+/**
+ * User authorization library. Handles user login and logout, as well as secure password hashing.
+ *
+ * @package     Ice/Auth
+ * @category    Library
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth, Driver, ice, auth_driver, ice_auth_driver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
@@ -34,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
 
 	zend_declare_property_null(ice_auth_driver_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_auth_driver_ce->create_object = zephir_init_properties;
+	ice_auth_driver_ce->create_object = zephir_init_properties_Ice_Auth_Driver;
 	return SUCCESS;
 
 }
@@ -401,7 +411,7 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
 		zval *_0;

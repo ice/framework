@@ -22,6 +22,16 @@
 #include "kernel/hash.h"
 #include "kernel/concat.h"
 
+
+/**
+ * Shows HTML notifications related to different circumstances.
+ *
+ * @package     Ice/Flash
+ * @category    Helper
+ * @author      Ice Team
+ * @copyright   (c) 2014-2015 Ice Team
+ * @license     http://iceframework.org/license
+ */
 ZEPHIR_INIT_CLASS(Ice_Flash) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Flash, ice, flash, ice_flash_method_entry, 0);
@@ -32,7 +42,7 @@ ZEPHIR_INIT_CLASS(Ice_Flash) {
 
 	zend_declare_property_null(ice_flash_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	ice_flash_ce->create_object = zephir_init_properties;
+	ice_flash_ce->create_object = zephir_init_properties_Ice_Flash;
 	return SUCCESS;
 
 }
@@ -528,7 +538,7 @@ PHP_METHOD(Ice_Flash, error) {
 
 }
 
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC) {
+static zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1, *_2 = NULL;
 		zval *_0;

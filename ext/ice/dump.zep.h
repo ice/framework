@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Dump, one);
 PHP_METHOD(Ice_Dump, output);
 PHP_METHOD(Ice_Dump, variable);
 PHP_METHOD(Ice_Dump, vars);
-static zend_object_value zephir_init_properties(zend_class_entry *class_type TSRMLS_DC);
+static zend_object_value zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setdetailed, 0, 0, 1)
 	ZEND_ARG_INFO(0, detailed)
