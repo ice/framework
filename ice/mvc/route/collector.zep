@@ -43,9 +43,9 @@ class Collector
      */
     public function addRoute(var httpMethod, string route, handler = null)
     {
-        var routeData, method;
+        var routeDatas, routeData, method;
 
-        let routeData = this->routeParser->parse(route);
+        let routeDatas = this->routeParser->parse(route);
 
         if typeof httpMethod == "string" {
             let method = httpMethod,
@@ -53,7 +53,9 @@ class Collector
         }
 
         for method in httpMethod {
-            this->dataGenerator->addRoute(method, routeData, handler);
+            for routeData in routeDatas {
+                this->dataGenerator->addRoute(method, routeData, handler);
+            }
         }
     }
 
