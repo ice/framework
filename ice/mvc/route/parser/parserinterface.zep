@@ -5,18 +5,32 @@ interface ParserInterface
 {
 
     /**
-     * Returns an array of the following form:
+     * Parses a route string into multiple route data arrays.
      *
-     *[
-     *  "/fixedRoutePart/",
-     *  ["varName", "[^/]+"],
-     *  "/moreFixed/",
-     *  ["varName2", [0-9]+"],
-     *]
+     * The expected output is defined using an example:
      *
-     * @param string $route Route to parse
-     * 
-     * @return array Parsed route data
+     * For the route string "/fixedRoutePart/{varName}[/moreFixed/{varName2:\d+}]", if {varName} is interpreted as
+     * a placeholder and [...] is interpreted as an optional route part, the expected result is:
+     *
+     * [
+     *     // first route: without optional part
+     *     [
+     *         "/fixedRoutePart/",
+     *         ["varName", "[^/]+"],
+     *     ],
+     *     // second route: with optional part
+     *     [
+     *         "/fixedRoutePart/",
+     *         ["varName", "[^/]+"],
+     *         "/moreFixed/",
+     *         ["varName2", [0-9]+"],
+     *     ],
+     * ]
+     *
+     * Here one route string was converted into two route data arrays.
+     *
+     * @param string $route Route string to parse
+     * @return mixed[][] Array of route data arrays
      */
     public function parse(route);
 }

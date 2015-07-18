@@ -9,7 +9,7 @@ namespace Ice\Mvc;
  * @author      Ice Team
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
- * @uses        FastRoute http:/github.com/nikic/FastRoute
+ * @uses        FastRoute http:/github.com/nikic/FastRoute/commit/02b8aabe519672f250e261e24282dc1937f2637b
  */
 class Route
 {

@@ -20,10 +20,14 @@ abstract class Regex implements DispatcherInterface
 
     public function dispatch(httpMethod, uri)
     {
-        var varRouteData, result, allowedMethods, method, routeData;
+        var handler, varRouteData, result, allowedMethods, uriMap, method, routeData;
 
-        if isset this->staticRouteMap[uri] {
-            return this->dispatchStaticRoute(httpMethod, uri);
+        if isset this->staticRouteMap[httpMethod] && isset this->staticRouteMap[httpMethod][uri] {
+            let handler = this->staticRouteMap[httpMethod][uri];
+            return [Router::FOUND, handler, []];
+        } elseif httpMethod === "HEAD" && isset this->staticRouteMap["GET"][uri] {
+            let handler = this->staticRouteMap["GET"][uri];
+            return [Router::FOUND, handler, []];
         }
 
         let varRouteData = this->variableRouteData;
@@ -42,9 +46,14 @@ abstract class Regex implements DispatcherInterface
             }
         }
 
-        // Find allowed methods for this URI by matching against all other
-        // HTTP methods as well
+        // Find allowed methods for this URI by matching against all other HTTP methods as well
         let allowedMethods = [];
+
+        for method, uriMap in this->staticRouteMap {
+            if method !== httpMethod && isset uriMap[uri] {
+                let allowedMethods[] = method;
+            }
+        }
 
         for method, routeData in varRouteData {
             if method === httpMethod {
@@ -62,21 +71,6 @@ abstract class Regex implements DispatcherInterface
             return [Router::METHOD_NOT_ALLOWED, allowedMethods];
         } else {
             return [Router::NOT_FOUND];
-        }
-    }
-
-    protected function dispatchStaticRoute(httpMethod, uri)
-    {
-        var routes;
-
-        let routes = this->staticRouteMap[uri];
-
-        if isset routes[httpMethod] {
-            return [Router::FOUND, routes[httpMethod], []];
-        } elseif httpMethod === "HEAD" && isset routes["GET"] {
-            return [Router::FOUND, routes["GET"], []];
-        } else {
-            return [Router::METHOD_NOT_ALLOWED, array_keys(routes)];
         }
     }
 }

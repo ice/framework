@@ -70,7 +70,7 @@ abstract class Regex implements DataGeneratorInterface
 
         let routeStr = routeData[0];
 
-        if isset this->staticRoutes[routeStr] && isset this->staticRoutes[routeStr][httpMethod] {
+        if isset this->staticRoutes[httpMethod] && isset this->staticRoutes[httpMethod][routeStr] {
             throw new Exception(sprintf("Cannot register two routes matching '%s' for method '%s'",
                 routeStr, httpMethod
             ));
@@ -87,7 +87,7 @@ abstract class Regex implements DataGeneratorInterface
             }
         }
 
-        let this->staticRoutes[routeStr][httpMethod] = handler;
+        let this->staticRoutes[httpMethod][routeStr] = handler;
     }
 
     protected function addVariableRoute(httpMethod, routeData, handler)
