@@ -143,6 +143,7 @@ class Dump
     protected function output(variable, name = null, tab = 1) -> string
     {
         var key, value, output, space, type, attr;
+
         let space = "  ", 
             output = "";
 
@@ -176,12 +177,17 @@ class Dump
             }
             let output .= " (\n";
 
-            if !this->detailed {
+            if variable instanceof Di {
+                // Skip debuging di
+                let output .= str_repeat(space, tab) . "[skipped]\n";
+            } elseif !this->detailed {
+                // Debug only public properties
                 for key, value in get_object_vars(variable) {
                     let output .= str_repeat(space, tab) . strtr("-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = ", [":style": this->getStyle("obj"), ":key": key, ":type": "public"]);
                     let output .= this->output(value, "", tab + 1) . "\n";
                 }
             } else {
+                // Debug all properties
                 do {
                     let attr = each(variable);
 
@@ -194,7 +200,9 @@ class Dump
                     if !key {
                         continue;
                     }
-                    let key = explode(chr(ord("\x00")), key),
+
+                    // Explode key by the "\x00" char
+                    let key = explode(chr(0), key),
                         type = "public";
 
                     if isset key[1] {
@@ -204,15 +212,15 @@ class Dump
                             let type = "protected";
                         }
                     }
-                    let output .= str_repeat(space, tab) . strtr("-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = ", [":style": this->getStyle("obj"), ":key": end(key), ":type": type]);
-                    let output .= this->output(value, "", tab + 1) . "\n";
+                    let output .= str_repeat(space, tab) . strtr("-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = ", [":style": this->getStyle("obj"), ":key": end(key), ":type": type]),
+                        output .= this->output(value, "", tab + 1) . "\n";
                 } while attr;
             }
 
-            let attr = get_class_methods(variable);
-            let output .= str_repeat(space, tab) . strtr(":class <b style=':style'>methods</b>: (<span style=':style'>:count</span>) (\n", [":style": this->getStyle("obj"), ":class": className, ":count": count(attr)]);
+            let attr = get_class_methods(variable),
+                output .= str_repeat(space, tab) . strtr(":class <b style=':style'>methods</b>: (<span style=':style'>:count</span>) (\n", [":style": this->getStyle("obj"), ":class": className, ":count": count(attr)]);
 
-            if (in_array(className, this->methods)) {
+            if in_array(className, this->methods) {
                 let output .= str_repeat(space, tab) . "[already listed]\n";
             } else {
                 for value in attr {
@@ -293,6 +301,7 @@ class Dump
         var key, value, output;
 
         let output = "";
+
         for key, value in func_get_args() {
             let output .= this->one(value, "var " . key);
         }
