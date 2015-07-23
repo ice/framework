@@ -20,6 +20,7 @@ PHP_METHOD(Ice_Validation, validate);
 PHP_METHOD(Ice_Validation, valid);
 PHP_METHOD(Ice_Validation, hasValue);
 PHP_METHOD(Ice_Validation, getValue);
+PHP_METHOD(Ice_Validation, getValues);
 PHP_METHOD(Ice_Validation, getLabel);
 PHP_METHOD(Ice_Validation, setDefaultMessages);
 PHP_METHOD(Ice_Validation, getDefaultMessage);
@@ -84,6 +85,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalue, 0, 0, 1)
 	ZEND_ARG_INFO(0, filtered)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalues, 0, 0, 0)
+	ZEND_ARG_INFO(0, fields)
+	ZEND_ARG_INFO(0, filtered)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getlabel, 0, 0, 1)
 	ZEND_ARG_INFO(0, field)
 ZEND_END_ARG_INFO()
@@ -119,6 +125,7 @@ ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
 	PHP_ME(Ice_Validation, valid, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, hasValue, arginfo_ice_validation_hasvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getValue, arginfo_ice_validation_getvalue, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Validation, getValues, arginfo_ice_validation_getvalues, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getLabel, arginfo_ice_validation_getlabel, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setDefaultMessages, arginfo_ice_validation_setdefaultmessages, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getDefaultMessage, arginfo_ice_validation_getdefaultmessage, ZEND_ACC_PUBLIC)
