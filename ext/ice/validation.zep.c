@@ -603,6 +603,95 @@ PHP_METHOD(Ice_Validation, getValue) {
 }
 
 /**
+ * Get the values by fields.
+ * Values are automatically filtered out if filters have been setted.
+ * 
+ * <pre><code>
+ *  // Get value for one field
+ *  $validation->getValues('password');
+ *  
+ *  // Get values for multiple fields
+ *  $validation->getValues(['fullName', 'about']);
+ *  
+ *  // Get all values
+ *  $validation->getValues();
+ * </code></pre>
+ *
+ * @param mixed fields The data keys
+ * @param boolean filtered Get the filtered value or original
+ * @return mixed
+ */
+PHP_METHOD(Ice_Validation, getValues) {
+
+	zephir_fcall_cache_entry *_6 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+	HashTable *_3, *_8;
+	HashPosition _2, _7;
+	zend_bool filtered;
+	zval *fields = NULL, *filtered_param = NULL, *data = NULL, *field = NULL, *_0, *_1 = NULL, **_4, *_5 = NULL, **_9;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 2, &fields, &filtered_param);
+
+	if (!fields) {
+		fields = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!filtered_param) {
+		filtered = 1;
+	} else {
+		filtered = zephir_get_boolval(filtered_param);
+	}
+
+
+	ZEPHIR_INIT_VAR(data);
+	array_init(data);
+	if (Z_TYPE_P(fields) == IS_NULL) {
+		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_1);
+		zephir_is_iterable(_0, &_3, &_2, 0, 0, "ice/validation.zep", 300);
+		for (
+		  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
+		  ; zephir_hash_move_forward_ex(_3, &_2)
+		) {
+			ZEPHIR_GET_HMKEY(field, _3, _2);
+			ZEPHIR_GET_HVALUE(_1, _4);
+			ZEPHIR_CALL_METHOD(&_5, this_ptr, "getvalue", &_6, 0, field, (filtered ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+			zephir_check_call_status();
+			zephir_array_update_zval(&data, field, &_5, PH_COPY | PH_SEPARATE);
+		}
+	} else {
+		ZEPHIR_INIT_NVAR(_1);
+		zephir_gettype(_1, fields TSRMLS_CC);
+		do {
+			if (ZEPHIR_IS_STRING(_1, "array")) {
+				zephir_is_iterable(fields, &_8, &_7, 0, 0, "ice/validation.zep", 308);
+				for (
+				  ; zephir_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
+				  ; zephir_hash_move_forward_ex(_8, &_7)
+				) {
+					ZEPHIR_GET_HVALUE(field, _9);
+					_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
+					if (zephir_array_isset(_0, field)) {
+						ZEPHIR_CALL_METHOD(&_5, this_ptr, "getvalue", &_6, 0, field, (filtered ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+						zephir_check_call_status();
+						zephir_array_update_zval(&data, field, &_5, PH_COPY | PH_SEPARATE);
+					}
+				}
+				break;
+			}
+			if (ZEPHIR_IS_STRING(_1, "string")) {
+				ZEPHIR_CALL_METHOD(&data, this_ptr, "getvalue", &_6, 0, fields, (filtered ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+				zephir_check_call_status();
+				break;
+			}
+		} while(0);
+
+	}
+	RETURN_CCTOR(data);
+
+}
+
+/**
  * Get the label of a field.
  * Humanize a label if humanLabels attribute and filter service is available
  *
@@ -728,7 +817,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	if (!(zephir_array_isset_fetch(&message, _0, type, 0 TSRMLS_CC))) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("defaultMessages"), PH_NOISY_CC);
 		ZEPHIR_OBS_NVAR(message);
-		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 316 TSRMLS_CC);
+		zephir_array_fetch_string(&message, _1, SL("default"), PH_NOISY, "ice/validation.zep", 363 TSRMLS_CC);
 	}
 	RETURN_CCTOR(message);
 
