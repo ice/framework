@@ -51,7 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zend_declare_class_constant_long(ice_version_ce, SL("STAGE"), 4 TSRMLS_CC);
 
-	zend_declare_class_constant_long(ice_version_ce, SL("BUILD"), 2 TSRMLS_CC);
+	zend_declare_class_constant_long(ice_version_ce, SL("BUILD"), 3 TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Version, current) {
 	add_assoc_long_ex(return_value, SS("minor"), 0);
 	add_assoc_long_ex(return_value, SS("patch"), 19);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
-	add_assoc_long_ex(return_value, SS("build"), 2);
+	add_assoc_long_ex(return_value, SS("build"), 3);
 	return;
 
 }
@@ -103,7 +103,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 1) {
 			ZEPHIR_SINIT_VAR(_1);
-			ZVAL_LONG(&_1, 2);
+			ZVAL_LONG(&_1, 3);
 			ZEPHIR_INIT_VAR(_2);
 			ZEPHIR_CONCAT_SV(_2, "-alpha.", &_1);
 			ZEPHIR_CPY_WRT(suffix, _2);
@@ -111,7 +111,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 2) {
 			ZEPHIR_SINIT_NVAR(_1);
-			ZVAL_LONG(&_1, 2);
+			ZVAL_LONG(&_1, 3);
 			ZEPHIR_INIT_LNVAR(_2);
 			ZEPHIR_CONCAT_SV(_2, "-beta.", &_1);
 			ZEPHIR_CPY_WRT(suffix, _2);
@@ -119,7 +119,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 3) {
 			ZEPHIR_SINIT_NVAR(_1);
-			ZVAL_LONG(&_1, 2);
+			ZVAL_LONG(&_1, 3);
 			ZEPHIR_INIT_LNVAR(_2);
 			ZEPHIR_CONCAT_SV(_2, "-rc.", &_1);
 			ZEPHIR_CPY_WRT(suffix, _2);
@@ -176,7 +176,7 @@ PHP_METHOD(Ice_Version, id) {
 	ZEPHIR_SINIT_NVAR(_1);
 	ZVAL_LONG(&_1, 4);
 	ZEPHIR_SINIT_NVAR(_2);
-	ZVAL_LONG(&_2, 2);
+	ZVAL_LONG(&_2, 3);
 	ZEPHIR_INIT_VAR(id);
 	ZEPHIR_CONCAT_VVVVV(id, &_0, _3, _5, &_1, &_2);
 	RETURN_MM_LONG(zephir_get_intval(id));
