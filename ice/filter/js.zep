@@ -37,8 +37,13 @@ class Js
      */
     public function sanitize(string js)
     {
-        let this->input = str_replace("\r\n", "\n", js),
-            this->inputLength = strlen(this->input);
+        let this->a = "",
+            this->b = "",
+            this->input = str_replace("\r\n", "\n", js),
+            this->inputLength = strlen(this->input),
+            this->inputIndex = 0,
+            this->lookAhead = null,
+            this->output = "";
 
         return this->min();
     }
