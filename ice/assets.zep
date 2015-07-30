@@ -191,14 +191,15 @@ class Assets
      */
     protected function prepare(string! source, string type, var minify)
     {
-        var path, target, dir, file, sourceMin, destination, old, minified;
+        var path, target, dir, file, sourceMin, destination, exist, old, minified;
 
         let path = this->getOption("path"),
             target = this->getOption("target"),
             dir = dirname(source) . DIRECTORY_SEPARATOR,
             file = basename(source, "." . type),
             sourceMin = target . dir . file . ".min." . type,
-            destination = path . sourceMin;
+            destination = path . sourceMin,
+            exist = false;
 
         switch minify {
             case self::NOT_EXIST:
@@ -216,11 +217,15 @@ class Assets
             break;
             default: // self::NEVER:
                 let minify = false;
+
+                if this->getOption("forceMinified") {
+                    let exist = file_exists(destination);
+                }
             break;
         }
 
         if !minify {
-            return source;
+            return exist ? sourceMin : source;
         } else {
             let minified = this->minify(file_get_contents(path . source), type);
 
@@ -232,17 +237,17 @@ class Assets
             }
 
             if minify === true {
-                let old = umask(0);
 
                 if !is_dir(dirname(destination)) {
+                    let old = umask(0);
+
                     mkdir(dirname(destination), 0777, true);
+                    umask(old);
                 }
 
                 if file_put_contents(destination, minified) === false {
                     throw new Exception("Directory can't be written");
                 }
-
-                umask(old);
             }
 
             return sourceMin;
