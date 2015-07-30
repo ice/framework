@@ -74,15 +74,15 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 
 	Z_SET_ISREF_P(data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 118, data);
+	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 125, data);
 	Z_UNSET_ISREF_P(data);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 119);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 126);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 120);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 127);
 	zephir_check_call_status();
 	RETURN_MM();
 

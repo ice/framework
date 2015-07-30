@@ -28,6 +28,7 @@
 #include "ice/mvc/route/dispatcher/regex.zep.h"
 #include "ice/mvc/route/parser/parserinterface.zep.h"
 #include "ice/mvc/view/viewinterface.zep.h"
+#include "ice/assets.zep.h"
 #include "ice/auth.zep.h"
 #include "ice/auth/driver/file.zep.h"
 #include "ice/auth/driver/model.zep.h"

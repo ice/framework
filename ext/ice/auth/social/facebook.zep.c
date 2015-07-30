@@ -61,7 +61,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "facebook", 1);
 	zephir_update_property_this(this_ptr, SL("provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 45, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 6, 0 TSRMLS_CC);
@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
 			Z_SET_ISREF_P(tokenInfo);
-			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 46, _2, tokenInfo);
+			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 52, _2, tokenInfo);
 			Z_UNSET_ISREF_P(tokenInfo);
 			zephir_check_call_status();
 			_6 = zephir_fast_count_int(tokenInfo TSRMLS_CC) > 0;

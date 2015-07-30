@@ -78,7 +78,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		ZVAL_STRING(&_7, "()", 0);
 		ZEPHIR_SINIT_NVAR(_8);
 		ZVAL_LONG(&_8, repeat);
-		ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", &_9, 61, &_7, &_8);
+		ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", &_9, 67, &_7, &_8);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_10);
 		ZEPHIR_CONCAT_VV(_10, regex, _4);
@@ -101,7 +101,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZEPHIR_INIT_VAR(regex);
 	ZEPHIR_CONCAT_SVS(regex, "~^(?|", _13, ")$~");
 	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_4, "utf8_encode", NULL, 105, regex);
+	ZEPHIR_CALL_FUNCTION(&_4, "utf8_encode", NULL, 112, regex);
 	zephir_check_call_status();
 	zephir_array_update_string(&return_value, SL("regex"), &_4, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);
