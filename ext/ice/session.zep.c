@@ -65,10 +65,10 @@ PHP_METHOD(Ice_Session, start) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 98);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 105);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 148);
+		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 149);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("started"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 		RETURN_MM_BOOL(1);
@@ -100,7 +100,7 @@ PHP_METHOD(Ice_Session, getId) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 149);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 150);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Session, regenerate) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 150);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 151);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -135,7 +135,7 @@ PHP_METHOD(Ice_Session, destroy) {
 	ZEPHIR_MM_GROW();
 
 	zephir_update_property_this(this_ptr, SL("started"), (0) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 151);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 152);
 	zephir_check_call_status();
 	RETURN_MM();
 
