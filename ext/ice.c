@@ -53,6 +53,7 @@ zend_class_entry *ice_config_ce;
 zend_class_entry *ice_log_driver_ce;
 zend_class_entry *ice_mvc_route_datagenerator_regex_ce;
 zend_class_entry *ice_mvc_route_dispatcher_regex_ce;
+zend_class_entry *ice_assets_ce;
 zend_class_entry *ice_auth_ce;
 zend_class_entry *ice_auth_driver_file_ce;
 zend_class_entry *ice_auth_driver_model_ce;
@@ -187,6 +188,7 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Log_Driver);
 	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_Regex);
 	ZEPHIR_INIT(Ice_Mvc_Route_Dispatcher_Regex);
+	ZEPHIR_INIT(Ice_Assets);
 	ZEPHIR_INIT(Ice_Auth);
 	ZEPHIR_INIT(Ice_Auth_Driver_File);
 	ZEPHIR_INIT(Ice_Auth_Driver_Model);

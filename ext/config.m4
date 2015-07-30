@@ -33,6 +33,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/route/dispatcher/regex.zep.c
 	ice/mvc/route/parser/parserinterface.zep.c
 	ice/mvc/view/viewinterface.zep.c
+	ice/assets.zep.c
 	ice/auth.zep.c
 	ice/auth/driver/file.zep.c
 	ice/auth/driver/model.zep.c

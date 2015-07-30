@@ -251,7 +251,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1);
 		object_init_ex(_1, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 117, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 124, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2);
 		ZVAL_STRING(_2, ".phtml", 1);
