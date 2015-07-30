@@ -118,7 +118,7 @@ class Assets
         if isset parameters["content"] {
             let this->css[] = tag->style(["content": minify ? this->minify(content, "css") : content]);
         } else {
-            let parameters["href"] = this->prepare(content, "css", minify) . "?v=" . version,
+            let parameters["href"] = this->prepare(content, "css", minify) . (version ? "?v=" . version : ""),
                 this->css[] = tag->link(parameters);
         }
 
@@ -162,7 +162,7 @@ class Assets
         if isset parameters["content"] {
             let this->js[] = tag->script(["content": minify ? this->minify(content, "js") : content]);
         } else {
-            let parameters["src"] = this->prepare(content, "js", minify) . "?v=" . version,
+            let parameters["src"] = this->prepare(content, "js", minify) . (version ? "?v=" . version : ""),
                 this->js[] = tag->script(parameters);
         }
 
@@ -232,16 +232,17 @@ class Assets
             }
 
             if minify === true {
-                if !is_dir(dirname(destination)) {
-                    let old = umask(0);
+                let old = umask(0);
 
+                if !is_dir(dirname(destination)) {
                     mkdir(dirname(destination), 0777, true);
-                    umask(old);
                 }
 
                 if file_put_contents(destination, minified) === false {
                     throw new Exception("Directory can't be written");
                 }
+
+                umask(old);
             }
 
             return sourceMin;

@@ -153,18 +153,18 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(compile)) {
-			ZEPHIR_CALL_FUNCTION(&_13, "is_dir", NULL, 37, dir);
+			ZEPHIR_CALL_FUNCTION(&_13, "is_dir", NULL, 38, dir);
 			zephir_check_call_status();
 			if (!(zephir_is_true(_13))) {
 				ZEPHIR_SINIT_NVAR(_9);
 				ZVAL_LONG(&_9, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 38, &_9);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 37, &_9);
 				zephir_check_call_status();
 				ZEPHIR_SINIT_NVAR(_9);
 				ZVAL_LONG(&_9, 0777);
 				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 39, dir, &_9, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 38, old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 37, old);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_NVAR(_12);
