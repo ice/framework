@@ -79,7 +79,7 @@ PHP_METHOD(Ice_Filter_Js, getOutput) {
 PHP_METHOD(Ice_Filter_Js, sanitize) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *js_param = NULL, *_0, _1, _2, *_3, *_4;
+	zval *js_param = NULL, *_0, *_1, _2, _3, *_4;
 	zval *js = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -88,17 +88,30 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
 	zephir_get_strval(js, js_param);
 
 
-	ZEPHIR_INIT_VAR(_0);
-	ZEPHIR_SINIT_VAR(_1);
-	ZVAL_STRING(&_1, "\r\n", 0);
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_STRING(_0, "", 1);
+	zephir_update_property_this(this_ptr, SL("a"), _0 TSRMLS_CC);
+	ZEPHIR_INIT_ZVAL_NREF(_0);
+	ZVAL_STRING(_0, "", 1);
+	zephir_update_property_this(this_ptr, SL("b"), _0 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_1);
 	ZEPHIR_SINIT_VAR(_2);
-	ZVAL_STRING(&_2, "\n", 0);
-	zephir_fast_str_replace(&_0, &_1, &_2, js TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("input"), _0 TSRMLS_CC);
-	_3 = zephir_fetch_nproperty_this(this_ptr, SL("input"), PH_NOISY_CC);
+	ZVAL_STRING(&_2, "\r\n", 0);
+	ZEPHIR_SINIT_VAR(_3);
+	ZVAL_STRING(&_3, "\n", 0);
+	zephir_fast_str_replace(&_1, &_2, &_3, js TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("input"), _1 TSRMLS_CC);
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("input"), PH_NOISY_CC);
 	ZEPHIR_INIT_ZVAL_NREF(_4);
-	ZVAL_LONG(_4, zephir_fast_strlen_ev(_3));
+	ZVAL_LONG(_4, zephir_fast_strlen_ev(_0));
 	zephir_update_property_this(this_ptr, SL("inputLength"), _4 TSRMLS_CC);
+	ZEPHIR_INIT_ZVAL_NREF(_4);
+	ZVAL_LONG(_4, 0);
+	zephir_update_property_this(this_ptr, SL("inputIndex"), _4 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("lookAhead"), ZEPHIR_GLOBAL(global_null) TSRMLS_CC);
+	ZEPHIR_INIT_ZVAL_NREF(_4);
+	ZVAL_STRING(_4, "", 1);
+	zephir_update_property_this(this_ptr, SL("output"), _4 TSRMLS_CC);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "min", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -176,7 +189,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 				ZEPHIR_CALL_FUNCTION(&_13, "ord", &_14, 68, _12);
 				zephir_check_call_status();
 				if (ZEPHIR_LE_LONG(_13, 10)) {
-					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated string literal.", "ice/filter/js.zep", 84);
+					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated string literal.", "ice/filter/js.zep", 89);
 					return;
 				}
 				_15 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
@@ -321,7 +334,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 							zephir_check_call_status();
 							zephir_update_property_this(this_ptr, SL("a"), _55 TSRMLS_CC);
 						} else if (ZEPHIR_LE_LONG(_51, 10)) {
-							ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated regular expression set in regex literal.", "ice/filter/js.zep", 124);
+							ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated regular expression set in regex literal.", "ice/filter/js.zep", 129);
 							return;
 						}
 					}
@@ -337,7 +350,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 					zephir_check_call_status();
 					zephir_update_property_this(this_ptr, SL("a"), _19 TSRMLS_CC);
 				} else if (ZEPHIR_LE_LONG(_19, 10)) {
-					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated regular expression literal.", "ice/filter/js.zep", 133);
+					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated regular expression literal.", "ice/filter/js.zep", 138);
 					return;
 				}
 				_16 = zephir_fetch_nproperty_this(this_ptr, SL("output"), PH_NOISY_CC);
@@ -658,7 +671,7 @@ PHP_METHOD(Ice_Filter_Js, next) {
 							break;
 						}
 						if (Z_TYPE_P(_3) == IS_NULL) {
-							ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated comment.", "ice/filter/js.zep", 307);
+							ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated comment.", "ice/filter/js.zep", 312);
 							return;
 						}
 					} while(0);
