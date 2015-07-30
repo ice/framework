@@ -475,9 +475,9 @@ PHP_METHOD(Ice_Assets, minify) {
  */
 PHP_METHOD(Ice_Assets, prepare) {
 
-	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_8 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_10 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *source_param = NULL, *type_param = NULL, *minify = NULL, *path = NULL, *target = NULL, *dir, *file = NULL, *sourceMin, *destination, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5, *_6 = NULL, _7 = zval_used_for_init, *_9 = NULL, *_10 = NULL, *_11 = NULL;
+	zval *source_param = NULL, *type_param = NULL, *minify = NULL, *path = NULL, *target = NULL, *dir, *file = NULL, *sourceMin, *destination, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, _9 = zval_used_for_init, *_11 = NULL;
 	zval *source = NULL, *type = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
@@ -520,6 +520,8 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZEPHIR_CONCAT_VVVSV(sourceMin, target, dir, file, ".min.", type);
 	ZEPHIR_INIT_VAR(destination);
 	ZEPHIR_CONCAT_VV(destination, path, sourceMin);
+	ZEPHIR_INIT_VAR(exist);
+	ZVAL_BOOL(exist, 0);
 	do {
 		if (ZEPHIR_IS_LONG(minify, 1)) {
 			ZEPHIR_INIT_NVAR(minify);
@@ -543,51 +545,65 @@ PHP_METHOD(Ice_Assets, prepare) {
 		}
 		ZEPHIR_INIT_NVAR(minify);
 		ZVAL_BOOL(minify, 0);
+		ZEPHIR_INIT_NVAR(_0);
+		ZVAL_STRING(_0, "forceMinified", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_5, this_ptr, "getoption", &_1, 0, _0);
+		zephir_check_temp_parameter(_0);
+		zephir_check_call_status();
+		if (zephir_is_true(_5)) {
+			ZEPHIR_INIT_NVAR(exist);
+			ZVAL_BOOL(exist, (zephir_file_exists(destination TSRMLS_CC) == SUCCESS));
+		}
 		break;
 	} while(0);
 
 	if (!(zephir_is_true(minify))) {
-		RETURN_CTOR(source);
-	} else {
 		ZEPHIR_INIT_NVAR(_0);
-		ZEPHIR_INIT_VAR(_5);
-		ZEPHIR_CONCAT_VV(_5, path, source);
-		zephir_file_get_contents(_0, _5 TSRMLS_CC);
+		if (zephir_is_true(exist)) {
+			ZEPHIR_CPY_WRT(_0, sourceMin);
+		} else {
+			ZEPHIR_CPY_WRT(_0, source);
+		}
+		RETURN_CCTOR(_0);
+	} else {
+		ZEPHIR_INIT_VAR(_6);
+		ZEPHIR_CONCAT_VV(_6, path, source);
+		zephir_file_get_contents(_0, _6 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&minified, this_ptr, "minify", NULL, 0, _0, type);
 		zephir_check_call_status();
 		if (Z_TYPE_P(minify) == IS_STRING) {
-			ZEPHIR_INIT_VAR(_6);
-			zephir_md5(_6, minified);
-			if (!ZEPHIR_IS_EQUAL(minify, _6)) {
+			ZEPHIR_INIT_VAR(_7);
+			zephir_md5(_7, minified);
+			if (!ZEPHIR_IS_EQUAL(minify, _7)) {
 				ZEPHIR_INIT_NVAR(minify);
 				ZVAL_BOOL(minify, 1);
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(minify)) {
-			ZEPHIR_SINIT_VAR(_7);
-			ZVAL_LONG(&_7, 0);
-			ZEPHIR_CALL_FUNCTION(&old, "umask", &_8, 37, &_7);
+			ZEPHIR_CALL_FUNCTION(&_5, "dirname", &_3, 34, destination);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_9, "dirname", &_3, 34, destination);
+			ZEPHIR_CALL_FUNCTION(&_8, "is_dir", NULL, 37, _5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_10, "is_dir", NULL, 38, _9);
-			zephir_check_call_status();
-			if (!(zephir_is_true(_10))) {
+			if (!(zephir_is_true(_8))) {
+				ZEPHIR_SINIT_VAR(_9);
+				ZVAL_LONG(&_9, 0);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_10, 38, &_9);
+				zephir_check_call_status();
 				ZEPHIR_CALL_FUNCTION(&_11, "dirname", &_3, 34, destination);
 				zephir_check_call_status();
-				ZEPHIR_SINIT_NVAR(_7);
-				ZVAL_LONG(&_7, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 39, _11, &_7, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_SINIT_NVAR(_9);
+				ZVAL_LONG(&_9, 0777);
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 39, _11, &_9, ZEPHIR_GLOBAL(global_true));
+				zephir_check_call_status();
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_10, 38, old);
 				zephir_check_call_status();
 			}
-			ZEPHIR_INIT_NVAR(_6);
-			zephir_file_put_contents(_6, destination, minified TSRMLS_CC);
-			if (ZEPHIR_IS_FALSE_IDENTICAL(_6)) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 242);
+			ZEPHIR_INIT_NVAR(_7);
+			zephir_file_put_contents(_7, destination, minified TSRMLS_CC);
+			if (ZEPHIR_IS_FALSE_IDENTICAL(_7)) {
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 249);
 				return;
 			}
-			ZEPHIR_CALL_FUNCTION(NULL, "umask", &_8, 37, old);
-			zephir_check_call_status();
 		}
 		RETURN_CCTOR(sourceMin);
 	}
