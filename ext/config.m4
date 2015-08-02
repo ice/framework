@@ -19,13 +19,13 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/view/engine/engineinterface.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c
+	ice/config.zep.c
 	ice/db/dbinterface.zep.c
 	ice/dispatcher.zep.c
 	ice/log/loggerinterface.zep.c
 	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
 	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
 	ice/mvc/view/engine.zep.c
-	ice/config.zep.c
 	ice/http/response/headersinterface.zep.c
 	ice/http/response/responseinterface.zep.c
 	ice/log/driver.zep.c
@@ -51,6 +51,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/cli/router.zep.c
 	ice/cli/task.zep.c
 	ice/config/ini.zep.c
+	ice/config/json.zep.c
 	ice/cookies.zep.c
 	ice/crypt.zep.c
 	ice/db.zep.c

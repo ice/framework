@@ -522,7 +522,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_check_call_status();
 			}
 			zephir_update_property_this(this_ptr, SL("namespace"), moduleNamespace TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_5, loader, "addnamespace", &_13, 26, moduleNamespace, path);
+			ZEPHIR_CALL_METHOD(&_5, loader, "addnamespace", &_13, 27, moduleNamespace, path);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, _5, "register", NULL, 0);
 			zephir_check_call_status();
