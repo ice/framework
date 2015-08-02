@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&data, this_ptr, "map", NULL, 60, ini, raw);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 28, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 26, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

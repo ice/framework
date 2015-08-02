@@ -97,7 +97,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			} else {
 				ZEPHIR_INIT_NVAR(_6);
 				object_init_ex(_6, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, 28, value);
+				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, 26, value);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("data"), key, _6 TSRMLS_CC);
 			}
