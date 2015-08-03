@@ -41,7 +41,7 @@ class Url
     {
         var baseUri, matched, queryString;
 
-        if !local {
+        if !local && !starts_with(uri, "mailto:") {
             if strstr(uri, "://") {
                 let matched = preg_match("/^[^:\\/?#]++:/", uri);
                 if matched {
