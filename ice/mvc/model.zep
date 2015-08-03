@@ -584,8 +584,9 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param string alias
      * @param array filters
+     * @param array options
      */
-    public function getRelated(string alias, array filters = [])
+    public function getRelated(string alias, array filters = [], array options = [])
     {
         var relation, field, referenceModel, referencedField, from, result;
 
@@ -613,7 +614,7 @@ abstract class Model extends Arr implements \Serializable
 
             case self::HAS_MANY:
                 let filters = array_merge(filters, [referencedField: this->{field}]);
-                    let result = {referenceModel}::find(filters);
+                    let result = {referenceModel}::find(filters, options);
 
                 return result;
         }
@@ -698,11 +699,12 @@ abstract class Model extends Arr implements \Serializable
      */
     public function __call(string method, arguments = null)
     {
-        var filters;
+        var filters, options;
 
         if starts_with(method, "get") {
             fetch filters, arguments[0];
-            return this->getRelated(ucfirst(substr(method, 3)), filters);
+            fetch options, arguments[1];
+            return this->getRelated(ucfirst(substr(method, 3)), filters, options);
         }
 
         // The method doesn't exist throw an exception
