@@ -121,8 +121,8 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 PHP_METHOD(Ice_Mvc_Url, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool local, _3;
-	zval *uri = NULL, *args = NULL, *local_param = NULL, *baseUri = NULL, *matched, *queryString = NULL, _0 = zval_used_for_init, *_1 = NULL, *_2, *_GET, *_4 = NULL, *_5, *_6;
+	zend_bool local, _0, _4;
+	zval *uri = NULL, *args = NULL, *local_param = NULL, *baseUri = NULL, *matched, *queryString = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3, *_GET, *_5 = NULL, *_6, *_7;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -143,17 +143,21 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	}
 
 
-	if (!(local)) {
-		ZEPHIR_SINIT_VAR(_0);
-		ZVAL_STRING(&_0, "://", 0);
-		ZEPHIR_CALL_FUNCTION(&_1, "strstr", NULL, 71, uri, &_0);
+	_0 = !local;
+	if (_0) {
+		_0 = !(zephir_start_with_str(uri, SL("mailto:")));
+	}
+	if (_0) {
+		ZEPHIR_SINIT_VAR(_1);
+		ZVAL_STRING(&_1, "://", 0);
+		ZEPHIR_CALL_FUNCTION(&_2, "strstr", NULL, 71, uri, &_1);
 		zephir_check_call_status();
-		if (zephir_is_true(_1)) {
-			ZEPHIR_INIT_VAR(_2);
-			ZEPHIR_SINIT_NVAR(_0);
-			ZVAL_STRING(&_0, "/^[^:\\/?#]++:/", 0);
+		if (zephir_is_true(_2)) {
+			ZEPHIR_INIT_VAR(_3);
+			ZEPHIR_SINIT_NVAR(_1);
+			ZVAL_STRING(&_1, "/^[^:\\/?#]++:/", 0);
 			ZEPHIR_INIT_VAR(matched);
-			zephir_preg_match(matched, &_0, uri, _2, 0, 0 , 0  TSRMLS_CC);
+			zephir_preg_match(matched, &_1, uri, _3, 0, 0 , 0  TSRMLS_CC);
 			if (zephir_is_true(matched)) {
 				local = 0;
 			} else {
@@ -166,39 +170,39 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	ZEPHIR_CALL_METHOD(&baseUri, this_ptr, "getbaseuri", NULL, 0);
 	zephir_check_call_status();
 	if (local) {
-		_3 = ZEPHIR_IS_FALSE_IDENTICAL(uri);
-		if (_3) {
-			_3 = zephir_array_isset_string(_GET, SS("_url"));
+		_4 = ZEPHIR_IS_FALSE_IDENTICAL(uri);
+		if (_4) {
+			_4 = zephir_array_isset_string(_GET, SS("_url"));
 		}
-		if (_3) {
+		if (_4) {
 			ZEPHIR_OBS_NVAR(uri);
 			zephir_array_fetch_string(&uri, _GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 62 TSRMLS_CC);
 		} else {
-			ZEPHIR_INIT_VAR(_4);
-			ZEPHIR_CONCAT_VV(_4, baseUri, uri);
-			ZEPHIR_CPY_WRT(uri, _4);
+			ZEPHIR_INIT_VAR(_5);
+			ZEPHIR_CONCAT_VV(_5, baseUri, uri);
+			ZEPHIR_CPY_WRT(uri, _5);
 		}
 	}
 	if (zephir_is_true(args)) {
 		ZEPHIR_CALL_FUNCTION(&queryString, "http_build_query", NULL, 19, args);
 		zephir_check_call_status();
-		_3 = Z_TYPE_P(queryString) == IS_STRING;
-		if (_3) {
-			_3 = (zephir_fast_strlen_ev(queryString)) ? 1 : 0;
+		_4 = Z_TYPE_P(queryString) == IS_STRING;
+		if (_4) {
+			_4 = (zephir_fast_strlen_ev(queryString)) ? 1 : 0;
 		}
-		if (_3) {
-			ZEPHIR_SINIT_NVAR(_0);
-			ZVAL_STRING(&_0, "?", 0);
-			ZEPHIR_INIT_VAR(_5);
-			zephir_fast_strpos(_5, queryString, &_0, 0 );
-			if (!ZEPHIR_IS_FALSE_IDENTICAL(_5)) {
-				ZEPHIR_INIT_LNVAR(_4);
-				ZEPHIR_CONCAT_SV(_4, "&", queryString);
-				zephir_concat_self(&uri, _4 TSRMLS_CC);
+		if (_4) {
+			ZEPHIR_SINIT_NVAR(_1);
+			ZVAL_STRING(&_1, "?", 0);
+			ZEPHIR_INIT_VAR(_6);
+			zephir_fast_strpos(_6, queryString, &_1, 0 );
+			if (!ZEPHIR_IS_FALSE_IDENTICAL(_6)) {
+				ZEPHIR_INIT_LNVAR(_5);
+				ZEPHIR_CONCAT_SV(_5, "&", queryString);
+				zephir_concat_self(&uri, _5 TSRMLS_CC);
 			} else {
-				ZEPHIR_INIT_VAR(_6);
-				ZEPHIR_CONCAT_SV(_6, "?", queryString);
-				zephir_concat_self(&uri, _6 TSRMLS_CC);
+				ZEPHIR_INIT_VAR(_7);
+				ZEPHIR_CONCAT_SV(_7, "?", queryString);
+				zephir_concat_self(&uri, _7 TSRMLS_CC);
 			}
 		}
 	}
