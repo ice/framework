@@ -456,6 +456,7 @@ PHP_METHOD(Ice_Http_Response, send) {
  *
  * @param string location The redirect destination
  * @param int status The redirect HTTP status code
+ * @return object this
  */
 PHP_METHOD(Ice_Http_Response, redirect) {
 
@@ -510,7 +511,7 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	ZEPHIR_CALL_METHOD(NULL, _1, "set", NULL, 0, _0, location);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
