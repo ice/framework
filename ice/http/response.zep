@@ -243,6 +243,7 @@ class Response implements ResponseInterface
      *
      * @param string location The redirect destination
      * @param int status The redirect HTTP status code
+     * @return object this
      */
     public function redirect(string location = null, int status = 302, boolean external = false)
     {
@@ -255,6 +256,8 @@ class Response implements ResponseInterface
                 location = url->get(location);
         }
         this->headers->set("Location", location);
+
+        return this;
     }
 
     /**
