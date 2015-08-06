@@ -5,7 +5,7 @@ ZEPHIR_INIT_CLASS(Ice_Config_Json);
 
 PHP_METHOD(Ice_Config_Json, __construct);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_json___construct, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_json___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, data)
 ZEND_END_ARG_INFO()
 
