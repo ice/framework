@@ -7,6 +7,7 @@ PHP_METHOD(Ice_Dispatcher, getDefaultNamespace);
 PHP_METHOD(Ice_Dispatcher, setDefaultNamespace);
 PHP_METHOD(Ice_Dispatcher, getActiveHandler);
 PHP_METHOD(Ice_Dispatcher, getLastHandler);
+PHP_METHOD(Ice_Dispatcher, getLoops);
 PHP_METHOD(Ice_Dispatcher, getFinished);
 PHP_METHOD(Ice_Dispatcher, getForwarded);
 PHP_METHOD(Ice_Dispatcher, setSilent);
@@ -92,6 +93,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_forward, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, forward, 0)
+	ZEND_ARG_INFO(0, force)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
@@ -99,6 +101,7 @@ ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
 	PHP_ME(Ice_Dispatcher, setDefaultNamespace, arginfo_ice_dispatcher_setdefaultnamespace, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getActiveHandler, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getLastHandler, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dispatcher, getLoops, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getFinished, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getForwarded, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, setSilent, arginfo_ice_dispatcher_setsilent, ZEND_ACC_PUBLIC)
