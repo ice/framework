@@ -21,6 +21,7 @@ abstract class Dispatcher
     protected activeHandler { get };
     protected lastHandler { get };
 
+    protected loops = 0 { get };
     protected finished { get };
     protected forwarded = false { get };
     protected silent = false { set };
@@ -101,7 +102,6 @@ abstract class Dispatcher
     {
         var handler, response, handlerName, actionName, params, handlerSuffix, handlerClass, actionMethod;
         var fresh, module, modules, moduleNamespace, path, moduleClass, loader;
-        int i = 0;
 
         let response = this->di->get("response"),
             fresh = true,
@@ -110,10 +110,10 @@ abstract class Dispatcher
             this->finished = false;
 
         while !this->finished {
-            let i++;
+            let this->loops++;
 
             // Throw an exception after 16 consecutive forwards
-            if i == 16 {
+            if this->loops > 16 {
                 if this->silent {
                     // 508 Loop Detected
                     response->setStatus(508);
@@ -193,7 +193,6 @@ abstract class Dispatcher
                 }
             }
 
-
             // Call the 'initialize' method just once per request
             if fresh === true {
                 if method_exists(handler, "initialize") {
@@ -241,8 +240,9 @@ abstract class Dispatcher
      * Forwards the execution flow to another module/controller/action.
      *
      * @param array forward
+     * @param boolean force
      */
-    public function forward(array! forward)
+    public function forward(array! forward, boolean force = true)
     {
         var module, handler, action, params;
 
@@ -271,5 +271,9 @@ abstract class Dispatcher
 
         let this->finished = false,
             this->forwarded = true;
+
+        if force {
+            this->dispatch();
+        }
     }
 }
