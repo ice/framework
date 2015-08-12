@@ -724,7 +724,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	forward = forward_param;
 
 	if (!force_param) {
-		force = 1;
+		force = 0;
 	} else {
 		force = zephir_get_boolval(force_param);
 	}
