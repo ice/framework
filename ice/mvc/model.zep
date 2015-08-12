@@ -66,7 +66,9 @@ abstract class Model extends Arr implements \Serializable
         }
 
         if filters {
-            this->loadOne(filters);
+            if !this->loadOne(filters) {
+                throw new Exception("Not Found");
+            }
         }
 
         if method_exists(this, "initialize") {
@@ -151,16 +153,13 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null)
     {
-        var result, model;
+        var result, model, instance;
 
         let model = get_called_class(),
-            result = create_instance_params(model, [filters]);
+            instance = create_instance(model),
+            result = instance->loadOne(filters);
 
-        if !result->count() {
-            return false;
-        } else {
-            return result;
-        }
+        return result;
     }
 
     /**
@@ -172,7 +171,7 @@ abstract class Model extends Arr implements \Serializable
      * </code></pre>
      *
      * @param array filters
-     * @return Arr
+     * @return object Arr
      */
     public static function find(var filters = null, array options = [])
     {
