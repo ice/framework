@@ -242,7 +242,7 @@ abstract class Dispatcher
      * @param array forward
      * @param boolean force
      */
-    public function forward(array! forward, boolean force = true)
+    public function forward(array! forward, boolean force = false)
     {
         var module, handler, action, params;
 
