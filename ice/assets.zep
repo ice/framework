@@ -184,21 +184,21 @@ class Assets
     /**
      * Prepare resource
      *
-     * @param string source The uri/url source path
+     * @param string uri The uri/url source path
      * @param string type Type of content
      * @param int minify Option of minify
      * @return string New path to the source
      */
-    protected function prepare(string! source, string type, var minify)
+    protected function prepare(string! uri, string type, var minify)
     {
-        var path, target, dir, file, sourceMin, destination, exist, old, minified;
+        var source, target, dir, file, uriMin, destination, exist, old, minified;
 
-        let path = this->getOption("path"),
+        let source = this->getOption("source"),
             target = this->getOption("target"),
-            dir = dirname(source) . DIRECTORY_SEPARATOR,
-            file = basename(source, "." . type),
-            sourceMin = target . dir . file . ".min." . type,
-            destination = path . sourceMin,
+            dir = dirname(uri) . DIRECTORY_SEPARATOR,
+            file = basename(uri, "." . type),
+            uriMin = target . dir . file . ".min." . type,
+            destination = source . uriMin,
             exist = false;
 
         switch minify {
@@ -225,9 +225,9 @@ class Assets
         }
 
         if !minify {
-            return exist ? sourceMin : source;
+            return exist ? uriMin : uri;
         } else {
-            let minified = this->minify(file_get_contents(path . source), type);
+            let minified = this->minify(file_get_contents(source . uri), type);
 
             // Check if file was changed
             if typeof minify == "string" {
@@ -250,7 +250,7 @@ class Assets
                 }
             }
 
-            return sourceMin;
+            return uriMin;
         }
     }
 }
