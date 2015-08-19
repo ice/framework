@@ -10,10 +10,12 @@ PHP_METHOD(Ice_Tag, setTitle);
 PHP_METHOD(Ice_Tag, getTitle);
 PHP_METHOD(Ice_Tag, setTitleSeparator);
 PHP_METHOD(Ice_Tag, getTitleSeparator);
+PHP_METHOD(Ice_Tag, getMeta);
 PHP_METHOD(Ice_Tag, setEscape);
 PHP_METHOD(Ice_Tag, __construct);
 PHP_METHOD(Ice_Tag, appendTitle);
 PHP_METHOD(Ice_Tag, prependTitle);
+PHP_METHOD(Ice_Tag, addMeta);
 PHP_METHOD(Ice_Tag, textField);
 PHP_METHOD(Ice_Tag, passwordField);
 PHP_METHOD(Ice_Tag, hiddenField);
@@ -32,6 +34,7 @@ PHP_METHOD(Ice_Tag, a);
 PHP_METHOD(Ice_Tag, link);
 PHP_METHOD(Ice_Tag, script);
 PHP_METHOD(Ice_Tag, style);
+PHP_METHOD(Ice_Tag, meta);
 PHP_METHOD(Ice_Tag, select);
 PHP_METHOD(Ice_Tag, tagHtml);
 PHP_METHOD(Ice_Tag, endTag);
@@ -42,6 +45,7 @@ PHP_METHOD(Ice_Tag, setValues);
 PHP_METHOD(Ice_Tag, getValue);
 PHP_METHOD(Ice_Tag, friendlyTitle);
 PHP_METHOD(Ice_Tag, getDocType);
+static zend_object_value zephir_init_properties_Ice_Tag(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setdoctype, 0, 0, 1)
 	ZEND_ARG_INFO(0, docType)
@@ -67,6 +71,10 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_prependtitle, 0, 0, 1)
 	ZEND_ARG_INFO(0, title)
 	ZEND_ARG_INFO(0, separator)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_addmeta, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_textfield, 0, 0, 1)
@@ -142,6 +150,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_style, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_meta, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_select, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
@@ -202,10 +214,12 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitleSeparator, arginfo_ice_tag_settitleseparator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getTitleSeparator, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, getMeta, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setEscape, arginfo_ice_tag_setescape, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Tag, appendTitle, arginfo_ice_tag_appendtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, prependTitle, arginfo_ice_tag_prependtitle, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, addMeta, arginfo_ice_tag_addmeta, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, textField, arginfo_ice_tag_textfield, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, passwordField, arginfo_ice_tag_passwordfield, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, hiddenField, arginfo_ice_tag_hiddenfield, ZEND_ACC_PUBLIC)
@@ -224,6 +238,7 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, link, arginfo_ice_tag_link, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, script, arginfo_ice_tag_script, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, style, arginfo_ice_tag_style, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, meta, arginfo_ice_tag_meta, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, select, arginfo_ice_tag_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, tagHtml, arginfo_ice_tag_taghtml, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, endTag, arginfo_ice_tag_endtag, ZEND_ACC_PUBLIC)
