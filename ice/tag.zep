@@ -31,6 +31,7 @@ class Tag
     protected docType = 5 { set };
     protected title = null { set, get };
     protected titleSeparator = " - " { set, get };
+    protected meta = [] { get };
     protected escape = true { set };
 
     /**
@@ -63,6 +64,19 @@ class Tag
     public function prependTitle(string title, string separator = null) -> void
     {
         let this->title = title . (separator ? separator : this->titleSeparator) . this->title;
+    }
+
+    /**
+     * Add meta tag to the container.
+     *
+     * @param array parameters
+     * @return object this
+     */
+    public function addMeta(array parameters) -> object
+    {
+        let this->meta[] = this->meta(parameters);
+
+        return this;
     }
 
     /**
@@ -519,6 +533,32 @@ class Tag
         ];
 
         return this->tagHtml("style", parameters, defaultParams, ["content"], "content", true, true);
+    }
+
+    /**
+     * Builds a META tag.
+     *
+     * <pre><code>
+     *  // Phtml <meta name="keywords" content="ice, framework">
+     *  $this->tag->meta(['ice, framework', 'keywords']);
+     *  
+     *  // Sleet <meta property="og:description" content="Your description">
+     *  {{ meta(['Your description', 'property': 'og:description']) }}
+     * </code></pre>
+     *
+     * @param array parameters
+     * @return string
+     */
+    public function meta(array parameters) -> string
+    {
+        var defaultParams;
+
+        let defaultParams = [
+            "content": 0,
+            "name": 1
+        ];
+
+        return this->tagHtml("meta", parameters, defaultParams, [], null, false, true, true);
     }
 
     /**
