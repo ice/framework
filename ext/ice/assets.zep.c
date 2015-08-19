@@ -468,7 +468,7 @@ PHP_METHOD(Ice_Assets, minify) {
 /**
  * Prepare resource
  *
- * @param string source The uri/url source path
+ * @param string uri The uri/url source path
  * @param string type Type of content
  * @param int minify Option of minify
  * @return string New path to the source
@@ -477,30 +477,30 @@ PHP_METHOD(Ice_Assets, prepare) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_10 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *source_param = NULL, *type_param = NULL, *minify = NULL, *path = NULL, *target = NULL, *dir, *file = NULL, *sourceMin, *destination, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, _9 = zval_used_for_init, *_11 = NULL;
-	zval *source = NULL, *type = NULL, *_4;
+	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, *source = NULL, *target = NULL, *dir, *file = NULL, *uriMin, *destination, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, _9 = zval_used_for_init, *_11 = NULL;
+	zval *uri = NULL, *type = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 3, 0, &source_param, &type_param, &minify);
+	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
 
-	if (unlikely(Z_TYPE_P(source_param) != IS_STRING && Z_TYPE_P(source_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'source' must be a string") TSRMLS_CC);
+	if (unlikely(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 
-	if (likely(Z_TYPE_P(source_param) == IS_STRING)) {
-		zephir_get_strval(source, source_param);
+	if (likely(Z_TYPE_P(uri_param) == IS_STRING)) {
+		zephir_get_strval(uri, uri_param);
 	} else {
-		ZEPHIR_INIT_VAR(source);
-		ZVAL_EMPTY_STRING(source);
+		ZEPHIR_INIT_VAR(uri);
+		ZVAL_EMPTY_STRING(uri);
 	}
 	zephir_get_strval(type, type_param);
 	ZEPHIR_SEPARATE_PARAM(minify);
 
 
 	ZEPHIR_INIT_VAR(_0);
-	ZVAL_STRING(_0, "path", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(&path, this_ptr, "getoption", &_1, 0, _0);
+	ZVAL_STRING(_0, "source", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&source, this_ptr, "getoption", &_1, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_0);
@@ -508,18 +508,18 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZEPHIR_CALL_METHOD(&target, this_ptr, "getoption", &_1, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 34, source);
+	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 34, uri);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(dir);
 	ZEPHIR_CONCAT_VS(dir, _2, "/");
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_CONCAT_SV(_4, ".", type);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 35, source, _4);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 35, uri, _4);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(sourceMin);
-	ZEPHIR_CONCAT_VVVSV(sourceMin, target, dir, file, ".min.", type);
+	ZEPHIR_INIT_VAR(uriMin);
+	ZEPHIR_CONCAT_VVVSV(uriMin, target, dir, file, ".min.", type);
 	ZEPHIR_INIT_VAR(destination);
-	ZEPHIR_CONCAT_VV(destination, path, sourceMin);
+	ZEPHIR_CONCAT_VV(destination, source, uriMin);
 	ZEPHIR_INIT_VAR(exist);
 	ZVAL_BOOL(exist, 0);
 	do {
@@ -560,14 +560,14 @@ PHP_METHOD(Ice_Assets, prepare) {
 	if (!(zephir_is_true(minify))) {
 		ZEPHIR_INIT_NVAR(_0);
 		if (zephir_is_true(exist)) {
-			ZEPHIR_CPY_WRT(_0, sourceMin);
+			ZEPHIR_CPY_WRT(_0, uriMin);
 		} else {
-			ZEPHIR_CPY_WRT(_0, source);
+			ZEPHIR_CPY_WRT(_0, uri);
 		}
 		RETURN_CCTOR(_0);
 	} else {
 		ZEPHIR_INIT_VAR(_6);
-		ZEPHIR_CONCAT_VV(_6, path, source);
+		ZEPHIR_CONCAT_VV(_6, source, uri);
 		zephir_file_get_contents(_0, _6 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&minified, this_ptr, "minify", NULL, 0, _0, type);
 		zephir_check_call_status();
@@ -605,7 +605,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				return;
 			}
 		}
-		RETURN_CCTOR(sourceMin);
+		RETURN_CCTOR(uriMin);
 	}
 	ZEPHIR_MM_RESTORE();
 

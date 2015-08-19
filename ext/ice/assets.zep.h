@@ -48,7 +48,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_assets_minify, 0, 0, 2)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_assets_prepare, 0, 0, 3)
-	ZEND_ARG_INFO(0, source)
+	ZEND_ARG_INFO(0, uri)
 	ZEND_ARG_INFO(0, type)
 	ZEND_ARG_INFO(0, minify)
 ZEND_END_ARG_INFO()
