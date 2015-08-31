@@ -293,9 +293,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 
 	ZEPHIR_INIT_VAR(user);
 	ZVAL_NULL(user);
-	if (ZEPHIR_IS_EMPTY(password)) {
-		RETURN_MM_BOOL(0);
-	}
 	if (zephir_is_true(username)) {
 		if (Z_TYPE_P(username) == IS_OBJECT) {
 			ZEPHIR_CPY_WRT(user, username);
@@ -315,12 +312,17 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 			ZEPHIR_CALL_CE_STATIC(&user, _3, "findone", NULL, 0, _2);
 			zephir_check_call_status();
 		}
+	} else {
+		RETURN_MM_NULL();
 	}
 	_4 = Z_TYPE_P(user) == IS_OBJECT;
 	if (_4) {
 		_4 = (zephir_instance_of_ev(user, ice_auth_driver_model_users_ce TSRMLS_CC));
 	}
 	if (_4) {
+		if (ZEPHIR_IS_EMPTY(password)) {
+			RETURN_MM_BOOL(0);
+		}
 		ZEPHIR_INIT_NVAR(_0);
 		ZVAL_STRING(_0, "password", ZEPHIR_TEMP_PARAM_COPY);
 		ZEPHIR_CALL_METHOD(&_5, user, "get", NULL, 0, _0);
@@ -349,7 +351,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				ZEPHIR_CALL_METHOD(&_8, role, "get", &_9, 0, _0);
 				zephir_check_temp_parameter(_0);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _8, PH_SEPARATE, "ice/auth/driver/model.zep", 177);
+				zephir_array_append(&roles, _8, PH_SEPARATE, "ice/auth/driver/model.zep", 180);
 			}
 			_7->funcs->dtor(_7 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_10);
@@ -488,7 +490,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 				ZEPHIR_CALL_METHOD(&_4, role, "get", &_8, 0, _3);
 				zephir_check_temp_parameter(_3);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _4, PH_SEPARATE, "ice/auth/driver/model.zep", 235);
+				zephir_array_append(&roles, _4, PH_SEPARATE, "ice/auth/driver/model.zep", 238);
 			}
 			_7->funcs->dtor(_7 TSRMLS_CC);
 			ZEPHIR_SINIT_VAR(_9);
@@ -691,7 +693,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 				ZEPHIR_CALL_METHOD(&_7, role, "get", &_8, 0, _3);
 				zephir_check_temp_parameter(_3);
 				zephir_check_call_status();
-				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 330);
+				zephir_array_append(&roles, _7, PH_SEPARATE, "ice/auth/driver/model.zep", 333);
 			}
 			_6->funcs->dtor(_6 TSRMLS_CC);
 			ZEPHIR_CALL_FUNCTION(&_7, "serialize", NULL, 14, user);

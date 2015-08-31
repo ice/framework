@@ -153,10 +153,6 @@ class Model extends Driver implements DriverInterface
 
         let user = null;
 
-        if empty password {
-            return false;
-        }
-
         if username {
             if typeof username == "object" {
                 let user = username;
@@ -164,9 +160,16 @@ class Model extends Driver implements DriverInterface
                 let users = this->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"),
                     user = {users}::findOne(["username": username]);
             }
+        } else {
+            // Username not specified
+            return null;
         }
 
         if typeof user == "object" && (user instanceof Users) {
+            if empty password {
+                return false;
+            }
+
             // Check if password match
             if user->get("password") == this->hash(password) {
                 let userRoles = user->{"getRoles"}(),
@@ -202,7 +205,7 @@ class Model extends Driver implements DriverInterface
 
             return false;
         } else {
-            // Username not specified or user not found
+            // User not found
             return null;
         }
     }
