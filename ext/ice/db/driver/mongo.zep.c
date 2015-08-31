@@ -273,7 +273,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, 0, from, filters, options, fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 70, result);
+	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 72, result);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, _0);
 	zephir_check_call_status();

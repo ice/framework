@@ -148,9 +148,6 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	}
 
 
-	if (ZEPHIR_IS_EMPTY(password)) {
-		RETURN_MM_BOOL(0);
-	}
 	_0 = zephir_is_true(username);
 	if (_0) {
 		ZEPHIR_OBS_VAR(user);
@@ -158,6 +155,9 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 		_0 = zephir_array_isset_fetch(&user, _1, username, 0 TSRMLS_CC);
 	}
 	if (_0) {
+		if (ZEPHIR_IS_EMPTY(password)) {
+			RETURN_MM_BOOL(0);
+		}
 		zephir_array_fetch_string(&_2, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 80 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&_3, this_ptr, "hash", NULL, 0, password);
 		zephir_check_call_status();
