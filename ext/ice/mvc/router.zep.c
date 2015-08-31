@@ -367,7 +367,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 			ZEPHIR_CALL_METHOD(NULL, _9, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
-		ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 123, _6, _9);
+		ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 125, _6, _9);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("collector"), _5 TSRMLS_CC);
 	}
