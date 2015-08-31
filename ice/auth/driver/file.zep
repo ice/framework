@@ -72,11 +72,11 @@ class File extends Driver implements DriverInterface
     {
         var user;
 
-        if empty password {
-            return false;
-        }
-
         if username && fetch user, this->users[username] {
+            if empty password {
+                return false;
+            }
+
             if user["password"] === this->hash(password) {
                 // Complete the login
                 this->completeLogin(username, user["roles"]);
