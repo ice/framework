@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Mvc_Controller, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_controller_ce, this_ptr, "__construct", &_0, 28);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_controller_ce, this_ptr, "__construct", &_0, 29);
 	zephir_check_call_status();
 	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);

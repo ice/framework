@@ -47,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zend_declare_class_constant_long(ice_version_ce, SL("MINOR"), 0 TSRMLS_CC);
 
-	zend_declare_class_constant_long(ice_version_ce, SL("PATCH"), 26 TSRMLS_CC);
+	zend_declare_class_constant_long(ice_version_ce, SL("PATCH"), 27 TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_version_ce, SL("STAGE"), 4 TSRMLS_CC);
 
@@ -68,7 +68,7 @@ PHP_METHOD(Ice_Version, current) {
 	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SS("major"), 1);
 	add_assoc_long_ex(return_value, SS("minor"), 0);
-	add_assoc_long_ex(return_value, SS("patch"), 26);
+	add_assoc_long_ex(return_value, SS("patch"), 27);
 	add_assoc_long_ex(return_value, SS("stage"), 4);
 	add_assoc_long_ex(return_value, SS("build"), 1);
 	return;
@@ -137,7 +137,7 @@ PHP_METHOD(Ice_Version, get) {
 	ZEPHIR_SINIT_VAR(_3);
 	ZVAL_LONG(&_3, 0);
 	ZEPHIR_SINIT_VAR(_4);
-	ZVAL_LONG(&_4, 26);
+	ZVAL_LONG(&_4, 27);
 	ZEPHIR_CONCAT_VSVSVV(return_value, &_1, ".", &_3, ".", &_4, suffix);
 	RETURN_MM();
 
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Version, id) {
 	ZEPHIR_SINIT_NVAR(_1);
 	ZVAL_STRING(&_1, "%02s", 0);
 	ZEPHIR_SINIT_NVAR(_2);
-	ZVAL_LONG(&_2, 26);
+	ZVAL_LONG(&_2, 27);
 	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 1, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_1);
