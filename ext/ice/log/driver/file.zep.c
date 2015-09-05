@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
 
 	if (!((zephir_file_exists(file TSRMLS_CC) == SUCCESS))) {
-		ZEPHIR_CALL_FUNCTION(&_0, "touch", NULL, 118, file);
+		ZEPHIR_CALL_FUNCTION(&_0, "touch", NULL, 119, file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(_0))) {
 			ZEPHIR_INIT_VAR(_1);
@@ -77,7 +77,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_0, "is_writable", NULL, 119, file);
+	ZEPHIR_CALL_FUNCTION(&_0, "is_writable", NULL, 120, file);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_NVAR(_1);
@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "Y-m-d H:i:s", 0);
-	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 53, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 54, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_fast_strtoupper(_2, level);
@@ -137,7 +137,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	_5 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 	ZEPHIR_SINIT_NVAR(_0);
 	ZVAL_LONG(&_0, 8);
-	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 120, _5, line, &_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 121, _5, line, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -184,7 +184,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 		ZEPHIR_CONCAT_SVS(_3, "{", key, "}");
 		zephir_array_update_zval(&replace, _3, &value, PH_COPY | PH_SEPARATE);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 84, message, replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 85, message, replace);
 	zephir_check_call_status();
 	RETURN_MM();
 

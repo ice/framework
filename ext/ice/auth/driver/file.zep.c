@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *defaultValue = NULL, *username = NULL, *user, *_0, *_2;
+	zval *defaultValue = NULL, *username = NULL, *user, *_0, *_2, *_3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &defaultValue);
@@ -74,15 +74,25 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 40, defaultValue);
+		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 41, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(username, defaultValue)) {
 			zephir_update_property_this(this_ptr, SL("user"), defaultValue TSRMLS_CC);
 		} else {
+			ZEPHIR_OBS_VAR(user);
 			_2 = zephir_fetch_nproperty_this(this_ptr, SL("users"), PH_NOISY_CC);
-			zephir_array_isset_fetch(&user, _2, username, 1 TSRMLS_CC);
+			zephir_array_isset_fetch(&user, _2, username, 0 TSRMLS_CC);
+			zephir_array_update_string(&user, SL("username"), &username, PH_COPY | PH_SEPARATE);
 			zephir_update_property_this(this_ptr, SL("user"), user TSRMLS_CC);
 		}
+	}
+	_2 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
+	if (zephir_is_true(_2)) {
+		object_init_ex(return_value, ice_arr_ce);
+		_3 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, _3);
+		zephir_check_call_status();
+		RETURN_MM();
 	}
 	RETURN_MM_MEMBER(this_ptr, "user");
 
@@ -112,10 +122,10 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
 
 	if (Z_TYPE_P(user) == IS_ARRAY) {
-		zephir_array_fetch_string(&_0, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 57 TSRMLS_CC);
+		zephir_array_fetch_string(&_0, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 62 TSRMLS_CC);
 		RETURN_MM_BOOL(zephir_fast_in_array(role, _0 TSRMLS_CC));
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an array", "ice/auth/driver/file.zep", 59);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an array", "ice/auth/driver/file.zep", 64);
 		return;
 	}
 
@@ -158,11 +168,11 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 		if (ZEPHIR_IS_EMPTY(password)) {
 			RETURN_MM_BOOL(0);
 		}
-		zephir_array_fetch_string(&_2, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 80 TSRMLS_CC);
+		zephir_array_fetch_string(&_2, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 85 TSRMLS_CC);
 		ZEPHIR_CALL_METHOD(&_3, this_ptr, "hash", NULL, 0, password);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(_2, _3)) {
-			zephir_array_fetch_string(&_4, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 82 TSRMLS_CC);
+			zephir_array_fetch_string(&_4, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 87 TSRMLS_CC);
 			ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, 0, username, _4);
 			zephir_check_call_status();
 			RETURN_MM_BOOL(1);

@@ -58,7 +58,7 @@ class Pagination extends Arr
         let limit  = (int) this->get("limit", 10),
             page = (int) this->get("page", 1),
             total = count(items),
-            pages = (int) ceil(total / intval(limit));
+            pages = (int) ceil(total / intval(limit ? limit : 1));
 
         // Make sure page is >= 1
         if page <= 0 {
@@ -94,6 +94,66 @@ class Pagination extends Arr
     }
 
     /**
+     * Prepare list button.
+     *
+     * @param mixed page Name or page number
+     * @param string url URL with pagination
+     * @param boolean active If active create link else span
+     * @param string symbol HTML symbol to add
+     * @return string HTML
+     */
+    protected function prepareButton(var page, string url = null, boolean active = false, var symbol = null)
+    {
+        var query, i18n, title;
+        boolean pages = false;
+
+        switch page {
+            case "first":
+                let symbol = "&laquo;";
+                break;
+            case "previous":
+                let symbol = "&lsaquo;";
+                break;
+            case "next":
+                let symbol = "&rsaquo;";
+                break;
+            case "last":
+                let symbol = "&raquo;";
+                break;
+            default:
+                let symbol = !symbol ? page : symbol,
+                    pages = true;
+                break;
+        }
+
+        if !active {
+            return "<li class=\"" . (pages ? "active" : "disabled") . "\"><span>" . symbol . "</span></li>";
+        }
+
+        let query = this->di->get("request", null, true)->getQuery(),
+            i18n = this->di->get("i18n");
+
+        if pages {
+            let title = i18n ? i18n->translate("page: %d", [page]) : null;
+        } else {
+            let title = i18n ? i18n->translate(page) : null,
+                page = this->get(page);
+        }
+
+        if this->has("query") && !this->get("query") {
+            // Add /1 to the url
+            let url .= (url ? "/" : "") . page . this->get("hash");
+        } else {
+            // Don't add ?page=1 for first page
+            if page > 1 {
+                query->set("page", page);
+            }
+        }
+
+        return "<li>" . this->tag->a([url, symbol, title, "query": query->all()]) . "</li>";
+    }
+
+    /**
      * Prepare minimal pagination.
      * Previous 1 [2] 3 4 5 6 Next
      *
@@ -103,46 +163,22 @@ class Pagination extends Arr
      */
     public function minimal(string url = null, array parameters = [])
     {
-        var html, query, i18n, title;
+        var html;
         int i;
 
         // Prepare list
-        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->di->get("request", null, true)->getQuery(),
-            i18n = this->di->get("i18n");
+        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]);
 
         // Prepare previous
-        if this->get("current") > this->get("previous") {
-            query->set("page", this->get("previous"));
-
-            let title = i18n ? i18n->translate("previous") : null,
-                html .= "<li>" . this->tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("previous", url, this->get("current") > this->get("previous"));
 
         // Prepare pages
         for i in range(1, this->get("pages")) {
-            if i !== this->get("current") {
-                query->set("page", i);
-
-                let title = i18n ? i18n->translate("page: %d", [i]) : null,
-                    html .= "<li>" . this->tag->a([url, i, title, "query": query->all()]) . "</li>";
-            } else {
-                let title = i18n ? i18n->translate("current") : null,
-                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . i . "</span></li>";
-            }
+            let html .= this->prepareButton(i, url, i !== this->get("current"));
         }
 
         // Prepare next
-        if this->get("current") < this->get("next") {
-            query->set("page", this->get("next"));
-
-            let title = i18n ? i18n->translate("next") : null,
-                html .= "<li>" . this->tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("next", url, this->get("current") < this->get("next"));
 
         // Close list
         let html .= this->tag->endTag("ul");
@@ -160,66 +196,28 @@ class Pagination extends Arr
      */
     public function basic(string url = null, array parameters = [])
     {
-        var html, query, i18n, title;
+        var html;
         int i;
 
         // Prepare list
-        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->di->get("request", null, true)->getQuery(),
-            i18n = this->di->get("i18n");
+        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]);
 
         // Prepare first
-        if this->get("current") != this->get("first") {
-            query->remove("page");
-
-            let title = i18n ? i18n->translate("first") : null,
-                html .= "<li>" . this->tag->a([url, "&laquo;", title, "query": query->all(), "rel": "first"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&laquo;</span></li>";
-        }
+        let html .= this->prepareButton("first", url, this->get("current") != this->get("first"));
 
         // Prepare previous
-        if this->get("current") > this->get("previous") {
-            query->set("page", this->get("previous"));
-
-            let title = i18n ? i18n->translate("previous") : null,
-                html .= "<li>" . this->tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("previous", url, this->get("current") > this->get("previous"));
 
         // Prepare pages
         for i in range(1, this->get("pages")) {
-            if i !== this->get("current") {
-                query->set("page", i);
-
-                let title = i18n ? i18n->translate("page: %d", [i]) : null,
-                    html .= "<li>" . this->tag->a([url, i, title, "query": query->all()]) . "</li>";
-            } else {
-                let title = i18n ? i18n->translate("current") : null,
-                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . i . "</span></li>";
-            }
+            let html .= this->prepareButton(i, url, i !== this->get("current"));
         }
 
         // Prepare next
-        if this->get("current") < this->get("next") {
-            query->set("page", this->get("next"));
-
-            let title = i18n ? i18n->translate("next") : null,
-                html .= "<li>" . this->tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("next", url, this->get("current") < this->get("next"));
 
         // Prepare last
-        if this->get("current") != this->get("last") {
-            query->set("page", this->get("last"));
-
-            let title = i18n ? i18n->translate("last") : null,
-                html .= "<li>" . this->tag->a([url, "&raquo;", title, "query": query->all(), "rel": "last"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&raquo;</span></li>";
-        }
+        let html .= this->prepareButton("last", url, this->get("current") != this->get("last"));
 
         // Close list
         let html .= this->tag->endTag("ul");
@@ -240,7 +238,7 @@ class Pagination extends Arr
      */
     public function floating(string url = null, array parameters = [], int countOut = 0, int countIn = 2)
     {
-        var html, query, i18n, title, links, number, content;
+        var html, links, page, content;
         boolean useMiddle, useN3, useN6;
         var n2, n4, n5, n7, n8;
         int n1, n3, n6, i;
@@ -295,62 +293,24 @@ class Pagination extends Arr
         }
 
         // Prepare list
-        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]),
-            query = this->di->get("request", null, true)->getQuery(),
-            i18n = this->di->get("i18n");
+        let html = this->tag->tagHtml("ul", parameters, ["class": "pagination"]);
 
         // Prepare first
-        if this->get("current") != this->get("first") {
-            query->remove("page");
-
-            let title = i18n ? i18n->translate("first") : null,
-                html .= "<li>" . this->tag->a([url, "&laquo;", title, "query": query->all(), "rel": "first"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&laquo;</span></li>";
-        }
+        let html .= this->prepareButton("first", url, this->get("current") != this->get("first"));
 
         // Prepare previous
-        if this->get("current") > this->get("previous") {
-            query->set("page", this->get("previous"));
-
-            let title = i18n ? i18n->translate("previous") : null,
-                html .= "<li>" . this->tag->a([url, "&lsaquo;", title, "query": query->all(), "rel": "prev"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&lsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("previous", url, this->get("current") > this->get("previous"));
 
         // Prepare pages
-        for number, content in links {
-            if number !== this->get("current") {
-                query->set("page", number);
-
-                let title = i18n ? i18n->translate("page: %d", [number]) : null,
-                    html .= "<li>" . this->tag->a([url, content, title, "query": query->all(), "class": content == "&hellip;" ? "text-muted" : ""]) . "</li>";
-            } else {
-                let title = i18n ? i18n->translate("current") : null,
-                    html .= "<li class=\"active\" title=\"" . title . "\"><span>" . content . "</span></li>";
-            }
+        for page, content in links {
+            let html .= this->prepareButton(page, url, page !== this->get("current"), content);
         }
 
         // Prepare next
-        if this->get("current") < this->get("next") {
-            query->set("page", this->get("next"));
-
-            let title = i18n ? i18n->translate("next") : null,
-                html .= "<li>" . this->tag->a([url, "&rsaquo;", title, "query": query->all(), "rel": "next"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&rsaquo;</span></li>";
-        }
+        let html .= this->prepareButton("next", url, this->get("current") < this->get("next"));
 
         // Prepare last
-        if this->get("current") != this->get("last") {
-            query->set("page", this->get("last"));
-
-            let title = i18n ? i18n->translate("last") : null,
-                html .= "<li>" . this->tag->a([url, "&raquo;", title, "query": query->all(), "rel": "last"]) . "</li>";
-        } else {
-            let html .= "<li class=\"disabled\"><span>&raquo;</span></li>";
-        }
+        let html .= this->prepareButton("last", url, this->get("current") != this->get("last"));
 
         // Close list
         let html .= this->tag->endTag("ul");

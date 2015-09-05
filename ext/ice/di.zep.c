@@ -72,16 +72,16 @@ PHP_METHOD(Ice_Di, __construct) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "__ROOT__", 0);
-	ZEPHIR_CALL_FUNCTION(&_1, "defined", NULL, 77, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "defined", NULL, 78, &_0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_1))) {
 		ZEPHIR_SINIT_NVAR(_0);
 		ZVAL_STRING(&_0, "../", 0);
-		ZEPHIR_CALL_FUNCTION(&_2, "realpath", NULL, 78, &_0);
+		ZEPHIR_CALL_FUNCTION(&_2, "realpath", NULL, 79, &_0);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_0);
 		ZVAL_STRING(&_0, "__ROOT__", 0);
-		ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 79, &_0, _2, ZEPHIR_GLOBAL(global_false));
+		ZEPHIR_CALL_FUNCTION(NULL, "define", NULL, 80, &_0, _2, ZEPHIR_GLOBAL(global_false));
 		zephir_check_call_status();
 	}
 	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_3, 6, data);
@@ -230,7 +230,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "handler", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 80, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 81, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 2, 0 TSRMLS_CC);
@@ -238,7 +238,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "errorHandler", 1);
 	zephir_array_fast_append(_2, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 81, _2);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 82, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	zephir_create_array(_3, 2, 0 TSRMLS_CC);
@@ -246,7 +246,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "shutdownHandler", 1);
 	zephir_array_fast_append(_3, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 82, _3);
+	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 83, _3);
 	zephir_check_call_status();
 	RETURN_THIS();
 
