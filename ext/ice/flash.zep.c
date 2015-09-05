@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 	ZVAL_NULL(_3);
 	ZEPHIR_INIT_NVAR(_4);
 	ZVAL_BOOL(_4, 1);
-	ZEPHIR_CALL_METHOD(&_5, di, "get", NULL, 0, _2, _3, _4);
+	ZEPHIR_CALL_METHOD(&_5, di, "get", NULL, 27, _2, _3, _4);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("tag"), _5 TSRMLS_CC);
