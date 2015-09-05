@@ -56,6 +56,17 @@ abstract class Dispatcher
     }
 
     /**
+     * Whether or not an param exists by key.
+     *
+     * @param string key The param key
+     * @return boolean
+     */
+    public function hasParam(string key) -> boolean
+    {
+        return isset this->params[key];
+    }
+
+    /**
      * Set a param by its name or numeric index.
      *
      * @param mixed param
@@ -67,20 +78,48 @@ abstract class Dispatcher
     }
 
     /**
-     * Gets a param by its name or numeric index.
+     * Gets variable from params attribute applying filters if needed.
+     * If no parameters are given, return all.
      *
-     * @param mixed param
-     * @param mixed defaultValue
+     * <pre><code>
+     *  //Returns value from $params["id"] without sanitizing
+     *  $id = $this->router->getParam("id");
+     *
+     *  //Returns value from $params["title"] with sanitizing
+     *  $title = $this->router->getParam("title", "escape|repeats");
+     *
+     *  //Returns value from $params["id"] with a default value
+     *  $id = $this->router->getParam("id", null, 150);
+     * </code></pre>
+     *
+     * @param string key Index to get
+     * @param string|array filters Filters to apply
+     * @param mixed defaultValue Default value if key not exist or value is empty and allowEmpty is false
+     * @param boolean allowEmpty
      * @return mixed
      */
-    public function getParam(param, defaultValue = null)
+    public function getParam(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
-        var value;
+        var params, value, filter;
 
-        if fetch value, this->params[param] {
+        let params = new Arr(this->params);
+
+        if !key {
+            return params;
+        } else {
+            let value = params->get(key, defaultValue);
+
+            if filters {
+                let filter = Di::$fetch()->get("filter", null, true),
+                    value = filter->sanitize(value, filters);
+            }
+
+            if (value === "" || value === null) && allowEmpty === false {
+                return defaultValue;
+            }
+
             return value;
         }
-        return defaultValue;
     }
 
     /**
