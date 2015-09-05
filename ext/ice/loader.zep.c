@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "loadClass", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 113, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 114, _0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -128,19 +128,19 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	if (prepend) {
 		_11 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 114, baseDir);
+		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
 		zephir_check_call_status();
 		Z_SET_ISREF_P(_12);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 115, _12, _13);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 116, _12, _13);
 		Z_UNSET_ISREF_P(_12);
 		zephir_check_call_status();
 	} else {
 		_11 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 114, baseDir);
+		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
 		zephir_check_call_status();
 		Z_SET_ISREF_P(_12);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 116, _12, _13);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 117, _12, _13);
 		Z_UNSET_ISREF_P(_12);
 		zephir_check_call_status();
 	}
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEPHIR_CPY_WRT(prefix, className);
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "\\", 0);
-	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 117, prefix, &_0);
+	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, prefix, &_0);
 	zephir_check_call_status();
 	while (1) {
 		if (!(!ZEPHIR_IS_FALSE_IDENTICAL(pos))) {
@@ -198,7 +198,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 		ZEPHIR_CPY_WRT(prefix, _5);
 		ZEPHIR_SINIT_NVAR(_7);
 		ZVAL_STRING(&_7, "\\", 0);
-		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 117, prefix, &_7);
+		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, prefix, &_7);
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(0);

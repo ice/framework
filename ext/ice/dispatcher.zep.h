@@ -30,6 +30,7 @@ PHP_METHOD(Ice_Dispatcher, setHandlerSuffix);
 PHP_METHOD(Ice_Dispatcher, getActionSuffix);
 PHP_METHOD(Ice_Dispatcher, setActionSuffix);
 PHP_METHOD(Ice_Dispatcher, __construct);
+PHP_METHOD(Ice_Dispatcher, hasParam);
 PHP_METHOD(Ice_Dispatcher, setParam);
 PHP_METHOD(Ice_Dispatcher, getParam);
 PHP_METHOD(Ice_Dispatcher, getActiveMethod);
@@ -81,14 +82,20 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setactionsuffix, 0, 0, 1)
 	ZEND_ARG_INFO(0, actionSuffix)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_hasparam, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setparam, 0, 0, 2)
 	ZEND_ARG_INFO(0, param)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_getparam, 0, 0, 1)
-	ZEND_ARG_INFO(0, param)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_getparam, 0, 0, 0)
+	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_INFO(0, defaultValue)
+	ZEND_ARG_INFO(0, allowEmpty)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_forward, 0, 0, 1)
@@ -124,6 +131,7 @@ ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
 	PHP_ME(Ice_Dispatcher, getActionSuffix, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, setActionSuffix, arginfo_ice_dispatcher_setactionsuffix, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Ice_Dispatcher, hasParam, arginfo_ice_dispatcher_hasparam, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, setParam, arginfo_ice_dispatcher_setparam, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getParam, arginfo_ice_dispatcher_getparam, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, getActiveMethod, NULL, ZEND_ACC_PUBLIC)
