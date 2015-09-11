@@ -67,6 +67,37 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 }
 
 /**
+ * Console constructor
+ *
+ * @param Di $di
+ */
+PHP_METHOD(Ice_Cli_Console, __construct) {
+
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_0 = NULL;
+	zval *di = NULL, *_1, *_2;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &di);
+
+	if (!di) {
+		di = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	ZEPHIR_CALL_PARENT(NULL, ice_cli_console_ce, this_ptr, "__construct", &_0, 29, di);
+	zephir_check_call_status();
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_2);
+	ZVAL_STRING(_2, "console", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _1, "set", NULL, 0, _2, this_ptr);
+	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
  * Handle an command-line request.
  *
  * @param array arguments
@@ -110,16 +141,16 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	_5 = zephir_fetch_nproperty_this(this_ptr, SL("modules"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodules", NULL, 0, _5);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_6, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 40 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 54 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setmodule", NULL, 0, _6);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_7, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 41 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 55 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "sethandler", NULL, 0, _7);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_8, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 42 TSRMLS_CC);
+	zephir_array_fetch_string(&_8, response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 56 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setaction", NULL, 0, _8);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_9, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 43 TSRMLS_CC);
+	zephir_array_fetch_string(&_9, response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 57 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, dispatcher, "setparams", NULL, 0, _9);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, dispatcher, "dispatch", NULL, 0);
