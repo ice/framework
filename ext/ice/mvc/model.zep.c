@@ -326,20 +326,29 @@ PHP_METHOD(Ice_Mvc_Model, getIdKey) {
  * Load one result to the current object.
  *
  * @param mixed filters
+ * @param array options
+ * @return this|false
  */
 PHP_METHOD(Ice_Mvc_Model, loadOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *filters, *result = NULL, *_0, *_1, *_2 = NULL;
+	zval *options = NULL;
+	zval *filters, *options_param = NULL, *result = NULL, *_0, *_1, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &filters);
+	zephir_fetch_params(1, 1, 1, &filters, &options_param);
 
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(options);
+		array_init(options);
+	} else {
+		zephir_get_arrval(options, options_param);
+	}
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&result, _0, "findone", NULL, 0, _1, filters);
+	ZEPHIR_CALL_METHOD(&result, _0, "findone", NULL, 0, _1, filters, options);
 	zephir_check_call_status();
 	if (zephir_is_true(result)) {
 		ZEPHIR_CALL_METHOD(&_2, result, "all", NULL, 0);
@@ -357,7 +366,8 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
  * Load results to the current object.
  *
  * @param mixed filters
- * @return Arr
+ * @param array options
+ * @return object Arr
  */
 PHP_METHOD(Ice_Mvc_Model, load) {
 
@@ -403,7 +413,7 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 			zephir_array_fast_append(_6, data);
 			ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_4, _5, _6 TSRMLS_CC);
 			zephir_check_call_status();
-			zephir_array_append(&instances, _4, PH_SEPARATE, "ice/mvc/model.zep", 133);
+			zephir_array_append(&instances, _4, PH_SEPARATE, "ice/mvc/model.zep", 136);
 		}
 		_3->funcs->dtor(_3 TSRMLS_CC);
 	}
@@ -427,18 +437,26 @@ PHP_METHOD(Ice_Mvc_Model, load) {
  * </code></pre>
  *
  * @param array filters
- * @return Model|false
+ * @param array options
+ * @return this|false
  */
 PHP_METHOD(Ice_Mvc_Model, findOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *filters = NULL, *result = NULL, *model, *instance;
+	zval *options = NULL;
+	zval *filters = NULL, *options_param = NULL, *result = NULL, *model, *instance;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &filters);
+	zephir_fetch_params(1, 0, 2, &filters, &options_param);
 
 	if (!filters) {
 		filters = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(options);
+		array_init(options);
+	} else {
+		zephir_get_arrval(options, options_param);
 	}
 
 
@@ -447,7 +465,7 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 	ZEPHIR_INIT_VAR(instance);
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(instance, model TSRMLS_CC);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&result, instance, "loadone", NULL, 0, filters);
+	ZEPHIR_CALL_METHOD(&result, instance, "loadone", NULL, 0, filters, options);
 	zephir_check_call_status();
 	RETURN_CCTOR(result);
 
@@ -462,6 +480,7 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
  * </code></pre>
  *
  * @param array filters
+ * @param array options
  * @return object Arr
  */
 PHP_METHOD(Ice_Mvc_Model, find) {
@@ -804,7 +823,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_read_property_this(&_2, this_ptr, SL("primary"), PH_NOISY_CC);
 	if (Z_TYPE_P(_2) == IS_ARRAY) {
 		_3 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-		zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/model.zep", 334);
+		zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/model.zep", 339);
 		for (
 		  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_5, &_4)
@@ -1001,7 +1020,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 		zephir_read_property_this(&_0, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_ARRAY) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 430);
+			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 435);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -1063,7 +1082,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		zephir_read_property_this(&_0, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_ARRAY) {
 			_1 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 461);
+			zephir_is_iterable(_1, &_3, &_2, 0, 0, "ice/mvc/model.zep", 466);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -1353,7 +1372,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 2, _3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1, "ice/mvc/model.zep", 612 TSRMLS_CC);
+		zephir_throw_exception_debug(_1, "ice/mvc/model.zep", 617 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1367,7 +1386,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zephir_get_class_ns(_1, referenceModel, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(from);
 	zephir_uncamelize(from, _1);
-	zephir_array_fetch_string(&_4, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 621 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 626 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_4, 1) || ZEPHIR_IS_LONG(_4, 2)) {
 			ZEPHIR_INIT_VAR(_5);
@@ -1452,7 +1471,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		if (Z_TYPE_P(fields) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(rules);
 			array_init(rules);
-			zephir_is_iterable(fields, &_3, &_2, 0, 0, "ice/mvc/model.zep", 672);
+			zephir_is_iterable(fields, &_3, &_2, 0, 0, "ice/mvc/model.zep", 677);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3, (void**) &_4, &_2) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3, &_2)
@@ -1461,14 +1480,14 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 				_5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 				if (zephir_array_isset(_5, field)) {
 					_6 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-					zephir_array_fetch(&_7, _6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 668 TSRMLS_CC);
+					zephir_array_fetch(&_7, _6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 673 TSRMLS_CC);
 					zephir_array_update_zval(&rules, field, &_7, PH_COPY | PH_SEPARATE);
 				}
 			}
 			RETURN_CCTOR(rules);
 		} else if (_0) {
 			_5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-			zephir_array_fetch(&_7, _5, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 674 TSRMLS_CC);
+			zephir_array_fetch(&_7, _5, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 679 TSRMLS_CC);
 			RETURN_CTOR(_7);
 		}
 	}
@@ -1615,7 +1634,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 2, _3);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_0, "ice/mvc/model.zep", 729 TSRMLS_CC);
+	zephir_throw_exception_debug(_0, "ice/mvc/model.zep", 734 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
