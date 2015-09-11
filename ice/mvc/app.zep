@@ -1,6 +1,7 @@
 
 namespace Ice\Mvc;
 
+use Ice\Di;
 use Ice\Di\Access;
 use Ice\Http\Response\ResponseInterface;
 
@@ -18,6 +19,20 @@ class App extends Access
 
     protected autoRender = true { get, set };
     protected modules { get, set };
+
+    /**
+     * App constructor
+     *
+     * @param Di $di
+     */
+    public function __construct(<Di> di = null)
+    {
+        // Set the dependency injector
+        parent::__construct(di);
+
+        // Register the app itself as a service
+        this->di->set("app", this);
+    }
 
     /**
      * Handles a MVC request.
