@@ -23,6 +23,20 @@ class Console extends Access
     const INVERSE = 7;
 
     /**
+     * Console constructor
+     *
+     * @param Di $di
+     */
+    public function __construct(<Di> di = null)
+    {
+        // Set the dependency injector
+        parent::__construct(di);
+
+        // Register the console itself as a service
+        this->di->set("console", this);
+    }
+
+    /**
      * Handle an command-line request.
      *
      * @param array arguments
