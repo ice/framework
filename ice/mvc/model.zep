@@ -100,12 +100,14 @@ abstract class Model extends Arr implements \Serializable
      * Load one result to the current object.
      *
      * @param mixed filters
+     * @param array options
+     * @return this|false
      */
-    public function loadOne(var filters)
+    public function loadOne(var filters, array options = [])
     {
         var result;
 
-        let result = this->db->findOne(this->from, filters);
+        let result = this->db->findOne(this->from, filters, options);
 
         if result {
             this->replace(result->all());
@@ -119,7 +121,8 @@ abstract class Model extends Arr implements \Serializable
      * Load results to the current object.
      *
      * @param mixed filters
-     * @return Arr
+     * @param array options
+     * @return object Arr
      */
     public function load(var filters, array options = [])
     {
@@ -149,15 +152,16 @@ abstract class Model extends Arr implements \Serializable
      * </code></pre>
      *
      * @param array filters
-     * @return Model|false
+     * @param array options
+     * @return this|false
      */
-    public static function findOne(var filters = null)
+    public static function findOne(var filters = null, array options = [])
     {
         var result, model, instance;
 
         let model = get_called_class(),
             instance = create_instance(model),
-            result = instance->loadOne(filters);
+            result = instance->loadOne(filters, options);
 
         return result;
     }
@@ -171,6 +175,7 @@ abstract class Model extends Arr implements \Serializable
      * </code></pre>
      *
      * @param array filters
+     * @param array options
      * @return object Arr
      */
     public static function find(var filters = null, array options = [])
