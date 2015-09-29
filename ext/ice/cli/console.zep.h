@@ -14,7 +14,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_setmodules, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console___construct, 0, 0, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Ice\\Cli\\Di, 1)
+	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_handle, 0, 0, 0)
