@@ -1,6 +1,7 @@
 
 namespace Ice\Cli;
 
+use Ice\Di;
 use Ice\Di\Access;
 
 /**
