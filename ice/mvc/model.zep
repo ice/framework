@@ -29,7 +29,7 @@ abstract class Model extends Arr implements \Serializable
     protected relations = [] { get };
     protected labels = [] { set };
     protected rules = [];
-    protected messages = [] { get };
+    protected messages = [] { get, set };
 
     const BELONGS_TO = 1;
     const HAS_ONE = 2;
@@ -257,19 +257,16 @@ abstract class Model extends Arr implements \Serializable
      */
     public function create(var fields = [], <Validation> extra = null)
     {
-        var status, valid, extraValid, messages, extraMessages;
+        var status;
 
-        let fields = this->fields(fields),
-            valid = true,
-            messages = [],
-            extraValid = true,
-            extraMessages = [];
+        let fields = this->fields(fields);
 
         this->setData(fields);
 
         if extra {
-            let extraValid = extra->validate(),
-                extraMessages = extra->getMessages()->all();
+            extra->validate();
+
+            let this->messages = extra->getMessages()->all();
         }
 
         this->di->applyHook("model.before.validate", [this]);
@@ -282,27 +279,31 @@ abstract class Model extends Arr implements \Serializable
             this->validation->rules(this->rules);
             this->validation->setFilters(this->filters);
             this->validation->setLabels(this->labels);
-
-            let valid = this->validation->validate(this->getData()),
-                messages = this->validation->getMessages()->all();
+            this->validation->validate(this->getData());
 
             // Replace values by validation values (with applied filters)
             this->replace(this->validation->getValues());
-        }
 
-        if !valid || extra && !extraValid {
-            let this->messages = array_merge(extraMessages, messages);
-
-            return false;
+            if !this->validation->valid() {
+                let this->messages = array_merge(this->messages, this->validation->getMessages()->all());
+            }
         }
 
         this->di->applyHook("model.after.validate", [this]);
+
+        if count(this->messages) {
+            return false;
+        }
+
+        this->di->applyHook("model.before.create", [this]);
 
         let status = this->db->insert(this->from, this->getData());
 
         if status {
             this->set(this->db->getId(), this->db->getLastInsertId());
         }
+
+        this->di->applyHook("model.after.create", [this]);
 
         return status;
     }
@@ -322,14 +323,10 @@ abstract class Model extends Arr implements \Serializable
      */
     public function update(var fields = [], <Validation> extra = null)
     {
-        var data, status, primary, key, valid, extraValid, messages, extraMessages;
+        var data, status, primary, key;
 
         let data = this->getData(),
             fields = this->fields(fields),
-            valid = true,
-            messages = [],
-            extraValid = true,
-            extraMessages = [],
             primary = [];
 
         if typeof this->primary == "array" {
@@ -343,29 +340,33 @@ abstract class Model extends Arr implements \Serializable
         this->replace(fields);
 
         if extra {
-            let extraValid = extra->validate(),
-                extraMessages = extra->getMessages()->all();
+            extra->validate();
+
+            let this->messages = extra->getMessages()->all();
         }
 
         this->di->applyHook("model.before.validate", [this]);
 
         if typeof this->validation == "object" && (this->validation instanceof Validation) {
-            let valid = this->validation->validate(this->getData()),
-                messages = this->validation->getMessages()->all();
+            this->validation->validate(this->getData());
 
             // Replace values by validation values (with applied filters)
             this->replace(this->validation->getValues());
+
+            if !this->validation->valid() {
+                let this->messages = array_merge(this->messages, this->validation->getMessages()->all());
+            }
         }
 
-        if !valid || extra && !extraValid {
-            let this->messages = array_merge(extraMessages, messages);
+        this->di->applyHook("model.after.validate", [this]);
 
+        if count(this->messages) {
             // Rollback changes and restore old data
             this->setData(data);
             return false;
         }
 
-        this->di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.before.update", [this]);
 
         let status = this->db->update(this->from, primary, this->fields(this->getData()));
 
@@ -373,6 +374,8 @@ abstract class Model extends Arr implements \Serializable
             // Rollback changes and restore old data
             this->setData(data);
         }
+
+        this->di->applyHook("model.after.update", [this]);
 
         return status;
     }
