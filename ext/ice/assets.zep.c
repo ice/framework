@@ -111,7 +111,7 @@ PHP_METHOD(Ice_Assets, __construct) {
  */
 PHP_METHOD(Ice_Assets, getOption) {
 
-	zval *key, *defaultValue = NULL, *value, *_0;
+	zval *key, *defaultValue = NULL, *value = NULL, *_0;
 
 	zephir_fetch_params(0, 1, 1, &key, &defaultValue);
 
@@ -142,7 +142,7 @@ PHP_METHOD(Ice_Assets, add) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _0, _1;
 	zval *version = NULL;
-	zval *parameters = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *type;
+	zval *parameters = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *type = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &parameters, &version_param, &minify);
@@ -210,7 +210,6 @@ PHP_METHOD(Ice_Assets, addCss) {
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
 
 	parameters = parameters_param;
-
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(version);
 		ZVAL_EMPTY_STRING(version);
@@ -285,7 +284,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 		zephir_check_temp_parameter(_1);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_7);
-		if (version && Z_STRLEN_P(version)) {
+		if (!(!version) && Z_STRLEN_P(version)) {
 			ZEPHIR_INIT_VAR(_8);
 			ZEPHIR_CONCAT_SV(_8, "?v=", version);
 			ZEPHIR_CPY_WRT(_7, _8);
@@ -324,7 +323,6 @@ PHP_METHOD(Ice_Assets, addJs) {
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
 
 	parameters = parameters_param;
-
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(version);
 		ZVAL_EMPTY_STRING(version);
@@ -399,7 +397,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 		zephir_check_temp_parameter(_1);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_7);
-		if (version && Z_STRLEN_P(version)) {
+		if (!(!version) && Z_STRLEN_P(version)) {
 			ZEPHIR_INIT_VAR(_8);
 			ZEPHIR_CONCAT_SV(_8, "?v=", version);
 			ZEPHIR_CPY_WRT(_7, _8);
@@ -438,7 +436,6 @@ PHP_METHOD(Ice_Assets, minify) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(content_param) == IS_STRING)) {
 		zephir_get_strval(content, content_param);
 	} else {
@@ -477,7 +474,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_10 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, *source = NULL, *target = NULL, *dir, *file = NULL, *uriMin, *destination, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, _9 = zval_used_for_init, *_11 = NULL;
+	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, *source = NULL, *target = NULL, *dir = NULL, *file = NULL, *uriMin = NULL, *destination = NULL, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5 = NULL, *_6, *_7 = NULL, *_8 = NULL, _9 = zval_used_for_init, *_11 = NULL;
 	zval *uri = NULL, *type = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
@@ -487,7 +484,6 @@ PHP_METHOD(Ice_Assets, prepare) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(uri_param) == IS_STRING)) {
 		zephir_get_strval(uri, uri_param);
 	} else {

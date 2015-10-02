@@ -206,7 +206,7 @@ PHP_METHOD(Ice_Tag, appendTitle) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("title"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
-	if (separator && Z_STRLEN_P(separator)) {
+	if (!(!separator) && Z_STRLEN_P(separator)) {
 		ZEPHIR_CPY_WRT(_1, separator);
 	} else {
 		ZEPHIR_OBS_NVAR(_1);
@@ -244,7 +244,7 @@ PHP_METHOD(Ice_Tag, prependTitle) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	if (separator && Z_STRLEN_P(separator)) {
+	if (!(!separator) && Z_STRLEN_P(separator)) {
 		ZEPHIR_CPY_WRT(_0, separator);
 	} else {
 		ZEPHIR_OBS_NVAR(_0);
@@ -472,7 +472,7 @@ PHP_METHOD(Ice_Tag, submitButton) {
 PHP_METHOD(Ice_Tag, button) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *_1 = NULL, *_2, *_3;
+	zval *parameters_param = NULL, *defaultParams = NULL, *_1 = NULL, *_2, *_3;
 	zval *parameters = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -587,7 +587,7 @@ PHP_METHOD(Ice_Tag, input) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters = NULL;
-	zval *type_param = NULL, *parameters_param = NULL, *defaultParams, *_0, *_1, *_2, *_3, *_4, *_5;
+	zval *type_param = NULL, *parameters_param = NULL, *defaultParams = NULL, *_0, *_1, *_2, *_3, *_4, *_5;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -645,7 +645,7 @@ PHP_METHOD(Ice_Tag, input) {
 PHP_METHOD(Ice_Tag, form) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *action = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL;
+	zval *parameters_param = NULL, *defaultParams = NULL, *action = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL;
 	zval *parameters = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
@@ -721,7 +721,7 @@ PHP_METHOD(Ice_Tag, form) {
 PHP_METHOD(Ice_Tag, textArea) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *_1 = NULL, *_2, *_3;
+	zval *parameters_param = NULL, *defaultParams = NULL, *_1 = NULL, *_2, *_3;
 	zval *parameters = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -795,7 +795,7 @@ PHP_METHOD(Ice_Tag, image) {
 PHP_METHOD(Ice_Tag, img) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *src = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9, *_10, *_11;
+	zval *parameters_param = NULL, *defaultParams = NULL, *src = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9, *_10, *_11;
 	zval *parameters = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
@@ -898,7 +898,7 @@ PHP_METHOD(Ice_Tag, linkTo) {
 PHP_METHOD(Ice_Tag, a) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *href = NULL, *local = NULL, *query, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9;
+	zval *parameters_param = NULL, *defaultParams = NULL, *href = NULL, *local = NULL, *query = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9;
 	zval *parameters = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
@@ -984,7 +984,7 @@ PHP_METHOD(Ice_Tag, a) {
 PHP_METHOD(Ice_Tag, link) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *href = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9, *_10, *_11;
+	zval *parameters_param = NULL, *defaultParams = NULL, *href = NULL, *local = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5 = NULL, *_6 = NULL, *_8, *_9, *_10, *_11;
 	zval *parameters = NULL, *_7;
 
 	ZEPHIR_MM_GROW();
@@ -1068,7 +1068,7 @@ PHP_METHOD(Ice_Tag, script) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _1;
-	zval *parameters_param = NULL, *defaultParams, *src = NULL, *local = NULL, *_0, *_2, *_3 = NULL, *_4 = NULL, *_5, *_6 = NULL, *_7 = NULL, *_9, *_10;
+	zval *parameters_param = NULL, *defaultParams = NULL, *src = NULL, *local = NULL, *_0, *_2, *_3 = NULL, *_4 = NULL, *_5, *_6 = NULL, *_7 = NULL, *_9, *_10;
 	zval *parameters = NULL, *_8;
 
 	ZEPHIR_MM_GROW();
@@ -1154,7 +1154,7 @@ PHP_METHOD(Ice_Tag, script) {
 PHP_METHOD(Ice_Tag, style) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *_1 = NULL, *_2, *_3, *_4;
+	zval *parameters_param = NULL, *defaultParams = NULL, *_1 = NULL, *_2, *_3, *_4;
 	zval *parameters = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -1205,7 +1205,7 @@ PHP_METHOD(Ice_Tag, style) {
 PHP_METHOD(Ice_Tag, meta) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *_0, *_1, *_2, *_3, *_4, *_5;
+	zval *parameters_param = NULL, *defaultParams = NULL, *_0, *_1, *_2, *_3, *_4, *_5;
 	zval *parameters = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -1255,7 +1255,7 @@ PHP_METHOD(Ice_Tag, select) {
 	HashPosition _4, _7;
 	zval *_3 = NULL, *_10 = NULL, *_23 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *parameters_param = NULL, *defaultParams, *name = NULL, *options = NULL, *option = NULL, *selected = NULL, *tmp, *value = NULL, *text = NULL, *group = NULL, *subvalue = NULL, *subtext = NULL, *suboptions = NULL, *_0, *_1 = NULL, *_2 = NULL, **_6, **_9, *_11 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_18 = NULL, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL;
+	zval *parameters_param = NULL, *defaultParams = NULL, *name = NULL, *options = NULL, *option = NULL, *selected = NULL, *tmp = NULL, *value = NULL, *text = NULL, *group = NULL, *subvalue = NULL, *subtext = NULL, *suboptions = NULL, *_0, *_1 = NULL, *_2 = NULL, **_6, **_9, *_11 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_18 = NULL, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL;
 	zval *parameters = NULL, *_13 = NULL, *_24;
 
 	ZEPHIR_MM_GROW();
@@ -1473,9 +1473,9 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1, *_4;
 	HashPosition _0, _3;
-	zend_bool close, eol, single, _7, _8;
+	zend_bool close, eol, single, _8, _9;
 	zval *parameters = NULL, *defaultParams = NULL, *skip = NULL;
-	zval *name_param = NULL, *parameters_param = NULL, *defaultParams_param = NULL, *skip_param = NULL, *content_param = NULL, *close_param = NULL, *eol_param = NULL, *single_param = NULL, *params = NULL, *param = NULL, *key = NULL, *value = NULL, *attributes = NULL, *code = NULL, **_2, **_5, *_6 = NULL, *_9 = NULL, *_10, *_11, *_12 = NULL, *_13;
+	zval *name_param = NULL, *parameters_param = NULL, *defaultParams_param = NULL, *skip_param = NULL, *content_param = NULL, *close_param = NULL, *eol_param = NULL, *single_param = NULL, *params = NULL, *param = NULL, *key = NULL, *value = NULL, *attributes = NULL, *code = NULL, **_2, **_5, *_6 = NULL, *_7 = NULL, *_10 = NULL, *_11, *_12, *_13 = NULL, *_14;
 	zval *name = NULL, *content = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -1487,7 +1487,6 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 		array_init(parameters);
 	} else {
 	parameters = parameters_param;
-
 	}
 	if (!defaultParams_param) {
 		ZEPHIR_INIT_VAR(defaultParams);
@@ -1554,28 +1553,34 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 	ZEPHIR_INIT_VAR(_6);
 	zephir_fast_array_merge(_6, &(attributes), &(params) TSRMLS_CC);
 	ZEPHIR_CPY_WRT(attributes, _6);
-	ZEPHIR_CALL_METHOD(&code, this_ptr, "preparetag", NULL, 0, name, attributes, skip, (single ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+	ZEPHIR_INIT_NVAR(_6);
+	if (single) {
+		ZVAL_BOOL(_6, 1);
+	} else {
+		ZVAL_BOOL(_6, 0);
+	}
+	ZEPHIR_CALL_METHOD(&code, this_ptr, "preparetag", NULL, 0, name, attributes, skip, _6);
 	zephir_check_call_status();
 	if (eol) {
-		ZEPHIR_INIT_NVAR(_6);
-		ZEPHIR_GET_CONSTANT(_6, "PHP_EOL");
-		zephir_concat_self(&code, _6 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_7);
+		ZEPHIR_GET_CONSTANT(_7, "PHP_EOL");
+		zephir_concat_self(&code, _7 TSRMLS_CC);
 	}
-	if (content && Z_STRLEN_P(content)) {
-		_7 = ZEPHIR_IS_STRING(name, "textarea");
-		if (_7) {
-			_7 = zephir_array_isset_string(attributes, SS("name"));
-		}
-		_8 = _7;
+	if (!(!content) && Z_STRLEN_P(content)) {
+		_8 = ZEPHIR_IS_STRING(name, "textarea");
 		if (_8) {
-			zephir_array_fetch_string(&_10, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 711 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_9, this_ptr, "hasvalue", NULL, 0, _10);
+			_8 = zephir_array_isset_string(attributes, SS("name"));
+		}
+		_9 = _8;
+		if (_9) {
+			zephir_array_fetch_string(&_11, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 711 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&_10, this_ptr, "hasvalue", NULL, 0, _11);
 			zephir_check_call_status();
-			_8 = zephir_is_true(_9);
+			_9 = zephir_is_true(_10);
 		}
-		if (_8) {
-			zephir_array_fetch_string(&_11, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 712 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&value, this_ptr, "getvalue", NULL, 0, _11);
+		if (_9) {
+			zephir_array_fetch_string(&_12, attributes, SL("name"), PH_NOISY | PH_READONLY, "ice/tag.zep", 712 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&value, this_ptr, "getvalue", NULL, 0, _12);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_OBS_NVAR(value);
@@ -1584,19 +1589,25 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 		zephir_concat_self(&code, value TSRMLS_CC);
 	}
 	if (close) {
-		ZEPHIR_INIT_VAR(_12);
-		if (eol) {
-			ZEPHIR_INIT_NVAR(_12);
-			ZEPHIR_GET_CONSTANT(_12, "PHP_EOL");
-		} else {
-			ZEPHIR_INIT_NVAR(_12);
-			ZVAL_STRING(_12, "", 1);
-		}
-		ZEPHIR_CALL_METHOD(&_9, this_ptr, "endtag", NULL, 0, name, (eol ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
-		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_13);
-		ZEPHIR_CONCAT_VV(_13, _12, _9);
-		zephir_concat_self(&code, _13 TSRMLS_CC);
+		if (eol) {
+			ZEPHIR_INIT_NVAR(_13);
+			ZEPHIR_GET_CONSTANT(_13, "PHP_EOL");
+		} else {
+			ZEPHIR_INIT_NVAR(_13);
+			ZVAL_STRING(_13, "", 1);
+		}
+		ZEPHIR_INIT_NVAR(_7);
+		if (eol) {
+			ZVAL_BOOL(_7, 1);
+		} else {
+			ZVAL_BOOL(_7, 0);
+		}
+		ZEPHIR_CALL_METHOD(&_10, this_ptr, "endtag", NULL, 0, name, _7);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(_14);
+		ZEPHIR_CONCAT_VV(_14, _13, _10);
+		zephir_concat_self(&code, _14 TSRMLS_CC);
 	}
 	RETURN_CCTOR(code);
 
@@ -1660,7 +1671,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool single, _6, _7, _11, _13;
 	zval *attributes = NULL, *skip = NULL;
-	zval *name_param = NULL, *attributes_param = NULL, *skip_param = NULL, *single_param = NULL, *order, *keys = NULL, *attrs, *code = NULL, *tmp = NULL, *value = NULL, *key = NULL, *_0 = NULL, *_1 = NULL, *_3 = NULL, *_4 = NULL, *_5, **_10, *_12, *_14, *_15 = NULL, *_16, *_17 = NULL, *_18 = NULL;
+	zval *name_param = NULL, *attributes_param = NULL, *skip_param = NULL, *single_param = NULL, *order = NULL, *keys = NULL, *attrs = NULL, *code = NULL, *tmp = NULL, *value = NULL, *key = NULL, *_0 = NULL, *_1 = NULL, *_3 = NULL, *_4 = NULL, *_5, **_10, *_12, *_14, *_15 = NULL, *_16, *_17 = NULL, *_18 = NULL;
 	zval *name = NULL, *_2;
 
 	ZEPHIR_MM_GROW();
@@ -1670,7 +1681,6 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -1678,7 +1688,6 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 		ZVAL_EMPTY_STRING(name);
 	}
 	attributes = attributes_param;
-
 	if (!skip_param) {
 		ZEPHIR_INIT_VAR(skip);
 		array_init(skip);
@@ -1881,7 +1890,6 @@ PHP_METHOD(Ice_Tag, setValue) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'id' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(id_param) == IS_STRING)) {
 		zephir_get_strval(id, id_param);
 	} else {
@@ -1915,7 +1923,7 @@ PHP_METHOD(Ice_Tag, setValue) {
 PHP_METHOD(Ice_Tag, setValues) {
 
 	zend_bool merge;
-	zval *values_param = NULL, *merge_param = NULL, *current, *_0;
+	zval *values_param = NULL, *merge_param = NULL, *current = NULL, *_0;
 	zval *values = NULL;
 
 	ZEPHIR_MM_GROW();

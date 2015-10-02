@@ -148,13 +148,12 @@ PHP_METHOD(Ice_Cli_Router, getParams) {
  */
 PHP_METHOD(Ice_Cli_Router, setDefaults) {
 
-	zval *defaults_param = NULL, *module, *handler, *action;
+	zval *defaults_param = NULL, *module = NULL, *handler = NULL, *action = NULL;
 	zval *defaults = NULL;
 
 	zephir_fetch_params(0, 1, 0, &defaults_param);
 
 	defaults = defaults_param;
-
 
 
 	if (zephir_array_isset_string_fetch(&module, defaults, SS("module"), 1 TSRMLS_CC)) {
@@ -185,7 +184,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	HashTable *_4;
 	HashPosition _3;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *arguments = NULL, *params, *argument = NULL, *_0, *_1, *_2, **_5, _6 = zval_used_for_init, _7 = zval_used_for_init, *_8 = NULL, _9 = zval_used_for_init, *_10 = NULL, _11 = zval_used_for_init, *_12 = NULL, *_13, *_14 = NULL, *_16, *_18;
+	zval *arguments = NULL, *params = NULL, *argument = NULL, *_0, *_1, *_2, **_5, _6 = zval_used_for_init, _7 = zval_used_for_init, *_8 = NULL, _9 = zval_used_for_init, *_10 = NULL, _11 = zval_used_for_init, *_12 = NULL, *_13, *_14 = NULL, *_16, *_18;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &arguments);
@@ -207,9 +206,9 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	zephir_update_property_this(this_ptr, SL("action"), _2 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(params);
 	array_init(params);
-	Z_SET_ISREF_P(arguments);
+	ZEPHIR_MAKE_REF(arguments);
 	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", NULL, 4, arguments);
-	Z_UNSET_ISREF_P(arguments);
+	ZEPHIR_UNREF(arguments);
 	zephir_check_call_status();
 	zephir_is_iterable(arguments, &_4, &_3, 0, 0, "ice/cli/router.zep", 97);
 	for (

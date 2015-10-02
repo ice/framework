@@ -86,8 +86,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
 	HashTable *_1, *_10;
 	HashPosition _0, _9;
-	int i, j;
-	zval *routeData, *uri, *data = NULL, *matches, *handler, *varName = NULL, *varNames, *vars = NULL, **_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8, **_11, *_12, *_13 = NULL;
+	int i = 0, j = 0;
+	zval *routeData, *uri, *data = NULL, *matches = NULL, *handler = NULL, *varName = NULL, *varNames = NULL, *vars = NULL, **_2, *_3 = NULL, *_4, *_5, *_6, *_7, *_8, **_11, *_12, *_13 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &routeData, &uri);

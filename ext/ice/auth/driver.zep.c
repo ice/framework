@@ -201,7 +201,7 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
  */
 PHP_METHOD(Ice_Auth_Driver, getOption) {
 
-	zval *key_param = NULL, *defaultValue = NULL, *value, *_0;
+	zval *key_param = NULL, *defaultValue = NULL, *value = NULL, *_0;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -211,7 +211,6 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
@@ -326,7 +325,7 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 	if (!(zephir_is_true(user))) {
 		RETURN_MM_BOOL(0);
 	} else {
-		if (!(role && Z_STRLEN_P(role))) {
+		if (!(!(!role) && Z_STRLEN_P(role))) {
 			RETURN_MM_BOOL(1);
 		}
 		ZEPHIR_INIT_VAR(_0);
@@ -414,7 +413,7 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 static zend_object_value zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
-		zval *_0;
+	zval *_0;
 
 		ZEPHIR_MM_GROW();
 	

@@ -51,7 +51,7 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory) {
 
 	zend_bool _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
 	zval *count_param = NULL, *isInt = NULL, *_0;
-	int count, i10, i100, ZEPHIR_LAST_CALL_STATUS;
+	int count, i10 = 0, i100 = 0, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count_param);

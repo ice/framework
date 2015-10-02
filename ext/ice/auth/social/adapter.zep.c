@@ -107,7 +107,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 	zend_bool _6, _11;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *config = NULL, *clientId, *clientSecret, *redirectUri, *tmp = NULL, *_0 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_7 = NULL, *_8, *_9 = NULL, *_10, *_12;
+	zval *config = NULL, *clientId = NULL, *clientSecret = NULL, *redirectUri = NULL, *tmp = NULL, *_0 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_7 = NULL, *_8, *_9 = NULL, *_10, *_12;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
@@ -212,7 +212,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value, _0, *_1, *_2 = NULL;
+	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value = NULL, _0, *_1, *_2 = NULL;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -222,7 +222,6 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -295,7 +294,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, has) {
  */
 PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 
-	zval *key_param = NULL, *defaultValue = NULL, *value, *_0, *_1, *_2;
+	zval *key_param = NULL, *defaultValue = NULL, *value = NULL, *_0, *_1, *_2;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();

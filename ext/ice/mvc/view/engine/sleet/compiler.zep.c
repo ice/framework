@@ -96,7 +96,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *path_param = NULL, *content, *_0, *_1 = NULL;
+	zval *path_param = NULL, *content = NULL, *_0, *_1 = NULL;
 	zval *path = NULL;
 
 	ZEPHIR_MM_GROW();

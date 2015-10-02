@@ -153,7 +153,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("token"), _0 TSRMLS_CC);
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_1, 49, fields);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("token"), _0 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("token"), _0 TSRMLS_CC);
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_1, 50, fields);
 	zephir_check_call_status();
 	RETURN_MM();

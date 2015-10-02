@@ -106,7 +106,6 @@ PHP_METHOD(Ice_Http_Request, hasRequest) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -140,7 +139,6 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -175,7 +173,6 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -210,7 +207,6 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -245,7 +241,6 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -584,7 +579,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 	}
 
 
-	if (!(key && Z_STRLEN_P(key))) {
+	if (!(!(!key) && Z_STRLEN_P(key))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("get"), PH_NOISY_CC);
 		ZEPHIR_INIT_VAR(_1);
 		ZVAL_STRING(_1, "_url", ZEPHIR_TEMP_PARAM_COPY);
@@ -689,7 +684,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 	}
 
 
-	if (!(key && Z_STRLEN_P(key))) {
+	if (!(!(!key) && Z_STRLEN_P(key))) {
 		RETURN_MM_MEMBER(this_ptr, "post");
 	} else {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("post"), PH_NOISY_CC);
@@ -757,7 +752,7 @@ PHP_METHOD(Ice_Http_Request, getServer) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	if (key && Z_STRLEN_P(key)) {
+	if (!(!key) && Z_STRLEN_P(key)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("server"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_0, _1, "get", NULL, 0, key, defaultValue);
 		zephir_check_call_status();
@@ -796,7 +791,7 @@ PHP_METHOD(Ice_Http_Request, getFiles) {
 
 
 	ZEPHIR_INIT_VAR(_0);
-	if (key && Z_STRLEN_P(key)) {
+	if (!(!key) && Z_STRLEN_P(key)) {
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("files"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&_0, _1, "get", NULL, 0, key, defaultValue);
 		zephir_check_call_status();

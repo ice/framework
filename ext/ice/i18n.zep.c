@@ -122,7 +122,7 @@ PHP_METHOD(Ice_I18n, lang) {
 	}
 
 
-	if (lang && Z_STRLEN_P(lang)) {
+	if (!(!lang) && Z_STRLEN_P(lang)) {
 		ZEPHIR_INIT_VAR(_0);
 		ZEPHIR_INIT_VAR(_1);
 		ZEPHIR_SINIT_VAR(_2);
@@ -151,7 +151,7 @@ PHP_METHOD(Ice_I18n, lang) {
 PHP_METHOD(Ice_I18n, iso) {
 
 	zend_bool country, _6;
-	zval *lang = NULL, *country_param = NULL, *parts, *_0, *_1, *_2, _3, _4, *_5;
+	zval *lang = NULL, *country_param = NULL, *parts = NULL, *_0, *_1, *_2, _3, _4, *_5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &lang, &country_param);
@@ -209,7 +209,7 @@ PHP_METHOD(Ice_I18n, iso) {
 PHP_METHOD(Ice_I18n, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *str_param = NULL, *form = NULL, *lang_param = NULL, *messages = NULL, *translation, *_0, *_1, _3, *_4;
+	zval *str_param = NULL, *form = NULL, *lang_param = NULL, *messages = NULL, *translation = NULL, *_0, *_1, _3, *_4;
 	zval *str = NULL, *lang = NULL, *_2 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -229,7 +229,7 @@ PHP_METHOD(Ice_I18n, get) {
 
 	ZEPHIR_INIT_VAR(messages);
 	array_init(messages);
-	if (!(lang && Z_STRLEN_P(lang))) {
+	if (!(!(!lang) && Z_STRLEN_P(lang))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
 		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 116 TSRMLS_CC);
@@ -251,9 +251,9 @@ PHP_METHOD(Ice_I18n, get) {
 				zephir_array_fetch_string(&_4, translation, SL("other"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 131 TSRMLS_CC);
 				RETURN_CTOR(_4);
 			}
-			Z_SET_ISREF_P(translation);
+			ZEPHIR_MAKE_REF(translation);
 			ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 111, translation);
-			Z_UNSET_ISREF_P(translation);
+			ZEPHIR_UNREF(translation);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -274,7 +274,7 @@ PHP_METHOD(Ice_I18n, load) {
 	HashTable *_4, *_7;
 	HashPosition _3, _6;
 	zval *_2;
-	zval *lang_param = NULL, *cache, *parts, *subdir, *tail = NULL, *tmp = NULL, *found = NULL, *path = NULL, *messages = NULL, *_0, _1, **_5, **_8, *_9, *_10 = NULL, *_12 = NULL, *_13;
+	zval *lang_param = NULL, *cache = NULL, *parts = NULL, *subdir = NULL, *tail = NULL, *tmp = NULL, *found = NULL, *path = NULL, *messages = NULL, *_0, _1, **_5, **_8, *_9, *_10 = NULL, *_12 = NULL, *_13;
 	zval *lang = NULL, *_11 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -364,7 +364,6 @@ PHP_METHOD(Ice_I18n, plural) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
@@ -1035,7 +1034,6 @@ PHP_METHOD(Ice_I18n, _) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
@@ -1043,8 +1041,8 @@ PHP_METHOD(Ice_I18n, _) {
 		ZVAL_EMPTY_STRING(str);
 	}
 	if (!values_param) {
-	ZEPHIR_INIT_VAR(values);
-	array_init(values);
+		ZEPHIR_INIT_VAR(values);
+		array_init(values);
 	} else {
 		zephir_get_arrval(values, values_param);
 	}
@@ -1088,7 +1086,6 @@ PHP_METHOD(Ice_I18n, translate) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
@@ -1096,8 +1093,8 @@ PHP_METHOD(Ice_I18n, translate) {
 		ZVAL_EMPTY_STRING(str);
 	}
 	if (!values_param) {
-	ZEPHIR_INIT_VAR(values);
-	array_init(values);
+		ZEPHIR_INIT_VAR(values);
+		array_init(values);
 	} else {
 		zephir_get_arrval(values, values_param);
 	}
@@ -1112,7 +1109,7 @@ PHP_METHOD(Ice_I18n, translate) {
 	}
 
 
-	if (!(lang && Z_STRLEN_P(lang))) {
+	if (!(!(!lang) && Z_STRLEN_P(lang))) {
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		ZEPHIR_OBS_VAR(_1);
 		zephir_array_fetch_string(&_1, _0, SL("lang"), PH_NOISY, "ice/i18n.zep", 277 TSRMLS_CC);
@@ -1160,7 +1157,7 @@ PHP_METHOD(Ice_I18n, translate) {
 static zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
-		zval *_0, *_2, *_3 = NULL, *_4;
+	zval *_0, *_2, *_3 = NULL, *_4;
 
 		ZEPHIR_MM_GROW();
 	
@@ -1208,7 +1205,6 @@ PHP_FUNCTION(g_ice__t) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
@@ -1216,8 +1212,8 @@ PHP_FUNCTION(g_ice__t) {
 		ZVAL_EMPTY_STRING(str);
 	}
 	if (!values_param) {
-	ZEPHIR_INIT_VAR(values);
-	array_init(values);
+		ZEPHIR_INIT_VAR(values);
+		array_init(values);
 	} else {
 		zephir_get_arrval(values, values_param);
 	}

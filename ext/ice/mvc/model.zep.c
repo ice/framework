@@ -386,7 +386,7 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 	zend_object_iterator *_3;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *_6 = NULL;
-	zval *filters, *options_param = NULL, *result = NULL, *instances, *data = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL;
+	zval *filters, *options_param = NULL, *result = NULL, *instances = NULL, *data = NULL, *_0, *_1, *_2 = NULL, *_4 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &filters, &options_param);
@@ -456,7 +456,7 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL;
-	zval *filters = NULL, *options_param = NULL, *result = NULL, *model, *instance;
+	zval *filters = NULL, *options_param = NULL, *result = NULL, *model = NULL, *instance = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &options_param);
@@ -499,7 +499,7 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL;
-	zval *filters = NULL, *options_param = NULL, *result = NULL, *model, *instance;
+	zval *filters = NULL, *options_param = NULL, *result = NULL, *model = NULL, *instance = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &options_param);
@@ -1389,7 +1389,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zend_class_entry *_9;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *filters = NULL, *options = NULL, *_6 = NULL, *_8;
-	zval *alias_param = NULL, *filters_param = NULL, *options_param = NULL, *relation, *field, *referenceModel, *referencedField, *from, *result = NULL, *_0, *_1 = NULL, _2, *_3 = NULL, *_4, *_5, *_7 = NULL;
+	zval *alias_param = NULL, *filters_param = NULL, *options_param = NULL, *relation = NULL, *field = NULL, *referenceModel = NULL, *referencedField = NULL, *from = NULL, *result = NULL, *_0, *_1 = NULL, _2, *_3 = NULL, *_4, *_5, *_7 = NULL;
 	zval *alias = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -1501,7 +1501,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 	HashTable *_3;
 	HashPosition _2;
 	zend_bool _0;
-	zval *fields = NULL, *rules, *field = NULL, *_1, **_4, *_5, *_6, *_7;
+	zval *fields = NULL, *rules = NULL, *field = NULL, *_1, **_4, *_5, *_6, *_7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &fields);
@@ -1564,7 +1564,6 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 		array_init(rules);
 	} else {
 	rules = rules_param;
-
 	}
 	if (!merge_param) {
 		merge = 1;
@@ -1622,7 +1621,6 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(data_param) == IS_STRING)) {
 		zephir_get_strval(data, data_param);
 	} else {
@@ -1648,7 +1646,7 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 PHP_METHOD(Ice_Mvc_Model, __call) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *method_param = NULL, *arguments = NULL, *filters, *options, *_0 = NULL, _1 = zval_used_for_init, *_2, *_3 = NULL;
+	zval *method_param = NULL, *arguments = NULL, *filters = NULL, *options = NULL, *_0 = NULL, _1 = zval_used_for_init, *_2, *_3 = NULL;
 	zval *method = NULL;
 
 	ZEPHIR_MM_GROW();
