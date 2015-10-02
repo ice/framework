@@ -48,7 +48,7 @@ PHP_METHOD(Ice_Config, __construct) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1, *_4;
 	HashPosition _0, _3;
-	zend_bool hasNumericKey;
+	zend_bool hasNumericKey = 0;
 	zval *data = NULL, *key = NULL, *value = NULL, *subkey = NULL, *subvalue = NULL, **_2, **_5, *_6 = NULL;
 
 	ZEPHIR_MM_GROW();

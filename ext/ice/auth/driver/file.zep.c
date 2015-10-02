@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *defaultValue = NULL, *username = NULL, *user, *_0, *_2, *_3;
+	zval *defaultValue = NULL, *username = NULL, *user = NULL, *_0, *_2, *_3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &defaultValue);
@@ -143,7 +143,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool remember, _0;
-	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, *user, *_1, *_2, *_3 = NULL, *_4;
+	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, *user = NULL, *_1, *_2, *_3 = NULL, *_4;
 	zval *username = NULL, *password = NULL;
 
 	ZEPHIR_MM_GROW();

@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Flash, __construct) {
  */
 PHP_METHOD(Ice_Flash, getOption) {
 
-	zval *key_param = NULL, *defaultValue = NULL, *value, *_0;
+	zval *key_param = NULL, *defaultValue = NULL, *value = NULL, *_0;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -118,7 +118,6 @@ PHP_METHOD(Ice_Flash, getOption) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
@@ -151,7 +150,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	HashTable *_3;
 	HashPosition _2;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *remove_param = NULL, *key = NULL, *type = NULL, *message = NULL, *messages = NULL, *body, *_0, *_1, **_4, *_5 = NULL, *_7;
+	zval *remove_param = NULL, *key = NULL, *type = NULL, *message = NULL, *messages = NULL, *body = NULL, *_0, *_1, **_4, *_5 = NULL, *_7;
 	zend_bool remove;
 
 	ZEPHIR_MM_GROW();
@@ -210,7 +209,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	zval *_3, *_11 = NULL, *_13 = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *type_param = NULL, *messages = NULL, *params = NULL, *body, *close = NULL, *message = NULL, *_0, *_2, *_4 = NULL, **_7, *_8 = NULL, *_9, *_10 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL;
+	zval *type_param = NULL, *messages = NULL, *params = NULL, *body = NULL, *close = NULL, *message = NULL, *_0, *_2, *_4 = NULL, **_7, *_8 = NULL, *_9, *_10 = NULL, *_12 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -541,7 +540,7 @@ PHP_METHOD(Ice_Flash, error) {
 static zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1, *_2 = NULL;
-		zval *_0;
+	zval *_0;
 
 		ZEPHIR_MM_GROW();
 	

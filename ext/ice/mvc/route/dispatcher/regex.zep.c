@@ -72,7 +72,6 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 		array_init(data);
 	} else {
 	data = data_param;
-
 	}
 
 
@@ -95,7 +94,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	zephir_fcall_cache_entry *_11 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _1, _4, _10, _16;
-	zval *httpMethod, *uri, *handler = NULL, *varRouteData, *result = NULL, *allowedMethods, *uriMap = NULL, *method = NULL, *routeData = NULL, *_0, *_2, *_3, *_5, *_6, *_7, *_8, *_9 = NULL, *_12, **_15, **_19;
+	zval *httpMethod, *uri, *handler = NULL, *varRouteData = NULL, *result = NULL, *allowedMethods = NULL, *uriMap = NULL, *method = NULL, *routeData = NULL, *_0, *_2, *_3, *_5, *_6, *_7, *_8, *_9 = NULL, *_12, **_15, **_19;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &httpMethod, &uri);

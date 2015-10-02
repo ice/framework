@@ -144,14 +144,15 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 	zephir_fcall_cache_entry *_19 = NULL;
 	HashTable *_2, *_6;
 	HashPosition _1, _5;
-	int count = 0, ZEPHIR_LAST_CALL_STATUS;
-	zval *e, *output, *frame = NULL, *args = NULL, *arg = NULL, *node = NULL, *_0 = NULL, **_3, *_4, **_7, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11, *_12 = NULL, *_13, *_14, *_15, _16 = zval_used_for_init, _17 = zval_used_for_init, *_18 = NULL;
+	int count, ZEPHIR_LAST_CALL_STATUS;
+	zval *e, *output = NULL, *frame = NULL, *args = NULL, *arg = NULL, *node = NULL, *_0 = NULL, **_3, *_4, **_7, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11, *_12 = NULL, *_13, *_14, *_15, _16 = zval_used_for_init, _17 = zval_used_for_init, *_18 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
 
 
 
+	count = 0;
 	ZEPHIR_INIT_VAR(output);
 	ZVAL_STRING(output, "", 1);
 	ZEPHIR_CALL_METHOD(&_0, e, "gettrace", NULL, 0);
@@ -350,10 +351,10 @@ PHP_METHOD(Ice_Exception, handler) {
 	zephir_array_fast_append(_2, e);
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_0, _1, _2 TSRMLS_CC);
 	zephir_check_call_status();
+	ZEPHIR_MM_RESTORE();
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 1);
 	zephir_exit(&_4);
-	ZEPHIR_MM_RESTORE();
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -407,10 +408,10 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(NULL, "handler", NULL, 0, _3);
 		zephir_check_call_status();
+		ZEPHIR_MM_RESTORE();
 		ZEPHIR_SINIT_VAR(_9);
 		ZVAL_LONG(&_9, 1);
 		zephir_exit(&_9);
-		ZEPHIR_MM_RESTORE();
 	}
 	ZEPHIR_MM_RESTORE();
 

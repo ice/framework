@@ -114,8 +114,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params = NULL, *tokenInfo, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_7, *_8;
-	zend_bool result, _6;
+	zval *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, *_7, *_8;
+	zend_bool result = 0, _6;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -149,9 +149,9 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			ZEPHIR_CALL_METHOD(&_2, this_ptr, "call", NULL, 0, _3, _4, params, _5);
 			zephir_check_temp_parameter(_4);
 			zephir_check_call_status();
-			Z_SET_ISREF_P(tokenInfo);
+			ZEPHIR_MAKE_REF(tokenInfo);
 			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 53, _2, tokenInfo);
-			Z_UNSET_ISREF_P(tokenInfo);
+			ZEPHIR_UNREF(tokenInfo);
 			zephir_check_call_status();
 			_6 = zephir_fast_count_int(tokenInfo TSRMLS_CC) > 0;
 			if (_6) {

@@ -247,7 +247,7 @@ PHP_METHOD(Ice_Cookies, has) {
 PHP_METHOD(Ice_Cookies, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *defaultValue = NULL, *cookie, *tmp, *hash, *value = NULL, *_COOKIE, _0, *_1, *_2 = NULL, *_3, *_4, *_5 = NULL, *_6, *_7, *_8, *_9 = NULL;
+	zval *key_param = NULL, *defaultValue = NULL, *cookie = NULL, *tmp = NULL, *hash = NULL, *value = NULL, *_COOKIE, _0, *_1, *_2 = NULL, *_3, *_4, *_5 = NULL, *_6, *_7, *_8, *_9 = NULL;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -468,7 +468,7 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 
 	zend_bool secure, httpOnly;
 	int expire, ZEPHIR_LAST_CALL_STATUS;
-	zval *name_param = NULL, *value_param = NULL, *expire_param = NULL, *path_param = NULL, *domain_param = NULL, *secure_param = NULL, *httpOnly_param = NULL, _0;
+	zval *name_param = NULL, *value_param = NULL, *expire_param = NULL, *path_param = NULL, *domain_param = NULL, *secure_param = NULL, *httpOnly_param = NULL, _0, _1, _2;
 	zval *name = NULL, *value = NULL, *path = NULL, *domain = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -485,7 +485,11 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_LONG(&_0, expire);
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 63, name, value, &_0, path, domain, (secure ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)), (httpOnly ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+	ZEPHIR_SINIT_VAR(_1);
+	ZVAL_BOOL(&_1, (secure ? 1 : 0));
+	ZEPHIR_SINIT_VAR(_2);
+	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 63, name, value, &_0, path, domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 

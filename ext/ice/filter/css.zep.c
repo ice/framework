@@ -12,8 +12,8 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -58,8 +58,8 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	unsigned char _2;
 	zend_bool _1, _3;
 	long _0;
-	int i, tmp, state = 1, inParen = 0;
-	char c, next;
+	int i = 0, tmp = 0, state, inParen;
+	char c = 0, next = 0;
 	zval *css_param = NULL;
 	zval *css = NULL, *min;
 
@@ -67,10 +67,12 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	zephir_fetch_params(1, 1, 0, &css_param);
 
 	zephir_get_strval(css, css_param);
+
+
 	ZEPHIR_INIT_VAR(min);
-	ZVAL_STRING(min, "", 1);
-
-
+	ZVAL_EMPTY_STRING(min);
+	state = 1;
+	inParen = 0;
 	for (_0 = 0; _0 < Z_STRLEN_P(css); _0++) {
 		i = _0; 
 		c = ZEPHIR_STRING_OFFSET(css, _0);

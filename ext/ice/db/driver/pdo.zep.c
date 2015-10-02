@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _2;
 	zval *options = NULL;
-	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts, *_0, _1, *_3, _4, *_5 = NULL, *_6 = NULL;
+	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts = NULL, *_0, _1, *_3, _4, *_5 = NULL, *_6 = NULL;
 	zval *dsn = NULL, *user = NULL, *password = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -130,7 +130,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	if (_2) {
 		ZEPHIR_INIT_VAR(_6);
 		ZVAL_STRING(_6, "SET NAMES utf8;", 1);
-		zephir_array_update_long(&options, 1002, &_6, PH_COPY | PH_SEPARATE, "ice/db/driver/pdo.zep", 41);
+		zephir_array_update_long(&options, 1002, &_6, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 	}
 	ZEPHIR_INIT_NVAR(_6);
 	object_init_ex(_6, php_pdo_get_dbh_ce());
@@ -182,7 +182,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -264,7 +263,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -315,7 +313,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 	HashPosition _2, _5, _14;
 	int _0, ZEPHIR_LAST_CALL_STATUS;
 	zval *values = NULL;
-	zval *filters = NULL, *values_param = NULL, *and, *data = NULL, *operator = NULL, *key = NULL, *item = NULL, *value = NULL, *or = NULL, *is = NULL, *index = NULL, *i = NULL, *sql, *_1, **_4, **_7, *_10 = NULL, *_11 = NULL, *_12 = NULL, *_13 = NULL, **_16;
+	zval *filters = NULL, *values_param = NULL, *and = NULL, *data = NULL, *operator = NULL, *key = NULL, *item = NULL, *value = NULL, *or = NULL, *is = NULL, *index = NULL, *i = NULL, *sql = NULL, *_1, **_4, **_7, *_10 = NULL, *_11 = NULL, *_12 = NULL, *_13 = NULL, **_16;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &values_param);
@@ -366,22 +364,22 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 						  ; zephir_hash_move_forward_ex(_6, &_5)
 						) {
 							ZEPHIR_GET_HVALUE(item, _7);
-							Z_SET_ISREF_P(item);
+							ZEPHIR_MAKE_REF(item);
 							ZEPHIR_CALL_FUNCTION(&key, "key", &_8, 75, item);
-							Z_UNSET_ISREF_P(item);
+							ZEPHIR_UNREF(item);
 							zephir_check_call_status();
-							Z_SET_ISREF_P(item);
+							ZEPHIR_MAKE_REF(item);
 							ZEPHIR_CALL_FUNCTION(&value, "current", &_9, 76, item);
-							Z_UNSET_ISREF_P(item);
+							ZEPHIR_UNREF(item);
 							zephir_check_call_status();
 							if (Z_TYPE_P(value) == IS_ARRAY) {
-								Z_SET_ISREF_P(value);
+								ZEPHIR_MAKE_REF(value);
 								ZEPHIR_CALL_FUNCTION(&is, "key", &_8, 75, value);
-								Z_UNSET_ISREF_P(value);
+								ZEPHIR_UNREF(value);
 								zephir_check_call_status();
-								Z_SET_ISREF_P(value);
+								ZEPHIR_MAKE_REF(value);
 								ZEPHIR_CALL_FUNCTION(&_10, "current", &_9, 76, value);
-								Z_UNSET_ISREF_P(value);
+								ZEPHIR_UNREF(value);
 								zephir_check_call_status();
 								ZEPHIR_CPY_WRT(value, _10);
 							} else {
@@ -420,22 +418,22 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 						  ; zephir_hash_move_forward_ex(_15, &_14)
 						) {
 							ZEPHIR_GET_HVALUE(item, _16);
-							Z_SET_ISREF_P(item);
+							ZEPHIR_MAKE_REF(item);
 							ZEPHIR_CALL_FUNCTION(&key, "key", &_8, 75, item);
-							Z_UNSET_ISREF_P(item);
+							ZEPHIR_UNREF(item);
 							zephir_check_call_status();
-							Z_SET_ISREF_P(item);
+							ZEPHIR_MAKE_REF(item);
 							ZEPHIR_CALL_FUNCTION(&value, "current", &_9, 76, item);
-							Z_UNSET_ISREF_P(item);
+							ZEPHIR_UNREF(item);
 							zephir_check_call_status();
 							if (Z_TYPE_P(value) == IS_ARRAY) {
-								Z_SET_ISREF_P(value);
+								ZEPHIR_MAKE_REF(value);
 								ZEPHIR_CALL_FUNCTION(&is, "key", &_8, 75, value);
-								Z_UNSET_ISREF_P(value);
+								ZEPHIR_UNREF(value);
 								zephir_check_call_status();
-								Z_SET_ISREF_P(value);
+								ZEPHIR_MAKE_REF(value);
 								ZEPHIR_CALL_FUNCTION(&_10, "current", &_9, 76, value);
-								Z_UNSET_ISREF_P(value);
+								ZEPHIR_UNREF(value);
 								zephir_check_call_status();
 								ZEPHIR_CPY_WRT(value, _10);
 							} else {
@@ -465,13 +463,13 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 					ZEPHIR_CPY_WRT(key, operator);
 					ZEPHIR_CPY_WRT(value, data);
 					if (Z_TYPE_P(value) == IS_ARRAY) {
-						Z_SET_ISREF_P(value);
+						ZEPHIR_MAKE_REF(value);
 						ZEPHIR_CALL_FUNCTION(&is, "key", &_8, 75, value);
-						Z_UNSET_ISREF_P(value);
+						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
-						Z_SET_ISREF_P(value);
+						ZEPHIR_MAKE_REF(value);
 						ZEPHIR_CALL_FUNCTION(&_10, "current", &_9, 76, value);
-						Z_UNSET_ISREF_P(value);
+						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(value, _10);
 					} else {
@@ -537,7 +535,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
-	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *columns = NULL, *sql, *filtered = NULL, *values, *query = NULL, *_0, *_1 = NULL, *_2, *_3 = NULL, *_4, *_5 = NULL;
+	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *columns = NULL, *sql = NULL, *filtered = NULL, *values = NULL, *query = NULL, *_0, *_1 = NULL, *_2, *_3 = NULL, *_4, *_5 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -547,7 +545,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -638,7 +635,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	HashTable *_1;
 	HashPosition _0;
 	zval *fields = NULL;
-	zval *from_param = NULL, *fields_param = NULL, *key = NULL, *value = NULL, *columns, *values, *sql, *query = NULL, *status = NULL, **_2, *_3 = NULL, *_4 = NULL, *_5, *_6, *_7, *_8, *_9 = NULL;
+	zval *from_param = NULL, *fields_param = NULL, *key = NULL, *value = NULL, *columns = NULL, *values = NULL, *sql = NULL, *query = NULL, *status = NULL, **_2, *_3 = NULL, *_4 = NULL, *_5, *_6, *_7, *_8, *_9 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -648,7 +645,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -714,7 +710,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	HashTable *_1;
 	HashPosition _0;
 	zval *fields = NULL;
-	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *key = NULL, *value = NULL, *columns, *values = NULL, *filtered = NULL, *sql, *query = NULL, *status = NULL, **_2, *_3 = NULL, *_4 = NULL, *_5, *_6, *_7, *_8, *_9, *_10 = NULL;
+	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *key = NULL, *value = NULL, *columns = NULL, *values = NULL, *filtered = NULL, *sql = NULL, *query = NULL, *status = NULL, **_2, *_3 = NULL, *_4 = NULL, *_5, *_6, *_7, *_8, *_9, *_10 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -724,7 +720,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -793,7 +788,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *from_param = NULL, *filters = NULL, *filtered = NULL, *sql, *values, *query = NULL, *status = NULL, *_0, *_1, *_2 = NULL;
+	zval *from_param = NULL, *filters = NULL, *filtered = NULL, *sql = NULL, *values = NULL, *query = NULL, *status = NULL, *_0, *_1, *_2 = NULL;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -803,7 +798,6 @@ PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -861,7 +855,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, getError) {
 
-	zval *error, *_0;
+	zval *error = NULL, *_0;
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("error"), PH_NOISY_CC);
