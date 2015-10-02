@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Validation_Validator, has) {
  */
 PHP_METHOD(Ice_Validation_Validator, get) {
 
-	zval *key, *defaultValue = NULL, *value, *_0;
+	zval *key, *defaultValue = NULL, *value = NULL, *_0;
 
 	zephir_fetch_params(0, 1, 1, &key, &defaultValue);
 

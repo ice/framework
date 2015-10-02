@@ -122,7 +122,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool local, _0, _4;
-	zval *uri = NULL, *args = NULL, *local_param = NULL, *baseUri = NULL, *matched, *queryString = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3, *_GET, *_5 = NULL, *_6, *_7;
+	zval *uri = NULL, *args = NULL, *local_param = NULL, *baseUri = NULL, *matched = NULL, *queryString = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3, *_GET, *_5 = NULL, *_6, *_7;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);

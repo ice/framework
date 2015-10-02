@@ -112,10 +112,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_LONG(_1, (zephir_get_numberval(_0) + 1));
-	zephir_update_property_zval(this_ptr, SL("logins"),  _1 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("logins"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	zephir_time(_2);
-	zephir_update_property_zval(this_ptr, SL("lastlogin"), _2 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("lastlogin"), _2 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL, 0);
 	zephir_check_call_status();
 	RETURN_THIS();

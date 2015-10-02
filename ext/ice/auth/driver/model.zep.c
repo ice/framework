@@ -52,7 +52,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 	zval *_3;
 	zephir_fcall_cache_entry *_2 = NULL, *_11 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *token = NULL, *user = NULL, *userRoles = NULL, *roles, *role = NULL, *_0, *_1 = NULL, *_5, *_6, *_7 = NULL, *_8 = NULL, *_10 = NULL, _12, *_13, *_14, *_15;
+	zval *token = NULL, *user = NULL, *userRoles = NULL, *roles = NULL, *role = NULL, *_0, *_1 = NULL, *_5, *_6, *_7 = NULL, *_8 = NULL, *_10 = NULL, _12, *_13, *_14, *_15;
 
 	ZEPHIR_MM_GROW();
 
@@ -278,7 +278,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool remember, _4;
 	zval *password = NULL;
-	zval *username, *password_param = NULL, *remember_param = NULL, *user = NULL, *users = NULL, *roles, *userRoles = NULL, *role = NULL, *token, *lifetime = NULL, *_0 = NULL, *_1 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, _10, *_11, *_12 = NULL, *_13 = NULL, *_14, *_15 = NULL, *_16, *_17 = NULL, *_18 = NULL;
+	zval *username, *password_param = NULL, *remember_param = NULL, *user = NULL, *users = NULL, *roles = NULL, *userRoles = NULL, *role = NULL, *token = NULL, *lifetime = NULL, *_0 = NULL, *_1 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, _10, *_11, *_12 = NULL, *_13 = NULL, *_14, *_15 = NULL, *_16, *_17 = NULL, *_18 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &username, &password_param, &remember_param);
@@ -382,7 +382,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 					ZEPHIR_INIT_NVAR(_1);
 					zephir_time(_1);
 					ZEPHIR_INIT_VAR(_14);
-					zephir_add_function_ex(_14, _1, lifetime TSRMLS_CC);
+					zephir_add_function(_14, _1, lifetime);
 					zephir_update_property_zval(token, SL("expires"), _14 TSRMLS_CC);
 					ZEPHIR_CALL_METHOD(&_15, token, "create", NULL, 46);
 					zephir_check_call_status();
@@ -431,7 +431,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 	zval *_1;
 	zephir_fcall_cache_entry *_0 = NULL, *_8 = NULL;
 	zend_bool remember, _5, _6;
-	zval *social, *remember_param = NULL, *user = NULL, *userSocial = NULL, *roles, *userRoles = NULL, *role = NULL, *token, *lifetime = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, _9, *_10 = NULL, *_11, *_12 = NULL, *_13 = NULL, *_14 = NULL, *_15, *_16 = NULL, *_17, *_18 = NULL, *_19 = NULL;
+	zval *social, *remember_param = NULL, *user = NULL, *userSocial = NULL, *roles = NULL, *userRoles = NULL, *role = NULL, *token = NULL, *lifetime = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, _9, *_10 = NULL, *_11, *_12 = NULL, *_13 = NULL, *_14 = NULL, *_15, *_16 = NULL, *_17, *_18 = NULL, *_19 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &social, &remember_param);
@@ -521,7 +521,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 					ZEPHIR_INIT_VAR(_14);
 					zephir_time(_14);
 					ZEPHIR_INIT_VAR(_15);
-					zephir_add_function_ex(_15, _14, lifetime TSRMLS_CC);
+					zephir_add_function(_15, _14, lifetime);
 					zephir_update_property_zval(token, SL("expires"), _15 TSRMLS_CC);
 					ZEPHIR_CALL_METHOD(&_16, token, "create", NULL, 46);
 					zephir_check_call_status();
@@ -567,7 +567,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
 	zval *_4 = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_6 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *destroy_param = NULL, *logoutAll_param = NULL, *token = NULL, *tokens, *user = NULL, *_0, *_1 = NULL, *_2, *_5 = NULL;
+	zval *destroy_param = NULL, *logoutAll_param = NULL, *token = NULL, *tokens = NULL, *user = NULL, *_0, *_1 = NULL, *_2, *_5 = NULL;
 	zend_bool destroy, logoutAll;
 
 	ZEPHIR_MM_GROW();
@@ -625,7 +625,13 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
 			zephir_check_call_status();
 		}
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "logout", &_6, 48, (destroy ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false)));
+	ZEPHIR_INIT_NVAR(_1);
+	if (destroy) {
+		ZVAL_BOOL(_1, 1);
+	} else {
+		ZVAL_BOOL(_1, 0);
+	}
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "logout", &_6, 48, _1);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -643,7 +649,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 	zend_object_iterator *_6;
 	zend_bool _0, _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *user = NULL, *refreshed = NULL, *userRoles = NULL, *userRole = NULL, *roles, *role = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL;
+	zval *user = NULL, *refreshed = NULL, *userRoles = NULL, *userRole = NULL, *roles = NULL, *role = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL;
 
 	ZEPHIR_MM_GROW();
 

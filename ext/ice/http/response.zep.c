@@ -346,7 +346,7 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1;
-	zend_bool sendBody;
+	zend_bool sendBody = 0;
 	zval *request, *_0, *_2 = NULL, *_3, *_4, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -732,7 +732,7 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
  */
 PHP_METHOD(Ice_Http_Response, getMessage) {
 
-	zval *code_param = NULL, *message, *_0, *_1 = NULL;
+	zval *code_param = NULL, *message = NULL, *_0, *_1 = NULL;
 	int code;
 
 	ZEPHIR_MM_GROW();
@@ -772,7 +772,7 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 static zend_object_value zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1;
-		zval *_0;
+	zval *_0;
 
 		ZEPHIR_MM_GROW();
 	

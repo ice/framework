@@ -172,7 +172,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 PHP_METHOD(Ice_Cli_Console, color) {
 
 	int decoration;
-	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors, *bgColors, *colored, *e, *foreground, *background, _0, *_1 = NULL, *_2;
+	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors = NULL, *bgColors = NULL, *colored = NULL, *e = NULL, *foreground = NULL, *background = NULL, _0, *_1 = NULL, *_2;
 	zval *text = NULL, *color = NULL, *bgColor = NULL;
 
 	ZEPHIR_MM_GROW();

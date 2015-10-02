@@ -170,7 +170,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -245,7 +244,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -303,7 +301,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -414,7 +411,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -471,7 +467,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -526,7 +521,6 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
@@ -563,7 +557,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, getError) {
 
-	zval *error, *_0;
+	zval *error = NULL, *_0;
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("error"), PH_NOISY_CC);

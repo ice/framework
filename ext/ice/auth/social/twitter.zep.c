@@ -151,8 +151,8 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 
 	zephir_fcall_cache_entry *_3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params = NULL, *accessTokenUrl, *accessTokens = NULL, *getDataUrl, *userInfo = NULL, *_GET, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_5, *_6;
-	zend_bool result, _0;
+	zval *params = NULL, *accessTokenUrl = NULL, *accessTokens = NULL, *getDataUrl = NULL, *userInfo = NULL, *_GET, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_5, *_6;
+	zend_bool result = 0, _0;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -182,9 +182,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 		ZVAL_BOOL(_5, 0);
 		ZEPHIR_CALL_METHOD(&accessTokens, this_ptr, "call", NULL, 0, _4, accessTokenUrl, params, _5);
 		zephir_check_call_status();
-		Z_SET_ISREF_P(accessTokens);
+		ZEPHIR_MAKE_REF(accessTokens);
 		ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 53, accessTokens, accessTokens);
-		Z_UNSET_ISREF_P(accessTokens);
+		ZEPHIR_UNREF(accessTokens);
 		zephir_check_call_status();
 		if (zephir_array_isset_string(accessTokens, SS("oauth_token"))) {
 			ZEPHIR_INIT_VAR(getDataUrl);
@@ -225,7 +225,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_4;
-	zval *requestTokenUrl, *requestTokens = NULL, *params = NULL, *_1, *_2, *_3, *_5 = NULL;
+	zval *requestTokenUrl = NULL, *requestTokens = NULL, *params = NULL, *_1, *_2, *_3, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -244,9 +244,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZVAL_BOOL(_3, 0);
 	ZEPHIR_CALL_METHOD(&requestTokens, this_ptr, "call", NULL, 0, _2, requestTokenUrl, params, _3);
 	zephir_check_call_status();
-	Z_SET_ISREF_P(requestTokens);
+	ZEPHIR_MAKE_REF(requestTokens);
 	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 53, requestTokens, requestTokens);
-	Z_UNSET_ISREF_P(requestTokens);
+	ZEPHIR_UNREF(requestTokens);
 	zephir_check_call_status();
 	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(return_value, SS("auth_url"), SL("https://api.twitter.com/oauth/authenticate"), 1);
@@ -276,7 +276,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1;
-	zval *url_param = NULL, *params = NULL, *oauthToken_param = NULL, *type_param = NULL, *sigBaseStr, *key, *_0, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10, _11 = zval_used_for_init, *_12 = NULL, *_13 = NULL, *_14 = NULL;
+	zval *url_param = NULL, *params = NULL, *oauthToken_param = NULL, *type_param = NULL, *sigBaseStr = NULL, *key = NULL, *_0, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10, _11 = zval_used_for_init, *_12 = NULL, *_13 = NULL, *_14 = NULL;
 	zval *url = NULL, *oauthToken = NULL, *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -324,9 +324,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 	add_assoc_stringl_ex(_1, SS("oauth_version"), SL("1.0"), 1);
 	zephir_fast_array_merge(_0, &(_1), &(params) TSRMLS_CC);
 	ZEPHIR_CPY_WRT(params, _0);
-	Z_SET_ISREF_P(params);
+	ZEPHIR_MAKE_REF(params);
 	ZEPHIR_CALL_FUNCTION(NULL, "ksort", NULL, 58, params);
-	Z_UNSET_ISREF_P(params);
+	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_6, "urlencode", &_7, 59, url);
 	zephir_check_call_status();

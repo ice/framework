@@ -43,8 +43,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	zephir_fcall_cache_entry *_5 = NULL, *_9 = NULL;
 	HashTable *_1;
 	HashPosition _0;
-	int repeat, i, ZEPHIR_LAST_CALL_STATUS;
-	zval *regexToRoutesMap, *routeMap, *regex = NULL, *route = NULL, *regexes, *numGroups = NULL, *numVariables = NULL, **_2, *_3 = NULL, *_4 = NULL, *_6 = NULL, _7 = zval_used_for_init, _8 = zval_used_for_init, *_10 = NULL, *_12 = NULL, *_13;
+	int repeat = 0, i = 0, ZEPHIR_LAST_CALL_STATUS;
+	zval *regexToRoutesMap, *routeMap = NULL, *regex = NULL, *route = NULL, *regexes = NULL, *numGroups = NULL, *numVariables = NULL, **_2, *_3 = NULL, *_4 = NULL, *_6 = NULL, _7 = zval_used_for_init, _8 = zval_used_for_init, *_10 = NULL, *_12 = NULL, *_13;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &regexToRoutesMap);
@@ -72,7 +72,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(numGroups, _4);
 		ZEPHIR_INIT_LNVAR(_6);
-		sub_function(_6, numGroups, numVariables TSRMLS_CC);
+		zephir_sub_function(_6, numGroups, numVariables);
 		repeat = zephir_get_numberval(_6);
 		ZEPHIR_SINIT_NVAR(_7);
 		ZVAL_STRING(&_7, "()", 0);
@@ -92,7 +92,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		ZEPHIR_OBS_NVAR(_12);
 		zephir_read_property(&_12, route, SL("variables"), PH_NOISY_CC);
 		zephir_array_fast_append(_11, _12);
-		zephir_array_update_long(&routeMap, i, &_11, PH_COPY | PH_SEPARATE, "ice/mvc/route/datagenerator/groupcount.zep", 29);
+		zephir_array_update_long(&routeMap, i, &_11, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 		ZEPHIR_SEPARATE(numGroups);
 		zephir_increment(numGroups);
 	}

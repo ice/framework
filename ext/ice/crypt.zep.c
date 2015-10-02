@@ -324,7 +324,7 @@ PHP_METHOD(Ice_Crypt, hash) {
 PHP_METHOD(Ice_Crypt, addPadding) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *value_param = NULL, *pad, *len, *_0, *_1, *_2, *_3 = NULL, *_4 = NULL;
+	zval *value_param = NULL, *pad = NULL, *len = NULL, *_0, *_1, *_2, *_3 = NULL, *_4 = NULL;
 	zval *value = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -340,7 +340,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	ZEPHIR_INIT_VAR(_2);
 	mod_function(_2, len, _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(pad);
-	sub_function(pad, _0, _2 TSRMLS_CC);
+	zephir_sub_function(pad, _0, _2);
 	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 67, pad);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 68, _3, pad);
@@ -359,7 +359,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 PHP_METHOD(Ice_Crypt, stripPadding) {
 
 	unsigned char _0;
-	int pad, len, ZEPHIR_LAST_CALL_STATUS;
+	int pad = 0, len = 0, ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, _6;
 	zval *value = NULL;
 
@@ -404,7 +404,7 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 PHP_METHOD(Ice_Crypt, paddingIsValid) {
 
 	zval *value = NULL;
-	zval *pad_param = NULL, *value_param = NULL, *beforePad, *_0, _1, *_2, _3, *_4 = NULL;
+	zval *pad_param = NULL, *value_param = NULL, *beforePad = NULL, *_0, _1, *_2, _3, *_4 = NULL;
 	int pad, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();

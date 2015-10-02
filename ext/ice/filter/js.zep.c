@@ -377,7 +377,7 @@ PHP_METHOD(Ice_Filter_Js, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool _6, _7;
-	zval *c = NULL, *i, *_0, *_1, *_2, *_3, _4, *_5, *_8 = NULL;
+	zval *c = NULL, *i = NULL, *_0, *_1, *_2, *_3, _4, *_5, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 
