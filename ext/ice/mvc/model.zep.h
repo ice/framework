@@ -98,6 +98,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_fields, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
+	ZEND_ARG_INFO(0, primary)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_create, 0, 0, 0)

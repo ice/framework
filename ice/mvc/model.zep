@@ -192,10 +192,11 @@ abstract class Model extends Arr implements \Serializable
     /**
      * Prepare fields for validation on create/update.
      *
-     * @param mixed fields
+     * @param mixed fields Fields to save or valid fields
+     * @param booleat primary Keept primary keys
      * @return array
      */
-    protected function fields(var fields = [])
+    protected function fields(var fields = [], boolean primary = true)
     {
         // Check if model has defined valid fields
         if !count(this->fields) {
@@ -234,8 +235,17 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        if typeof this->primary == "string" {
-            unset fields[this->primary];
+        if !primary {
+            // Remove primary keys
+            if typeof this->primary == "array" {
+                var key;
+
+                for key in this->primary {
+                    unset fields[key];
+                }
+            } else {
+                unset fields[this->primary];
+            }
         }
 
         return fields;
@@ -259,9 +269,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var status;
 
-        let fields = this->fields(fields);
-
-        this->setData(fields);
+        this->setData(this->fields(fields));
 
         if extra {
             extra->validate();
@@ -326,7 +334,6 @@ abstract class Model extends Arr implements \Serializable
         var data, status, primary, key;
 
         let data = this->getData(),
-            fields = this->fields(fields),
             primary = [];
 
         if typeof this->primary == "array" {
@@ -337,7 +344,7 @@ abstract class Model extends Arr implements \Serializable
             let primary = [this->primary: this->get(this->primary)];
         }
 
-        this->replace(fields);
+        this->setData(this->fields(fields));
 
         if extra {
             extra->validate();
@@ -368,7 +375,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.before.update", [this]);
 
-        let status = this->db->update(this->from, primary, this->fields(this->getData()));
+        let status = this->db->update(this->from, primary, this->fields(this->getData(), false));
 
         if !status {
             // Rollback changes and restore old data
