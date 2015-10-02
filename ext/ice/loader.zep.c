@@ -130,18 +130,18 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
 		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
 		zephir_check_call_status();
-		Z_SET_ISREF_P(_12);
+		ZEPHIR_MAKE_REF(_12);
 		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 116, _12, _13);
-		Z_UNSET_ISREF_P(_12);
+		ZEPHIR_UNREF(_12);
 		zephir_check_call_status();
 	} else {
 		_11 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
 		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
 		zephir_check_call_status();
-		Z_SET_ISREF_P(_12);
+		ZEPHIR_MAKE_REF(_12);
 		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 117, _12, _13);
-		Z_UNSET_ISREF_P(_12);
+		ZEPHIR_UNREF(_12);
 		zephir_check_call_status();
 	}
 	RETURN_THIS();

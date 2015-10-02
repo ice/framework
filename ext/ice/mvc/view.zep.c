@@ -316,7 +316,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	HashTable *_2;
 	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool exists, _9;
+	zend_bool exists = 0, _9;
 	zval *data = NULL;
 	zval *file = NULL, *data_param = NULL, *ext = NULL, *engine = NULL, *engines = NULL, *path = NULL, *content = NULL, *_0, **_3, *_4, *_5, *_7 = NULL, *_10, _11;
 
@@ -412,7 +412,6 @@ PHP_METHOD(Ice_Mvc_View, load) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
 		zephir_get_strval(file, file_param);
 	} else {
@@ -454,7 +453,6 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
 		zephir_get_strval(file, file_param);
 	} else {
@@ -539,7 +537,6 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
@@ -569,7 +566,6 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 	zephir_fetch_params(1, 1, 0, &vars_param);
 
 	vars = vars_param;
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, vars);

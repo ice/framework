@@ -163,15 +163,15 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1;
 	HashPosition _0;
-	zval *ini, *raw, *key = NULL, *value = NULL, *data, **_2, *_3 = NULL, *_4;
+	zval *ini, *raw, *key = NULL, *value = NULL, *data = NULL, **_2, *_3 = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
 
+
+
 	ZEPHIR_INIT_VAR(data);
 	array_init(data);
-
-
 	zephir_is_iterable(ini, &_1, &_0, 0, 0, "ice/config/ini.zep", 94);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS

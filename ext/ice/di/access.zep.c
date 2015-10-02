@@ -86,7 +86,7 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_CPY_WRT(di, _0);
 	if (ZEPHIR_IS_STRING(property, "di")) {
-		zephir_update_property_zval(this_ptr, SL("di"), di TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
 		RETURN_CCTOR(di);
 	}
 	ZEPHIR_CALL_METHOD(&_1, di, "has", NULL, 0, property);

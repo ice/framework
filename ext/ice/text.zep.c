@@ -12,8 +12,8 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/array.h"
 #include "kernel/memory.h"
+#include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/operators.h"
@@ -58,8 +58,8 @@ PHP_METHOD(Ice_Text, random) {
 
 	zephir_fcall_cache_entry *_3 = NULL, *_6 = NULL;
 	long length;
-	zval *type_param = NULL, *length_param = NULL, *pool = NULL, *str, _0 = zval_used_for_init, _1 = zval_used_for_init, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_7;
-	int type, end, ZEPHIR_LAST_CALL_STATUS;
+	zval *type_param = NULL, *length_param = NULL, *pool = NULL, *str = NULL, _0 = zval_used_for_init, _1 = zval_used_for_init, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_7;
+	int type, end = 0, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &type_param, &length_param);
@@ -74,10 +74,10 @@ PHP_METHOD(Ice_Text, random) {
 	} else {
 		length = zephir_get_intval(length_param);
 	}
+
+
 	ZEPHIR_INIT_VAR(str);
 	ZVAL_STRING(str, "", 1);
-
-
 	do {
 		if (type == 1) {
 			ZEPHIR_SINIT_VAR(_0);

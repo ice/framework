@@ -140,7 +140,7 @@ PHP_METHOD(Ice_Di, set) {
 PHP_METHOD(Ice_Di, resolve) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *service = NULL, *params, *_0 = NULL, *_1, _2, *_3 = NULL;
+	zval *service = NULL, *params = NULL, *_0 = NULL, *_1, _2, *_3 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &service);
@@ -287,7 +287,7 @@ PHP_METHOD(Ice_Di, hook) {
 		zephir_update_property_array(this_ptr, SL("hooks"), name, _1 TSRMLS_CC);
 	}
 	if (zephir_is_callable(callback TSRMLS_CC) == 1) {
-		zephir_update_property_array_multi(this_ptr, SL("hooks"), &callback TSRMLS_CC, SL("zla"), 2, name, priority);
+		zephir_update_property_array_multi(this_ptr, SL("hooks"), &callback TSRMLS_CC, SL("zla"), 3, name, priority);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -313,8 +313,8 @@ PHP_METHOD(Ice_Di, applyHook) {
 
 	zephir_get_strval(name, name_param);
 	if (!args_param) {
-	ZEPHIR_INIT_VAR(args);
-	array_init(args);
+		ZEPHIR_INIT_VAR(args);
+		array_init(args);
 	} else {
 		zephir_get_arrval(args, args_param);
 	}
@@ -383,7 +383,7 @@ PHP_METHOD(Ice_Di, getHooks) {
 	}
 
 
-	if (name && Z_STRLEN_P(name)) {
+	if (!(!name) && Z_STRLEN_P(name)) {
 		ZEPHIR_INIT_VAR(_0);
 		_1 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
 		if (zephir_array_isset(_1, name)) {
@@ -481,7 +481,6 @@ PHP_METHOD(Ice_Di, __call) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(method_param) == IS_STRING)) {
 		zephir_get_strval(method, method_param);
 	} else {

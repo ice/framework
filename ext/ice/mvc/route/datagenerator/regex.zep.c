@@ -105,7 +105,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_2;
 	HashPosition _1;
-	zval *chunkSize = NULL, *chunks = NULL, *data, *method = NULL, *regexToRoutesMap = NULL, *_0, **_3, *_4 = NULL, *_8 = NULL;
+	zval *chunkSize = NULL, *chunks = NULL, *data = NULL, *method = NULL, *regexToRoutesMap = NULL, *_0, **_3, *_4 = NULL, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 
@@ -142,7 +142,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	double round, ceil;
+	double round = 0, ceil = 0;
 	zval *count, *numParts = NULL, *_0 = NULL, *_1, *_2, _3, *_4, *_5, _6;
 
 	ZEPHIR_MM_GROW();
@@ -197,7 +197,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL;
 	zend_bool _1;
-	zval *httpMethod, *routeData, *handler, *routeStr, *route = NULL, *_0, *_2, *_3, *_4 = NULL, _5 = zval_used_for_init, *_6 = NULL, *_9, *_10, *_11, **_14, *_15 = NULL, *_16 = NULL;
+	zval *httpMethod, *routeData, *handler, *routeStr = NULL, *route = NULL, *_0, *_2, *_3, *_4 = NULL, _5 = zval_used_for_init, *_6 = NULL, *_9, *_10, *_11, **_14, *_15 = NULL, *_16 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &httpMethod, &routeData, &handler);
@@ -265,7 +265,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	zend_bool _4;
 	zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *httpMethod, *routeData, *handler, *regex, *variables, *_0 = NULL, *_2 = NULL, *_3, *_5, *_6, *_7 = NULL, _8, *_9 = NULL;
+	zval *httpMethod, *routeData, *handler, *regex = NULL, *variables = NULL, *_0 = NULL, *_2 = NULL, *_3, *_5, *_6, *_7 = NULL, _8, *_9 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &httpMethod, &routeData, &handler);
@@ -315,7 +315,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 	zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL, *_8 = NULL;
 	HashTable *_1;
 	HashPosition _0;
-	zval *routeData, *regex, *variables, *part = NULL, *varName = NULL, *regexPart = NULL, **_2, _3 = zval_used_for_init, *_4 = NULL, *_6 = NULL, *_9 = NULL;
+	zval *routeData, *regex = NULL, *variables = NULL, *part = NULL, *varName = NULL, *regexPart = NULL, **_2, _3 = zval_used_for_init, *_4 = NULL, *_6 = NULL, *_9 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &routeData);

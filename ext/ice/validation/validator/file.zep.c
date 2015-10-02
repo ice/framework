@@ -18,7 +18,6 @@
 #include "kernel/array.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
-#include "kernel/math.h"
 #include "kernel/exception.h"
 #include "kernel/object.h"
 #include "ext/spl/spl_exceptions.h"
@@ -77,7 +76,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	zend_bool _3, _4, _5, _7, _8, _12, _18, _19, _21, _23, _25, _27, _40, _41;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *message = NULL, *label = NULL, *i18n = NULL, *replace = NULL, *types = NULL, *byteUnits, *unit = NULL, *maxSize = NULL, *matches, *bytes, *mime = NULL, *tmp = NULL, *width, *height, *minResolution, *maxResolution, *minWidth = NULL, *maxWidth, *minHeight = NULL, *maxHeight, *_0 = NULL, *_1 = NULL, *_SERVER, *_2, *_POST, *_FILES, *_6, *_9, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_20, *_22, *_24, *_26 = NULL, *_28 = NULL, *_29, *_30, *_31, *_33 = NULL, *_34, _35 = zval_used_for_init, *_36, *_37 = NULL, *_38 = NULL, *_39 = NULL, *_42 = NULL, *_43 = NULL, *_44 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *message = NULL, *label = NULL, *i18n = NULL, *replace = NULL, *types = NULL, *byteUnits = NULL, *unit = NULL, *maxSize = NULL, *matches = NULL, *bytes = NULL, *mime = NULL, *tmp = NULL, *width = NULL, *height = NULL, *minResolution = NULL, *maxResolution = NULL, *minWidth = NULL, *maxWidth = NULL, *minHeight = NULL, *maxHeight = NULL, *_0 = NULL, *_1 = NULL, *_SERVER, *_2, *_POST, *_FILES, *_6, *_9, *_10 = NULL, *_11 = NULL, *_13 = NULL, *_14 = NULL, *_15 = NULL, *_16 = NULL, *_20, *_22, *_24, *_26 = NULL, *_28 = NULL, *_29, *_30, *_31, *_33 = NULL, *_34, _35 = zval_used_for_init, *_36, *_37 = NULL, *_38 = NULL, *_39 = NULL, *_42 = NULL, *_43 = NULL, *_44 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_FILES, SS("_FILES") TSRMLS_CC);
@@ -89,7 +88,6 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(field, field_param);
 	} else {

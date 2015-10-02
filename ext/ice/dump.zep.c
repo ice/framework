@@ -119,7 +119,11 @@ PHP_METHOD(Ice_Dump, __construct) {
 	}
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setstyles", NULL, 0, styles);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("detailed"), detailed ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	if (detailed) {
+		zephir_update_property_this(this_ptr, SL("detailed"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+	} else {
+		zephir_update_property_this(this_ptr, SL("detailed"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	}
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -165,7 +169,7 @@ PHP_METHOD(Ice_Dump, all) {
  */
 PHP_METHOD(Ice_Dump, getStyle) {
 
-	zval *type_param = NULL, *style, *_0;
+	zval *type_param = NULL, *style = NULL, *_0;
 	zval *type = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -175,7 +179,6 @@ PHP_METHOD(Ice_Dump, getStyle) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-
 	if (likely(Z_TYPE_P(type_param) == IS_STRING)) {
 		zephir_get_strval(type, type_param);
 	} else {
@@ -202,7 +205,7 @@ PHP_METHOD(Ice_Dump, getStyle) {
  */
 PHP_METHOD(Ice_Dump, setStyles) {
 
-	zval *styles_param = NULL, *defaultStyles, *_0;
+	zval *styles_param = NULL, *defaultStyles = NULL, *_0;
 	zval *styles = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -290,7 +293,7 @@ PHP_METHOD(Ice_Dump, output) {
 	zephir_fcall_cache_entry *_3 = NULL, *_5 = NULL, *_10 = NULL, *_19 = NULL, *_21 = NULL, *_28 = NULL, *_29 = NULL, *_31 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL, *_11 = NULL, *_37 = NULL;
-	zval *variable, *name = NULL, *tab = NULL, *key = NULL, *value = NULL, *output = NULL, *space, *type = NULL, *attr = NULL, *_1 = NULL, *_2 = NULL, _4 = zval_used_for_init, **_8, *_9 = NULL, *_12 = NULL, *_13 = NULL, *_17 = NULL, *_18 = NULL, *_20 = NULL, *className, *_22, **_25, *_26 = NULL, *_27 = NULL, *_30, *_32, **_35, *_36, *_38 = NULL, _39;
+	zval *variable, *name = NULL, *tab = NULL, *key = NULL, *value = NULL, *output = NULL, *space = NULL, *type = NULL, *attr = NULL, *_1 = NULL, *_2 = NULL, _4 = zval_used_for_init, **_8, *_9 = NULL, *_12 = NULL, *_13 = NULL, *_17 = NULL, *_18 = NULL, *_20 = NULL, *className = NULL, *_22, **_25, *_26 = NULL, *_27 = NULL, *_30, *_32, **_35, *_36, *_38 = NULL, _39;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &variable, &name, &tab);
@@ -473,9 +476,9 @@ PHP_METHOD(Ice_Dump, output) {
 			}
 		} else {
 			do {
-				Z_SET_ISREF_P(variable);
+				ZEPHIR_MAKE_REF(variable);
 				ZEPHIR_CALL_FUNCTION(&attr, "each", &_28, 89, variable);
-				Z_UNSET_ISREF_P(variable);
+				ZEPHIR_UNREF(variable);
 				zephir_check_call_status();
 				if (!(zephir_is_true(attr))) {
 					continue;
@@ -515,9 +518,9 @@ PHP_METHOD(Ice_Dump, output) {
 				zephir_check_temp_parameter(_2);
 				zephir_check_call_status();
 				zephir_array_update_string(&_11, SL(":style"), &_17, PH_COPY | PH_SEPARATE);
-				Z_SET_ISREF_P(key);
+				ZEPHIR_MAKE_REF(key);
 				ZEPHIR_CALL_FUNCTION(&_17, "end", &_31, 90, key);
-				Z_UNSET_ISREF_P(key);
+				ZEPHIR_UNREF(key);
 				zephir_check_call_status();
 				zephir_array_update_string(&_11, SL(":key"), &_17, PH_COPY | PH_SEPARATE);
 				zephir_array_update_string(&_11, SL(":type"), &type, PH_COPY | PH_SEPARATE);
@@ -845,7 +848,7 @@ PHP_METHOD(Ice_Dump, vars) {
 	HashTable *_2;
 	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key = NULL, *value = NULL, *output, *_0 = NULL, **_3, *_4 = NULL, *_5 = NULL;
+	zval *key = NULL, *value = NULL, *output = NULL, *_0 = NULL, **_3, *_4 = NULL, *_5 = NULL;
 
 	ZEPHIR_MM_GROW();
 

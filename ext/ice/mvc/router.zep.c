@@ -288,13 +288,12 @@ PHP_METHOD(Ice_Mvc_Router, __construct) {
  */
 PHP_METHOD(Ice_Mvc_Router, setDefaults) {
 
-	zval *defaults_param = NULL, *module, *handler, *action;
+	zval *defaults_param = NULL, *module = NULL, *handler = NULL, *action = NULL;
 	zval *defaults = NULL;
 
 	zephir_fetch_params(0, 1, 0, &defaults_param);
 
 	defaults = defaults_param;
-
 
 
 	if (zephir_array_isset_string_fetch(&module, defaults, SS("module"), 1 TSRMLS_CC)) {
@@ -320,7 +319,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 	zend_class_entry *_8, *_11, *_22;
 	zend_bool _3, _4, _19, _20;
 	zval *_0;
-	zval *options, *dispatcher = NULL, *data = NULL, *collector = NULL, *parser, *generator, *route = NULL, *handler = NULL, *_1, *_2, *_5 = NULL, *_6, *_7 = NULL, *_9, *_10 = NULL, *_12, **_15, *_16, *_17, *_18, *_21 = NULL, *_23 = NULL, *_24;
+	zval *options = NULL, *dispatcher = NULL, *data = NULL, *collector = NULL, *parser = NULL, *generator = NULL, *route = NULL, *handler = NULL, *_1, *_2, *_5 = NULL, *_6, *_7 = NULL, *_9, *_10 = NULL, *_12, **_15, *_16, *_17, *_18, *_21 = NULL, *_23 = NULL, *_24;
 
 	ZEPHIR_MM_GROW();
 
@@ -353,7 +352,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		object_init_ex(_5, ice_mvc_route_collector_ce);
 		ZEPHIR_INIT_VAR(_6);
 		zephir_fetch_safe_class(_7, parser);
-		_8 = zend_fetch_class(Z_STRVAL_P(_7), Z_STRLEN_P(_7), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+			_8 = zend_fetch_class(Z_STRVAL_P(_7), Z_STRLEN_P(_7), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
 		object_init_ex(_6, _8);
 		if (zephir_has_constructor(_6 TSRMLS_CC)) {
 			ZEPHIR_CALL_METHOD(NULL, _6, "__construct", NULL, 0);
@@ -361,7 +360,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		}
 		ZEPHIR_INIT_VAR(_9);
 		zephir_fetch_safe_class(_10, generator);
-		_11 = zend_fetch_class(Z_STRVAL_P(_10), Z_STRLEN_P(_10), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+			_11 = zend_fetch_class(Z_STRVAL_P(_10), Z_STRLEN_P(_10), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
 		object_init_ex(_9, _11);
 		if (zephir_has_constructor(_9 TSRMLS_CC)) {
 			ZEPHIR_CALL_METHOD(NULL, _9, "__construct", NULL, 0);
@@ -407,7 +406,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		zephir_array_fetch_string(&dispatcher, options, SL("dispatcher"), PH_NOISY, "ice/mvc/router.zep", 111 TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(_5);
 		zephir_fetch_safe_class(_21, dispatcher);
-		_22 = zend_fetch_class(Z_STRVAL_P(_21), Z_STRLEN_P(_21), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+			_22 = zend_fetch_class(Z_STRVAL_P(_21), Z_STRLEN_P(_21), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
 		object_init_ex(_5, _22);
 		if (zephir_has_constructor(_5 TSRMLS_CC)) {
 			ZEPHIR_CALL_METHOD(NULL, _5, "__construct", NULL, 0);
@@ -436,7 +435,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 			zephir_array_fetch_string(&_17, options, SL("cacheFile"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 125 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(_5);
 			ZEPHIR_INIT_NVAR(_5);
-			zephir_var_export_ex(_5, &(data) TSRMLS_CC);
+			zephir_var_export_ex(_5, &data TSRMLS_CC);
 			ZEPHIR_INIT_VAR(_24);
 			ZEPHIR_CONCAT_SVS(_24, "<?php return ", _5, ";");
 			zephir_file_put_contents(NULL, _17, _24 TSRMLS_CC);
@@ -449,7 +448,11 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 	_12 = zephir_fetch_nproperty_this(this_ptr, SL("dispatcher"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, _12, "setdata", NULL, 0, data);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("ready"), (1) ? ZEPHIR_GLOBAL(global_true) : ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	if (1) {
+		zephir_update_property_this(this_ptr, SL("ready"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+	} else {
+		zephir_update_property_this(this_ptr, SL("ready"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	}
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -464,7 +467,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 
 	zephir_fcall_cache_entry *_9 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *method = NULL, *uri = NULL, *module = NULL, *handler = NULL, *action = NULL, *params = NULL, *holders, *data, *route = NULL, *response = NULL, *_0, *_1, *_2, *_3, *_4, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL, _10 = zval_used_for_init, _11 = zval_used_for_init;
+	zval *method = NULL, *uri = NULL, *module = NULL, *handler = NULL, *action = NULL, *params = NULL, *holders = NULL, *data = NULL, *route = NULL, *response = NULL, *_0, *_1, *_2, *_3, *_4, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL, _10 = zval_used_for_init, _11 = zval_used_for_init;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &method, &uri);

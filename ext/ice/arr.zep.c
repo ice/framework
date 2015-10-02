@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Arr, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool required, _0;
-	zval *key_param = NULL, *defaultValue = NULL, *required_param = NULL, *value, *_1 = NULL, *_2, _3, *_4 = NULL, *_5;
+	zval *key_param = NULL, *defaultValue = NULL, *required_param = NULL, *value = NULL, *_1 = NULL, *_2, _3, *_4 = NULL, *_5;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -206,7 +206,6 @@ PHP_METHOD(Ice_Arr, replace) {
 	data = data_param;
 
 
-
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/arr.zep", 90);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
@@ -257,7 +256,6 @@ PHP_METHOD(Ice_Arr, setData) {
 		array_init(data);
 	} else {
 	data = data_param;
-
 	}
 
 
@@ -423,9 +421,9 @@ PHP_METHOD(Ice_Arr, getPath) {
 		zephir_fast_explode(keys, delimiter, path, LONG_MAX TSRMLS_CC);
 	}
 	do {
-		Z_SET_ISREF_P(keys);
+		ZEPHIR_MAKE_REF(keys);
 		ZEPHIR_CALL_FUNCTION(&key, "array_shift", &_5, 4, keys);
-		Z_UNSET_ISREF_P(keys);
+		ZEPHIR_UNREF(keys);
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&_6, "ctype_digit", &_7, 5, key);
 		zephir_check_call_status();
@@ -493,7 +491,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_2;
 	HashPosition _1;
-	zval *key = NULL, *value = NULL, *tmp, *_0, **_3, *_4 = NULL;
+	zval *key = NULL, *value = NULL, *tmp = NULL, *_0, **_3, *_4 = NULL;
 
 	ZEPHIR_MM_GROW();
 

@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message = NULL;
-	zval *level, *message_param = NULL, *context_param = NULL, *line, _0 = zval_used_for_init, *_1 = NULL, *_2, *_3 = NULL, *_4, *_5;
+	zval *level, *message_param = NULL, *context_param = NULL, *line = NULL, _0 = zval_used_for_init, *_1 = NULL, *_2, *_3 = NULL, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &level, &message_param, &context_param);
@@ -156,7 +156,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	HashTable *_1;
 	HashPosition _0;
 	zval *context = NULL;
-	zval *message_param = NULL, *context_param = NULL, *replace, *key = NULL, *value = NULL, **_2, *_3 = NULL;
+	zval *message_param = NULL, *context_param = NULL, *replace = NULL, *key = NULL, *value = NULL, **_2, *_3 = NULL;
 	zval *message = NULL;
 
 	ZEPHIR_MM_GROW();

@@ -69,7 +69,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
-	zval *action, *_0, *_1, *_2, *_3, *_4, *_5;
+	zval *action = NULL, *_0, *_1, *_2, *_3, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 

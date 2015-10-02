@@ -130,8 +130,8 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params, *tokenInfo = NULL, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6, *_7;
-	zend_bool result;
+	zval *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6, *_7;
+	zend_bool result = 0;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
