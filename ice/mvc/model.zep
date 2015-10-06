@@ -235,17 +235,9 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        if !primary {
-            // Remove primary keys
-            if typeof this->primary == "array" {
-                var key;
-
-                for key in this->primary {
-                    unset fields[key];
-                }
-            } else {
-                unset fields[this->primary];
-            }
+        // Remove primary keys
+        if typeof this->primary == "string" && !primary {
+            unset fields[this->primary];
         }
 
         return fields;
