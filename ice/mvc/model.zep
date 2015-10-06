@@ -269,7 +269,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var status;
 
-        this->setData(this->fields(fields));
+        this->setData(this->fields(fields, false));
 
         if extra {
             extra->validate();
