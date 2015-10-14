@@ -147,6 +147,8 @@ class Pagination extends Arr
             // Don't add ?page=1 for first page
             if page > 1 {
                 query->set("page", page);
+            } else {
+                query->remove("page");
             }
         }
 
