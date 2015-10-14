@@ -385,6 +385,12 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 			ZEPHIR_CALL_METHOD(NULL, query, "set", NULL, 0, _3, page);
 			zephir_check_temp_parameter(_3);
 			zephir_check_call_status();
+		} else {
+			ZEPHIR_INIT_NVAR(_3);
+			ZVAL_STRING(_3, "page", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(NULL, query, "remove", NULL, 0, _3);
+			zephir_check_temp_parameter(_3);
+			zephir_check_call_status();
 		}
 	}
 	_13 = zephir_fetch_nproperty_this(this_ptr, SL("tag"), PH_NOISY_CC);
@@ -926,7 +932,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_temp_parameter(_21);
 	zephir_check_call_status();
 	zephir_concat_self(&html, _32 TSRMLS_CC);
-	zephir_is_iterable(links, &_36, &_35, 0, 0, "ice/pagination.zep", 310);
+	zephir_is_iterable(links, &_36, &_35, 0, 0, "ice/pagination.zep", 312);
 	for (
 	  ; zephir_hash_get_current_data_ex(_36, (void**) &_37, &_35) == SUCCESS
 	  ; zephir_hash_move_forward_ex(_36, &_35)
