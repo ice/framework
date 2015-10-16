@@ -46,7 +46,7 @@ class Unique extends Validator
      */
     public function validate(<Validation> validation, string! field) -> boolean
     {
-        var value, label, message, i18n, replace, di, db, from, custom, except, result, id;
+        var value, label, message, i18n, replace, di, db, from, custom, except, tmp, caseInsensitive, result, id;
 
         let value = validation->getValue(field);
 
@@ -78,6 +78,24 @@ class Unique extends Validator
             let except = this->get(2);
         } else {
             let except = this->get("except");
+        }
+
+        // Case insensitive
+        if this->has(3) {
+            let caseInsensitive = this->get(3);
+        } else {
+            let caseInsensitive = this->get("caseInsensitive");
+        }
+
+        if caseInsensitive {
+            let tmp = value;
+
+            if db->getType() == "NOSQL" {
+                let value = new \MongoRegex("/^" . tmp . "$/i");
+            } else {
+                // TODO: LOWER column name
+                let value = strtolower(tmp);
+            }
         }
 
         if except {
