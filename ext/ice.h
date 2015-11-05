@@ -87,6 +87,7 @@
 #include "ice/mvc/route/dispatcher/groupcount.zep.h"
 #include "ice/mvc/route/parser/std.zep.h"
 #include "ice/mvc/router.zep.h"
+#include "ice/mvc/service.zep.h"
 #include "ice/mvc/url.zep.h"
 #include "ice/mvc/view.zep.h"
 #include "ice/mvc/view/engine/php.zep.h"

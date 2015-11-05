@@ -92,6 +92,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/route/dispatcher/groupcount.zep.c
 	ice/mvc/route/parser/std.zep.c
 	ice/mvc/router.zep.c
+	ice/mvc/service.zep.c
 	ice/mvc/url.zep.c
 	ice/mvc/view.zep.c
 	ice/mvc/view/engine/php.zep.c
