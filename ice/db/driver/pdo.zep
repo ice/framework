@@ -31,7 +31,7 @@ class Pdo implements DbInterface
      */
     public function __construct(string dsn, string user = NULL, string password = NULL, array options = [])
     {
-        var parts;
+        var parts, pdo;
 
         let parts = [];
 
@@ -41,7 +41,8 @@ class Pdo implements DbInterface
             let options[\PDO::MYSQL_ATTR_INIT_COMMAND] = "SET NAMES utf8;";
         }
 
-        let this->client = new \Pdo(dsn, user, password, options);
+        let pdo = "Pdo",
+            this->client = new {pdo}(dsn, user, password, options);
     }
 
     /**
