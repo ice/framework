@@ -54,6 +54,7 @@ PHP_METHOD(Ice_Mvc_Service, setModel) {
 
 PHP_METHOD(Ice_Mvc_Service, getModel) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "model");
 
@@ -88,10 +89,10 @@ PHP_METHOD(Ice_Mvc_Service, __construct) {
  */
 PHP_METHOD(Ice_Mvc_Service, __call) {
 
-	zval *_3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_3$$3;
 	zend_bool _1;
-	zval *method_param = NULL, *arguments = NULL, *_0, *_2, *_4;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *method_param = NULL, *arguments = NULL, *_0, *_2, *_4$$3;
 	zval *method = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -121,13 +122,13 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 		_1 = zephir_instance_of_ev(_2, ice_mvc_model_ce TSRMLS_CC);
 	}
 	if (_1) {
-		ZEPHIR_INIT_VAR(_3);
-		zephir_create_array(_3, 2, 0 TSRMLS_CC);
-		ZEPHIR_OBS_VAR(_4);
-		zephir_read_property_this(&_4, this_ptr, SL("model"), PH_NOISY_CC);
-		zephir_array_fast_append(_3, _4);
-		zephir_array_fast_append(_3, method);
-		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, _3, arguments);
+		ZEPHIR_INIT_VAR(_3$$3);
+		zephir_create_array(_3$$3, 2, 0 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(_4$$3);
+		zephir_read_property_this(&_4$$3, this_ptr, SL("model"), PH_NOISY_CC);
+		zephir_array_fast_append(_3$$3, _4$$3);
+		zephir_array_fast_append(_3$$3, method);
+		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, _3$$3, arguments);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {

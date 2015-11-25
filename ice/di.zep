@@ -23,11 +23,6 @@ class Di extends Arr
      */
     public function __construct(array data = [])
     {
-        // Set the root path
-        if !defined("__ROOT__") {
-            define("__ROOT__", realpath("../"), false);
-        }
-
         parent::__construct(data);
 
         let self::di = this;

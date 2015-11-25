@@ -85,8 +85,8 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

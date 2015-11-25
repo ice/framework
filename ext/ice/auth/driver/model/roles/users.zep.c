@@ -44,8 +44,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
 PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 
 	zval *_6, *_8;
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL, *_7 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
