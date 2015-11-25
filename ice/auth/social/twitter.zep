@@ -69,9 +69,11 @@ class Twitter extends Adapter
      */
     public function authenticate()
     {
-        var result, params, accessTokenUrl, accessTokens, getDataUrl, userInfo;
+        var result, params, tokenInfo, userInfo;
+        var accessTokenUrl, getDataUrl;
 
-        let result = false;
+        let result = false,
+            tokenInfo = null;
 
         if isset _GET["oauth_token"] && isset _GET["oauth_verifier"] {
             let params = [
@@ -79,20 +81,30 @@ class Twitter extends Adapter
                 "oauth_verifier": _GET["oauth_verifier"]
             ];
 
-            let accessTokenUrl = "https://api.twitter.com/oauth/access_token",
-                params = this->prepareUrlParams(accessTokenUrl, params),
-                accessTokens = this->call(parent::GET, accessTokenUrl, params, false);
+            // Be able to store access_token in the session
+            if !this->accessToken {
+                let accessTokenUrl = "https://api.twitter.com/oauth/access_token",
+                    params = this->prepareUrlParams(accessTokenUrl, params);
 
-            parse_str(accessTokens, accessTokens);
+                parse_str(this->call(parent::GET, accessTokenUrl, params, false), tokenInfo);
 
-            if isset accessTokens["oauth_token"] {
+                if count(tokenInfo) > 0 && isset tokenInfo["oauth_token"] && isset tokenInfo["oauth_token_secret"] && isset tokenInfo["screen_name"] {
+                    let this->accessToken = [
+                        "oauth_token":        tokenInfo["oauth_token"],
+                        "oauth_token_secret": tokenInfo["oauth_token_secret"],
+                        "screen_name":        tokenInfo["screen_name"]
+                    ];
+                } 
+            }
+
+            if this->accessToken {
                 let getDataUrl = "https://api.twitter.com/1.1/users/show.json",
                     params = [
-                        "oauth_token":      accessTokens["oauth_token"],
-                        "screen_name":      accessTokens["screen_name"],
+                        "oauth_token":      this->accessToken["oauth_token"],
+                        "screen_name":      this->accessToken["screen_name"],
                         "include_entities": "false"
                     ],
-                    params = this->prepareUrlParams(getDataUrl, params, accessTokens["oauth_token_secret"]),
+                    params = this->prepareUrlParams(getDataUrl, params, this->accessToken["oauth_token_secret"]),
                     userInfo = this->call(parent::GET, getDataUrl, params);
 
                 if isset userInfo["id"] {
