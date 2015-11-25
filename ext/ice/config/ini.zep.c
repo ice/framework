@@ -86,8 +86,8 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
  */
 PHP_METHOD(Ice_Config_Ini, cast) {
 
-	zend_bool _0, _1, _2, _3, _4, _5, _6;
-	zval *ini, *raw, *_7, *_8, _9;
+	zend_bool _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
+	zval *ini, *raw, *_7$$7, *_8$$7, _9$$7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
@@ -95,50 +95,50 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 
 
 	if (Z_TYPE_P(ini) == IS_STRING) {
-		_0 = ZEPHIR_IS_LONG(ini, 1);
-		if (_0) {
-			_1 = ZEPHIR_IS_STRING_IDENTICAL(raw, "true");
-			if (!(_1)) {
-				_1 = ZEPHIR_IS_STRING_IDENTICAL(raw, "yes");
+		_0$$3 = ZEPHIR_IS_LONG(ini, 1);
+		if (_0$$3) {
+			_1$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "true");
+			if (!(_1$$3)) {
+				_1$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "yes");
 			}
-			_2 = _1;
-			if (!(_2)) {
-				_2 = ZEPHIR_IS_STRING_IDENTICAL(raw, "on");
+			_2$$3 = _1$$3;
+			if (!(_2$$3)) {
+				_2$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "on");
 			}
-			_0 = _2;
+			_0$$3 = _2$$3;
 		}
-		if (_0) {
+		if (_0$$3) {
 			RETURN_MM_BOOL(1);
 		}
-		_3 = ZEPHIR_IS_STRING_IDENTICAL(ini, "");
-		if (_3) {
-			_4 = ZEPHIR_IS_STRING_IDENTICAL(raw, "false");
-			if (!(_4)) {
-				_4 = ZEPHIR_IS_STRING_IDENTICAL(raw, "no");
+		_3$$3 = ZEPHIR_IS_STRING_IDENTICAL(ini, "");
+		if (_3$$3) {
+			_4$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "false");
+			if (!(_4$$3)) {
+				_4$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "no");
 			}
-			_5 = _4;
-			if (!(_5)) {
-				_5 = ZEPHIR_IS_STRING_IDENTICAL(raw, "off");
+			_5$$3 = _4$$3;
+			if (!(_5$$3)) {
+				_5$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "off");
 			}
-			_3 = _5;
+			_3$$3 = _5$$3;
 		}
-		if (_3) {
+		if (_3$$3) {
 			RETURN_MM_BOOL(0);
 		}
-		_6 = ZEPHIR_IS_STRING_IDENTICAL(ini, "");
-		if (_6) {
-			_6 = ZEPHIR_IS_STRING_IDENTICAL(raw, "null");
+		_6$$3 = ZEPHIR_IS_STRING_IDENTICAL(ini, "");
+		if (_6$$3) {
+			_6$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "null");
 		}
-		if (_6) {
+		if (_6$$3) {
 			RETURN_MM_NULL();
 		}
 		if (zephir_is_numeric(ini)) {
-			ZEPHIR_INIT_VAR(_7);
-			ZEPHIR_INIT_VAR(_8);
-			ZEPHIR_SINIT_VAR(_9);
-			ZVAL_STRING(&_9, "/[.]+/", 0);
-			zephir_preg_match(_8, &_9, ini, _7, 0, 0 , 0  TSRMLS_CC);
-			if (zephir_is_true(_8)) {
+			ZEPHIR_INIT_VAR(_7$$7);
+			ZEPHIR_INIT_VAR(_8$$7);
+			ZEPHIR_SINIT_VAR(_9$$7);
+			ZVAL_STRING(&_9$$7, "/[.]+/", 0);
+			zephir_preg_match(_8$$7, &_9$$7, ini, _7$$7, 0, 0 , 0  TSRMLS_CC);
+			if (zephir_is_true(_8$$7)) {
 				RETURN_MM_DOUBLE(zephir_get_doubleval(ini));
 			} else {
 				RETURN_MM_LONG(zephir_get_intval(ini));
@@ -159,11 +159,11 @@ PHP_METHOD(Ice_Config_Ini, cast) {
  */
 PHP_METHOD(Ice_Config_Ini, map) {
 
-	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_1;
 	HashPosition _0;
-	zval *ini, *raw, *key = NULL, *value = NULL, *data = NULL, **_2, *_3 = NULL, *_4;
+	zephir_fcall_cache_entry *_5 = NULL, *_8 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *ini, *raw, *key = NULL, *value = NULL, *data = NULL, **_2, *_3$$4 = NULL, *_4$$4, *_6$$5 = NULL, *_7$$5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
@@ -180,15 +180,15 @@ PHP_METHOD(Ice_Config_Ini, map) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
-			zephir_array_fetch(&_4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3, this_ptr, "map", &_5, 61, value, _4);
+			zephir_array_fetch(&_4$$4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "map", &_5, 61, value, _4$$4);
 			zephir_check_call_status();
-			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
+			zephir_array_update_zval(&data, key, &_3$$4, PH_COPY | PH_SEPARATE);
 		} else {
-			zephir_array_fetch(&_4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3, this_ptr, "cast", &_6, 62, value, _4);
+			zephir_array_fetch(&_7$$5, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(&_6$$5, this_ptr, "cast", &_8, 62, value, _7$$5);
 			zephir_check_call_status();
-			zephir_array_update_zval(&data, key, &_3, PH_COPY | PH_SEPARATE);
+			zephir_array_update_zval(&data, key, &_6$$5, PH_COPY | PH_SEPARATE);
 		}
 	}
 	RETURN_CCTOR(data);

@@ -50,8 +50,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 
 	zend_bool _10, _12;
 	zval *_6;
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL, _7, _8, *_9 = NULL, *_11 = NULL, *_13 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -168,9 +168,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 
 	zend_object_iterator *_3;
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1;
 	zval *token = NULL, *expired = NULL, *_2;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -242,30 +242,30 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 
-	zval *_8 = NULL;
+	zval *_9 = NULL;
+	zval *token = NULL, *_7 = NULL, *_0$$3 = NULL, *_2$$3 = NULL, *_3$$3 = NULL, *_4$$3 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL;
-	zval *token = NULL, *_0 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL;
+	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL;
 
 	ZEPHIR_MM_GROW();
 
 	do {
-		ZEPHIR_INIT_NVAR(_2);
-		ZVAL_LONG(_2, 0);
-		ZEPHIR_INIT_NVAR(_3);
-		ZVAL_LONG(_3, 32);
-		ZEPHIR_CALL_CE_STATIC(&_0, ice_text_ce, "random", &_1, 0, _2, _3);
+		ZEPHIR_INIT_NVAR(_2$$3);
+		ZVAL_LONG(_2$$3, 0);
+		ZEPHIR_INIT_NVAR(_3$$3);
+		ZVAL_LONG(_3$$3, 32);
+		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_text_ce, "random", &_1, 0, _2$$3, _3$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_4, "uniqid", &_5, 51, _0, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "uniqid", &_5, 51, _0$$3, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_6, 43, _4);
+		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_6, 43, _4$$3);
 		zephir_check_call_status();
-		ZEPHIR_INIT_NVAR(_8);
-		zephir_create_array(_8, 1, 0 TSRMLS_CC);
-		zephir_array_update_string(&_8, SL("token"), &token, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_SELF(&_0, "findone", &_7, 0, _8);
+		ZEPHIR_INIT_NVAR(_9);
+		zephir_create_array(_9, 1, 0 TSRMLS_CC);
+		zephir_array_update_string(&_9, SL("token"), &token, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_SELF(&_7, "findone", &_8, 0, _9);
 		zephir_check_call_status();
-	} while (zephir_is_true(_0));
+	} while (zephir_is_true(_7));
 	RETURN_CCTOR(token);
 
 }

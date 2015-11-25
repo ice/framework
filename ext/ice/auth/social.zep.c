@@ -40,6 +40,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social) {
 
 PHP_METHOD(Ice_Auth_Social, getAdapter) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "adapter");
 
@@ -69,8 +70,8 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
  */
 PHP_METHOD(Ice_Auth_Social, authenticate) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

@@ -125,8 +125,8 @@ PHP_METHOD(Ice_Crypt, encrypt) {
  */
 PHP_METHOD(Ice_Crypt, generateInputVector) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -359,7 +359,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 PHP_METHOD(Ice_Crypt, stripPadding) {
 
 	unsigned char _0;
-	int pad = 0, len = 0, ZEPHIR_LAST_CALL_STATUS;
+	int ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
 	zval *value_param = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, _6;
 	zval *value = NULL;
 
@@ -467,8 +467,8 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
  */
 PHP_METHOD(Ice_Crypt, getIvSize) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_0, *_1, *_2;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

@@ -49,6 +49,7 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 
 PHP_METHOD(Ice_Cli_Console, getModules) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "modules");
 
@@ -172,7 +173,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 PHP_METHOD(Ice_Cli_Console, color) {
 
 	int decoration;
-	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors = NULL, *bgColors = NULL, *colored = NULL, *e = NULL, *foreground = NULL, *background = NULL, _0, *_1 = NULL, *_2;
+	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors = NULL, *bgColors = NULL, *colored = NULL, *e = NULL, *foreground = NULL, *background = NULL, _0, *_1 = NULL, *_2$$3;
 	zval *text = NULL, *color = NULL, *bgColor = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -237,9 +238,9 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	ZEPHIR_INIT_VAR(colored);
 	ZEPHIR_CONCAT_VSVVS(colored, e, "[", &_0, _1, "m");
 	if (zephir_is_true(background)) {
-		ZEPHIR_INIT_VAR(_2);
-		ZEPHIR_CONCAT_VSVS(_2, e, "[", background, "m");
-		zephir_concat_self(&colored, _2 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_2$$3);
+		ZEPHIR_CONCAT_VSVS(_2$$3, e, "[", background, "m");
+		zephir_concat_self(&colored, _2$$3 TSRMLS_CC);
 	}
 	ZEPHIR_CONCAT_VVVS(return_value, colored, text, e, "[0m");
 	RETURN_MM();

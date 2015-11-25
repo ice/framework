@@ -55,8 +55,8 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
  */
 PHP_METHOD(Ice_Filter_Css, sanitize) {
 
-	unsigned char _2;
-	zend_bool _1, _3;
+	unsigned char _2$$3;
+	zend_bool _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$33;
 	long _0;
 	int i = 0, tmp = 0, state, inParen;
 	char c = 0, next = 0;
@@ -78,31 +78,31 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 		c = ZEPHIR_STRING_OFFSET(css, _0);
 		next = ZEPHIR_STRING_OFFSET(css, (i + 1));
 		next = next;
-		_1 = c == '/';
-		if (_1) {
-			_2 = ZEPHIR_STRING_OFFSET(css, (i - 1));
-			_1 = _2 == '*';
+		_1$$3 = c == '/';
+		if (_1$$3) {
+			_2$$3 = ZEPHIR_STRING_OFFSET(css, (i - 1));
+			_1$$3 = _2$$3 == '*';
 		}
-		if (_1) {
+		if (_1$$3) {
 			continue;
 		}
 		if (state != 6) {
-			_3 = c == '/';
-			if (_3) {
-				_3 = next == '*';
+			_3$$5 = c == '/';
+			if (_3$$5) {
+				_3$$5 = next == '*';
 			}
-			if (_3) {
+			if (_3$$5) {
 				tmp = state;
 				state = 6;
 			}
 		}
 		do {
 			if (state == 1) {
-				_3 = c == ' ';
-				if (_3) {
-					_3 = c == '\n';
+				_4$$7 = c == ' ';
+				if (_4$$7) {
+					_4$$7 = c == '\n';
 				}
-				if (_3) {
+				if (_4$$7) {
 					c = 0;
 				} else if (c == '@') {
 					state = 2;
@@ -112,9 +112,9 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 				}
 			}
 			if (state == 3) {
-				_3 = c == ' ';
-				if (_3) {
-					_3 = next == '{';
+				_5$$11 = c == ' ';
+				if (_5$$11) {
+					_5$$11 = next == '{';
 				}
 				if (c == '{') {
 					state = 4;
@@ -122,17 +122,17 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 					c = 0;
 				} else if (c == '@') {
 					state = 2;
-				} else if (_3) {
+				} else if (_5$$11) {
 					c = 0;
 				}
 				break;
 			}
 			if (state == 2) {
-				_3 = c == '\n';
-				if (!(_3)) {
-					_3 = c == ';';
+				_6$$16 = c == '\n';
+				if (!(_6$$16)) {
+					_6$$16 = c == ';';
 				}
-				if (_3) {
+				if (_6$$16) {
 					c = ';';
 					state = 1;
 				} else if (c == '{') {
@@ -141,11 +141,11 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 				break;
 			}
 			if (state == 4) {
-				_3 = c == ' ';
-				if (!(_3)) {
-					_3 = c == '\n';
+				_7$$19 = c == ' ';
+				if (!(_7$$19)) {
+					_7$$19 = c == '\n';
 				}
-				if (_3) {
+				if (_7$$19) {
 					c = 0;
 					break;
 				} else if (c == '}') {
@@ -180,11 +180,11 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 				break;
 			}
 			if (state == 6) {
-				_3 = c == '*';
-				if (_3) {
-					_3 = next == '/';
+				_8$$33 = c == '*';
+				if (_8$$33) {
+					_8$$33 = next == '/';
 				}
-				if (_3) {
+				if (_8$$33) {
 					state = tmp;
 				}
 				c = 0;
