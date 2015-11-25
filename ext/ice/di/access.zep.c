@@ -47,7 +47,7 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	zval *di = NULL, *_0 = NULL;
+	zval *di = NULL, *_0$$3 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &di);
@@ -58,9 +58,9 @@ PHP_METHOD(Ice_Di_Access, __construct) {
 
 
 	if (!(zephir_is_true(di))) {
-		ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
+		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 8);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("di"), _0$$3 TSRMLS_CC);
 	} else {
 		zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
 	}

@@ -51,9 +51,9 @@ ZEPHIR_INIT_CLASS(Ice_Loader) {
  */
 PHP_METHOD(Ice_Loader, register) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
 	zval *_1;
 	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "loadClass", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 114, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 111, _0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -83,7 +83,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_14 = NULL;
 	zend_bool prepend;
-	zval *prefix_param = NULL, *baseDir_param = NULL, *prepend_param = NULL, *_0, _1, *_2, *_3, _4, *_5, *_6, _7, *_8, *_9, *_10, *_11, *_12, *_13 = NULL;
+	zval *prefix_param = NULL, *baseDir_param = NULL, *prepend_param = NULL, *_0, _1, *_2, *_3, _4, *_5, *_6, _7, *_8, *_9, *_10$$3, *_11$$4, *_12$$4, *_13$$4 = NULL, *_15$$5, *_16$$5, *_17$$5 = NULL;
 	zval *prefix = NULL, *baseDir = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -121,27 +121,27 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	zephir_get_strval(baseDir, _8);
 	_9 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 	if (!(zephir_array_isset(_9, prefix))) {
-		ZEPHIR_INIT_VAR(_10);
-		array_init(_10);
-		zephir_update_property_array(this_ptr, SL("prefixes"), prefix, _10 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_10$$3);
+		array_init(_10$$3);
+		zephir_update_property_array(this_ptr, SL("prefixes"), prefix, _10$$3 TSRMLS_CC);
 	}
 	if (prepend) {
-		_11 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
-		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
+		_11$$4 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
+		zephir_array_fetch(&_12$$4, _11$$4, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
+		ZEPHIR_CALL_FUNCTION(&_13$$4, "utf8_encode", &_14, 112, baseDir);
 		zephir_check_call_status();
-		ZEPHIR_MAKE_REF(_12);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 116, _12, _13);
-		ZEPHIR_UNREF(_12);
+		ZEPHIR_MAKE_REF(_12$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 113, _12$$4, _13$$4);
+		ZEPHIR_UNREF(_12$$4);
 		zephir_check_call_status();
 	} else {
-		_11 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
-		zephir_array_fetch(&_12, _11, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_13, "utf8_encode", &_14, 115, baseDir);
+		_15$$5 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
+		zephir_array_fetch(&_16$$5, _15$$5, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
+		ZEPHIR_CALL_FUNCTION(&_17$$5, "utf8_encode", &_14, 112, baseDir);
 		zephir_check_call_status();
-		ZEPHIR_MAKE_REF(_12);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 117, _12, _13);
-		ZEPHIR_UNREF(_12);
+		ZEPHIR_MAKE_REF(_16$$5);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 114, _16$$5, _17$$5);
+		ZEPHIR_UNREF(_16$$5);
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
@@ -157,8 +157,8 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 PHP_METHOD(Ice_Loader, loadClass) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL, *_4 = NULL;
-	zval *className_param = NULL, *prefix = NULL, *pos = NULL, *relativeClass = NULL, *mappedFile = NULL, _0 = zval_used_for_init, _2 = zval_used_for_init, _3 = zval_used_for_init, *_5 = NULL, _6 = zval_used_for_init, _7 = zval_used_for_init;
+	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
+	zval *className_param = NULL, *prefix = NULL, *pos = NULL, *relativeClass = NULL, *mappedFile = NULL, _0, _2$$3 = zval_used_for_init, _3$$3 = zval_used_for_init, _4$$3 = zval_used_for_init, *_6$$3 = NULL, _7$$3 = zval_used_for_init, _8$$3 = zval_used_for_init;
 	zval *className = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -170,35 +170,35 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEPHIR_CPY_WRT(prefix, className);
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "\\", 0);
-	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, prefix, &_0);
+	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 115, prefix, &_0);
 	zephir_check_call_status();
 	while (1) {
 		if (!(!ZEPHIR_IS_FALSE_IDENTICAL(pos))) {
 			break;
 		}
-		ZEPHIR_SINIT_NVAR(_0);
-		ZVAL_LONG(&_0, 0);
-		ZEPHIR_SINIT_NVAR(_2);
-		ZVAL_LONG(&_2, (zephir_get_numberval(pos) + 1));
+		ZEPHIR_SINIT_NVAR(_2$$3);
+		ZVAL_LONG(&_2$$3, 0);
+		ZEPHIR_SINIT_NVAR(_3$$3);
+		ZVAL_LONG(&_3$$3, (zephir_get_numberval(pos) + 1));
 		ZEPHIR_INIT_NVAR(prefix);
-		zephir_substr(prefix, className, 0 , zephir_get_intval(&_2), 0);
-		ZEPHIR_SINIT_NVAR(_3);
-		ZVAL_LONG(&_3, (zephir_get_numberval(pos) + 1));
+		zephir_substr(prefix, className, 0 , zephir_get_intval(&_3$$3), 0);
+		ZEPHIR_SINIT_NVAR(_4$$3);
+		ZVAL_LONG(&_4$$3, (zephir_get_numberval(pos) + 1));
 		ZEPHIR_INIT_NVAR(relativeClass);
-		zephir_substr(relativeClass, className, zephir_get_intval(&_3), 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CALL_METHOD(&mappedFile, this_ptr, "loadmappedfile", &_4, 0, prefix, relativeClass);
+		zephir_substr(relativeClass, className, zephir_get_intval(&_4$$3), 0, ZEPHIR_SUBSTR_NO_LENGTH);
+		ZEPHIR_CALL_METHOD(&mappedFile, this_ptr, "loadmappedfile", &_5, 0, prefix, relativeClass);
 		zephir_check_call_status();
 		if (zephir_is_true(mappedFile)) {
 			RETURN_CCTOR(mappedFile);
 		}
-		ZEPHIR_INIT_NVAR(_5);
-		ZEPHIR_SINIT_NVAR(_6);
-		ZVAL_STRING(&_6, "\\", 0);
-		zephir_fast_trim(_5, prefix, &_6, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
-		ZEPHIR_CPY_WRT(prefix, _5);
-		ZEPHIR_SINIT_NVAR(_7);
-		ZVAL_STRING(&_7, "\\", 0);
-		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, prefix, &_7);
+		ZEPHIR_INIT_NVAR(_6$$3);
+		ZEPHIR_SINIT_NVAR(_7$$3);
+		ZVAL_STRING(&_7$$3, "\\", 0);
+		zephir_fast_trim(_6$$3, prefix, &_7$$3, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
+		ZEPHIR_CPY_WRT(prefix, _6$$3);
+		ZEPHIR_SINIT_NVAR(_8$$3);
+		ZVAL_STRING(&_8$$3, "\\", 0);
+		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 115, prefix, &_8$$3);
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(0);
@@ -214,11 +214,11 @@ PHP_METHOD(Ice_Loader, loadClass) {
  */
 PHP_METHOD(Ice_Loader, loadMappedFile) {
 
-	zephir_fcall_cache_entry *_13 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
 	HashTable *_4;
 	HashPosition _3;
-	zval *prefix_param = NULL, *relativeClass_param = NULL, *baseDir = NULL, *file = NULL, *_0, *_1, *_2, **_5, *_6 = NULL, _7 = zval_used_for_init, _8 = zval_used_for_init, *_9 = NULL, _10 = zval_used_for_init, _11 = zval_used_for_init, *_12 = NULL;
+	zephir_fcall_cache_entry *_13 = NULL;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *prefix_param = NULL, *relativeClass_param = NULL, *baseDir = NULL, *file = NULL, *_0, *_1, *_2, **_5, *_6$$4 = NULL, _7$$4 = zval_used_for_init, _8$$4 = zval_used_for_init, *_9$$4 = NULL, _10$$4 = zval_used_for_init, _11$$4 = zval_used_for_init, *_12$$4 = NULL;
 	zval *prefix = NULL, *relativeClass = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -240,25 +240,25 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	  ; zephir_hash_move_forward_ex(_4, &_3)
 	) {
 		ZEPHIR_GET_HVALUE(baseDir, _5);
-		ZEPHIR_INIT_NVAR(_6);
-		ZEPHIR_SINIT_NVAR(_7);
-		ZVAL_STRING(&_7, "\\", 0);
-		ZEPHIR_SINIT_NVAR(_8);
-		ZVAL_STRING(&_8, "/", 0);
-		zephir_fast_str_replace(&_6, &_7, &_8, relativeClass TSRMLS_CC);
+		ZEPHIR_INIT_NVAR(_6$$4);
+		ZEPHIR_SINIT_NVAR(_7$$4);
+		ZVAL_STRING(&_7$$4, "\\", 0);
+		ZEPHIR_SINIT_NVAR(_8$$4);
+		ZVAL_STRING(&_8$$4, "/", 0);
+		zephir_fast_str_replace(&_6$$4, &_7$$4, &_8$$4, relativeClass TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(file);
-		ZEPHIR_CONCAT_VVS(file, baseDir, _6, ".php");
-		ZEPHIR_INIT_NVAR(_9);
-		ZEPHIR_SINIT_NVAR(_10);
-		ZVAL_STRING(&_10, "\\", 0);
-		ZEPHIR_SINIT_NVAR(_11);
-		ZVAL_STRING(&_11, "/", 0);
-		zephir_fast_str_replace(&_9, &_10, &_11, relativeClass TSRMLS_CC);
+		ZEPHIR_CONCAT_VVS(file, baseDir, _6$$4, ".php");
+		ZEPHIR_INIT_NVAR(_9$$4);
+		ZEPHIR_SINIT_NVAR(_10$$4);
+		ZVAL_STRING(&_10$$4, "\\", 0);
+		ZEPHIR_SINIT_NVAR(_11$$4);
+		ZVAL_STRING(&_11$$4, "/", 0);
+		zephir_fast_str_replace(&_9$$4, &_10$$4, &_11$$4, relativeClass TSRMLS_CC);
 		ZEPHIR_INIT_NVAR(file);
-		ZEPHIR_CONCAT_VVS(file, baseDir, _9, ".php");
-		ZEPHIR_CALL_METHOD(&_12, this_ptr, "requirefile", &_13, 0, file);
+		ZEPHIR_CONCAT_VVS(file, baseDir, _9$$4, ".php");
+		ZEPHIR_CALL_METHOD(&_12$$4, this_ptr, "requirefile", &_13, 0, file);
 		zephir_check_call_status();
-		if (zephir_is_true(_12)) {
+		if (zephir_is_true(_12$$4)) {
 			RETURN_CCTOR(file);
 		}
 	}
@@ -295,7 +295,7 @@ PHP_METHOD(Ice_Loader, requireFile) {
 
 static zend_object_value zephir_init_properties_Ice_Loader(zend_class_entry *class_type TSRMLS_DC) {
 
-		zval *_0, *_1;
+		zval *_0, *_1$$3;
 
 		ZEPHIR_MM_GROW();
 	
@@ -304,9 +304,9 @@ static zend_object_value zephir_init_properties_Ice_Loader(zend_class_entry *cla
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_1);
-			array_init(_1);
-			zephir_update_property_this(this_ptr, SL("prefixes"), _1 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(_1$$3);
+			array_init(_1$$3);
+			zephir_update_property_this(this_ptr, SL("prefixes"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

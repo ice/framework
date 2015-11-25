@@ -83,9 +83,9 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
  */
 PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 
-	zephir_fcall_cache_entry *_4 = NULL;
+	zval *_0 = NULL, *_1, *_2$$3, _3$$3 = zval_used_for_init, *_4$$3 = NULL, *_6$$3, *_7$$3, *_8$$3, *_9$$3, *_10$$3, *_11$$3 = NULL, _12$$3;
+	zephir_fcall_cache_entry *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_0 = NULL, *_1 = NULL, _2 = zval_used_for_init, *_3 = NULL, *_5, *_6, *_7, *_8, *_9, *_10 = NULL, _11;
 
 	ZEPHIR_MM_GROW();
 
@@ -95,26 +95,26 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_INIT_NVAR(_1);
-		ZEPHIR_SINIT_VAR(_2);
-		ZVAL_STRING(&_2, "Y", 0);
-		ZEPHIR_CALL_FUNCTION(&_3, "date", &_4, 54, &_2);
+		ZEPHIR_INIT_VAR(_2$$3);
+		ZEPHIR_SINIT_VAR(_3$$3);
+		ZVAL_STRING(&_3$$3, "Y", 0);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "date", &_5, 54, &_3$$3);
 		zephir_check_call_status();
-		_5 = zephir_fetch_nproperty_this(this_ptr, SL("userInfo"), PH_NOISY_CC);
-		zephir_array_fetch_string(&_6, _5, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45 TSRMLS_CC);
-		ZEPHIR_SINIT_NVAR(_2);
-		ZVAL_LONG(&_2, 0000);
-		zephir_fast_str_replace(&_1, &_2, _3, _6 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_7);
-		ZVAL_STRING(_7, "birthday", 1);
-		zephir_update_property_array(this_ptr, SL("userInfo"), _7, _1 TSRMLS_CC);
-		_8 = zephir_fetch_nproperty_this(this_ptr, SL("userInfo"), PH_NOISY_CC);
-		zephir_array_fetch_string(&_9, _8, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 47 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_10, "strtotime", NULL, 55, _9);
+		_6$$3 = zephir_fetch_nproperty_this(this_ptr, SL("userInfo"), PH_NOISY_CC);
+		zephir_array_fetch_string(&_7$$3, _6$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45 TSRMLS_CC);
+		ZEPHIR_SINIT_NVAR(_3$$3);
+		ZVAL_LONG(&_3$$3, 0000);
+		zephir_fast_str_replace(&_2$$3, &_3$$3, _4$$3, _7$$3 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_8$$3);
+		ZVAL_STRING(_8$$3, "birthday", 1);
+		zephir_update_property_array(this_ptr, SL("userInfo"), _8$$3, _2$$3 TSRMLS_CC);
+		_9$$3 = zephir_fetch_nproperty_this(this_ptr, SL("userInfo"), PH_NOISY_CC);
+		zephir_array_fetch_string(&_10$$3, _9$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 47 TSRMLS_CC);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 55, _10$$3);
 		zephir_check_call_status();
-		ZEPHIR_SINIT_VAR(_11);
-		ZVAL_STRING(&_11, "d.m.Y", 0);
-		ZEPHIR_RETURN_CALL_FUNCTION("date", &_4, 54, &_11, _10);
+		ZEPHIR_SINIT_VAR(_12$$3);
+		ZVAL_STRING(&_12$$3, "d.m.Y", 0);
+		ZEPHIR_RETURN_CALL_FUNCTION("date", &_5, 54, &_12$$3, _11$$3);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -129,9 +129,9 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
  */
 PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zval *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_GET, *_0 = NULL, *_1, *_2 = NULL, *_3 = NULL, *_4, *_5, *_6, *_7;
 	zend_bool result = 0;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *_GET, *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_0$$3 = NULL, *_1$$3, *_5$$3, *_2$$4, *_3$$4, *_4$$5, *_6$$6, *_7$$6, *_8$$6, *_9$$6, *_10$$6;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -140,47 +140,47 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 	if (zephir_array_isset_string(_GET, SS("code"))) {
 		ZEPHIR_INIT_VAR(params);
 		zephir_create_array(params, 5, 0 TSRMLS_CC);
-		ZEPHIR_OBS_VAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("clientId"), PH_NOISY_CC);
-		zephir_array_update_string(&params, SL("client_id"), &_0, PH_COPY | PH_SEPARATE);
-		ZEPHIR_OBS_NVAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("clientSecret"), PH_NOISY_CC);
-		zephir_array_update_string(&params, SL("client_secret"), &_0, PH_COPY | PH_SEPARATE);
-		ZEPHIR_OBS_NVAR(_0);
-		zephir_read_property_this(&_0, this_ptr, SL("redirectUri"), PH_NOISY_CC);
-		zephir_array_update_string(&params, SL("redirect_uri"), &_0, PH_COPY | PH_SEPARATE);
+		ZEPHIR_OBS_VAR(_0$$3);
+		zephir_read_property_this(&_0$$3, this_ptr, SL("clientId"), PH_NOISY_CC);
+		zephir_array_update_string(&params, SL("client_id"), &_0$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_OBS_NVAR(_0$$3);
+		zephir_read_property_this(&_0$$3, this_ptr, SL("clientSecret"), PH_NOISY_CC);
+		zephir_array_update_string(&params, SL("client_secret"), &_0$$3, PH_COPY | PH_SEPARATE);
+		ZEPHIR_OBS_NVAR(_0$$3);
+		zephir_read_property_this(&_0$$3, this_ptr, SL("redirectUri"), PH_NOISY_CC);
+		zephir_array_update_string(&params, SL("redirect_uri"), &_0$$3, PH_COPY | PH_SEPARATE);
 		add_assoc_stringl_ex(params, SS("grant_type"), SL("authorization_code"), 1);
-		ZEPHIR_OBS_NVAR(_0);
-		zephir_array_fetch_string(&_0, _GET, SL("code"), PH_NOISY, "ice/auth/social/google.zep", 71 TSRMLS_CC);
-		zephir_array_update_string(&params, SL("code"), &_0, PH_COPY | PH_SEPARATE);
-		_1 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
-		if (!(zephir_is_true(_1))) {
-			ZEPHIR_INIT_VAR(_2);
-			ZVAL_LONG(_2, 1);
-			ZEPHIR_INIT_VAR(_3);
-			ZVAL_STRING(_3, "https://accounts.google.com/o/oauth2/token", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&tokenInfo, this_ptr, "call", NULL, 0, _2, _3, params);
-			zephir_check_temp_parameter(_3);
+		ZEPHIR_OBS_NVAR(_0$$3);
+		zephir_array_fetch_string(&_0$$3, _GET, SL("code"), PH_NOISY, "ice/auth/social/google.zep", 71 TSRMLS_CC);
+		zephir_array_update_string(&params, SL("code"), &_0$$3, PH_COPY | PH_SEPARATE);
+		_1$$3 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
+		if (!(zephir_is_true(_1$$3))) {
+			ZEPHIR_INIT_VAR(_2$$4);
+			ZVAL_LONG(_2$$4, 1);
+			ZEPHIR_INIT_VAR(_3$$4);
+			ZVAL_STRING(_3$$4, "https://accounts.google.com/o/oauth2/token", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&tokenInfo, this_ptr, "call", NULL, 0, _2$$4, _3$$4, params);
+			zephir_check_temp_parameter(_3$$4);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(tokenInfo, SS("access_token"))) {
-				zephir_array_fetch_string(&_4, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 78 TSRMLS_CC);
-				zephir_update_property_this(this_ptr, SL("accessToken"), _4 TSRMLS_CC);
+				zephir_array_fetch_string(&_4$$5, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 78 TSRMLS_CC);
+				zephir_update_property_this(this_ptr, SL("accessToken"), _4$$5 TSRMLS_CC);
 			}
 		}
-		_5 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
-		if (zephir_is_true(_5)) {
-			_6 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
-			zephir_array_update_string(&params, SL("access_token"), &_6, PH_COPY | PH_SEPARATE);
-			ZEPHIR_INIT_NVAR(_2);
-			ZVAL_LONG(_2, 0);
-			ZEPHIR_INIT_NVAR(_3);
-			ZVAL_STRING(_3, "https://www.googleapis.com/oauth2/v1/userinfo", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _2, _3, params);
-			zephir_check_temp_parameter(_3);
+		_5$$3 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
+		if (zephir_is_true(_5$$3)) {
+			_6$$6 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
+			zephir_array_update_string(&params, SL("access_token"), &_6$$6, PH_COPY | PH_SEPARATE);
+			ZEPHIR_INIT_VAR(_7$$6);
+			ZVAL_LONG(_7$$6, 0);
+			ZEPHIR_INIT_VAR(_8$$6);
+			ZVAL_STRING(_8$$6, "https://www.googleapis.com/oauth2/v1/userinfo", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _7$$6, _8$$6, params);
+			zephir_check_temp_parameter(_8$$6);
 			zephir_check_call_status();
-			_7 = zephir_fetch_nproperty_this(this_ptr, SL("socialFieldsMap"), PH_NOISY_CC);
-			zephir_array_fetch_string(&_4, _7, SL("socialId"), PH_READONLY, "ice/auth/social/google.zep", 86 TSRMLS_CC);
-			if (zephir_array_isset(userInfo, _4)) {
+			_9$$6 = zephir_fetch_nproperty_this(this_ptr, SL("socialFieldsMap"), PH_NOISY_CC);
+			zephir_array_fetch_string(&_10$$6, _9$$6, SL("socialId"), PH_READONLY, "ice/auth/social/google.zep", 86 TSRMLS_CC);
+			if (zephir_array_isset(userInfo, _10$$6)) {
 				zephir_update_property_this(this_ptr, SL("userInfo"), userInfo TSRMLS_CC);
 				result = 1;
 			}

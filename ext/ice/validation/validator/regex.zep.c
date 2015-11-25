@@ -66,10 +66,10 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Regex) {
  */
 PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 
+	zend_bool failed = 0, _0, _13$$8;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool failed = 0, _0, _8;
 	zval *field = NULL;
-	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace = NULL, *pattern = NULL, *matches = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_12 = NULL;
+	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace = NULL, *pattern = NULL, *matches = NULL, *_1 = NULL, *_2 = NULL, *_3$$4, *_4$$5, *_5$$6, *_6$$8 = NULL, *_7$$8 = NULL, *_9$$8 = NULL, *_12$$8 = NULL, *_14$$8 = NULL, *_15$$8 = NULL, *_19$$8 = NULL, *_8$$9, *_10$$11, *_11$$12, *_16$$13 = NULL, *_17$$13, *_18$$13 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
@@ -102,93 +102,93 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 	ZEPHIR_CALL_METHOD(&_1, this_ptr, "has", NULL, 0, _2);
 	zephir_check_call_status();
 	if (zephir_is_true(_1)) {
-		ZEPHIR_INIT_NVAR(_2);
-		ZVAL_LONG(_2, 0);
-		ZEPHIR_CALL_METHOD(&pattern, this_ptr, "get", NULL, 0, _2);
+		ZEPHIR_INIT_VAR(_3$$4);
+		ZVAL_LONG(_3$$4, 0);
+		ZEPHIR_CALL_METHOD(&pattern, this_ptr, "get", NULL, 0, _3$$4);
 		zephir_check_call_status();
 	} else {
-		ZEPHIR_INIT_NVAR(_2);
-		ZVAL_STRING(_2, "pattern", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&pattern, this_ptr, "get", NULL, 0, _2);
-		zephir_check_temp_parameter(_2);
+		ZEPHIR_INIT_VAR(_4$$5);
+		ZVAL_STRING(_4$$5, "pattern", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&pattern, this_ptr, "get", NULL, 0, _4$$5);
+		zephir_check_temp_parameter(_4$$5);
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_NVAR(_2);
 	zephir_preg_match(_2, pattern, value, matches, 0, 0 , 0  TSRMLS_CC);
 	if (zephir_is_true(_2)) {
-		zephir_array_fetch_long(&_3, matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 63 TSRMLS_CC);
-		failed = !ZEPHIR_IS_EQUAL(_3, value);
+		zephir_array_fetch_long(&_5$$6, matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 63 TSRMLS_CC);
+		failed = !ZEPHIR_IS_EQUAL(_5$$6, value);
 	} else {
 		failed = 1;
 	}
 	if (failed) {
-		ZEPHIR_INIT_VAR(_5);
-		ZVAL_STRING(_5, "label", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_4, this_ptr, "has", NULL, 0, _5);
-		zephir_check_temp_parameter(_5);
+		ZEPHIR_INIT_VAR(_7$$8);
+		ZVAL_STRING(_7$$8, "label", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_6$$8, this_ptr, "has", NULL, 0, _7$$8);
+		zephir_check_temp_parameter(_7$$8);
 		zephir_check_call_status();
-		if (zephir_is_true(_4)) {
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_STRING(_5, "label", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&label, this_ptr, "get", NULL, 0, _5);
-			zephir_check_temp_parameter(_5);
+		if (zephir_is_true(_6$$8)) {
+			ZEPHIR_INIT_VAR(_8$$9);
+			ZVAL_STRING(_8$$9, "label", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&label, this_ptr, "get", NULL, 0, _8$$9);
+			zephir_check_temp_parameter(_8$$9);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_CALL_METHOD(&label, validation, "getlabel", NULL, 0, field);
 			zephir_check_call_status();
 		}
-		ZEPHIR_INIT_NVAR(_5);
-		ZVAL_STRING(_5, "message", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_6, this_ptr, "has", NULL, 0, _5);
-		zephir_check_temp_parameter(_5);
+		ZEPHIR_INIT_NVAR(_7$$8);
+		ZVAL_STRING(_7$$8, "message", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_9$$8, this_ptr, "has", NULL, 0, _7$$8);
+		zephir_check_temp_parameter(_7$$8);
 		zephir_check_call_status();
-		if (zephir_is_true(_6)) {
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_STRING(_5, "message", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&message, this_ptr, "get", NULL, 0, _5);
-			zephir_check_temp_parameter(_5);
+		if (zephir_is_true(_9$$8)) {
+			ZEPHIR_INIT_VAR(_10$$11);
+			ZVAL_STRING(_10$$11, "message", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&message, this_ptr, "get", NULL, 0, _10$$11);
+			zephir_check_temp_parameter(_10$$11);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_STRING(_5, "regex", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&message, validation, "getdefaultmessage", NULL, 0, _5);
-			zephir_check_temp_parameter(_5);
+			ZEPHIR_INIT_VAR(_11$$12);
+			ZVAL_STRING(_11$$12, "regex", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&message, validation, "getdefaultmessage", NULL, 0, _11$$12);
+			zephir_check_temp_parameter(_11$$12);
 			zephir_check_call_status();
 		}
-		ZEPHIR_CALL_METHOD(&_7, validation, "gettranslate", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_12$$8, validation, "gettranslate", NULL, 0);
 		zephir_check_call_status();
-		_8 = ZEPHIR_IS_TRUE_IDENTICAL(_7);
-		if (_8) {
-			ZEPHIR_CALL_METHOD(&_9, validation, "getdi", NULL, 0);
+		_13$$8 = ZEPHIR_IS_TRUE_IDENTICAL(_12$$8);
+		if (_13$$8) {
+			ZEPHIR_CALL_METHOD(&_14$$8, validation, "getdi", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_STRING(_5, "i18n", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&_10, _9, "has", NULL, 0, _5);
-			zephir_check_temp_parameter(_5);
+			ZEPHIR_INIT_NVAR(_7$$8);
+			ZVAL_STRING(_7$$8, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&_15$$8, _14$$8, "has", NULL, 0, _7$$8);
+			zephir_check_temp_parameter(_7$$8);
 			zephir_check_call_status();
-			_8 = zephir_is_true(_10);
+			_13$$8 = zephir_is_true(_15$$8);
 		}
-		if (_8) {
-			ZEPHIR_CALL_METHOD(&_11, validation, "getdi", NULL, 0);
+		if (_13$$8) {
+			ZEPHIR_CALL_METHOD(&_16$$13, validation, "getdi", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_INIT_NVAR(_5);
-			ZVAL_STRING(_5, "i18n", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&i18n, _11, "get", NULL, 0, _5);
-			zephir_check_temp_parameter(_5);
+			ZEPHIR_INIT_VAR(_17$$13);
+			ZVAL_STRING(_17$$13, "i18n", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&i18n, _16$$13, "get", NULL, 0, _17$$13);
+			zephir_check_temp_parameter(_17$$13);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_12, i18n, "translate", NULL, 0, label);
+			ZEPHIR_CALL_METHOD(&_18$$13, i18n, "translate", NULL, 0, label);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(label, _12);
-			ZEPHIR_CALL_METHOD(&_12, i18n, "translate", NULL, 0, message);
+			ZEPHIR_CPY_WRT(label, _18$$13);
+			ZEPHIR_CALL_METHOD(&_18$$13, i18n, "translate", NULL, 0, message);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(message, _12);
+			ZEPHIR_CPY_WRT(message, _18$$13);
 		}
 		ZEPHIR_INIT_VAR(replace);
 		zephir_create_array(replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_11, "strtr", NULL, 85, message, replace);
+		ZEPHIR_CALL_FUNCTION(&_19$$8, "strtr", NULL, 82, message, replace);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, field, _11);
+		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, field, _19$$8);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}

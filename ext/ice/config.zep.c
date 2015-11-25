@@ -44,12 +44,12 @@ ZEPHIR_INIT_CLASS(Ice_Config) {
  */
 PHP_METHOD(Ice_Config, __construct) {
 
+	HashTable *_1, *_4$$8;
+	HashPosition _0, _3$$8;
+	zend_bool hasNumericKey = 0;
 	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	HashTable *_1, *_4;
-	HashPosition _0, _3;
-	zend_bool hasNumericKey = 0;
-	zval *data = NULL, *key = NULL, *value = NULL, *subkey = NULL, *subvalue = NULL, **_2, **_5, *_6 = NULL;
+	zval *data = NULL, *key = NULL, *value = NULL, *subkey = NULL, *subvalue = NULL, **_2, **_5$$8, *_6$$12 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
@@ -80,13 +80,13 @@ PHP_METHOD(Ice_Config, __construct) {
 		}
 		if (Z_TYPE_P(value) == IS_ARRAY) {
 			hasNumericKey = 0;
-			zephir_is_iterable(value, &_4, &_3, 0, 0, "ice/config.zep", 47);
+			zephir_is_iterable(value, &_4$$8, &_3$$8, 0, 0, "ice/config.zep", 47);
 			for (
-			  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_4, &_3)
+			  ; zephir_hash_get_current_data_ex(_4$$8, (void**) &_5$$8, &_3$$8) == SUCCESS
+			  ; zephir_hash_move_forward_ex(_4$$8, &_3$$8)
 			) {
-				ZEPHIR_GET_HMKEY(subkey, _4, _3);
-				ZEPHIR_GET_HVALUE(subvalue, _5);
+				ZEPHIR_GET_HMKEY(subkey, _4$$8, _3$$8);
+				ZEPHIR_GET_HVALUE(subvalue, _5$$8);
 				if (Z_TYPE_P(subkey) == IS_LONG) {
 					hasNumericKey = 1;
 					break;
@@ -95,11 +95,11 @@ PHP_METHOD(Ice_Config, __construct) {
 			if (hasNumericKey) {
 				zephir_update_property_array(this_ptr, SL("data"), key, value TSRMLS_CC);
 			} else {
-				ZEPHIR_INIT_NVAR(_6);
-				object_init_ex(_6, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, _6, "__construct", &_7, 26, value);
+				ZEPHIR_INIT_NVAR(_6$$12);
+				object_init_ex(_6$$12, ice_config_ce);
+				ZEPHIR_CALL_METHOD(NULL, _6$$12, "__construct", &_7, 26, value);
 				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("data"), key, _6 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("data"), key, _6$$12 TSRMLS_CC);
 			}
 		} else {
 			zephir_update_property_array(this_ptr, SL("data"), key, value TSRMLS_CC);

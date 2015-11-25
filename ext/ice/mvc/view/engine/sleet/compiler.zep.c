@@ -54,6 +54,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
 
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "parser");
 
@@ -80,7 +81,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 	zephir_update_property_this(this_ptr, SL("view"), view TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, ice_mvc_view_engine_sleet_parser_ce);
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 132);
+	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 130);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("parser"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -121,6 +122,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString) {
 
+	
 
 	RETURN_MEMBER(this_ptr, "parsed");
 
