@@ -10,6 +10,7 @@
 /compile-errors.log
 /compile.log
 
+/ext*
 /build/PHP*/*
 !/build/PHP*/ice/
 !/build/PHP*/include/
