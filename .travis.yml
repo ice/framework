@@ -1,4 +1,5 @@
 language: php
+sudo: false
 
 php:
   - 5.4
@@ -10,8 +11,6 @@ matrix:
   allow_failures:
     - php: 7.0
 
-sudo: false
-
 before_install:
   - git config push.default simple
   - git config --global user.email "info@iceframework.org"
@@ -22,8 +21,8 @@ before_install:
 
 before_script:
   - (cd vendor/phalcon/zephir; ./unit-tests/ci/before_install.sh)
-  - (./tests/ci/install_zephir.sh)
-  - (./vendor/bin/zephir fullclean; ./vendor/bin/zephir generate)
+  - (./tests/ci/install_zephir.sh; ./vendor/bin/zephir generate)
+  - (mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
   - phpenv config-rm xdebug.ini
@@ -40,7 +39,7 @@ after_success:
   - if [[ "$TRAVIS_PHP_VERSION" = "7.0" ]]; then export ZEPHIR_TARGET="PHP7"; fi
   - (git checkout $TRAVIS_BRANCH; ./vendor/bin/zephir fullclean)
   - (mkdir -p build/$ZEPHIR_TARGET; rm -rf build/$ZEPHIR_TARGET/{*,.*})
-  - (cp -a ext/. build/$ZEPHIR_TARGET; git add -A build/$ZEPHIR_TARGET)
+  - (cp -a generated/. build/$ZEPHIR_TARGET; git add -A build/$ZEPHIR_TARGET)
   - 'git commit -m "$ZEPHIR_TARGET, $TRAVIS_COMMIT: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$ZEPHIR_TARGET" != "legacy" ]]; then git fetch && git rebase --autostash FETCH_HEAD && git push; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then git log -1 -p; fi
