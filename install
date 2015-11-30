@@ -1,5 +1,11 @@
 #!/bin/bash
 
-cd ext
+PHP7=`php -r "echo version_compare(PHP_VERSION, '7.0.0', '>=');"`
+
+if [[ "$PHP7" ]]; then
+    cd build/PHP7
+else
+    cd build/PHP5
+fi
 
 sudo ./install

@@ -10,20 +10,21 @@
 /compile-errors.log
 /compile.log
 
-/ext/*
-!/ext/ice/
-!/ext/include/
-!/ext/kernel/
-!/ext/clean
-!/ext/config.m4
-!/ext/config.w32
-!/ext/ext.h
-!/ext/ext_config.h
-!/ext/ice.c
-!/ext/ice.h
-!/ext/install*
-!/ext/php_ext.h
-!/ext/php_ice.h
+/ext*
+/build/PHP*/*
+!/build/PHP*/ice/
+!/build/PHP*/include/
+!/build/PHP*/kernel/
+!/build/PHP*/clean
+!/build/PHP*/config.m4
+!/build/PHP*/config.w32
+!/build/PHP*/ext.h
+!/build/PHP*/ext_config.h
+!/build/PHP*/ice.c
+!/build/PHP*/ice.h
+!/build/PHP*/install*
+!/build/PHP*/php_ext.h
+!/build/PHP*/php_ice.h
 
 *.o
 *.lo
