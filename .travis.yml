@@ -13,10 +13,14 @@ matrix:
 sudo: false
 
 before_install:
+  - git config push.default simple
+  - git config --global user.email "info@iceframework.org"
+  - git config --global user.name "Ice"
+  - git submodule --quiet update --init --recursive
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin https://${GH_TOKEN}@github.com/ice/framework.git; fi
   - composer install --prefer-source --no-scripts
 
 before_script:
-  - git submodule --quiet update --init --recursive
   - (cd vendor/phalcon/zephir; ./unit-tests/ci/before_install.sh)
   - (./tests/ci/install_zephir.sh)
   - (./vendor/bin/zephir fullclean; ./vendor/bin/zephir generate)
@@ -30,6 +34,17 @@ script:
 after_failure:
   - gdb -quiet -command=tests/ci/gdb --args $(phpenv which php) vendor/bin/phpunit --debug --colors --configuration tests/phpunit.xml --testsuite=all
 
+after_success:
+  - export ZEPHIR_TARGET="legacy"
+  - if [[ "$TRAVIS_PHP_VERSION" = "5.6" ]]; then export ZEPHIR_TARGET="PHP5"; fi
+  - if [[ "$TRAVIS_PHP_VERSION" = "7.0" ]]; then export ZEPHIR_TARGET="PHP7"; fi
+  - (git checkout $TRAVIS_BRANCH; ./vendor/bin/zephir fullclean)
+  - (mkdir -p build/$ZEPHIR_TARGET; rm -rf build/$ZEPHIR_TARGET/{*,.*})
+  - (cp -a ext/. build/$ZEPHIR_TARGET; git add -A build/$ZEPHIR_TARGET)
+  - 'git commit -m "$ZEPHIR_TARGET, $TRAVIS_COMMIT: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$ZEPHIR_TARGET" != "legacy" ]]; then git fetch && git rebase --autostash FETCH_HEAD && git push; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then git log -1 -p; fi
+
 notifications:
   email:
     - info@iceframework.org
@@ -39,3 +54,7 @@ addons:
     packages:
       - gdb
       - re2c
+
+env:
+  global:
+    secure: HqC3S4kkKoTKd55ETK74hs+hr5n/5u2ZVinvqi8Hd+2lNhdu2tJ6TKvk4oo1kZJ+pgIpQe6SFu07rLXd7Cbi8ekrjib4XH2eRVV81lK70kfIHwWtefyQhWVZSXxOO/jRDBGGyZb9lxW5ujgS4B77TJpAEmIYJt+Ceb/sldj2U2Q=
