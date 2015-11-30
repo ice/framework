@@ -12,11 +12,12 @@ matrix:
     - php: 7.0
 
 before_install:
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
   - git config push.default simple
   - git config --global user.email "info@iceframework.org"
   - git config --global user.name "Ice"
   - git submodule --quiet update --init --recursive
-  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin https://${GH_TOKEN}@github.com/ice/framework.git; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin git@github.com:ice/framework.git; fi
   - composer install --prefer-source --no-scripts
 
 before_script:
@@ -53,7 +54,3 @@ addons:
     packages:
       - gdb
       - re2c
-
-env:
-  global:
-    secure: HqC3S4kkKoTKd55ETK74hs+hr5n/5u2ZVinvqi8Hd+2lNhdu2tJ6TKvk4oo1kZJ+pgIpQe6SFu07rLXd7Cbi8ekrjib4XH2eRVV81lK70kfIHwWtefyQhWVZSXxOO/jRDBGGyZb9lxW5ujgS4B77TJpAEmIYJt+Ceb/sldj2U2Q=
