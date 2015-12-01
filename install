@@ -8,4 +8,4 @@ else
     cd build/PHP5
 fi
 
-sudo ./install
+source ./install
