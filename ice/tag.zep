@@ -752,7 +752,7 @@ class Tag
      */
     public function prepareTag(string! name, array! attributes, array skip = [], boolean single = false) -> string
     {
-        var order, keys, attrs, code, tmp, value, key;
+        var order, keys, attrs, code, type, tmp, value, key;
 
         let order = ["rel", "type", "for", "src", "href", "action", "id", "name", "value", "class", "style"],
             keys = array_intersect_key(array_flip(order), attributes),
@@ -761,13 +761,20 @@ class Tag
 
         if fetch tmp, attrs["name"] {
             if this->hasValue(tmp) {
-                let attrs["value"] = this->getValue(tmp);
+                // Set the value from values property or _post
+                fetch type, attrs["type"];
 
-                if fetch tmp, attrs["type"] {
-                    // Automatically check inputs
-                    if attrs["value"] && (tmp == "checkbox" || tmp == "radio") {
-                        let attrs["checked"] = "checked";
-                    }
+                switch type {
+                    case "radio":
+                    case "checkbox":
+                        // Don't overwrite values for radio/checkbox
+                        if isset attrs["value"] && attrs["value"] == this->getValue(tmp) {
+                            let attrs["checked"] = "checked";
+                        }
+                    break;
+                    default:
+                        let attrs["value"] = this->getValue(tmp);
+                    break;
                 }
             }
         }
