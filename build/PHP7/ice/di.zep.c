@@ -187,7 +187,7 @@ PHP_METHOD(Ice_Di, resolve) {
 		if (Z_TYPE_P(service) == IS_OBJECT) {
 			if (zephir_instance_of_ev(service, zend_ce_closure TSRMLS_CC)) {
 				ZEPHIR_INIT_VAR(&_1$$7);
-				ZEPHIR_CALL_USER_FUNC(_1$$7, service);
+				ZEPHIR_CALL_USER_FUNC(&_1$$7, service);
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(service, &_1$$7);
 			}
@@ -415,7 +415,7 @@ PHP_METHOD(Ice_Di, applyHook) {
 					ZEPHIR_INIT_NVAR(&callback);
 					ZVAL_COPY(&callback, _8$$6);
 					ZEPHIR_INIT_NVAR(&_9$$7);
-					ZEPHIR_CALL_USER_FUNC_ARRAY(_9$$7, &callback, &args);
+					ZEPHIR_CALL_USER_FUNC_ARRAY(&_9$$7, &callback, &args);
 					zephir_check_call_status();
 				} ZEND_HASH_FOREACH_END();
 				ZEPHIR_INIT_NVAR(&callback);

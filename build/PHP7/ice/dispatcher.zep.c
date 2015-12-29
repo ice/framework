@@ -1093,7 +1093,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		zephir_create_array(&_67$$3, 2, 0 TSRMLS_CC);
 		zephir_array_fast_append(&_67$$3, &handler);
 		zephir_array_fast_append(&_67$$3, &actionMethod);
-		ZEPHIR_CALL_USER_FUNC_ARRAY(_66$$3, &_67$$3, &params);
+		ZEPHIR_CALL_USER_FUNC_ARRAY(&_66$$3, &_67$$3, &params);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("returnedValue"), &_66$$3);
 		zephir_read_property(&_62$$3, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);

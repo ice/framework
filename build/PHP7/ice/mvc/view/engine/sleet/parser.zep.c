@@ -989,7 +989,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 	if (Z_TYPE_P(token) == IS_ARRAY) {
 		zephir_array_fetch_long(&_0$$3, token, 0, PH_NOISY | PH_READONLY, "ice/mvc/view/engine/sleet/parser.zep", 338 TSRMLS_CC);
 		do {
-			if (ZEPHIR_IS_LONG(&_0$$3, 338) || ZEPHIR_IS_LONG(&_0$$3, 289) || ZEPHIR_IS_LONG(&_0$$3, 288) || ZEPHIR_IS_LONG(&_0$$3, 287) || ZEPHIR_IS_LONG(&_0$$3, 286) || ZEPHIR_IS_LONG(&_0$$3, 291) || ZEPHIR_IS_LONG(&_0$$3, 290)) {
+			if (ZEPHIR_IS_LONG(&_0$$3, 338) || ZEPHIR_IS_LONG(&_0$$3, 285) || ZEPHIR_IS_LONG(&_0$$3, 286) || ZEPHIR_IS_LONG(&_0$$3, 287) || ZEPHIR_IS_LONG(&_0$$3, 288) || ZEPHIR_IS_LONG(&_0$$3, 290) || ZEPHIR_IS_LONG(&_0$$3, 291)) {
 				zephir_array_fetch_long(&_1$$4, token, 1, PH_NOISY | PH_READONLY, "ice/mvc/view/engine/sleet/parser.zep", 346 TSRMLS_CC);
 				ZEPHIR_CONCAT_SVS(return_value, " ", &_1$$4, " ");
 				RETURN_MM();

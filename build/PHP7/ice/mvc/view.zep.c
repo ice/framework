@@ -412,7 +412,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				ZEPHIR_INIT_NVAR(&_8$$6);
 				zephir_create_array(&_8$$6, 1, 0 TSRMLS_CC);
 				zephir_array_fast_append(&_8$$6, this_ptr);
-				ZEPHIR_CALL_USER_FUNC_ARRAY(_7$$6, &engine, &_8$$6);
+				ZEPHIR_CALL_USER_FUNC_ARRAY(&_7$$6, &engine, &_8$$6);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("engines"), &ext, &_7$$6 TSRMLS_CC);
 			}

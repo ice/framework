@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 			ZEPHIR_INIT_VAR(&_11$$8);
 			ZEPHIR_INIT_VAR(&_12$$8);
 			ZVAL_STRING(&_12$$8, "sprintf");
-			ZEPHIR_CALL_USER_FUNC_ARRAY(_11$$8, &_12$$8, message);
+			ZEPHIR_CALL_USER_FUNC_ARRAY(&_11$$8, &_12$$8, message);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(message, &_11$$8);
 		}
