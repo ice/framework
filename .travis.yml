@@ -21,9 +21,8 @@ before_install:
   - composer install --prefer-source --no-scripts
 
 before_script:
-  - (cd vendor/phalcon/zephir; ./unit-tests/ci/before_install.sh)
-  - (./tests/ci/install_zephir.sh; ./vendor/bin/zephir generate)
-  - (mkdir generated; cp -a ext/. generated)
+  - ./vendor/phalcon/zephir/install
+  - (./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
   - phpenv config-rm xdebug.ini

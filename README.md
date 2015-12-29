@@ -74,10 +74,6 @@ composer update
 mkdir vendor/phalcon/ && cd $_
 git clone https://github.com/phalcon/zephir.git
 
-# Compile json-c:
-cd zephir/
-./install-json
-
 # Install zephir
 ./install
 
@@ -103,7 +99,6 @@ You can build from C-files or build by zephir
 * php development headers and tools
 
 ##### To compile zephir-parser
-* json-c (from GitHub)
 * re2c
 
 Ubuntu:
