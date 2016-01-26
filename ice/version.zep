@@ -21,8 +21,8 @@ class Version
     const STABLE = 4;
     // Don't forget to update config.json and run zephir fullclean
     const MAJOR = 1;
-    const MINOR = 0;
-    const PATCH = 37;
+    const MINOR = 1;
+    const PATCH = 0;
     const STAGE = self::STABLE;
     const BUILD = 1;
 

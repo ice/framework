@@ -28,7 +28,7 @@ class App extends Access
     public function __construct(<Di> di = null)
     {
         // Set the dependency injector
-        parent::__construct(di);
+        let this->di = di;
 
         // Register the app itself as a service
         this->di->set("app", this);
@@ -45,7 +45,7 @@ class App extends Access
     {
         var argv, router, request, response, dispatcher, returned, controller, view;
 
-        let request = this->di->get("request", null, true);
+        let request = this->di->get("request");
         if method == null {
             let method = request->getMethod();
         }
@@ -64,9 +64,9 @@ class App extends Access
             }
         }
 
-        let router = this->di->get("router", null, true),
+        let router = this->di->get("router"),
             response = router->handle(method, uri),
-            dispatcher = this->di->get("dispatcher", null, true);
+            dispatcher = this->di->get("dispatcher");
 
         this->di->applyHook("app.after.router.handle", [response]);
 
@@ -89,7 +89,7 @@ class App extends Access
 
             if !(typeof response == "object" && (response instanceof ResponseInterface)) {
                 let controller = response,
-                    response = this->di->get("response", null, true),
+                    response = this->di->get("response"),
                     view = controller->view;
 
                 // Load views and set the response body if auto render

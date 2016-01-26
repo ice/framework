@@ -26,31 +26,30 @@ class Text
      * @param int length
      * @return string
      */
-    static public function random(int type = 0, long length = 8) -> string
+    public function random(int type = 0, long length = 8) -> string
     {
         var pool, str = "";
         int end;
 
         switch type {
-
-            case Text::ALPHA:
+            case self::ALPHA:
                 let pool = array_merge(range("a", "z"), range("A", "Z"));
                 break;
 
-            case Text::HEXDEC:
+            case self::HEXDEC:
                 let pool = array_merge(range(0, 9), range("a", "f"));
                 break;
 
-            case Text::NUMERIC:
+            case self::NUMERIC:
                 let pool = range(0, 9);
                 break;
 
-            case Text::NOZERO:
+            case self::NOZERO:
                 let pool = range(1, 9);
                 break;
 
             default:
-                // Text::ALNUM
+                // self::ALNUM
                 let pool = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
                 break;
         }

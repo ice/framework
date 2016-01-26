@@ -30,7 +30,7 @@ class Pagination extends Arr
 
         let di = Di::$fetch(),
             this->di = di,
-            this->tag = di->get("tag", null, true);
+            this->tag = di->get("tag");
     }
 
     /**
@@ -130,7 +130,7 @@ class Pagination extends Arr
             return "<li class=\"" . (pages ? "active" : "disabled") . "\"><span>" . symbol . "</span></li>";
         }
 
-        let query = this->di->get("request", null, true)->getQuery(),
+        let query = this->di->get("request")->getQuery(),
             i18n = this->di->get("i18n");
 
         if pages {

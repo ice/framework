@@ -28,7 +28,7 @@ class Tokens extends Model
     {
         var auth;
 
-        let auth = this->getDi()->get("auth", null, true);
+        let auth = this->getDi()->get("auth");
 
         this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
             "alias": "User",
@@ -103,7 +103,7 @@ class Tokens extends Model
         var token;
 
         do {
-            let token = sha1(uniqid(Text::random(Text::ALNUM, 32), true));
+            let token = sha1(uniqid(this->getDi()->get("text")->random(Text::ALNUM, 32), true));
         } while Tokens::findOne(["token": token]);
 
         return token;

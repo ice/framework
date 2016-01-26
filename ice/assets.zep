@@ -93,7 +93,7 @@ class Assets
 
         var content, local, tag;
 
-        let tag = this->di->get("tag", null, true);
+        let tag = this->di->get("tag");
 
         if !fetch content, parameters["content"] {
             fetch content, parameters[0];
@@ -137,7 +137,7 @@ class Assets
     {
         var content, local, tag;
 
-        let tag = this->di->get("tag", null, true);
+        let tag = this->di->get("tag");
 
         if !fetch content, parameters["content"] {
             fetch content, parameters[0];
@@ -178,7 +178,7 @@ class Assets
      */
     protected function minify(string! content, type)
     {
-        return this->di->get("filter", null, true)->sanitize(content, type . "min");
+        return this->di->get("filter")->sanitize(content, type . "min");
     }
 
     /**

@@ -14,18 +14,7 @@ use Ice\Di\Access;
  * @copyright   (c) 2014-2015 Ice Team
  * @license     http://iceframework.org/license
  */
- class Task extends Access
- {
+class Task extends Access
+{
 
-    /**
-     * Task constructor. Run onConstruct() if method exist.
-     */
-    public final function __construct()
-    {
-        parent::__construct();
-
-        if method_exists(this, "onConstruct") {
-            this->{"onConstruct"}();
-        }
-    }
 }

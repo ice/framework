@@ -26,8 +26,8 @@ abstract class Engine extends Access implements EngineInterface
      */
     public function __construct(<ViewInterface> view, <Di> di = null)
     {
-        let this->view = view;
-        parent::__construct(di);
+        let this->view = view,
+            this->di = di;
     }
 
     /**

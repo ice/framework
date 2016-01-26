@@ -33,7 +33,7 @@ class Router
 
     protected ready = false;
     protected silent = false { set };
-    protected options = [] { get, set };
+    protected options = [] { get };
     protected routes { get, set };
     protected collector { get, set };
     protected dispatcher { get, set };
@@ -70,6 +70,19 @@ class Router
         if fetch action, defaults["action"] {
             let this->defaultAction = action;
         }
+    }
+
+    /**
+     * Set options.
+     *
+     * @param array options
+     * @return object this
+     */
+    public function setOptions(array! options)
+    {
+        let this->options = options;
+
+        return this;
     }
 
     /**
@@ -158,7 +171,7 @@ class Router
             case self::NOT_FOUND:
                 if this->silent {
                     // 404 Not Found
-                    let response = this->di->get("response", null, true);
+                    let response = this->di->get("response");
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
 
@@ -168,7 +181,7 @@ class Router
             case self::METHOD_NOT_ALLOWED:
                 if this->silent {
                     // 405 Method Not Allowed
-                    let response = this->di->get("response", null, true);
+                    let response = this->di->get("response");
                     response->setStatus(405);
                     response->setBody(response->getMessage(405));
 

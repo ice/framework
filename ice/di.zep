@@ -1,6 +1,9 @@
 
 namespace Ice;
 
+use ReflectionClass;
+use ReflectionParameter;
+
 /**
  * Component that implements Dependency Injection and a container for the services.
  *
@@ -15,6 +18,7 @@ class Di extends Arr
 
     protected static di;
     protected hooks = [];
+    protected defaults = [] { set };
 
     /**
      * Di constructor. Sets root path.
@@ -39,6 +43,25 @@ class Di extends Arr
     }
 
     /**
+     * Resolves the service based on its configuration.
+     *
+     * @param string key Service name
+     * @param mixed parameters Definition
+     */
+    public function get(string key, var parameters = null)
+    {
+        var predefined;
+
+        if this->has(key) {
+            return parent::get(key, parameters);
+        } else {
+            fetch predefined, this->getDefaults()[key];
+
+            return this->set(key, predefined ? predefined : parameters);
+        }
+    }
+
+    /**
      * Registers a service in the services container.
      *
      * @param string key Service name
@@ -47,8 +70,37 @@ class Di extends Arr
     public function set(string key, var value)
     {
         var service;
+
         let service = this->resolve(value),
             this->data[key] = service;
+
+        return service;
+    }
+
+    /**
+     * Get default services.
+     *
+     * @return array
+     */
+    public function getDefaults()
+    {
+        return array_merge([
+            "cookies": "Ice\\Cookies",
+            "crypt": "Ice\\Crypt",
+            "dispatcher": "Ice\\Mvc\\Dispatcher",
+            "dump": "Ice\\Dump",
+            "filter": "Ice\\Filter",
+            "flash": "Ice\\Flash",
+            "loader": "Ice\\Loader",
+            "request": "Ice\\Http\\Request",
+            "response": "Ice\\Http\\Response",
+            "router": "Ice\\Mvc\\Router",
+            "session": "Ice\\Session",
+            "tag": "Ice\\Tag",
+            "text": "Ice\\Text",
+            "url": "Ice\\Url",
+            "view": "Ice\\Mvc\\View"
+        ], this->defaults);
     }
 
     /**
@@ -63,7 +115,7 @@ class Di extends Arr
 
         if typeof service == "string" {
             if class_exists(service) {
-                let service = create_instance(service);
+                let service = this->build(service);
             }
         } else {
             if typeof service == "object" {
@@ -71,14 +123,10 @@ class Di extends Arr
                     let service = call_user_func(service);
                 }
             } else {
-                // Array definitions store class name at firest parameter
+                // Array definitions store class name at first parameter
                 if typeof service == "array" {
-                    fetch params, service[1];
-                    if typeof params == "array" {
-                        let service = create_instance_params(service[0], params);
-                    } else {
-                        let service = create_instance(service[0]);
-                    }
+                    let params = current(service),
+                        service = this->build(key(service), params == "array" ? params : [params]);
                 }
             }
         }
@@ -88,6 +136,110 @@ class Di extends Arr
         }
 
         return service;
+    }
+
+    /**
+     * Build an instance of the given class.
+     * 
+     * @param string service
+     * @return mixed
+     */
+    public function build(var service, var parameters = [])
+    {
+        var reflector, constructor, dependencies;
+
+        if typeof service == "object" {
+            if service instanceof \Closure {
+                return call_user_func_array(service, parameters);
+            }
+        }
+
+        let reflector = new ReflectionClass(service);
+
+        if !reflector->isInstantiable() {
+            throw new Exception(["Service '%s' is not instantiable", service]);
+        }
+        
+        let constructor = reflector->getConstructor();
+        
+        if is_null(constructor) {
+            return new {service}();
+        }
+
+        let dependencies = constructor->getParameters(),
+            parameters = this->getParameters(dependencies, parameters),
+            dependencies = this->getDependencies(dependencies, parameters);
+
+        return reflector->newInstanceArgs(dependencies);
+    }
+    
+    /**
+     * If extra parameters are passed by numeric ID, rekey them by argument name.
+     *
+     * @param array dependencies
+     * @param array parameters
+     * @return array
+     */
+    protected function getParameters(array dependencies, array parameters)
+    {
+        var key, value, dependency;
+
+        for key, value in parameters {
+            if is_numeric(key) {
+                unset parameters[key];
+
+                let dependency = dependencies[key],
+                    parameters[dependency->name] = value;
+            }
+        }
+
+        return parameters;
+    }
+
+    /**
+     * Build up a list of dependencies for a given methods parameters.
+     *
+     * @param array parameters
+     * @return array
+     */
+    public function getDependencies(array parameters, array primitives = [])
+    {
+        var dependencies, parameter, dependency;
+
+        let dependencies = [];
+        
+        for parameter in parameters {
+            let dependency = parameter->getClass();
+            
+            if array_key_exists(parameter->name, primitives) {
+                let dependencies[] = primitives[parameter->name];
+            } elseif is_null(dependency) {
+                if !parameter->isOptional() {
+                    let dependencies[] = this->resolveNonClass(parameter);
+                }
+            } else {
+                let dependencies[] = this->build(dependency->name);
+            }
+        }
+        
+        return dependencies;
+    }
+    
+    /**
+     * Determine what to do with a non-class value.
+     *
+     * @param ReflectionParameter parameter
+     * @return mixed
+     *
+     * @throws Exception
+     */
+    public function resolveNonClass(<ReflectionParameter> parameter)
+    {
+        if parameter->isDefaultValueAvailable() {
+            return parameter->getDefaultValue();
+        }
+        
+        throw new Exception(["Unresolvable dependency resolving '%s' in class '%s'", parameter, parameter->getDeclaringClass()->getName()]);
     }
 
     /**
@@ -128,6 +280,7 @@ class Di extends Arr
             let this->hooks[name][priority][] = callback;
         }
     }
+
     /**
      * Invoke hook.
      *
@@ -157,6 +310,7 @@ class Di extends Arr
             }
         }
     }
+
     /**
      * Get hook listeners.
      * Return an array of registered hooks. If `$name` is a valid hook name, only the listeners attached to that hook
@@ -174,6 +328,7 @@ class Di extends Arr
             return this->hooks;
         }
     }
+
     /**
      * Clear hook listeners.
      * Clear all listeners for all hooks. If `$name` is a valid hook name, only the listeners attached to that hook
@@ -203,26 +358,18 @@ class Di extends Arr
      */
     public function __call(string! method, arguments = null)
     {
-        var service, value;
+        var value;
 
         // If the magic method starts with "get" we try to get a service with that name
         if starts_with(method, "get") {
-        //if strpos(method, "get") !== false {
-            let service = lcfirst(substr(method, 3));
-
-            if this->has(service) {
-                fetch value, arguments[0];
-                return this->get(service, value);
-            } else {
-                throw new Exception(sprintf("The '%s' service is required", service));
-            }
+            fetch value, arguments[0];
+            return this->get(lcfirst(substr(method, 3)), value);
         }
 
         // If the magic method starts with "set" we try to set a service using that name
         if starts_with(method, "set") {
             fetch value, arguments[0];
-            this->set(lcfirst(substr(method, 3)), value);
-            return null;
+            return this->set(lcfirst(substr(method, 3)), value);
         }
 
         // The method doesn't start with set/get throw an exception

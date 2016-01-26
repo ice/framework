@@ -19,18 +19,6 @@ abstract class Service extends Access
     private model { set, get };
 
     /**
-     * Controller constructor. Run onConstruct() if method exist.
-     */
-    public final function __construct()
-    {
-        parent::__construct();
-
-        if method_exists(this, "onConstruct") {
-            this->{"onConstruct"}();
-        }
-    }
-
-    /**
      * Magic method to call model's method.
      *
      * @param string method
