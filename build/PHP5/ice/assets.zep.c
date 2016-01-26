@@ -97,7 +97,7 @@ PHP_METHOD(Ice_Assets, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -202,11 +202,11 @@ PHP_METHOD(Ice_Assets, add) {
  */
 PHP_METHOD(Ice_Assets, addCss) {
 
-	zend_bool _6;
+	zend_bool _4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *version = NULL, *_14$$8;
-	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2, *_3, *_4$$5, *_5$$5, *_7$$7 = NULL, *_9$$7 = NULL, *_10$$7, *_11$$8 = NULL, *_12$$8, *_13$$8 = NULL, *_15$$8, *_16$$8 = NULL;
-	zval *parameters = NULL, *_8$$7;
+	zval *version = NULL, *_12$$8;
+	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_9$$8 = NULL, *_10$$8, *_11$$8 = NULL, *_13$$8, *_14$$8 = NULL;
+	zval *parameters = NULL, *_6$$7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
@@ -228,11 +228,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "tag", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_NULL(_2);
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_BOOL(_3, 1);
-	ZEPHIR_CALL_METHOD(&tag, _0, "get", NULL, 0, _1, _2, _3);
+	ZEPHIR_CALL_METHOD(&tag, _0, "get", NULL, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(content);
@@ -246,60 +242,60 @@ PHP_METHOD(Ice_Assets, addCss) {
 		ZVAL_BOOL(local, 1);
 	}
 	if (Z_TYPE_P(minify) == IS_NULL) {
-		ZEPHIR_INIT_VAR(_4$$5);
-		ZVAL_STRING(_4$$5, "minify", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_INIT_VAR(_5$$5);
-		ZVAL_LONG(_5$$5, 0);
-		ZEPHIR_CALL_METHOD(&minify, this_ptr, "getoption", NULL, 0, _4$$5, _5$$5);
-		zephir_check_temp_parameter(_4$$5);
+		ZEPHIR_INIT_VAR(_2$$5);
+		ZVAL_STRING(_2$$5, "minify", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_VAR(_3$$5);
+		ZVAL_LONG(_3$$5, 0);
+		ZEPHIR_CALL_METHOD(&minify, this_ptr, "getoption", NULL, 0, _2$$5, _3$$5);
+		zephir_check_temp_parameter(_2$$5);
 		zephir_check_call_status();
 	}
-	_6 = !zephir_is_true(local);
-	if (!(_6)) {
-		_6 = zephir_end_with_str(content, SL(".min.css"));
+	_4 = !zephir_is_true(local);
+	if (!(_4)) {
+		_4 = zephir_end_with_str(content, SL(".min.css"));
 	}
-	if (_6) {
+	if (_4) {
 		ZEPHIR_INIT_NVAR(minify);
 		ZVAL_LONG(minify, 0);
 	}
 	if (zephir_array_isset_string(parameters, SS("content"))) {
-		ZEPHIR_INIT_VAR(_8$$7);
-		zephir_create_array(_8$$7, 1, 0 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_9$$7);
+		ZEPHIR_INIT_VAR(_6$$7);
+		zephir_create_array(_6$$7, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_7$$7);
 		if (zephir_is_true(minify)) {
-			ZEPHIR_INIT_VAR(_10$$7);
-			ZVAL_STRING(_10$$7, "css", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&_9$$7, this_ptr, "minify", NULL, 0, content, _10$$7);
-			zephir_check_temp_parameter(_10$$7);
+			ZEPHIR_INIT_VAR(_8$$7);
+			ZVAL_STRING(_8$$7, "css", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&_7$$7, this_ptr, "minify", NULL, 0, content, _8$$7);
+			zephir_check_temp_parameter(_8$$7);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_CPY_WRT(_9$$7, content);
+			ZEPHIR_CPY_WRT(_7$$7, content);
 		}
-		zephir_array_update_string(&_8$$7, SL("content"), &_9$$7, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_7$$7, tag, "style", NULL, 0, _8$$7);
+		zephir_array_update_string(&_6$$7, SL("content"), &_7$$7, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_5$$7, tag, "style", NULL, 0, _6$$7);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("css"), _7$$7 TSRMLS_CC);
+		zephir_update_property_array_append(this_ptr, SL("css"), _5$$7 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_VAR(_12$$8);
-		ZVAL_STRING(_12$$8, "css", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_11$$8, this_ptr, "prepare", NULL, 0, content, _12$$8, minify);
-		zephir_check_temp_parameter(_12$$8);
+		ZEPHIR_INIT_VAR(_10$$8);
+		ZVAL_STRING(_10$$8, "css", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_9$$8, this_ptr, "prepare", NULL, 0, content, _10$$8, minify);
+		zephir_check_temp_parameter(_10$$8);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(_13$$8);
+		ZEPHIR_INIT_VAR(_11$$8);
 		if (!(!version) && Z_STRLEN_P(version)) {
-			ZEPHIR_INIT_VAR(_14$$8);
-			ZEPHIR_CONCAT_SV(_14$$8, "?v=", version);
-			ZEPHIR_CPY_WRT(_13$$8, _14$$8);
+			ZEPHIR_INIT_VAR(_12$$8);
+			ZEPHIR_CONCAT_SV(_12$$8, "?v=", version);
+			ZEPHIR_CPY_WRT(_11$$8, _12$$8);
 		} else {
-			ZEPHIR_INIT_NVAR(_13$$8);
-			ZVAL_STRING(_13$$8, "", 1);
+			ZEPHIR_INIT_NVAR(_11$$8);
+			ZVAL_STRING(_11$$8, "", 1);
 		}
-		ZEPHIR_INIT_VAR(_15$$8);
-		ZEPHIR_CONCAT_VV(_15$$8, _11$$8, _13$$8);
-		zephir_array_update_string(&parameters, SL("href"), &_15$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_16$$8, tag, "link", NULL, 0, parameters);
+		ZEPHIR_INIT_VAR(_13$$8);
+		ZEPHIR_CONCAT_VV(_13$$8, _9$$8, _11$$8);
+		zephir_array_update_string(&parameters, SL("href"), &_13$$8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_14$$8, tag, "link", NULL, 0, parameters);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("css"), _16$$8 TSRMLS_CC);
+		zephir_update_property_array_append(this_ptr, SL("css"), _14$$8 TSRMLS_CC);
 	}
 	RETURN_THIS();
 
@@ -315,11 +311,11 @@ PHP_METHOD(Ice_Assets, addCss) {
  */
 PHP_METHOD(Ice_Assets, addJs) {
 
-	zend_bool _6;
+	zend_bool _4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *version = NULL, *_14$$8;
-	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2, *_3, *_4$$5, *_5$$5, *_7$$7 = NULL, *_9$$7 = NULL, *_10$$7, *_11$$8 = NULL, *_12$$8, *_13$$8 = NULL, *_15$$8, *_16$$8 = NULL;
-	zval *parameters = NULL, *_8$$7;
+	zval *version = NULL, *_12$$8;
+	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_9$$8 = NULL, *_10$$8, *_11$$8 = NULL, *_13$$8, *_14$$8 = NULL;
+	zval *parameters = NULL, *_6$$7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
@@ -341,11 +337,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "tag", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_2);
-	ZVAL_NULL(_2);
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_BOOL(_3, 1);
-	ZEPHIR_CALL_METHOD(&tag, _0, "get", NULL, 0, _1, _2, _3);
+	ZEPHIR_CALL_METHOD(&tag, _0, "get", NULL, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(content);
@@ -359,60 +351,60 @@ PHP_METHOD(Ice_Assets, addJs) {
 		ZVAL_BOOL(local, 1);
 	}
 	if (Z_TYPE_P(minify) == IS_NULL) {
-		ZEPHIR_INIT_VAR(_4$$5);
-		ZVAL_STRING(_4$$5, "minify", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_INIT_VAR(_5$$5);
-		ZVAL_LONG(_5$$5, 0);
-		ZEPHIR_CALL_METHOD(&minify, this_ptr, "getoption", NULL, 0, _4$$5, _5$$5);
-		zephir_check_temp_parameter(_4$$5);
+		ZEPHIR_INIT_VAR(_2$$5);
+		ZVAL_STRING(_2$$5, "minify", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_VAR(_3$$5);
+		ZVAL_LONG(_3$$5, 0);
+		ZEPHIR_CALL_METHOD(&minify, this_ptr, "getoption", NULL, 0, _2$$5, _3$$5);
+		zephir_check_temp_parameter(_2$$5);
 		zephir_check_call_status();
 	}
-	_6 = !zephir_is_true(local);
-	if (!(_6)) {
-		_6 = zephir_end_with_str(content, SL(".min.js"));
+	_4 = !zephir_is_true(local);
+	if (!(_4)) {
+		_4 = zephir_end_with_str(content, SL(".min.js"));
 	}
-	if (_6) {
+	if (_4) {
 		ZEPHIR_INIT_NVAR(minify);
 		ZVAL_LONG(minify, 0);
 	}
 	if (zephir_array_isset_string(parameters, SS("content"))) {
-		ZEPHIR_INIT_VAR(_8$$7);
-		zephir_create_array(_8$$7, 1, 0 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_9$$7);
+		ZEPHIR_INIT_VAR(_6$$7);
+		zephir_create_array(_6$$7, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_7$$7);
 		if (zephir_is_true(minify)) {
-			ZEPHIR_INIT_VAR(_10$$7);
-			ZVAL_STRING(_10$$7, "js", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&_9$$7, this_ptr, "minify", NULL, 0, content, _10$$7);
-			zephir_check_temp_parameter(_10$$7);
+			ZEPHIR_INIT_VAR(_8$$7);
+			ZVAL_STRING(_8$$7, "js", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&_7$$7, this_ptr, "minify", NULL, 0, content, _8$$7);
+			zephir_check_temp_parameter(_8$$7);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_CPY_WRT(_9$$7, content);
+			ZEPHIR_CPY_WRT(_7$$7, content);
 		}
-		zephir_array_update_string(&_8$$7, SL("content"), &_9$$7, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_7$$7, tag, "script", NULL, 0, _8$$7);
+		zephir_array_update_string(&_6$$7, SL("content"), &_7$$7, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_5$$7, tag, "script", NULL, 0, _6$$7);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("js"), _7$$7 TSRMLS_CC);
+		zephir_update_property_array_append(this_ptr, SL("js"), _5$$7 TSRMLS_CC);
 	} else {
-		ZEPHIR_INIT_VAR(_12$$8);
-		ZVAL_STRING(_12$$8, "js", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_11$$8, this_ptr, "prepare", NULL, 0, content, _12$$8, minify);
-		zephir_check_temp_parameter(_12$$8);
+		ZEPHIR_INIT_VAR(_10$$8);
+		ZVAL_STRING(_10$$8, "js", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_9$$8, this_ptr, "prepare", NULL, 0, content, _10$$8, minify);
+		zephir_check_temp_parameter(_10$$8);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(_13$$8);
+		ZEPHIR_INIT_VAR(_11$$8);
 		if (!(!version) && Z_STRLEN_P(version)) {
-			ZEPHIR_INIT_VAR(_14$$8);
-			ZEPHIR_CONCAT_SV(_14$$8, "?v=", version);
-			ZEPHIR_CPY_WRT(_13$$8, _14$$8);
+			ZEPHIR_INIT_VAR(_12$$8);
+			ZEPHIR_CONCAT_SV(_12$$8, "?v=", version);
+			ZEPHIR_CPY_WRT(_11$$8, _12$$8);
 		} else {
-			ZEPHIR_INIT_NVAR(_13$$8);
-			ZVAL_STRING(_13$$8, "", 1);
+			ZEPHIR_INIT_NVAR(_11$$8);
+			ZVAL_STRING(_11$$8, "", 1);
 		}
-		ZEPHIR_INIT_VAR(_15$$8);
-		ZEPHIR_CONCAT_VV(_15$$8, _11$$8, _13$$8);
-		zephir_array_update_string(&parameters, SL("src"), &_15$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_16$$8, tag, "script", NULL, 0, parameters);
+		ZEPHIR_INIT_VAR(_13$$8);
+		ZEPHIR_CONCAT_VV(_13$$8, _9$$8, _11$$8);
+		zephir_array_update_string(&parameters, SL("src"), &_13$$8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_14$$8, tag, "script", NULL, 0, parameters);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("js"), _16$$8 TSRMLS_CC);
+		zephir_update_property_array_append(this_ptr, SL("js"), _14$$8 TSRMLS_CC);
 	}
 	RETURN_THIS();
 
@@ -428,7 +420,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 PHP_METHOD(Ice_Assets, minify) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *content_param = NULL, *type, *_0, *_1 = NULL, *_2, *_3, *_4, *_5;
+	zval *content_param = NULL, *type, *_0, *_1 = NULL, *_2, *_3;
 	zval *content = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -449,16 +441,12 @@ PHP_METHOD(Ice_Assets, minify) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "filter", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_NULL(_3);
-	ZEPHIR_INIT_VAR(_4);
-	ZVAL_BOOL(_4, 1);
-	ZEPHIR_CALL_METHOD(&_1, _0, "get", NULL, 0, _2, _3, _4);
+	ZEPHIR_CALL_METHOD(&_1, _0, "get", NULL, 0, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_5);
-	ZEPHIR_CONCAT_VS(_5, type, "min");
-	ZEPHIR_RETURN_CALL_METHOD(_1, "sanitize", NULL, 0, content, _5);
+	ZEPHIR_INIT_VAR(_3);
+	ZEPHIR_CONCAT_VS(_3, type, "min");
+	ZEPHIR_RETURN_CALL_METHOD(_1, "sanitize", NULL, 0, content, _3);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -506,13 +494,13 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZEPHIR_CALL_METHOD(&target, this_ptr, "getoption", &_1, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 35, uri);
+	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 34, uri);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(dir);
 	ZEPHIR_CONCAT_VS(dir, _2, "/");
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_CONCAT_SV(_4, ".", type);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 36, uri, _4);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 35, uri, _4);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(uriMin);
 	ZEPHIR_CONCAT_VVVSV(uriMin, target, dir, file, ".min.", type);
@@ -531,7 +519,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				ZEPHIR_INIT_NVAR(minify);
 				ZVAL_BOOL(minify, 1);
 			} else {
-				ZEPHIR_CALL_FUNCTION(&minify, "md5_file", NULL, 37, destination);
+				ZEPHIR_CALL_FUNCTION(&minify, "md5_file", NULL, 36, destination);
 				zephir_check_call_status();
 			}
 			break;
@@ -579,22 +567,22 @@ PHP_METHOD(Ice_Assets, prepare) {
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(minify)) {
-			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 35, destination);
+			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 34, destination);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 38, _11$$14);
+			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 37, _11$$14);
 			zephir_check_call_status();
 			if (!(zephir_is_true(_12$$14))) {
 				ZEPHIR_SINIT_VAR(_13$$15);
 				ZVAL_LONG(&_13$$15, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 39, &_13$$15);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 38, &_13$$15);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 35, destination);
+				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 34, destination);
 				zephir_check_call_status();
 				ZEPHIR_SINIT_NVAR(_13$$15);
 				ZVAL_LONG(&_13$$15, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 40, _15$$15, &_13$$15, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 39, _15$$15, &_13$$15, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 39, old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 38, old);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(_16$$14);

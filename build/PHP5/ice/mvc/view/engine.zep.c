@@ -59,12 +59,9 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
 	zval *view, *di = NULL;
 
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &view, &di);
+	zephir_fetch_params(0, 1, 1, &view, &di);
 
 	if (!di) {
 		di = ZEPHIR_GLOBAL(global_null);
@@ -72,9 +69,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 
 	zephir_update_property_this(this_ptr, SL("view"), view TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_engine_ce, this_ptr, "__construct", &_0, 29, di);
-	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
 
 }
 

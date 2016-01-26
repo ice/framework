@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zval *options_param = NULL, *di = NULL, *_1, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_7 = NULL, *_8 = NULL;
+	zval *options_param = NULL, *di = NULL, *_1, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL;
 	zval *options = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -73,7 +73,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 8);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
@@ -81,34 +81,22 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	zephir_update_property_this(this_ptr, SL("options"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_STRING(_4, "session", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_5);
-	ZVAL_NULL(_5);
-	ZEPHIR_INIT_VAR(_6);
-	ZVAL_BOOL(_6, 1);
-	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _4);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("session"), _3 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_4);
 	ZVAL_STRING(_4, "cookies", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_NVAR(_5);
-	ZVAL_NULL(_5);
-	ZEPHIR_INIT_NVAR(_6);
-	ZVAL_BOOL(_6, 1);
-	ZEPHIR_CALL_METHOD(&_7, di, "get", NULL, 0, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(&_5, di, "get", NULL, 0, _4);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("cookies"), _7 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("cookies"), _5 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_4);
 	ZVAL_STRING(_4, "request", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_NVAR(_5);
-	ZVAL_NULL(_5);
-	ZEPHIR_INIT_NVAR(_6);
-	ZVAL_BOOL(_6, 1);
-	ZEPHIR_CALL_METHOD(&_8, di, "get", NULL, 0, _4, _5, _6);
+	ZEPHIR_CALL_METHOD(&_6, di, "get", NULL, 0, _4);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("request"), _8 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("request"), _6 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

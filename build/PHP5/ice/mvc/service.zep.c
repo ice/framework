@@ -14,8 +14,8 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
-#include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/fcall.h"
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/operators.h"
@@ -57,26 +57,6 @@ PHP_METHOD(Ice_Mvc_Service, getModel) {
 	
 
 	RETURN_MEMBER(this_ptr, "model");
-
-}
-
-/**
- * Controller constructor. Run onConstruct() if method exist.
- */
-PHP_METHOD(Ice_Mvc_Service, __construct) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_service_ce, this_ptr, "__construct", &_0, 29);
-	zephir_check_call_status();
-	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
-		zephir_check_call_status();
-	}
-	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -132,7 +112,7 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The `model` property must be instance of Model", "ice/mvc/service.zep", 45);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The `model` property must be instance of Model", "ice/mvc/service.zep", 33);
 		return;
 	}
 

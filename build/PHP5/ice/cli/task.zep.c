@@ -12,9 +12,6 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
-#include "kernel/object.h"
-#include "kernel/memory.h"
 
 
 /**
@@ -30,29 +27,9 @@
  */
 ZEPHIR_INIT_CLASS(Ice_Cli_Task) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Task, ice, cli_task, ice_di_access_ce, ice_cli_task_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Task, ice, cli_task, ice_di_access_ce, NULL, 0);
 
 	return SUCCESS;
-
-}
-
-/**
- * Task constructor. Run onConstruct() if method exist.
- */
-PHP_METHOD(Ice_Cli_Task, __construct) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_CALL_PARENT(NULL, ice_cli_task_ce, this_ptr, "__construct", &_0, 29);
-	zephir_check_call_status();
-	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
-		zephir_check_call_status();
-	}
-	ZEPHIR_MM_RESTORE();
 
 }
 

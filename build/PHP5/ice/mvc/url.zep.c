@@ -152,7 +152,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	if (_0) {
 		ZEPHIR_SINIT_VAR(_1$$3);
 		ZVAL_STRING(&_1$$3, "://", 0);
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "strstr", NULL, 74, uri, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "strstr", NULL, 73, uri, &_1$$3);
 		zephir_check_call_status();
 		if (zephir_is_true(_2$$3)) {
 			ZEPHIR_INIT_VAR(_3$$4);

@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zval *options_param = NULL, *di = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL;
+	zval *options_param = NULL, *di = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL;
 	zval *options = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -70,28 +70,20 @@ PHP_METHOD(Ice_Flash, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 8);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "session", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_3);
-	ZVAL_NULL(_3);
-	ZEPHIR_INIT_VAR(_4);
-	ZVAL_BOOL(_4, 1);
-	ZEPHIR_CALL_METHOD(&_1, di, "get", NULL, 0, _2, _3, _4);
+	ZEPHIR_CALL_METHOD(&_1, di, "get", NULL, 0, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("session"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "tag", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_NVAR(_3);
-	ZVAL_NULL(_3);
-	ZEPHIR_INIT_NVAR(_4);
-	ZVAL_BOOL(_4, 1);
-	ZEPHIR_CALL_METHOD(&_5, di, "get", NULL, 27, _2, _3, _4);
+	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("tag"), _5 TSRMLS_CC);
+	zephir_update_property_this(this_ptr, SL("tag"), _3 TSRMLS_CC);
 	if (zephir_fast_count_int(options TSRMLS_CC)) {
 		zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
 	}

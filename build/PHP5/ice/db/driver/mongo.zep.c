@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 		object_init_ex(_1, ice_arr_ce);
 		ZEPHIR_CALL_METHOD(&_3, result, "getnext", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 6, _3);
+		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 4, _3);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(_1, 0);
@@ -279,9 +279,9 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, 0, from, filters, options, fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 73, result);
+	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 72, result);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, _0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 

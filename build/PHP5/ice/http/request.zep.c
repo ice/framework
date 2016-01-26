@@ -63,25 +63,25 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", &_1, 6, _FILES);
+	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", &_1, 4, _FILES);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("files"), _0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	object_init_ex(_2, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_1, 6, _GET);
+	ZEPHIR_CALL_METHOD(NULL, _2, "__construct", &_1, 4, _GET);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("get"), _2 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
 	object_init_ex(_3, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", &_1, 6, _POST);
+	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", &_1, 4, _POST);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("post"), _3 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	object_init_ex(_4, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, _4, "__construct", &_1, 6, _SERVER);
+	ZEPHIR_CALL_METHOD(NULL, _4, "__construct", &_1, 4, _SERVER);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("server"), _4 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, this_ptr, "__construct", &_5, 6, _REQUEST);
+	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, this_ptr, "__construct", &_5, 4, _REQUEST);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -511,11 +511,11 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 101, client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 104, client, &_4);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 101, forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 104, forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(_5)) {
 		ZEPHIR_CPY_WRT(ip, client);
@@ -553,8 +553,8 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 
 	zephir_fcall_cache_entry *_6 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool allowEmpty, _11$$4, _12$$4;
-	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0$$3, *_1$$3 = NULL, *_2$$3, *_3$$3, *_4$$4, *_5$$5 = NULL, *_7$$5, *_8$$5, *_9$$5, *_10$$5 = NULL;
+	zend_bool allowEmpty, _9$$4, _10$$4;
+	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0$$3, *_1$$3 = NULL, *_2$$3, *_3$$3, *_4$$4, *_5$$5 = NULL, *_7$$5, *_8$$5 = NULL;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -600,30 +600,26 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		ZEPHIR_CALL_METHOD(&value, _4$$4, "get", NULL, 0, key, defaultValue);
 		zephir_check_call_status();
 		if (zephir_is_true(filters)) {
-			ZEPHIR_CALL_CE_STATIC(&_5$$5, ice_di_ce, "fetch", &_6, 8);
+			ZEPHIR_CALL_CE_STATIC(&_5$$5, ice_di_ce, "fetch", &_6, 6);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(_7$$5);
 			ZVAL_STRING(_7$$5, "filter", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_INIT_VAR(_8$$5);
-			ZVAL_NULL(_8$$5);
-			ZEPHIR_INIT_VAR(_9$$5);
-			ZVAL_BOOL(_9$$5, 1);
-			ZEPHIR_CALL_METHOD(&filter, _5$$5, "get", NULL, 0, _7$$5, _8$$5, _9$$5);
+			ZEPHIR_CALL_METHOD(&filter, _5$$5, "get", NULL, 0, _7$$5);
 			zephir_check_temp_parameter(_7$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_10$$5, filter, "sanitize", NULL, 0, value, filters);
+			ZEPHIR_CALL_METHOD(&_8$$5, filter, "sanitize", NULL, 0, value, filters);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(value, _10$$5);
+			ZEPHIR_CPY_WRT(value, _8$$5);
 		}
-		_11$$4 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
-		if (!(_11$$4)) {
-			_11$$4 = Z_TYPE_P(value) == IS_NULL;
+		_9$$4 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
+		if (!(_9$$4)) {
+			_9$$4 = Z_TYPE_P(value) == IS_NULL;
 		}
-		_12$$4 = _11$$4;
-		if (_12$$4) {
-			_12$$4 = allowEmpty == 0;
+		_10$$4 = _9$$4;
+		if (_10$$4) {
+			_10$$4 = allowEmpty == 0;
 		}
-		if (_12$$4) {
+		if (_10$$4) {
 			RETVAL_ZVAL(defaultValue, 1, 0);
 			RETURN_MM();
 		}
@@ -658,8 +654,8 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 
 	zephir_fcall_cache_entry *_2 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool allowEmpty, _7$$4, _8$$4;
-	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0$$4, *_1$$5 = NULL, *_3$$5, *_4$$5, *_5$$5, *_6$$5 = NULL;
+	zend_bool allowEmpty, _5$$4, _6$$4;
+	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0$$4, *_1$$5 = NULL, *_3$$5, *_4$$5 = NULL;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -691,30 +687,26 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 		ZEPHIR_CALL_METHOD(&value, _0$$4, "get", NULL, 0, key, defaultValue);
 		zephir_check_call_status();
 		if (zephir_is_true(filters)) {
-			ZEPHIR_CALL_CE_STATIC(&_1$$5, ice_di_ce, "fetch", &_2, 8);
+			ZEPHIR_CALL_CE_STATIC(&_1$$5, ice_di_ce, "fetch", &_2, 6);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(_3$$5);
 			ZVAL_STRING(_3$$5, "filter", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_INIT_VAR(_4$$5);
-			ZVAL_NULL(_4$$5);
-			ZEPHIR_INIT_VAR(_5$$5);
-			ZVAL_BOOL(_5$$5, 1);
-			ZEPHIR_CALL_METHOD(&filter, _1$$5, "get", NULL, 0, _3$$5, _4$$5, _5$$5);
+			ZEPHIR_CALL_METHOD(&filter, _1$$5, "get", NULL, 0, _3$$5);
 			zephir_check_temp_parameter(_3$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_6$$5, filter, "sanitize", NULL, 0, value, filters);
+			ZEPHIR_CALL_METHOD(&_4$$5, filter, "sanitize", NULL, 0, value, filters);
 			zephir_check_call_status();
-			ZEPHIR_CPY_WRT(value, _6$$5);
+			ZEPHIR_CPY_WRT(value, _4$$5);
 		}
-		_7$$4 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
-		if (!(_7$$4)) {
-			_7$$4 = Z_TYPE_P(value) == IS_NULL;
+		_5$$4 = ZEPHIR_IS_STRING_IDENTICAL(value, "");
+		if (!(_5$$4)) {
+			_5$$4 = Z_TYPE_P(value) == IS_NULL;
 		}
-		_8$$4 = _7$$4;
-		if (_8$$4) {
-			_8$$4 = allowEmpty == 0;
+		_6$$4 = _5$$4;
+		if (_6$$4) {
+			_6$$4 = allowEmpty == 0;
 		}
-		if (_8$$4) {
+		if (_6$$4) {
 			RETVAL_ZVAL(defaultValue, 1, 0);
 			RETURN_MM();
 		}

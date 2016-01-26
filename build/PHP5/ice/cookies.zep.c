@@ -213,7 +213,7 @@ PHP_METHOD(Ice_Cookies, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
 	zephir_update_property_this(this_ptr, SL("salt"), salt TSRMLS_CC);
@@ -254,7 +254,7 @@ PHP_METHOD(Ice_Cookies, has) {
 PHP_METHOD(Ice_Cookies, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *defaultValue = NULL, *_COOKIE, *cookie = NULL, *tmp = NULL, *hash = NULL, *value = NULL, _0, *_1, *_2$$4 = NULL, *_3$$5, *_4$$6, *_5$$6 = NULL, *_6$$6, *_7$$6, *_8$$6, *_9$$6 = NULL;
+	zval *key_param = NULL, *defaultValue = NULL, *_COOKIE, *cookie = NULL, *tmp = NULL, *hash = NULL, *value = NULL, _0, *_1, *_2$$4 = NULL, *_3$$5, *_4$$6, *_5$$6 = NULL, *_6$$6, *_7$$6 = NULL;
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -291,16 +291,12 @@ PHP_METHOD(Ice_Cookies, get) {
 				_4$$6 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 				ZEPHIR_INIT_VAR(_6$$6);
 				ZVAL_STRING(_6$$6, "crypt", ZEPHIR_TEMP_PARAM_COPY);
-				ZEPHIR_INIT_VAR(_7$$6);
-				ZVAL_NULL(_7$$6);
-				ZEPHIR_INIT_VAR(_8$$6);
-				ZVAL_BOOL(_8$$6, 1);
-				ZEPHIR_CALL_METHOD(&_5$$6, _4$$6, "get", NULL, 0, _6$$6, _7$$6, _8$$6);
+				ZEPHIR_CALL_METHOD(&_5$$6, _4$$6, "get", NULL, 0, _6$$6);
 				zephir_check_temp_parameter(_6$$6);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(&_9$$6, _5$$6, "decrypt", NULL, 0, value);
+				ZEPHIR_CALL_METHOD(&_7$$6, _5$$6, "decrypt", NULL, 0, value);
 				zephir_check_call_status();
-				ZEPHIR_CPY_WRT(value, _9$$6);
+				ZEPHIR_CPY_WRT(value, _7$$6);
 			}
 			RETURN_CCTOR(value);
 		}
@@ -324,7 +320,7 @@ PHP_METHOD(Ice_Cookies, get) {
 PHP_METHOD(Ice_Cookies, set) {
 
 	int lifetime, ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *value_param = NULL, *lifetime_param = NULL, *_0$$3, *_1, *_8 = NULL, *_9, *_10, *_11, *_12, *_13, *_14, *_2$$5, *_3$$5 = NULL, *_4$$5, *_5$$5, *_6$$5, *_7$$5 = NULL;
+	zval *key_param = NULL, *value_param = NULL, *lifetime_param = NULL, *_0$$3, *_1, *_6 = NULL, *_7, *_8, *_9, *_10, *_11, *_12, *_2$$5, *_3$$5 = NULL, *_4$$5, *_5$$5 = NULL;
 	zval *key = NULL, *value = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -350,30 +346,26 @@ PHP_METHOD(Ice_Cookies, set) {
 			_2$$5 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 			ZEPHIR_INIT_VAR(_4$$5);
 			ZVAL_STRING(_4$$5, "crypt", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_INIT_VAR(_5$$5);
-			ZVAL_NULL(_5$$5);
-			ZEPHIR_INIT_VAR(_6$$5);
-			ZVAL_BOOL(_6$$5, 1);
-			ZEPHIR_CALL_METHOD(&_3$$5, _2$$5, "get", NULL, 0, _4$$5, _5$$5, _6$$5);
+			ZEPHIR_CALL_METHOD(&_3$$5, _2$$5, "get", NULL, 0, _4$$5);
 			zephir_check_temp_parameter(_4$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_7$$5, _3$$5, "encrypt", NULL, 0, value);
+			ZEPHIR_CALL_METHOD(&_5$$5, _3$$5, "encrypt", NULL, 0, value);
 			zephir_check_call_status();
-			zephir_get_strval(value, _7$$5);
+			zephir_get_strval(value, _5$$5);
 		}
 	}
-	ZEPHIR_CALL_METHOD(&_8, this_ptr, "salt", NULL, 0, key, value);
+	ZEPHIR_CALL_METHOD(&_6, this_ptr, "salt", NULL, 0, key, value);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(_9);
-	ZEPHIR_CONCAT_VSV(_9, _8, "~", value);
-	zephir_get_strval(value, _9);
-	_10 = zephir_fetch_nproperty_this(this_ptr, SL("path"), PH_NOISY_CC);
-	_11 = zephir_fetch_nproperty_this(this_ptr, SL("domain"), PH_NOISY_CC);
-	_12 = zephir_fetch_nproperty_this(this_ptr, SL("secure"), PH_NOISY_CC);
-	_13 = zephir_fetch_nproperty_this(this_ptr, SL("httpOnly"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_14);
-	ZVAL_LONG(_14, lifetime);
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setcookie", NULL, 0, key, value, _14, _10, _11, _12, _13);
+	ZEPHIR_INIT_VAR(_7);
+	ZEPHIR_CONCAT_VSV(_7, _6, "~", value);
+	zephir_get_strval(value, _7);
+	_8 = zephir_fetch_nproperty_this(this_ptr, SL("path"), PH_NOISY_CC);
+	_9 = zephir_fetch_nproperty_this(this_ptr, SL("domain"), PH_NOISY_CC);
+	_10 = zephir_fetch_nproperty_this(this_ptr, SL("secure"), PH_NOISY_CC);
+	_11 = zephir_fetch_nproperty_this(this_ptr, SL("httpOnly"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_12);
+	ZVAL_LONG(_12, lifetime);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "setcookie", NULL, 0, key, value, _12, _8, _9, _10, _11);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -424,7 +416,7 @@ PHP_METHOD(Ice_Cookies, remove) {
 PHP_METHOD(Ice_Cookies, salt) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *name, *value, *userAgent = NULL, *_0, *_1, *_2 = NULL, *_3, *_4, *_5, *_6, *_7;
+	zval *name, *value, *userAgent = NULL, *_0, *_1, *_2 = NULL, *_3, *_4, *_5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name, &value);
@@ -439,19 +431,15 @@ PHP_METHOD(Ice_Cookies, salt) {
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "request", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_INIT_VAR(_4);
-	ZVAL_NULL(_4);
-	ZEPHIR_INIT_VAR(_5);
-	ZVAL_BOOL(_5, 1);
-	ZEPHIR_CALL_METHOD(&_2, _1, "get", NULL, 0, _3, _4, _5);
+	ZEPHIR_CALL_METHOD(&_2, _1, "get", NULL, 0, _3);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&userAgent, _2, "getuseragent", NULL, 0);
 	zephir_check_call_status();
-	_6 = zephir_fetch_nproperty_this(this_ptr, SL("salt"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_7);
-	ZEPHIR_CONCAT_VVVV(_7, userAgent, name, value, _6);
-	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 43, _7);
+	_4 = zephir_fetch_nproperty_this(this_ptr, SL("salt"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_5);
+	ZEPHIR_CONCAT_VVVV(_5, userAgent, name, value, _4);
+	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 42, _5);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -496,7 +484,7 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 	ZVAL_BOOL(&_1, (secure ? 1 : 0));
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 63, name, value, &_0, path, domain, &_1, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 62, name, value, &_0, path, domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 

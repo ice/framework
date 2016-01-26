@@ -233,7 +233,7 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 	if (Z_TYPE_P(file) != IS_NULL) {
 		zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
 	}
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, this_ptr, "__construct", &_0, 6, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, this_ptr, "__construct", &_0, 4, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -257,7 +257,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1$$3);
 		object_init_ex(_1$$3, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 124, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 127, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2$$3);
 		ZVAL_STRING(_2$$3, ".phtml", 1);
@@ -295,9 +295,9 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				object_init_ex(_11$$9, ice_exception_ce);
 				ZEPHIR_SINIT_NVAR(_12$$9);
 				ZVAL_STRING(&_12$$9, "Invalid template engine registration for '%s' extension", 0);
-				ZEPHIR_CALL_FUNCTION(&_13$$9, "sprintf", &_14, 1, &_12$$9, ext);
+				ZEPHIR_CALL_FUNCTION(&_13$$9, "sprintf", &_14, 12, &_12$$9, ext);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, _11$$9, "__construct", &_15, 2, _13$$9);
+				ZEPHIR_CALL_METHOD(NULL, _11$$9, "__construct", &_15, 13, _13$$9);
 				zephir_check_call_status();
 				zephir_throw_exception_debug(_11$$9, "ice/mvc/view.zep", 63 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
@@ -385,9 +385,9 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		object_init_ex(_11$$7, ice_exception_ce);
 		ZEPHIR_SINIT_VAR(_12$$7);
 		ZVAL_STRING(&_12$$7, "The requested view %s could not be found", 0);
-		ZEPHIR_CALL_FUNCTION(&_13$$7, "sprintf", NULL, 1, &_12$$7, path);
+		ZEPHIR_CALL_FUNCTION(&_13$$7, "sprintf", NULL, 12, &_12$$7, path);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _11$$7, "__construct", &_14, 2, _13$$7);
+		ZEPHIR_CALL_METHOD(NULL, _11$$7, "__construct", &_14, 13, _13$$7);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_11$$7, "ice/mvc/view.zep", 105 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
