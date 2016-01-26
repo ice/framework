@@ -16,15 +16,4 @@ use Ice\Di\Access;
 abstract class Controller extends Access
 {
 
-    /**
-     * Controller constructor. Run onConstruct() if method exist.
-     */
-    public final function __construct()
-    {
-        parent::__construct();
-
-        if method_exists(this, "onConstruct") {
-            this->{"onConstruct"}();
-        }
-    }
 }

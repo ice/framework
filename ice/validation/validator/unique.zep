@@ -55,7 +55,7 @@ class Unique extends Validator
         }
 
         let di = Di::$fetch(),
-            db = di->get("db", null, true);
+            db = di->get("db");
 
         if this->has(0) {
             let from = this->get(0);

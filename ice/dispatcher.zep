@@ -110,7 +110,7 @@ abstract class Dispatcher
             let value = params->get(key, defaultValue);
 
             if filters {
-                let filter = Di::$fetch()->get("filter", null, true),
+                let filter = Di::$fetch()->get("filter"),
                     value = filter->sanitize(value, filters);
             }
 
@@ -220,7 +220,7 @@ abstract class Dispatcher
             }
 
             let this->lastHandler = handler,
-                handler = new {handlerClass}(),
+                handler = this->di->build(handlerClass),
                 this->activeHandler = handler,
                 actionMethod = this->getActiveMethod();
 

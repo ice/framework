@@ -31,7 +31,7 @@ class Console extends Access
     public function __construct(<Di> di = null)
     {
         // Set the dependency injector
-        parent::__construct(di);
+        let this->di = di;
 
         // Register the console itself as a service
         this->di->set("console", this);
@@ -47,9 +47,9 @@ class Console extends Access
     {
         var router, response, dispatcher;
 
-        let router = this->di->get("router", null, true),
+        let router = this->di->get("router"),
             response = router->handle(arguments),
-            dispatcher = this->di->get("dispatcher", null, true);
+            dispatcher = this->di->get("dispatcher");
 
         dispatcher->setModules(this->modules);
         dispatcher->setModule(response["module"]);

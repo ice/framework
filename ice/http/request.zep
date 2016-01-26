@@ -258,7 +258,7 @@ class Request extends Arr
             let value = this->get->get(key, defaultValue);
 
             if filters {
-                let filter = Di::$fetch()->get("filter", null, true),
+                let filter = Di::$fetch()->get("filter"),
                     value = filter->sanitize(value, filters);
             }
 
@@ -301,7 +301,7 @@ class Request extends Arr
             let value = this->post->get(key, defaultValue);
 
             if filters {
-                let filter = Di::$fetch()->get("filter", null, true),
+                let filter = Di::$fetch()->get("filter"),
                     value = filter->sanitize(value, filters);
             }
 

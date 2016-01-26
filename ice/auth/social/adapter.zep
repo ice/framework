@@ -39,7 +39,7 @@ abstract class Adapter implements SocialInterface
         var clientId, clientSecret, redirectUri, tmp;
 
         if !count(config) {
-            let tmp = Di::$fetch()->get("config", null, true)->get("auth");
+            let tmp = Di::$fetch()->get("config")->get("auth");
 
             if tmp && tmp->has(this->provider) {
                 let config = tmp->get(this->provider)->toArray();

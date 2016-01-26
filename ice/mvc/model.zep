@@ -47,7 +47,7 @@ abstract class Model extends Arr implements \Serializable
 
         let di = Di::$fetch(),
             this->di = di,
-            this->db = di->get("db", null, true);
+            this->db = di->get("db");
 
         let data = array_merge(array_fill_keys(this->fields, null), data);
 

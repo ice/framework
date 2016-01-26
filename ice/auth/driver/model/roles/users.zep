@@ -27,7 +27,7 @@ class Users extends Model
     {
         var auth;
 
-        let auth = this->getDi()->get("auth", null, true);
+        let auth = this->getDi()->get("auth");
 
         this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
             "alias": "User"

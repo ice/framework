@@ -252,7 +252,7 @@ class Response implements ResponseInterface
         this->setStatus(status);
 
         if !external {
-            let url = this->di->get("url", null, true),
+            let url = this->di->get("url"),
                 location = url->get(location);
         }
         this->headers->set("Location", location);
