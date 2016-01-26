@@ -19,25 +19,15 @@ class Access
     protected di;
 
     /**
-     * Access constructor. Fetch di if not specified.
-     *
-     * @param Di di
-     */
-    public function __construct(<Di> di = null)
-    {
-        if !di {
-            let this->di = Di::$fetch();
-        } else {
-            let this->di = di;
-        }
-    }
-
-    /**
      * Magic get to easy retrieve service from the di.
      */
     public function __get(string property)
     {
         var di, service;
+
+        if typeof this->di != "object" || typeof this->di == "object" && !(this->di instanceof Di) {
+            let this->di = Di::$fetch();
+        }
 
         let di = this->di;
 
@@ -47,11 +37,18 @@ class Access
             return di;
         }
 
-        if di->has(property) {
-            let service = di->get(property),
-                this->{property} = service;
+        let service = di->get(property),
+            this->{property} = service;
 
-            return service;
+        return service;
+    }
+
+    public function __set(string property, var value)
+    {
+        if typeof this->di != "object" || typeof this->di == "object" && !(this->di instanceof Di) {
+            let this->di = Di::$fetch();
         }
+
+        return this->di->set(property, value);
     }
 }

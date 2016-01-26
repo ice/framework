@@ -44,16 +44,11 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string key The data key
      * @param mixed defaultValue The value to return if data key does not exist
-     * @param boolean required Throw exception if key is required but doesn't exist
      * @return mixed
      */
-    public function get(string key, var defaultValue = null, boolean required = false)
+    public function get(string key, var defaultValue = null)
     {
         var value;
-
-        if required && !this->has(key) {
-            throw new Exception(sprintf("The '%s' key is required", key));
-        }
 
         if fetch value, this->data[key] {
             return value;
