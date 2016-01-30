@@ -112,7 +112,7 @@ class Pdo implements DbInterface
      */
     private function where(var filters = [], array values = []) -> array
     {
-        var and, data, operator, key, item, value, or, is, index, i, sql;
+        var and, data, operator, key, item, value, or, is, index, i, sql, condition;
 
         let and = [],
             sql = "",
@@ -129,71 +129,76 @@ class Pdo implements DbInterface
                         case "OR":
                         case "or":
                         case "$or":
-                            let or = [];
-                            for item in data {
-                                let key = key(item),
-                                    value = current(item);
-
-                                if typeof value == "array" {
-                                    let is = key(value),
-                                        value = current(value);
-                                } else {
-                                    let is = "=";
-                                }
-
-                                do {
-                                    let index = ":" . key . i,
-                                        i = i ? (int) i + 1 : 1;
-                                } while isset values[index];
-
-                                let or [] = "`" . key . "` " . is . " " . index,
-                                    values[index] = value;
-                            }
-                            let and[] = "(" . join(" OR ", or) . ")";
+                            let or = [],
+                                operator = "OR";
                         break;
                         case "AND":
                         case "and":
                         case "$and":
-                            for item in data {
-                                let key = key(item),
-                                    value = current(item);
-
-                                if typeof value == "array" {
-                                    let is = key(value),
-                                        value = current(value);
-                                } else {
-                                    let is = "=";
-                                }
-
-                                do {
-                                    let index = ":" . key . i,
-                                        i = i ? (int) i + 1 : 1;
-                                } while isset values[index];
-
-                                let and [] = "`" . key . "` " . is . " " . index,
-                                    values[index] = value;
-                            }
+                            let operator = "AND";
                         break;
                         default: // short "AND"
-                            let key = operator,
-                                value = data;
-
-                            if typeof value == "array" {
-                                let is = key(value),
-                                    value = current(value);
-                            } else {
-                                let is = "=";
-                            }
-
-                            do {
-                                let index = ":" . key . i,
-                                    i = i ? (int) i + 1 : 1;
-                            } while isset values[index];
-
-
-                            let and[] = "`" . key . "` " . is . " " . index,
-                                values[index] = value;
+                            var tmp = data;
+                            let data = ["AND": [operator: tmp]],
+                                operator = "AND";
                         break;
+                    }
+
+                    for item in data {
+                        let key = key(item),
+                            value = current(item);
+
+                        if typeof value == "array" {
+                            let is = key(value),
+                                value = current(value);
+                        } else {
+                            let is = "=";
+                        }
+
+                        do {
+                            let index = ":" . key . i,
+                                i = i ? (int) i + 1 : 1;
+                        } while isset values[index];
+
+                        switch is {
+                            case "IN":
+                            case "in":
+                            case "$in":
+                                if typeof value == "array" {
+                                    var j, id, ids = [];
+                                    // Bind all values
+                                    for j, id in value {
+                                        let ids[] = index . j,
+                                            values[index . j] = id;
+                                    }
+
+                                    let value = "(" . join(", ", ids) . ")";
+                                }
+                                let condition = "`" . key . "` " . is . " " . value;
+                            break;
+                            case "IS":
+                            case "is":
+                            case "IS NOT":
+                            case "is not":
+                                // Don't bind value
+                                let condition = "`" . key . "` " . is . " " . value;
+                            break;
+                            default:
+                                // Bind value
+                                let condition = "`" . key . "` " . is . " " . index,
+                                    values[index] = value;
+                            break;
+                        }
+
+                        if operator == "AND" {
+                            let and[] = condition;
+                        } else {
+                            let or[] = condition;
+                        }
+                    }
+
+                    if operator == "OR" {
+                        let and[] = "(" . join(" OR ", or) . ")";
                     }
                 }
                 let sql .= join(" AND ", and);
