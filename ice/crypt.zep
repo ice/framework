@@ -14,10 +14,10 @@ namespace Ice;
 class Crypt
 {
 
-    protected key;
-    protected cipher = "aes-256";
-    protected mode = "cbc";
-    protected block = 16;
+    protected key { set };
+    protected cipher = "aes-256" { set };
+    protected mode = "cbc" { set };
+    protected block = 16 { set };
 
     /**
      * Create a new encrypter instance.
@@ -25,7 +25,7 @@ class Crypt
      * @param string key
      * @return void
      */
-    public function __construct(string key)
+    public function __construct(string key = null)
     {
         let this->key = key;
     }
@@ -217,38 +217,5 @@ class Crypt
     protected function getIvSize() -> int
     {
         return openssl_cipher_iv_length(this->cipher . "-" . this->mode);
-    }
-
-    /**
-     * Set the encryption key.
-     *
-     * @param string key
-     * @return void
-     */
-    public function setKey(string key)
-    {
-        let this->key = key;
-    }
-
-    /**
-     * Set the encryption cipher.
-     *
-     * @param string cipher
-     * @return void
-     */
-    public function setCipher(string cipher)
-    {
-        let this->cipher = cipher;
-    }
-
-    /**
-     * Set the encryption mode.
-     *
-     * @param string mode
-     * @return void
-     */
-    public function setMode(string mode)
-    {
-        let this->mode = mode;
     }
 }
