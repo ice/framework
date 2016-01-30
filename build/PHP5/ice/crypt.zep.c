@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
@@ -48,6 +48,54 @@ ZEPHIR_INIT_CLASS(Ice_Crypt) {
 
 }
 
+PHP_METHOD(Ice_Crypt, setKey) {
+
+	zval *key;
+
+	zephir_fetch_params(0, 1, 0, &key);
+
+
+
+	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
+
+}
+
+PHP_METHOD(Ice_Crypt, setCipher) {
+
+	zval *cipher;
+
+	zephir_fetch_params(0, 1, 0, &cipher);
+
+
+
+	zephir_update_property_this(this_ptr, SL("cipher"), cipher TSRMLS_CC);
+
+}
+
+PHP_METHOD(Ice_Crypt, setMode) {
+
+	zval *mode;
+
+	zephir_fetch_params(0, 1, 0, &mode);
+
+
+
+	zephir_update_property_this(this_ptr, SL("mode"), mode TSRMLS_CC);
+
+}
+
+PHP_METHOD(Ice_Crypt, setBlock) {
+
+	zval *block;
+
+	zephir_fetch_params(0, 1, 0, &block);
+
+
+
+	zephir_update_property_this(this_ptr, SL("block"), block TSRMLS_CC);
+
+}
+
 /**
  * Create a new encrypter instance.
  *
@@ -60,9 +108,14 @@ PHP_METHOD(Ice_Crypt, __construct) {
 	zval *key = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &key_param);
+	zephir_fetch_params(1, 0, 1, &key_param);
 
-	zephir_get_strval(key, key_param);
+	if (!key_param) {
+		ZEPHIR_INIT_VAR(key);
+		ZVAL_EMPTY_STRING(key);
+	} else {
+		zephir_get_strval(key, key_param);
+	}
 
 
 	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
@@ -479,72 +532,6 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 69, _2);
 	zephir_check_call_status();
 	RETURN_MM();
-
-}
-
-/**
- * Set the encryption key.
- *
- * @param string key
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setKey) {
-
-	zval *key_param = NULL;
-	zval *key = NULL;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &key_param);
-
-	zephir_get_strval(key, key_param);
-
-
-	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
- * Set the encryption cipher.
- *
- * @param string cipher
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setCipher) {
-
-	zval *cipher_param = NULL;
-	zval *cipher = NULL;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &cipher_param);
-
-	zephir_get_strval(cipher, cipher_param);
-
-
-	zephir_update_property_this(this_ptr, SL("cipher"), cipher TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
- * Set the encryption mode.
- *
- * @param string mode
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setMode) {
-
-	zval *mode_param = NULL;
-	zval *mode = NULL;
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &mode_param);
-
-	zephir_get_strval(mode, mode_param);
-
-
-	zephir_update_property_this(this_ptr, SL("mode"), mode TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
 
 }
 
