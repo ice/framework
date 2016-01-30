@@ -85,6 +85,7 @@ class Di extends Arr
     public function getDefaults()
     {
         return array_merge([
+            "assets": "Ice\\Assets",
             "cookies": "Ice\\Cookies",
             "crypt": "Ice\\Crypt",
             "dispatcher": "Ice\\Mvc\\Dispatcher",
@@ -113,7 +114,9 @@ class Di extends Arr
     {
         var params;
 
-        if typeof service == "string" {
+        if typeof service == "null" {
+            return null;
+        } elseif typeof service == "string" {
             if class_exists(service) {
                 let service = this->build(service);
             }
