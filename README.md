@@ -14,6 +14,9 @@ Simple and fast PHP framework delivered as C-extension.
 
 *please do not send files from `build/` directory (they are generated automatically), just those from the `ice/`.
 
+### Benchmark
+[![RPS](https://raw.githubusercontent.com/ice/website/master/public/img/doc/benchmark.jpg)](http://www.iceframework.org/doc/introduction/benchmark)
+
 ### Installation
 Ice is a C-extension, so you need to download a binary for your platform or compile it from source code.
 
