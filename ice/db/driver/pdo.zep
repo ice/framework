@@ -38,7 +38,7 @@ class Pdo implements DbInterface
         preg_match("/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", dsn, parts);
 
         if isset parts[0] && strstr(parts[0], ":", TRUE) == "mysql" {
-            let options[\PDO::MYSQL_ATTR_INIT_COMMAND] = "SET NAMES utf8;";
+            dsn = dsn . ";charset=utf8";
         }
 
         let pdo = "Pdo",
