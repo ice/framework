@@ -18,10 +18,10 @@
 #include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
+#include "kernel/concat.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/hash.h"
-#include "kernel/concat.h"
 
 
 /**
@@ -88,8 +88,8 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	zend_bool _2;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL;
-	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts = NULL, *pdo = NULL, *_0, _1, *_3, _4, *_5 = NULL, *_7, *_8 = NULL, *_6$$3;
-	zval *dsn = NULL, *user = NULL, *password = NULL;
+	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, *parts = NULL, *pdo = NULL, *_0, _1, *_3, _4, *_5 = NULL, *_7, *_8 = NULL;
+	zval *dsn = NULL, *user = NULL, *password = NULL, *_6$$3;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &dsn_param, &user_param, &password_param, &options_param);
@@ -132,8 +132,8 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	}
 	if (_2) {
 		ZEPHIR_INIT_VAR(_6$$3);
-		ZVAL_STRING(_6$$3, "SET NAMES utf8;", 1);
-		zephir_array_update_long(&options, 1002, &_6$$3, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
+		ZEPHIR_CONCAT_VS(_6$$3, dsn, ";charset=utf8");
+		ZEPHIR_CPY_WRT(dsn, _6$$3);
 	}
 	ZEPHIR_INIT_VAR(pdo);
 	ZVAL_STRING(pdo, "Pdo", 1);
