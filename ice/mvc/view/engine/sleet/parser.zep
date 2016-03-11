@@ -337,6 +337,8 @@ class Parser
         if typeof token == "array" {
             switch token[0] {
                 case T_AS:
+                case T_NEW:
+                case T_INSTANCEOF:
                 case T_IS_EQUAL:
                 case T_IS_NOT_EQUAL:
                 case T_IS_IDENTICAL:

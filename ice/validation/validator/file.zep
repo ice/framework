@@ -22,7 +22,7 @@ use Ice\Validation\Validator;
  *          'file' => [
  *              'maxSize' => '6M',
  *              'allowedTypes' => ['image/jpeg', 'image/png'],
- *              'minResolution' => '400x300,
+ *              'minResolution' => '400x300',
  *              'maxResolution' => '1600x1200',
  *          ]
  *      ]

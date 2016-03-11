@@ -22,7 +22,7 @@
 !/build/PHP*/ext_config.h
 !/build/PHP*/ice.c
 !/build/PHP*/ice.h
-!/build/PHP*/install*
+!/build/PHP*/install
 !/build/PHP*/php_ext.h
 !/build/PHP*/php_ice.h
 

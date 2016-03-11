@@ -21,8 +21,9 @@ abstract class Dispatcher
     protected activeHandler { get };
     protected lastHandler { get };
 
-    protected loops = 0 { get };
+    protected loops = 16 { get, set };
     protected finished { get };
+    protected forwards = 0 { get };
     protected forwarded = false { get };
     protected silent = false { set };
 
@@ -149,10 +150,10 @@ abstract class Dispatcher
             this->finished = false;
 
         while !this->finished {
-            let this->loops++;
+            let this->forwards++;
 
             // Throw an exception after 16 consecutive forwards
-            if this->loops > 16 {
+            if this->loops && this->forwards > this->loops {
                 if this->silent {
                     // 508 Loop Detected
                     response->setStatus(508);

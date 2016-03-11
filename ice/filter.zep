@@ -103,9 +103,13 @@ class Filter
                 return preg_replace("/[^a-z]/i", "", value);
             case "email":
                 return filter_var(value, FILTER_SANITIZE_EMAIL);
+            case "bool":
+            case "boolean":
+                return filter_var(value, FILTER_VALIDATE_BOOLEAN);
             case "float":
                 return (double) filter_var(value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             case "int":
+            case "integer":
                 return (int) filter_var(value, FILTER_SANITIZE_NUMBER_INT);
             case "string":
                 return filter_var(value, FILTER_SANITIZE_STRING);

@@ -104,7 +104,7 @@ class Pagination extends Arr
      */
     protected function prepareButton(var page, string url = null, boolean active = false, var symbol = null)
     {
-        var query, i18n, title;
+        var query, i18n, title, liClass, spanClass, aClass;
         boolean pages = false;
 
         switch page {
@@ -126,8 +126,12 @@ class Pagination extends Arr
                 break;
         }
 
+        let liClass = this->get("liClass"),
+            spanClass = this->get("spanClass"),
+            aClass = this->get("aClass");
+
         if !active {
-            return "<li class=\"" . (pages ? "active" : "disabled") . "\"><span>" . symbol . "</span></li>";
+            return "<li class=\"" . (pages ? "active" : "disabled") . (liClass ? " " . liClass : "") . "\"><span" . (spanClass ? " class=\"" . spanClass . "\"" : "") . ">" . symbol . "</span></li>";
         }
 
         let query = this->di->get("request")->getQuery(),
@@ -152,7 +156,7 @@ class Pagination extends Arr
             }
         }
 
-        return "<li>" . this->tag->a([url, symbol, title, "query": query->all()]) . "</li>";
+        return "<li" . (liClass ? " class=\"" . liClass . "\"" : "") . ">" . this->tag->a([url, symbol, title, "query": query->all(), "class": aClass]) . "</li>";
     }
 
     /**
