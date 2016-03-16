@@ -54,13 +54,8 @@ PHP_METHOD(Ice_Loader, register) {
 	zval _1;
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
@@ -72,7 +67,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "loadClass");
 	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 111, &_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 114, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -94,13 +89,8 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	zend_bool prepend;
 	zval *prefix_param = NULL, *baseDir_param = NULL, *prepend_param = NULL, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10$$3, _11$$4, _12$$4, _13$$4, _15$$5, _16$$5, _17$$5;
 	zval prefix, baseDir;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&baseDir);
 	ZVAL_UNDEF(&_0);
@@ -163,19 +153,19 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	if (prepend) {
 		zephir_read_property(&_11$$4, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_12$$4, &_11$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 53 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_13$$4, "utf8_encode", &_14, 112, &baseDir);
+		ZEPHIR_CALL_FUNCTION(&_13$$4, "utf8_encode", &_14, 115, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_12$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 113, &_12$$4, &_13$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 116, &_12$$4, &_13$$4);
 		ZEPHIR_UNREF(&_12$$4);
 		zephir_check_call_status();
 	} else {
 		zephir_read_property(&_15$$5, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_16$$5, &_15$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_17$$5, "utf8_encode", &_14, 112, &baseDir);
+		ZEPHIR_CALL_FUNCTION(&_17$$5, "utf8_encode", &_14, 115, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_16$$5);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 114, &_16$$5, &_17$$5);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 117, &_16$$5, &_17$$5);
 		ZEPHIR_UNREF(&_16$$5);
 		zephir_check_call_status();
 	}
@@ -195,13 +185,8 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	zval *className_param = NULL, prefix, pos, relativeClass, mappedFile, _0, _2$$3, _3$$3, _4$$3, _6$$3, _7$$3;
 	zval className;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&pos);
@@ -223,7 +208,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEPHIR_CPY_WRT(&prefix, &className);
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "\\");
-	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 115, &prefix, &_0);
+	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, &prefix, &_0);
 	zephir_check_call_status();
 	while (1) {
 		if (!(!ZEPHIR_IS_FALSE_IDENTICAL(&pos))) {
@@ -248,7 +233,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 		ZEPHIR_CPY_WRT(&prefix, &_6$$3);
 		ZEPHIR_INIT_NVAR(&_6$$3);
 		ZVAL_STRING(&_6$$3, "\\");
-		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 115, &prefix, &_6$$3);
+		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 118, &prefix, &_6$$3);
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(0);
@@ -268,13 +253,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *prefix_param = NULL, *relativeClass_param = NULL, baseDir, file, _0, _1, _2, *_3, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$4;
 	zval prefix, relativeClass;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&relativeClass);
 	ZVAL_UNDEF(&baseDir);
@@ -345,13 +325,8 @@ PHP_METHOD(Ice_Loader, requireFile) {
 
 	zval *file_param = NULL;
 	zval file;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&file);
 
 	ZEPHIR_MM_GROW();

@@ -64,13 +64,8 @@ PHP_METHOD(Ice_Validation_Validator_Digit, validate) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, _1, _2$$4, _3$$4, _5$$4, _8$$4, _10$$4, _11$$4, _15$$4, _4$$5, _6$$7, _7$$8, _12$$9, _13$$9, _14$$9;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&label);
@@ -117,7 +112,7 @@ PHP_METHOD(Ice_Validation_Validator_Digit, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_digit", NULL, 5, &value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_digit", NULL, 3, &value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_3$$4);
@@ -177,7 +172,7 @@ PHP_METHOD(Ice_Validation_Validator_Digit, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_15$$4, "strtr", NULL, 82, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_15$$4, "strtr", NULL, 85, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_15$$4);
 		zephir_check_call_status();

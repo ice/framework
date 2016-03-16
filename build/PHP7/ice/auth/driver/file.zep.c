@@ -43,13 +43,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_File) {
 PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 	zval *users, users_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&users_sub);
 
 	zephir_fetch_params(0, 1, 0, &users);
@@ -71,13 +66,8 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, username, user, _0, _3, _2$$5, _4$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&username);
@@ -98,7 +88,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	zephir_read_property(&_0, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 41, defaultValue);
+		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 40, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(&username, defaultValue)) {
 			zephir_update_property_zval(this_ptr, SL("user"), defaultValue);
@@ -114,7 +104,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 	if (zephir_is_true(&_3)) {
 		object_init_ex(return_value, ice_arr_ce);
 		zephir_read_property(&_4$$6, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, &_4$$6);
+		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &_4$$6);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -133,13 +123,8 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
 	zval role;
 	zval *user, user_sub, *role_param = NULL, _0$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&role);
@@ -179,13 +164,8 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	zend_bool remember, _0;
 	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, user, _1, _2$$3, _3$$3, _4$$5;
 	zval username, password;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&username);
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&user);

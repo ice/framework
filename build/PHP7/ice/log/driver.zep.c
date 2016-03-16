@@ -50,13 +50,8 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -96,13 +91,8 @@ PHP_METHOD(Ice_Log_Driver, alert) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -142,13 +132,8 @@ PHP_METHOD(Ice_Log_Driver, critical) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -186,13 +171,8 @@ PHP_METHOD(Ice_Log_Driver, error) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -232,13 +212,8 @@ PHP_METHOD(Ice_Log_Driver, warning) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -276,13 +251,8 @@ PHP_METHOD(Ice_Log_Driver, notice) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -322,13 +292,8 @@ PHP_METHOD(Ice_Log_Driver, info) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);
@@ -366,13 +331,8 @@ PHP_METHOD(Ice_Log_Driver, debug) {
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
 	zval message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&context);

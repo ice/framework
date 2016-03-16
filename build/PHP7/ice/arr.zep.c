@@ -17,10 +17,10 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
-#include "kernel/fcall.h"
-#include "kernel/exception.h"
 #include "kernel/hash.h"
+#include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/exception.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
 
@@ -51,13 +51,8 @@ ZEPHIR_INIT_CLASS(Ice_Arr) {
 
 PHP_METHOD(Ice_Arr, getData) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "data");
 
@@ -72,13 +67,8 @@ PHP_METHOD(Ice_Arr, __construct) {
 
 	zval *data_param = NULL;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
@@ -107,13 +97,8 @@ PHP_METHOD(Ice_Arr, has) {
 
 	zval *key_param = NULL, _0;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
 
@@ -134,68 +119,32 @@ PHP_METHOD(Ice_Arr, has) {
  *
  * @param string key The data key
  * @param mixed defaultValue The value to return if data key does not exist
- * @param boolean required Throw exception if key is required but doesn't exist
  * @return mixed
  */
 PHP_METHOD(Ice_Arr, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool required, _0;
-	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, __$null, value, _1, _5, _2$$3, _3$$3, _4$$3;
+	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
-	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &key_param, &defaultValue, &required_param);
+	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
 	zephir_get_strval(&key, key_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
 	}
-	if (!required_param) {
-		required = 0;
-	} else {
-		required = zephir_get_boolval(required_param);
-	}
 
 
-	_0 = required;
-	if (_0) {
-		ZEPHIR_CALL_METHOD(&_1, this_ptr, "has", NULL, 0, &key);
-		zephir_check_call_status();
-		_0 = !zephir_is_true(&_1);
-	}
-	if (_0) {
-		ZEPHIR_INIT_VAR(&_2$$3);
-		object_init_ex(&_2$$3, ice_exception_ce);
-		ZEPHIR_INIT_VAR(&_3$$3);
-		ZVAL_STRING(&_3$$3, "The '%s' key is required");
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", NULL, 1, &_3$$3, &key);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "__construct", NULL, 2, &_4$$3);
-		zephir_check_call_status();
-		zephir_throw_exception_debug(&_2$$3, "ice/arr.zep", 55 TSRMLS_CC);
-		ZEPHIR_MM_RESTORE();
-		return;
-	}
-	zephir_read_property(&_5, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	if (zephir_array_isset_fetch(&value, &_5, &key, 1 TSRMLS_CC)) {
+	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	if (zephir_array_isset_fetch(&value, &_0, &key, 1 TSRMLS_CC)) {
 		RETURN_CTOR(value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
@@ -214,13 +163,8 @@ PHP_METHOD(Ice_Arr, set) {
 
 	zval *key_param = NULL, *value, value_sub;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
 
@@ -249,13 +193,8 @@ PHP_METHOD(Ice_Arr, replace) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, value, *_0;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
@@ -266,7 +205,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	ZVAL_COPY_VALUE(&data, data_param);
 
 
-	zephir_is_iterable(&data, 0, "ice/arr.zep", 90);
+	zephir_is_iterable(&data, 0, "ice/arr.zep", 85);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _1, _2, _0)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -294,13 +233,8 @@ PHP_METHOD(Ice_Arr, replace) {
 PHP_METHOD(Ice_Arr, all) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	ZEPHIR_MM_GROW();
 
@@ -320,13 +254,8 @@ PHP_METHOD(Ice_Arr, setData) {
 
 	zval *data_param = NULL;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
@@ -353,13 +282,8 @@ PHP_METHOD(Ice_Arr, setData) {
 PHP_METHOD(Ice_Arr, keys) {
 
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 
@@ -379,13 +303,8 @@ PHP_METHOD(Ice_Arr, remove) {
 
 	zval *key_param = NULL, _0;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
 
@@ -409,13 +328,8 @@ PHP_METHOD(Ice_Arr, remove) {
 PHP_METHOD(Ice_Arr, clear) {
 
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
@@ -435,13 +349,8 @@ PHP_METHOD(Ice_Arr, clear) {
 PHP_METHOD(Ice_Arr, count) {
 
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 
@@ -459,20 +368,15 @@ PHP_METHOD(Ice_Arr, getIterator) {
 
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
 
 	object_init_ex(return_value, zephir_get_internal_ce(SL("arrayiterator")));
 	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 3, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -502,13 +406,8 @@ PHP_METHOD(Ice_Arr, getPath) {
 	zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL, *_14 = NULL, *_15 = NULL;
 	zval delimiter, _3$$4, _4$$4;
 	zval *path = NULL, path_sub, *defaultValue = NULL, defaultValue_sub, *delimiter_param = NULL, __$null, data, keys, key, _0, _1$$5, _2$$4, _6$$6, _9$$9, _10$$10, _11$$12, values$$13, value$$13, arr$$13, *_12$$13, _13$$15;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&path_sub);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -552,7 +451,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 		ZEPHIR_CPY_WRT(&keys, path);
 	} else {
 		if (zephir_array_key_exists(&data, path TSRMLS_CC)) {
-			zephir_array_fetch(&_1$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 194 TSRMLS_CC);
+			zephir_array_fetch(&_1$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 189 TSRMLS_CC);
 			RETURN_CTOR(_1$$5);
 		}
 		ZEPHIR_INIT_VAR(&_2$$4);
@@ -570,10 +469,10 @@ PHP_METHOD(Ice_Arr, getPath) {
 	}
 	do {
 		ZEPHIR_MAKE_REF(&keys);
-		ZEPHIR_CALL_FUNCTION(&key, "array_shift", &_5, 4, &keys);
+		ZEPHIR_CALL_FUNCTION(&key, "array_shift", &_5, 2, &keys);
 		ZEPHIR_UNREF(&keys);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_6$$6, "ctype_digit", &_7, 5, &key);
+		ZEPHIR_CALL_FUNCTION(&_6$$6, "ctype_digit", &_7, 3, &key);
 		zephir_check_call_status();
 		if (zephir_is_true(&_6$$6)) {
 			_8$$7 = zephir_get_intval(&key);
@@ -583,21 +482,21 @@ PHP_METHOD(Ice_Arr, getPath) {
 		if (zephir_array_isset(&data, &key)) {
 			if (zephir_is_true(&keys)) {
 				ZEPHIR_OBS_NVAR(&_9$$9);
-				zephir_array_fetch(&_9$$9, &data, &key, PH_NOISY, "ice/arr.zep", 215 TSRMLS_CC);
+				zephir_array_fetch(&_9$$9, &data, &key, PH_NOISY, "ice/arr.zep", 210 TSRMLS_CC);
 				if (Z_TYPE_P(&_9$$9) == IS_ARRAY) {
-					zephir_array_fetch(&_10$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 217 TSRMLS_CC);
+					zephir_array_fetch(&_10$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 212 TSRMLS_CC);
 					ZEPHIR_CPY_WRT(&data, &_10$$10);
 				} else {
 					break;
 				}
 			} else {
-				zephir_array_fetch(&_11$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 224 TSRMLS_CC);
+				zephir_array_fetch(&_11$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 219 TSRMLS_CC);
 				RETURN_CTOR(_11$$12);
 			}
 		} else if (ZEPHIR_IS_STRING_IDENTICAL(&key, "*")) {
 			ZEPHIR_INIT_NVAR(&values$$13);
 			array_init(&values$$13);
-			zephir_is_iterable(&data, 0, "ice/arr.zep", 241);
+			zephir_is_iterable(&data, 0, "ice/arr.zep", 236);
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _12$$13)
 			{
 				ZEPHIR_INIT_NVAR(&arr$$13);
@@ -605,12 +504,12 @@ PHP_METHOD(Ice_Arr, getPath) {
 				if (Z_TYPE_P(&arr$$13) == IS_ARRAY) {
 					ZEPHIR_INIT_NVAR(&_13$$15);
 					object_init_ex(&_13$$15, ice_arr_ce);
-					ZEPHIR_CALL_METHOD(NULL, &_13$$15, "__construct", &_14, 6, &arr$$13);
+					ZEPHIR_CALL_METHOD(NULL, &_13$$15, "__construct", &_14, 4, &arr$$13);
 					zephir_check_call_status();
-					ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 7, &keys);
+					ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 5, &keys);
 					zephir_check_call_status();
 					if (zephir_is_true(&value$$13)) {
-						zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 237);
+						zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 232);
 					}
 				}
 			} ZEND_HASH_FOREACH_END();
@@ -640,13 +539,8 @@ PHP_METHOD(Ice_Arr, toArray) {
 	zend_ulong _2;
 	zval key, value, tmp, _0, *_1, _4$$5;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&tmp);
@@ -658,7 +552,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	ZEPHIR_INIT_VAR(&tmp);
 	array_init(&tmp);
 	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "ice/arr.zep", 279);
+	zephir_is_iterable(&_0, 0, "ice/arr.zep", 274);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -699,13 +593,8 @@ PHP_METHOD(Ice_Arr, offsetExists) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&offset);
 
 	ZEPHIR_MM_GROW();
@@ -732,13 +621,8 @@ PHP_METHOD(Ice_Arr, offsetGet) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&offset);
 
 	ZEPHIR_MM_GROW();
@@ -766,13 +650,8 @@ PHP_METHOD(Ice_Arr, offsetSet) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL, *value, value_sub;
 	zval offset;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&offset);
 	ZVAL_UNDEF(&value_sub);
 
@@ -800,13 +679,8 @@ PHP_METHOD(Ice_Arr, offsetUnset) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&offset);
 
 	ZEPHIR_MM_GROW();
@@ -829,13 +703,8 @@ PHP_METHOD(Ice_Arr, __isset) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 
 	ZEPHIR_MM_GROW();
@@ -858,13 +727,8 @@ PHP_METHOD(Ice_Arr, __get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, _0$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0$$3);
 
@@ -893,13 +757,8 @@ PHP_METHOD(Ice_Arr, __set) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *value, value_sub;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
 
@@ -925,13 +784,8 @@ PHP_METHOD(Ice_Arr, __set) {
 PHP_METHOD(Ice_Arr, __unset) {
 
 	zval *key, key_sub, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
 

@@ -65,13 +65,8 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Js) {
 
 PHP_METHOD(Ice_Filter_Js, getOutput) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "output");
 
@@ -88,13 +83,8 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *js_param = NULL, __$null, _0, _1, _2, _3, _4, _5;
 	zval js;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&js);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
@@ -164,13 +154,8 @@ PHP_METHOD(Ice_Filter_Js, action) {
 	zephir_fcall_cache_entry *_12 = NULL, *_17 = NULL, *_26 = NULL;
 	zval *command_param = NULL, _0$$3, _1$$3, _2$$3, _4$$4, _5$$4, _7$$4, _8$$6, _9$$6, _10$$6, _11$$6, _13$$6, _14$$6, _15$$6, _16$$6, _18$$6, _19$$9, _20$$9, _21$$9, _22$$9, _25$$10, _27$$10, _29$$10, _31$$10, _33$$10, _35$$10, _37$$10, _39$$10, _41$$10, _43$$10, _45$$10, _47$$10, _49$$10, _51$$10, _53$$10, _54$$11, _55$$11, _56$$11, _57$$11, _83$$11, _58$$12, _59$$12, _60$$12, _61$$12, _62$$12, _63$$12, _80$$12, _81$$12, _82$$12, _64$$14, _65$$14, _66$$14, _67$$14, _68$$14, _69$$14, _70$$14, _71$$14, _72$$16, _73$$16, _74$$16, _75$$16, _76$$19, _77$$19, _78$$19, _79$$19;
 	int command, ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
@@ -281,7 +266,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 					break;
 				}
 				zephir_read_property(&_15$$6, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_FUNCTION(&_16$$6, "ord", &_17, 69, &_15$$6);
+				ZEPHIR_CALL_FUNCTION(&_16$$6, "ord", &_17, 68, &_15$$6);
 				zephir_check_call_status();
 				if (ZEPHIR_LE_LONG(&_16$$6, 10)) {
 					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated string literal.", "ice/filter/js.zep", 89);
@@ -397,7 +382,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 				zephir_read_property(&_60$$12, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
 				zephir_read_property(&_61$$12, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
 				zephir_read_property(&_62$$12, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
-				ZEPHIR_CALL_FUNCTION(&_63$$12, "ord", &_17, 69, &_62$$12);
+				ZEPHIR_CALL_FUNCTION(&_63$$12, "ord", &_17, 68, &_62$$12);
 				zephir_check_call_status();
 				if (ZEPHIR_IS_STRING_IDENTICAL(&_59$$12, "[")) {
 					while (1) {
@@ -415,7 +400,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 						zephir_read_property(&_68$$14, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
 						zephir_read_property(&_69$$14, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
 						zephir_read_property(&_70$$14, this_ptr, SL("a"), PH_NOISY_CC | PH_READONLY);
-						ZEPHIR_CALL_FUNCTION(&_71$$14, "ord", &_17, 69, &_70$$14);
+						ZEPHIR_CALL_FUNCTION(&_71$$14, "ord", &_17, 68, &_70$$14);
 						zephir_check_call_status();
 						if (ZEPHIR_IS_STRING_IDENTICAL(&_68$$14, "]")) {
 							break;
@@ -473,13 +458,8 @@ PHP_METHOD(Ice_Filter_Js, get) {
 	zend_bool _6, _7;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval __$null, c, i, _8, _0$$3, _1$$3, _2$$4, _3$$4, _4$$4, _5$$4;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&c);
 	ZVAL_UNDEF(&i);
@@ -524,7 +504,7 @@ PHP_METHOD(Ice_Filter_Js, get) {
 	}
 	_7 = _6;
 	if (!(_7)) {
-		ZEPHIR_CALL_FUNCTION(&_8, "ord", NULL, 69, &c);
+		ZEPHIR_CALL_FUNCTION(&_8, "ord", NULL, 68, &c);
 		zephir_check_call_status();
 		_7 = ZEPHIR_GE_LONG(&_8, 32);
 	}
@@ -545,13 +525,8 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 	zend_bool _1, _2;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *c, c_sub, _0, _3, _4, _5;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&c_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3);
@@ -563,7 +538,7 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 69, c);
+	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 68, c);
 	zephir_check_call_status();
 	_1 = ZEPHIR_GT_LONG(&_0, 126);
 	if (!(_1)) {
@@ -592,13 +567,8 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	zval _0, _1, _2, _3, _6$$4, _7$$5, _8$$5, _10$$6, _11$$7, _12$$8, _13$$9, _14$$10, _15$$11, _16$$11, _17$$12, _18$$13, _19$$14, _20$$15, _21$$15, _23$$15, _22$$16, _24$$17, _25$$18, _26$$19, _27$$19, _28$$20, _29$$21, _30$$22;
 	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL, *_9 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -635,7 +605,7 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "\\xef");
 	ZVAL_LONG(&_2, 1);
-	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 104, &_0, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 107, &_0, &_1, &_2);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(&_3, 0)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_4, 0);
@@ -771,13 +741,8 @@ PHP_METHOD(Ice_Filter_Js, next) {
 	zval c, _1$$3, _3$$5, _5$$8, _6$$9;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL, *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&c);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$5);
@@ -799,7 +764,7 @@ PHP_METHOD(Ice_Filter_Js, next) {
 					}
 					ZEPHIR_CALL_METHOD(&c, this_ptr, "get", &_0, 0);
 					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 69, &c);
+					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 68, &c);
 					zephir_check_call_status();
 					if (ZEPHIR_LE_LONG(&_3$$5, 10)) {
 						RETURN_CCTOR(c);
@@ -851,13 +816,8 @@ PHP_METHOD(Ice_Filter_Js, peek) {
 
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();

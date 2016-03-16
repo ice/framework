@@ -51,13 +51,8 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, getCategory) {
 	zend_bool _2, _3, _4;
 	zval *count_param = NULL, _0, _1;
 	int count, ZEPHIR_LAST_CALL_STATUS, i100 = 0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
@@ -97,13 +92,8 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, isInt) {
 
 	zend_bool _0;
 	zval *value, value_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value_sub);
 
 	zephir_fetch_params(0, 1, 0, &value);

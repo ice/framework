@@ -49,13 +49,8 @@ PHP_METHOD(Ice_I18n_Plural_Zero, getCategory) {
 	zend_bool _0;
 	zval *count_param = NULL;
 	int count;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	zephir_fetch_params(0, 1, 0, &count_param);
 

@@ -50,13 +50,8 @@ PHP_METHOD(Ice_Config, __construct) {
 	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL, data_sub, __$null, key, value, subkey, subvalue, *_0, *_3$$8, _6$$12;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&key);

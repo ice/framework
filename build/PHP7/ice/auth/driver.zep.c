@@ -59,15 +59,10 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zval *options_param = NULL, di, _1, _2, _3, _4, _5, _6, _7, _8;
+	zval *options_param = NULL, di, _1, _2, _3, _4, _5, _6;
 	zval options;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&_1);
@@ -76,8 +71,6 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
@@ -90,7 +83,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 8);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_read_property(&_2, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
@@ -98,25 +91,19 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	zephir_update_property_zval(this_ptr, SL("options"), &_1);
 	ZEPHIR_INIT_VAR(&_4);
 	ZVAL_STRING(&_4, "session");
-	ZVAL_NULL(&_5);
-	ZVAL_BOOL(&_6, 1);
-	ZEPHIR_CALL_METHOD(&_3, &di, "get", NULL, 0, &_4, &_5, &_6);
+	ZEPHIR_CALL_METHOD(&_3, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("session"), &_3);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, "cookies");
-	ZVAL_NULL(&_5);
-	ZVAL_BOOL(&_6, 1);
-	ZEPHIR_CALL_METHOD(&_7, &di, "get", NULL, 0, &_4, &_5, &_6);
+	ZEPHIR_CALL_METHOD(&_5, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("cookies"), &_7);
+	zephir_update_property_zval(this_ptr, SL("cookies"), &_5);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, "request");
-	ZVAL_NULL(&_5);
-	ZVAL_BOOL(&_6, 1);
-	ZEPHIR_CALL_METHOD(&_8, &di, "get", NULL, 0, &_4, &_5, &_6);
+	ZEPHIR_CALL_METHOD(&_6, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("request"), &_8);
+	zephir_update_property_zval(this_ptr, SL("request"), &_6);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -133,13 +120,8 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, *hash_param = NULL, _0;
 	zval password, hash;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&hash);
 	ZVAL_UNDEF(&_0);
@@ -170,13 +152,8 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval roles;
 	zval *user, user_sub, *roles_param = NULL, sessionRoles, _0, _1, _2, _3, _4, _6$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&sessionRoles);
 	ZVAL_UNDEF(&_0);
@@ -234,13 +211,8 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -285,13 +257,8 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, _0, _1, _2;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
@@ -330,13 +297,8 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, _0, _1, _3;
 	zval password;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -373,13 +335,8 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *role_param = NULL, user, sessionRoles, roles, _0$$4, _1$$6;
 	zval role;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&role);
 	ZVAL_UNDEF(&user);
 	ZVAL_UNDEF(&sessionRoles);
@@ -438,13 +395,8 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *destroy_param = NULL, *logoutAll_param = NULL, sessionRoles, _7, _0$$3, _1$$4, _2$$4, _3$$4, _6$$4, _5$$5;
 	zend_bool destroy, logoutAll;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&sessionRoles);
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_0$$3);

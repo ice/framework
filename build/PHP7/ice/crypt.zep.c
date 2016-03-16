@@ -13,8 +13,8 @@
 
 #include "kernel/main.h"
 #include "kernel/object.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/array.h"
@@ -48,6 +48,66 @@ ZEPHIR_INIT_CLASS(Ice_Crypt) {
 
 }
 
+PHP_METHOD(Ice_Crypt, setKey) {
+
+	zval *key, key_sub;
+	ZEPHIR_INIT_THIS();
+
+	ZVAL_UNDEF(&key_sub);
+
+	zephir_fetch_params(0, 1, 0, &key);
+
+
+
+	zephir_update_property_zval(this_ptr, SL("key"), key);
+
+}
+
+PHP_METHOD(Ice_Crypt, setCipher) {
+
+	zval *cipher, cipher_sub;
+	ZEPHIR_INIT_THIS();
+
+	ZVAL_UNDEF(&cipher_sub);
+
+	zephir_fetch_params(0, 1, 0, &cipher);
+
+
+
+	zephir_update_property_zval(this_ptr, SL("cipher"), cipher);
+
+}
+
+PHP_METHOD(Ice_Crypt, setMode) {
+
+	zval *mode, mode_sub;
+	ZEPHIR_INIT_THIS();
+
+	ZVAL_UNDEF(&mode_sub);
+
+	zephir_fetch_params(0, 1, 0, &mode);
+
+
+
+	zephir_update_property_zval(this_ptr, SL("mode"), mode);
+
+}
+
+PHP_METHOD(Ice_Crypt, setBlock) {
+
+	zval *block, block_sub;
+	ZEPHIR_INIT_THIS();
+
+	ZVAL_UNDEF(&block_sub);
+
+	zephir_fetch_params(0, 1, 0, &block);
+
+
+
+	zephir_update_property_zval(this_ptr, SL("block"), block);
+
+}
+
 /**
  * Create a new encrypter instance.
  *
@@ -58,19 +118,19 @@ PHP_METHOD(Ice_Crypt, __construct) {
 
 	zval *key_param = NULL;
 	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &key_param);
+	zephir_fetch_params(1, 0, 1, &key_param);
 
-	zephir_get_strval(&key, key_param);
+	if (!key_param) {
+		ZEPHIR_INIT_VAR(&key);
+		ZVAL_STRING(&key, "");
+	} else {
+		zephir_get_strval(&key, key_param);
+	}
 
 
 	zephir_update_property_zval(this_ptr, SL("key"), &key);
@@ -91,13 +151,8 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, iv, value, mac, _0, _1, _3, _4;
 	zval text;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&iv);
 	ZVAL_UNDEF(&value);
@@ -151,20 +206,15 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getivsize", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 64, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 63, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -182,13 +232,8 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, _0, _1, _2, _3, _4;
 	zval value, iv;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&iv);
 	ZVAL_UNDEF(&_0);
@@ -210,7 +255,7 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 65, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 64, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -228,13 +273,8 @@ PHP_METHOD(Ice_Crypt, decrypt) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, value, payload, iv, _0, _2, _3, _4;
 	zval text;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&payload);
@@ -280,13 +320,8 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, _0, _1, _2, _3, _4;
 	zval value, iv;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&iv);
 	ZVAL_UNDEF(&_0);
@@ -308,7 +343,7 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 66, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 65, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -326,13 +361,8 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, __$true, payload, _0, _2, _3, _4, _5;
 	zval text;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&text);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&payload);
@@ -387,13 +417,8 @@ PHP_METHOD(Ice_Crypt, hash) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, _0, _1;
 	zval value;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -424,13 +449,8 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, pad, len, _0, _1, _2, _3, _4;
 	zval value;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&pad);
 	ZVAL_UNDEF(&len);
@@ -454,9 +474,9 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	mod_function(&_2, &len, &_1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&pad);
 	zephir_sub_function(&pad, &_0, &_2);
-	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 67, &pad);
+	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 66, &pad);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 68, &_3, &pad);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 67, &_3, &pad);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VV(return_value, &value, &_4);
 	RETURN_MM();
@@ -475,13 +495,8 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 	int ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
 	zval *value_param = NULL, _1, _2, _3, _4, _5;
 	zval value;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -498,7 +513,7 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 	len = zephir_fast_strlen_ev(&value);
 	_0 = ZEPHIR_STRING_OFFSET(&value, (len - 1));
 	ZVAL_LONG(&_1, _0);
-	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 69, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 68, &_1);
 	zephir_check_call_status();
 	pad = zephir_get_intval(&_2);
 	ZEPHIR_INIT_VAR(&_3);
@@ -528,13 +543,8 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 	zval value;
 	zval *pad_param = NULL, *value_param = NULL, beforePad, _0, _1, _2, _3, _4;
 	int pad, ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&beforePad);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -558,7 +568,7 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_substr(&_2, &value, -1 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
 	ZVAL_LONG(&_3, pad);
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 68, &_2, &_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 67, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_0, &_4));
 
@@ -575,13 +585,8 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
 	zend_bool _0, _1;
 	zval *data_param = NULL;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
@@ -611,13 +616,8 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 
 	zval _0, _1, _2;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -628,99 +628,9 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 	zephir_read_property(&_1, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 70, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 69, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
-}
-
-/**
- * Set the encryption key.
- *
- * @param string key
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setKey) {
-
-	zval *key_param = NULL;
-	zval key;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
-	ZVAL_UNDEF(&key);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &key_param);
-
-	zephir_get_strval(&key, key_param);
-
-
-	zephir_update_property_zval(this_ptr, SL("key"), &key);
-	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
- * Set the encryption cipher.
- *
- * @param string cipher
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setCipher) {
-
-	zval *cipher_param = NULL;
-	zval cipher;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
-	ZVAL_UNDEF(&cipher);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &cipher_param);
-
-	zephir_get_strval(&cipher, cipher_param);
-
-
-	zephir_update_property_zval(this_ptr, SL("cipher"), &cipher);
-	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
- * Set the encryption mode.
- *
- * @param string mode
- * @return void
- */
-PHP_METHOD(Ice_Crypt, setMode) {
-
-	zval *mode_param = NULL;
-	zval mode;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
-	ZVAL_UNDEF(&mode);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &mode_param);
-
-	zephir_get_strval(&mode, mode_param);
-
-
-	zephir_update_property_zval(this_ptr, SL("mode"), &mode);
-	ZEPHIR_MM_RESTORE();
 
 }
 

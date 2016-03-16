@@ -48,13 +48,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, config_sub, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&config_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -73,7 +68,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "facebook");
 	zephir_update_property_zval(this_ptr, SL("provider"), &_0);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 52, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 6, 0 TSRMLS_CC);
@@ -97,13 +92,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 
 	zval _0, _1, _2$$3, _3$$3;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$3);
@@ -137,13 +127,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 	zend_bool result = 0, _6$$4;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval _GET, params, tokenInfo, userInfo, _0$$3, _1$$3, _8$$3, _2$$4, _3$$4, _4$$4, _5$$4, _7$$5, _9$$6, _10$$6, _11$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_GET);
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&tokenInfo);
@@ -190,7 +175,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			ZEPHIR_CALL_METHOD(&_2$$4, this_ptr, "call", NULL, 0, &_3$$4, &_4$$4, &params, &_5$$4);
 			zephir_check_call_status();
 			ZEPHIR_MAKE_REF(&tokenInfo);
-			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 53, &_2$$4, &tokenInfo);
+			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 52, &_2$$4, &tokenInfo);
 			ZEPHIR_UNREF(&tokenInfo);
 			zephir_check_call_status();
 			_6$$4 = zephir_fast_count_int(&tokenInfo TSRMLS_CC) > 0;
@@ -233,13 +218,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 
 	zval _1;
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 

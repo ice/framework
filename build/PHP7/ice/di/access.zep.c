@@ -12,10 +12,10 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/operators.h"
 #include "kernel/memory.h"
-#include "kernel/fcall.h"
 #include "kernel/object.h"
+#include "kernel/fcall.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -39,66 +39,25 @@ ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 }
 
 /**
- * Access constructor. Fetch di if not specified.
- *
- * @param Di di
- */
-PHP_METHOD(Ice_Di_Access, __construct) {
-
-	int ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL;
-	zval *di = NULL, di_sub, __$null, _0$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
-	ZVAL_UNDEF(&di_sub);
-	ZVAL_NULL(&__$null);
-	ZVAL_UNDEF(&_0$$3);
-
-	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &di);
-
-	if (!di) {
-		di = &di_sub;
-		di = &__$null;
-	}
-
-
-	if (!(zephir_is_true(di))) {
-		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 8);
-		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("di"), &_0$$3);
-	} else {
-		zephir_update_property_zval(this_ptr, SL("di"), di);
-	}
-	ZEPHIR_MM_RESTORE();
-
-}
-
-/**
  * Magic get to easy retrieve service from the di.
  */
 PHP_METHOD(Ice_Di_Access, __get) {
 
+	zend_bool _1, _3;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *property_param = NULL, di, service, _0, _1;
+	zephir_fcall_cache_entry *_6 = NULL;
+	zval *property_param = NULL, di, service, _0, _2, _4, _7, _5$$3;
 	zval property;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&property);
 	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&service);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_5$$3);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &property_param);
@@ -106,21 +65,84 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	zephir_get_strval(&property, property_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CPY_WRT(&di, &_0);
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC);
+	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
+	if (!(_1)) {
+		ZEPHIR_OBS_VAR(&_2);
+		zephir_read_property(&_2, this_ptr, SL("di"), PH_NOISY_CC);
+		_3 = Z_TYPE_P(&_2) == IS_OBJECT;
+		if (_3) {
+			ZEPHIR_OBS_VAR(&_4);
+			zephir_read_property(&_4, this_ptr, SL("di"), PH_NOISY_CC);
+			_3 = !(zephir_instance_of_ev(&_4, ice_di_ce TSRMLS_CC));
+		}
+		_1 = _3;
+	}
+	if (_1) {
+		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 6);
+		zephir_check_call_status();
+		zephir_update_property_zval(this_ptr, SL("di"), &_5$$3);
+	}
+	zephir_read_property(&_7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CPY_WRT(&di, &_7);
 	if (ZEPHIR_IS_STRING(&property, "di")) {
 		zephir_update_property_zval(this_ptr, SL("di"), &di);
 		RETURN_CCTOR(di);
 	}
-	ZEPHIR_CALL_METHOD(&_1, &di, "has", NULL, 0, &property);
+	ZEPHIR_CALL_METHOD(&service, &di, "get", NULL, 0, &property);
 	zephir_check_call_status();
-	if (zephir_is_true(&_1)) {
-		ZEPHIR_CALL_METHOD(&service, &di, "get", NULL, 0, &property);
-		zephir_check_call_status();
-		zephir_update_property_zval_zval(this_ptr, &property, &service TSRMLS_CC);
-		RETURN_CCTOR(service);
+	zephir_update_property_zval_zval(this_ptr, &property, &service TSRMLS_CC);
+	RETURN_CCTOR(service);
+
+}
+
+PHP_METHOD(Ice_Di_Access, __set) {
+
+	zend_bool _1, _3;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_6 = NULL;
+	zval *property_param = NULL, *value, value_sub, _0, _2, _4, _7, _5$$3;
+	zval property;
+	ZEPHIR_INIT_THIS();
+
+	ZVAL_UNDEF(&property);
+	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_5$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &property_param, &value);
+
+	zephir_get_strval(&property, property_param);
+
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC);
+	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
+	if (!(_1)) {
+		ZEPHIR_OBS_VAR(&_2);
+		zephir_read_property(&_2, this_ptr, SL("di"), PH_NOISY_CC);
+		_3 = Z_TYPE_P(&_2) == IS_OBJECT;
+		if (_3) {
+			ZEPHIR_OBS_VAR(&_4);
+			zephir_read_property(&_4, this_ptr, SL("di"), PH_NOISY_CC);
+			_3 = !(zephir_instance_of_ev(&_4, ice_di_ce TSRMLS_CC));
+		}
+		_1 = _3;
 	}
-	ZEPHIR_MM_RESTORE();
+	if (_1) {
+		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 6);
+		zephir_check_call_status();
+		zephir_update_property_zval(this_ptr, SL("di"), &_5$$3);
+	}
+	zephir_read_property(&_7, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_7, "set", NULL, 0, &property, value);
+	zephir_check_call_status();
+	RETURN_MM();
 
 }
 

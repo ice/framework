@@ -35,13 +35,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
 PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 
 	zval *routeParser, routeParser_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&routeParser_sub);
 
 	zephir_fetch_params(0, 1, 0, &routeParser);
@@ -55,13 +50,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 
 	zval *dataGenerator, dataGenerator_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&dataGenerator_sub);
 
 	zephir_fetch_params(0, 1, 0, &dataGenerator);
@@ -82,13 +72,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *routeParser = NULL, routeParser_sub, *dataGenerator = NULL, dataGenerator_sub, __$null;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&routeParser_sub);
 	ZVAL_UNDEF(&dataGenerator_sub);
 	ZVAL_NULL(&__$null);
@@ -146,13 +131,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval route;
 	zval *httpMethod = NULL, httpMethod_sub, *route_param = NULL, *handler = NULL, handler_sub, __$null, routeDatas, routeData, method, _0, *_1, *_2$$4, _3$$5;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&handler_sub);
 	ZVAL_NULL(&__$null);
@@ -213,13 +193,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();

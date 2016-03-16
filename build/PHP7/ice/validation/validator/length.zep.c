@@ -75,13 +75,8 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, min, max, length, _1, _2, _5, _8, _9, _3$$4, _4$$5, _6$$6, _7$$7, _10$$10, _12$$12, _13$$12, _16$$12, _18$$12, _19$$12, _23$$12, _14$$13, _15$$14, _20$$15, _21$$15, _22$$15, _26$$16, _27$$16, _30$$16, _32$$16, _33$$16, _37$$16, _28$$17, _29$$18, _34$$19, _35$$19, _36$$19;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&label);
@@ -176,7 +171,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_check_call_status();
 	}
 	if ((zephir_function_exists_ex(SL("mb_strlen") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 169, &value);
+		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 171, &value);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(&length);
@@ -245,7 +240,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_create_array(&replace, 2, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":min"), &min, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_23$$12, "strtr", &_24, 82, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_23$$12, "strtr", &_24, 85, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_23$$12);
 		zephir_check_call_status();
@@ -301,7 +296,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_create_array(&replace, 2, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":max"), &max, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_37$$16, "strtr", &_24, 82, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_37$$16, "strtr", &_24, 85, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_37$$16);
 		zephir_check_call_status();

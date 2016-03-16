@@ -64,13 +64,8 @@ PHP_METHOD(Ice_I18n, __construct) {
 
 	zval *options_param = NULL, _0, _1;
 	zval options;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -103,13 +98,8 @@ PHP_METHOD(Ice_I18n, __construct) {
 PHP_METHOD(Ice_I18n, fetch) {
 
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 
@@ -128,13 +118,8 @@ PHP_METHOD(Ice_I18n, lang) {
 
 	zval *lang_param = NULL, _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5, _6;
 	zval lang;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
@@ -185,13 +170,8 @@ PHP_METHOD(Ice_I18n, iso) {
 
 	zend_bool country, _6;
 	zval *lang = NULL, lang_sub, *country_param = NULL, __$null, parts, _1, _2, _3, _4, _5, _0$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&lang_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&parts);
@@ -261,13 +241,8 @@ PHP_METHOD(Ice_I18n, get) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *form = NULL, form_sub, *lang_param = NULL, __$null, messages, translation, _0$$3, _1$$3, _3$$5, _4$$6, _5$$7;
 	zval str, lang, _2$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_2$$3);
@@ -306,7 +281,7 @@ PHP_METHOD(Ice_I18n, get) {
 		zephir_get_strval(&_2$$3, &_1$$3);
 		ZEPHIR_CPY_WRT(&lang, &_2$$3);
 	}
-	ZEPHIR_CALL_METHOD(&messages, this_ptr, "load", NULL, 107, &lang);
+	ZEPHIR_CALL_METHOD(&messages, this_ptr, "load", NULL, 110, &lang);
 	zephir_check_call_status();
 	if (zephir_array_isset(&messages, &str)) {
 		ZEPHIR_OBS_VAR(&translation);
@@ -322,7 +297,7 @@ PHP_METHOD(Ice_I18n, get) {
 				RETURN_CTOR(_5$$7);
 			}
 			ZEPHIR_MAKE_REF(&translation);
-			ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 108, &translation);
+			ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 111, &translation);
 			ZEPHIR_UNREF(&translation);
 			zephir_check_call_status();
 			RETURN_MM();
@@ -344,13 +319,8 @@ PHP_METHOD(Ice_I18n, load) {
 	zval _2;
 	zval *lang_param = NULL, cache, parts, subdir, tail, tmp, found, path, messages, _0, _1, *_3, _9, _10, *_4$$4, _5$$6, _6$$6, _8$$7;
 	zval lang, _7$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&cache);
@@ -449,13 +419,8 @@ PHP_METHOD(Ice_I18n, plural) {
 	int count, ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, rules, form, code, _0, _4, _1$$3, _2$$3, _3$$3;
 	zval str, lang;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&rules);
@@ -526,13 +491,8 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *code_param = NULL, __$true, _1, _2, _4, _6, _8, _10, _12, _14, _16, _17$$13;
 	zval code, _18$$13;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&code);
 	ZVAL_UNDEF(&_18$$13);
 	ZVAL_BOOL(&__$true, 1);
@@ -569,7 +529,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "sk");
 	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_CALL_FUNCTION(&_2, "in_array", NULL, 109, &code, &_0, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_2, "in_array", NULL, 112, &code, &_0, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_create_array(&_3, 7, 0 TSRMLS_CC);
@@ -594,7 +554,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "bs");
 	zephir_array_fast_append(&_3, &_1);
-	ZEPHIR_CALL_FUNCTION(&_4, "in_array", NULL, 109, &code, &_3, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_4, "in_array", NULL, 112, &code, &_3, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
 	zephir_create_array(&_5, 3, 0 TSRMLS_CC);
@@ -607,7 +567,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "kab");
 	zephir_array_fast_append(&_5, &_1);
-	ZEPHIR_CALL_FUNCTION(&_6, "in_array", NULL, 109, &code, &_5, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_6, "in_array", NULL, 112, &code, &_5, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_7);
 	zephir_create_array(&_7, 2, 0 TSRMLS_CC);
@@ -617,7 +577,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "ro");
 	zephir_array_fast_append(&_7, &_1);
-	ZEPHIR_CALL_FUNCTION(&_8, "in_array", NULL, 109, &code, &_7, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_8, "in_array", NULL, 112, &code, &_7, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_9);
 	zephir_create_array(&_9, 12, 0 TSRMLS_CC);
@@ -657,7 +617,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "nso");
 	zephir_array_fast_append(&_9, &_1);
-	ZEPHIR_CALL_FUNCTION(&_10, "in_array", NULL, 109, &code, &_9, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_10, "in_array", NULL, 112, &code, &_9, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_11);
 	zephir_create_array(&_11, 97, 0 TSRMLS_CC);
@@ -943,7 +903,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "ckb");
 	zephir_array_fast_append(&_11, &_1);
-	ZEPHIR_CALL_FUNCTION(&_12, "in_array", NULL, 109, &code, &_11, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_12, "in_array", NULL, 112, &code, &_11, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_13);
 	zephir_create_array(&_13, 9, 0 TSRMLS_CC);
@@ -974,7 +934,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "smi");
 	zephir_array_fast_append(&_13, &_1);
-	ZEPHIR_CALL_FUNCTION(&_14, "in_array", NULL, 109, &code, &_13, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_14, "in_array", NULL, 112, &code, &_13, &__$true);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_15);
 	zephir_create_array(&_15, 30, 0 TSRMLS_CC);
@@ -1068,7 +1028,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "kea");
 	zephir_array_fast_append(&_15, &_1);
-	ZEPHIR_CALL_FUNCTION(&_16, "in_array", NULL, 109, &code, &_15, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_16, "in_array", NULL, 112, &code, &_15, &__$true);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_STRING_IDENTICAL(&code, "pl")) {
 		object_init_ex(return_value, ice_i18n_plural_polish_ce);
@@ -1145,7 +1105,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 		object_init_ex(&_17$$13, ice_exception_ce);
 		ZEPHIR_INIT_VAR(&_18$$13);
 		ZEPHIR_CONCAT_SV(&_18$$13, "Unknown language code: ", &code);
-		ZEPHIR_CALL_METHOD(NULL, &_17$$13, "__construct", NULL, 2, &_18$$13);
+		ZEPHIR_CALL_METHOD(NULL, &_17$$13, "__construct", NULL, 13, &_18$$13);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_17$$13, "ice/i18n.zep", 253 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -1163,13 +1123,8 @@ PHP_METHOD(Ice_I18n, _) {
 	zval values;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, context_sub, *lang_param = NULL, __$null;
 	zval str, lang;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&context_sub);
@@ -1228,13 +1183,8 @@ PHP_METHOD(Ice_I18n, translate) {
 	zval values, _9$$9;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, context_sub, *lang_param = NULL, __$null, _0$$3, _1$$3, _3$$4, _4$$5, _5$$7, _6$$7, _7$$7, _8$$9, _10$$9;
 	zval str, lang, _2$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_2$$3);
@@ -1306,10 +1256,10 @@ PHP_METHOD(Ice_I18n, translate) {
 		zephir_array_keys(&_5$$7, &values TSRMLS_CC);
 		ZEPHIR_INIT_VAR(&_6$$7);
 		ZVAL_STRING(&_6$$7, "is_string");
-		ZEPHIR_CALL_FUNCTION(&_7$$7, "array_filter", NULL, 10, &_5$$7, &_6$$7);
+		ZEPHIR_CALL_FUNCTION(&_7$$7, "array_filter", NULL, 8, &_5$$7, &_6$$7);
 		zephir_check_call_status();
 		if (zephir_fast_count_int(&_7$$7 TSRMLS_CC)) {
-			ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 82, &str, &values);
+			ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 85, &str, &values);
 			zephir_check_call_status();
 			RETURN_MM();
 		} else {
@@ -1415,7 +1365,7 @@ PHP_FUNCTION(g_ice__t) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&i18n, ice_i18n_ce, "fetch", &_0, 110);
+	ZEPHIR_CALL_CE_STATIC(&i18n, ice_i18n_ce, "fetch", &_0, 113);
 	zephir_check_call_status();
 	if (zephir_is_true(&i18n)) {
 		ZEPHIR_RETURN_CALL_METHOD(&i18n, "translate", NULL, 0, &str, &values, context, &lang);

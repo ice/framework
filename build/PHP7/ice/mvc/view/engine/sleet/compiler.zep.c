@@ -54,13 +54,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
 
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "parser");
 
@@ -75,13 +70,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *view = NULL, view_sub, __$null, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
@@ -98,7 +88,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 	zephir_update_property_zval(this_ptr, SL("view"), view);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_view_engine_sleet_parser_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 130);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 133);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("parser"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -116,13 +106,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, content, _0, _1;
 	zval path;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&content);
 	ZVAL_UNDEF(&_0);
@@ -150,13 +135,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "parsed");
 

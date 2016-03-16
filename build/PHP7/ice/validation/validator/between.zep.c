@@ -71,13 +71,8 @@ PHP_METHOD(Ice_Validation_Validator_Between, validate) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, min, max, _1, _2, _5, _3$$4, _4$$5, _6$$6, _7$$7, _9$$8, _10$$8, _12$$8, _15$$8, _17$$8, _18$$8, _22$$8, _11$$9, _13$$11, _14$$12, _19$$13, _20$$13, _21$$13;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&label);
@@ -222,7 +217,7 @@ PHP_METHOD(Ice_Validation_Validator_Between, validate) {
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":min"), &min, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":max"), &max, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_22$$8, "strtr", NULL, 82, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_22$$8, "strtr", NULL, 85, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_22$$8);
 		zephir_check_call_status();

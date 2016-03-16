@@ -54,13 +54,8 @@ PHP_METHOD(Ice_Validation_Validator, __construct) {
 
 	zval *options_param = NULL;
 	zval options;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&options);
 
 	ZEPHIR_MM_GROW();
@@ -98,13 +93,8 @@ PHP_METHOD(Ice_Validation_Validator, validate) {
 PHP_METHOD(Ice_Validation_Validator, has) {
 
 	zval *key, key_sub, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
 
@@ -127,13 +117,8 @@ PHP_METHOD(Ice_Validation_Validator, has) {
 PHP_METHOD(Ice_Validation_Validator, get) {
 
 	zval *key, key_sub, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -167,13 +152,8 @@ PHP_METHOD(Ice_Validation_Validator, get) {
 PHP_METHOD(Ice_Validation_Validator, set) {
 
 	zval *key, key_sub, *value, value_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&value_sub);
 
@@ -197,13 +177,8 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 	zend_ulong _2;
 	zval options;
 	zval *keys = NULL, keys_sub, *options_param = NULL, key, value, _0, *_1;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&keys_sub);
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);

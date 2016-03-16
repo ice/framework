@@ -50,13 +50,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	zval data;
 	zval *path_param = NULL, *data_param = NULL;
 	zval path;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&data);
 
@@ -82,15 +77,15 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 
 	ZEPHIR_MAKE_REF(&data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 125, &data);
+	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 128, &data);
 	ZEPHIR_UNREF(&data);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 126);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 129);
 	zephir_check_call_status();
 	if (zephir_require_zval(&path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 127);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 130);
 	zephir_check_call_status();
 	RETURN_MM();
 

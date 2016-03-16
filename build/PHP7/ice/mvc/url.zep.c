@@ -44,13 +44,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
 
 PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "baseUri");
 
@@ -59,13 +54,8 @@ PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
 PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 
 	zval *baseUri, baseUri_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&baseUri_sub);
 
 	zephir_fetch_params(0, 1, 0, &baseUri);
@@ -78,13 +68,8 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 
 PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "staticUri");
 
@@ -93,13 +78,8 @@ PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
 PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 
 	zval *staticUri, staticUri_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&staticUri_sub);
 
 	zephir_fetch_params(0, 1, 0, &staticUri);
@@ -121,13 +101,8 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL, _0;
 	zval uri;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&_0);
 
@@ -162,13 +137,8 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool local, _0, _5$$8, _7$$11;
 	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, baseUri, matched, queryString, _1$$3, _2$$3, _3$$4, _4$$4, _6$$10, _8$$12, _9$$12, _10$$13, _11$$14;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&uri_sub);
 	ZVAL_UNDEF(&args_sub);
 	ZVAL_UNDEF(&_GET);
@@ -214,7 +184,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	if (_0) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZVAL_STRING(&_1$$3, "://");
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "strstr", NULL, 74, uri, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "strstr", NULL, 73, uri, &_1$$3);
 		zephir_check_call_status();
 		if (zephir_is_true(&_2$$3)) {
 			ZEPHIR_INIT_VAR(&_3$$4);

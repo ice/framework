@@ -50,13 +50,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addRoute) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&handler_sub);
@@ -84,13 +79,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, getData) {
 
 	zval _0, _3, _4, _1$$3, _2$$3;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
@@ -129,13 +119,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	zval __$true, chunkSize, chunks, data, method, regexToRoutesMap, _0, *_1, _4$$3, _8$$3, _9$$3;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL, *_10 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&chunkSize);
 	ZVAL_UNDEF(&chunks);
@@ -167,7 +152,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZVAL_LONG(&_4$$3, zephir_fast_count_int(&regexToRoutesMap TSRMLS_CC));
 		ZEPHIR_CALL_METHOD(&chunkSize, this_ptr, "computechunksize", &_5, 0, &_4$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 30, &regexToRoutesMap, &chunkSize, &__$true);
+		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 29, &regexToRoutesMap, &chunkSize, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_7$$3);
 		zephir_create_array(&_7$$3, 2, 0 TSRMLS_CC);
@@ -175,7 +160,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZEPHIR_INIT_NVAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "processChunk");
 		zephir_array_fast_append(&_7$$3, &_8$$3);
-		ZEPHIR_CALL_FUNCTION(&_9$$3, "array_map", &_10, 31, &_7$$3, &chunks);
+		ZEPHIR_CALL_FUNCTION(&_9$$3, "array_map", &_10, 30, &_7$$3, &chunks);
 		zephir_check_call_status();
 		zephir_array_update_zval(&data, &method, &_9$$3, PH_COPY | PH_SEPARATE);
 	} ZEND_HASH_FOREACH_END();
@@ -190,13 +175,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	double round = 0, ceil = 0;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *count, count_sub, numParts, _0, _1, _2, _3, _4, _5;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&count_sub);
 	ZVAL_UNDEF(&numParts);
 	ZVAL_UNDEF(&_0);
@@ -220,7 +200,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	ZVAL_DOUBLE(&_3, round);
 	zephir_round(&_2, &_3, NULL, NULL TSRMLS_CC);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 32, &_4, &_2);
+	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 31, &_4, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
 	div_function(&_5, count, &numParts TSRMLS_CC);
@@ -234,13 +214,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute) {
 
 	zend_bool _0;
 	zval *routeData, routeData_sub, _1;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&_1);
 
@@ -263,13 +238,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, routeStr, route, _0, _2, _3, _9, _4$$3, _5$$3, _6$$3, _10$$4, _11$$4, *_12$$4, _13$$5, _14$$6, _15$$6, _16$$6, _17$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&handler_sub);
@@ -309,9 +279,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 		object_init_ex(&_4$$3, ice_exception_ce);
 		ZEPHIR_INIT_VAR(&_5$$3);
 		ZVAL_STRING(&_5$$3, "Cannot register two routes matching '%s' for method '%s'");
-		ZEPHIR_CALL_FUNCTION(&_6$$3, "sprintf", &_7, 1, &_5$$3, &routeStr, httpMethod);
+		ZEPHIR_CALL_FUNCTION(&_6$$3, "sprintf", &_7, 12, &_5$$3, &routeStr, httpMethod);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_4$$3, "__construct", &_8, 2, &_6$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_4$$3, "__construct", &_8, 13, &_6$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_4$$3, "ice/mvc/route/datagenerator/regex.zep", 76 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -334,9 +304,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 				zephir_read_property(&_15$$6, &route, SL("regex"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_INIT_NVAR(&_16$$6);
 				ZVAL_STRING(&_16$$6, "Static route '%s' is shadowed by previously defined variable route '%s' for method '%s'");
-				ZEPHIR_CALL_FUNCTION(&_17$$6, "sprintf", &_7, 1, &_16$$6, &routeStr, &_15$$6, httpMethod);
+				ZEPHIR_CALL_FUNCTION(&_17$$6, "sprintf", &_7, 12, &_16$$6, &routeStr, &_15$$6, httpMethod);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, &_14$$6, "__construct", &_8, 2, &_17$$6);
+				ZEPHIR_CALL_METHOD(NULL, &_14$$6, "__construct", &_8, 13, &_17$$6);
 				zephir_check_call_status();
 				zephir_throw_exception_debug(&_14$$6, "ice/mvc/route/datagenerator/regex.zep", 85 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
@@ -356,13 +326,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	zephir_fcall_cache_entry *_1 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, regex, variables, _0, _2, _3, _5, _6, _10, _7$$3, _8$$3, _9$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&handler_sub);
@@ -403,9 +368,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 		object_init_ex(&_7$$3, ice_exception_ce);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "Cannot register two routes matching '%s' for method '%s'");
-		ZEPHIR_CALL_FUNCTION(&_9$$3, "sprintf", NULL, 1, &_8$$3, &regex, httpMethod);
+		ZEPHIR_CALL_FUNCTION(&_9$$3, "sprintf", NULL, 12, &_8$$3, &regex, httpMethod);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 2, &_9$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 13, &_9$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_7$$3, "ice/mvc/route/datagenerator/regex.zep", 104 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -413,7 +378,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	}
 	ZEPHIR_INIT_VAR(&_10);
 	object_init_ex(&_10, ice_mvc_route_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_10, "__construct", NULL, 33, httpMethod, handler, &regex, &variables);
+	ZEPHIR_CALL_METHOD(NULL, &_10, "__construct", NULL, 32, httpMethod, handler, &regex, &variables);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("methodToRegexToRoutesMap"), &_10 TSRMLS_CC, SL("zz"), 2, httpMethod, &regex);
 	ZEPHIR_MM_RESTORE();
@@ -425,13 +390,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_3 = NULL, *_7 = NULL, *_8 = NULL;
 	zval *routeData, routeData_sub, regex, variables, part, varName, regexPart, *_0, _1$$4, _2$$4, _4$$5, _5$$5, _6$$5, _9$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&variables);
@@ -462,7 +422,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 		if (Z_TYPE_P(&part) == IS_STRING) {
 			ZEPHIR_INIT_NVAR(&_1$$4);
 			ZVAL_STRING(&_1$$4, "~");
-			ZEPHIR_CALL_FUNCTION(&_2$$4, "preg_quote", &_3, 34, &part, &_1$$4);
+			ZEPHIR_CALL_FUNCTION(&_2$$4, "preg_quote", &_3, 33, &part, &_1$$4);
 			zephir_check_call_status();
 			zephir_concat_self(&regex, &_2$$4 TSRMLS_CC);
 			continue;
@@ -476,9 +436,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 			object_init_ex(&_4$$5, ice_exception_ce);
 			ZEPHIR_INIT_NVAR(&_5$$5);
 			ZVAL_STRING(&_5$$5, "Cannot use the same placeholder '%s' twice");
-			ZEPHIR_CALL_FUNCTION(&_6$$5, "sprintf", &_7, 1, &_5$$5, &varName);
+			ZEPHIR_CALL_FUNCTION(&_6$$5, "sprintf", &_7, 12, &_5$$5, &varName);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", &_8, 2, &_6$$5);
+			ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", &_8, 13, &_6$$5);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_4$$5, "ice/mvc/route/datagenerator/regex.zep", 131 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();

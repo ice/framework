@@ -58,13 +58,8 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
 PHP_METHOD(Ice_Cli_Router, getDefaultModule) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "defaultModule");
 
@@ -73,13 +68,8 @@ PHP_METHOD(Ice_Cli_Router, getDefaultModule) {
 PHP_METHOD(Ice_Cli_Router, setDefaultModule) {
 
 	zval *defaultModule, defaultModule_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaultModule_sub);
 
 	zephir_fetch_params(0, 1, 0, &defaultModule);
@@ -92,13 +82,8 @@ PHP_METHOD(Ice_Cli_Router, setDefaultModule) {
 
 PHP_METHOD(Ice_Cli_Router, getDefaultHandler) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "defaultHandler");
 
@@ -107,13 +92,8 @@ PHP_METHOD(Ice_Cli_Router, getDefaultHandler) {
 PHP_METHOD(Ice_Cli_Router, setDefaultHandler) {
 
 	zval *defaultHandler, defaultHandler_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaultHandler_sub);
 
 	zephir_fetch_params(0, 1, 0, &defaultHandler);
@@ -126,13 +106,8 @@ PHP_METHOD(Ice_Cli_Router, setDefaultHandler) {
 
 PHP_METHOD(Ice_Cli_Router, getDefaultAction) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "defaultAction");
 
@@ -141,13 +116,8 @@ PHP_METHOD(Ice_Cli_Router, getDefaultAction) {
 PHP_METHOD(Ice_Cli_Router, setDefaultAction) {
 
 	zval *defaultAction, defaultAction_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaultAction_sub);
 
 	zephir_fetch_params(0, 1, 0, &defaultAction);
@@ -160,13 +130,8 @@ PHP_METHOD(Ice_Cli_Router, setDefaultAction) {
 
 PHP_METHOD(Ice_Cli_Router, getModule) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "module");
 
@@ -174,13 +139,8 @@ PHP_METHOD(Ice_Cli_Router, getModule) {
 
 PHP_METHOD(Ice_Cli_Router, getHandler) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "handler");
 
@@ -188,13 +148,8 @@ PHP_METHOD(Ice_Cli_Router, getHandler) {
 
 PHP_METHOD(Ice_Cli_Router, getAction) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "action");
 
@@ -202,13 +157,8 @@ PHP_METHOD(Ice_Cli_Router, getAction) {
 
 PHP_METHOD(Ice_Cli_Router, getParams) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "params");
 
@@ -223,13 +173,8 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
 
 	zval *defaults_param = NULL, module, handler, action;
 	zval defaults;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&defaults);
 	ZVAL_UNDEF(&module);
 	ZVAL_UNDEF(&handler);
@@ -267,13 +212,8 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	zend_bool _13, _16, _19;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *arguments = NULL, arguments_sub, __$null, params, argument, _0, _1, _2, *_3, _14, _17, _20, _22, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$6, _11$$6, _12$$6, _15$$8, _18$$9, _21$$10;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&arguments_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&params);
@@ -320,7 +260,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	ZEPHIR_INIT_VAR(&params);
 	array_init(&params);
 	ZEPHIR_MAKE_REF(arguments);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", NULL, 4, arguments);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", NULL, 2, arguments);
 	ZEPHIR_UNREF(arguments);
 	zephir_check_call_status();
 	zephir_is_iterable(arguments, 0, "ice/cli/router.zep", 97);

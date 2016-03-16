@@ -48,13 +48,8 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, config_sub, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&config_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -73,7 +68,7 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "google");
 	zephir_update_property_zval(this_ptr, SL("provider"), &_0);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, this_ptr, "__construct", &_1, 52, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, this_ptr, "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 6, 0 TSRMLS_CC);
@@ -98,13 +93,8 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 	zval _0, _1, _2$$3, _3$$3, _4$$3, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3;
 	zephir_fcall_cache_entry *_5 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$3);
@@ -127,7 +117,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "Y");
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "date", &_5, 54, &_3$$3);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "date", &_5, 53, &_3$$3);
 		zephir_check_call_status();
 		zephir_read_property(&_6$$3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch_string(&_7$$3, &_6$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45 TSRMLS_CC);
@@ -138,11 +128,11 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		zephir_update_property_array(this_ptr, SL("userInfo"), &_3$$3, &_2$$3 TSRMLS_CC);
 		zephir_read_property(&_9$$3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 47 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 55, &_10$$3);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 54, &_10$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "d.m.Y");
-		ZEPHIR_RETURN_CALL_FUNCTION("date", &_5, 54, &_2$$3, &_11$$3);
+		ZEPHIR_RETURN_CALL_FUNCTION("date", &_5, 53, &_2$$3, &_11$$3);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -160,13 +150,8 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 	zend_bool result = 0;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval _GET, params, tokenInfo, userInfo, _0$$3, _1$$3, _5$$3, _2$$4, _3$$4, _4$$5, _6$$6, _7$$6, _8$$6, _9$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_GET);
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&tokenInfo);
@@ -244,13 +229,8 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 
 	zval _1;
 	zval _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 

@@ -38,13 +38,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex) {
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 
 	zval *staticRouteMap, staticRouteMap_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&staticRouteMap_sub);
 
 	zephir_fetch_params(0, 1, 0, &staticRouteMap);
@@ -58,13 +53,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
 
 	zval *variableRouteData, variableRouteData_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&variableRouteData_sub);
 
 	zephir_fetch_params(0, 1, 0, &variableRouteData);
@@ -79,13 +69,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 
 	zval *data_param = NULL, _0, _1;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -121,13 +106,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	zephir_fcall_cache_entry *_15 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *uri, uri_sub, handler, varRouteData, result, allowedMethods, uriMap, method, routeData, _0, _2, _3, _5, _6, _19, *_20, *_24, _7$$3, _8$$3, _9$$3, _10$$4, _11$$4, _12$$4, _14$$5, _16$$5, _17$$7, _18$$7, _27$$11, _28$$14, _29$$15;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&uri_sub);
 	ZVAL_UNDEF(&handler);

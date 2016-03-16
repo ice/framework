@@ -48,13 +48,8 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL;
 	zval *data = NULL, data_sub, __$true, __$null, ini, raw, _1;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_NULL(&__$null);
@@ -77,12 +72,12 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 29);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 60, data, &__$true);
+	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 59, data, &__$true);
 	zephir_check_call_status();
 	ZVAL_LONG(&_1, 1);
-	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 60, data, &__$true, &_1);
+	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 59, data, &__$true, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(data, this_ptr, "map", NULL, 61, &ini, &raw);
+	ZEPHIR_CALL_METHOD(data, this_ptr, "map", NULL, 60, &ini, &raw);
 	zephir_check_call_status();
 	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 26, data);
 	zephir_check_call_status();
@@ -101,13 +96,8 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 
 	zend_bool _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
 	zval *ini, ini_sub, *raw, raw_sub, _7$$7, _8$$7, _9$$7;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&ini_sub);
 	ZVAL_UNDEF(&raw_sub);
 	ZVAL_UNDEF(&_7$$7);
@@ -189,13 +179,8 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	zephir_fcall_cache_entry *_5 = NULL, *_8 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *ini, ini_sub, *raw, raw_sub, key, value, data, *_0, _3$$4, _4$$4, _6$$5, _7$$5;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&ini_sub);
 	ZVAL_UNDEF(&raw_sub);
 	ZVAL_UNDEF(&key);
@@ -226,12 +211,12 @@ PHP_METHOD(Ice_Config_Ini, map) {
 		ZVAL_COPY(&value, _0);
 		if (Z_TYPE_P(&value) == IS_ARRAY) {
 			zephir_array_fetch(&_4$$4, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "map", &_5, 61, &value, &_4$$4);
+			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "map", &_5, 60, &value, &_4$$4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, &key, &_3$$4, PH_COPY | PH_SEPARATE);
 		} else {
 			zephir_array_fetch(&_7$$5, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_6$$5, this_ptr, "cast", &_8, 62, &value, &_7$$5);
+			ZEPHIR_CALL_METHOD(&_6$$5, this_ptr, "cast", &_8, 61, &value, &_7$$5);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, &key, &_6$$5, PH_COPY | PH_SEPARATE);
 		}

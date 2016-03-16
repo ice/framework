@@ -48,13 +48,8 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 	zephir_fcall_cache_entry *_3 = NULL;
 	zval __$true, header, value, _0, _2$$5;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&header);
 	ZVAL_UNDEF(&value);
@@ -63,7 +58,7 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 105);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 108);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		_1$$3 = zephir_get_iterator(this_ptr TSRMLS_CC);
@@ -73,15 +68,15 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 			{
 				zval *ZEPHIR_TMP_ITERATOR_PTR;
 				ZEPHIR_TMP_ITERATOR_PTR = _1$$3->funcs->get_current_data(_1$$3 TSRMLS_CC);
-				ZEPHIR_CPY_WRT(&value, (ZEPHIR_TMP_ITERATOR_PTR));
+				ZVAL_COPY(&value, ZEPHIR_TMP_ITERATOR_PTR);
 			}
 			if (!(ZEPHIR_IS_EMPTY(&value))) {
 				ZEPHIR_INIT_LNVAR(_2$$5);
 				ZEPHIR_CONCAT_VSV(&_2$$5, &header, ": ", &value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 106, &_2$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 109, &_2$$5, &__$true);
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 106, &header, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 109, &header, &__$true);
 				zephir_check_call_status();
 			}
 		}

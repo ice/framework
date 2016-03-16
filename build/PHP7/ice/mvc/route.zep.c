@@ -58,13 +58,8 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	zval variables;
 	zval *httpMethod_param = NULL, *handler, handler_sub, *regex_param = NULL, *variables_param = NULL;
 	zval httpMethod, regex;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&httpMethod);
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&handler_sub);
@@ -96,13 +91,8 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
 
 	zval *str_param = NULL, regex, _0, _1, _2, _3;
 	zval str;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&_0);

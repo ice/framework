@@ -43,13 +43,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
 
 PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "method");
 
@@ -58,13 +53,8 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 	zval *method, method_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&method_sub);
 
 	zephir_fetch_params(0, 1, 0, &method);
@@ -85,13 +75,8 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	zval action, _0, _1, _2, _3, _4, _5;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&action);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -115,7 +100,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	if ((zephir_method_exists(&_5, &action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 119);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 122);
 	zephir_check_call_status();
 	RETURN_MM();
 

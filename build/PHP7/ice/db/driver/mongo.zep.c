@@ -51,13 +51,8 @@ ZEPHIR_INIT_CLASS(Ice_Db_Driver_Mongo) {
 
 PHP_METHOD(Ice_Db_Driver_Mongo, getId) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "id");
 
@@ -65,13 +60,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getId) {
 
 PHP_METHOD(Ice_Db_Driver_Mongo, getType) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "type");
 
@@ -79,13 +69,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getType) {
 
 PHP_METHOD(Ice_Db_Driver_Mongo, getClient) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "client");
 
@@ -93,13 +78,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getClient) {
 
 PHP_METHOD(Ice_Db_Driver_Mongo, getLastInsertId) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "lastInsertId");
 
@@ -118,13 +98,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 	zval options;
 	zval *dsn_param = NULL, *dbname_param = NULL, *options_param = NULL, _0, _1;
 	zval dsn, dbname;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&dsn);
 	ZVAL_UNDEF(&dbname);
 	ZVAL_UNDEF(&_0);
@@ -175,13 +150,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getIdValue) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *id_param = NULL;
 	zval id;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&id);
 
 	ZEPHIR_MM_GROW();
@@ -214,13 +184,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 	zval options, fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, result, _0, _1, _2, _3;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&filters_sub);
 	ZVAL_UNDEF(&result);
@@ -275,7 +240,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 		object_init_ex(&_1, ice_arr_ce);
 		ZEPHIR_CALL_METHOD(&_3, &result, "getnext", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 6, &_3);
+		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 4, &_3);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(&_1, 0);
@@ -305,13 +270,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 	zval options, fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, result, _0;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&filters_sub);
 	ZVAL_UNDEF(&result);
@@ -354,9 +314,9 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, 0, &from, filters, &options, &fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 73, &result);
+	ZEPHIR_CALL_FUNCTION(&_0, "iterator_to_array", NULL, 72, &result);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -376,13 +336,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 	zval options, fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, filtered, collection, result, tmp, _0, _4, _8, _9, _1$$4, _2$$7, _3$$7, _5$$9, _6$$10, _7$$11;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&filters_sub);
 	ZVAL_UNDEF(&filtered);
@@ -512,13 +467,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 	zval fields;
 	zval *from_param = NULL, *fields_param = NULL, collection, status, _0, _1, _2, _3, _4;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&status);
@@ -584,13 +534,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 	zval fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *fields_param = NULL, collection, status, _0, _1, _2;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&filters_sub);
 	ZVAL_UNDEF(&collection);
@@ -654,13 +599,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *from_param = NULL, *filters = NULL, filters_sub, collection, status, _0, _1, _2;
 	zval from;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&from);
 	ZVAL_UNDEF(&filters_sub);
 	ZVAL_UNDEF(&collection);
@@ -714,13 +654,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 PHP_METHOD(Ice_Db_Driver_Mongo, getError) {
 
 	zval error, _0;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&error);
 	ZVAL_UNDEF(&_0);
 

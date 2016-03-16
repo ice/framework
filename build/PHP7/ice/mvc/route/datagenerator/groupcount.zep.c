@@ -32,13 +32,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount) {
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_LONG(10);
 
@@ -52,13 +47,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	int ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
 	zephir_fcall_cache_entry *_5 = NULL, *_9 = NULL;
 	zval *regexToRoutesMap, regexToRoutesMap_sub, routeMap, regex, route, regexes, numGroups, numVariables, *_0, _13, _14, _3$$3, _4$$3, _6$$3, _7$$3, _8$$3, _10$$3, _12$$3;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&regexToRoutesMap_sub);
 	ZVAL_UNDEF(&routeMap);
 	ZVAL_UNDEF(&regex);
@@ -102,7 +92,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		zephir_read_property(&_3$$3, &route, SL("variables"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&numVariables);
 		ZVAL_LONG(&numVariables, zephir_fast_count_int(&_3$$3 TSRMLS_CC));
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "max", &_5, 32, &numGroups, &numVariables);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "max", &_5, 31, &numGroups, &numVariables);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(&numGroups, &_4$$3);
 		ZEPHIR_INIT_LNVAR(_6$$3);
@@ -111,7 +101,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		ZEPHIR_INIT_NVAR(&_7$$3);
 		ZVAL_STRING(&_7$$3, "()");
 		ZVAL_LONG(&_8$$3, repeat);
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "str_repeat", &_9, 68, &_7$$3, &_8$$3);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "str_repeat", &_9, 67, &_7$$3, &_8$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_10$$3);
 		ZEPHIR_CONCAT_VV(&_10$$3, &regex, &_4$$3);
@@ -136,7 +126,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZEPHIR_INIT_NVAR(&regex);
 	ZEPHIR_CONCAT_SVS(&regex, "~^(?|", &_13, ")$~");
 	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_14, "utf8_encode", NULL, 112, &regex);
+	ZEPHIR_CALL_FUNCTION(&_14, "utf8_encode", NULL, 115, &regex);
 	zephir_check_call_status();
 	zephir_array_update_string(return_value, SL("regex"), &_14, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);

@@ -45,9 +45,9 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("MAJOR"), 1);
 
-	zephir_declare_class_constant_long(ice_version_ce, SL("MINOR"), 0);
+	zephir_declare_class_constant_long(ice_version_ce, SL("MINOR"), 1);
 
-	zephir_declare_class_constant_long(ice_version_ce, SL("PATCH"), 37);
+	zephir_declare_class_constant_long(ice_version_ce, SL("PATCH"), 2);
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("STAGE"), 4);
 
@@ -64,18 +64,13 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
  */
 PHP_METHOD(Ice_Version, current) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	zephir_create_array(return_value, 5, 0 TSRMLS_CC);
 	add_assoc_long_ex(return_value, SL("major"), 1);
-	add_assoc_long_ex(return_value, SL("minor"), 0);
-	add_assoc_long_ex(return_value, SL("patch"), 37);
+	add_assoc_long_ex(return_value, SL("minor"), 1);
+	add_assoc_long_ex(return_value, SL("patch"), 2);
 	add_assoc_long_ex(return_value, SL("stage"), 4);
 	add_assoc_long_ex(return_value, SL("build"), 1);
 	return;
@@ -98,13 +93,8 @@ PHP_METHOD(Ice_Version, get) {
 	zval _2$$4, _4$$5, _6$$6;
 	int _0;
 	zval suffix, _7, _8, _9, _1$$4, _3$$5, _5$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&suffix);
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
@@ -159,9 +149,9 @@ PHP_METHOD(Ice_Version, get) {
 	ZEPHIR_SINIT_VAR(_7);
 	ZVAL_LONG(&_7, 1);
 	ZEPHIR_SINIT_VAR(_8);
-	ZVAL_LONG(&_8, 0);
+	ZVAL_LONG(&_8, 1);
 	ZEPHIR_SINIT_VAR(_9);
-	ZVAL_LONG(&_9, 37);
+	ZVAL_LONG(&_9, 2);
 	ZEPHIR_CONCAT_VSVSVV(return_value, &_7, ".", &_8, ".", &_9, &suffix);
 	RETURN_MM();
 
@@ -180,13 +170,8 @@ PHP_METHOD(Ice_Version, id) {
 	zval id, _0, _1, _2, _3, _5, _6, _7;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_4 = NULL;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&id);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -202,13 +187,13 @@ PHP_METHOD(Ice_Version, id) {
 	ZVAL_LONG(&_0, 1);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "%02s");
-	ZVAL_LONG(&_2, 0);
-	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 1, &_1, &_2);
+	ZVAL_LONG(&_2, 1);
+	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 12, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "%02s");
-	ZVAL_LONG(&_2, 37);
-	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 1, &_1, &_2);
+	ZVAL_LONG(&_2, 2);
+	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 12, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_6);
 	ZVAL_LONG(&_6, 4);

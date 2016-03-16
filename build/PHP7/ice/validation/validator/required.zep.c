@@ -64,13 +64,8 @@ PHP_METHOD(Ice_Validation_Validator_Required, validate) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, _1$$3, _2$$3, _4$$3, _7$$3, _9$$3, _10$$3, _14$$3, _3$$4, _5$$6, _6$$7, _11$$8, _12$$8, _13$$8;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&label);
@@ -171,7 +166,7 @@ PHP_METHOD(Ice_Validation_Validator_Required, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_14$$3, "strtr", NULL, 82, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_14$$3, "strtr", NULL, 85, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_14$$3);
 		zephir_check_call_status();

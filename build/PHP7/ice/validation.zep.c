@@ -87,13 +87,8 @@ ZEPHIR_INIT_CLASS(Ice_Validation) {
 
 PHP_METHOD(Ice_Validation, getDi) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "di");
 
@@ -102,13 +97,8 @@ PHP_METHOD(Ice_Validation, getDi) {
 PHP_METHOD(Ice_Validation, setRules) {
 
 	zval *rules, rules_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&rules_sub);
 
 	zephir_fetch_params(0, 1, 0, &rules);
@@ -121,13 +111,8 @@ PHP_METHOD(Ice_Validation, setRules) {
 
 PHP_METHOD(Ice_Validation, getRules) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "rules");
 
@@ -136,13 +121,8 @@ PHP_METHOD(Ice_Validation, getRules) {
 PHP_METHOD(Ice_Validation, setFilters) {
 
 	zval *filters, filters_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&filters_sub);
 
 	zephir_fetch_params(0, 1, 0, &filters);
@@ -156,13 +136,8 @@ PHP_METHOD(Ice_Validation, setFilters) {
 PHP_METHOD(Ice_Validation, setLabels) {
 
 	zval *labels, labels_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&labels_sub);
 
 	zephir_fetch_params(0, 1, 0, &labels);
@@ -176,13 +151,8 @@ PHP_METHOD(Ice_Validation, setLabels) {
 PHP_METHOD(Ice_Validation, setAliases) {
 
 	zval *aliases, aliases_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&aliases_sub);
 
 	zephir_fetch_params(0, 1, 0, &aliases);
@@ -196,13 +166,8 @@ PHP_METHOD(Ice_Validation, setAliases) {
 PHP_METHOD(Ice_Validation, setTranslate) {
 
 	zval *translate, translate_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&translate_sub);
 
 	zephir_fetch_params(0, 1, 0, &translate);
@@ -215,13 +180,8 @@ PHP_METHOD(Ice_Validation, setTranslate) {
 
 PHP_METHOD(Ice_Validation, getTranslate) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "translate");
 
@@ -230,13 +190,8 @@ PHP_METHOD(Ice_Validation, getTranslate) {
 PHP_METHOD(Ice_Validation, setHumanLabels) {
 
 	zval *humanLabels, humanLabels_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&humanLabels_sub);
 
 	zephir_fetch_params(0, 1, 0, &humanLabels);
@@ -258,13 +213,8 @@ PHP_METHOD(Ice_Validation, __construct) {
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *data_param = NULL, _0;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0);
 
@@ -279,7 +229,7 @@ PHP_METHOD(Ice_Validation, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 8);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("di"), &_0);
 	zephir_update_property_zval(this_ptr, SL("data"), &data);
@@ -301,13 +251,8 @@ PHP_METHOD(Ice_Validation, resolve) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *alias_param = NULL, *field_param = NULL, *options = NULL, options_sub, __$null, rule, _0, _5, _1$$3, _2$$4, _3$$4, _4$$4;
 	zval alias, field;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&alias);
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&options_sub);
@@ -336,7 +281,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 	zephir_read_property(&_0, this_ptr, SL("aliases"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset_fetch(&rule, &_0, &alias, 0 TSRMLS_CC))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
-		zephir_camelize(_1$$3, &alias);
+		zephir_camelize(&_1$$3, &alias);
 		ZEPHIR_INIT_NVAR(&rule);
 		ZEPHIR_CONCAT_SV(&rule, "Ice\\Validation\\Validator\\", &_1$$3);
 		if (!(zephir_class_exists(&rule, 1 TSRMLS_CC))) {
@@ -344,9 +289,9 @@ PHP_METHOD(Ice_Validation, resolve) {
 			object_init_ex(&_2$$4, ice_exception_ce);
 			ZEPHIR_INIT_VAR(&_3$$4);
 			ZVAL_STRING(&_3$$4, "Validator %s not found");
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 1, &_3$$4, &alias);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 12, &_3$$4, &alias);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 2, &_4$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 13, &_4$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_2$$4, "ice/validation.zep", 101 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -357,7 +302,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 	ZEPHIR_INIT_VAR(&_6);
 	zephir_create_array(&_6, 1, 0 TSRMLS_CC);
 	zephir_array_fast_append(&_6, options);
-	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_5, &rule, &_6 TSRMLS_CC);
+	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(&_5, &rule, &_6 TSRMLS_CC);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("rules"), &_5 TSRMLS_CC, SL("za"), 2, &field);
 	ZEPHIR_MM_RESTORE();
@@ -394,13 +339,8 @@ PHP_METHOD(Ice_Validation, rule) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field_param = NULL, *validators, validators_sub, *options = NULL, options_sub, __$null, validator, rules, rule, alias, values, _0, *_1$$4, _5$$7, _6$$7, _8$$7, _9$$7, *_11$$9;
 	zval field;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&validators_sub);
 	ZVAL_UNDEF(&options_sub);
@@ -450,7 +390,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 160, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 162, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -484,7 +424,7 @@ PHP_METHOD(Ice_Validation, rule) {
 					ZEPHIR_INIT_NVAR(options);
 					zephir_fast_explode_str(options, SL(":"), &rule, LONG_MAX TSRMLS_CC);
 					ZEPHIR_MAKE_REF(options);
-					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_12, 4, options);
+					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_12, 2, options);
 					ZEPHIR_UNREF(options);
 					zephir_check_call_status();
 					if (!ZEPHIR_IS_STRING(&alias, "regex")) {
@@ -536,13 +476,8 @@ PHP_METHOD(Ice_Validation, rules) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *validators_param = NULL, field, rules, *_0;
 	zval validators;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&validators);
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&rules);
@@ -586,13 +521,8 @@ PHP_METHOD(Ice_Validation, validate) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, __$true, __$false, field, rules, rule, _0, *_1, _6, *_4$$4, _5$$5;
 	zval data;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&data);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
@@ -667,13 +597,8 @@ PHP_METHOD(Ice_Validation, validate) {
  */
 PHP_METHOD(Ice_Validation, valid) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "valid");
 
@@ -689,13 +614,8 @@ PHP_METHOD(Ice_Validation, hasValue) {
 
 	zval *field_param = NULL, _0;
 	zval field;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&_0);
 
@@ -732,13 +652,8 @@ PHP_METHOD(Ice_Validation, getValue) {
 	zend_bool filtered, _1, _5;
 	zval *field_param = NULL, *filtered_param = NULL, value, filters, _0, _2, _3, _4, _6, _7$$3, _8$$3, _9$$3, _10$$3;
 	zval field;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&filters);
@@ -831,13 +746,8 @@ PHP_METHOD(Ice_Validation, getValues) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zend_bool filtered;
 	zval *fields = NULL, fields_sub, *filtered_param = NULL, __$null, data, field, _0$$3, _1$$3, *_2$$3, _5$$4, _6$$4, _8$$5, *_9$$6, _10$$7, _11$$8, _12$$8, _13$$9;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&fields_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&data);
@@ -948,13 +858,8 @@ PHP_METHOD(Ice_Validation, getLabel) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *field_param = NULL, label, _0, _1$$3, _3$$3, _4$$3, _5$$3, _6$$4, _7$$4, _8$$4;
 	zval field;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&label);
 	ZVAL_UNDEF(&_0);
@@ -1022,13 +927,8 @@ PHP_METHOD(Ice_Validation, setDefaultMessages) {
 
 	zval *messages_param = NULL, _0, _1;
 	zval messages;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&messages);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -1062,13 +962,8 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 
 	zval *type_param = NULL, message, _0, _1$$3;
 	zval type;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -1111,13 +1006,8 @@ PHP_METHOD(Ice_Validation, addMessage) {
 
 	zval *field_param = NULL, *message_param = NULL;
 	zval field, message;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&message);
 
@@ -1151,20 +1041,15 @@ PHP_METHOD(Ice_Validation, getMessages) {
 
 	zval _0;
 	int ZEPHIR_LAST_CALL_STATUS;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&_0);
 
 	ZEPHIR_MM_GROW();
 
 	object_init_ex(return_value, ice_arr_ce);
 	zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 6, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

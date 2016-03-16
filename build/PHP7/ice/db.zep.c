@@ -41,13 +41,8 @@ ZEPHIR_INIT_CLASS(Ice_Db) {
 
 PHP_METHOD(Ice_Db, getDriver) {
 
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 
 	RETURN_MEMBER(this_ptr, "driver");
 
@@ -56,13 +51,8 @@ PHP_METHOD(Ice_Db, getDriver) {
 PHP_METHOD(Ice_Db, setDriver) {
 
 	zval *driver, driver_sub;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&driver_sub);
 
 	zephir_fetch_params(0, 1, 0, &driver);
@@ -89,13 +79,8 @@ PHP_METHOD(Ice_Db, __construct) {
 	int port, ZEPHIR_LAST_CALL_STATUS;
 	zval host, name, user, password;
 	zval *driver, driver_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, _1$$5, _2$$5, _3$$5, _4$$6, _5$$6, _6$$6;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&driver_sub);
 	ZVAL_UNDEF(&_1$$5);
 	ZVAL_UNDEF(&_2$$5);
@@ -156,7 +141,7 @@ PHP_METHOD(Ice_Db, __construct) {
 			ZVAL_LONG(&_2$$5, port);
 			ZEPHIR_INIT_VAR(&_3$$5);
 			ZEPHIR_CONCAT_VSVSVSVSVSV(&_3$$5, driver, "://", &user, ":", &password, "@", &host, ":", &_2$$5, "/", &name);
-			ZEPHIR_CALL_METHOD(NULL, &_1$$5, "__construct", NULL, 71, &_3$$5, &name);
+			ZEPHIR_CALL_METHOD(NULL, &_1$$5, "__construct", NULL, 70, &_3$$5, &name);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("driver"), &_1$$5);
 		} else {
@@ -166,7 +151,7 @@ PHP_METHOD(Ice_Db, __construct) {
 			ZVAL_LONG(&_5$$6, port);
 			ZEPHIR_INIT_VAR(&_6$$6);
 			ZEPHIR_CONCAT_VSVSVSV(&_6$$6, driver, ":host=", &host, ";port=", &_5$$6, ";dbname=", &name);
-			ZEPHIR_CALL_METHOD(NULL, &_4$$6, "__construct", NULL, 72, &_6$$6, &user, &password);
+			ZEPHIR_CALL_METHOD(NULL, &_4$$6, "__construct", NULL, 71, &_6$$6, &user, &password);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("driver"), &_4$$6);
 		}
@@ -184,13 +169,8 @@ PHP_METHOD(Ice_Db, __call) {
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _1;
 	zval method;
-		zval this_zv;
-	zval *this_ptr = getThis();
-	if (EXPECTED(this_ptr)) {
-		ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr));
-		this_ptr = &this_zv;
-	} else this_ptr = NULL;
-	
+	ZEPHIR_INIT_THIS();
+
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&arguments_sub);
 	ZVAL_NULL(&__$null);

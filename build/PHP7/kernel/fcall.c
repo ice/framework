@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2015 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -56,7 +56,7 @@ static const unsigned char tolower_map[256] = {
 int zephir_has_constructor_ce(const zend_class_entry *ce)
 {
 	while (ce) {
-		if (ce->constructor) {
+		if (ce->constructor != NULL) {
 			return 1;
 		}
 		ce = ce->parent;
@@ -356,8 +356,8 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 	zend_fcall_info_cache fcic;
 	zend_zephir_globals_def *zephir_globals_ptr = ZEPHIR_VGLOBAL;
 	char *fcall_key = NULL;
-	size_t fcall_key_len;
 	ulong fcall_key_hash;
+	size_t fcall_key_len;
 	zephir_fcall_cache_entry *temp_cache_entry = NULL;
 	zend_class_entry *old_scope = EG(scope);
 	int reload_cache = 1;
