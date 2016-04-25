@@ -9,6 +9,8 @@
 /composer.lock
 /compile-errors.log
 /compile.log
+/id_rsa
+/id_pgp
 
 /ext*
 /build/PHP*/*
