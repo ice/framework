@@ -97,12 +97,12 @@ class Pagination extends Arr
      * Prepare list button.
      *
      * @param mixed page Name or page number
-     * @param string url URL with pagination
+     * @param mixed url URL with pagination
      * @param boolean active If active create link else span
      * @param string symbol HTML symbol to add
      * @return string HTML
      */
-    protected function prepareButton(var page, string url = null, boolean active = false, var symbol = null)
+    protected function prepareButton(var page, var url = null, boolean active = false, var symbol = null)
     {
         var query, i18n, title, liClass, spanClass, aClass;
         boolean pages = false;
@@ -145,6 +145,11 @@ class Pagination extends Arr
         }
 
         if this->has("query") && !this->get("query") {
+            // Get current URL if uri is false
+            if url === false && this->di->has("url") {
+                let url = this->di->get("url")->get(url);
+            }
+
             // Add /1 to the url
             let url .= (url ? "/" : "") . page . this->get("hash");
         } else {
@@ -163,11 +168,11 @@ class Pagination extends Arr
      * Prepare minimal pagination.
      * Previous 1 [2] 3 4 5 6 Next
      *
-     * @param string url URL with pagination
-     * @param string parameters UL attributes to adding
+     * @param mixed url URL with pagination
+     * @param array parameters UL attributes to adding
      * @return string HTML
      */
-    public function minimal(string url = null, array parameters = [])
+    public function minimal(var url = null, array parameters = [])
     {
         var html;
         int i;
@@ -196,11 +201,11 @@ class Pagination extends Arr
      * Prepare basic pagination.
      * First Previous 1 [2] 3 4 5 6 Next Last
      *
-     * @param string url URL with pagination
-     * @param string parameters UL attributes to adding
+     * @param mixed url URL with pagination
+     * @param array parameters UL attributes to adding
      * @return string HTML
      */
-    public function basic(string url = null, array parameters = [])
+    public function basic(var url = null, array parameters = [])
     {
         var html;
         int i;
@@ -236,13 +241,13 @@ class Pagination extends Arr
      * Prepare floating pagination.
      * First Previous 1 2 3 ... 23 24 25 26 [27] 28 29 30 31 ... 48 49 50 Next Last
      *
-     * @param string url URL with pagination
-     * @param string parameters UL attributes to adding
+     * @param mixed url URL with pagination
+     * @param array parameters UL attributes to adding
      * @param int countOut Number of page links in the begin and end of whole range
      * @param int countIn Number of page links on each side of current page
      * @return string HTML
      */
-    public function floating(string url = null, array parameters = [], int countOut = 0, int countIn = 2)
+    public function floating(var url = null, array parameters = [], int countOut = 0, int countIn = 2)
     {
         var html, links, page, content;
         boolean useMiddle, useN3, useN6;
