@@ -856,7 +856,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		zephir_read_property(&_38$$3, this_ptr, SL("defaultNamespace"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&_39$$3);
 		ZEPHIR_INIT_NVAR(&_40$$3);
-		zephir_camelize(&_40$$3, &handlerName);
+		zephir_camelize(&_40$$3, &handlerName, NULL  );
 		zephir_ucfirst(&_39$$3, &_40$$3);
 		ZEPHIR_INIT_NVAR(&handlerClass);
 		ZEPHIR_CONCAT_VSVV(&handlerClass, &_38$$3, "\\", &_39$$3, &handlerSuffix);
@@ -895,7 +895,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		zephir_update_property_zval(this_ptr, SL("activeHandler"), &handler);
 		ZEPHIR_CALL_METHOD(&actionMethod, this_ptr, "getactivemethod", &_52, 0);
 		zephir_check_call_status();
-		if ((zephir_method_exists_ex(&handler, SS("before") TSRMLS_CC) == SUCCESS)) {
+		if ((zephir_method_exists_ex(&handler, SL("before") TSRMLS_CC) == SUCCESS)) {
 			ZEPHIR_CALL_METHOD(NULL, &handler, "before", NULL, 0);
 			zephir_check_call_status();
 			zephir_read_property(&_53$$16, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);
@@ -904,7 +904,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			}
 		}
 		if (fresh == 1) {
-			if ((zephir_method_exists_ex(&handler, SS("initialize") TSRMLS_CC) == SUCCESS)) {
+			if ((zephir_method_exists_ex(&handler, SL("initialize") TSRMLS_CC) == SUCCESS)) {
 				ZEPHIR_CALL_METHOD(NULL, &handler, "initialize", NULL, 0);
 				zephir_check_call_status();
 			}
@@ -964,7 +964,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		if (ZEPHIR_IS_FALSE_IDENTICAL(&_64$$3)) {
 			continue;
 		}
-		if ((zephir_method_exists_ex(&handler, SS("after") TSRMLS_CC) == SUCCESS)) {
+		if ((zephir_method_exists_ex(&handler, SL("after") TSRMLS_CC) == SUCCESS)) {
 			ZEPHIR_CALL_METHOD(NULL, &handler, "after", NULL, 0);
 			zephir_check_call_status();
 			zephir_read_property(&_70$$24, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);
@@ -1006,7 +1006,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &forward_param, &force_param);
 
-	ZVAL_COPY_VALUE(&forward, forward_param);
+	ZEPHIR_CPY_WRT(&forward, forward_param);
 	if (!force_param) {
 		force = 0;
 	} else {
@@ -1054,7 +1054,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
 		ZVAL_UNDEF(&_0);

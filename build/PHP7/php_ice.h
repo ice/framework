@@ -11,7 +11,7 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.1.2"
+#define PHP_ICE_VERSION     "1.1.3"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
 #define PHP_ICE_ZEPVERSION  "0.9.2a-dev"
@@ -52,14 +52,14 @@ ZEND_END_MODULE_GLOBALS(ice)
 ZEND_EXTERN_MODULE_GLOBALS(ice)
 
 #ifdef ZTS
-	#define ZEPHIR_GLOBAL(v) TSRMG(ice_globals_id, zend_ice_globals *, v)
+	#define ZEPHIR_GLOBAL(v) ZEND_MODULE_GLOBALS_ACCESSOR(ice, v)
 #else
 	#define ZEPHIR_GLOBAL(v) (ice_globals.v)
 #endif
 
 #ifdef ZTS
 	void ***tsrm_ls;
-	#define ZEPHIR_VGLOBAL ((zend_ice_globals *) (*((void ***) tsrm_ls))[TSRM_UNSHUFFLE_RSRC_ID(ice_globals_id)])
+	#define ZEPHIR_VGLOBAL ((zend_ice_globals *) (*((void ***) tsrm_get_ls_cache()))[TSRM_UNSHUFFLE_RSRC_ID(ice_globals_id)])
 #else
 	#define ZEPHIR_VGLOBAL &(ice_globals)
 #endif

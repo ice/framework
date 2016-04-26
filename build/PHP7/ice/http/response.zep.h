@@ -33,7 +33,7 @@ PHP_METHOD(Ice_Http_Response, isClientError);
 PHP_METHOD(Ice_Http_Response, isServerError);
 PHP_METHOD(Ice_Http_Response, getMessage);
 PHP_METHOD(Ice_Http_Response, __toString);
-static zend_object *zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setprotocolversion, 0, 0, 1)
 	ZEND_ARG_INFO(0, protocolVersion)

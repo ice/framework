@@ -26,6 +26,10 @@
 #include "php_ext.h"
 #include "kernel/globals.h"
 
+#if defined(__x86_64__) || defined(__LP64__) || defined(_LP64) || defined(_WIN64)
+	#define ZEPHIR_ENABLE_64BITS 1
+#endif
+
 #define ZEPHIR_NUM_PREALLOCATED_FRAMES 25
 
 void zephir_initialize_memory(zend_zephir_globals_def *zephir_globals_ptr);
@@ -110,6 +114,11 @@ int zephir_set_symbol_str(char *key_name, unsigned int key_length, zval *value);
 
 #define ZEPHIR_OBS_VAR(z) \
 	zephir_memory_observe(z)
+
+#define ZEPHIR_OBS_VAR_ONCE(z) \
+	if (Z_TYPE_P(z) == IS_UNDEF) { \
+		zephir_memory_observe(z); \
+	}
 
 #define ZEPHIR_OBS_NVAR(z) \
 	if (Z_TYPE_P(z) != IS_UNDEF) { \

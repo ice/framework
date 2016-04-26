@@ -231,21 +231,21 @@ PHP_METHOD(Ice_Pagination, calculate) {
  * Prepare list button.
  *
  * @param mixed page Name or page number
- * @param string url URL with pagination
+ * @param mixed url URL with pagination
  * @param boolean active If active create link else span
  * @param string symbol HTML symbol to add
  * @return string HTML
  */
 PHP_METHOD(Ice_Pagination, prepareButton) {
 
-	zval _23, _8$$9;
+	zval _30, _8$$9;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool active, pages, _12;
-	zval url;
-	zval *page = NULL, page_sub, *url_param = NULL, *active_param = NULL, *symbol = NULL, symbol_sub, __$null, query, i18n, title, liClass, spanClass, aClass, _1, _5, _6, _7, _11, _13, _20, _21, _22, _24, _0$$7, _2$$8, _3$$8, _4$$8, _9$$9, _10$$10, _14$$11, _15$$11, _16$$11, _17$$11, _18$$13, _19$$14;
+	zend_bool active, pages, _12, _14$$11;
+	zval *page = NULL, page_sub, *url = NULL, url_sub, *active_param = NULL, *symbol = NULL, symbol_sub, __$null, query, i18n, title, liClass, spanClass, aClass, _1, _5, _6, _7, _11, _13, _27, _28, _29, _31, _0$$7, _2$$8, _3$$8, _4$$8, _9$$9, _10$$10, _15$$11, _16$$11, _17$$11, _22$$11, _23$$11, _24$$11, _18$$12, _19$$12, _20$$12, _21$$12, _25$$14, _26$$15;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&page_sub);
+	ZVAL_UNDEF(&url_sub);
 	ZVAL_UNDEF(&symbol_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&query);
@@ -260,35 +260,40 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_13);
-	ZVAL_UNDEF(&_20);
-	ZVAL_UNDEF(&_21);
-	ZVAL_UNDEF(&_22);
-	ZVAL_UNDEF(&_24);
+	ZVAL_UNDEF(&_27);
+	ZVAL_UNDEF(&_28);
+	ZVAL_UNDEF(&_29);
+	ZVAL_UNDEF(&_31);
 	ZVAL_UNDEF(&_0$$7);
 	ZVAL_UNDEF(&_2$$8);
 	ZVAL_UNDEF(&_3$$8);
 	ZVAL_UNDEF(&_4$$8);
 	ZVAL_UNDEF(&_9$$9);
 	ZVAL_UNDEF(&_10$$10);
-	ZVAL_UNDEF(&_14$$11);
 	ZVAL_UNDEF(&_15$$11);
 	ZVAL_UNDEF(&_16$$11);
 	ZVAL_UNDEF(&_17$$11);
-	ZVAL_UNDEF(&_18$$13);
-	ZVAL_UNDEF(&_19$$14);
-	ZVAL_UNDEF(&url);
-	ZVAL_UNDEF(&_23);
+	ZVAL_UNDEF(&_22$$11);
+	ZVAL_UNDEF(&_23$$11);
+	ZVAL_UNDEF(&_24$$11);
+	ZVAL_UNDEF(&_18$$12);
+	ZVAL_UNDEF(&_19$$12);
+	ZVAL_UNDEF(&_20$$12);
+	ZVAL_UNDEF(&_21$$12);
+	ZVAL_UNDEF(&_25$$14);
+	ZVAL_UNDEF(&_26$$15);
+	ZVAL_UNDEF(&_30);
 	ZVAL_UNDEF(&_8$$9);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 3, &page, &url_param, &active_param, &symbol);
+	zephir_fetch_params(1, 1, 3, &page, &url, &active_param, &symbol);
 
 	ZEPHIR_SEPARATE_PARAM(page);
-	if (!url_param) {
-		ZEPHIR_INIT_VAR(&url);
-		ZVAL_STRING(&url, "");
+	if (!url) {
+		url = &url_sub;
+		ZEPHIR_CPY_WRT(url, &__$null);
 	} else {
-		zephir_get_strval(&url, url_param);
+		ZEPHIR_SEPARATE_PARAM(url);
 	}
 	if (!active_param) {
 		active = 0;
@@ -426,55 +431,74 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 		_12 = !zephir_is_true(&_13);
 	}
 	if (_12) {
-		ZEPHIR_INIT_VAR(&_14$$11);
-		if (!(Z_TYPE_P(&url) == IS_UNDEF) && Z_STRLEN_P(&url)) {
-			ZEPHIR_INIT_NVAR(&_14$$11);
-			ZVAL_STRING(&_14$$11, "/");
-		} else {
-			ZEPHIR_INIT_NVAR(&_14$$11);
-			ZVAL_STRING(&_14$$11, "");
+		_14$$11 = ZEPHIR_IS_FALSE_IDENTICAL(url);
+		if (_14$$11) {
+			zephir_read_property(&_15$$11, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_INIT_VAR(&_17$$11);
+			ZVAL_STRING(&_17$$11, "url");
+			ZEPHIR_CALL_METHOD(&_16$$11, &_15$$11, "has", NULL, 0, &_17$$11);
+			zephir_check_call_status();
+			_14$$11 = zephir_is_true(&_16$$11);
 		}
-		ZEPHIR_INIT_VAR(&_16$$11);
-		ZVAL_STRING(&_16$$11, "hash");
-		ZEPHIR_CALL_METHOD(&_15$$11, this_ptr, "get", NULL, 27, &_16$$11);
+		if (_14$$11) {
+			zephir_read_property(&_18$$12, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_INIT_VAR(&_20$$12);
+			ZVAL_STRING(&_20$$12, "url");
+			ZEPHIR_CALL_METHOD(&_19$$12, &_18$$12, "get", NULL, 0, &_20$$12);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&_21$$12, &_19$$12, "get", NULL, 0, url);
+			zephir_check_call_status();
+			ZEPHIR_CPY_WRT(url, &_21$$12);
+		}
+		ZEPHIR_INIT_VAR(&_22$$11);
+		if (zephir_is_true(url)) {
+			ZEPHIR_INIT_NVAR(&_22$$11);
+			ZVAL_STRING(&_22$$11, "/");
+		} else {
+			ZEPHIR_INIT_NVAR(&_22$$11);
+			ZVAL_STRING(&_22$$11, "");
+		}
+		ZEPHIR_INIT_NVAR(&_17$$11);
+		ZVAL_STRING(&_17$$11, "hash");
+		ZEPHIR_CALL_METHOD(&_23$$11, this_ptr, "get", NULL, 27, &_17$$11);
 		zephir_check_call_status();
-		ZEPHIR_INIT_VAR(&_17$$11);
-		ZEPHIR_CONCAT_VVV(&_17$$11, &_14$$11, page, &_15$$11);
-		zephir_concat_self(&url, &_17$$11 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(&_24$$11);
+		ZEPHIR_CONCAT_VVV(&_24$$11, &_22$$11, page, &_23$$11);
+		zephir_concat_self(url, &_24$$11 TSRMLS_CC);
 	} else {
 		if (ZEPHIR_GT_LONG(page, 1)) {
-			ZEPHIR_INIT_VAR(&_18$$13);
-			ZVAL_STRING(&_18$$13, "page");
-			ZEPHIR_CALL_METHOD(NULL, &query, "set", NULL, 0, &_18$$13, page);
+			ZEPHIR_INIT_VAR(&_25$$14);
+			ZVAL_STRING(&_25$$14, "page");
+			ZEPHIR_CALL_METHOD(NULL, &query, "set", NULL, 0, &_25$$14, page);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_INIT_VAR(&_19$$14);
-			ZVAL_STRING(&_19$$14, "page");
-			ZEPHIR_CALL_METHOD(NULL, &query, "remove", NULL, 0, &_19$$14);
+			ZEPHIR_INIT_VAR(&_26$$15);
+			ZVAL_STRING(&_26$$15, "page");
+			ZEPHIR_CALL_METHOD(NULL, &query, "remove", NULL, 0, &_26$$15);
 			zephir_check_call_status();
 		}
 	}
-	ZEPHIR_INIT_VAR(&_20);
+	ZEPHIR_INIT_VAR(&_27);
 	if (zephir_is_true(&liClass)) {
-		ZEPHIR_INIT_NVAR(&_20);
-		ZEPHIR_CONCAT_SVS(&_20, " class=\"", &liClass, "\"");
+		ZEPHIR_INIT_NVAR(&_27);
+		ZEPHIR_CONCAT_SVS(&_27, " class=\"", &liClass, "\"");
 	} else {
-		ZEPHIR_INIT_NVAR(&_20);
-		ZVAL_STRING(&_20, "");
+		ZEPHIR_INIT_NVAR(&_27);
+		ZVAL_STRING(&_27, "");
 	}
-	zephir_read_property(&_21, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_23);
-	zephir_create_array(&_23, 5, 0 TSRMLS_CC);
-	zephir_array_fast_append(&_23, &url);
-	zephir_array_fast_append(&_23, symbol);
-	zephir_array_fast_append(&_23, &title);
-	ZEPHIR_CALL_METHOD(&_24, &query, "all", NULL, 0);
+	zephir_read_property(&_28, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_30);
+	zephir_create_array(&_30, 5, 0 TSRMLS_CC);
+	zephir_array_fast_append(&_30, url);
+	zephir_array_fast_append(&_30, symbol);
+	zephir_array_fast_append(&_30, &title);
+	ZEPHIR_CALL_METHOD(&_31, &query, "all", NULL, 0);
 	zephir_check_call_status();
-	zephir_array_update_string(&_23, SL("query"), &_24, PH_COPY | PH_SEPARATE);
-	zephir_array_update_string(&_23, SL("class"), &aClass, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&_22, &_21, "a", NULL, 0, &_23);
+	zephir_array_update_string(&_30, SL("query"), &_31, PH_COPY | PH_SEPARATE);
+	zephir_array_update_string(&_30, SL("class"), &aClass, PH_COPY | PH_SEPARATE);
+	ZEPHIR_CALL_METHOD(&_29, &_28, "a", NULL, 0, &_30);
 	zephir_check_call_status();
-	ZEPHIR_CONCAT_SVSVS(return_value, "<li", &_20, ">", &_22, "</li>");
+	ZEPHIR_CONCAT_SVSVS(return_value, "<li", &_27, ">", &_29, "</li>");
 	RETURN_MM();
 
 }
@@ -483,8 +507,8 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
  * Prepare minimal pagination.
  * Previous 1 [2] 3 4 5 6 Next
  *
- * @param string url URL with pagination
- * @param string parameters UL attributes to adding
+ * @param mixed url URL with pagination
+ * @param array parameters UL attributes to adding
  * @return string HTML
  */
 PHP_METHOD(Ice_Pagination, minimal) {
@@ -493,11 +517,11 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS, i = 0, _10;
 	zval parameters, _1;
-	zval *url_param = NULL, *parameters_param = NULL, html, _0, _2, _3, _4, _5, _6, _8, _11, _17, _18, _19, _12$$3, _13$$3, _14$$3, _15$$3, _16$$3;
-	zval url;
+	zval *url = NULL, url_sub, *parameters_param = NULL, __$null, html, _0, _2, _3, _4, _5, _6, _8, _11, _17, _18, _19, _12$$3, _13$$3, _14$$3, _15$$3, _16$$3;
 	ZEPHIR_INIT_THIS();
 
-	ZVAL_UNDEF(&url);
+	ZVAL_UNDEF(&url_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&html);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -519,13 +543,11 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &url_param, &parameters_param);
+	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
 
-	if (!url_param) {
-		ZEPHIR_INIT_VAR(&url);
-		ZVAL_STRING(&url, "");
-	} else {
-		zephir_get_strval(&url, url_param);
+	if (!url) {
+		url = &url_sub;
+		url = &__$null;
 	}
 	if (!parameters_param) {
 		ZEPHIR_INIT_VAR(&parameters);
@@ -554,7 +576,7 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "previous");
 	ZVAL_BOOL(&_6, ZEPHIR_GT(&_4, &_5));
-	ZEPHIR_CALL_METHOD(&_3, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_3 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_2);
@@ -581,7 +603,7 @@ PHP_METHOD(Ice_Pagination, minimal) {
 			zephir_check_call_status();
 			ZVAL_LONG(&_15$$3, i);
 			ZVAL_BOOL(&_16$$3, !ZEPHIR_IS_LONG_IDENTICAL(&_13$$3, i));
-			ZEPHIR_CALL_METHOD(&_12$$3, this_ptr, "preparebutton", &_7, 0, &_15$$3, &url, &_16$$3);
+			ZEPHIR_CALL_METHOD(&_12$$3, this_ptr, "preparebutton", &_7, 0, &_15$$3, url, &_16$$3);
 			zephir_check_call_status();
 			zephir_concat_self(&html, &_12$$3 TSRMLS_CC);
 		}
@@ -597,7 +619,7 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "next");
 	ZVAL_BOOL(&_6, ZEPHIR_LT(&_17, &_18));
-	ZEPHIR_CALL_METHOD(&_8, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_8, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_8 TSRMLS_CC);
 	zephir_read_property(&_6, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
@@ -614,8 +636,8 @@ PHP_METHOD(Ice_Pagination, minimal) {
  * Prepare basic pagination.
  * First Previous 1 [2] 3 4 5 6 Next Last
  *
- * @param string url URL with pagination
- * @param string parameters UL attributes to adding
+ * @param mixed url URL with pagination
+ * @param array parameters UL attributes to adding
  * @return string HTML
  */
 PHP_METHOD(Ice_Pagination, basic) {
@@ -624,11 +646,11 @@ PHP_METHOD(Ice_Pagination, basic) {
 	zephir_fcall_cache_entry *_7 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS, i = 0, _13;
 	zval parameters, _1;
-	zval *url_param = NULL, *parameters_param = NULL, html, _0, _2, _3, _4, _5, _6, _8, _9, _10, _11, _14, _20, _21, _22, _23, _24, _25, _15$$3, _16$$3, _17$$3, _18$$3, _19$$3;
-	zval url;
+	zval *url = NULL, url_sub, *parameters_param = NULL, __$null, html, _0, _2, _3, _4, _5, _6, _8, _9, _10, _11, _14, _20, _21, _22, _23, _24, _25, _15$$3, _16$$3, _17$$3, _18$$3, _19$$3;
 	ZEPHIR_INIT_THIS();
 
-	ZVAL_UNDEF(&url);
+	ZVAL_UNDEF(&url_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&html);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -656,13 +678,11 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &url_param, &parameters_param);
+	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
 
-	if (!url_param) {
-		ZEPHIR_INIT_VAR(&url);
-		ZVAL_STRING(&url, "");
-	} else {
-		zephir_get_strval(&url, url_param);
+	if (!url) {
+		url = &url_sub;
+		url = &__$null;
 	}
 	if (!parameters_param) {
 		ZEPHIR_INIT_VAR(&parameters);
@@ -691,7 +711,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "first");
 	ZVAL_BOOL(&_6, !ZEPHIR_IS_EQUAL(&_4, &_5));
-	ZEPHIR_CALL_METHOD(&_3, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_3 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_2);
@@ -705,7 +725,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "previous");
 	ZVAL_BOOL(&_6, ZEPHIR_GT(&_9, &_10));
-	ZEPHIR_CALL_METHOD(&_8, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_8, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_8 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_2);
@@ -732,7 +752,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 			zephir_check_call_status();
 			ZVAL_LONG(&_18$$3, i);
 			ZVAL_BOOL(&_19$$3, !ZEPHIR_IS_LONG_IDENTICAL(&_16$$3, i));
-			ZEPHIR_CALL_METHOD(&_15$$3, this_ptr, "preparebutton", &_7, 0, &_18$$3, &url, &_19$$3);
+			ZEPHIR_CALL_METHOD(&_15$$3, this_ptr, "preparebutton", &_7, 0, &_18$$3, url, &_19$$3);
 			zephir_check_call_status();
 			zephir_concat_self(&html, &_15$$3 TSRMLS_CC);
 		}
@@ -748,7 +768,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "next");
 	ZVAL_BOOL(&_6, ZEPHIR_LT(&_20, &_21));
-	ZEPHIR_CALL_METHOD(&_11, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_11, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_11 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_2);
@@ -762,7 +782,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "last");
 	ZVAL_BOOL(&_6, !ZEPHIR_IS_EQUAL(&_23, &_24));
-	ZEPHIR_CALL_METHOD(&_22, this_ptr, "preparebutton", &_7, 0, &_2, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_22, this_ptr, "preparebutton", &_7, 0, &_2, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_22 TSRMLS_CC);
 	zephir_read_property(&_6, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
@@ -779,8 +799,8 @@ PHP_METHOD(Ice_Pagination, basic) {
  * Prepare floating pagination.
  * First Previous 1 2 3 ... 23 24 25 26 [27] 28 29 30 31 ... 48 49 50 Next Last
  *
- * @param string url URL with pagination
- * @param string parameters UL attributes to adding
+ * @param mixed url URL with pagination
+ * @param array parameters UL attributes to adding
  * @param int countOut Number of page links in the begin and end of whole range
  * @param int countIn Number of page links on each side of current page
  * @return string HTML
@@ -793,11 +813,11 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_fcall_cache_entry *_4 = NULL, *_7 = NULL, *_34 = NULL;
 	int countOut, countIn, ZEPHIR_LAST_CALL_STATUS, n1 = 0, n3 = 0, n6 = 0, i = 0, _17;
 	zval parameters, _30;
-	zval *url_param = NULL, *parameters_param = NULL, *countOut_param = NULL, *countIn_param = NULL, html, links, page, content, n2, n4, n5, n7, n8, _0, _1, _2, _3, _5, _6, _8, _9, _10, _12, _13, _15, _18, _22, _23, _27, _28, _31, _32, _33, _35, _36, _37, *_38, _45, _46, _47, _48, _49, _50, _51, _19$$4, _20$$5, _24$$6, _25$$7, _29$$8, _41$$9, _42$$9, _43$$9, _44$$9;
-	zval url;
+	zval *url = NULL, url_sub, *parameters_param = NULL, *countOut_param = NULL, *countIn_param = NULL, __$null, html, links, page, content, n2, n4, n5, n7, n8, _0, _1, _2, _3, _5, _6, _8, _9, _10, _12, _13, _15, _18, _22, _23, _27, _28, _31, _32, _33, _35, _36, _37, *_38, _45, _46, _47, _48, _49, _50, _51, _19$$4, _20$$5, _24$$6, _25$$7, _29$$8, _41$$9, _42$$9, _43$$9, _44$$9;
 	ZEPHIR_INIT_THIS();
 
-	ZVAL_UNDEF(&url);
+	ZVAL_UNDEF(&url_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&html);
 	ZVAL_UNDEF(&links);
 	ZVAL_UNDEF(&page);
@@ -850,13 +870,11 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZVAL_UNDEF(&_30);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 4, &url_param, &parameters_param, &countOut_param, &countIn_param);
+	zephir_fetch_params(1, 0, 4, &url, &parameters_param, &countOut_param, &countIn_param);
 
-	if (!url_param) {
-		ZEPHIR_INIT_VAR(&url);
-		ZVAL_STRING(&url, "");
-	} else {
-		zephir_get_strval(&url, url_param);
+	if (!url) {
+		url = &url_sub;
+		url = &__$null;
 	}
 	if (!parameters_param) {
 		ZEPHIR_INIT_VAR(&parameters);
@@ -1030,7 +1048,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "first");
 	ZVAL_BOOL(&_6, !ZEPHIR_IS_EQUAL(&_32, &_33));
-	ZEPHIR_CALL_METHOD(&_31, this_ptr, "preparebutton", &_34, 0, &_1, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_31, this_ptr, "preparebutton", &_34, 0, &_1, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_31 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_1);
@@ -1044,10 +1062,10 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "previous");
 	ZVAL_BOOL(&_6, ZEPHIR_GT(&_36, &_37));
-	ZEPHIR_CALL_METHOD(&_35, this_ptr, "preparebutton", &_34, 0, &_1, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_35, this_ptr, "preparebutton", &_34, 0, &_1, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_35 TSRMLS_CC);
-	zephir_is_iterable(&links, 0, "ice/pagination.zep", 316);
+	zephir_is_iterable(&links, 0, "ice/pagination.zep", 321);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&links), _39, _40, _38)
 	{
 		ZEPHIR_INIT_NVAR(&page);
@@ -1063,7 +1081,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 		ZEPHIR_CALL_METHOD(&_42$$9, this_ptr, "get", NULL, 27, &_43$$9);
 		zephir_check_call_status();
 		ZVAL_BOOL(&_44$$9, !ZEPHIR_IS_IDENTICAL(&page, &_42$$9));
-		ZEPHIR_CALL_METHOD(&_41$$9, this_ptr, "preparebutton", &_34, 0, &page, &url, &_44$$9, &content);
+		ZEPHIR_CALL_METHOD(&_41$$9, this_ptr, "preparebutton", &_34, 0, &page, url, &_44$$9, &content);
 		zephir_check_call_status();
 		zephir_concat_self(&html, &_41$$9 TSRMLS_CC);
 	} ZEND_HASH_FOREACH_END();
@@ -1080,7 +1098,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "next");
 	ZVAL_BOOL(&_6, ZEPHIR_LT(&_46, &_47));
-	ZEPHIR_CALL_METHOD(&_45, this_ptr, "preparebutton", &_34, 0, &_1, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_45, this_ptr, "preparebutton", &_34, 0, &_1, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_45 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(&_1);
@@ -1094,7 +1112,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "last");
 	ZVAL_BOOL(&_6, !ZEPHIR_IS_EQUAL(&_49, &_50));
-	ZEPHIR_CALL_METHOD(&_48, this_ptr, "preparebutton", &_34, 0, &_1, &url, &_6);
+	ZEPHIR_CALL_METHOD(&_48, this_ptr, "preparebutton", &_34, 0, &_1, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_48 TSRMLS_CC);
 	zephir_read_property(&_6, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);

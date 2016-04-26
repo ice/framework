@@ -202,7 +202,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data_param);
 
-	ZVAL_COPY_VALUE(&data, data_param);
+	ZEPHIR_CPY_WRT(&data, data_param);
 
 
 	zephir_is_iterable(&data, 0, "ice/arr.zep", 85);
@@ -265,7 +265,7 @@ PHP_METHOD(Ice_Arr, setData) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
 	} else {
-	ZVAL_COPY_VALUE(&data, data_param);
+	ZEPHIR_CPY_WRT(&data, data_param);
 	}
 
 
@@ -564,7 +564,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 		ZEPHIR_INIT_NVAR(&value);
 		ZVAL_COPY(&value, _1);
 		if (Z_TYPE_P(&value) == IS_OBJECT) {
-			if ((zephir_method_exists_ex(&value, SS("toarray") TSRMLS_CC) == SUCCESS)) {
+			if ((zephir_method_exists_ex(&value, SL("toarray") TSRMLS_CC) == SUCCESS)) {
 				ZEPHIR_CALL_METHOD(&_4$$5, &value, "toarray", NULL, 0);
 				zephir_check_call_status();
 				zephir_array_update_zval(&tmp, &key, &_4$$5, PH_COPY | PH_SEPARATE);
@@ -798,7 +798,7 @@ PHP_METHOD(Ice_Arr, __unset) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
 		ZVAL_UNDEF(&_0);

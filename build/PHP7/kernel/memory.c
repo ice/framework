@@ -90,6 +90,9 @@ static void zephir_memory_restore_stack_common(zend_zephir_globals_def *g)
 	zephir_memory_entry *prev, *active_memory;
 	zephir_symbol_table *active_symbol_table;
 	zval *ptr;
+#ifndef ZEPHIR_RELEASE
+	int show_backtrace = 0;
+#endif	
 
 	active_memory = g->active_memory;
 	assert(active_memory != NULL);
@@ -124,15 +127,20 @@ static void zephir_memory_restore_stack_common(zend_zephir_globals_def *g)
 				zval *var = active_memory->addresses[i];
 				if (Z_TYPE_P(var) > IS_CALLABLE) {
 					fprintf(stderr, "%s: observed variable #%d (%p) has invalid type %u [%s]\n", __func__, (int)i, var, Z_TYPE_P(var), active_memory->func);
+					show_backtrace = 1;
 				}
 
-				if (!Z_REFCOUNTED_P(var)) continue;
+				if (!Z_REFCOUNTED_P(var)) {
+					continue;
+				}
 
 				if (Z_REFCOUNT_P(var) == 0) {
 					fprintf(stderr, "%s: observed variable #%d (%p) has 0 references, type=%d [%s]\n", __func__, (int)i, var, Z_TYPE_P(var), active_memory->func);
+					show_backtrace = 1;
 				}
 				else if (Z_REFCOUNT_P(var) >= 1000000) {
 					fprintf(stderr, "%s: observed variable #%d (%p) has too many references (%u), type=%d  [%s]\n", __func__, (int)i, var, Z_REFCOUNT_P(var), Z_TYPE_P(var), active_memory->func);
+					show_backtrace = 1;
 				}
 #if 0
 				/* Skip this check, PDO does return variables with is_ref = 1 and refcount = 1*/
@@ -202,7 +210,12 @@ static void zephir_memory_restore_stack_common(zend_zephir_globals_def *g)
 			}
 		}
 	}
+
+	if (show_backtrace == 1) {
+		zephir_print_backtrace();
+	}
 #endif
+
 }
 
 #ifndef ZEPHIR_RELEASE
@@ -580,14 +593,22 @@ void zephir_dump_memory_frame(zephir_memory_entry *active_memory)
 			fprintf(stderr, "Obs var %lu (%p), type=%u, refcnted=%d, refcnt=%u; ", (ulong)i, var, Z_TYPE_P(var), Z_REFCOUNTED_P(var), Z_REFCOUNTED_P(var) ? Z_REFCOUNT_P(var) : 0);
 			switch (Z_TYPE_P(var)) {
 				case IS_NULL:     fprintf(stderr, "value=NULL\n"); break;
+#ifdef ZEPHIR_ENABLE_64BITS
+				case IS_LONG:     fprintf(stderr, "value=%lld\n", Z_LVAL_P(var)); break;
+#else
 				case IS_LONG:     fprintf(stderr, "value=%ld\n", Z_LVAL_P(var)); break;
+#endif
 				case IS_DOUBLE:   fprintf(stderr, "value=%E\n", Z_DVAL_P(var)); break;
 				case IS_TRUE:     fprintf(stderr, "value=(bool)true\n"); break;
 				case IS_FALSE:    fprintf(stderr, "value=(bool)false\n"); break;
 				case IS_ARRAY:    fprintf(stderr, "value=array(%p), %d elements\n", Z_ARRVAL_P(var), zend_hash_num_elements(Z_ARRVAL_P(var))); break;
 				case IS_OBJECT:   fprintf(stderr, "value=object(%u), %s\n", Z_OBJ_HANDLE_P(var), ZSTR_VAL(Z_OBJCE_P(var)->name)); break;
-				case IS_STRING:   fprintf(stderr, "value=%*s (%d)\n", Z_STRVAL_P(var), Z_STRLEN_P(var)); break;
+				case IS_STRING:   fprintf(stderr, "value=%s (%zu)\n", Z_STRVAL_P(var), Z_STRLEN_P(var)); break;
+#ifdef ZEPHIR_ENABLE_64BITS
+				case IS_RESOURCE: fprintf(stderr, "value=(resource)%lld\n", Z_LVAL_P(var)); break;
+#else
 				case IS_RESOURCE: fprintf(stderr, "value=(resource)%ld\n", Z_LVAL_P(var)); break;
+#endif
 				default:          fprintf(stderr, "\n"); break;
 			}
 		}

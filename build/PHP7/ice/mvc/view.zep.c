@@ -678,7 +678,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &vars_param);
 
-	ZVAL_COPY_VALUE(&vars, vars_param);
+	ZEPHIR_CPY_WRT(&vars, vars_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &vars);

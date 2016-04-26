@@ -897,7 +897,7 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _1$$3;
 	zval _0;

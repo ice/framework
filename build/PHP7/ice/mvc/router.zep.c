@@ -333,9 +333,10 @@ PHP_METHOD(Ice_Mvc_Router, setDefaults) {
 	ZVAL_UNDEF(&handler);
 	ZVAL_UNDEF(&action);
 
-	zephir_fetch_params(0, 1, 0, &defaults_param);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &defaults_param);
 
-	ZVAL_COPY_VALUE(&defaults, defaults_param);
+	ZEPHIR_CPY_WRT(&defaults, defaults_param);
 
 
 	if (zephir_array_isset_string_fetch(&module, &defaults, SL("module"), 1)) {
@@ -347,6 +348,7 @@ PHP_METHOD(Ice_Mvc_Router, setDefaults) {
 	if (zephir_array_isset_string_fetch(&action, &defaults, SL("action"), 1)) {
 		zephir_update_property_zval(this_ptr, SL("defaultAction"), &action);
 	}
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -364,13 +366,14 @@ PHP_METHOD(Ice_Mvc_Router, setOptions) {
 
 	ZVAL_UNDEF(&options);
 
-	zephir_fetch_params(0, 1, 0, &options_param);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &options_param);
 
-	ZVAL_COPY_VALUE(&options, options_param);
+	ZEPHIR_CPY_WRT(&options, options_param);
 
 
 	zephir_update_property_zval(this_ptr, SL("options"), &options);
-	RETURN_THISW();
+	RETURN_THIS();
 
 }
 
@@ -772,7 +775,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Mvc_Router(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Mvc_Router(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
 		ZVAL_UNDEF(&_0);

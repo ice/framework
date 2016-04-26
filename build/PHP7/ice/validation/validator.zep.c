@@ -237,7 +237,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Validation_Validator(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Validation_Validator(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
 		ZVAL_UNDEF(&_0);

@@ -1013,7 +1013,7 @@ PHP_METHOD(Ice_Dump, vars) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
 		ZVAL_UNDEF(&_0);

@@ -315,7 +315,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 		ZEPHIR_INIT_VAR(&_7$$3);
 		ZEPHIR_INIT_VAR(&_8$$3);
 		zephir_get_class_ns(&_8$$3, this_ptr, 0 TSRMLS_CC);
-		zephir_uncamelize(&_7$$3, &_8$$3);
+		zephir_uncamelize(&_7$$3, &_8$$3, NULL  );
 		zephir_update_property_zval(this_ptr, SL("from"), &_7$$3);
 	}
 	zephir_read_property(&_9, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
@@ -325,7 +325,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("primary"), &_11$$4);
 	}
-	if ((zephir_method_exists_ex(this_ptr, SS("onconstruct") TSRMLS_CC) == SUCCESS)) {
+	if ((zephir_method_exists_ex(this_ptr, SL("onconstruct") TSRMLS_CC) == SUCCESS)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "onconstruct", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -337,7 +337,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 			return;
 		}
 	}
-	if ((zephir_method_exists_ex(this_ptr, SS("initialize") TSRMLS_CC) == SUCCESS)) {
+	if ((zephir_method_exists_ex(this_ptr, SL("initialize") TSRMLS_CC) == SUCCESS)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "initialize", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -1722,7 +1722,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	ZEPHIR_INIT_VAR(&_4);
 	zephir_get_class_ns(&_4, &referenceModel, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&from);
-	zephir_uncamelize(&from, &_4);
+	zephir_uncamelize(&from, &_4, NULL  );
 	zephir_array_fetch_string(&_5, &relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 628 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(&_5, 1) || ZEPHIR_IS_LONG(&_5, 2)) {
@@ -1867,7 +1867,7 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 		ZEPHIR_INIT_VAR(&rules);
 		array_init(&rules);
 	} else {
-	ZVAL_COPY_VALUE(&rules, rules_param);
+	ZEPHIR_CPY_WRT(&rules, rules_param);
 	}
 	if (!merge_param) {
 		merge = 1;
@@ -2013,7 +2013,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _4, _6, _8, _10, _12, _1$$3, _3$$4, _5$$5, _7$$6, _9$$7, _11$$8, _13$$9;
 		ZVAL_UNDEF(&_0);

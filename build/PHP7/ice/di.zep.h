@@ -20,7 +20,7 @@ PHP_METHOD(Ice_Di, applyHook);
 PHP_METHOD(Ice_Di, getHooks);
 PHP_METHOD(Ice_Di, clearHooks);
 PHP_METHOD(Ice_Di, __call);
-static zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_setdefaults, 0, 0, 1)
 	ZEND_ARG_INFO(0, defaults)

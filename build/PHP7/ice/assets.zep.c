@@ -259,7 +259,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
 
-	ZVAL_COPY_VALUE(&parameters, parameters_param);
+	ZEPHIR_CPY_WRT(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
 		ZVAL_STRING(&version, "");
@@ -387,7 +387,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
 
-	ZVAL_COPY_VALUE(&parameters, parameters_param);
+	ZEPHIR_CPY_WRT(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
 		ZVAL_STRING(&version, "");
@@ -692,7 +692,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _4, _1$$3, _3$$4, _5$$5;
 		ZVAL_UNDEF(&_0);

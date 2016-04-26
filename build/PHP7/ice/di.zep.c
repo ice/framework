@@ -984,7 +984,7 @@ PHP_METHOD(Ice_Di, __call) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _4, _1$$3, _3$$4, _5$$5;
 		ZVAL_UNDEF(&_0);

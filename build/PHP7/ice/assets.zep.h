@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Assets, addCss);
 PHP_METHOD(Ice_Assets, addJs);
 PHP_METHOD(Ice_Assets, minify);
 PHP_METHOD(Ice_Assets, prepare);
-static zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC);
+zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_assets_setoptions, 0, 0, 1)
 	ZEND_ARG_INFO(0, options)

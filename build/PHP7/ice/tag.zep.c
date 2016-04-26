@@ -1724,7 +1724,7 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 		ZEPHIR_INIT_VAR(&parameters);
 		array_init(&parameters);
 	} else {
-	ZVAL_COPY_VALUE(&parameters, parameters_param);
+	ZEPHIR_CPY_WRT(&parameters, parameters_param);
 	}
 	if (!defaultParams_param) {
 		ZEPHIR_INIT_VAR(&defaultParams);
@@ -1966,7 +1966,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 		ZEPHIR_INIT_VAR(&name);
 		ZVAL_EMPTY_STRING(&name);
 	}
-	ZVAL_COPY_VALUE(&attributes, attributes_param);
+	ZEPHIR_CPY_WRT(&attributes, attributes_param);
 	if (!skip_param) {
 		ZEPHIR_INIT_VAR(&skip);
 		array_init(&skip);
@@ -2565,7 +2565,7 @@ PHP_METHOD(Ice_Tag, getDocType) {
 
 }
 
-static zend_object *zephir_init_properties_Ice_Tag(zend_class_entry *class_type TSRMLS_DC) {
+zend_object *zephir_init_properties_Ice_Tag(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
 		ZVAL_UNDEF(&_0);
