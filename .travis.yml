@@ -11,10 +11,10 @@ before_install:
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_pgp.enc -out ~/.gnupg/id_pgp -d; chmod 600 ~/.gnupg/id_pgp; gpg --allow-secret-key-import --import ~/.gnupg/id_pgp; fi
   - git config push.default simple
-  - git config commit.gpgsign true
+#  - git config commit.gpgsign true
   - git config --global user.email "info@iceframework.org"
   - git config --global user.name "Ice Framework"
-  - git config --global user.signingkey 781C2FB7
+#  - git config --global user.signingkey 781C2FB7
   - git submodule --quiet update --init --recursive
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin git@github.com:ice/framework.git; fi
   - composer install --prefer-source --no-scripts
@@ -39,7 +39,7 @@ after_success:
   - git checkout $TRAVIS_BRANCH;
   - (mkdir -p build/$ZEPHIR_TARGET; rm -rf build/$ZEPHIR_TARGET/{*,.*})
   - (cp -a generated/. build/$ZEPHIR_TARGET; git add -A build/$ZEPHIR_TARGET)
-  - 'echo "$encrypted_key" | git commit -S -m "$ZEPHIR_TARGET, $TRAVIS_COMMIT: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'
+  - 'git commit -m "$ZEPHIR_TARGET, $TRAVIS_COMMIT: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$ZEPHIR_TARGET" != "legacy" ]]; then git fetch && git rebase --autostash FETCH_HEAD && git push; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == "true" ]]; then git log -1 -p; fi
 
