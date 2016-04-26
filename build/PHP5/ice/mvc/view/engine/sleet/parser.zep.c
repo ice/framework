@@ -104,7 +104,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, __construct) {
 			ZEPHIR_INIT_NVAR(_10$$5);
 			ZEPHIR_OBS_NVAR(_11$$5);
 			zephir_read_property(&_11$$5, method, SL("name"), PH_NOISY_CC);
-			zephir_uncamelize(_10$$5, _11$$5);
+			zephir_uncamelize(_10$$5, _11$$5, NULL  );
 			zephir_array_update_zval(&functions, _10$$5, &_9$$5, PH_COPY | PH_SEPARATE);
 		} while(0);
 
@@ -955,7 +955,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Mvc_View_Engine_Sleet_Parser(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Mvc_View_Engine_Sleet_Parser(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_3$$4, *_5$$5;
 	zval *_0, *_2, *_4, *_1$$3;

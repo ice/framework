@@ -369,7 +369,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Mvc_Route_DataGenerator_Regex(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Mvc_Route_DataGenerator_Regex(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_2, *_1$$3, *_3$$4;
 

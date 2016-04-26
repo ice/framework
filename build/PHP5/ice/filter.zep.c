@@ -198,12 +198,12 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		}
 		if (ZEPHIR_IS_STRING(filter, "camelize")) {
 			ZEPHIR_INIT_VAR(_6$$7);
-			zephir_camelize(_6$$7, value);
+			zephir_camelize(_6$$7, value, NULL  );
 			RETURN_CCTOR(_6$$7);
 		}
 		if (ZEPHIR_IS_STRING(filter, "uncamelize")) {
 			ZEPHIR_INIT_VAR(_7$$8);
-			zephir_uncamelize(_7$$8, value);
+			zephir_uncamelize(_7$$8, value, NULL  );
 			RETURN_CCTOR(_7$$8);
 		}
 		if (ZEPHIR_IS_STRING(filter, "human")) {

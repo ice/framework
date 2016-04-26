@@ -304,7 +304,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Cli_Router(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Cli_Router(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_1$$3;
 

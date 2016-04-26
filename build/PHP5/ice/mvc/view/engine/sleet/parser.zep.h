@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseSet);
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseUse);
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, doParse);
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token);
-static zend_object_value zephir_init_properties_Ice_Mvc_View_Engine_Sleet_Parser(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_Ice_Mvc_View_Engine_Sleet_Parser(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine_sleet_parser_text, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)

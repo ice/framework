@@ -269,7 +269,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 		ZEPHIR_INIT_VAR(_7$$3);
 		ZEPHIR_INIT_VAR(_8$$3);
 		zephir_get_class_ns(_8$$3, this_ptr, 0 TSRMLS_CC);
-		zephir_uncamelize(_7$$3, _8$$3);
+		zephir_uncamelize(_7$$3, _8$$3, NULL  );
 		zephir_update_property_this(this_ptr, SL("from"), _7$$3 TSRMLS_CC);
 	}
 	_9 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
@@ -1430,7 +1430,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	ZEPHIR_INIT_VAR(_4);
 	zephir_get_class_ns(_4, referenceModel, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(from);
-	zephir_uncamelize(from, _4);
+	zephir_uncamelize(from, _4, NULL  );
 	zephir_array_fetch_string(&_5, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 628 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_5, 1) || ZEPHIR_IS_LONG(_5, 2)) {
@@ -1683,7 +1683,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_2, *_4, *_6, *_8, *_10, *_12, *_1$$3, *_3$$4, *_5$$5, *_7$$6, *_9$$7, *_11$$8, *_13$$9;
 

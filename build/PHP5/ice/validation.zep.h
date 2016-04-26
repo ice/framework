@@ -26,7 +26,7 @@ PHP_METHOD(Ice_Validation, setDefaultMessages);
 PHP_METHOD(Ice_Validation, getDefaultMessage);
 PHP_METHOD(Ice_Validation, addMessage);
 PHP_METHOD(Ice_Validation, getMessages);
-static zend_object_value zephir_init_properties_Ice_Validation(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_Ice_Validation(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_setrules, 0, 0, 1)
 	ZEND_ARG_INFO(0, rules)

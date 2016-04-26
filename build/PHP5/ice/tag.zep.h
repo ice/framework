@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Tag, setValues);
 PHP_METHOD(Ice_Tag, getValue);
 PHP_METHOD(Ice_Tag, friendlyTitle);
 PHP_METHOD(Ice_Tag, getDocType);
-static zend_object_value zephir_init_properties_Ice_Tag(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_Ice_Tag(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setdoctype, 0, 0, 1)
 	ZEND_ARG_INFO(0, docType)

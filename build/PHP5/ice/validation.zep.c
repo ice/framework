@@ -241,7 +241,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("aliases"), PH_NOISY_CC);
 	if (!(zephir_array_isset_fetch(&rule, _0, alias, 0 TSRMLS_CC))) {
 		ZEPHIR_INIT_VAR(_1$$3);
-		zephir_camelize(_1$$3, alias);
+		zephir_camelize(_1$$3, alias, NULL  );
 		ZEPHIR_INIT_NVAR(rule);
 		ZEPHIR_CONCAT_SV(rule, "Ice\\Validation\\Validator\\", _1$$3);
 		if (!(zephir_class_exists(rule, 1 TSRMLS_CC))) {
@@ -901,7 +901,7 @@ PHP_METHOD(Ice_Validation, getMessages) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Validation(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Validation(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1$$3;
 	zval *_0, *_2, *_4, *_6, *_8, *_10, *_12, *_14, *_3$$4, *_5$$5, *_7$$6, *_9$$7, *_11$$8, *_13$$9, *_15$$10;

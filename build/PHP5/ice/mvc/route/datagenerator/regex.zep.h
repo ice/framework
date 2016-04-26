@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute);
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute);
-static zend_object_value zephir_init_properties_Ice_Mvc_Route_DataGenerator_Regex(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_Ice_Mvc_Route_DataGenerator_Regex(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_datagenerator_regex_processchunk, 0, 0, 1)
 	ZEND_ARG_INFO(0, regexToRoutesMap)

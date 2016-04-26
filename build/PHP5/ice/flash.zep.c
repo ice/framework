@@ -529,7 +529,7 @@ PHP_METHOD(Ice_Flash, error) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_1$$3, *_2$$3 = NULL;
 	zval *_0;

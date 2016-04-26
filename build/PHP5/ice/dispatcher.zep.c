@@ -706,7 +706,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		_38$$3 = zephir_fetch_nproperty_this(this_ptr, SL("defaultNamespace"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_39$$3);
 		ZEPHIR_INIT_NVAR(_40$$3);
-		zephir_camelize(_40$$3, handlerName);
+		zephir_camelize(_40$$3, handlerName, NULL  );
 		zephir_ucfirst(_39$$3, _40$$3);
 		ZEPHIR_INIT_NVAR(handlerClass);
 		ZEPHIR_CONCAT_VSVV(handlerClass, _38$$3, "\\", _39$$3, handlerSuffix);
@@ -900,7 +900,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 
 }
 
-static zend_object_value zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC) {
+zend_object_value zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval *_0, *_2, *_1$$3, *_3$$4;
 

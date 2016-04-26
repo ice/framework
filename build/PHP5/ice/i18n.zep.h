@@ -13,7 +13,7 @@ PHP_METHOD(Ice_I18n, plural);
 PHP_METHOD(Ice_I18n, pluralRules);
 PHP_METHOD(Ice_I18n, _);
 PHP_METHOD(Ice_I18n, translate);
-static zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS_DC);
+zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
