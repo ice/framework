@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Apr 26 08:00:11 UTC 2016
+
+- Ice 1.1.3
++ Loader, fix php7 refcount zephir/issues/1140
++ Pagination, get current URL if uri is false
+
+-------------------------------------------------------------------
 Fri Mar 11 10:12:42 UTC 2016
 
 - Ice 1.1.2

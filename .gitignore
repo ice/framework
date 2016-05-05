@@ -13,20 +13,20 @@
 /id_pgp
 
 /ext*
-/build/PHP*/*
-!/build/PHP*/ice/
-!/build/PHP*/include/
-!/build/PHP*/kernel/
-!/build/PHP*/clean
-!/build/PHP*/config.m4
-!/build/PHP*/config.w32
-!/build/PHP*/ext.h
-!/build/PHP*/ext_config.h
-!/build/PHP*/ice.c
-!/build/PHP*/ice.h
-!/build/PHP*/install
-!/build/PHP*/php_ext.h
-!/build/PHP*/php_ice.h
+/build/php*/*
+!/build/php*/ice/
+!/build/php*/include/
+!/build/php*/kernel/
+!/build/php*/clean
+!/build/php*/config.m4
+!/build/php*/config.w32
+!/build/php*/ext.h
+!/build/php*/ext_config.h
+!/build/php*/ice.c
+!/build/php*/ice.h
+!/build/php*/install
+!/build/php*/php_ext.h
+!/build/php*/php_ice.h
 
 *.o
 *.lo
