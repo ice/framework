@@ -76,7 +76,7 @@ class View extends Arr implements ViewInterface
      */
     public function render(file = null, array data = [])
     {
-        var ext, engine, engines, path, exists, content;
+        var ext, engine, engines, path, dir, dirs, exists, content;
 
         let exists = false,
             content = null;
@@ -92,12 +92,20 @@ class View extends Arr implements ViewInterface
         let engines = this->getEngines();
 
         for ext, engine in engines {
-            let path = this->viewsDir . this->file . ext;
-            if file_exists(path) {
-                let exists = true;
-                this->replace(data);
-                let content = engine->render(path, this->all());
-                break;
+            if typeof this->viewsDir == "array" {
+                let dirs = this->viewsDir;
+            } else {
+                let dirs = [this->viewsDir];
+            }
+
+            for dir in dirs {
+                let path = dir . this->file . ext;
+                if file_exists(path) {
+                    let exists = true;
+                    this->replace(data);
+                    let content = engine->render(path, this->all());
+                    break;
+                }
             }
         }
 
