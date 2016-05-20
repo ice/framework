@@ -22,7 +22,7 @@ class Flash
         "warning": ["class": "alert alert-warning"],
         "danger": ["class": "alert alert-danger"],
         "html": true
-    ];
+    ] { set };
 
     /**
      * Flash constructor. Fetch session and tag service from the di.
