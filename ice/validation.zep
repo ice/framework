@@ -204,9 +204,10 @@ class Validation
      * Validate the data.
      *
      * @param array data Data to validate
+     * @param boolean clear Clear messages before
      * @return boolean
      */
-    public function validate(array data = []) -> boolean
+    public function validate(array data = [], boolean clear = false) -> boolean
     {
         var tmp, field, rules, rule;
 
@@ -216,6 +217,11 @@ class Validation
             tmp->setData(data);
 
             let this->data = tmp;
+        }
+
+        if clear {
+            let this->valid = true,
+                this->messages = [];
         }
 
         // Validate the rules
@@ -233,19 +239,6 @@ class Validation
         }
 
         return this->valid;
-    }
-
-    /**
-     * Clear messages and revalidate the data.
-     *
-     * @param array data Data to validate
-     * @return boolean
-     */
-    public function revalidate(array data = []) -> boolean
-    {
-        let this->messages = [];
-
-        return this->validate(data);
     }
 
     /**

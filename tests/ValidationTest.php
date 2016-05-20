@@ -166,7 +166,7 @@ class ValidationTest extends PHPUnit
             'emailAddress' => 'email'
         ], true);
 
-        $valid = $validation->revalidate(['emailAddress' => 'test']);
+        $valid = $validation->validate(['emailAddress' => 'test'], true);
         $this->assertFalse($valid);
 
         $expected = [
