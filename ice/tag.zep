@@ -298,9 +298,7 @@ class Tag
 
             // Send to current URL if action is false
             if action !== false {
-                if this->di->has("url") {
-                    let parameters["action"] = this->di->get("url")->get(action);
-                }
+                let parameters["action"] = this->di->get("url")->get(action);
             }
         }
 
@@ -374,9 +372,7 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            if this->di->has("url") {
-                let parameters["src"] = this->di->get("url")->getStatic(src);
-            }
+            let parameters["src"] = this->di->get("url")->getStatic(src);
         }
 
         return this->tagHtml("img", parameters, defaultParams, ["local"], null, false, false, true);
@@ -424,9 +420,7 @@ class Tag
 
         fetch query, parameters["query"];
 
-        if this->di->has("url") {
-            let parameters["href"] = this->di->get("url")->get(href, query, local);
-        }
+        let parameters["href"] = this->di->get("url")->get(href, query, local);
 
         return this->tagHtml("a", parameters, defaultParams, ["text", "local", "query"], "text", true);
     }
@@ -464,9 +458,7 @@ class Tag
                 fetch href, parameters[defaultParams["href"]];
             }
 
-            if this->di->has("url") {
-                let parameters["href"] = this->di->get("url")->getStatic(href);
-            }
+            let parameters["href"] = this->di->get("url")->getStatic(href);
         }
 
         return this->tagHtml("link", parameters, defaultParams, ["local"], null, false, true, true);
@@ -504,7 +496,7 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            if src && this->di->has("url") {
+            if src {
                 let parameters["src"] = this->di->get("url")->getStatic(src);
             }
         }
@@ -781,7 +773,7 @@ class Tag
 
         for key, value in attrs {
             if typeof key == "string" && value !== null && value !== false && !in_array(key, skip) {
-                if this->escape && this->di->has("filter") {
+                if this->escape {
                     let value = this->di->get("filter")->sanitize(value, "escape");
                 }
                 let code .= " " . key . "=\"" . value. "\"";
