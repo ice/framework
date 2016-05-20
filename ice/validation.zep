@@ -184,11 +184,16 @@ class Validation
      * </code></pre>
      *
      * @param array validators
+     * @param boolean clear
      * @return void
      */
-    public function rules(array! validators) -> void
+    public function rules(array! validators, boolean clear = false) -> void
     {
         var field, rules;
+
+        if clear {
+            let this->rules = [];
+        }
 
         for field, rules in validators {
             this->rule(field, rules);
@@ -228,6 +233,19 @@ class Validation
         }
 
         return this->valid;
+    }
+
+    /**
+     * Clear messages and revalidate the data.
+     *
+     * @param array data Data to validate
+     * @return boolean
+     */
+    public function revalidate(array data = []) -> boolean
+    {
+        let this->messages = [];
+
+        return this->validate(data);
     }
 
     /**

@@ -136,6 +136,48 @@ class ValidationTest extends PHPUnit
         $this->assertSame($expected, $validation->getMessages()->all());
     }
 
+    public function testRevalidate()
+    {
+        $validation = new Validation([
+            'emailAddress' => '',
+            'repeatEmailAddress' => 'user@example.com',
+        ]);
+
+        $validation->rules([
+            'emailAddress' => 'required|email',
+            'repeatEmailAddress' => 'same:emailAddress'
+        ]);
+
+        $valid = $validation->validate();
+        $this->assertFalse($valid);
+
+        $expected = [
+            "emailAddress" => [
+                0 => "Field emailAddress is required"
+            ],
+            "repeatEmailAddress" => [
+                0 => "Field repeatEmailAddress and emailAddress must match"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
+
+        $validation->rules([
+            'emailAddress' => 'email'
+        ], true);
+
+        $valid = $validation->revalidate(['emailAddress' => 'test']);
+        $this->assertFalse($valid);
+
+        $expected = [
+            "emailAddress" => [
+                0 => "Field emailAddress must be an email address"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
+    }
+
     public function testHuman()
     {
         $validation = new Validation([
