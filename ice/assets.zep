@@ -14,8 +14,7 @@ class Assets
 {
 
     protected di;
-    protected css = [] { get };
-    protected js = [] { get };
+    protected collections = [] { set, get };
     protected options = [] { set };
 
     const NEVER = 0;
@@ -54,10 +53,11 @@ class Assets
      *
      * @param mixed parameters Parameters of link/script/style
      * @param string version Version appending to the uri
+     * @param string Collection Collection name
      * @param mixed minify Local minify option
      * @return object this
      */
-    public function add(var parameters, string version = null, var minify = null)
+    public function add(var parameters, string version = null, string collection = null, var minify = null)
     {
         var content, type;
 
@@ -72,9 +72,15 @@ class Assets
         fetch type, parameters["type"];
 
         if ends_with(content, ".css") || type == "text/css" {
-            this->addCss(parameters, version, minify);
+            if !collection {
+                let collection = "css";
+            }
+            this->addCss(parameters, version, collection, minify);
         } elseif ends_with(content, ".js") || type == "text/javascript" {
-            this->addJs(parameters, version, minify);
+            if !collection {
+                let collection = "js";
+            }
+            this->addJs(parameters, version, collection, minify);
         }
 
         return this;
@@ -85,10 +91,11 @@ class Assets
      *
      * @param array parameters Parameters of link/style
      * @param string version Version appending to the uri
+     * @param string Collection Collection name
      * @param mixed minify Local minify option
      * @return object this
      */
-    public function addCss(array! parameters, string version = null, var minify = null)
+    public function addCss(array! parameters, string version = null, string collection = "css", var minify = null)
     {
 
         var content, local, tag;
@@ -116,10 +123,10 @@ class Assets
 
         // Check if resource is inline or in file
         if isset parameters["content"] {
-            let this->css[] = tag->style(["content": minify ? this->minify(content, "css") : content]);
+            this->addToCollection(collection, tag->style(["content": minify ? this->minify(content, "css") : content]));
         } else {
-            let parameters["href"] = this->prepare(content, "css", minify) . (version ? "?v=" . version : ""),
-                this->css[] = tag->link(parameters);
+            let parameters["href"] = this->prepare(content, "css", minify) . (version ? "?v=" . version : "");
+            this->addToCollection(collection, tag->link(parameters));
         }
 
         return this;
@@ -130,10 +137,11 @@ class Assets
      *
      * @param array parameters Parameters of script
      * @param string version Version appending to the uri
+     * @param string Collection Collection name
      * @param mixed minify Local minify option
      * @return object this
      */
-    public function addJs(array! parameters, string version = null, var minify = null)
+    public function addJs(array! parameters, string version = null, string collection = "js", var minify = null)
     {
         var content, local, tag;
 
@@ -160,17 +168,67 @@ class Assets
 
         // Check if resource is inline or in file
         if isset parameters["content"] {
-            let this->js[] = tag->script(["content": minify ? this->minify(content, "js") : content]);
+            this->addToCollection(collection, tag->script(["content": minify ? this->minify(content, "js") : content]));
         } else {
-            let parameters["src"] = this->prepare(content, "js", minify) . (version ? "?v=" . version : ""),
-                this->js[] = tag->script(parameters);
+            let parameters["src"] = this->prepare(content, "js", minify) . (version ? "?v=" . version : "");
+            this->addToCollection(collection, tag->script(parameters));
         }
 
         return this;
     }
 
     /**
-     * Minify content
+     * Add an asset to the collection.
+     *
+     * @param string key Collection name
+     * @param string value Asset HTML code
+     */
+    public function addToCollection(key, value)
+    {
+        if !isset this->collections[key] {
+            let this->collections[key] = [];
+        }
+
+        let this->collections[key][] = value;
+    }
+
+    /**
+     * Get the CSS default collection.
+     *
+     * @return array
+     */
+    public function getCss()
+    {
+        return this->get("css");
+    }
+
+    /**
+     * Get the JS default collection.
+     *
+     * @return array
+     */
+    public function getJs()
+    {
+        return this->get("js");
+    }
+
+    /**
+     * Get some collection.
+     *
+     * @param string key Collection name
+     * @return array
+     */
+    public function get(string key)
+    {
+        var collection;
+
+        fetch collection, this->collections[key];
+
+        return collection ? collection : [];
+    }
+
+    /**
+     * Minify content.
      *
      * @param string content Input text to minify
      * @param string type Type of content
@@ -182,7 +240,7 @@ class Assets
     }
 
     /**
-     * Prepare resource
+     * Prepare resource.
      *
      * @param string uri The uri/url source path
      * @param string type Type of content
