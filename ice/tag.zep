@@ -31,7 +31,7 @@ class Tag
     protected docType = 5 { set };
     protected title = null { set, get };
     protected titleSeparator = " - " { set, get };
-    protected meta = [] { get };
+    protected meta = [] { set, get };
     protected escape = true { set };
 
     /**
