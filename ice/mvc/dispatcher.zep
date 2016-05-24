@@ -20,6 +20,8 @@ class Dispatcher extends \Ice\Dispatcher
     protected method { get, set };
     protected handlerSuffix = "Controller";
 
+    const REDIRECT_CYCLIC = 5;
+
     /**
      * Get active method, first check whether a method with the HTTP method as prefix exist.
      *
@@ -35,5 +37,27 @@ class Dispatcher extends \Ice\Dispatcher
         }
 
         return parent::getActiveMethod();
+    }
+
+    public function dispatch()
+    {
+        var parent, response;
+
+        let parent = parent::dispatch(),
+            response = this->di->get("response");
+
+        // Throw an exception after 16 consecutive redirects
+        if response->getRedirects() > response->getLoops() {
+            if this->silent {
+                // 310 Too Many Redirects
+                response->setStatus(310);
+                response->setBody(response->getMessage(310));
+
+                return response;
+            }
+            throw new Exception("This Webpage has a redirect loop", self::REDIRECT_CYCLIC);
+        }
+
+        return parent;
     }
 }
