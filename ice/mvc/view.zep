@@ -176,6 +176,16 @@ class View extends Arr implements ViewInterface
     }
 
     /**
+     * Alias of the `setMainView` method.
+     *
+     * @param array vars
+     */
+    public function setLayout(string layout)
+    {
+        this->setMainView(layout);
+    }
+
+    /**
      * Magic toStrint, get the rendered view.
      */
     public function __toString()
