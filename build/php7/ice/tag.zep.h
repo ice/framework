@@ -10,6 +10,7 @@ PHP_METHOD(Ice_Tag, setTitle);
 PHP_METHOD(Ice_Tag, getTitle);
 PHP_METHOD(Ice_Tag, setTitleSeparator);
 PHP_METHOD(Ice_Tag, getTitleSeparator);
+PHP_METHOD(Ice_Tag, setMeta);
 PHP_METHOD(Ice_Tag, getMeta);
 PHP_METHOD(Ice_Tag, setEscape);
 PHP_METHOD(Ice_Tag, __construct);
@@ -57,6 +58,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_settitleseparator, 0, 0, 1)
 	ZEND_ARG_INFO(0, titleSeparator)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setmeta, 0, 0, 1)
+	ZEND_ARG_INFO(0, meta)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setescape, 0, 0, 1)
@@ -214,6 +219,7 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitleSeparator, arginfo_ice_tag_settitleseparator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getTitleSeparator, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Tag, setMeta, arginfo_ice_tag_setmeta, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, getMeta, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setEscape, arginfo_ice_tag_setescape, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)

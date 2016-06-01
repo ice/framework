@@ -10,6 +10,8 @@ PHP_METHOD(Ice_Arr, get);
 PHP_METHOD(Ice_Arr, set);
 PHP_METHOD(Ice_Arr, replace);
 PHP_METHOD(Ice_Arr, all);
+PHP_METHOD(Ice_Arr, only);
+PHP_METHOD(Ice_Arr, getValue);
 PHP_METHOD(Ice_Arr, setData);
 PHP_METHOD(Ice_Arr, keys);
 PHP_METHOD(Ice_Arr, remove);
@@ -48,6 +50,18 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_replace, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, data, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_only, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, keys, 0)
+	ZEND_ARG_INFO(0, strict)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getvalue, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_INFO(0, defaultValue)
+	ZEND_ARG_INFO(0, allowEmpty)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_setdata, 0, 0, 0)
@@ -106,6 +120,8 @@ ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
 	PHP_ME(Ice_Arr, set, arginfo_ice_arr_set, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, replace, arginfo_ice_arr_replace, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, all, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, only, arginfo_ice_arr_only, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, getValue, arginfo_ice_arr_getvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, setData, arginfo_ice_arr_setdata, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, keys, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, remove, arginfo_ice_arr_remove, ZEND_ACC_PUBLIC)

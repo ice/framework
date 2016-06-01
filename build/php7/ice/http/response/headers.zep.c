@@ -78,7 +78,6 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 				zephir_check_call_status();
 			}
 		}
-		_1$$3->funcs->dtor(_1$$3 TSRMLS_CC);
 		zend_iterator_dtor(_1$$3);
 		RETURN_MM_BOOL(1);
 	}

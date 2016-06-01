@@ -112,7 +112,7 @@ PHP_METHOD(Ice_Validation_Validator_Digit, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_digit", NULL, 3, &value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_digit", NULL, 4, &value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_3$$4);

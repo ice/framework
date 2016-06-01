@@ -245,7 +245,7 @@ PHP_METHOD(Ice_Cookies, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("di"), &_0);
 	zephir_update_property_zval(this_ptr, SL("salt"), &salt);

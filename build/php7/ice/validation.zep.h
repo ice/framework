@@ -4,6 +4,7 @@ extern zend_class_entry *ice_validation_ce;
 ZEPHIR_INIT_CLASS(Ice_Validation);
 
 PHP_METHOD(Ice_Validation, getDi);
+PHP_METHOD(Ice_Validation, getData);
 PHP_METHOD(Ice_Validation, setRules);
 PHP_METHOD(Ice_Validation, getRules);
 PHP_METHOD(Ice_Validation, setFilters);
@@ -70,10 +71,12 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rules, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, validators, 0)
+	ZEND_ARG_INFO(0, clear)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validate, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_INFO(0, clear)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_hasvalue, 0, 0, 1)
@@ -109,6 +112,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
 	PHP_ME(Ice_Validation, getDi, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Validation, getData, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setRules, arginfo_ice_validation_setrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getRules, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setFilters, arginfo_ice_validation_setfilters, ZEND_ACC_PUBLIC)

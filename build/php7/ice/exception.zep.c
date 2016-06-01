@@ -98,7 +98,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 1);
 	zephir_check_call_status();
 	if (Z_TYPE_P(message) == IS_ARRAY) {
 		ZVAL_LONG(&_1$$3, 1);

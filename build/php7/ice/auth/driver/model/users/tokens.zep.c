@@ -114,7 +114,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	if (_11) {
 		ZEPHIR_INIT_NVAR(&_1);
 		ZVAL_STRING(&_1, "expires");
-		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, 27, &_1);
+		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, 0, &_1);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_1);
 		zephir_time(&_1);
@@ -210,7 +210,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 		ZEPHIR_CALL_METHOD(NULL, &token, "remove", NULL, 0);
 		zephir_check_call_status();
 	}
-	_3->funcs->dtor(_3 TSRMLS_CC);
 	zend_iterator_dtor(_3);
 	ZEPHIR_MM_RESTORE();
 

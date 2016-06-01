@@ -83,7 +83,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_read_property(&_2, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);

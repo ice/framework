@@ -122,7 +122,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 					zephir_check_call_status();
 					zephir_array_append(&roles, &_10$$6, PH_SEPARATE, "ice/auth/driver/model.zep", 51);
 				}
-				_9$$5->funcs->dtor(_9$$5 TSRMLS_CC);
 				zend_iterator_dtor(_9$$5);
 				ZEPHIR_INIT_VAR(&_13$$5);
 				ZVAL_STRING(&_13$$5, "login");
@@ -417,7 +416,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				zephir_check_call_status();
 				zephir_array_append(&roles, &_9$$10, PH_SEPARATE, "ice/auth/driver/model.zep", 180);
 			}
-			_8$$9->funcs->dtor(_8$$9 TSRMLS_CC);
 			zend_iterator_dtor(_8$$9);
 			ZEPHIR_INIT_VAR(&_12$$9);
 			ZVAL_STRING(&_12$$9, "login");
@@ -454,11 +452,11 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 						zephir_read_property(&_21$$13, this_ptr, SL("cookies"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_INIT_VAR(&_23$$13);
 						ZVAL_STRING(&_23$$13, "token");
-						ZEPHIR_CALL_METHOD(&_22$$13, &token, "get", &_11, 27, &_23$$13);
+						ZEPHIR_CALL_METHOD(&_22$$13, &token, "get", &_11, 0, &_23$$13);
 						zephir_check_call_status();
 						ZEPHIR_INIT_NVAR(&_23$$13);
 						ZVAL_STRING(&_23$$13, "expires");
-						ZEPHIR_CALL_METHOD(&_24$$13, &token, "get", &_11, 27, &_23$$13);
+						ZEPHIR_CALL_METHOD(&_24$$13, &token, "get", &_11, 0, &_23$$13);
 						zephir_check_call_status();
 						ZEPHIR_INIT_NVAR(&_23$$13);
 						ZVAL_STRING(&_23$$13, "auth_autologin");
@@ -578,7 +576,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 				zephir_check_call_status();
 				zephir_array_append(&roles, &_8$$5, PH_SEPARATE, "ice/auth/driver/model.zep", 238);
 			}
-			_7$$4->funcs->dtor(_7$$4 TSRMLS_CC);
 			zend_iterator_dtor(_7$$4);
 			ZEPHIR_INIT_VAR(&_11$$4);
 			ZVAL_STRING(&_11$$4, "login");
@@ -615,11 +612,11 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 						zephir_read_property(&_20$$8, this_ptr, SL("cookies"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_INIT_VAR(&_22$$8);
 						ZVAL_STRING(&_22$$8, "token");
-						ZEPHIR_CALL_METHOD(&_21$$8, &token, "get", &_10, 27, &_22$$8);
+						ZEPHIR_CALL_METHOD(&_21$$8, &token, "get", &_10, 0, &_22$$8);
 						zephir_check_call_status();
 						ZEPHIR_INIT_NVAR(&_22$$8);
 						ZVAL_STRING(&_22$$8, "expires");
-						ZEPHIR_CALL_METHOD(&_23$$8, &token, "get", &_10, 27, &_22$$8);
+						ZEPHIR_CALL_METHOD(&_23$$8, &token, "get", &_10, 0, &_22$$8);
 						zephir_check_call_status();
 						ZEPHIR_INIT_NVAR(&_22$$8);
 						ZVAL_STRING(&_22$$8, "auth_autologin");
@@ -805,7 +802,6 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 				zephir_check_call_status();
 				zephir_array_append(&roles, &_7$$6, PH_SEPARATE, "ice/auth/driver/model.zep", 333);
 			}
-			_6$$5->funcs->dtor(_6$$5 TSRMLS_CC);
 			zend_iterator_dtor(_6$$5);
 			ZEPHIR_CALL_FUNCTION(&_11$$5, "serialize", NULL, 14, &user);
 			zephir_check_call_status();
