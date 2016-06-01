@@ -35,7 +35,7 @@ class Validation
 {
 
     protected di { get };
-    protected data = [];
+    protected data { get };
     protected rules = [] { set, get };
     protected validators = [];
     protected filters = [] { set };
@@ -79,7 +79,7 @@ class Validation
     public function __construct(array data = [])
     {
         let this->di = Di::$fetch(),
-            this->data = data;
+            this->data = new Arr(data);
     }
 
     /**
@@ -184,11 +184,16 @@ class Validation
      * </code></pre>
      *
      * @param array validators
+     * @param boolean clear
      * @return void
      */
-    public function rules(array! validators) -> void
+    public function rules(array! validators, boolean clear = false) -> void
     {
         var field, rules;
+
+        if clear {
+            let this->rules = [];
+        }
 
         for field, rules in validators {
             this->rule(field, rules);
@@ -199,14 +204,24 @@ class Validation
      * Validate the data.
      *
      * @param array data Data to validate
+     * @param boolean clear Clear messages before
      * @return boolean
      */
-    public function validate(array data = []) -> boolean
+    public function validate(array data = [], boolean clear = false) -> boolean
     {
-        var field, rules, rule;
+        var tmp, field, rules, rule;
 
         if count(data) {
-            let this->data = data;
+            let tmp = this->data;
+
+            tmp->setData(data);
+
+            let this->data = tmp;
+        }
+
+        if clear {
+            let this->valid = true,
+                this->messages = [];
         }
 
         // Validate the rules
@@ -244,7 +259,7 @@ class Validation
      */
     public function hasValue(string! field) -> boolean
     {
-        return isset this->data[field];
+        return this->data->has(field);
     }
 
     /**
@@ -256,16 +271,13 @@ class Validation
      */
     public function getValue(string! field, boolean filtered = true)
     {
-        var value, filters;
+        var filters = null;
 
-        fetch value, this->data[field];
-
-        // Filter the value
-        if filtered && this->di->has("filter") && fetch filters, this->filters[field] {
-            let value = this->di->get("filter")->sanitize(value, filters);
+        if filtered {
+            fetch filters, this->filters[field];
         }
 
-        return value;
+        return this->data->getValue(field, filters);
     }
 
     /**
@@ -294,7 +306,7 @@ class Validation
         let data = [];
 
         if fields === null {
-            for field, _ in this->data {
+            for field, _ in iterator(this->data) {
                 let data[field] = this->getValue(field, filtered);
             }
         } else {
@@ -328,7 +340,7 @@ class Validation
 
         if !fetch label, this->labels[field] {
             // Humanize the field
-            if this->humanLabels && this->di->has("filter") {
+            if this->humanLabels {
                 let label = this->di->get("filter")->sanitize(field, "human");
             } else {
                 let label = field;

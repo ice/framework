@@ -146,8 +146,8 @@ class Pagination extends Arr
 
         if this->has("query") && !this->get("query") {
             // Get current URL if uri is false
-            if url === false && this->di->has("url") {
-                let url = this->di->get("url")->get(url);
+            if url === false {
+                let url = this->di->get("url")->get(false);
             }
 
             // Add /1 to the url

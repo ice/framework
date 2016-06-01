@@ -17,5 +17,6 @@
         <file>FastRouteTest.php</file>
         <file>SleetTest.php</file>
         <file>TagTest.php</file>
+        <file>ValidationTest.php</file>
     </testsuite>
 </phpunit>

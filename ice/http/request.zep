@@ -246,8 +246,6 @@ class Request extends Arr
      */
     public function getQuery(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
-        var value, filter;
-
         if !key {
             // Remove `_url` from GET
             this->get->set("_url", null);
@@ -255,18 +253,7 @@ class Request extends Arr
 
             return this->get;
         } else {
-            let value = this->get->get(key, defaultValue);
-
-            if filters {
-                let filter = Di::$fetch()->get("filter"),
-                    value = filter->sanitize(value, filters);
-            }
-
-            if (value === "" || value === null) && allowEmpty === false {
-                return defaultValue;
-            }
-
-            return value;
+            return this->get->getValue(key, filters, defaultValue, allowEmpty);
         }
     }
 
@@ -293,23 +280,10 @@ class Request extends Arr
      */
     public function getPost(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
-        var value, filter;
-
         if !key {
             return this->post;
         } else {
-            let value = this->post->get(key, defaultValue);
-
-            if filters {
-                let filter = Di::$fetch()->get("filter"),
-                    value = filter->sanitize(value, filters);
-            }
-
-            if (value === "" || value === null) && allowEmpty === false {
-                return defaultValue;
-            }
-
-            return value;
+            return this->post->getValue(key, filters, defaultValue, allowEmpty);
         }
     }
 

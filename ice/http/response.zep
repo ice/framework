@@ -23,6 +23,8 @@ class Response implements ResponseInterface
     protected protocolVersion = "HTTP/1.1" { get, set };
     protected status = 200 { get, set };
     protected headers;
+    protected loops = 16 { get, set };
+    protected redirects = 0 { get };
     protected body { get, set };
     protected messages = [
         //Informational 1xx
@@ -70,7 +72,7 @@ class Response implements ResponseInterface
         415: "Unsupported Media Type",
         416: "Requested Range Not Satisfiable",
         417: "Expectation Failed",
-        418: "I\"m a teapot",
+        418: "I'm a teapot",
         422: "Unprocessable Entity",
         423: "Locked",
         424: "Failed Dependency",
@@ -231,6 +233,10 @@ class Response implements ResponseInterface
                 header(sprintf("%s %d %s", this->getProtocolVersion(), this->status, this->messages[this->status]));
             }
 
+            if this->di->has("session") && !this->isRedirect() {
+                this->di->session->remove("_redirects");
+            }
+
             this->headers->send();
         }
 
@@ -248,6 +254,7 @@ class Response implements ResponseInterface
     public function redirect(string location = null, int status = 302, boolean external = false)
     {
         var url;
+        int redirects;
 
         this->setStatus(status);
 
@@ -255,6 +262,18 @@ class Response implements ResponseInterface
             let url = this->di->get("url"),
                 location = url->get(location);
         }
+
+        if this->di->has("session") && this->loops {
+            let redirects = (int) this->di->session->get("_redirects", 0) + 1,
+                this->redirects = redirects;
+
+            this->di->session->set("_redirects", redirects);
+
+            if this->redirects > this->loops {
+                return this;
+            }
+        }
+
         this->headers->set("Location", location);
 
         return this;

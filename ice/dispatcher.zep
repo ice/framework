@@ -101,25 +101,14 @@ abstract class Dispatcher
      */
     public function getParam(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
     {
-        var params, value, filter;
+        var params;
 
         let params = new Arr(this->params);
 
         if !key {
             return params;
         } else {
-            let value = params->get(key, defaultValue);
-
-            if filters {
-                let filter = Di::$fetch()->get("filter"),
-                    value = filter->sanitize(value, filters);
-            }
-
-            if (value === "" || value === null) && allowEmpty === false {
-                return defaultValue;
-            }
-
-            return value;
+            return params->getValue(key, filters, defaultValue, allowEmpty);
         }
     }
 
