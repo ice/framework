@@ -274,7 +274,7 @@ PHP_METHOD(Ice_Mvc_Router, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -387,7 +387,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 			ZEPHIR_CALL_METHOD(NULL, _9$$3, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
-		ZEPHIR_CALL_METHOD(NULL, _5$$3, "__construct", NULL, 126, _6$$3, _9$$3);
+		ZEPHIR_CALL_METHOD(NULL, _5$$3, "__construct", NULL, 127, _6$$3, _9$$3);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("collector"), _5$$3 TSRMLS_CC);
 	}

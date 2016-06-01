@@ -7,6 +7,9 @@ PHP_METHOD(Ice_Http_Response, getProtocolVersion);
 PHP_METHOD(Ice_Http_Response, setProtocolVersion);
 PHP_METHOD(Ice_Http_Response, getStatus);
 PHP_METHOD(Ice_Http_Response, setStatus);
+PHP_METHOD(Ice_Http_Response, getLoops);
+PHP_METHOD(Ice_Http_Response, setLoops);
+PHP_METHOD(Ice_Http_Response, getRedirects);
 PHP_METHOD(Ice_Http_Response, getBody);
 PHP_METHOD(Ice_Http_Response, setBody);
 PHP_METHOD(Ice_Http_Response, getMessages);
@@ -41,6 +44,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setstatus, 0, 0, 1)
 	ZEND_ARG_INFO(0, status)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setloops, 0, 0, 1)
+	ZEND_ARG_INFO(0, loops)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setbody, 0, 0, 1)
@@ -96,6 +103,9 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, setProtocolVersion, arginfo_ice_http_response_setprotocolversion, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getStatus, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setStatus, arginfo_ice_http_response_setstatus, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getLoops, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, setLoops, arginfo_ice_http_response_setloops, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getRedirects, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getBody, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setBody, arginfo_ice_http_response_setbody, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessages, NULL, ZEND_ACC_PUBLIC)

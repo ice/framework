@@ -84,7 +84,7 @@ PHP_METHOD(Ice_Di, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_0, 4, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_0, 5, data);
 	zephir_check_call_status();
 	zephir_update_static_property_ce(ice_di_ce, SL("di"), &this_ptr TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Di, get) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "has", NULL, 0, key);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, this_ptr, "get", &_1, 27, key, parameters);
+		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, this_ptr, "get", &_1, 76, key, parameters);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {

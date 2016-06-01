@@ -99,7 +99,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 6);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "db", ZEPHIR_TEMP_PARAM_COPY);

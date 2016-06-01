@@ -79,7 +79,7 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, getIdValue, arginfo_ice_db_driver_pdo_getidvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, findOne, arginfo_ice_db_driver_pdo_findone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, find, arginfo_ice_db_driver_pdo_find, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Db_Driver_Pdo, where, arginfo_ice_db_driver_pdo_where, ZEND_ACC_PRIVATE)
+	PHP_ME(Ice_Db_Driver_Pdo, where, arginfo_ice_db_driver_pdo_where, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Db_Driver_Pdo, select, arginfo_ice_db_driver_pdo_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, insert, arginfo_ice_db_driver_pdo_insert, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, update, arginfo_ice_db_driver_pdo_update, ZEND_ACC_PUBLIC)

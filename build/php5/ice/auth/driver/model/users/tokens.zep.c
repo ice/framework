@@ -107,7 +107,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	if (_11) {
 		ZEPHIR_INIT_NVAR(_1);
 		ZVAL_STRING(_1, "expires", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, 27, _1);
+		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, 0, _1);
 		zephir_check_temp_parameter(_1);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_1);

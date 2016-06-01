@@ -3,6 +3,7 @@ extern zend_class_entry *ice_flash_ce;
 
 ZEPHIR_INIT_CLASS(Ice_Flash);
 
+PHP_METHOD(Ice_Flash, setOptions);
 PHP_METHOD(Ice_Flash, __construct);
 PHP_METHOD(Ice_Flash, getOption);
 PHP_METHOD(Ice_Flash, getMessages);
@@ -17,6 +18,10 @@ PHP_METHOD(Ice_Flash, alert);
 PHP_METHOD(Ice_Flash, danger);
 PHP_METHOD(Ice_Flash, error);
 zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRMLS_DC);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_flash_setoptions, 0, 0, 1)
+	ZEND_ARG_INFO(0, options)
+ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_flash___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
@@ -74,6 +79,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_flash_error, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_flash_method_entry) {
+	PHP_ME(Ice_Flash, setOptions, arginfo_ice_flash_setoptions, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Flash, __construct, arginfo_ice_flash___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Flash, getOption, arginfo_ice_flash_getoption, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Flash, getMessages, arginfo_ice_flash_getmessages, ZEND_ACC_PUBLIC)

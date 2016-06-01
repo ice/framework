@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 
 
 	if (!(zephir_fast_count_int(config TSRMLS_CC))) {
-		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 6);
+		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 1);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_3$$3);
 		ZVAL_STRING(_3$$3, "config", ZEPHIR_TEMP_PARAM_COPY);

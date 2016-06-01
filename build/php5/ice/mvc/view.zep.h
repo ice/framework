@@ -25,6 +25,7 @@ PHP_METHOD(Ice_Mvc_View, partial);
 PHP_METHOD(Ice_Mvc_View, layout);
 PHP_METHOD(Ice_Mvc_View, setVar);
 PHP_METHOD(Ice_Mvc_View, setVars);
+PHP_METHOD(Ice_Mvc_View, setLayout);
 PHP_METHOD(Ice_Mvc_View, __toString);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_setengines, 0, 0, 1)
@@ -93,6 +94,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_setvars, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, vars, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_setlayout, 0, 0, 1)
+	ZEND_ARG_INFO(0, layout)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(ice_mvc_view_method_entry) {
 	PHP_ME(Ice_Mvc_View, setEngines, arginfo_ice_mvc_view_setengines, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, setContent, arginfo_ice_mvc_view_setcontent, ZEND_ACC_PUBLIC)
@@ -116,6 +121,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_view_method_entry) {
 	PHP_ME(Ice_Mvc_View, layout, arginfo_ice_mvc_view_layout, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, setVar, arginfo_ice_mvc_view_setvar, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, setVars, arginfo_ice_mvc_view_setvars, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_View, setLayout, arginfo_ice_mvc_view_setlayout, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View, __toString, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

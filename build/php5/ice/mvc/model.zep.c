@@ -247,7 +247,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 1);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
@@ -262,7 +262,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 	zephir_check_call_status();
 	zephir_fast_array_merge(_2, &(_4), &(data) TSRMLS_CC);
 	ZEPHIR_CPY_WRT(data, _2);
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_model_ce, this_ptr, "__construct", &_5, 4, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_model_ce, this_ptr, "__construct", &_5, 5, data);
 	zephir_check_call_status();
 	_6 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	if (!(zephir_is_true(_6))) {
@@ -434,7 +434,7 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 		_3$$3->funcs->dtor(_3$$3 TSRMLS_CC);
 	}
 	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, instances);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 5, instances);
 	zephir_check_call_status();
 	RETURN_MM();
 

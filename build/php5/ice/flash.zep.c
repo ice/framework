@@ -12,9 +12,9 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
-#include "kernel/memory.h"
 #include "kernel/object.h"
+#include "kernel/memory.h"
+#include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
@@ -47,6 +47,18 @@ ZEPHIR_INIT_CLASS(Ice_Flash) {
 
 }
 
+PHP_METHOD(Ice_Flash, setOptions) {
+
+	zval *options;
+
+	zephir_fetch_params(0, 1, 0, &options);
+
+
+
+	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
+
+}
+
 /**
  * Flash constructor. Fetch session and tag service from the di.
  *
@@ -70,7 +82,7 @@ PHP_METHOD(Ice_Flash, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 6);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 1);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_STRING(_2, "session", ZEPHIR_TEMP_PARAM_COPY);

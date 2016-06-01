@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Di_Access, __get) {
 		_1 = _3;
 	}
 	if (_1) {
-		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 6);
+		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 1);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("di"), _5$$3 TSRMLS_CC);
 	}
@@ -116,7 +116,7 @@ PHP_METHOD(Ice_Di_Access, __set) {
 		_1 = _3;
 	}
 	if (_1) {
-		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 6);
+		ZEPHIR_CALL_CE_STATIC(&_5$$3, ice_di_ce, "fetch", &_6, 1);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("di"), _5$$3 TSRMLS_CC);
 	}

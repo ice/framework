@@ -39,9 +39,7 @@ ZEPHIR_INIT_CLASS(Ice_Assets) {
 
 	zend_declare_property_null(ice_assets_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
-	zend_declare_property_null(ice_assets_ce, SL("css"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
-	zend_declare_property_null(ice_assets_ce, SL("js"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_assets_ce, SL("collections"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(ice_assets_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -58,19 +56,23 @@ ZEPHIR_INIT_CLASS(Ice_Assets) {
 
 }
 
-PHP_METHOD(Ice_Assets, getCss) {
+PHP_METHOD(Ice_Assets, setCollections) {
 
-	
+	zval *collections;
 
-	RETURN_MEMBER(this_ptr, "css");
+	zephir_fetch_params(0, 1, 0, &collections);
+
+
+
+	zephir_update_property_this(this_ptr, SL("collections"), collections TSRMLS_CC);
 
 }
 
-PHP_METHOD(Ice_Assets, getJs) {
+PHP_METHOD(Ice_Assets, getCollections) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "js");
+	RETURN_MEMBER(this_ptr, "collections");
 
 }
 
@@ -97,7 +99,7 @@ PHP_METHOD(Ice_Assets, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 6);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
 	zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -136,6 +138,7 @@ PHP_METHOD(Ice_Assets, getOption) {
  *
  * @param mixed parameters Parameters of link/script/style
  * @param string version Version appending to the uri
+ * @param string Collection Collection name
  * @param mixed minify Local minify option
  * @return object this
  */
@@ -143,11 +146,11 @@ PHP_METHOD(Ice_Assets, add) {
 
 	zend_bool _0, _1;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *version = NULL;
-	zval *parameters = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *type = NULL;
+	zval *version = NULL, *collection = NULL;
+	zval *parameters = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *type = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &parameters, &version_param, &minify);
+	zephir_fetch_params(1, 1, 3, &parameters, &version_param, &collection_param, &minify);
 
 	ZEPHIR_SEPARATE_PARAM(parameters);
 	if (!version_param) {
@@ -155,6 +158,12 @@ PHP_METHOD(Ice_Assets, add) {
 		ZVAL_EMPTY_STRING(version);
 	} else {
 		zephir_get_strval(version, version_param);
+	}
+	if (!collection_param) {
+		ZEPHIR_INIT_VAR(collection);
+		ZVAL_EMPTY_STRING(collection);
+	} else {
+		zephir_get_strval(collection, collection_param);
 	}
 	if (!minify) {
 		minify = ZEPHIR_GLOBAL(global_null);
@@ -182,10 +191,18 @@ PHP_METHOD(Ice_Assets, add) {
 		_1 = ZEPHIR_IS_STRING(type, "text/javascript");
 	}
 	if (_0) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addcss", NULL, 0, parameters, version, minify);
+		if (!(!(!collection) && Z_STRLEN_P(collection))) {
+			ZEPHIR_INIT_NVAR(collection);
+			ZVAL_STRING(collection, "css", 1);
+		}
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addcss", NULL, 0, parameters, version, collection, minify);
 		zephir_check_call_status();
 	} else if (_1) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addjs", NULL, 0, parameters, version, minify);
+		if (!(!(!collection) && Z_STRLEN_P(collection))) {
+			ZEPHIR_INIT_NVAR(collection);
+			ZVAL_STRING(collection, "js", 1);
+		}
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addjs", NULL, 0, parameters, version, collection, minify);
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
@@ -197,19 +214,21 @@ PHP_METHOD(Ice_Assets, add) {
  *
  * @param array parameters Parameters of link/style
  * @param string version Version appending to the uri
+ * @param string Collection Collection name
  * @param mixed minify Local minify option
  * @return object this
  */
 PHP_METHOD(Ice_Assets, addCss) {
 
 	zend_bool _4;
+	zephir_fcall_cache_entry *_9 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *version = NULL, *_12$$8;
-	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_9$$8 = NULL, *_10$$8, *_11$$8 = NULL, *_13$$8, *_14$$8 = NULL;
+	zval *version = NULL, *collection = NULL, *_13$$8;
+	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_10$$8 = NULL, *_11$$8, *_12$$8 = NULL, *_14$$8, *_15$$8 = NULL;
 	zval *parameters = NULL, *_6$$7;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
+	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
 
 	parameters = parameters_param;
 	if (!version_param) {
@@ -217,6 +236,12 @@ PHP_METHOD(Ice_Assets, addCss) {
 		ZVAL_EMPTY_STRING(version);
 	} else {
 		zephir_get_strval(version, version_param);
+	}
+	if (!collection_param) {
+		ZEPHIR_INIT_VAR(collection);
+		ZVAL_STRING(collection, "css", 1);
+	} else {
+		zephir_get_strval(collection, collection_param);
 	}
 	if (!minify) {
 		ZEPHIR_CPY_WRT(minify, ZEPHIR_GLOBAL(global_null));
@@ -274,28 +299,30 @@ PHP_METHOD(Ice_Assets, addCss) {
 		zephir_array_update_string(&_6$$7, SL("content"), &_7$$7, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&_5$$7, tag, "style", NULL, 0, _6$$7);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("css"), _5$$7 TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addtocollection", &_9, 0, collection, _5$$7);
+		zephir_check_call_status();
 	} else {
-		ZEPHIR_INIT_VAR(_10$$8);
-		ZVAL_STRING(_10$$8, "css", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_9$$8, this_ptr, "prepare", NULL, 0, content, _10$$8, minify);
-		zephir_check_temp_parameter(_10$$8);
-		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_11$$8);
-		if (!(!version) && Z_STRLEN_P(version)) {
-			ZEPHIR_INIT_VAR(_12$$8);
-			ZEPHIR_CONCAT_SV(_12$$8, "?v=", version);
-			ZEPHIR_CPY_WRT(_11$$8, _12$$8);
-		} else {
-			ZEPHIR_INIT_NVAR(_11$$8);
-			ZVAL_STRING(_11$$8, "", 1);
-		}
-		ZEPHIR_INIT_VAR(_13$$8);
-		ZEPHIR_CONCAT_VV(_13$$8, _9$$8, _11$$8);
-		zephir_array_update_string(&parameters, SL("href"), &_13$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_14$$8, tag, "link", NULL, 0, parameters);
+		ZVAL_STRING(_11$$8, "css", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_10$$8, this_ptr, "prepare", NULL, 0, content, _11$$8, minify);
+		zephir_check_temp_parameter(_11$$8);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("css"), _14$$8 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_12$$8);
+		if (!(!version) && Z_STRLEN_P(version)) {
+			ZEPHIR_INIT_VAR(_13$$8);
+			ZEPHIR_CONCAT_SV(_13$$8, "?v=", version);
+			ZEPHIR_CPY_WRT(_12$$8, _13$$8);
+		} else {
+			ZEPHIR_INIT_NVAR(_12$$8);
+			ZVAL_STRING(_12$$8, "", 1);
+		}
+		ZEPHIR_INIT_VAR(_14$$8);
+		ZEPHIR_CONCAT_VV(_14$$8, _10$$8, _12$$8);
+		zephir_array_update_string(&parameters, SL("href"), &_14$$8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_15$$8, tag, "link", NULL, 0, parameters);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addtocollection", &_9, 0, collection, _15$$8);
+		zephir_check_call_status();
 	}
 	RETURN_THIS();
 
@@ -306,19 +333,21 @@ PHP_METHOD(Ice_Assets, addCss) {
  *
  * @param array parameters Parameters of script
  * @param string version Version appending to the uri
+ * @param string Collection Collection name
  * @param mixed minify Local minify option
  * @return object this
  */
 PHP_METHOD(Ice_Assets, addJs) {
 
 	zend_bool _4;
+	zephir_fcall_cache_entry *_9 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *version = NULL, *_12$$8;
-	zval *parameters_param = NULL, *version_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_9$$8 = NULL, *_10$$8, *_11$$8 = NULL, *_13$$8, *_14$$8 = NULL;
+	zval *version = NULL, *collection = NULL, *_13$$8;
+	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_10$$8 = NULL, *_11$$8, *_12$$8 = NULL, *_14$$8, *_15$$8 = NULL;
 	zval *parameters = NULL, *_6$$7;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &parameters_param, &version_param, &minify);
+	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
 
 	parameters = parameters_param;
 	if (!version_param) {
@@ -326,6 +355,12 @@ PHP_METHOD(Ice_Assets, addJs) {
 		ZVAL_EMPTY_STRING(version);
 	} else {
 		zephir_get_strval(version, version_param);
+	}
+	if (!collection_param) {
+		ZEPHIR_INIT_VAR(collection);
+		ZVAL_STRING(collection, "js", 1);
+	} else {
+		zephir_get_strval(collection, collection_param);
 	}
 	if (!minify) {
 		ZEPHIR_CPY_WRT(minify, ZEPHIR_GLOBAL(global_null));
@@ -383,35 +418,134 @@ PHP_METHOD(Ice_Assets, addJs) {
 		zephir_array_update_string(&_6$$7, SL("content"), &_7$$7, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_METHOD(&_5$$7, tag, "script", NULL, 0, _6$$7);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("js"), _5$$7 TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addtocollection", &_9, 0, collection, _5$$7);
+		zephir_check_call_status();
 	} else {
-		ZEPHIR_INIT_VAR(_10$$8);
-		ZVAL_STRING(_10$$8, "js", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(&_9$$8, this_ptr, "prepare", NULL, 0, content, _10$$8, minify);
-		zephir_check_temp_parameter(_10$$8);
-		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_11$$8);
-		if (!(!version) && Z_STRLEN_P(version)) {
-			ZEPHIR_INIT_VAR(_12$$8);
-			ZEPHIR_CONCAT_SV(_12$$8, "?v=", version);
-			ZEPHIR_CPY_WRT(_11$$8, _12$$8);
-		} else {
-			ZEPHIR_INIT_NVAR(_11$$8);
-			ZVAL_STRING(_11$$8, "", 1);
-		}
-		ZEPHIR_INIT_VAR(_13$$8);
-		ZEPHIR_CONCAT_VV(_13$$8, _9$$8, _11$$8);
-		zephir_array_update_string(&parameters, SL("src"), &_13$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_METHOD(&_14$$8, tag, "script", NULL, 0, parameters);
+		ZVAL_STRING(_11$$8, "js", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(&_10$$8, this_ptr, "prepare", NULL, 0, content, _11$$8, minify);
+		zephir_check_temp_parameter(_11$$8);
 		zephir_check_call_status();
-		zephir_update_property_array_append(this_ptr, SL("js"), _14$$8 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_12$$8);
+		if (!(!version) && Z_STRLEN_P(version)) {
+			ZEPHIR_INIT_VAR(_13$$8);
+			ZEPHIR_CONCAT_SV(_13$$8, "?v=", version);
+			ZEPHIR_CPY_WRT(_12$$8, _13$$8);
+		} else {
+			ZEPHIR_INIT_NVAR(_12$$8);
+			ZVAL_STRING(_12$$8, "", 1);
+		}
+		ZEPHIR_INIT_VAR(_14$$8);
+		ZEPHIR_CONCAT_VV(_14$$8, _10$$8, _12$$8);
+		zephir_array_update_string(&parameters, SL("src"), &_14$$8, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_METHOD(&_15$$8, tag, "script", NULL, 0, parameters);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addtocollection", &_9, 0, collection, _15$$8);
+		zephir_check_call_status();
 	}
 	RETURN_THIS();
 
 }
 
 /**
- * Minify content
+ * Add an asset to the collection.
+ *
+ * @param string key Collection name
+ * @param string value Asset HTML code
+ */
+PHP_METHOD(Ice_Assets, addToCollection) {
+
+	zval *key, *value, *_0, *_1$$3;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &key, &value);
+
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("collections"), PH_NOISY_CC);
+	if (!(zephir_array_isset(_0, key))) {
+		ZEPHIR_INIT_VAR(_1$$3);
+		array_init(_1$$3);
+		zephir_update_property_array(this_ptr, SL("collections"), key, _1$$3 TSRMLS_CC);
+	}
+	zephir_update_property_array_multi(this_ptr, SL("collections"), &value TSRMLS_CC, SL("za"), 2, key);
+	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
+ * Get the CSS default collection.
+ *
+ * @return array
+ */
+PHP_METHOD(Ice_Assets, getCss) {
+
+	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(_0);
+	ZVAL_STRING(_0, "css", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, _0);
+	zephir_check_temp_parameter(_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Get the JS default collection.
+ *
+ * @return array
+ */
+PHP_METHOD(Ice_Assets, getJs) {
+
+	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(_0);
+	ZVAL_STRING(_0, "js", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, _0);
+	zephir_check_temp_parameter(_0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Get some collection.
+ *
+ * @param string key Collection name
+ * @return array
+ */
+PHP_METHOD(Ice_Assets, get) {
+
+	zval *key_param = NULL, *collection = NULL, *_0, *_1 = NULL;
+	zval *key = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &key_param);
+
+	zephir_get_strval(key, key_param);
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("collections"), PH_NOISY_CC);
+	zephir_array_isset_fetch(&collection, _0, key, 1 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_1);
+	if (zephir_is_true(collection)) {
+		ZEPHIR_CPY_WRT(_1, collection);
+	} else {
+		array_init(_1);
+	}
+	RETURN_CCTOR(_1);
+
+}
+
+/**
+ * Minify content.
  *
  * @param string content Input text to minify
  * @param string type Type of content
@@ -453,7 +587,7 @@ PHP_METHOD(Ice_Assets, minify) {
 }
 
 /**
- * Prepare resource
+ * Prepare resource.
  *
  * @param string uri The uri/url source path
  * @param string type Type of content
@@ -588,7 +722,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 			ZEPHIR_INIT_VAR(_16$$14);
 			zephir_file_put_contents(_16$$14, destination, minified TSRMLS_CC);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(_16$$14)) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 249);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 307);
 				return;
 			}
 		}
@@ -600,7 +734,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 
 zend_object_value zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC) {
 
-		zval *_0, *_2, *_4, *_1$$3, *_3$$4, *_5$$5;
+		zval *_0, *_2, *_1$$3, *_3$$4;
 
 		ZEPHIR_MM_GROW();
 	
@@ -613,17 +747,11 @@ zend_object_value zephir_init_properties_Ice_Assets(zend_class_entry *class_type
 			array_init(_1$$3);
 			zephir_update_property_this(this_ptr, SL("options"), _1$$3 TSRMLS_CC);
 		}
-		_2 = zephir_fetch_nproperty_this(this_ptr, SL("js"), PH_NOISY_CC);
+		_2 = zephir_fetch_nproperty_this(this_ptr, SL("collections"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3$$4);
 			array_init(_3$$4);
-			zephir_update_property_this(this_ptr, SL("js"), _3$$4 TSRMLS_CC);
-		}
-		_4 = zephir_fetch_nproperty_this(this_ptr, SL("css"), PH_NOISY_CC);
-		if (Z_TYPE_P(_4) == IS_NULL) {
-			ZEPHIR_INIT_VAR(_5$$5);
-			array_init(_5$$5);
-			zephir_update_property_this(this_ptr, SL("css"), _5$$5 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("collections"), _3$$4 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJVAL_P(this_ptr);

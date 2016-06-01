@@ -90,7 +90,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 	if (zephir_is_true(_3)) {
 		object_init_ex(return_value, ice_arr_ce);
 		_4$$6 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, _4$$6);
+		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 5, _4$$6);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
