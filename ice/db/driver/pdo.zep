@@ -110,7 +110,7 @@ class Pdo implements DbInterface
      * @params mixed filters
      * @params array values
      */
-    private function where(var filters = [], array values = []) -> array
+    protected function where(var filters = [], array values = []) -> array
     {
         var and, data, operator, key, item, value, or, is, index, i, sql, condition;
 
