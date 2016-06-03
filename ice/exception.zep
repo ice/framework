@@ -140,7 +140,8 @@ class Exception extends \Exception
     }
 
     /**
-     * Catches errors that are not caught by the error handler, such as E_PARSE.
+     * Catches errors that are not caught by the error handler.
+     * E_PARSE, E_ERROR, E_CORE_ERROR, E_USER_ERROR
      *
      * @return  void
      */
@@ -149,7 +150,7 @@ class Exception extends \Exception
         var e;
 
         let e = error_get_last();
-        if typeof e == "array" && in_array(e["type"], [E_PARSE, E_ERROR, E_USER_ERROR]) {
+        if typeof e == "array" && in_array(e["type"], [E_PARSE, E_ERROR, E_CORE_ERROR, E_USER_ERROR]) {
             // Clean the output buffer
             ob_get_level();
             ob_clean();
