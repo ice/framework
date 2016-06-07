@@ -25,7 +25,7 @@ class SleetTest extends PHPUnit
      */
     public function testParser($content, $expected)
     {
-        $parsed = self::$parser->line($content);
+        $parsed = self::$parser->text($content);
 
         $this->assertEquals($expected, $parsed, $content);
     }
@@ -41,6 +41,7 @@ class SleetTest extends PHPUnit
             ['{ hello }', '{ hello }'],
             // Comments
             ['lorem {# hello #}ipsum{# other comment #} dolor', 'lorem ipsum dolor'],
+            ["lorem {#\n hello \n\n other comment \n#} dolor", 'lorem  dolor'],
             // ECHO
             ['{{ "hello" }}', '<?php echo "hello" ?>'],
             ['{{ "hello" }}{{ "hello" }}', '<?php echo "hello" ?><?php echo "hello" ?>'],

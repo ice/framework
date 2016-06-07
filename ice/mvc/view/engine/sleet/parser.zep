@@ -59,96 +59,77 @@ class Parser
     }
 
     /**
-     * Parse text, line by line.
+     * Parse text.
      *
      * @param string text
      * @return string Parsed text
      */
     public function text(string text) -> string
     {
-        var parsed, key, line;
-
-        let parsed = "";
-
-        for key, line in explode(PHP_EOL, text) {
-            let parsed .= (key ? PHP_EOL : "") . this->line(line, key + 1);
-        }
-        return parsed;
-    }
-
-    /**
-     * Parse one line - detect the expressions.
-     *
-     * @param string line
-     * @param int no Line number
-     * @return string Parsed line
-     */
-    public function line(string line, int no = 1) -> string
-    {
-        var pos, start, parsedLine, end, ch;
+        var pos, start, parsedText, end, ch;
         int i;
 
         let pos = 0,
-            start = strpos(line, "{"),
-            parsedLine = "";
+            start = strpos(text, "{"),
+            parsedText = "";
 
         while start !== false {
             let i = start + 1,
-                ch = line[i];
+                ch = text[i];
 
             switch ch {
                 case '{':
                     // append string before tokens, search close-symbol of the tag
-                    let parsedLine .= substr(line, pos, (int) (start - pos)),
-                        end = strpos(line, "}}", start + 2);
+                    let parsedText .= substr(text, pos, (int) (start - pos)),
+                        end = strpos(text, "}}", start + 2);
 
                     if end === false {
                         // If unexpected end of template
-                        throw new Exception(sprintf("Unclosed tag on the line %d", no + 1));
+                        throw new Exception(sprintf("Unclosed echo on the line %d", substr_count(substr(text, 0, start), PHP_EOL) + 1));
                     }
 
                     let end = end + 2,
-                        parsedLine .= this->parse(substr(line, start, (int) (end - start)));
+                        parsedText .= this->parse(substr(text, start, (int) (end - start)));
                 break;
                 case '%':
                     // append string before tokens, search close-symbol of the tag
-                    let parsedLine .= substr(line, pos, (int) (start - pos)),
-                        end = strpos(line, "%}", start + 2);
+                    let parsedText .= substr(text, pos, (int) (start - pos)),
+                        end = strpos(text, "%}", start + 2);
                    
                     if end === false {
                         // If unexpected end of template
-                        throw new Exception(sprintf("Unclosed tag on the line %d", no + 1));
+                        throw new Exception(sprintf("Unclosed tag on the line %d", substr_count(substr(text, 0, start), PHP_EOL) + 1));
                     }
 
                     let end = end + 2,
-                        parsedLine .= this->parse(substr(line, start, (int) (end - start)));
+                        parsedText .= this->parse(substr(text, start, (int) (end - start)));
                 break;
                 case '#':
                     // append string before comment, search close-symbol of the comment
-                    let parsedLine .= substr(line, pos, (int) (start - pos)),
-                        end = strpos(line, "#}", start + 2);
+                    let parsedText .= substr(text, pos, (int) (start - pos)),
+                        end = strpos(text, "#}", start + 2);
                    
                     if end === false {
                         // If unexpected end of template
-                        throw new Exception(sprintf("Unclosed comment block on the line %d", no + 1));
+                        throw new Exception(sprintf("Unclosed comment block on the line %d", substr_count(substr(text, 0, start), PHP_EOL) + 1));
                     }
 
                     let end = end + 2;
                 break;
                 default:
                     // Ignore the tag
-                    let parsedLine .= substr(line, pos, (int) (start - pos + 1)),
+                    let parsedText .= substr(text, pos, (int) (start - pos + 1)),
                         end = start + 1;
                 break;
             }
             // next tokens
             let pos = end,
-                start = strpos(line, "{", pos);
+                start = strpos(text, "{", pos);
         }
         // append string after tokens
-        let parsedLine .= substr(line, pos);
+        let parsedText .= substr(text, pos);
 
-        return parsedLine;
+        return parsedText;
     }
 
     /**
