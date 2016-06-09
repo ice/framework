@@ -126,4 +126,4 @@ Windows
 Ice is open-sourced software licensed under the New BSD License. See the [LICENSE](http://www.iceframework.org/license) file for more information.
 
 ***
-Copyright (c) 2014-2015 Ice Team.
+Copyright (c) 2014-2016 Ice Team.
