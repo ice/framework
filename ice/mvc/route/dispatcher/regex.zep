@@ -25,9 +25,6 @@ abstract class Regex implements DispatcherInterface
         if isset this->staticRouteMap[httpMethod] && isset this->staticRouteMap[httpMethod][uri] {
             let handler = this->staticRouteMap[httpMethod][uri];
             return [Router::FOUND, handler, []];
-        } elseif httpMethod === "HEAD" && isset this->staticRouteMap["GET"][uri] {
-            let handler = this->staticRouteMap["GET"][uri];
-            return [Router::FOUND, handler, []];
         }
 
         let varRouteData = this->variableRouteData;
@@ -38,8 +35,32 @@ abstract class Regex implements DispatcherInterface
             if result[0] === Router::FOUND {
                 return result;
             }
-        } elseif httpMethod === "HEAD" && isset varRouteData["GET"] {
-            let result = this->dispatchVariableRoute(varRouteData["GET"], uri);
+        }
+
+        // For HEAD requests, attempt fallback to GET
+        if httpMethod === "HEAD" {
+            if isset this->staticRouteMap["GET"][uri] {
+                let handler = this->staticRouteMap["GET"][uri];
+
+                return [Router::FOUND, handler, []];
+            }
+            if isset varRouteData["GET"] {
+                let result = this->dispatchVariableRoute(varRouteData["GET"], uri);
+
+                if result[0] === Router::FOUND {
+                    return result;
+                }
+            }
+        }
+
+        // If nothing else matches, try fallback routes
+        if isset this->staticRouteMap["*"][uri] {
+            let handler = this->staticRouteMap["*"][uri];
+
+            return [Router::FOUND, handler, []];
+        }
+        if isset varRouteData["*"] {
+            let result = this->dispatchVariableRoute(varRouteData["*"], uri);
 
             if result[0] === Router::FOUND {
                 return result;
