@@ -81,23 +81,19 @@ class Router
      */
     public function fastRoute()
     {
-        var options, dispatcher, data, collector, parser, generator, route, handler;
+        var options, data, route, handler;
 
         let options = array_merge([
             "routeParser": "Ice\\Mvc\\Route\\Parser\\Std",
             "dataGenerator": "Ice\\Mvc\\Route\\DataGenerator\\GroupCount",
-            "dispatcher":"Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
+            "dispatcher": "Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
             "cache": false
         ], this->options);
 
-        let this->options = options,
-            collector = this->collector;
+        let this->options = options;
 
-        if typeof collector != "object" || typeof collector == "object" && !(collector instanceof Collector) {
-            fetch parser, options["routeParser"];
-            fetch generator, options["dataGenerator"];
-
-            let this->collector = new Collector(create_instance(parser), create_instance(generator));
+        if typeof this->collector != "object" || typeof this->collector == "object" && !(this->collector instanceof Collector) {
+            let this->collector = new Collector(create_instance(options["routeParser"]), create_instance(options["dataGenerator"]));
         }
 
         if !this->routes {
@@ -114,11 +110,8 @@ class Router
             this->collector->addRoute(route[0], route[1], handler);
         }
 
-        let dispatcher = this->dispatcher;
-
-        if typeof dispatcher != "object" || typeof dispatcher == "object" && !(dispatcher instanceof DispatcherInterface) {
-            let dispatcher = options["dispatcher"],
-                this->dispatcher = create_instance(dispatcher);
+        if typeof this->dispatcher != "object" || typeof this->dispatcher == "object" && !(this->dispatcher instanceof DispatcherInterface) {
+            let this->dispatcher = create_instance(options["dispatcher"]);
         }
 
         if options["cache"] {
