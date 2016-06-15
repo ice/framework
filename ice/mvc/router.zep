@@ -20,7 +20,6 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
 class Router
 {
 
-    protected di;
     protected defaultModule = "default" { get, set };
     protected defaultHandler = "index" { get, set };
     protected defaultAction = "index" { get, set };
@@ -41,14 +40,6 @@ class Router
     const NOT_FOUND = 0;
     const FOUND = 1;
     const METHOD_NOT_ALLOWED = 2;
-
-    /**
-     * Router constructor. Fetch Di and set it as a property.
-     */
-    public function __construct()
-    {
-        let this->di = Di::$fetch();
-    }
 
     /**
      * Set defaults values
@@ -106,23 +97,28 @@ class Router
             fetch parser, options["routeParser"];
             fetch generator, options["dataGenerator"];
 
-            let this->collector = new Collector(new {parser}(), new {generator}());
+            let this->collector = new Collector(create_instance(parser), create_instance(generator));
         }
 
         if !this->routes {
-            throw new Exception("There are no routes.");
-        } else {
-            for route in this->routes {
-                fetch handler, route[2];
-                this->collector->addRoute(route[0], route[1], handler);
-            }
+            // Set default routes
+            let this->routes = [
+                ["*", "/{controller:[a-z]+}/{action:[a-z]+}[/{param}]"],
+                ["*", "/{controller:[a-z]+}"],
+                ["*", ""]
+            ];
+        }
+
+        for route in this->routes {
+            fetch handler, route[2];
+            this->collector->addRoute(route[0], route[1], handler);
         }
 
         let dispatcher = this->dispatcher;
 
         if typeof dispatcher != "object" || typeof dispatcher == "object" && !(dispatcher instanceof DispatcherInterface) {
             let dispatcher = options["dispatcher"],
-                this->dispatcher = new {dispatcher}();
+                this->dispatcher = create_instance(dispatcher);
         }
 
         if options["cache"] {
@@ -171,7 +167,7 @@ class Router
             case self::NOT_FOUND:
                 if this->silent {
                     // 404 Not Found
-                    let response = this->di->get("response");
+                    let response = Di::$fetch()->get("response");
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
 
@@ -181,7 +177,7 @@ class Router
             case self::METHOD_NOT_ALLOWED:
                 if this->silent {
                     // 405 Method Not Allowed
-                    let response = this->di->get("response");
+                    let response = Di::$fetch()->get("response");
                     response->setStatus(405);
                     response->setBody(response->getMessage(405));
 
