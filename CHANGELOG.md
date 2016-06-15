@@ -1,4 +1,17 @@
 -------------------------------------------------------------------
+Wed Jun 15 13:24:17 UTC 2016
+
+- Ice 1.1.5
+ * Router, fastRoute code improvements
+ * Di, fix url auto-resolving
+ * Response, move messages to function, remove di property
+ * Router, add default routes, remove di property
+ * Dump, add skip di property
+ * FastRoute, fix #120 and update to nikic/FastRoute@30470b6
+ * Copyright, update year
+ * Sleet, allow for multi-line tags, fix #118
+
+-------------------------------------------------------------------
 Fri Jun  3 08:57:28 UTC 2016
 
 - Ice 1.1.4
@@ -324,7 +337,7 @@ Tue Feb 17 11:08:02 UTC 2015
 
 - Ice 1.0.0-rc2
  * Social model, fix alias
- * PHPDoc, fix examples in <code>
+ * PHPDoc, fix examples in `code`
 
 -------------------------------------------------------------------
 Mon Feb 16 15:29:16 UTC 2015
@@ -415,7 +428,7 @@ Sat Dec  6 12:25:05 UTC 2014
 - Ice dev build 06122014
  * Di fetch, remove DiInterface
  * Pagination improvements
- * Tag, HTML <select> Tag
+ * Tag, HTML `select` Tag
 
 -------------------------------------------------------------------
 Thu Dec  4 14:56:32 UTC 2014
