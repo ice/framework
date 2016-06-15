@@ -31,7 +31,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_Std) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\Route\\Parser, Std, ice, mvc_route_parser_std, ice_mvc_route_parser_std_method_entry, 0);
 
-	zephir_declare_class_constant_string(ice_mvc_route_parser_std_ce, SL("VARIABLE_REGEX"), "\\{ \\s* ([a-zA-Z][a-zA-Z0-9_]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}");
+	zephir_declare_class_constant_string(ice_mvc_route_parser_std_ce, SL("VARIABLE_REGEX"), "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}");
 
 	zephir_declare_class_constant_string(ice_mvc_route_parser_std_ce, SL("DEFAULT_DISPATCH_REGEX"), "[^/]+");
 
@@ -71,20 +71,21 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 
 
 
-	ZVAL_LONG(&_0, ']');
+	ZEPHIR_INIT_VAR(&_0);
+	ZVAL_STRING(&_0, "]");
 	ZEPHIR_INIT_VAR(&routeWithoutClosingOptionals);
 	zephir_fast_trim(&routeWithoutClosingOptionals, route, &_0, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&numOptionals);
 	ZVAL_LONG(&numOptionals, (zephir_fast_strlen_ev(route) - zephir_fast_strlen_ev(&routeWithoutClosingOptionals)));
 	ZEPHIR_INIT_VAR(&_1);
-	ZEPHIR_CONCAT_SSS(&_1, "~", "\\{ \\s* ([a-zA-Z][a-zA-Z0-9_]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "(*SKIP)(*F) | \\[~x");
+	ZEPHIR_CONCAT_SSS(&_1, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "(*SKIP)(*F) | \\[~x");
 	ZEPHIR_CALL_FUNCTION(&segments, "preg_split", NULL, 124, &_1, &routeWithoutClosingOptionals);
 	zephir_check_call_status();
 	if (!ZEPHIR_IS_LONG_IDENTICAL(&numOptionals, (zephir_fast_count_int(&segments TSRMLS_CC) - 1))) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_INIT_VAR(&_3$$3);
 		ZEPHIR_INIT_VAR(&_4$$3);
-		ZEPHIR_CONCAT_SSS(&_4$$3, "~", "\\{ \\s* ([a-zA-Z][a-zA-Z0-9_]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "(*SKIP)(*F) | \\]~x");
+		ZEPHIR_CONCAT_SSS(&_4$$3, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "(*SKIP)(*F) | \\]~x");
 		zephir_preg_match(&_3$$3, &_4$$3, &routeWithoutClosingOptionals, &_2$$3, 0, 0 , 0  TSRMLS_CC);
 		if (zephir_is_true(&_3$$3)) {
 			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Optional segments can only occur at the end of a route", "ice/mvc/route/parser/std.zep", 30);
@@ -172,7 +173,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	ZEPHIR_INIT_VAR(&matches);
 	array_init(&matches);
 	ZEPHIR_INIT_VAR(&_0);
-	ZEPHIR_CONCAT_SSS(&_0, "~", "\\{ \\s* ([a-zA-Z][a-zA-Z0-9_]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "~x");
+	ZEPHIR_CONCAT_SSS(&_0, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "~x");
 	ZVAL_LONG(&_1, (256 | 2));
 	ZEPHIR_MAKE_REF(&matches);
 	ZEPHIR_CALL_FUNCTION(&_2, "preg_match_all", NULL, 126, &_0, route, &matches, &_1);

@@ -31,7 +31,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Filter (if service is available)
  * @uses        Ice\I18n (if service is available)
@@ -405,7 +405,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 163, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 164, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);

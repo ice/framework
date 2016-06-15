@@ -26,14 +26,12 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Http, Response, ice, http_response, ice_http_response_method_entry, 0);
-
-	zend_declare_property_null(ice_http_response_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_string(ice_http_response_ce, SL("protocolVersion"), "HTTP/1.1", ZEND_ACC_PROTECTED TSRMLS_CC);
 
@@ -46,10 +44,6 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response) {
 	zend_declare_property_long(ice_http_response_ce, SL("redirects"), 0, ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(ice_http_response_ce, SL("body"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
-	zend_declare_property_null(ice_http_response_ce, SL("messages"), ZEND_ACC_PROTECTED TSRMLS_CC);
-
-	ice_http_response_ce->create_object = zephir_init_properties_Ice_Http_Response;
 
 	zend_class_implements(ice_http_response_ce TSRMLS_CC, 1, ice_http_response_responseinterface_ce);
 	return SUCCESS;
@@ -161,15 +155,6 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 
 }
 
-PHP_METHOD(Ice_Http_Response, getMessages) {
-
-	ZEPHIR_INIT_THIS();
-
-
-	RETURN_MEMBER(this_ptr, "messages");
-
-}
-
 /**
  * Response constructor. Fetch Di and set it as a property.
  *
@@ -178,18 +163,16 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
-	zephir_fcall_cache_entry *_1 = NULL;
 	int status, ZEPHIR_LAST_CALL_STATUS;
-	zval *body_param = NULL, *status_param = NULL, _0, _2, _3, _4, _5;
+	zval *body_param = NULL, *status_param = NULL, _0, _1, _2, _3;
 	zval body;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&body);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &body_param, &status_param);
@@ -207,24 +190,21 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
+	ZEPHIR_INIT_VAR(&_0);
+	object_init_ex(&_0, ice_http_response_headers_ce);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 5);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("di"), &_0);
-	ZEPHIR_INIT_VAR(&_2);
-	object_init_ex(&_2, ice_http_response_headers_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", NULL, 5);
-	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("headers"), &_2);
-	ZEPHIR_INIT_ZVAL_NREF(_3);
-	ZVAL_LONG(&_3, status);
-	zephir_update_property_zval(this_ptr, SL("status"), &_3);
+	zephir_update_property_zval(this_ptr, SL("headers"), &_0);
+	ZEPHIR_INIT_ZVAL_NREF(_1);
+	ZVAL_LONG(&_1, status);
+	zephir_update_property_zval(this_ptr, SL("status"), &_1);
 	zephir_update_property_zval(this_ptr, SL("body"), &body);
-	zephir_read_property(&_3, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_4);
-	ZVAL_STRING(&_4, "Content-Type");
-	ZEPHIR_INIT_VAR(&_5);
-	ZVAL_STRING(&_5, "text/html");
-	ZEPHIR_CALL_METHOD(NULL, &_3, "set", NULL, 0, &_4, &_5);
+	zephir_read_property(&_1, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_2);
+	ZVAL_STRING(&_2, "Content-Type");
+	ZEPHIR_INIT_VAR(&_3);
+	ZVAL_STRING(&_3, "text/html");
+	ZEPHIR_CALL_METHOD(NULL, &_1, "set", NULL, 0, &_2, &_3);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -497,9 +477,9 @@ PHP_METHOD(Ice_Http_Response, finalize) {
  */
 PHP_METHOD(Ice_Http_Response, send) {
 
-	zend_bool _22$$3;
-	zval _0, _1$$3, _2$$3, _3$$3, _19$$3, _20$$3, _21$$3, _23$$3, _27$$3, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _12$$5, _13$$5, _14$$5, _15$$5, _16$$5, _17$$5, _18$$5, _24$$6, _25$$6, _26$$6;
-	zephir_fcall_cache_entry *_10 = NULL, *_11 = NULL;
+	zend_bool _21$$3;
+	zval _0, _1$$3, _2$$3, _3$$3, di$$3, _19$$3, _20$$3, _22$$3, _25$$3, _4$$4, _5$$4, _6$$4, _8$$4, _9$$4, _12$$5, _13$$5, _14$$5, _15$$5, _16$$5, _17$$5, _23$$6, _24$$6;
+	zephir_fcall_cache_entry *_7 = NULL, *_10 = NULL, *_11 = NULL, *_18 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	ZEPHIR_INIT_THIS();
 
@@ -507,15 +487,14 @@ PHP_METHOD(Ice_Http_Response, send) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&di$$3);
 	ZVAL_UNDEF(&_19$$3);
 	ZVAL_UNDEF(&_20$$3);
-	ZVAL_UNDEF(&_21$$3);
-	ZVAL_UNDEF(&_23$$3);
-	ZVAL_UNDEF(&_27$$3);
+	ZVAL_UNDEF(&_22$$3);
+	ZVAL_UNDEF(&_25$$3);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_12$$5);
@@ -524,10 +503,8 @@ PHP_METHOD(Ice_Http_Response, send) {
 	ZVAL_UNDEF(&_15$$5);
 	ZVAL_UNDEF(&_16$$5);
 	ZVAL_UNDEF(&_17$$5);
-	ZVAL_UNDEF(&_18$$5);
+	ZVAL_UNDEF(&_23$$6);
 	ZVAL_UNDEF(&_24$$6);
-	ZVAL_UNDEF(&_25$$6);
-	ZVAL_UNDEF(&_26$$6);
 
 	ZEPHIR_MM_GROW();
 
@@ -542,13 +519,12 @@ PHP_METHOD(Ice_Http_Response, send) {
 		zephir_fast_strpos(&_3$$3, &_1$$3, &_2$$3, 0 );
 		if (ZEPHIR_IS_LONG_IDENTICAL(&_3$$3, 0)) {
 			zephir_read_property(&_4$$4, this_ptr, SL("status"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_5$$4, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_OBS_VAR(&_7$$4);
-			zephir_read_property(&_7$$4, this_ptr, SL("status"), PH_NOISY_CC);
-			zephir_array_fetch(&_6$$4, &_5$$4, &_7$$4, PH_NOISY | PH_READONLY, "ice/http/response.zep", 231 TSRMLS_CC);
+			zephir_read_property(&_6$$4, this_ptr, SL("status"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(&_5$$4, this_ptr, "getmessage", &_7, 0, &_6$$4);
+			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_8$$4);
 			ZVAL_STRING(&_8$$4, "Status: %d %s");
-			ZEPHIR_CALL_FUNCTION(&_9$$4, "sprintf", &_10, 12, &_8$$4, &_4$$4, &_6$$4);
+			ZEPHIR_CALL_FUNCTION(&_9$$4, "sprintf", &_10, 12, &_8$$4, &_4$$4, &_5$$4);
 			zephir_check_call_status();
 			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 109, &_9$$4);
 			zephir_check_call_status();
@@ -556,38 +532,40 @@ PHP_METHOD(Ice_Http_Response, send) {
 			ZEPHIR_CALL_METHOD(&_12$$5, this_ptr, "getprotocolversion", NULL, 0);
 			zephir_check_call_status();
 			zephir_read_property(&_13$$5, this_ptr, SL("status"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_14$$5, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_OBS_VAR(&_16$$5);
-			zephir_read_property(&_16$$5, this_ptr, SL("status"), PH_NOISY_CC);
-			zephir_array_fetch(&_15$$5, &_14$$5, &_16$$5, PH_NOISY | PH_READONLY, "ice/http/response.zep", 233 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_17$$5);
-			ZVAL_STRING(&_17$$5, "%s %d %s");
-			ZEPHIR_CALL_FUNCTION(&_18$$5, "sprintf", &_10, 12, &_17$$5, &_12$$5, &_13$$5, &_15$$5);
+			zephir_read_property(&_15$$5, this_ptr, SL("status"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_METHOD(&_14$$5, this_ptr, "getmessage", &_7, 0, &_15$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 109, &_18$$5);
+			ZEPHIR_INIT_VAR(&_16$$5);
+			ZVAL_STRING(&_16$$5, "%s %d %s");
+			ZEPHIR_CALL_FUNCTION(&_17$$5, "sprintf", &_10, 12, &_16$$5, &_12$$5, &_13$$5, &_14$$5);
+			zephir_check_call_status();
+			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 109, &_17$$5);
 			zephir_check_call_status();
 		}
-		zephir_read_property(&_19$$3, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_21$$3);
-		ZVAL_STRING(&_21$$3, "session");
-		ZEPHIR_CALL_METHOD(&_20$$3, &_19$$3, "has", NULL, 0, &_21$$3);
+		ZEPHIR_CALL_CE_STATIC(&di$$3, ice_di_ce, "fetch", &_18, 1);
 		zephir_check_call_status();
-		_22$$3 = zephir_is_true(&_20$$3);
-		if (_22$$3) {
-			ZEPHIR_CALL_METHOD(&_23$$3, this_ptr, "isredirect", NULL, 0);
+		ZEPHIR_INIT_VAR(&_20$$3);
+		ZVAL_STRING(&_20$$3, "session");
+		ZEPHIR_CALL_METHOD(&_19$$3, &di$$3, "has", NULL, 0, &_20$$3);
+		zephir_check_call_status();
+		_21$$3 = zephir_is_true(&_19$$3);
+		if (_21$$3) {
+			ZEPHIR_CALL_METHOD(&_22$$3, this_ptr, "isredirect", NULL, 0);
 			zephir_check_call_status();
-			_22$$3 = !zephir_is_true(&_23$$3);
+			_21$$3 = !zephir_is_true(&_22$$3);
 		}
-		if (_22$$3) {
-			zephir_read_property(&_24$$6, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_25$$6, &_24$$6, SL("session"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_INIT_VAR(&_26$$6);
-			ZVAL_STRING(&_26$$6, "_redirects");
-			ZEPHIR_CALL_METHOD(NULL, &_25$$6, "remove", NULL, 0, &_26$$6);
+		if (_21$$3) {
+			ZEPHIR_INIT_VAR(&_24$$6);
+			ZVAL_STRING(&_24$$6, "session");
+			ZEPHIR_CALL_METHOD(&_23$$6, &di$$3, "get", NULL, 0, &_24$$6);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(&_24$$6);
+			ZVAL_STRING(&_24$$6, "_redirects");
+			ZEPHIR_CALL_METHOD(NULL, &_23$$6, "remove", NULL, 0, &_24$$6);
 			zephir_check_call_status();
 		}
-		zephir_read_property(&_27$$3, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(NULL, &_27$$3, "send", NULL, 0);
+		zephir_read_property(&_25$$3, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
+		ZEPHIR_CALL_METHOD(NULL, &_25$$3, "send", NULL, 0);
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
@@ -604,30 +582,27 @@ PHP_METHOD(Ice_Http_Response, send) {
  */
 PHP_METHOD(Ice_Http_Response, redirect) {
 
+	zephir_fcall_cache_entry *_0 = NULL;
 	zend_bool external, _6;
 	int status, ZEPHIR_LAST_CALL_STATUS, redirects = 0;
-	zval *location_param = NULL, *status_param = NULL, *external_param = NULL, url, _0, _4, _5, _7, _16, _1$$3, _2$$3, _3$$3, _8$$4, _9$$4, _10$$4, _11$$4, _12$$4, _13$$4, _14$$4, _15$$4;
+	zval *location_param = NULL, *status_param = NULL, *external_param = NULL, url, di, _1, _4, _5, _11, _2$$3, _3$$3, session$$4, _7$$4, _8$$4, _9$$4, _10$$4;
 	zval location;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&location);
 	ZVAL_UNDEF(&url);
-	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&di);
+	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_16);
-	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&session$$4);
+	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_10$$4);
-	ZVAL_UNDEF(&_11$$4);
-	ZVAL_UNDEF(&_12$$4);
-	ZVAL_UNDEF(&_13$$4);
-	ZVAL_UNDEF(&_14$$4);
-	ZVAL_UNDEF(&_15$$4);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &location_param, &status_param, &external_param);
@@ -650,58 +625,58 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	}
 
 
-	ZVAL_LONG(&_0, status);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setstatus", NULL, 0, &_0);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 1);
+	zephir_check_call_status();
+	ZVAL_LONG(&_1, status);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setstatus", NULL, 0, &_1);
 	zephir_check_call_status();
 	if (!(external)) {
-		zephir_read_property(&_1$$3, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "url");
-		ZEPHIR_CALL_METHOD(&url, &_1$$3, "get", NULL, 0, &_2$$3);
+		ZEPHIR_CALL_METHOD(&url, &di, "get", NULL, 0, &_2$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(&_3$$3, &url, "get", NULL, 0, &location);
 		zephir_check_call_status();
 		zephir_get_strval(&location, &_3$$3);
 	}
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_5);
 	ZVAL_STRING(&_5, "session");
-	ZEPHIR_CALL_METHOD(&_4, &_0, "has", NULL, 0, &_5);
+	ZEPHIR_CALL_METHOD(&_4, &di, "has", NULL, 0, &_5);
 	zephir_check_call_status();
 	_6 = zephir_is_true(&_4);
 	if (_6) {
-		zephir_read_property(&_7, this_ptr, SL("loops"), PH_NOISY_CC | PH_READONLY);
-		_6 = zephir_is_true(&_7);
+		zephir_read_property(&_1, this_ptr, SL("loops"), PH_NOISY_CC | PH_READONLY);
+		_6 = zephir_is_true(&_1);
 	}
 	if (_6) {
-		zephir_read_property(&_8$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_9$$4, &_8$$4, SL("session"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_VAR(&_11$$4);
-		ZVAL_STRING(&_11$$4, "_redirects");
-		ZVAL_LONG(&_12$$4, 0);
-		ZEPHIR_CALL_METHOD(&_10$$4, &_9$$4, "get", NULL, 0, &_11$$4, &_12$$4);
+		ZEPHIR_INIT_VAR(&_7$$4);
+		ZVAL_STRING(&_7$$4, "session");
+		ZEPHIR_CALL_METHOD(&session$$4, &di, "get", NULL, 0, &_7$$4);
 		zephir_check_call_status();
-		redirects = (zephir_get_intval(&_10$$4) + 1);
-		ZEPHIR_INIT_ZVAL_NREF(_12$$4);
-		ZVAL_LONG(&_12$$4, redirects);
-		zephir_update_property_zval(this_ptr, SL("redirects"), &_12$$4);
-		zephir_read_property(&_12$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_13$$4, &_12$$4, SL("session"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_INIT_NVAR(&_11$$4);
-		ZVAL_STRING(&_11$$4, "_redirects");
-		ZVAL_LONG(&_14$$4, redirects);
-		ZEPHIR_CALL_METHOD(NULL, &_13$$4, "set", NULL, 0, &_11$$4, &_14$$4);
+		ZEPHIR_INIT_NVAR(&_7$$4);
+		ZVAL_STRING(&_7$$4, "_redirects");
+		ZVAL_LONG(&_9$$4, 0);
+		ZEPHIR_CALL_METHOD(&_8$$4, &session$$4, "get", NULL, 0, &_7$$4, &_9$$4);
 		zephir_check_call_status();
-		zephir_read_property(&_14$$4, this_ptr, SL("redirects"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_15$$4, this_ptr, SL("loops"), PH_NOISY_CC | PH_READONLY);
-		if (ZEPHIR_GT(&_14$$4, &_15$$4)) {
+		redirects = (zephir_get_intval(&_8$$4) + 1);
+		ZEPHIR_INIT_ZVAL_NREF(_9$$4);
+		ZVAL_LONG(&_9$$4, redirects);
+		zephir_update_property_zval(this_ptr, SL("redirects"), &_9$$4);
+		ZEPHIR_INIT_NVAR(&_7$$4);
+		ZVAL_STRING(&_7$$4, "_redirects");
+		ZVAL_LONG(&_9$$4, redirects);
+		ZEPHIR_CALL_METHOD(NULL, &session$$4, "set", NULL, 0, &_7$$4, &_9$$4);
+		zephir_check_call_status();
+		zephir_read_property(&_9$$4, this_ptr, SL("redirects"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_10$$4, this_ptr, SL("loops"), PH_NOISY_CC | PH_READONLY);
+		if (ZEPHIR_GT(&_9$$4, &_10$$4)) {
 			RETURN_THIS();
 		}
 	}
-	zephir_read_property(&_16, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_11, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_5);
 	ZVAL_STRING(&_5, "Location");
-	ZEPHIR_CALL_METHOD(NULL, &_16, "set", NULL, 0, &_5, &location);
+	ZEPHIR_CALL_METHOD(NULL, &_11, "set", NULL, 0, &_5, &location);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -964,7 +939,7 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 PHP_METHOD(Ice_Http_Response, getMessage) {
 
 	zval *code_param = NULL, message, _0, _1;
-	int code;
+	int code, ZEPHIR_LAST_CALL_STATUS;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&message);
@@ -981,8 +956,10 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_isset_long_fetch(&message, &_0, code, 1 TSRMLS_CC);
+	ZEPHIR_OBS_VAR(&message);
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getmessages", NULL, 0);
+	zephir_check_call_status();
+	zephir_array_isset_long_fetch(&message, &_0, code, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_is_true(&message)) {
 		ZEPHIR_CPY_WRT(&_1, &message);
@@ -990,6 +967,81 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 		ZVAL_STRING(&_1, "");
 	}
 	RETURN_CCTOR(_1);
+
+}
+
+/**
+ * Get all messages.
+ *
+ * @return array
+ */
+PHP_METHOD(Ice_Http_Response, getMessages) {
+
+	ZEPHIR_INIT_THIS();
+
+
+	zephir_create_array(return_value, 61, 0 TSRMLS_CC);
+	add_index_stringl(return_value, 100, SL("Continue"));
+	add_index_stringl(return_value, 101, SL("Switching Protocols"));
+	add_index_stringl(return_value, 102, SL("Processing"));
+	add_index_stringl(return_value, 200, SL("OK"));
+	add_index_stringl(return_value, 201, SL("Created"));
+	add_index_stringl(return_value, 202, SL("Accepted"));
+	add_index_stringl(return_value, 203, SL("Non-Authoritative Information"));
+	add_index_stringl(return_value, 204, SL("No Content"));
+	add_index_stringl(return_value, 205, SL("Reset Content"));
+	add_index_stringl(return_value, 206, SL("Partial Content"));
+	add_index_stringl(return_value, 207, SL("Multi-Status"));
+	add_index_stringl(return_value, 208, SL("Already Reported"));
+	add_index_stringl(return_value, 226, SL("IM Used"));
+	add_index_stringl(return_value, 300, SL("Multiple Choices"));
+	add_index_stringl(return_value, 301, SL("Moved Permanently"));
+	add_index_stringl(return_value, 302, SL("Found"));
+	add_index_stringl(return_value, 303, SL("See Other"));
+	add_index_stringl(return_value, 304, SL("Not Modified"));
+	add_index_stringl(return_value, 305, SL("Use Proxy"));
+	add_index_stringl(return_value, 306, SL("(Unused)"));
+	add_index_stringl(return_value, 307, SL("Temporary Redirect"));
+	add_index_stringl(return_value, 308, SL("Permanent Redirect"));
+	add_index_stringl(return_value, 310, SL("Too Many Redirects"));
+	add_index_stringl(return_value, 400, SL("Bad Request"));
+	add_index_stringl(return_value, 401, SL("Unauthorized"));
+	add_index_stringl(return_value, 402, SL("Payment Required"));
+	add_index_stringl(return_value, 403, SL("Forbidden"));
+	add_index_stringl(return_value, 404, SL("Not Found"));
+	add_index_stringl(return_value, 405, SL("Method Not Allowed"));
+	add_index_stringl(return_value, 406, SL("Not Acceptable"));
+	add_index_stringl(return_value, 407, SL("Proxy Authentication Required"));
+	add_index_stringl(return_value, 408, SL("Request Timeout"));
+	add_index_stringl(return_value, 409, SL("Conflict"));
+	add_index_stringl(return_value, 410, SL("Gone"));
+	add_index_stringl(return_value, 411, SL("Length Required"));
+	add_index_stringl(return_value, 412, SL("Precondition Failed"));
+	add_index_stringl(return_value, 413, SL("Request Entity Too Large"));
+	add_index_stringl(return_value, 414, SL("Request-URI Too Long"));
+	add_index_stringl(return_value, 415, SL("Unsupported Media Type"));
+	add_index_stringl(return_value, 416, SL("Requested Range Not Satisfiable"));
+	add_index_stringl(return_value, 417, SL("Expectation Failed"));
+	add_index_stringl(return_value, 418, SL("I'm a teapot"));
+	add_index_stringl(return_value, 422, SL("Unprocessable Entity"));
+	add_index_stringl(return_value, 423, SL("Locked"));
+	add_index_stringl(return_value, 424, SL("Failed Dependency"));
+	add_index_stringl(return_value, 426, SL("Upgrade Required"));
+	add_index_stringl(return_value, 428, SL("Precondition Required"));
+	add_index_stringl(return_value, 429, SL("Too Many Requests"));
+	add_index_stringl(return_value, 431, SL("Request Header Fields Too Large"));
+	add_index_stringl(return_value, 500, SL("Internal Server Error"));
+	add_index_stringl(return_value, 501, SL("Not Implemented"));
+	add_index_stringl(return_value, 502, SL("Bad Gateway"));
+	add_index_stringl(return_value, 503, SL("Service Unavailable"));
+	add_index_stringl(return_value, 504, SL("Gateway Timeout"));
+	add_index_stringl(return_value, 505, SL("HTTP Version Not Supported"));
+	add_index_stringl(return_value, 506, SL("Variant Also Negotiates"));
+	add_index_stringl(return_value, 507, SL("Insufficient Storage"));
+	add_index_stringl(return_value, 508, SL("Loop Detected"));
+	add_index_stringl(return_value, 510, SL("Not Extended"));
+	add_index_stringl(return_value, 511, SL("Network Authentication Required"));
+	return;
 
 }
 
@@ -1004,90 +1056,6 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 
 
 	RETURN_MEMBER(this_ptr, "body");
-
-}
-
-zend_object *zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC) {
-
-		zval _1$$3;
-	zval _0;
-		ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_1$$3);
-
-		ZEPHIR_MM_GROW();
-	
-	{
-		zval local_this_ptr, *this_ptr = &local_this_ptr;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-		if (Z_TYPE_P(&_0) == IS_NULL) {
-			ZEPHIR_INIT_VAR(&_1$$3);
-			zephir_create_array(&_1$$3, 61, 0 TSRMLS_CC);
-			add_index_stringl(&_1$$3, 100, SL("Continue"));
-			add_index_stringl(&_1$$3, 101, SL("Switching Protocols"));
-			add_index_stringl(&_1$$3, 102, SL("Processing"));
-			add_index_stringl(&_1$$3, 200, SL("OK"));
-			add_index_stringl(&_1$$3, 201, SL("Created"));
-			add_index_stringl(&_1$$3, 202, SL("Accepted"));
-			add_index_stringl(&_1$$3, 203, SL("Non-Authoritative Information"));
-			add_index_stringl(&_1$$3, 204, SL("No Content"));
-			add_index_stringl(&_1$$3, 205, SL("Reset Content"));
-			add_index_stringl(&_1$$3, 206, SL("Partial Content"));
-			add_index_stringl(&_1$$3, 207, SL("Multi-Status"));
-			add_index_stringl(&_1$$3, 208, SL("Already Reported"));
-			add_index_stringl(&_1$$3, 226, SL("IM Used"));
-			add_index_stringl(&_1$$3, 300, SL("Multiple Choices"));
-			add_index_stringl(&_1$$3, 301, SL("Moved Permanently"));
-			add_index_stringl(&_1$$3, 302, SL("Found"));
-			add_index_stringl(&_1$$3, 303, SL("See Other"));
-			add_index_stringl(&_1$$3, 304, SL("Not Modified"));
-			add_index_stringl(&_1$$3, 305, SL("Use Proxy"));
-			add_index_stringl(&_1$$3, 306, SL("(Unused)"));
-			add_index_stringl(&_1$$3, 307, SL("Temporary Redirect"));
-			add_index_stringl(&_1$$3, 308, SL("Permanent Redirect"));
-			add_index_stringl(&_1$$3, 310, SL("Too Many Redirects"));
-			add_index_stringl(&_1$$3, 400, SL("Bad Request"));
-			add_index_stringl(&_1$$3, 401, SL("Unauthorized"));
-			add_index_stringl(&_1$$3, 402, SL("Payment Required"));
-			add_index_stringl(&_1$$3, 403, SL("Forbidden"));
-			add_index_stringl(&_1$$3, 404, SL("Not Found"));
-			add_index_stringl(&_1$$3, 405, SL("Method Not Allowed"));
-			add_index_stringl(&_1$$3, 406, SL("Not Acceptable"));
-			add_index_stringl(&_1$$3, 407, SL("Proxy Authentication Required"));
-			add_index_stringl(&_1$$3, 408, SL("Request Timeout"));
-			add_index_stringl(&_1$$3, 409, SL("Conflict"));
-			add_index_stringl(&_1$$3, 410, SL("Gone"));
-			add_index_stringl(&_1$$3, 411, SL("Length Required"));
-			add_index_stringl(&_1$$3, 412, SL("Precondition Failed"));
-			add_index_stringl(&_1$$3, 413, SL("Request Entity Too Large"));
-			add_index_stringl(&_1$$3, 414, SL("Request-URI Too Long"));
-			add_index_stringl(&_1$$3, 415, SL("Unsupported Media Type"));
-			add_index_stringl(&_1$$3, 416, SL("Requested Range Not Satisfiable"));
-			add_index_stringl(&_1$$3, 417, SL("Expectation Failed"));
-			add_index_stringl(&_1$$3, 418, SL("I'm a teapot"));
-			add_index_stringl(&_1$$3, 422, SL("Unprocessable Entity"));
-			add_index_stringl(&_1$$3, 423, SL("Locked"));
-			add_index_stringl(&_1$$3, 424, SL("Failed Dependency"));
-			add_index_stringl(&_1$$3, 426, SL("Upgrade Required"));
-			add_index_stringl(&_1$$3, 428, SL("Precondition Required"));
-			add_index_stringl(&_1$$3, 429, SL("Too Many Requests"));
-			add_index_stringl(&_1$$3, 431, SL("Request Header Fields Too Large"));
-			add_index_stringl(&_1$$3, 500, SL("Internal Server Error"));
-			add_index_stringl(&_1$$3, 501, SL("Not Implemented"));
-			add_index_stringl(&_1$$3, 502, SL("Bad Gateway"));
-			add_index_stringl(&_1$$3, 503, SL("Service Unavailable"));
-			add_index_stringl(&_1$$3, 504, SL("Gateway Timeout"));
-			add_index_stringl(&_1$$3, 505, SL("HTTP Version Not Supported"));
-			add_index_stringl(&_1$$3, 506, SL("Variant Also Negotiates"));
-			add_index_stringl(&_1$$3, 507, SL("Insufficient Storage"));
-			add_index_stringl(&_1$$3, 508, SL("Loop Detected"));
-			add_index_stringl(&_1$$3, 510, SL("Not Extended"));
-			add_index_stringl(&_1$$3, 511, SL("Network Authentication Required"));
-			zephir_update_property_zval(this_ptr, SL("messages"), &_1$$3);
-		}
-		ZEPHIR_MM_RESTORE();
-		return Z_OBJ_P(this_ptr);
-	}
 
 }
 

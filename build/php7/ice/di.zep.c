@@ -31,7 +31,7 @@
  * @package     Ice/Di
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Di) {
@@ -234,7 +234,7 @@ PHP_METHOD(Ice_Di, getDefaults) {
 	add_assoc_stringl_ex(&_0, SL("session"), SL("Ice\\Session"));
 	add_assoc_stringl_ex(&_0, SL("tag"), SL("Ice\\Tag"));
 	add_assoc_stringl_ex(&_0, SL("text"), SL("Ice\\Text"));
-	add_assoc_stringl_ex(&_0, SL("url"), SL("Ice\\Url"));
+	add_assoc_stringl_ex(&_0, SL("url"), SL("Ice\\Mvc\\Url"));
 	add_assoc_stringl_ex(&_0, SL("view"), SL("Ice\\Mvc\\View"));
 	zephir_read_property(&_1, this_ptr, SL("defaults"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(return_value, &_0, &_1 TSRMLS_CC);
@@ -331,10 +331,9 @@ PHP_METHOD(Ice_Di, resolve) {
  */
 PHP_METHOD(Ice_Di, build) {
 
-	zend_class_entry *_5$$6;
 	zval _2$$5;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *service, service_sub, *parameters = NULL, parameters_sub, reflector, constructor, dependencies, _0, _6, _1$$5, _3$$5, _4$$6;
+	zval *service, service_sub, *parameters = NULL, parameters_sub, reflector, constructor, dependencies, _0, _4, _1$$5, _3$$5;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&service_sub);
@@ -343,10 +342,9 @@ PHP_METHOD(Ice_Di, build) {
 	ZVAL_UNDEF(&constructor);
 	ZVAL_UNDEF(&dependencies);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_1$$5);
 	ZVAL_UNDEF(&_3$$5);
-	ZVAL_UNDEF(&_4$$6);
 	ZVAL_UNDEF(&_2$$5);
 
 	ZEPHIR_MM_GROW();
@@ -392,23 +390,18 @@ PHP_METHOD(Ice_Di, build) {
 	ZEPHIR_CALL_METHOD(&constructor, &reflector, "getconstructor", NULL, 79);
 	zephir_check_call_status();
 	if (Z_TYPE_P(&constructor) == IS_NULL) {
-		zephir_fetch_safe_class(&_4$$6, service);
-		_5$$6 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_4$$6), Z_STRLEN_P(&_4$$6), ZEND_FETCH_CLASS_AUTO);
-		object_init_ex(return_value, _5$$6);
-		if (zephir_has_constructor(return_value TSRMLS_CC)) {
-			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
-			zephir_check_call_status();
-		}
+		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(return_value, service TSRMLS_CC);
+		zephir_check_call_status();
 		RETURN_MM();
 	}
 	ZEPHIR_CALL_METHOD(&dependencies, &constructor, "getparameters", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getparameters", NULL, 0, &dependencies, parameters);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getparameters", NULL, 0, &dependencies, parameters);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(parameters, &_6);
-	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getdependencies", NULL, 0, &dependencies, parameters);
+	ZEPHIR_CPY_WRT(parameters, &_4);
+	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getdependencies", NULL, 0, &dependencies, parameters);
 	zephir_check_call_status();
-	ZEPHIR_CPY_WRT(&dependencies, &_6);
+	ZEPHIR_CPY_WRT(&dependencies, &_4);
 	ZEPHIR_RETURN_CALL_METHOD(&reflector, "newinstanceargs", NULL, 80, &dependencies);
 	zephir_check_call_status();
 	RETURN_MM();
