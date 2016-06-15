@@ -99,7 +99,7 @@ class Di extends Arr
             "session": "Ice\\Session",
             "tag": "Ice\\Tag",
             "text": "Ice\\Text",
-            "url": "Ice\\Url",
+            "url": "Ice\\Mvc\\Url",
             "view": "Ice\\Mvc\\View"
         ], this->defaults);
     }
@@ -166,7 +166,7 @@ class Di extends Arr
         let constructor = reflector->getConstructor();
         
         if is_null(constructor) {
-            return new {service}();
+            return create_instance(service);
         }
 
         let dependencies = constructor->getParameters(),
