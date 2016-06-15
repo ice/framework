@@ -319,6 +319,14 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 
 }
 
+/**
+ * Initialize globals only on each thread started
+ */
+static void php_zephir_init_module_globals(zend_ice_globals *ice_globals TSRMLS_DC)
+{
+
+}
+
 static PHP_RINIT_FUNCTION(ice)
 {
 
@@ -369,6 +377,7 @@ static PHP_MINFO_FUNCTION(ice)
 static PHP_GINIT_FUNCTION(ice)
 {
 	php_zephir_init_globals(ice_globals TSRMLS_CC);
+	php_zephir_init_module_globals(ice_globals TSRMLS_CC);
 }
 
 static PHP_GSHUTDOWN_FUNCTION(ice)

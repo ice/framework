@@ -26,7 +26,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -94,7 +94,7 @@ PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 164, value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 165, value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_1))) {
 		ZEPHIR_INIT_VAR(_3$$4);

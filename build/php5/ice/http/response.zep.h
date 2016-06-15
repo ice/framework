@@ -12,7 +12,6 @@ PHP_METHOD(Ice_Http_Response, setLoops);
 PHP_METHOD(Ice_Http_Response, getRedirects);
 PHP_METHOD(Ice_Http_Response, getBody);
 PHP_METHOD(Ice_Http_Response, setBody);
-PHP_METHOD(Ice_Http_Response, getMessages);
 PHP_METHOD(Ice_Http_Response, __construct);
 PHP_METHOD(Ice_Http_Response, getHeaders);
 PHP_METHOD(Ice_Http_Response, hasHeader);
@@ -35,8 +34,8 @@ PHP_METHOD(Ice_Http_Response, isNotFound);
 PHP_METHOD(Ice_Http_Response, isClientError);
 PHP_METHOD(Ice_Http_Response, isServerError);
 PHP_METHOD(Ice_Http_Response, getMessage);
+PHP_METHOD(Ice_Http_Response, getMessages);
 PHP_METHOD(Ice_Http_Response, __toString);
-zend_object_value zephir_init_properties_Ice_Http_Response(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setprotocolversion, 0, 0, 1)
 	ZEND_ARG_INFO(0, protocolVersion)
@@ -108,7 +107,6 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, getRedirects, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getBody, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setBody, arginfo_ice_http_response_setbody, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, getMessages, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __construct, arginfo_ice_http_response___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Http_Response, getHeaders, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, hasHeader, arginfo_ice_http_response_hasheader, ZEND_ACC_PUBLIC)
@@ -131,6 +129,7 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, isClientError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, isServerError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessage, arginfo_ice_http_response_getmessage, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getMessages, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __toString, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

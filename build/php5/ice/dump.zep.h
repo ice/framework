@@ -5,6 +5,8 @@ ZEPHIR_INIT_CLASS(Ice_Dump);
 
 PHP_METHOD(Ice_Dump, getDetailed);
 PHP_METHOD(Ice_Dump, setDetailed);
+PHP_METHOD(Ice_Dump, getSkipDi);
+PHP_METHOD(Ice_Dump, setSkipDi);
 PHP_METHOD(Ice_Dump, __construct);
 PHP_METHOD(Ice_Dump, all);
 PHP_METHOD(Ice_Dump, getStyle);
@@ -17,6 +19,10 @@ zend_object_value zephir_init_properties_Ice_Dump(zend_class_entry *class_type T
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setdetailed, 0, 0, 1)
 	ZEND_ARG_INFO(0, detailed)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setskipdi, 0, 0, 1)
+	ZEND_ARG_INFO(0, skipDi)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump___construct, 0, 0, 0)
@@ -51,6 +57,8 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, getDetailed, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setDetailed, arginfo_ice_dump_setdetailed, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, getSkipDi, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, setSkipDi, arginfo_ice_dump_setskipdi, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, __construct, arginfo_ice_dump___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Dump, all, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, getStyle, arginfo_ice_dump_getstyle, ZEND_ACC_PROTECTED)

@@ -22,7 +22,6 @@ PHP_METHOD(Ice_Mvc_Router, getCollector);
 PHP_METHOD(Ice_Mvc_Router, setCollector);
 PHP_METHOD(Ice_Mvc_Router, getDispatcher);
 PHP_METHOD(Ice_Mvc_Router, setDispatcher);
-PHP_METHOD(Ice_Mvc_Router, __construct);
 PHP_METHOD(Ice_Mvc_Router, setDefaults);
 PHP_METHOD(Ice_Mvc_Router, setOptions);
 PHP_METHOD(Ice_Mvc_Router, fastRoute);
@@ -90,7 +89,6 @@ ZEPHIR_INIT_FUNCS(ice_mvc_router_method_entry) {
 	PHP_ME(Ice_Mvc_Router, setCollector, arginfo_ice_mvc_router_setcollector, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, getDispatcher, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, setDispatcher, arginfo_ice_mvc_router_setdispatcher, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Router, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Router, setDefaults, arginfo_ice_mvc_router_setdefaults, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, setOptions, arginfo_ice_mvc_router_setoptions, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, fastRoute, NULL, ZEND_ACC_PUBLIC)

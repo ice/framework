@@ -29,7 +29,7 @@
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -787,7 +787,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_LONG(_1, countOut);
-	ZEPHIR_CALL_FUNCTION(&n2, "min", &_3, 152, _1, _2);
+	ZEPHIR_CALL_FUNCTION(&n2, "min", &_3, 153, _1, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "pages", ZEPHIR_TEMP_PARAM_COPY);
@@ -825,7 +825,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZVAL_LONG(_1, (zephir_get_numberval(n7) - 1));
 	ZEPHIR_INIT_NVAR(_5);
 	ZVAL_LONG(_5, (zephir_get_numberval(_8) + countIn));
-	ZEPHIR_CALL_FUNCTION(&n5, "min", &_3, 152, _1, _5);
+	ZEPHIR_CALL_FUNCTION(&n5, "min", &_3, 153, _1, _5);
 	zephir_check_call_status();
 	useMiddle = (ZEPHIR_GE(n5, n4));
 	ZEPHIR_INIT_VAR(_9);
