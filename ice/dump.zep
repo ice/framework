@@ -31,6 +31,7 @@ class Dump
 {
 
     protected detailed = false { get, set };
+    protected skipDi = true { get, set };
     protected methods = [];
     protected styles = [];
 
@@ -177,7 +178,7 @@ class Dump
             }
             let output .= " (\n";
 
-            if variable instanceof Di {
+            if this->skipDi && variable instanceof Di {
                 // Skip debuging di
                 let output .= str_repeat(space, tab) . "[skipped]\n";
             } elseif !this->detailed {
