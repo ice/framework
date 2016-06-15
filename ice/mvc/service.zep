@@ -10,7 +10,7 @@ use Ice\Exception;
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Service extends Access

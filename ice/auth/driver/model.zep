@@ -16,7 +16,7 @@ use Ice\Auth\Driver\Model\Users\Social as UserSocial;
  * @package     Ice/Auth
  * @category    Driver
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  */
 class Model extends Driver implements DriverInterface

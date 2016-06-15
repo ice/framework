@@ -11,14 +11,14 @@ use Ice\Mvc\Route\Parser\ParserInterface;
  */
 class Std implements ParserInterface
 {
-    const VARIABLE_REGEX = "\\{ \\s* ([a-zA-Z][a-zA-Z0-9_]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}";
+    const VARIABLE_REGEX = "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}";
     const DEFAULT_DISPATCH_REGEX = "[^/]+";
 
     public function parse(route)
     {
         var routeWithoutClosingOptionals, numOptionals, segments, currentRoute, routeDatas, n, segment;
 
-        let routeWithoutClosingOptionals = rtrim(route, ']'),
+        let routeWithoutClosingOptionals = rtrim(route, "]"),
             numOptionals = strlen(route) - strlen(routeWithoutClosingOptionals);
         
         // Split on [ while skipping placeholders

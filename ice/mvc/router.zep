@@ -13,14 +13,13 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
 class Router
 {
 
-    protected di;
     protected defaultModule = "default" { get, set };
     protected defaultHandler = "index" { get, set };
     protected defaultAction = "index" { get, set };
@@ -41,14 +40,6 @@ class Router
     const NOT_FOUND = 0;
     const FOUND = 1;
     const METHOD_NOT_ALLOWED = 2;
-
-    /**
-     * Router constructor. Fetch Di and set it as a property.
-     */
-    public function __construct()
-    {
-        let this->di = Di::$fetch();
-    }
 
     /**
      * Set defaults values
@@ -90,39 +81,37 @@ class Router
      */
     public function fastRoute()
     {
-        var options, dispatcher, data, collector, parser, generator, route, handler;
+        var options, data, route, handler;
 
         let options = array_merge([
             "routeParser": "Ice\\Mvc\\Route\\Parser\\Std",
             "dataGenerator": "Ice\\Mvc\\Route\\DataGenerator\\GroupCount",
-            "dispatcher":"Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
+            "dispatcher": "Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
             "cache": false
         ], this->options);
 
-        let this->options = options,
-            collector = this->collector;
+        let this->options = options;
 
-        if typeof collector != "object" || typeof collector == "object" && !(collector instanceof Collector) {
-            fetch parser, options["routeParser"];
-            fetch generator, options["dataGenerator"];
-
-            let this->collector = new Collector(new {parser}(), new {generator}());
+        if typeof this->collector != "object" || typeof this->collector == "object" && !(this->collector instanceof Collector) {
+            let this->collector = new Collector(create_instance(options["routeParser"]), create_instance(options["dataGenerator"]));
         }
 
         if !this->routes {
-            throw new Exception("There are no routes.");
-        } else {
-            for route in this->routes {
-                fetch handler, route[2];
-                this->collector->addRoute(route[0], route[1], handler);
-            }
+            // Set default routes
+            let this->routes = [
+                ["*", "/{controller:[a-z]+}/{action:[a-z]+}[/{param}]"],
+                ["*", "/{controller:[a-z]+}"],
+                ["*", ""]
+            ];
         }
 
-        let dispatcher = this->dispatcher;
+        for route in this->routes {
+            fetch handler, route[2];
+            this->collector->addRoute(route[0], route[1], handler);
+        }
 
-        if typeof dispatcher != "object" || typeof dispatcher == "object" && !(dispatcher instanceof DispatcherInterface) {
-            let dispatcher = options["dispatcher"],
-                this->dispatcher = new {dispatcher}();
+        if typeof this->dispatcher != "object" || typeof this->dispatcher == "object" && !(this->dispatcher instanceof DispatcherInterface) {
+            let this->dispatcher = create_instance(options["dispatcher"]);
         }
 
         if options["cache"] {
@@ -171,7 +160,7 @@ class Router
             case self::NOT_FOUND:
                 if this->silent {
                     // 404 Not Found
-                    let response = this->di->get("response");
+                    let response = Di::$fetch()->get("response");
                     response->setStatus(404);
                     response->setBody(response->getMessage(404));
 
@@ -181,7 +170,7 @@ class Router
             case self::METHOD_NOT_ALLOWED:
                 if this->silent {
                     // 405 Method Not Allowed
-                    let response = this->di->get("response");
+                    let response = Di::$fetch()->get("response");
                     response->setStatus(405);
                     response->setBody(response->getMessage(405));
 

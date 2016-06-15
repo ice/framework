@@ -11,7 +11,7 @@ use Ice\Http\Response\ResponseInterface;
  * @package     Ice/Mvc
  * @category    Application
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2016 Ice Team
  * @license     http://iceframework.org/license
  */
 class App extends Access
