@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Mon Aug 29 11:42:20 UTC 2016
+
+- Ice 1.2.0
+ * Db, add mongodb driver
+ * Validation, translate fields on With validator fix #123
+ * Url, uri starts with // fix #121
+
+-------------------------------------------------------------------
 Wed Jun 15 13:24:17 UTC 2016
 
 - Ice 1.1.5
@@ -128,7 +136,7 @@ Fri Oct  2 09:06:39 UTC 2015
 Tue Sep 29 09:33:20 UTC 2015
 
 - Ice 1.0.29
- * Console, fix argument 1 passed to __construct() must be an instance of Ice\Cli\Di
+ * Console, fix argument 1 passed to `construct()` must be an instance of Ice\Cli\Di
  * Model, create/update improvements
 
 -------------------------------------------------------------------
