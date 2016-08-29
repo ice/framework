@@ -1,0 +1,82 @@
+
+extern zend_class_entry *ice_db_driver_mongodb_ce;
+
+ZEPHIR_INIT_CLASS(Ice_Db_Driver_Mongodb);
+
+PHP_METHOD(Ice_Db_Driver_Mongodb, getId);
+PHP_METHOD(Ice_Db_Driver_Mongodb, getType);
+PHP_METHOD(Ice_Db_Driver_Mongodb, getClient);
+PHP_METHOD(Ice_Db_Driver_Mongodb, getLastInsertId);
+PHP_METHOD(Ice_Db_Driver_Mongodb, __construct);
+PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue);
+PHP_METHOD(Ice_Db_Driver_Mongodb, findOne);
+PHP_METHOD(Ice_Db_Driver_Mongodb, find);
+PHP_METHOD(Ice_Db_Driver_Mongodb, select);
+PHP_METHOD(Ice_Db_Driver_Mongodb, insert);
+PHP_METHOD(Ice_Db_Driver_Mongodb, update);
+PHP_METHOD(Ice_Db_Driver_Mongodb, remove);
+PHP_METHOD(Ice_Db_Driver_Mongodb, getError);
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb___construct, 0, 0, 1)
+	ZEND_ARG_INFO(0, dsn)
+	ZEND_ARG_INFO(0, dbname)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_getidvalue, 0, 0, 1)
+	ZEND_ARG_INFO(0, id)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_findone, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_find, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_select, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_insert, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_update, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_remove, 0, 0, 1)
+	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_INFO(0, filters)
+ZEND_END_ARG_INFO()
+
+ZEPHIR_INIT_FUNCS(ice_db_driver_mongodb_method_entry) {
+	PHP_ME(Ice_Db_Driver_Mongodb, getId, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, getType, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, getClient, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, getLastInsertId, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, __construct, arginfo_ice_db_driver_mongodb___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME(Ice_Db_Driver_Mongodb, getIdValue, arginfo_ice_db_driver_mongodb_getidvalue, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, findOne, arginfo_ice_db_driver_mongodb_findone, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, find, arginfo_ice_db_driver_mongodb_find, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, select, arginfo_ice_db_driver_mongodb_select, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, insert, arginfo_ice_db_driver_mongodb_insert, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, update, arginfo_ice_db_driver_mongodb_update, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, remove, arginfo_ice_db_driver_mongodb_remove, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, getError, NULL, ZEND_ACC_PUBLIC)
+	PHP_FE_END
+};

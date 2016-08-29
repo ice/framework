@@ -29,9 +29,9 @@
 
 zend_class_entry *ice_i18n_plural_pluralinterface_ce;
 zend_class_entry *ice_auth_social_socialinterface_ce;
+zend_class_entry *ice_db_dbinterface_ce;
 zend_class_entry *ice_mvc_view_engine_engineinterface_ce;
 zend_class_entry *ice_auth_driver_driverinterface_ce;
-zend_class_entry *ice_db_dbinterface_ce;
 zend_class_entry *ice_log_loggerinterface_ce;
 zend_class_entry *ice_mvc_route_datagenerator_datageneratorinterface_ce;
 zend_class_entry *ice_mvc_route_dispatcher_dispatcherinterface_ce;
@@ -76,6 +76,7 @@ zend_class_entry *ice_cookies_ce;
 zend_class_entry *ice_crypt_ce;
 zend_class_entry *ice_db_ce;
 zend_class_entry *ice_db_driver_mongo_ce;
+zend_class_entry *ice_db_driver_mongodb_ce;
 zend_class_entry *ice_db_driver_pdo_ce;
 zend_class_entry *ice_di_ce;
 zend_class_entry *ice_dump_ce;
@@ -166,9 +167,9 @@ static PHP_MINIT_FUNCTION(ice)
 	REGISTER_INI_ENTRIES();
 	ZEPHIR_INIT(Ice_I18n_Plural_PluralInterface);
 	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
+	ZEPHIR_INIT(Ice_Db_DbInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);
 	ZEPHIR_INIT(Ice_Auth_Driver_DriverInterface);
-	ZEPHIR_INIT(Ice_Db_DbInterface);
 	ZEPHIR_INIT(Ice_Log_LoggerInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface);
 	ZEPHIR_INIT(Ice_Mvc_Route_Dispatcher_DispatcherInterface);
@@ -213,6 +214,7 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Crypt);
 	ZEPHIR_INIT(Ice_Db);
 	ZEPHIR_INIT(Ice_Db_Driver_Mongo);
+	ZEPHIR_INIT(Ice_Db_Driver_Mongodb);
 	ZEPHIR_INIT(Ice_Db_Driver_Pdo);
 	ZEPHIR_INIT(Ice_Di);
 	ZEPHIR_INIT(Ice_Dump);

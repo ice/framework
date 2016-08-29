@@ -15,8 +15,8 @@
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
-#include "kernel/fcall.h"
 #include "kernel/concat.h"
+#include "kernel/fcall.h"
 #include "kernel/array.h"
 
 
@@ -71,10 +71,10 @@ PHP_METHOD(Ice_Db, setDriver) {
  */
 PHP_METHOD(Ice_Db, __construct) {
 
-	zend_bool _0;
+	zend_bool _0, _1$$4;
 	int port, ZEPHIR_LAST_CALL_STATUS;
-	zval *host = NULL, *name = NULL, *user = NULL, *password = NULL;
-	zval *driver, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, *_1$$5, _2$$5, *_3$$5, *_4$$6, _5$$6, *_6$$6;
+	zval *host = NULL, *name = NULL, *user = NULL, *password = NULL, *_3$$5;
+	zval *driver, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, *dsn$$5 = NULL, _2$$5, *_4$$5 = NULL, *_5$$6, _6$$6, *_7$$6;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 5, &driver, &host_param, &port_param, &name_param, &user_param, &password_param);
@@ -117,26 +117,39 @@ PHP_METHOD(Ice_Db, __construct) {
 	if (_0) {
 		zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
 	} else if (Z_TYPE_P(driver) == IS_STRING) {
-		if (ZEPHIR_IS_STRING(driver, "mongodb")) {
-			ZEPHIR_INIT_VAR(_1$$5);
-			object_init_ex(_1$$5, ice_db_driver_mongo_ce);
+		_1$$4 = ZEPHIR_IS_STRING(driver, "mongodb");
+		if (!(_1$$4)) {
+			_1$$4 = ZEPHIR_IS_STRING(driver, "mongo");
+		}
+		if (_1$$4) {
 			ZEPHIR_SINIT_VAR(_2$$5);
 			ZVAL_LONG(&_2$$5, port);
 			ZEPHIR_INIT_VAR(_3$$5);
-			ZEPHIR_CONCAT_VSVSVSVSVSV(_3$$5, driver, "://", user, ":", password, "@", host, ":", &_2$$5, "/", name);
-			ZEPHIR_CALL_METHOD(NULL, _1$$5, "__construct", NULL, 70, _3$$5, name);
-			zephir_check_call_status();
-			zephir_update_property_this(this_ptr, SL("driver"), _1$$5 TSRMLS_CC);
+			ZEPHIR_CONCAT_SVSVSVSVSV(_3$$5, "mongodb://", user, ":", password, "@", host, ":", &_2$$5, "/", name);
+			ZEPHIR_CPY_WRT(dsn$$5, _3$$5);
+			ZEPHIR_INIT_VAR(_4$$5);
+			if (ZEPHIR_IS_STRING(driver, "mongo")) {
+				ZEPHIR_INIT_NVAR(_4$$5);
+				object_init_ex(_4$$5, ice_db_driver_mongo_ce);
+				ZEPHIR_CALL_METHOD(NULL, _4$$5, "__construct", NULL, 70, dsn$$5, name);
+				zephir_check_call_status();
+			} else {
+				ZEPHIR_INIT_NVAR(_4$$5);
+				object_init_ex(_4$$5, ice_db_driver_mongodb_ce);
+				ZEPHIR_CALL_METHOD(NULL, _4$$5, "__construct", NULL, 71, dsn$$5, name);
+				zephir_check_call_status();
+			}
+			zephir_update_property_this(this_ptr, SL("driver"), _4$$5 TSRMLS_CC);
 		} else {
-			ZEPHIR_INIT_VAR(_4$$6);
-			object_init_ex(_4$$6, ice_db_driver_pdo_ce);
-			ZEPHIR_SINIT_VAR(_5$$6);
-			ZVAL_LONG(&_5$$6, port);
-			ZEPHIR_INIT_VAR(_6$$6);
-			ZEPHIR_CONCAT_VSVSVSV(_6$$6, driver, ":host=", host, ";port=", &_5$$6, ";dbname=", name);
-			ZEPHIR_CALL_METHOD(NULL, _4$$6, "__construct", NULL, 71, _6$$6, user, password);
+			ZEPHIR_INIT_VAR(_5$$6);
+			object_init_ex(_5$$6, ice_db_driver_pdo_ce);
+			ZEPHIR_SINIT_VAR(_6$$6);
+			ZVAL_LONG(&_6$$6, port);
+			ZEPHIR_INIT_VAR(_7$$6);
+			ZEPHIR_CONCAT_VSVSVSV(_7$$6, driver, ":host=", host, ";port=", &_6$$6, ";dbname=", name);
+			ZEPHIR_CALL_METHOD(NULL, _5$$6, "__construct", NULL, 72, _7$$6, user, password);
 			zephir_check_call_status();
-			zephir_update_property_this(this_ptr, SL("driver"), _4$$6 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("driver"), _5$$6 TSRMLS_CC);
 		}
 	}
 	ZEPHIR_MM_RESTORE();

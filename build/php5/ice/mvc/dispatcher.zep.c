@@ -91,7 +91,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	if ((zephir_method_exists(_5, action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 122);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 125);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -105,7 +105,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, this_ptr, "dispatch", &_0, 123);
+	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, this_ptr, "dispatch", &_0, 126);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);

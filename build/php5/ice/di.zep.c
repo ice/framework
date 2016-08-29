@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Di, get) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "has", NULL, 0, key);
 	zephir_check_call_status();
 	if (zephir_is_true(_0)) {
-		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, this_ptr, "get", &_1, 76, key, parameters);
+		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, this_ptr, "get", &_1, 79, key, parameters);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
@@ -250,11 +250,11 @@ PHP_METHOD(Ice_Di, resolve) {
 		} else {
 			if (Z_TYPE_P(service) == IS_ARRAY) {
 				ZEPHIR_MAKE_REF(service);
-				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 75, service);
+				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 76, service);
 				ZEPHIR_UNREF(service);
 				zephir_check_call_status();
 				ZEPHIR_MAKE_REF(service);
-				ZEPHIR_CALL_FUNCTION(&_2$$10, "key", NULL, 74, service);
+				ZEPHIR_CALL_FUNCTION(&_2$$10, "key", NULL, 78, service);
 				ZEPHIR_UNREF(service);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(_3$$10);
@@ -320,9 +320,9 @@ PHP_METHOD(Ice_Di, build) {
 	}
 	ZEPHIR_INIT_VAR(reflector);
 	object_init_ex(reflector, zephir_get_internal_ce(SS("reflectionclass") TSRMLS_CC));
-	ZEPHIR_CALL_METHOD(NULL, reflector, "__construct", NULL, 77, service);
+	ZEPHIR_CALL_METHOD(NULL, reflector, "__construct", NULL, 80, service);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_0, reflector, "isinstantiable", NULL, 78);
+	ZEPHIR_CALL_METHOD(&_0, reflector, "isinstantiable", NULL, 81);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1$$5);
@@ -339,7 +339,7 @@ PHP_METHOD(Ice_Di, build) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&constructor, reflector, "getconstructor", NULL, 79);
+	ZEPHIR_CALL_METHOD(&constructor, reflector, "getconstructor", NULL, 82);
 	zephir_check_call_status();
 	if (Z_TYPE_P(constructor) == IS_NULL) {
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(return_value, service TSRMLS_CC);
@@ -354,7 +354,7 @@ PHP_METHOD(Ice_Di, build) {
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getdependencies", NULL, 0, dependencies, parameters);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(dependencies, _4);
-	ZEPHIR_RETURN_CALL_METHOD(reflector, "newinstanceargs", NULL, 80, dependencies);
+	ZEPHIR_RETURN_CALL_METHOD(reflector, "newinstanceargs", NULL, 83, dependencies);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -544,7 +544,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "handler", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 81, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 84, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 2, 0 TSRMLS_CC);
@@ -552,7 +552,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "errorHandler", 1);
 	zephir_array_fast_append(_2, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 82, _2);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 85, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_3);
 	zephir_create_array(_3, 2, 0 TSRMLS_CC);
@@ -560,7 +560,7 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_STRING(_1, "shutdownHandler", 1);
 	zephir_array_fast_append(_3, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 83, _3);
+	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 86, _3);
 	zephir_check_call_status();
 	RETURN_THIS();
 
