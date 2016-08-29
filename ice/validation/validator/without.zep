@@ -45,7 +45,7 @@ class Without extends Validator
      */
     public function validate(<Validation> validation, string! field) -> boolean
     {
-        var value, label, message, i18n, replace, fields, without, tmp, except;
+        var value, label, message, i18n, replace, fields, without, tmp, except, key, translate;
 
         let value = validation->getValue(field);
 
@@ -90,6 +90,10 @@ class Without extends Validator
                 let i18n = validation->getDi()->get("i18n"),
                     label = i18n->translate(label),
                     message = i18n->translate(message);
+
+                for key, translate in except {
+                    let except[key] = i18n->translate(translate);
+                }
             }
 
             let replace = [":field": label, ":fields":  join(", ", except)];
