@@ -39,12 +39,12 @@ class Url
      */
     public function get(var uri = null, var args = null, boolean local = true) -> string
     {
-        var baseUri, matched, queryString;
+        var baseUri, queryString;
 
-        if !local && !starts_with(uri, "mailto:") {
-            if strstr(uri, "://") {
-                let matched = preg_match("/^[^:\\/?#]++:/", uri);
-                if matched {
+        if !local {
+            if typeof uri == "string" && (memstr(uri, "//") || memstr(uri, ":")) {
+                if preg_match("#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i", uri) {
+
                     let local = false;
                 } else {
                     let local = true;
