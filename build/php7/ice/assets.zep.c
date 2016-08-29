@@ -282,8 +282,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
 
-	ZEPHIR_OBS_VAR_ONCE(&parameters);
-	ZVAL_COPY(&parameters, parameters_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
 		ZVAL_STRING(&version, "");
@@ -422,8 +421,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
 
-	ZEPHIR_OBS_VAR_ONCE(&parameters);
-	ZVAL_COPY(&parameters, parameters_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
 		ZVAL_STRING(&version, "");

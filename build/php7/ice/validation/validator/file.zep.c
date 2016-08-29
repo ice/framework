@@ -321,7 +321,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_22$$5, "strtr", &_23, 85, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_22$$5, "strtr", &_23, 88, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_22$$5);
 		zephir_check_call_status();
@@ -359,7 +359,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	_32 = _30;
 	if (!(_32)) {
 		zephir_array_fetch_string(&_33, &value, SL("tmp_name"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 87 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_34, "is_uploaded_file", NULL, 167, &_33);
+		ZEPHIR_CALL_FUNCTION(&_34, "is_uploaded_file", NULL, 170, &_33);
 		zephir_check_call_status();
 		_32 = !zephir_is_true(&_34);
 	}
@@ -408,7 +408,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZEPHIR_INIT_NVAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_46$$10, "strtr", &_23, 85, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_46$$10, "strtr", &_23, 88, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_46$$10);
 		zephir_check_call_status();
@@ -467,7 +467,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZEPHIR_INIT_NVAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_60$$14, "strtr", &_23, 85, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_60$$14, "strtr", &_23, 88, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_60$$14);
 		zephir_check_call_status();
@@ -510,7 +510,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 			zephir_array_fetch_long(&unit, &matches, 2, PH_NOISY, "ice/validation/validator/file.zep", 136 TSRMLS_CC);
 		}
 		zephir_array_fetch_long(&_66$$18, &matches, 1, PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 139 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_67$$18, "floatval", &_68, 168, &_66$$18);
+		ZEPHIR_CALL_FUNCTION(&_67$$18, "floatval", &_68, 171, &_66$$18);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_69$$18);
 		zephir_array_fetch(&_70$$18, &byteUnits, &unit, PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 139 TSRMLS_CC);
@@ -519,9 +519,9 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZEPHIR_INIT_VAR(&bytes);
 		mul_function(&bytes, &_67$$18, &_69$$18 TSRMLS_CC);
 		zephir_array_fetch_string(&_72$$18, &value, SL("size"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 141 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_67$$18, "floatval", &_68, 168, &_72$$18);
+		ZEPHIR_CALL_FUNCTION(&_67$$18, "floatval", &_68, 171, &_72$$18);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_73$$18, "floatval", &_68, 168, &bytes);
+		ZEPHIR_CALL_FUNCTION(&_73$$18, "floatval", &_68, 171, &bytes);
 		zephir_check_call_status();
 		if (ZEPHIR_GT(&_67$$18, &_73$$18)) {
 			ZEPHIR_INIT_VAR(&_75$$20);
@@ -569,7 +569,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 			zephir_create_array(&replace, 2, 0 TSRMLS_CC);
 			zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 			zephir_array_update_string(&replace, SL(":max"), &maxSize, PH_COPY | PH_SEPARATE);
-			ZEPHIR_CALL_FUNCTION(&_85$$20, "strtr", &_23, 85, &message, &replace);
+			ZEPHIR_CALL_FUNCTION(&_85$$20, "strtr", &_23, 88, &message, &replace);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_85$$20);
 			zephir_check_call_status();
@@ -591,12 +591,12 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		}
 		if ((zephir_function_exists_ex(SL("finfo_open") TSRMLS_CC) == SUCCESS)) {
 			ZVAL_LONG(&_88$$26, 16);
-			ZEPHIR_CALL_FUNCTION(&tmp, "finfo_open", NULL, 169, &_88$$26);
+			ZEPHIR_CALL_FUNCTION(&tmp, "finfo_open", NULL, 172, &_88$$26);
 			zephir_check_call_status();
 			zephir_array_fetch_string(&_89$$26, &value, SL("tmp_name"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 171 TSRMLS_CC);
-			ZEPHIR_CALL_FUNCTION(&mime, "finfo_file", NULL, 170, &tmp, &_89$$26);
+			ZEPHIR_CALL_FUNCTION(&mime, "finfo_file", NULL, 173, &tmp, &_89$$26);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "finfo_close", NULL, 171, &tmp);
+			ZEPHIR_CALL_FUNCTION(NULL, "finfo_close", NULL, 174, &tmp);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_OBS_NVAR(&mime);
@@ -650,7 +650,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 			ZEPHIR_INIT_NVAR(&_91$$28);
 			zephir_fast_join_str(&_91$$28, SL(", "), &types TSRMLS_CC);
 			zephir_array_update_string(&replace, SL(":types"), &_91$$28, PH_COPY | PH_SEPARATE);
-			ZEPHIR_CALL_FUNCTION(&_101$$28, "strtr", &_23, 85, &message, &replace);
+			ZEPHIR_CALL_FUNCTION(&_101$$28, "strtr", &_23, 88, &message, &replace);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_101$$28);
 			zephir_check_call_status();
@@ -671,7 +671,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	}
 	if (_103) {
 		zephir_array_fetch_string(&_105$$32, &value, SL("tmp_name"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 200 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&tmp, "getimagesize", NULL, 172, &_105$$32);
+		ZEPHIR_CALL_FUNCTION(&tmp, "getimagesize", NULL, 175, &_105$$32);
 		zephir_check_call_status();
 		ZEPHIR_OBS_VAR(&width);
 		zephir_array_fetch_long(&width, &tmp, 0, PH_NOISY, "ice/validation/validator/file.zep", 201 TSRMLS_CC);
@@ -752,7 +752,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 			ZEPHIR_CALL_METHOD(&_122$$35, this_ptr, "get", NULL, 0, &_112$$35);
 			zephir_check_call_status();
 			zephir_array_update_string(&replace, SL(":min"), &_122$$35, PH_COPY | PH_SEPARATE);
-			ZEPHIR_CALL_FUNCTION(&_122$$35, "strtr", &_23, 85, &message, &replace);
+			ZEPHIR_CALL_FUNCTION(&_122$$35, "strtr", &_23, 88, &message, &replace);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_122$$35);
 			zephir_check_call_status();
@@ -827,7 +827,7 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 				ZEPHIR_CALL_METHOD(&_138$$40, this_ptr, "get", NULL, 0, &_128$$40);
 				zephir_check_call_status();
 				zephir_array_update_string(&replace, SL(":max"), &_138$$40, PH_COPY | PH_SEPARATE);
-				ZEPHIR_CALL_FUNCTION(&_138$$40, "strtr", &_23, 85, &message, &replace);
+				ZEPHIR_CALL_FUNCTION(&_138$$40, "strtr", &_23, 88, &message, &replace);
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_138$$40);
 				zephir_check_call_status();

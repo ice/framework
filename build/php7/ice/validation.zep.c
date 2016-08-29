@@ -405,7 +405,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 164, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 167, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -503,8 +503,7 @@ PHP_METHOD(Ice_Validation, rules) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &validators_param, &clear_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&validators);
-	ZVAL_COPY(&validators, validators_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&validators, validators_param);
 	if (!clear_param) {
 		clear = 0;
 	} else {

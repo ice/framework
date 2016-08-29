@@ -82,8 +82,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
 	} else {
-	ZEPHIR_OBS_VAR_ONCE(&data);
-	ZVAL_COPY(&data, data_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
 	}
 
 

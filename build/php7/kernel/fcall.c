@@ -311,7 +311,8 @@ ZEPHIR_ATTR_NONNULL static void zephir_fcall_populate_fci_cache(zend_fcall_info_
 			}
 			else {
 				fcic->called_scope = fcic->calling_scope;
-			}*/
+			}
+			*/
 
 			break;
 		}
@@ -467,6 +468,7 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 #endif
 			if (NULL == zend_hash_str_add_ptr(zephir_globals_ptr->fcache, fcall_key, fcall_key_len, cache_entry_temp)) {
 #ifndef ZEPHIR_RELEASE
+				free(cache_entry_temp);
 				free(temp_cache_entry);
 #endif
 			} else {
@@ -740,6 +742,7 @@ int zephir_call_user_func_array_noex(zval *return_value, zval *handler, zval *pa
 	}
 
 	zend_fcall_info_init(handler, 0, &fci, &fci_cache, NULL, &is_callable_error);
+
 	if (is_callable_error) {
 		zend_error(E_WARNING, "%s", is_callable_error);
 		efree(is_callable_error);
@@ -753,9 +756,7 @@ int zephir_call_user_func_array_noex(zval *return_value, zval *handler, zval *pa
 		fci.retval = return_value;
 		zend_call_function(&fci, &fci_cache);
 
-		if (fci.params) {
-			efree(fci.params);
-		}
+		zend_fcall_info_args_clear(&fci, 1);
 	}
 
 	if (EG(exception)) {

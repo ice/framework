@@ -1864,8 +1864,7 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 		ZEPHIR_INIT_VAR(&rules);
 		array_init(&rules);
 	} else {
-	ZEPHIR_OBS_VAR_ONCE(&rules);
-	ZVAL_COPY(&rules, rules_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&rules, rules_param);
 	}
 	if (!merge_param) {
 		merge = 1;

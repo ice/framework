@@ -135,8 +135,8 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 PHP_METHOD(Ice_Mvc_Url, get) {
 
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool local, _0, _5$$8, _7$$11;
-	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, baseUri, matched, queryString, _1$$3, _2$$3, _3$$4, _4$$4, _6$$10, _8$$12, _9$$12, _10$$13, _11$$14;
+	zend_bool local, _0$$3, _1$$3, _5$$8, _7$$11;
+	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, baseUri, queryString, _2$$4, _3$$4, _4$$4, _6$$10, _8$$12, _9$$12, _10$$13, _11$$14;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&uri_sub);
@@ -144,10 +144,8 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	ZVAL_UNDEF(&_GET);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&baseUri);
-	ZVAL_UNDEF(&matched);
 	ZVAL_UNDEF(&queryString);
-	ZVAL_UNDEF(&_1$$3);
-	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_6$$10);
@@ -177,22 +175,22 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	}
 
 
-	_0 = !local;
-	if (_0) {
-		_0 = !(zephir_start_with_str(uri, SL("mailto:")));
-	}
-	if (_0) {
-		ZEPHIR_INIT_VAR(&_1$$3);
-		ZVAL_STRING(&_1$$3, "://");
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "strstr", NULL, 73, uri, &_1$$3);
-		zephir_check_call_status();
-		if (zephir_is_true(&_2$$3)) {
+	if (!(local)) {
+		_0$$3 = Z_TYPE_P(uri) == IS_STRING;
+		if (_0$$3) {
+			_1$$3 = zephir_memnstr_str(uri, SL("//"), "ice/mvc/url.zep", 45);
+			if (!(_1$$3)) {
+				_1$$3 = zephir_memnstr_str(uri, SL(":"), "ice/mvc/url.zep", 45);
+			}
+			_0$$3 = _1$$3;
+		}
+		if (_0$$3) {
+			ZEPHIR_INIT_VAR(&_2$$4);
 			ZEPHIR_INIT_VAR(&_3$$4);
 			ZEPHIR_INIT_VAR(&_4$$4);
-			ZVAL_STRING(&_4$$4, "/^[^:\\/?#]++:/");
-			ZEPHIR_INIT_VAR(&matched);
-			zephir_preg_match(&matched, &_4$$4, uri, &_3$$4, 0, 0 , 0  TSRMLS_CC);
-			if (zephir_is_true(&matched)) {
+			ZVAL_STRING(&_4$$4, "#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i");
+			zephir_preg_match(&_3$$4, &_4$$4, uri, &_2$$4, 0, 0 , 0  TSRMLS_CC);
+			if (zephir_is_true(&_3$$4)) {
 				local = 0;
 			} else {
 				local = 1;
@@ -222,7 +220,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 		zephir_check_call_status();
 		_7$$11 = Z_TYPE_P(&queryString) == IS_STRING;
 		if (_7$$11) {
-			_7$$11 = (zephir_fast_strlen_ev(&queryString)) ? 1 : 0;
+			_7$$11 = ((zephir_fast_strlen_ev(&queryString)) ? 1 : 0);
 		}
 		if (_7$$11) {
 			ZEPHIR_INIT_VAR(&_8$$12);

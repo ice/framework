@@ -183,8 +183,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &defaults_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&defaults);
-	ZVAL_COPY(&defaults, defaults_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&defaults, defaults_param);
 
 
 	if (zephir_array_isset_string_fetch(&module, &defaults, SL("module"), 1)) {

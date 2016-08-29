@@ -982,8 +982,7 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &forward_param, &force_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&forward);
-	ZVAL_COPY(&forward, forward_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&forward, forward_param);
 	if (!force_param) {
 		force = 0;
 	} else {

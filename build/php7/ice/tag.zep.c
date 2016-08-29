@@ -373,7 +373,7 @@ PHP_METHOD(Ice_Tag, textField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "text");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -411,7 +411,7 @@ PHP_METHOD(Ice_Tag, passwordField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "password");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -449,7 +449,7 @@ PHP_METHOD(Ice_Tag, hiddenField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "hidden");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -484,7 +484,7 @@ PHP_METHOD(Ice_Tag, fileField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "file");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -522,7 +522,7 @@ PHP_METHOD(Ice_Tag, submitButton) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "submit");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -616,7 +616,7 @@ PHP_METHOD(Ice_Tag, checkField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "checkbox");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -654,7 +654,7 @@ PHP_METHOD(Ice_Tag, radioField) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "radio");
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 158, &_0, &parameters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "input", NULL, 161, &_0, &parameters);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -1686,8 +1686,7 @@ PHP_METHOD(Ice_Tag, tagHtml) {
 		ZEPHIR_INIT_VAR(&parameters);
 		array_init(&parameters);
 	} else {
-	ZEPHIR_OBS_VAR_ONCE(&parameters);
-	ZVAL_COPY(&parameters, parameters_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&parameters, parameters_param);
 	}
 	if (!defaultParams_param) {
 		ZEPHIR_INIT_VAR(&defaultParams);
@@ -1926,8 +1925,7 @@ PHP_METHOD(Ice_Tag, prepareTag) {
 		ZEPHIR_INIT_VAR(&name);
 		ZVAL_EMPTY_STRING(&name);
 	}
-	ZEPHIR_OBS_VAR_ONCE(&attributes);
-	ZVAL_COPY(&attributes, attributes_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&attributes, attributes_param);
 	if (!skip_param) {
 		ZEPHIR_INIT_VAR(&skip);
 		array_init(&skip);
@@ -2316,19 +2314,19 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "iconv");
-	ZEPHIR_CALL_FUNCTION(&_1, "extension_loaded", &_2, 159, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "extension_loaded", &_2, 162, &_0);
 	zephir_check_call_status();
 	if (zephir_is_true(&_1)) {
 		ZVAL_LONG(&_3$$3, 6);
 		ZEPHIR_INIT_VAR(&_4$$3);
 		ZVAL_STRING(&_4$$3, "en_US.UTF-8");
-		ZEPHIR_CALL_FUNCTION(&locale, "setlocale", &_5, 160, &_3$$3, &_4$$3);
+		ZEPHIR_CALL_FUNCTION(&locale, "setlocale", &_5, 163, &_3$$3, &_4$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_4$$3);
 		ZVAL_STRING(&_4$$3, "UTF-8");
 		ZEPHIR_INIT_VAR(&_6$$3);
 		ZVAL_STRING(&_6$$3, "ASCII//TRANSLIT");
-		ZEPHIR_CALL_FUNCTION(&_7$$3, "iconv", NULL, 161, &_4$$3, &_6$$3, &text);
+		ZEPHIR_CALL_FUNCTION(&_7$$3, "iconv", NULL, 164, &_4$$3, &_6$$3, &text);
 		zephir_check_call_status();
 		zephir_get_strval(&text, &_7$$3);
 	}
@@ -2366,7 +2364,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZVAL_STRING(&_0, "/[^a-zA-Z0-9\\/_|+ -]/");
 	ZEPHIR_INIT_VAR(&_14);
 	ZVAL_STRING(&_14, "");
-	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_15, 101, &_0, &_14, &text);
+	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_15, 104, &_0, &_14, &text);
 	zephir_check_call_status();
 	if (lowercase) {
 		ZEPHIR_INIT_VAR(&_16$$9);
@@ -2375,7 +2373,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	}
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "/[\\/_|+ -]+/");
-	ZEPHIR_CALL_FUNCTION(&_17, "preg_replace", &_15, 101, &_0, &separator, &friendly);
+	ZEPHIR_CALL_FUNCTION(&_17, "preg_replace", &_15, 104, &_0, &separator, &friendly);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&friendly, &_17);
 	ZEPHIR_INIT_NVAR(&_0);
@@ -2383,11 +2381,11 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZEPHIR_CPY_WRT(&friendly, &_0);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "iconv");
-	ZEPHIR_CALL_FUNCTION(&_17, "extension_loaded", &_2, 159, &_0);
+	ZEPHIR_CALL_FUNCTION(&_17, "extension_loaded", &_2, 162, &_0);
 	zephir_check_call_status();
 	if (zephir_is_true(&_17)) {
 		ZVAL_LONG(&_18$$10, 6);
-		ZEPHIR_CALL_FUNCTION(NULL, "setlocale", &_5, 160, &_18$$10, &locale);
+		ZEPHIR_CALL_FUNCTION(NULL, "setlocale", &_5, 163, &_18$$10, &locale);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(friendly);

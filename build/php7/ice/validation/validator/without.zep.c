@@ -67,10 +67,13 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
  */
 PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 
+	zend_string *_20$$13;
+	zend_ulong _19$$13;
 	zend_bool _0, _4$$6, _12$$8;
+	zephir_fcall_cache_entry *_22 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval field;
-	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, fields, without, tmp, except, _1, *_3, _2$$4, _5$$8, _6$$8, _8$$8, _11$$8, _13$$8, _14$$8, _18$$8, _7$$9, _9$$11, _10$$12, _15$$13, _16$$13, _17$$13;
+	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, fields, without, tmp, except, key, translate, _1, *_3, _2$$4, _5$$8, _6$$8, _8$$8, _11$$8, _13$$8, _14$$8, _23$$8, _7$$9, _9$$11, _10$$12, _15$$13, _16$$13, _17$$13, *_18$$13, _21$$14;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&validation_sub);
@@ -83,6 +86,8 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 	ZVAL_UNDEF(&without);
 	ZVAL_UNDEF(&tmp);
 	ZVAL_UNDEF(&except);
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&translate);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$4);
 	ZVAL_UNDEF(&_5$$8);
@@ -91,13 +96,14 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 	ZVAL_UNDEF(&_11$$8);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_14$$8);
-	ZVAL_UNDEF(&_18$$8);
+	ZVAL_UNDEF(&_23$$8);
 	ZVAL_UNDEF(&_7$$9);
 	ZVAL_UNDEF(&_9$$11);
 	ZVAL_UNDEF(&_10$$12);
 	ZVAL_UNDEF(&_15$$13);
 	ZVAL_UNDEF(&_16$$13);
 	ZVAL_UNDEF(&_17$$13);
+	ZVAL_UNDEF(&_21$$14);
 	ZVAL_UNDEF(&field);
 
 	ZEPHIR_MM_GROW();
@@ -209,6 +215,23 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 			ZEPHIR_CALL_METHOD(&_17$$13, &i18n, "translate", NULL, 0, &message);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&message, &_17$$13);
+			zephir_is_iterable(&except, 1, "ice/validation/validator/without.zep", 97);
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&except), _19$$13, _20$$13, _18$$13)
+			{
+				ZEPHIR_INIT_NVAR(&key);
+				if (_20$$13 != NULL) { 
+					ZVAL_STR_COPY(&key, _20$$13);
+				} else {
+					ZVAL_LONG(&key, _19$$13);
+				}
+				ZEPHIR_INIT_NVAR(&translate);
+				ZVAL_COPY(&translate, _18$$13);
+				ZEPHIR_CALL_METHOD(&_21$$14, &i18n, "translate", &_22, 0, &translate);
+				zephir_check_call_status();
+				zephir_array_update_zval(&except, &key, &_21$$14, PH_COPY | PH_SEPARATE);
+			} ZEND_HASH_FOREACH_END();
+			ZEPHIR_INIT_NVAR(&translate);
+			ZEPHIR_INIT_NVAR(&key);
 		}
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 2, 0 TSRMLS_CC);
@@ -216,9 +239,9 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		ZEPHIR_INIT_NVAR(&_6$$8);
 		zephir_fast_join_str(&_6$$8, SL(", "), &except TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":fields"), &_6$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_18$$8, "strtr", NULL, 85, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_23$$8, "strtr", NULL, 88, &message, &replace);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_18$$8);
+		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_23$$8);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}

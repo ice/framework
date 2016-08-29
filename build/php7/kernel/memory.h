@@ -120,6 +120,10 @@ int zephir_set_symbol_str(char *key_name, unsigned int key_length, zval *value);
 		zephir_memory_observe(z); \
 	}
 
+#define ZEPHIR_OBS_COPY_OR_DUP(z, v) \
+		ZEPHIR_OBS_VAR_ONCE(z); \
+		ZVAL_COPY(z, v);
+
 #define ZEPHIR_OBS_NVAR(z) \
 	if (Z_TYPE_P(z) != IS_UNDEF) { \
 		if (Z_REFCOUNTED_P(z) && Z_REFCOUNT_P(z) > 1) { \

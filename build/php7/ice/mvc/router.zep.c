@@ -313,8 +313,7 @@ PHP_METHOD(Ice_Mvc_Router, setDefaults) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &defaults_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&defaults);
-	ZVAL_COPY(&defaults, defaults_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&defaults, defaults_param);
 
 
 	if (zephir_array_isset_string_fetch(&module, &defaults, SL("module"), 1)) {
@@ -347,8 +346,7 @@ PHP_METHOD(Ice_Mvc_Router, setOptions) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&options);
-	ZVAL_COPY(&options, options_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	zephir_update_property_zval(this_ptr, SL("options"), &options);
@@ -444,7 +442,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		zephir_array_fetch_string(&_11$$3, &options, SL("dataGenerator"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 96 TSRMLS_CC);
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(&_10$$3, &_11$$3 TSRMLS_CC);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 127, &_8$$3, &_10$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 130, &_8$$3, &_10$$3);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("collector"), &_7$$3);
 	}

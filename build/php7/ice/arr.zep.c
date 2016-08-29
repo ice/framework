@@ -202,8 +202,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &data_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&data);
-	ZVAL_COPY(&data, data_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
 
 
 	zephir_is_iterable(&data, 0, "ice/arr.zep", 85);
@@ -270,8 +269,7 @@ PHP_METHOD(Ice_Arr, only) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &keys_param, &strict_param);
 
-	ZEPHIR_OBS_VAR_ONCE(&keys);
-	ZVAL_COPY(&keys, keys_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&keys, keys_param);
 	if (!strict_param) {
 		strict = 1;
 	} else {
@@ -415,8 +413,7 @@ PHP_METHOD(Ice_Arr, setData) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
 	} else {
-	ZEPHIR_OBS_VAR_ONCE(&data);
-	ZVAL_COPY(&data, data_param);
+	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
 	}
 
 
