@@ -2,6 +2,7 @@
 namespace Ice;
 
 use Ice\Db\Driver\Mongo;
+use Ice\Db\Driver\Mongodb;
 use Ice\Db\Driver\Pdo;
 use Ice\Db\DbInterface;
 
@@ -34,24 +35,12 @@ class Db
         if typeof driver == "object" && (driver instanceof DbInterface) {
             let this->driver = driver;
         } elseif typeof driver == "string" {
-            if driver == "mongodb" {
-                let this->driver = new Mongo(
-                    driver . "://" .
-                    user . ":" .
-                    password . "@" .
-                    host . ":" .
-                    port . "/" .
-                    name,
-                    name
-                );
+            if driver == "mongodb" || driver == "mongo" {
+                var dsn;
+                let dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name,
+                    this->driver = driver == "mongo" ? new Mongo(dsn, name) : new Mongodb(dsn, name);
             } else {
-                let this->driver = new Pdo(
-                    driver . ":host=" .
-                    host . ";port=" .
-                    port . ";dbname=" .
-                    name,
-                    user, password
-                );
+                let this->driver = new Pdo(driver . ":host=" . host . ";port=" . port . ";dbname=" . name, user, password);
             }
         }
     }

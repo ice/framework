@@ -146,6 +146,9 @@ class TagTest extends PHPUnit
             // Hyperlinks
             ['linkTo', [null, 'Home'], '<a href="/">Home</a>'],
             ['linkTo', ['post/add', 'Add', 'Add a post'], '<a href="/post/add" title="Add a post">Add</a>'],
+            ['linkTo', ['//google.com', 'Google', 'local' => false], '<a href="//google.com">Google</a>'],
+            ['linkTo', ['mailto:noreply@iceframework.org', 'Mail', 'local' => false],
+                '<a href="mailto:noreply@iceframework.org">Mail</a>'],
             ['a', ['http://google.com', 'Google', 'local' => false], '<a href="http://google.com">Google</a>'],
             // Meta link
             ['link', ['css/app.css'], '<link rel="stylesheet" type="text/css" href="/css/app.css">' . PHP_EOL],

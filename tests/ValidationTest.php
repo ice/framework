@@ -4,6 +4,7 @@ namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Di;
+use Ice\I18n;
 use Ice\Validation;
 use Ice\Validation\Validator\Email;
 use Ice\Validation\Validator\Required;
@@ -304,5 +305,39 @@ class ValidationTest extends PHPUnit
         ];
 
         $this->assertSame($expected, $validation->getValues());
+    }
+
+    public function testTranslate()
+    {
+        $di = Di::fetch();
+        $di->i18n = new I18n([
+            'lang' => 'pl-pl',
+            'dir' => __DIR__ . '/i18n/'
+        ]);
+
+        $validation = new Validation([
+            'firstName' => '',
+            'lastName' => 'Framework',
+        ]);
+
+        $validation->rules([
+            'firstName' => 'required|email',
+            'lastName' => 'with:firstName'
+        ]);
+
+
+        $valid = $validation->validate();
+        $this->assertFalse($valid);
+
+        $expected = [
+            "firstName" => [
+                0 => "Pole Imię jest wymagane"
+            ],
+            "lastName" => [
+                0 => "Pole Nazwisko musi wystąpić, wraz z Imię"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
     }
 }
