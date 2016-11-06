@@ -149,7 +149,7 @@ class Mongodb implements DbInterface
         let collection = this->client->selectCollection(from),
             result = collection->find(filtered, options);
 
-        result->setTypeMap(["root": "array"]);
+        result->setTypeMap(["root": "array", "document": "array", "array": "array"]);
 
         return iterator_to_array(result);
     }
