@@ -413,8 +413,10 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	ZEPHIR_CALL_METHOD(&result, collection, "find", NULL, 0, filtered, options);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_10);
-	zephir_create_array(_10, 1, 0 TSRMLS_CC);
+	zephir_create_array(_10, 3, 0 TSRMLS_CC);
 	add_assoc_stringl_ex(_10, SS("root"), SL("array"), 1);
+	add_assoc_stringl_ex(_10, SS("document"), SL("array"), 1);
+	add_assoc_stringl_ex(_10, SS("array"), SL("array"), 1);
 	ZEPHIR_CALL_METHOD(NULL, result, "settypemap", NULL, 0, _10);
 	zephir_check_call_status();
 	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 73, result);
