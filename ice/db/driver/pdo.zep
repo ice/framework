@@ -57,6 +57,29 @@ class Pdo implements DbInterface
     }
 
     /**
+     * Get a date time object.
+     *
+     * @param mixed value
+     * @param boolean model
+     * @return object
+     */
+    public function getDateTime(value = null, model = false)
+    {
+        var date;
+        if typeof value == "integer" {
+            let date = new \DateTime("@" . value);
+        } else {
+            let date = new \DateTime(value);
+        }
+
+        if model {
+            return date->format("Y-m-d H:i:s.u");
+        }
+
+        return date;
+    }
+
+    /**
      * Find one row that match criteria.
      *
      * @param string from Table name
