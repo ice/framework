@@ -605,7 +605,7 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "\\xef");
 	ZVAL_LONG(&_2, 1);
-	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 110, &_0, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 109, &_0, &_1, &_2);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(&_3, 0)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_4, 0);

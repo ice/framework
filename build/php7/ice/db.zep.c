@@ -75,19 +75,20 @@ PHP_METHOD(Ice_Db, setDriver) {
  */
 PHP_METHOD(Ice_Db, __construct) {
 
+	zephir_nts_static zend_class_entry *_5$$5 = NULL;
 	zend_bool _0, _1$$4;
 	int port, ZEPHIR_LAST_CALL_STATUS;
 	zval host, name, user, password, _3$$5;
-	zval *driver, driver_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, dsn$$5, _2$$5, _4$$5, _5$$6, _6$$6, _7$$6;
+	zval *driver, driver_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, dsn$$5, _2$$5, _4$$5, _6$$6, _7$$6, _8$$6;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&driver_sub);
 	ZVAL_UNDEF(&dsn$$5);
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_4$$5);
-	ZVAL_UNDEF(&_5$$6);
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$6);
+	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&host);
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&user);
@@ -148,26 +149,31 @@ PHP_METHOD(Ice_Db, __construct) {
 			ZEPHIR_INIT_VAR(&_4$$5);
 			if (ZEPHIR_IS_STRING(driver, "mongo")) {
 				ZEPHIR_INIT_NVAR(&_4$$5);
-				object_init_ex(&_4$$5, ice_db_driver_mongo_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", NULL, 70, &dsn$$5, &name);
-				zephir_check_call_status();
+				if (!_5$$5) {
+				_5$$5 = zephir_fetch_class_str_ex(SL("Ice\\Db\\Driver\\Mongo"), ZEND_FETCH_CLASS_AUTO);
+				}
+				object_init_ex(&_4$$5, _5$$5);
+				if (zephir_has_constructor(&_4$$5 TSRMLS_CC)) {
+					ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", NULL, 0, &dsn$$5, &name);
+					zephir_check_call_status();
+				}
 			} else {
 				ZEPHIR_INIT_NVAR(&_4$$5);
 				object_init_ex(&_4$$5, ice_db_driver_mongodb_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", NULL, 71, &dsn$$5, &name);
+				ZEPHIR_CALL_METHOD(NULL, &_4$$5, "__construct", NULL, 70, &dsn$$5, &name);
 				zephir_check_call_status();
 			}
 			zephir_update_property_zval(this_ptr, SL("driver"), &_4$$5);
 		} else {
-			ZEPHIR_INIT_VAR(&_5$$6);
-			object_init_ex(&_5$$6, ice_db_driver_pdo_ce);
-			ZEPHIR_SINIT_VAR(_6$$6);
-			ZVAL_LONG(&_6$$6, port);
-			ZEPHIR_INIT_VAR(&_7$$6);
-			ZEPHIR_CONCAT_VSVSVSV(&_7$$6, driver, ":host=", &host, ";port=", &_6$$6, ";dbname=", &name);
-			ZEPHIR_CALL_METHOD(NULL, &_5$$6, "__construct", NULL, 72, &_7$$6, &user, &password);
+			ZEPHIR_INIT_VAR(&_6$$6);
+			object_init_ex(&_6$$6, ice_db_driver_pdo_ce);
+			ZEPHIR_SINIT_VAR(_7$$6);
+			ZVAL_LONG(&_7$$6, port);
+			ZEPHIR_INIT_VAR(&_8$$6);
+			ZEPHIR_CONCAT_VSVSVSV(&_8$$6, driver, ":host=", &host, ";port=", &_7$$6, ";dbname=", &name);
+			ZEPHIR_CALL_METHOD(NULL, &_6$$6, "__construct", NULL, 71, &_8$$6, &user, &password);
 			zephir_check_call_status();
-			zephir_update_property_zval(this_ptr, SL("driver"), &_5$$6);
+			zephir_update_property_zval(this_ptr, SL("driver"), &_6$$6);
 		}
 	}
 	ZEPHIR_MM_RESTORE();

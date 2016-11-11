@@ -16,11 +16,11 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/model.zep.c
 	ice/auth/social/socialinterface.zep.c
 	ice/auth/social/adapter.zep.c
-	ice/db/dbinterface.zep.c
 	ice/mvc/view/engine/engineinterface.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c
 	ice/config.zep.c
+	ice/db/dbinterface.zep.c
 	ice/dispatcher.zep.c
 	ice/log/loggerinterface.zep.c
 	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
@@ -55,7 +55,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/cookies.zep.c
 	ice/crypt.zep.c
 	ice/db.zep.c
-	ice/db/driver/mongo.zep.c
 	ice/db/driver/mongodb.zep.c
 	ice/db/driver/pdo.zep.c
 	ice/di.zep.c
