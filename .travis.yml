@@ -31,7 +31,7 @@ before_script:
   - (./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
-  - phpenv config-rm xdebug.ini
+  - phpenv config-rm xdebug.ini || echo "xdebug not available"
 
 script:
   - ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
