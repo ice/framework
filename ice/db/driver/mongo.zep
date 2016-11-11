@@ -47,6 +47,30 @@ class Mongo implements DbInterface
     }
 
     /**
+     * Get a date time object.
+     *
+     * @param mixed value
+     * @param boolean model
+     * @return object
+     */
+    public function getDateTime(value = null, model = false)
+    {
+        var date;
+
+        if typeof value == "object" && value instanceof \MongoDate {
+            let date = value;
+        } else {
+            let date = new \MongoDate(value);
+        }
+
+        if model {
+            return date;
+        }
+
+        return date->toDateTime();
+    }
+
+    /**
      * Find one document that match criteria.
      *
      * @param string from Collection name

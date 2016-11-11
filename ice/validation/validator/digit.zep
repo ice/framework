@@ -47,7 +47,7 @@ class Digit extends Validator
             return true;
         }
 
-        if !ctype_digit(value) {
+        if !(is_int(value) || ctype_digit(value)) {
             if this->has("label") {
                 let label = this->get("label");
             } else {

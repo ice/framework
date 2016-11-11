@@ -6,6 +6,11 @@ php:
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
+
+matrix:
+  allow_failures:
+    - php: 7.1
 
 before_install:
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
@@ -20,11 +25,13 @@ before_install:
   - composer install --prefer-source --no-scripts
 
 before_script:
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "5." ]]; then yes '' | pecl -q install -f mongo-1.6.0; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then rm ice/db/driver/mongo.zep; fi
   - ./vendor/phalcon/zephir/install
   - (./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
-  - phpenv config-rm xdebug.ini
+  - phpenv config-rm xdebug.ini || echo "xdebug not available"
 
 script:
   - ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all

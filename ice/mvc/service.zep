@@ -16,7 +16,7 @@ use Ice\Exception;
 abstract class Service extends Access
 {
 
-    private model { set, get };
+    protected model { set, get };
 
     /**
      * Magic method to call model's method.

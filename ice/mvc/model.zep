@@ -97,6 +97,25 @@ abstract class Model extends Arr implements \Serializable
     }
 
     /**
+     * Get the date time object.
+     *
+     * @param mixed key
+     * @param boolean model
+     * @return object
+     */
+    public function getDateTime(key, model = false)
+    {
+        var value;
+        if this->has(key) {
+            let value = this->get(key);
+        } else {
+            let value = key;   
+        }
+
+        return this->db->getDateTime(value, model);
+    }
+
+    /**
      * Load one result to the current object.
      *
      * @param mixed filters
