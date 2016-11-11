@@ -20,7 +20,7 @@ before_install:
   - composer install --prefer-source --no-scripts
 
 before_script:
-  - pecl -q install -f mongo-1.6.0
+  - yes '' | pecl -q install -f mongo-1.6.0
   - ./vendor/phalcon/zephir/install
   - (./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
