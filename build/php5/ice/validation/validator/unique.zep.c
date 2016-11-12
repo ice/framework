@@ -180,12 +180,10 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 		if (ZEPHIR_IS_STRING(_15$$13, "NOSQL")) {
 			ZEPHIR_INIT_NVAR(value);
 			object_init_ex(value, zephir_get_internal_ce(SS("mongoregex") TSRMLS_CC));
-			if (zephir_has_constructor(value TSRMLS_CC)) {
-				ZEPHIR_INIT_VAR(_16$$14);
-				ZEPHIR_CONCAT_SVS(_16$$14, "/^", tmp, "$/i");
-				ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _16$$14);
-				zephir_check_call_status();
-			}
+			ZEPHIR_INIT_VAR(_16$$14);
+			ZEPHIR_CONCAT_SVS(_16$$14, "/^", tmp, "$/i");
+			ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _16$$14);
+			zephir_check_call_status();
 		} else {
 			ZEPHIR_INIT_NVAR(value);
 			zephir_fast_strtolower(value, tmp);

@@ -21,6 +21,7 @@ PHP_METHOD(Ice_Mvc_Model, setMessages);
 PHP_METHOD(Ice_Mvc_Model, __construct);
 PHP_METHOD(Ice_Mvc_Model, getId);
 PHP_METHOD(Ice_Mvc_Model, getIdKey);
+PHP_METHOD(Ice_Mvc_Model, getDateTime);
 PHP_METHOD(Ice_Mvc_Model, loadOne);
 PHP_METHOD(Ice_Mvc_Model, load);
 PHP_METHOD(Ice_Mvc_Model, findOne);
@@ -74,6 +75,11 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getdatetime, 0, 0, 1)
+	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_INFO(0, model)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_loadone, 0, 0, 1)
@@ -188,6 +194,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, __construct, arginfo_ice_mvc_model___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Model, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getIdKey, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getDateTime, arginfo_ice_mvc_model_getdatetime, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, loadOne, arginfo_ice_mvc_model_loadone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, load, arginfo_ice_mvc_model_load, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, findOne, arginfo_ice_mvc_model_findone, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)

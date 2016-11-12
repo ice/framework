@@ -34,7 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Service) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Service, ice, mvc_service, ice_di_access_ce, ice_mvc_service_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(ice_mvc_service_ce, SL("model"), ZEND_ACC_PRIVATE TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_service_ce, SL("model"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 

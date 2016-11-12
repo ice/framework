@@ -178,6 +178,57 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
 }
 
 /**
+ * Get a date time object.
+ *
+ * @param mixed value
+ * @param boolean model
+ * @return object
+ */
+PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
+
+	zephir_nts_static zend_class_entry *_1$$4 = NULL;
+	zend_bool _0;
+	int ZEPHIR_LAST_CALL_STATUS;
+	zval *value = NULL, *model = NULL, *date = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 2, &value, &model);
+
+	if (!value) {
+		value = ZEPHIR_GLOBAL(global_null);
+	}
+	if (!model) {
+		model = ZEPHIR_GLOBAL(global_false);
+	}
+
+
+	_0 = Z_TYPE_P(value) == IS_OBJECT;
+	if (_0) {
+		_0 = zephir_is_instance_of(value, SL("MongoDB\\BSON\\UTCDateTime") TSRMLS_CC);
+	}
+	if (_0) {
+		ZEPHIR_CPY_WRT(date, value);
+	} else {
+		ZEPHIR_INIT_NVAR(date);
+		if (!_1$$4) {
+			_1$$4 = zend_fetch_class(SL("MongoDB\\BSON\\UTCDateTime"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
+		}
+		object_init_ex(date, _1$$4);
+		if (zephir_has_constructor(date TSRMLS_CC)) {
+			ZEPHIR_CALL_METHOD(NULL, date, "__construct", NULL, 0, value);
+			zephir_check_call_status();
+		}
+	}
+	if (zephir_is_true(model)) {
+		RETURN_CCTOR(date);
+	}
+	ZEPHIR_RETURN_CALL_METHOD(date, "todatetime", NULL, 0);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Find one document that match criteria.
  *
  * @param string from Collection name
@@ -364,7 +415,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 				zephir_read_property_this(&_1$$4, this_ptr, SL("id"), PH_NOISY_CC);
 				zephir_array_update_zval(&filtered, _1$$4, &filters, PH_COPY);
 			} else {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 117);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 141);
 				return;
 			}
 			break;
@@ -389,12 +440,12 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	} while(0);
 
 	if (zephir_array_isset_string(options, SS("order"))) {
-		zephir_array_fetch_string(&_4$$9, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 136 TSRMLS_CC);
+		zephir_array_fetch_string(&_4$$9, options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 160 TSRMLS_CC);
 		zephir_array_update_string(&options, SL("sort"), &_4$$9, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SS("order"), PH_SEPARATE);
 	}
 	if (zephir_array_isset_string(options, SS("offset"))) {
-		zephir_array_fetch_string(&_5$$10, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 141 TSRMLS_CC);
+		zephir_array_fetch_string(&_5$$10, options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 165 TSRMLS_CC);
 		zephir_array_update_string(&options, SL("skip"), &_5$$10, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SS("offset"), PH_SEPARATE);
 	}
