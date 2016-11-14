@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Sat Nov 12 10:30:34 UTC 2016
+
+- Ice 1.2.1
+ * Db, remove legacy mongo from php 7
+ * Digit validator, allow for int
+ * Dump, add plain text attribute
+ * Model, get date time
+ * Mongodb, result as associative array
+
+-------------------------------------------------------------------
 Mon Aug 29 11:42:20 UTC 2016
 
 - Ice 1.2.0
