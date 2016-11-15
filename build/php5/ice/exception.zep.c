@@ -47,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Exception) {
  *
  * @param mixed message Error message
  * @param mixed code The exception code
- * @param Exception previous Previous exception
+ * @param Exception|Throwable previous Previous exception
  */
 PHP_METHOD(Ice_Exception, __construct) {
 
@@ -319,7 +319,7 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 /**
  * Inline exception handler, displays the error message, source of the exception, and the stack trace of the error.
  *
- * @param Exception $e
+ * @param Exception|Throwable $e
  * @return void
  */
 PHP_METHOD(Ice_Exception, handler) {
