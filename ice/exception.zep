@@ -19,9 +19,9 @@ class Exception extends \Exception
      *
      * @param mixed message Error message
      * @param mixed code The exception code
-     * @param Exception previous Previous exception
+     * @param Exception|Throwable previous Previous exception
      */
-    public function __construct(var message = "", code = 0, <\Exception> previous = null)
+    public function __construct(var message = "", code = 0, previous = null)
     {
         var di, values, str;
 
@@ -47,7 +47,7 @@ class Exception extends \Exception
             }
         }
 
-        parent::__construct((string) message, (int) code, <\Exception> previous);
+        parent::__construct((string) message, (int) code, previous);
     }
 
     /**
@@ -129,10 +129,10 @@ class Exception extends \Exception
     /**
      * Inline exception handler, displays the error message, source of the exception, and the stack trace of the error.
      *
-     * @param Exception $e
+     * @param Exception|Throwable $e
      * @return void
      */
-    public static function handler(<\Exception> e)
+    public static function handler(e)
     {
         // Create new exceptin by this class
         create_instance_params(get_called_class(), [e->getMessage(), e->getCode(), e]);
