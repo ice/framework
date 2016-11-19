@@ -66,11 +66,12 @@ class Pdo implements DbInterface
     public function getDateTime(value = null, model = false)
     {
         var date;
+
         if typeof value == "integer" {
-            let date = new \DateTime("@" . value);
-        } else {
-            let date = new \DateTime(value);
+            let value = "@" . value;
         }
+
+        let date = new \DateTime(value);
 
         if model {
             return date->format("Y-m-d H:i:s.u");

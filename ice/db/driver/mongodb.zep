@@ -67,6 +67,13 @@ class Mongodb implements DbInterface
         if typeof value == "object" && value instanceof \MongoDB\BSON\UTCDateTime {
             let date = value;
         } else {
+            if typeof value == "integer" {
+                // Timestamp
+                let value = value * 1000;
+            } else {
+                let value = strtotime(value) * 1000;
+            }
+
             let date = new \MongoDB\BSON\UTCDateTime(value);
         }
 

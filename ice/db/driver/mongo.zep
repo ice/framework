@@ -60,6 +60,10 @@ class Mongo implements DbInterface
         if typeof value == "object" && value instanceof \MongoDate {
             let date = value;
         } else {
+            if typeof value == "string" {
+                let value = strtotime(value);
+            }
+
             let date = new \MongoDate(value);
         }
 
