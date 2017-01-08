@@ -132,7 +132,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 /**
  * Get the full trace as string.
  *
- * @param Exception $e
+ * @param Exception|Throwable $e
  * @return string
  */
 PHP_METHOD(Ice_Exception, getFullTraceAsString) {

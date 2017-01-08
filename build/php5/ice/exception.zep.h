@@ -16,7 +16,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_getfulltraceasstring, 0, 0, 1)
-	ZEND_ARG_OBJ_INFO(0, e, Exception, 0)
+	ZEND_ARG_INFO(0, e)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_errorhandler, 0, 0, 2)
