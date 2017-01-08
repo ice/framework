@@ -53,10 +53,10 @@ class Exception extends \Exception
     /**
      * Get the full trace as string.
      *
-     * @param Exception $e
+     * @param Exception|Throwable $e
      * @return string
      */
-    public function getFullTraceAsString(<\Exception> e)
+    public function getFullTraceAsString(e)
     {
         var output, frame, args, arg, node;
         int count = 0;
