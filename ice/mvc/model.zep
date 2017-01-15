@@ -23,6 +23,7 @@ abstract class Model extends Arr implements \Serializable
     protected db { get };
     protected from { set };
     protected primary { set, get };
+    protected autoincrement = true { set };
     protected filters = [] { set, get };
     protected fields = [] { set, get };
     protected validation { set, get };
@@ -212,7 +213,7 @@ abstract class Model extends Arr implements \Serializable
      * Prepare fields for validation on create/update.
      *
      * @param mixed fields Fields to save or valid fields
-     * @param booleat primary Keept primary keys
+     * @param boolean primary Keep primary key
      * @return array
      */
     protected function fields(var fields = [], boolean primary = true)
@@ -254,7 +255,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        // Remove primary keys
+        // Remove primary key
         if typeof this->primary == "string" && !primary {
             unset fields[this->primary];
         }
@@ -280,7 +281,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var status;
 
-        this->setData(this->fields(fields, false));
+        this->setData(this->fields(fields, !this->autoincrement));
 
         if extra {
             extra->validate();
@@ -386,7 +387,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.before.update", [this]);
 
-        let status = this->db->update(this->from, primary, this->fields(this->getData(), false));
+        let status = this->db->update(this->from, primary, this->fields(this->getData(), !this->autoincrement));
 
         if !status {
             // Rollback changes and restore old data
