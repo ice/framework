@@ -46,6 +46,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Model) {
 
 	zend_declare_property_null(ice_mvc_model_ce, SL("primary"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_property_bool(ice_mvc_model_ce, SL("autoincrement"), 1, ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	zend_declare_property_null(ice_mvc_model_ce, SL("filters"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_property_null(ice_mvc_model_ce, SL("fields"), ZEND_ACC_PROTECTED TSRMLS_CC);
@@ -117,6 +119,18 @@ PHP_METHOD(Ice_Mvc_Model, getPrimary) {
 	
 
 	RETURN_MEMBER(this_ptr, "primary");
+
+}
+
+PHP_METHOD(Ice_Mvc_Model, setAutoincrement) {
+
+	zval *autoincrement;
+
+	zephir_fetch_params(0, 1, 0, &autoincrement);
+
+
+
+	zephir_update_property_this(this_ptr, SL("autoincrement"), autoincrement TSRMLS_CC);
 
 }
 
@@ -287,7 +301,7 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 		ZEPHIR_CALL_METHOD(&_12$$6, this_ptr, "loadone", NULL, 0, filters);
 		zephir_check_call_status();
 		if (!(zephir_is_true(_12$$6))) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Not Found", "ice/mvc/model.zep", 70);
+			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Not Found", "ice/mvc/model.zep", 71);
 			return;
 		}
 	}
@@ -464,7 +478,7 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 			zephir_array_fast_append(_6$$4, data);
 			ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(_4$$4, _5$$4, _6$$4 TSRMLS_CC);
 			zephir_check_call_status();
-			zephir_array_append(&instances, _4$$4, PH_SEPARATE, "ice/mvc/model.zep", 155);
+			zephir_array_append(&instances, _4$$4, PH_SEPARATE, "ice/mvc/model.zep", 156);
 		}
 		_3$$3->funcs->dtor(_3$$3 TSRMLS_CC);
 	}
@@ -569,7 +583,7 @@ PHP_METHOD(Ice_Mvc_Model, find) {
  * Prepare fields for validation on create/update.
  *
  * @param mixed fields Fields to save or valid fields
- * @param booleat primary Keept primary keys
+ * @param boolean primary Keep primary key
  * @return array
  */
 PHP_METHOD(Ice_Mvc_Model, fields) {
@@ -692,10 +706,10 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
  */
 PHP_METHOD(Ice_Mvc_Model, create) {
 
-	zend_bool _8$$4;
-	zval *_5, *_29, *_32, *_41;
+	zend_bool _9$$4;
+	zval *_6, *_30, *_33, *_42;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *extra = NULL, *status = NULL, *_0 = NULL, *_1 = NULL, *_4, *_6, *_28, *_30, *_31, *_33, *_34, *_35 = NULL, *_40, *_2$$3 = NULL, *_3$$3 = NULL, *_7$$4, *_9$$4, *_11$$4, *_12$$4, *_13$$4, *_14$$4, *_15$$4, *_16$$4, *_17$$4, *_18$$4 = NULL, *_19$$4, *_20$$4 = NULL, *_21$$4, *_22$$4 = NULL, *_10$$5, *_23$$6, *_24$$6, *_25$$6, *_26$$6 = NULL, *_27$$6 = NULL, *_36$$8, *_37$$8 = NULL, *_38$$8, *_39$$8 = NULL;
+	zval *fields = NULL, *extra = NULL, *status = NULL, *_0 = NULL, *_1, *_2 = NULL, *_5, *_7, *_29, *_31, *_32, *_34, *_35, *_36 = NULL, *_41, *_3$$3 = NULL, *_4$$3 = NULL, *_8$$4, *_10$$4, *_12$$4, *_13$$4, *_14$$4, *_15$$4, *_16$$4, *_17$$4, *_18$$4, *_19$$4 = NULL, *_20$$4, *_21$$4 = NULL, *_22$$4, *_23$$4 = NULL, *_11$$5, *_24$$6, *_25$$6, *_26$$6, *_27$$6 = NULL, *_28$$6 = NULL, *_37$$8, *_38$$8 = NULL, *_39$$8, *_40$$8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -709,130 +723,132 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	}
 
 
-	ZEPHIR_INIT_VAR(_1);
-	ZVAL_BOOL(_1, 0);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "fields", NULL, 0, fields, _1);
+	ZEPHIR_OBS_VAR(_1);
+	zephir_read_property_this(&_1, this_ptr, SL("autoincrement"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_2);
+	ZVAL_BOOL(_2, !zephir_is_true(_1));
+	ZEPHIR_CALL_METHOD(&_0, this_ptr, "fields", NULL, 0, fields, _2);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdata", NULL, 0, _0);
 	zephir_check_call_status();
 	if (zephir_is_true(extra)) {
 		ZEPHIR_CALL_METHOD(NULL, extra, "validate", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_2$$3, extra, "getmessages", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_3$$3, extra, "getmessages", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_3$$3, _2$$3, "all", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_4$$3, _3$$3, "all", NULL, 0);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("messages"), _3$$3 TSRMLS_CC);
+		zephir_update_property_this(this_ptr, SL("messages"), _4$$3 TSRMLS_CC);
 	}
-	_4 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_5);
-	zephir_create_array(_5, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_5, this_ptr);
-	ZEPHIR_INIT_NVAR(_1);
-	ZVAL_STRING(_1, "model.before.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _4, "applyhook", NULL, 0, _1, _5);
-	zephir_check_temp_parameter(_1);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_6);
+	zephir_create_array(_6, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_6, this_ptr);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "model.before.validate", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _5, "applyhook", NULL, 0, _2, _6);
+	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	_6 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-	if (zephir_fast_count_int(_6 TSRMLS_CC)) {
-		ZEPHIR_OBS_VAR(_7$$4);
-		zephir_read_property_this(&_7$$4, this_ptr, SL("validation"), PH_NOISY_CC);
-		_8$$4 = Z_TYPE_P(_7$$4) == IS_OBJECT;
-		if (_8$$4) {
-			ZEPHIR_OBS_VAR(_9$$4);
-			zephir_read_property_this(&_9$$4, this_ptr, SL("validation"), PH_NOISY_CC);
-			_8$$4 = zephir_instance_of_ev(_9$$4, ice_validation_ce TSRMLS_CC);
+	_7 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+	if (zephir_fast_count_int(_7 TSRMLS_CC)) {
+		ZEPHIR_OBS_VAR(_8$$4);
+		zephir_read_property_this(&_8$$4, this_ptr, SL("validation"), PH_NOISY_CC);
+		_9$$4 = Z_TYPE_P(_8$$4) == IS_OBJECT;
+		if (_9$$4) {
+			ZEPHIR_OBS_VAR(_10$$4);
+			zephir_read_property_this(&_10$$4, this_ptr, SL("validation"), PH_NOISY_CC);
+			_9$$4 = zephir_instance_of_ev(_10$$4, ice_validation_ce TSRMLS_CC);
 		}
-		if (!(_8$$4)) {
-			ZEPHIR_INIT_VAR(_10$$5);
-			object_init_ex(_10$$5, ice_validation_ce);
-			ZEPHIR_CALL_METHOD(NULL, _10$$5, "__construct", NULL, 11);
+		if (!(_9$$4)) {
+			ZEPHIR_INIT_VAR(_11$$5);
+			object_init_ex(_11$$5, ice_validation_ce);
+			ZEPHIR_CALL_METHOD(NULL, _11$$5, "__construct", NULL, 11);
 			zephir_check_call_status();
-			zephir_update_property_this(this_ptr, SL("validation"), _10$$5 TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("validation"), _11$$5 TSRMLS_CC);
 		}
-		_11$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		_12$$4 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, _11$$4, "rules", NULL, 0, _12$$4);
+		_12$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		_13$$4 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, _12$$4, "rules", NULL, 0, _13$$4);
 		zephir_check_call_status();
-		_13$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		_14$$4 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, _13$$4, "setfilters", NULL, 0, _14$$4);
+		_14$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		_15$$4 = zephir_fetch_nproperty_this(this_ptr, SL("filters"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, _14$$4, "setfilters", NULL, 0, _15$$4);
 		zephir_check_call_status();
-		_15$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		_16$$4 = zephir_fetch_nproperty_this(this_ptr, SL("labels"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(NULL, _15$$4, "setlabels", NULL, 0, _16$$4);
+		_16$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		_17$$4 = zephir_fetch_nproperty_this(this_ptr, SL("labels"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(NULL, _16$$4, "setlabels", NULL, 0, _17$$4);
 		zephir_check_call_status();
-		_17$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_18$$4, this_ptr, "getdata", NULL, 0);
+		_18$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_19$$4, this_ptr, "getdata", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _17$$4, "validate", NULL, 0, _18$$4);
+		ZEPHIR_CALL_METHOD(NULL, _18$$4, "validate", NULL, 0, _19$$4);
 		zephir_check_call_status();
-		_19$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_20$$4, _19$$4, "getvalues", NULL, 0);
+		_20$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_21$$4, _20$$4, "getvalues", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, _20$$4);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, _21$$4);
 		zephir_check_call_status();
-		_21$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_22$$4, _21$$4, "valid", NULL, 0);
+		_22$$4 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_23$$4, _22$$4, "valid", NULL, 0);
 		zephir_check_call_status();
-		if (!(zephir_is_true(_22$$4))) {
-			ZEPHIR_INIT_VAR(_23$$6);
-			_24$$6 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
-			_25$$6 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_26$$6, _25$$6, "getmessages", NULL, 0);
+		if (!(zephir_is_true(_23$$4))) {
+			ZEPHIR_INIT_VAR(_24$$6);
+			_25$$6 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
+			_26$$6 = zephir_fetch_nproperty_this(this_ptr, SL("validation"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_27$$6, _26$$6, "getmessages", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_27$$6, _26$$6, "all", NULL, 0);
+			ZEPHIR_CALL_METHOD(&_28$$6, _27$$6, "all", NULL, 0);
 			zephir_check_call_status();
-			zephir_fast_array_merge(_23$$6, &(_24$$6), &(_27$$6) TSRMLS_CC);
-			zephir_update_property_this(this_ptr, SL("messages"), _23$$6 TSRMLS_CC);
+			zephir_fast_array_merge(_24$$6, &(_25$$6), &(_28$$6) TSRMLS_CC);
+			zephir_update_property_this(this_ptr, SL("messages"), _24$$6 TSRMLS_CC);
 		}
 	}
-	_28 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_29);
-	zephir_create_array(_29, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_29, this_ptr);
-	ZEPHIR_INIT_NVAR(_1);
-	ZVAL_STRING(_1, "model.after.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _28, "applyhook", NULL, 0, _1, _29);
-	zephir_check_temp_parameter(_1);
+	_29 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_30);
+	zephir_create_array(_30, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_30, this_ptr);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "model.after.validate", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _29, "applyhook", NULL, 0, _2, _30);
+	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	_30 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
-	if (zephir_fast_count_int(_30 TSRMLS_CC)) {
+	_31 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
+	if (zephir_fast_count_int(_31 TSRMLS_CC)) {
 		RETURN_MM_BOOL(0);
 	}
-	_31 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_32);
-	zephir_create_array(_32, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_32, this_ptr);
-	ZEPHIR_INIT_NVAR(_1);
-	ZVAL_STRING(_1, "model.before.create", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _31, "applyhook", NULL, 0, _1, _32);
-	zephir_check_temp_parameter(_1);
+	_32 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_33);
+	zephir_create_array(_33, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_33, this_ptr);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "model.before.create", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _32, "applyhook", NULL, 0, _2, _33);
+	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	_33 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
-	_34 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&_35, this_ptr, "getdata", NULL, 0);
+	_34 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
+	_35 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(&_36, this_ptr, "getdata", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&status, _33, "insert", NULL, 0, _34, _35);
+	ZEPHIR_CALL_METHOD(&status, _34, "insert", NULL, 0, _35, _36);
 	zephir_check_call_status();
 	if (zephir_is_true(status)) {
-		_36$$8 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_37$$8, _36$$8, "getid", NULL, 0);
+		_37$$8 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_38$$8, _37$$8, "getid", NULL, 0);
 		zephir_check_call_status();
-		_38$$8 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
-		ZEPHIR_CALL_METHOD(&_39$$8, _38$$8, "getlastinsertid", NULL, 0);
+		_39$$8 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
+		ZEPHIR_CALL_METHOD(&_40$$8, _39$$8, "getlastinsertid", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, _37$$8, _39$$8);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, _38$$8, _40$$8);
 		zephir_check_call_status();
 	}
-	_40 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_41);
-	zephir_create_array(_41, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_41, this_ptr);
-	ZEPHIR_INIT_NVAR(_1);
-	ZVAL_STRING(_1, "model.after.create", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _40, "applyhook", NULL, 0, _1, _41);
-	zephir_check_temp_parameter(_1);
+	_41 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_42);
+	zephir_create_array(_42, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_42, this_ptr);
+	ZEPHIR_INIT_NVAR(_2);
+	ZVAL_STRING(_2, "model.after.create", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _41, "applyhook", NULL, 0, _2, _42);
+	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	RETURN_CCTOR(status);
 
@@ -856,10 +872,10 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	HashTable *_3$$3;
 	HashPosition _2$$3;
 	zend_bool _18;
-	zval *_15, *_32, *_35, *_41;
+	zval *_15, *_32, *_35, *_42;
 	zephir_fcall_cache_entry *_6 = NULL, *_11 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *fields = NULL, *extra = NULL, *data = NULL, *status = NULL, *primary = NULL, *key = NULL, *_0, *_10 = NULL, *_14, *_16 = NULL, *_17, *_19, *_31, *_33, *_34, *_36, *_37, *_38 = NULL, *_39 = NULL, *_40, *_1$$3, **_4$$3, *_5$$4 = NULL, *_7$$5, *_8$$5 = NULL, *_9$$5, *_12$$6 = NULL, *_13$$6 = NULL, *_20$$7, *_21$$7 = NULL, *_22$$7, *_23$$7 = NULL, *_24$$7, *_25$$7 = NULL, *_26$$8, *_27$$8, *_28$$8, *_29$$8 = NULL, *_30$$8 = NULL;
+	zval *fields = NULL, *extra = NULL, *data = NULL, *status = NULL, *primary = NULL, *key = NULL, *_0, *_10 = NULL, *_14, *_16 = NULL, *_17, *_19, *_31, *_33, *_34, *_36, *_37, *_38 = NULL, *_39 = NULL, *_40, *_41, *_1$$3, **_4$$3, *_5$$4 = NULL, *_7$$5, *_8$$5 = NULL, *_9$$5, *_12$$6 = NULL, *_13$$6 = NULL, *_20$$7, *_21$$7 = NULL, *_22$$7, *_23$$7 = NULL, *_24$$7, *_25$$7 = NULL, *_26$$8, *_27$$8, *_28$$8, *_29$$8 = NULL, *_30$$8 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -881,7 +897,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_read_property_this(&_0, this_ptr, SL("primary"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_ARRAY) {
 		_1$$3 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-		zephir_is_iterable(_1$$3, &_3$$3, &_2$$3, 0, 0, "ice/mvc/model.zep", 354);
+		zephir_is_iterable(_1$$3, &_3$$3, &_2$$3, 0, 0, "ice/mvc/model.zep", 355);
 		for (
 		  ; zephir_hash_get_current_data_ex(_3$$3, (void**) &_4$$3, &_2$$3) == SUCCESS
 		  ; zephir_hash_move_forward_ex(_3$$3, &_2$$3)
@@ -985,8 +1001,10 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	_37 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_39, this_ptr, "getdata", NULL, 0);
 	zephir_check_call_status();
+	ZEPHIR_OBS_VAR(_40);
+	zephir_read_property_this(&_40, this_ptr, SL("autoincrement"), PH_NOISY_CC);
 	ZEPHIR_INIT_NVAR(_16);
-	ZVAL_BOOL(_16, 0);
+	ZVAL_BOOL(_16, !zephir_is_true(_40));
 	ZEPHIR_CALL_METHOD(&_38, this_ptr, "fields", &_11, 0, _39, _16);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, _36, "update", NULL, 0, _37, primary, _38);
@@ -995,13 +1013,13 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdata", NULL, 0, data);
 		zephir_check_call_status();
 	}
-	_40 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
-	ZEPHIR_INIT_VAR(_41);
-	zephir_create_array(_41, 1, 0 TSRMLS_CC);
-	zephir_array_fast_append(_41, this_ptr);
+	_41 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_42);
+	zephir_create_array(_42, 1, 0 TSRMLS_CC);
+	zephir_array_fast_append(_42, this_ptr);
 	ZEPHIR_INIT_NVAR(_16);
 	ZVAL_STRING(_16, "model.after.update", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _40, "applyhook", NULL, 0, _16, _41);
+	ZEPHIR_CALL_METHOD(NULL, _41, "applyhook", NULL, 0, _16, _42);
 	zephir_check_temp_parameter(_16);
 	zephir_check_call_status();
 	RETURN_CCTOR(status);
@@ -1100,7 +1118,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 		zephir_read_property_this(&_0$$3, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0$$3) == IS_ARRAY) {
 			_1$$4 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 456);
+			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 457);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3$$4, (void**) &_4$$4, &_2$$4) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3$$4, &_2$$4)
@@ -1162,7 +1180,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		zephir_read_property_this(&_0$$3, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0$$3) == IS_ARRAY) {
 			_1$$4 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 487);
+			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 488);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3$$4, (void**) &_4$$4, &_2$$4) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3$$4, &_2$$4)
@@ -1452,7 +1470,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 13, _3$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1$$3, "ice/mvc/model.zep", 638 TSRMLS_CC);
+		zephir_throw_exception_debug(_1$$3, "ice/mvc/model.zep", 639 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1466,7 +1484,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zephir_get_class_ns(_4, referenceModel, 0 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(from);
 	zephir_uncamelize(from, _4, NULL  );
-	zephir_array_fetch_string(&_5, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 647 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 648 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_5, 1) || ZEPHIR_IS_LONG(_5, 2)) {
 			ZEPHIR_INIT_VAR(_6$$4);
@@ -1551,7 +1569,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		if (Z_TYPE_P(fields) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(rules);
 			array_init(rules);
-			zephir_is_iterable(fields, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 698);
+			zephir_is_iterable(fields, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 699);
 			for (
 			  ; zephir_hash_get_current_data_ex(_3$$4, (void**) &_4$$4, &_2$$4) == SUCCESS
 			  ; zephir_hash_move_forward_ex(_3$$4, &_2$$4)
@@ -1560,14 +1578,14 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 				_5$$5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 				if (zephir_array_isset(_5$$5, field)) {
 					_6$$6 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-					zephir_array_fetch(&_7$$6, _6$$6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 694 TSRMLS_CC);
+					zephir_array_fetch(&_7$$6, _6$$6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 695 TSRMLS_CC);
 					zephir_array_update_zval(&rules, field, &_7$$6, PH_COPY | PH_SEPARATE);
 				}
 			}
 			RETURN_CCTOR(rules);
 		} else if (_0$$3) {
 			_8$$7 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-			zephir_array_fetch(&_9$$7, _8$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 700 TSRMLS_CC);
+			zephir_array_fetch(&_9$$7, _8$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 701 TSRMLS_CC);
 			RETURN_CTOR(_9$$7);
 		}
 	}
@@ -1712,7 +1730,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL, 13, _5);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_3, "ice/mvc/model.zep", 755 TSRMLS_CC);
+	zephir_throw_exception_debug(_3, "ice/mvc/model.zep", 756 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 

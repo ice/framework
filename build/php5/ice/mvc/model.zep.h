@@ -8,6 +8,7 @@ PHP_METHOD(Ice_Mvc_Model, getDb);
 PHP_METHOD(Ice_Mvc_Model, setFrom);
 PHP_METHOD(Ice_Mvc_Model, setPrimary);
 PHP_METHOD(Ice_Mvc_Model, getPrimary);
+PHP_METHOD(Ice_Mvc_Model, setAutoincrement);
 PHP_METHOD(Ice_Mvc_Model, setFilters);
 PHP_METHOD(Ice_Mvc_Model, getFilters);
 PHP_METHOD(Ice_Mvc_Model, setFields);
@@ -50,6 +51,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setprimary, 0, 0, 1)
 	ZEND_ARG_INFO(0, primary)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setautoincrement, 0, 0, 1)
+	ZEND_ARG_INFO(0, autoincrement)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setfilters, 0, 0, 1)
@@ -181,6 +186,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, setFrom, arginfo_ice_mvc_model_setfrom, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setPrimary, arginfo_ice_mvc_model_setprimary, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getPrimary, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, setAutoincrement, arginfo_ice_mvc_model_setautoincrement, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFilters, arginfo_ice_mvc_model_setfilters, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getFilters, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFields, arginfo_ice_mvc_model_setfields, ZEND_ACC_PUBLIC)
