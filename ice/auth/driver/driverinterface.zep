@@ -15,5 +15,5 @@ interface DriverInterface
     
     public function getUser(var defaultValue = null);
     public function hasRole(var user, string role = "login");
-    public function login(var username, string password, boolean remember = false);
+    public function login(var username, string password, boolean remember = false, boolean force = false);
 }

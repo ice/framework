@@ -71,18 +71,19 @@ class File extends Driver implements DriverInterface
      * @param string username Username
      * @param string password Password
      * @param boolean remember Enable autologin (not supported)
+     * @param boolean force login without password
      * @return boolean
      */
-    public function login(string username, string password, boolean remember = false) -> boolean | null
+    public function login(string username, string password, boolean remember = false, boolean force = false) -> boolean | null
     {
         var user;
 
         if username && fetch user, this->users[username] {
-            if empty password {
+            if empty password && !force {
                 return false;
             }
 
-            if user["password"] === this->hash(password) {
+            if user["password"] === this->hash(password) || force {
                 // Complete the login
                 this->completeLogin(username, user["roles"]);
 
