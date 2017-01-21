@@ -23,7 +23,7 @@ class GroupCount extends Regex
         var data, matches, handler, varName, varNames, vars;
         int i, j;
 
-        let matches = [];
+        let matches = null;
 
         for data in routeData {
             if !preg_match(data["regex"], uri, matches) {

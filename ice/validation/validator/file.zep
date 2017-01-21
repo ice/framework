@@ -127,7 +127,7 @@ class File extends Validator
         if this->has("maxSize") {
             let byteUnits = ["B": 0, "K": 10, "M": 20, "G": 30, "T": 40, "KB": 10, "MB": 20, "GB": 30, "TB": 40],
                 maxSize = this->get("maxSize"),
-                matches = NULL,
+                matches = null,
                 unit = "B";
 
             preg_match("/^([0-9]+(?:\\.[0-9]+)?)(".implode("|", array_keys(byteUnits)).")?$/Di", maxSize, matches);

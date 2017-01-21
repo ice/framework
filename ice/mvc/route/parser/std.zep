@@ -55,7 +55,7 @@ class Std implements ParserInterface
     {
         var matches, routeData, value, offset;
 
-        let matches = [];
+        let matches = null;
 
         if !preg_match_all("~" . self::VARIABLE_REGEX . "~x", route, matches, PREG_OFFSET_CAPTURE | PREG_SET_ORDER) {
             return [route];

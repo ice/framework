@@ -33,7 +33,7 @@ class Pdo implements DbInterface
     {
         var parts, pdo;
 
-        let parts = [];
+        let parts = null;
 
         preg_match("/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", dsn, parts);
 
