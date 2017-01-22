@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Sun Jan 22 18:57:00 UTC 2017
+
+- Ice 1.2.5
+ * Model, set rules if there is no validation rules on create
+ * Unique, fix case insensitive on mongodb
+ * Url, fix uri starts with # or ?
+ * Fix memory leak in preg_match
+ * Auth, add force login
+
+-------------------------------------------------------------------
 Sun Jan 15 18:05:25 UTC 2017
 
 - Ice 1.2.4
