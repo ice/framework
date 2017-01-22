@@ -123,7 +123,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
 
 	ZEPHIR_INIT_VAR(&matches);
-	array_init(&matches);
+	ZVAL_NULL(&matches);
 	zephir_is_iterable(routeData, 0, "ice/mvc/route/dispatcher/groupcount.zep", 48);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(routeData), _0)
 	{

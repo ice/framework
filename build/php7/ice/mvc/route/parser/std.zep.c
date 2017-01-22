@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 
 
 	ZEPHIR_INIT_VAR(&matches);
-	array_init(&matches);
+	ZVAL_NULL(&matches);
 	ZEPHIR_INIT_VAR(&_0);
 	ZEPHIR_CONCAT_SSS(&_0, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "~x");
 	ZVAL_LONG(&_1, (256 | 2));

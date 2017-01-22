@@ -119,7 +119,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, &field);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&matches);
-	array_init(&matches);
+	ZVAL_NULL(&matches);
 	_0 = ZEPHIR_IS_STRING_IDENTICAL(&value, "");
 	if (!(_0)) {
 		_0 = Z_TYPE_P(&value) == IS_NULL;

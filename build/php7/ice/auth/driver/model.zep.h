@@ -30,6 +30,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_login, 0, 0, 2)
 	ZEND_ARG_INFO(0, username)
 	ZEND_ARG_INFO(0, password)
 	ZEND_ARG_INFO(0, remember)
+	ZEND_ARG_INFO(0, force)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_loginby, 0, 0, 1)
