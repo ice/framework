@@ -291,12 +291,17 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.before.validate", [this]);
 
-        if count(this->rules) {
+        // Run validation if rules or validation is specified
+        if count(this->rules) || typeof this->validation == "object" && (this->validation instanceof Validation) {
             if !(typeof this->validation == "object" && (this->validation instanceof Validation)) {
                 let this->validation = new Validation();
             }
 
-            this->validation->rules(this->rules);
+            if !this->validation->getRules() {
+                // Resolve the rules
+                this->validation->rules(this->rules);
+            }
+
             this->validation->setFilters(this->filters);
             this->validation->setLabels(this->labels);
             this->validation->validate(this->getData());
