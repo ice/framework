@@ -95,7 +95,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
 
 	ZEPHIR_INIT_VAR(matches);
-	array_init(matches);
+	ZVAL_NULL(matches);
 	zephir_is_iterable(routeData, &_1, &_0, 0, 0, "ice/mvc/route/dispatcher/groupcount.zep", 48);
 	for (
 	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS

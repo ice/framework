@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 
 
 	ZEPHIR_INIT_VAR(parts);
-	array_init(parts);
+	ZVAL_NULL(parts);
 	ZEPHIR_INIT_VAR(_0);
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_STRING(&_1, "/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", 0);
