@@ -47,7 +47,7 @@ class Regex extends Validator
         var value, label, message, i18n, replace, pattern, matches, failed;
 
         let value = validation->getValue(field),
-            matches = [];
+            matches = null;
 
         if value === "" || value === null {
             return true;

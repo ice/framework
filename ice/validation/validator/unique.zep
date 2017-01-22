@@ -4,6 +4,7 @@ namespace Ice\Validation\Validator;
 use Ice\Di;
 use Ice\Validation;
 use Ice\Validation\Validator;
+use Ice\Db\Driver\Mongodb;
 
 /**
  * Unique validator.
@@ -91,7 +92,11 @@ class Unique extends Validator
             let tmp = value;
 
             if db->getType() == "NOSQL" {
-                let value = new \MongoRegex("/^" . tmp . "$/i");
+                if db instanceof Mongodb {
+                    let value = new \MongoDB\BSON\Regex(tmp, "i");
+                } else {
+                    let value = new \MongoRegex("/^" . tmp . "$/i");
+                }
             } else {
                 // TODO: LOWER column name
                 let value = strtolower(tmp);

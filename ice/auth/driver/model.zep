@@ -145,9 +145,10 @@ class Model extends Driver implements DriverInterface
      * @param mixed username
      * @param string password
      * @param boolean remember enable autologin
+     * @param boolean force login without password
      * @return boolean
      */
-    public function login(var username, string password, boolean remember = false)
+    public function login(var username, string password, boolean remember = false, boolean force = false) -> boolean | null
     {
         var user, users, roles, userRoles, role, token, lifetime;
 
@@ -166,12 +167,12 @@ class Model extends Driver implements DriverInterface
         }
 
         if typeof user == "object" && (user instanceof Users) {
-            if empty password {
+            if empty password && !force {
                 return false;
             }
 
             // Check if password match
-            if user->get("password") == this->hash(password) {
+            if user->get("password") == this->hash(password) || force {
                 let userRoles = user->{"getRoles"}(),
                     roles = [];
 
