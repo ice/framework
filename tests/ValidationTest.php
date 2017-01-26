@@ -139,17 +139,34 @@ class ValidationTest extends PHPUnit
 
     public function testRevalidate()
     {
-        $validation = new Validation([
+        $data = [
             'emailAddress' => '',
             'repeatEmailAddress' => 'user@example.com',
-        ]);
+        ];
+
+        $validation = new Validation();
 
         $validation->rules([
             'emailAddress' => 'required|email',
+        ]);
+
+        $valid = $validation->validate($data);
+        $this->assertFalse($valid);
+
+        $expected = [
+            "emailAddress" => [
+                0 => "Field emailAddress is required"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
+
+        // Add extra rules
+        $validation->rules([
             'repeatEmailAddress' => 'same:emailAddress'
         ]);
 
-        $valid = $validation->validate();
+        $valid = $validation->validate($data);
         $this->assertFalse($valid);
 
         $expected = [
@@ -163,11 +180,29 @@ class ValidationTest extends PHPUnit
 
         $this->assertSame($expected, $validation->getMessages()->all());
 
-        $validation->rules([
-            'emailAddress' => 'email'
-        ], true);
+        // Add wrong value and revalidate
+        $data['emailAddress'] = 'test';
 
-        $valid = $validation->validate(['emailAddress' => 'test'], true);
+        $valid = $validation->validate($data);
+        $this->assertFalse($valid);
+
+        $expected = [
+            "emailAddress" => [
+                0 => "Field emailAddress must be an email address"
+            ],
+            "repeatEmailAddress" => [
+                0 => "Field repeatEmailAddress and emailAddress must match"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
+
+        // Overwrite the rules
+        $validation->rules([
+            'emailAddress' => 'required|email'
+        ], false);
+
+        $valid = $validation->validate($data);
         $this->assertFalse($valid);
 
         $expected = [
@@ -177,6 +212,25 @@ class ValidationTest extends PHPUnit
         ];
 
         $this->assertSame($expected, $validation->getMessages()->all());
+
+        // Pass right data, but do not clear the old messages
+        $data['emailAddress'] = 'user@example.com';
+
+        $valid = $validation->validate($data, false);
+        $this->assertFalse($valid);
+
+        $expected = [
+            "emailAddress" => [
+                0 => "Field emailAddress must be an email address"
+            ]
+        ];
+
+        $this->assertSame($expected, $validation->getMessages()->all());
+
+        // Pass the rules
+        $valid = $validation->validate($data);
+        $this->assertTrue($valid);
+        $this->assertSame([], $validation->getMessages()->all());
     }
 
     public function testHuman()
