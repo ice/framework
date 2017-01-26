@@ -481,7 +481,7 @@ PHP_METHOD(Ice_Validation, rule) {
  * </code></pre>
  *
  * @param array validators
- * @param boolean clear
+ * @param boolean merge
  * @return void
  */
 PHP_METHOD(Ice_Validation, rules) {
@@ -490,8 +490,8 @@ PHP_METHOD(Ice_Validation, rules) {
 	zend_ulong _2;
 	zephir_fcall_cache_entry *_4 = NULL;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zend_bool clear;
-	zval *validators_param = NULL, *clear_param = NULL, field, rules, *_1, _0$$3;
+	zend_bool merge;
+	zval *validators_param = NULL, *merge_param = NULL, field, rules, *_1, _0$$3;
 	zval validators;
 	ZEPHIR_INIT_THIS();
 
@@ -501,17 +501,17 @@ PHP_METHOD(Ice_Validation, rules) {
 	ZVAL_UNDEF(&_0$$3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &validators_param, &clear_param);
+	zephir_fetch_params(1, 1, 1, &validators_param, &merge_param);
 
 	ZEPHIR_OBS_COPY_OR_DUP(&validators, validators_param);
-	if (!clear_param) {
-		clear = 0;
+	if (!merge_param) {
+		merge = 1;
 	} else {
-		clear = zephir_get_boolval(clear_param);
+		merge = zephir_get_boolval(merge_param);
 	}
 
 
-	if (clear) {
+	if (!(merge)) {
 		ZEPHIR_INIT_VAR(&_0$$3);
 		array_init(&_0$$3);
 		zephir_update_property_zval(this_ptr, SL("rules"), &_0$$3);
@@ -575,7 +575,7 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_get_arrval(&data, data_param);
 	}
 	if (!clear_param) {
-		clear = 0;
+		clear = 1;
 	} else {
 		clear = zephir_get_boolval(clear_param);
 	}
