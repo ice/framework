@@ -184,10 +184,10 @@ class Validation
      * </code></pre>
      *
      * @param array validators
-     * @param boolean clear
+     * @param boolean merge
      * @return void
      */
-    public function rules(array! validators, boolean clear = false) -> void
+    public function rules(array! validators, boolean merge = true) -> void
     {
         var field, rules;
 
@@ -207,7 +207,7 @@ class Validation
      * @param boolean clear Clear messages before
      * @return boolean
      */
-    public function validate(array data = [], boolean clear = false) -> boolean
+    public function validate(array data = [], boolean clear = true) -> boolean
     {
         var tmp, field, rules, rule;
 
