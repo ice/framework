@@ -191,7 +191,7 @@ class Validation
     {
         var field, rules;
 
-        if clear {
+        if !merge {
             let this->rules = [];
         }
 
