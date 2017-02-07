@@ -39,7 +39,7 @@ class Length extends Validator
 
     /**
      * Validate the validator
-     * Options: label, min, max, messageMin, messageMax
+     * Options: min (0), max (1), label, messageMin, messageMax
      *
      * @param Validation validation
      * @param string field

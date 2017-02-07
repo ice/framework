@@ -32,6 +32,7 @@ class Email extends Validator
 
     /**
      * Validate the validator
+     * Options: label, message
      *
      * @param Validation validation
      * @param string field
