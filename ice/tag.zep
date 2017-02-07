@@ -306,6 +306,16 @@ class Tag
     }
 
     /**
+     * Builds a FORM close tag.
+     *
+     * @return string
+     */
+    public function endForm() -> string
+    {
+        return this->endTag('form');
+    }
+
+    /**
      * Builds a HTML TEXTAREA tag.
      *
      * <pre><code>
