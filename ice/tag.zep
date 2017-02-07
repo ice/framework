@@ -312,7 +312,7 @@ class Tag
      */
     public function endForm() -> string
     {
-        return this->endTag('form');
+        return this->endTag("form");
     }
 
     /**
