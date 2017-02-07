@@ -248,7 +248,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 		ZEPHIR_INIT_VAR(&_1$$4);
 		zephir_gettype(&_1$$4, value TSRMLS_CC);
 		do {
-			if (ZEPHIR_IS_STRING(&_1$$4, "null")) {
+			if (ZEPHIR_IS_STRING(&_1$$4, "NULL")) {
 				ZEPHIR_INIT_VAR(&_2$$5);
 				zephir_time(&_2$$5);
 				tmp$$4 = (zephir_get_numberval(&_2$$5) * 1000);
