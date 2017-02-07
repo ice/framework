@@ -58,7 +58,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Regex) {
 
 /**
  * Validate the validator
- * Options: label, pattern, message
+ * Options: pattern (0), label, message
  *
  * @param Validation validation
  * @param string field

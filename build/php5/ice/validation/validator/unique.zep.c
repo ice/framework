@@ -61,7 +61,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
 
 /**
  * Validate the validator
- * Options: label, from, custom, except, message
+ * Options: from (0), custom (1), except (2), caseInsensitive (3), label, message
  *
  * @param Validation validation
  * @param string field

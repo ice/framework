@@ -53,6 +53,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Required) {
 
 /**
  * Validate the validator
+ * Options: label, message
  *
  * @param Validation validation
  * @param string field

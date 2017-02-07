@@ -54,6 +54,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Same) {
 
 /**
  * Validate the validator
+ * Options: other (0), allowEmpty (1), label, labelOther, message
  *
  * @param Validation validation
  * @param string field

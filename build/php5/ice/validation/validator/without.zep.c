@@ -59,7 +59,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
 
 /**
  * Validate the validator
- * Options: label, fields, message
+ * Options: fields (0,1,2..), label, message
  *
  * @param Validation validation
  * @param string field
