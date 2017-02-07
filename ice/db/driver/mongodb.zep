@@ -70,7 +70,7 @@ class Mongodb implements DbInterface
             long tmp;
 
             switch typeof value {
-                case "null":
+                case "NULL":
                     let tmp = time() * 1000,
                         value = tmp;
                     break;
