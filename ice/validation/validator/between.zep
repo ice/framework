@@ -38,7 +38,7 @@ class Between extends Validator
 
     /**
      * Validate the validator
-     * Options: label, min, max, message
+     * Options: min (0), max (1), label, message
      *
      * @param Validation validation
      * @param string field

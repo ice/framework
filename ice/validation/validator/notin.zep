@@ -40,7 +40,7 @@ class NotIn extends Validator
 
     /**
      * Validate the validator
-     * Options: label, values, message
+     * Options: values (0,1,2..), label, message
      *
      * @param Validation validation
      * @param string field
