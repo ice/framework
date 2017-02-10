@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Fri Feb 10 21:20:56 UTC 2017
+
+- Ice 1.2.6
+ * Unique, fix mongodb driver
+ * Mongodb, fix timestamp if value is NULL on getDateTime
+ * Tag, add end_form()
+ * Validators, update doc
+ * Validation, fix revalidate, add more tests
+
+-------------------------------------------------------------------
 Sun Jan 22 18:57:00 UTC 2017
 
 - Ice 1.2.5
