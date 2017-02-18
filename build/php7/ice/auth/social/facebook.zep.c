@@ -126,7 +126,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 
 	zend_bool result = 0, _6$$4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval _GET, params, tokenInfo, userInfo, _0$$3, _1$$3, _8$$3, _2$$4, _3$$4, _4$$4, _5$$4, _7$$5, _9$$6, _10$$6, _11$$6;
+	zval _GET, params, tokenInfo, userInfo, _0$$3, _1$$3, _8$$3, _2$$4, _3$$4, _4$$4, _5$$4, _7$$5, _9$$6, _10$$6, _11$$6, _12$$6, _13$$6;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_GET);
@@ -144,6 +144,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 	ZVAL_UNDEF(&_9$$6);
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_11$$6);
+	ZVAL_UNDEF(&_12$$6);
+	ZVAL_UNDEF(&_13$$6);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -190,14 +192,21 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 		zephir_read_property(&_8$$3, this_ptr, SL("accessToken"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_8$$3)) {
 			ZEPHIR_INIT_NVAR(&params);
-			zephir_create_array(&params, 1, 0 TSRMLS_CC);
+			zephir_create_array(&params, 2, 0 TSRMLS_CC);
 			ZEPHIR_OBS_VAR(&_9$$6);
 			zephir_read_property(&_9$$6, this_ptr, SL("accessToken"), PH_NOISY_CC);
 			zephir_array_update_string(&params, SL("access_token"), &_9$$6, PH_COPY | PH_SEPARATE);
-			ZVAL_LONG(&_10$$6, 0);
 			ZEPHIR_INIT_VAR(&_11$$6);
+			ZVAL_STRING(&_11$$6, "fields");
+			ZEPHIR_INIT_VAR(&_12$$6);
+			ZVAL_STRING(&_12$$6, "id,name,email,gender,link,verified,first_name,last_name,birthday,locale,timezone");
+			ZEPHIR_CALL_METHOD(&_10$$6, this_ptr, "getoption", NULL, 0, &_11$$6, &_12$$6);
+			zephir_check_call_status();
+			zephir_array_update_string(&params, SL("fields"), &_10$$6, PH_COPY | PH_SEPARATE);
+			ZVAL_LONG(&_13$$6, 0);
+			ZEPHIR_INIT_NVAR(&_11$$6);
 			ZVAL_STRING(&_11$$6, "https://graph.facebook.com/me");
-			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, &_10$$6, &_11$$6, &params);
+			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, &_13$$6, &_11$$6, &params);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(&userInfo, SL("id"))) {
 				zephir_update_property_zval(this_ptr, SL("userInfo"), &userInfo);
