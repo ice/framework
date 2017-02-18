@@ -103,7 +103,7 @@ class Facebook extends Adapter
                 "client_id":     this->clientId,
                 "redirect_uri":  this->redirectUri,
                 "response_type": "code",
-                "scope":         "email,user_birthday"
+                "scope":         this->getOption("scope", "email,public_profile")
             ]
         ];
     }

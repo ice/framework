@@ -16,6 +16,7 @@ use Ice\Exception;
 abstract class Adapter implements SocialInterface
 {
 
+    protected options;
     protected accessToken { set, get };
     protected clientId;
     protected clientSecret;
@@ -36,13 +37,15 @@ abstract class Adapter implements SocialInterface
      */
     public function __construct(config = [])
     {
-        var clientId, clientSecret, redirectUri, tmp;
+        var clientId, clientSecret, redirectUri, di, auth;
+
+        let di = Di::$fetch();
 
         if !count(config) {
-            let tmp = Di::$fetch()->get("config")->get("auth");
+            let auth = di->get("config")->get("auth");
 
-            if tmp && tmp->has(this->provider) {
-                let config = tmp->get(this->provider)->toArray();
+            if auth && auth->has(this->provider) {
+                let config = auth->get(this->provider)->toArray();
             }
         }
 
@@ -53,12 +56,14 @@ abstract class Adapter implements SocialInterface
             let this->clientSecret = clientSecret;
         }
         if fetch redirectUri, config["redirect_uri"] {
-            let this->redirectUri = redirectUri;
+            let this->redirectUri = di->has("url") ? di->get("url")->getStatic(redirectUri) : redirectUri;
         }
 
         if !this->clientId || !this->clientSecret || !this->redirectUri {
             throw new Exception(["Option `%s`, `%s`, `%s` are required", "client_id", "client_secret", "redirect_uri"]);
         }
+
+        let this->options = config;
     }
 
     /**
@@ -136,6 +141,23 @@ abstract class Adapter implements SocialInterface
         let config = this->{"prepareAuthParams"}();
 
         return config["auth_url"] . "?" . urldecode(http_build_query(config["auth_params"]));
+    }
+
+    /**
+     * Get option value with key.
+     *
+     * @param string key The option key
+     * @param mixed defaultValue The value to return if option key does not exist
+     * @return mixed
+     */
+    public function getOption(string! key, var defaultValue = null)
+    {
+        var value;
+
+        if fetch value, this->options[key] {
+            return value;
+        }
+        return defaultValue;
     }
 
     /**
