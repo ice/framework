@@ -71,14 +71,17 @@ class Facebook extends Adapter
             // Be able to store access_token in the session (message: This_authorization_code_has_expired_)
             if !this->accessToken {
                 parse_str(this->call(parent::GET, "https://graph.facebook.com/oauth/access_token", params, false), tokenInfo);
-                
+
                 if count(tokenInfo) > 0 && isset tokenInfo["access_token"] {
                     let this->accessToken = tokenInfo["access_token"];
-                }                
+                }
             }
 
             if this->accessToken {
-                let params = ["access_token": this->accessToken],
+                let params = [
+                    "access_token": this->accessToken,
+                    "fields": this->getOption("fields", "id,name,email,gender,link,verified,first_name,last_name,birthday,locale,timezone")
+                ],
                     userInfo = this->call(parent::GET, "https://graph.facebook.com/me", params);
 
                 if isset userInfo["id"] {
