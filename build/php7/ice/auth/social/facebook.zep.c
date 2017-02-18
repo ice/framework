@@ -216,12 +216,16 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
  */
 PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 
-	zval _1;
+	zval _1, _2, _3, _4;
 	zval _0;
+	int ZEPHIR_LAST_CALL_STATUS;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
 
 	ZEPHIR_MM_GROW();
 
@@ -236,7 +240,13 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 	zephir_read_property(&_1, this_ptr, SL("redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("redirect_uri"), &_1, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(&_0, SL("response_type"), SL("code"));
-	add_assoc_stringl_ex(&_0, SL("scope"), SL("email,user_birthday"));
+	ZEPHIR_INIT_VAR(&_3);
+	ZVAL_STRING(&_3, "scope");
+	ZEPHIR_INIT_VAR(&_4);
+	ZVAL_STRING(&_4, "email,public_profile");
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getoption", NULL, 0, &_3, &_4);
+	zephir_check_call_status();
+	zephir_array_update_string(&_0, SL("scope"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("auth_params"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 
