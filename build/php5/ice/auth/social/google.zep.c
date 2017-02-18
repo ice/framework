@@ -197,8 +197,9 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
  */
 PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 
-	zval *_1 = NULL;
+	zval *_1 = NULL, *_2 = NULL, *_3, *_4;
 	zval *_0;
+	int ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -213,7 +214,15 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 	ZEPHIR_OBS_NVAR(_1);
 	zephir_read_property_this(&_1, this_ptr, SL("clientId"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("client_id"), &_1, PH_COPY | PH_SEPARATE);
-	add_assoc_stringl_ex(_0, SS("scope"), SL("https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"), 1);
+	ZEPHIR_INIT_VAR(_3);
+	ZVAL_STRING(_3, "scope", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_VAR(_4);
+	ZVAL_STRING(_4, "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getoption", NULL, 0, _3, _4);
+	zephir_check_temp_parameter(_3);
+	zephir_check_temp_parameter(_4);
+	zephir_check_call_status();
+	zephir_array_update_string(&_0, SL("scope"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&return_value, SL("auth_params"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 
