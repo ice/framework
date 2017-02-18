@@ -115,7 +115,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 
 	zend_bool result = 0, _6$$4;
 	int ZEPHIR_LAST_CALL_STATUS;
-	zval *_GET, *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_0$$3 = NULL, *_1$$3, *_8$$3, *_2$$4 = NULL, *_3$$4, *_4$$4, *_5$$4, *_7$$5, *_9$$6, *_10$$6, *_11$$6;
+	zval *_GET, *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_0$$3 = NULL, *_1$$3, *_8$$3, *_2$$4 = NULL, *_3$$4, *_4$$4, *_5$$4, *_7$$5, *_9$$6, *_10$$6 = NULL, *_11$$6 = NULL, *_12$$6 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SS("_GET") TSRMLS_CC);
@@ -165,16 +165,25 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 		_8$$3 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
 		if (zephir_is_true(_8$$3)) {
 			ZEPHIR_INIT_NVAR(params);
-			zephir_create_array(params, 1, 0 TSRMLS_CC);
+			zephir_create_array(params, 2, 0 TSRMLS_CC);
 			ZEPHIR_OBS_VAR(_9$$6);
 			zephir_read_property_this(&_9$$6, this_ptr, SL("accessToken"), PH_NOISY_CC);
 			zephir_array_update_string(&params, SL("access_token"), &_9$$6, PH_COPY | PH_SEPARATE);
-			ZEPHIR_INIT_VAR(_10$$6);
-			ZVAL_LONG(_10$$6, 0);
 			ZEPHIR_INIT_VAR(_11$$6);
-			ZVAL_STRING(_11$$6, "https://graph.facebook.com/me", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _10$$6, _11$$6, params);
+			ZVAL_STRING(_11$$6, "fields", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_INIT_VAR(_12$$6);
+			ZVAL_STRING(_12$$6, "id,name,email,gender,link,verified,first_name,last_name,birthday,locale,timezone", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&_10$$6, this_ptr, "getoption", NULL, 0, _11$$6, _12$$6);
 			zephir_check_temp_parameter(_11$$6);
+			zephir_check_temp_parameter(_12$$6);
+			zephir_check_call_status();
+			zephir_array_update_string(&params, SL("fields"), &_10$$6, PH_COPY | PH_SEPARATE);
+			ZEPHIR_INIT_NVAR(_11$$6);
+			ZVAL_LONG(_11$$6, 0);
+			ZEPHIR_INIT_NVAR(_12$$6);
+			ZVAL_STRING(_12$$6, "https://graph.facebook.com/me", ZEPHIR_TEMP_PARAM_COPY);
+			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _11$$6, _12$$6, params);
+			zephir_check_temp_parameter(_12$$6);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(userInfo, SS("id"))) {
 				zephir_update_property_this(this_ptr, SL("userInfo"), userInfo TSRMLS_CC);
