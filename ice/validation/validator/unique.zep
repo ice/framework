@@ -93,7 +93,7 @@ class Unique extends Validator
 
             if db->getType() == "NOSQL" {
                 if db->getDriver() instanceof Mongodb {
-                    let value = new \MongoDB\BSON\Regex(tmp, "i");
+                    let value = new \MongoDB\BSON\Regex("^" . tmp . "$", "i");
                 } else {
                     let value = new \MongoRegex("/^" . tmp . "$/i");
                 }
