@@ -442,7 +442,7 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 		zephir_array_fetch_string(&_11$$3, &options, SL("dataGenerator"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 96 TSRMLS_CC);
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(&_10$$3, &_11$$3 TSRMLS_CC);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 129, &_8$$3, &_10$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 116, &_8$$3, &_10$$3);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("collector"), &_7$$3);
 	}
@@ -643,7 +643,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 		if (ZEPHIR_IS_LONG(&_2, 0)) {
 			zephir_read_property(&_3$$4, this_ptr, SL("silent"), PH_NOISY_CC | PH_READONLY);
 			if (zephir_is_true(&_3$$4)) {
-				ZEPHIR_CALL_CE_STATIC(&_4$$5, ice_di_ce, "fetch", &_5, 1);
+				ZEPHIR_CALL_CE_STATIC(&_4$$5, ice_di_ce, "fetch", &_5, 0);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(&_6$$5);
 				ZVAL_STRING(&_6$$5, "response");
@@ -664,7 +664,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 			ZEPHIR_INIT_VAR(&_10$$4);
 			ZVAL_STRING(&_10$$4, "The requested route could not be found");
 			ZVAL_LONG(&_11$$4, 0);
-			ZEPHIR_CALL_METHOD(NULL, &_9$$4, "__construct", &_12, 13, &_10$$4, &_11$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_9$$4, "__construct", &_12, 12, &_10$$4, &_11$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_9$$4, "ice/mvc/router.zep", 169 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -673,7 +673,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 		if (ZEPHIR_IS_LONG(&_2, 2)) {
 			zephir_read_property(&_13$$6, this_ptr, SL("silent"), PH_NOISY_CC | PH_READONLY);
 			if (zephir_is_true(&_13$$6)) {
-				ZEPHIR_CALL_CE_STATIC(&_14$$7, ice_di_ce, "fetch", &_5, 1);
+				ZEPHIR_CALL_CE_STATIC(&_14$$7, ice_di_ce, "fetch", &_5, 0);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(&_15$$7);
 				ZVAL_STRING(&_15$$7, "response");
@@ -694,7 +694,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 			ZEPHIR_INIT_VAR(&_19$$6);
 			ZVAL_STRING(&_19$$6, "A request was made of a resource using a request method not supported by that resource");
 			ZVAL_LONG(&_20$$6, 2);
-			ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", &_12, 13, &_19$$6, &_20$$6);
+			ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", &_12, 12, &_19$$6, &_20$$6);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_18$$6, "ice/mvc/router.zep", 179 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();

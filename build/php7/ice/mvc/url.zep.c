@@ -222,7 +222,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 		}
 	}
 	if (zephir_is_true(args)) {
-		ZEPHIR_CALL_FUNCTION(&queryString, "http_build_query", NULL, 19, args);
+		ZEPHIR_CALL_FUNCTION(&queryString, "http_build_query", NULL, 18, args);
 		zephir_check_call_status();
 		_8$$12 = Z_TYPE_P(&queryString) == IS_STRING;
 		if (_8$$12) {

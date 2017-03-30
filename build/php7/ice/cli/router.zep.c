@@ -262,7 +262,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	ZEPHIR_INIT_VAR(&params);
 	array_init(&params);
 	ZEPHIR_MAKE_REF(arguments);
-	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", NULL, 3, arguments);
+	ZEPHIR_CALL_FUNCTION(NULL, "array_shift", NULL, 2, arguments);
 	ZEPHIR_UNREF(arguments);
 	zephir_check_call_status();
 	zephir_is_iterable(arguments, 0, "ice/cli/router.zep", 97);

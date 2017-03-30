@@ -368,6 +368,7 @@ void zephir_gettype(zval *return_value, zval *arg)
 					break;
 				}
 			}
+			/* no break */
 
 		default:
 			RETVAL_STRING("unknown type");
@@ -389,12 +390,21 @@ zend_class_entry* zephir_get_internal_ce(const char *class_name, unsigned int cl
 /* Declare constants */
 int zephir_declare_class_constant(zend_class_entry *ce, const char *name, size_t name_length, zval *value)
 {
+#if PHP_VERSION_ID >= 70100
+	int ret;
+ 
+	zend_string *key = zend_string_init(name, name_length, ce->type & ZEND_INTERNAL_CLASS);
+	ret = zend_declare_class_constant_ex(ce, key, value, ZEND_ACC_PUBLIC, NULL);
+	zend_string_release(key);
+	return ret;
+#else
 	if (Z_CONSTANT_P(value)) {
 		ce->ce_flags &= ~ZEND_ACC_CONSTANTS_UPDATED;
 	}
 	ZVAL_NEW_PERSISTENT_REF(value, value);
 	return zend_hash_str_update(&ce->constants_table, name, name_length, value) ?
 		SUCCESS : FAILURE;
+#endif
 }
 
 int zephir_declare_class_constant_null(zend_class_entry *ce, const char *name, size_t name_length)
@@ -440,4 +450,83 @@ int zephir_declare_class_constant_stringl(zend_class_entry *ce, const char *name
 int zephir_declare_class_constant_string(zend_class_entry *ce, const char *name, size_t name_length, const char *value)
 {
 	return zephir_declare_class_constant_stringl(ce, name, name_length, value, strlen(value));
+}
+
+void zephir_get_args(zval *return_value)
+{
+	zend_execute_data *ex = EG(current_execute_data);
+	uint32_t arg_count    = ZEND_CALL_NUM_ARGS(ex);
+	zval *param_ptr       = ZEND_CALL_ARG(ex, 1);
+
+	array_init_size(return_value, arg_count);
+	if (arg_count) {
+		uint32_t first_extra_arg = ex->func->op_array.num_args;
+		zval *p    = ZEND_CALL_ARG(ex, 1);
+		uint32_t i = 0;
+
+		if (arg_count > first_extra_arg) {
+			while (i < first_extra_arg) {
+				zval *q = p;
+
+				if (Z_TYPE_P(q) != IS_UNDEF) {
+					ZVAL_DEREF(q);
+					Z_TRY_ADDREF_P(q);
+					zend_hash_next_index_insert_new(Z_ARRVAL_P(return_value), q);
+				}
+
+				++p;
+				++i;
+			}
+
+			p = ZEND_CALL_VAR_NUM(ex, ex->func->op_array.last_var + ex->func->op_array.T);
+		}
+
+		while (i < arg_count) {
+			zval *q = p;
+
+			if (Z_TYPE_P(q) != IS_UNDEF) {
+				ZVAL_DEREF(q);
+				Z_TRY_ADDREF_P(q);
+				zend_hash_next_index_insert_new(Z_ARRVAL_P(return_value), q);
+			}
+
+			++p;
+			++i;
+		}
+	}
+}
+
+void zephir_get_arg(zval *return_value, zend_long idx)
+{
+	zend_execute_data *ex = EG(current_execute_data);
+	uint32_t arg_count    = ZEND_CALL_NUM_ARGS(ex);
+	zval *param_ptr       = ZEND_CALL_ARG(ex, 1);
+	zval *arg;
+	uint32_t first_extra_arg;
+
+	if (UNEXPECTED(idx < 0)) {
+		zend_error(E_WARNING, "zephir_get_arg():  The argument number should be >= 0");
+		RETURN_FALSE;
+	}
+
+	if (UNEXPECTED((zend_ulong)idx >= arg_count)) {
+		zend_error(E_WARNING, "zephir_get_arg():  Argument " ZEND_LONG_FMT " not passed to function", idx);
+		RETURN_FALSE;
+	}
+
+	first_extra_arg = ex->func->op_array.num_args;
+	if ((zend_ulong)idx >= first_extra_arg && (arg_count > first_extra_arg)) {
+		arg = ZEND_CALL_VAR_NUM(ex, ex->func->op_array.last_var + ex->func->op_array.T) + (idx - first_extra_arg);
+	}
+	else {
+		arg = ZEND_CALL_VAR_NUM(ex, idx);
+	}
+
+	if (EXPECTED(!Z_ISUNDEF_P(arg))) {
+		ZVAL_DEREF(arg);
+		ZVAL_COPY(return_value, arg);
+		return;
+	}
+
+	RETURN_NULL();
 }

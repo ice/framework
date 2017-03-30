@@ -366,7 +366,7 @@ PHP_METHOD(Ice_Arr, getValue) {
 	ZEPHIR_CALL_METHOD(&value, this_ptr, "get", NULL, 0, &key, defaultValue);
 	zephir_check_call_status();
 	if (zephir_is_true(filters)) {
-		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 1);
+		ZEPHIR_CALL_CE_STATIC(&_0$$3, ice_di_ce, "fetch", &_1, 0);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "filter");
@@ -524,7 +524,7 @@ PHP_METHOD(Ice_Arr, getIterator) {
 
 	object_init_ex(return_value, zephir_get_internal_ce(SL("arrayiterator")));
 	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 2, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 1, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -617,10 +617,10 @@ PHP_METHOD(Ice_Arr, getPath) {
 	}
 	do {
 		ZEPHIR_MAKE_REF(&keys);
-		ZEPHIR_CALL_FUNCTION(&key, "array_shift", &_5, 3, &keys);
+		ZEPHIR_CALL_FUNCTION(&key, "array_shift", &_5, 2, &keys);
 		ZEPHIR_UNREF(&keys);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_6$$6, "ctype_digit", &_7, 4, &key);
+		ZEPHIR_CALL_FUNCTION(&_6$$6, "ctype_digit", &_7, 3, &key);
 		zephir_check_call_status();
 		if (zephir_is_true(&_6$$6)) {
 			_8$$7 = zephir_get_intval(&key);
@@ -652,9 +652,9 @@ PHP_METHOD(Ice_Arr, getPath) {
 				if (Z_TYPE_P(&arr$$13) == IS_ARRAY) {
 					ZEPHIR_INIT_NVAR(&_13$$15);
 					object_init_ex(&_13$$15, ice_arr_ce);
-					ZEPHIR_CALL_METHOD(NULL, &_13$$15, "__construct", &_14, 5, &arr$$13);
+					ZEPHIR_CALL_METHOD(NULL, &_13$$15, "__construct", &_14, 4, &arr$$13);
 					zephir_check_call_status();
-					ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 6, &keys);
+					ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 5, &keys);
 					zephir_check_call_status();
 					if (zephir_is_true(&value$$13)) {
 						zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 289);

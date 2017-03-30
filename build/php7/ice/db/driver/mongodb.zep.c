@@ -134,13 +134,13 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "mongodb");
-	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 72, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 64, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "1.2.0alpha1");
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, ">=");
-	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 73, &_1, &_0, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 65, &_1, &_0, &_2);
 	zephir_check_call_status();
 	if (zephir_is_true(&_3)) {
 		ZEPHIR_INIT_VAR(&client);
@@ -262,7 +262,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 				ZVAL_LONG(value, tmp$$4);
 				break;
 			}
-			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 54, value);
+			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 45, value);
 			zephir_check_call_status();
 			tmp$$4 = (zephir_get_numberval(&_3$$7) * 1000);
 			ZEPHIR_INIT_NVAR(value);
@@ -355,9 +355,9 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_fast_count_int(&result TSRMLS_CC)) {
 		object_init_ex(&_1, ice_arr_ce);
-		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 74, &result);
+		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 66, &result);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 5, &_2);
+		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 4, &_2);
 		zephir_check_call_status();
 	} else {
 		ZVAL_BOOL(&_1, 0);
@@ -430,7 +430,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, find) {
 	ZEPHIR_CALL_METHOD(&result, this_ptr, "select", NULL, 0, &from, filters, &options, &fields);
 	zephir_check_call_status();
 	object_init_ex(return_value, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 5, &result);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &result);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -549,10 +549,10 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 		zephir_array_unset_string(&options, SL("offset"), PH_SEPARATE);
 	}
 	if (zephir_fast_count_int(&fields TSRMLS_CC)) {
-		ZEPHIR_CALL_FUNCTION(&_6$$11, "array_flip", NULL, 9, &fields);
+		ZEPHIR_CALL_FUNCTION(&_6$$11, "array_flip", NULL, 8, &fields);
 		zephir_check_call_status();
 		ZVAL_LONG(&_7$$11, 1);
-		ZEPHIR_CALL_FUNCTION(&_8$$11, "array_fill_keys", NULL, 7, &_6$$11, &_7$$11);
+		ZEPHIR_CALL_FUNCTION(&_8$$11, "array_fill_keys", NULL, 6, &_6$$11, &_7$$11);
 		zephir_check_call_status();
 		zephir_array_update_string(&options, SL("projection"), &_8$$11, PH_COPY | PH_SEPARATE);
 	}
@@ -568,7 +568,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	add_assoc_stringl_ex(&_10, SL("array"), SL("array"));
 	ZEPHIR_CALL_METHOD(NULL, &result, "settypemap", NULL, 0, &_10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 75, &result);
+	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 67, &result);
 	zephir_check_call_status();
 	RETURN_MM();
 

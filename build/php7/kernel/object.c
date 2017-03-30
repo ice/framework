@@ -307,7 +307,7 @@ int zephir_class_exists(const zval *class_name, int autoload)
 	zend_class_entry *ce;
 
 	if (Z_TYPE_P(class_name) == IS_STRING) {
-		if ((ce = zend_lookup_class(Z_STR_P(class_name))) != NULL) {
+		if ((ce = zend_lookup_class_ex(Z_STR_P(class_name), NULL, autoload)) != NULL) {
 			return (ce->ce_flags & (ZEND_ACC_INTERFACE | (ZEND_ACC_TRAIT - ZEND_ACC_EXPLICIT_ABSTRACT_CLASS))) == 0;
 		}
 		return 0;
@@ -443,9 +443,6 @@ int zephir_read_property(zval *result, zval *object, const char *property_name, 
 	}
 
 	ce = Z_OBJCE_P(object);
-	if (ce->parent) {
-		ce = zephir_lookup_class_ce(ce, property_name, property_length);
-	}
 
 #if PHP_VERSION_ID >= 70100
 	old_scope = EG(fake_scope);
@@ -453,6 +450,9 @@ int zephir_read_property(zval *result, zval *object, const char *property_name, 
 #else
 	old_scope = EG(scope);
 	EG(scope) = ce;
+	if (ce->parent) {
+		ce = zephir_lookup_class_ce(ce, property_name, property_length);
+	}
 #endif
 
 	if (!Z_OBJ_HT_P(object)->read_property) {
@@ -1194,7 +1194,7 @@ int zephir_create_instance_params(zval *return_value, const zval *class_name, co
 			zval *item;
 			int i = 0;
 
-			if (likely(param_count) <= 10) {
+			if (EXPECTED(param_count <= 10)) {
 				params_ptr = static_params;
 			} else {
 				params_arr = emalloc(param_count * sizeof(zval*));
@@ -1211,7 +1211,7 @@ int zephir_create_instance_params(zval *return_value, const zval *class_name, co
 
 		outcome = zephir_call_class_method_aparams(NULL, ce, zephir_fcall_method, return_value, SL("__construct"), NULL, 0, param_count, params_ptr);
 
-		if (unlikely(params_arr != NULL)) {
+		if (UNEXPECTED(params_arr != NULL)) {
 			efree(params_arr);
 		}
 	}

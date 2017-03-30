@@ -240,12 +240,12 @@ PHP_METHOD(Ice_Validation, __construct) {
 	}
 
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("di"), &_0);
 	ZEPHIR_INIT_VAR(&_2);
 	object_init_ex(&_2, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", NULL, 5, &data);
+	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", NULL, 4, &data);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("data"), &_2);
 	ZEPHIR_MM_RESTORE();
@@ -304,9 +304,9 @@ PHP_METHOD(Ice_Validation, resolve) {
 			object_init_ex(&_2$$4, ice_exception_ce);
 			ZEPHIR_INIT_VAR(&_3$$4);
 			ZVAL_STRING(&_3$$4, "Validator %s not found");
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 12, &_3$$4, &alias);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 11, &_3$$4, &alias);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 13, &_4$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 12, &_4$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_2$$4, "ice/validation.zep", 101 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -405,7 +405,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 166, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 153, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -439,7 +439,7 @@ PHP_METHOD(Ice_Validation, rule) {
 					ZEPHIR_INIT_NVAR(options);
 					zephir_fast_explode_str(options, SL(":"), &rule, LONG_MAX TSRMLS_CC);
 					ZEPHIR_MAKE_REF(options);
-					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_12, 3, options);
+					ZEPHIR_CALL_FUNCTION(&alias, "array_shift", &_12, 2, options);
 					ZEPHIR_UNREF(options);
 					zephir_check_call_status();
 					if (!ZEPHIR_IS_STRING(&alias, "regex")) {
@@ -1059,7 +1059,7 @@ PHP_METHOD(Ice_Validation, getMessages) {
 
 	object_init_ex(return_value, ice_arr_ce);
 	zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 5, &_0);
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 

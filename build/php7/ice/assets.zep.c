@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Assets, __construct) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("di"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -746,13 +746,13 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZVAL_STRING(&_0, "target");
 	ZEPHIR_CALL_METHOD(&target, this_ptr, "getoption", &_1, 0, &_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 34, &uri);
+	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 33, &uri);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&dir);
 	ZEPHIR_CONCAT_VS(&dir, &_2, "/");
 	ZEPHIR_INIT_VAR(&_4);
 	ZEPHIR_CONCAT_SV(&_4, ".", &type);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 35, &uri, &_4);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 34, &uri, &_4);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&uriMin);
 	ZEPHIR_CONCAT_VVVSV(&uriMin, &target, &dir, &file, ".min.", &type);
@@ -771,7 +771,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				ZEPHIR_INIT_NVAR(minify);
 				ZVAL_BOOL(minify, 1);
 			} else {
-				ZEPHIR_CALL_FUNCTION(minify, "md5_file", NULL, 36, &destination);
+				ZEPHIR_CALL_FUNCTION(minify, "md5_file", NULL, 35, &destination);
 				zephir_check_call_status();
 			}
 			break;
@@ -818,20 +818,20 @@ PHP_METHOD(Ice_Assets, prepare) {
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(minify)) {
-			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 34, &destination);
+			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 33, &destination);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 37, &_11$$14);
+			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 36, &_11$$14);
 			zephir_check_call_status();
 			if (!(zephir_is_true(&_12$$14))) {
 				ZVAL_LONG(&_13$$15, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 38, &_13$$15);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 37, &_13$$15);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 34, &destination);
+				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 33, &destination);
 				zephir_check_call_status();
 				ZVAL_LONG(&_13$$15, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 39, &_15$$15, &_13$$15, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 38, &_15$$15, &_13$$15, &__$true);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 38, &old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 37, &old);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(&_16$$14);
