@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getDateTime) {
 		ZEPHIR_CPY_WRT(date, value);
 	} else {
 		if (Z_TYPE_P(value) == IS_STRING) {
-			ZEPHIR_CALL_FUNCTION(&_1$$5, "strtotime", NULL, 54, value);
+			ZEPHIR_CALL_FUNCTION(&_1$$5, "strtotime", NULL, 53, value);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(value, _1$$5);
 		}

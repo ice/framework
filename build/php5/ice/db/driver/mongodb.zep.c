@@ -230,7 +230,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 				ZVAL_LONG(value, tmp$$4);
 				break;
 			}
-			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 54, value);
+			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 53, value);
 			zephir_check_call_status();
 			tmp$$4 = (zephir_get_numberval(_3$$7) * 1000);
 			ZEPHIR_INIT_NVAR(value);

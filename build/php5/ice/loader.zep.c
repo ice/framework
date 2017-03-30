@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "loadClass", 1);
 	zephir_array_fast_append(_0, _1);
-	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 117, _0);
+	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 116, _0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	if (!(zephir_array_isset(_9, prefix))) {
 		ZEPHIR_INIT_VAR(_10$$3);
 		zephir_create_array(_10$$3, 1, 0 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_11$$3, "utf8_encode", &_12, 118, baseDir);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "utf8_encode", &_12, 117, baseDir);
 		zephir_check_call_status();
 		zephir_array_fast_append(_10$$3, _11$$3);
 		zephir_update_property_array(this_ptr, SL("prefixes"), prefix, _10$$3 TSRMLS_CC);
@@ -133,19 +133,19 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	if (prepend) {
 		_13$$4 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		zephir_array_fetch(&_14$$4, _13$$4, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 118, baseDir);
+		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 117, baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(_14$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 119, _14$$4, _15$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 118, _14$$4, _15$$4);
 		ZEPHIR_UNREF(_14$$4);
 		zephir_check_call_status();
 	} else {
 		_16$$5 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		zephir_array_fetch(&_17$$5, _16$$5, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 57 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 118, baseDir);
+		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 117, baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(_17$$5);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 120, _17$$5, _18$$5);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 119, _17$$5, _18$$5);
 		ZEPHIR_UNREF(_17$$5);
 		zephir_check_call_status();
 	}
@@ -175,7 +175,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEPHIR_CPY_WRT(prefix, className);
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "\\", 0);
-	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 121, prefix, &_0);
+	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 120, prefix, &_0);
 	zephir_check_call_status();
 	while (1) {
 		if (!(!ZEPHIR_IS_FALSE_IDENTICAL(pos))) {
@@ -203,7 +203,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 		ZEPHIR_CPY_WRT(prefix, _6$$3);
 		ZEPHIR_SINIT_NVAR(_8$$3);
 		ZVAL_STRING(&_8$$3, "\\", 0);
-		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 121, prefix, &_8$$3);
+		ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 120, prefix, &_8$$3);
 		zephir_check_call_status();
 	}
 	RETURN_MM_BOOL(0);
