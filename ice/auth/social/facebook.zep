@@ -57,8 +57,7 @@ class Facebook extends Adapter
     {
         var result, params, tokenInfo, userInfo;
 
-        let result = false,
-            tokenInfo = null;
+        let result = false;
 
         if isset _GET["code"] {
             let params = [
@@ -70,9 +69,9 @@ class Facebook extends Adapter
 
             // Be able to store access_token in the session (message: This_authorization_code_has_expired_)
             if !this->accessToken {
-                parse_str(this->call(parent::GET, "https://graph.facebook.com/oauth/access_token", params, false), tokenInfo);
+                let tokenInfo = this->call(parent::GET, "https://graph.facebook.com/oauth/access_token", params);
 
-                if count(tokenInfo) > 0 && isset tokenInfo["access_token"] {
+                if isset tokenInfo["access_token"] {
                     let this->accessToken = tokenInfo["access_token"];
                 }
             }
@@ -84,7 +83,7 @@ class Facebook extends Adapter
                 ],
                     userInfo = this->call(parent::GET, "https://graph.facebook.com/me", params);
 
-                if isset userInfo["id"] {
+                if isset userInfo[this->socialFieldsMap["socialId"]] {
                     let this->userInfo = userInfo,
                         result = true;
                 }
