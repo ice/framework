@@ -12,8 +12,9 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/fcall.h"
+#include "kernel/hash.h"
 #include "kernel/memory.h"
+#include "kernel/fcall.h"
 #include "kernel/require.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
@@ -46,13 +47,18 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
+	zend_string *_2;
+	zend_ulong _1;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval data;
-	zval *path_param = NULL, *data_param = NULL;
+	zval *path_param = NULL, *data_param = NULL, key, value, *_0, _3$$3;
 	zval path;
 	ZEPHIR_INIT_THIS();
 
 	ZVAL_UNDEF(&path);
+	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&value);
+	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
@@ -76,16 +82,30 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	}
 
 
-	ZEPHIR_MAKE_REF(&data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 118, &data);
-	ZEPHIR_UNREF(&data);
-	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 119);
+	zephir_is_iterable(&data, 0, "ice/mvc/view/engine/php.zep", 33);
+	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _1, _2, _0)
+	{
+		ZEPHIR_INIT_NVAR(&key);
+		if (_2 != NULL) { 
+			ZVAL_STR_COPY(&key, _2);
+		} else {
+			ZVAL_LONG(&key, _1);
+		}
+		ZEPHIR_INIT_NVAR(&value);
+		ZVAL_COPY(&value, _0);
+		ZEPHIR_CPY_WRT(&_3$$3, &value);
+		if (zephir_set_symbol(&key, &_3$$3 TSRMLS_CC) == FAILURE) {
+			return;
+		}
+	} ZEND_HASH_FOREACH_END();
+	ZEPHIR_INIT_NVAR(&value);
+	ZEPHIR_INIT_NVAR(&key);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 118);
 	zephir_check_call_status();
 	if (zephir_require_zval(&path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 120);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 119);
 	zephir_check_call_status();
 	RETURN_MM();
 
