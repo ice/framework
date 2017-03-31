@@ -24,7 +24,12 @@ class Php extends Engine
      */
     public function render(string! path, array data = [])
     {
-        extract(data);
+        var key, value;
+
+        for key, value in data {
+            let {key} = value;
+        }
+
         ob_start();
         require path;
         return ob_get_clean();
