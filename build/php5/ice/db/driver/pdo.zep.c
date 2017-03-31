@@ -127,7 +127,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 		zephir_array_fetch_long(&_3, parts, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 40 TSRMLS_CC);
 		ZEPHIR_SINIT_VAR(_4);
 		ZVAL_STRING(&_4, ":", 0);
-		ZEPHIR_CALL_FUNCTION(&_5, "strstr", NULL, 77, _3, &_4, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(&_5, "strstr", NULL, 76, _3, &_4, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
 		_2 = ZEPHIR_IS_STRING(_5, "mysql");
 	}
@@ -440,20 +440,20 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 				) {
 					ZEPHIR_GET_HVALUE(item, _8$$5);
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 78, item);
+					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 77, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 76, item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 75, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(value) == IS_ARRAY) {
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 78, value);
+						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 77, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 76, value);
+						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 75, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(value, _11$$10);

@@ -22,6 +22,7 @@
 #include "kernel/file.h"
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/hash.h"
 #include "kernel/require.h"
 
 
@@ -96,7 +97,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZEPHIR_INIT_VAR(_5);
 	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 34, path);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_7, "realpath", NULL, 134, _6);
+	ZEPHIR_CALL_FUNCTION(&_7, "realpath", NULL, 132, _6);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_8);
 	ZVAL_STRING(&_8, "", 0);
@@ -138,7 +139,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	if (zephir_is_true(compile)) {
 		ZEPHIR_INIT_VAR(_10$$9);
 		object_init_ex(_10$$9, ice_mvc_view_engine_sleet_compiler_ce);
-		ZEPHIR_CALL_METHOD(NULL, _10$$9, "__construct", NULL, 135, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _10$$9, "__construct", NULL, 133, this_ptr);
 		zephir_check_call_status();
 		zephir_update_property_this(this_ptr, SL("compiler"), _10$$9 TSRMLS_CC);
 		_11$$9 = zephir_fetch_nproperty_this(this_ptr, SL("compiler"), PH_NOISY_CC);
@@ -188,9 +189,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
+	HashTable *_2;
+	HashPosition _1;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
-	zval *path_param = NULL, *data_param = NULL, *_0 = NULL;
+	zval *path_param = NULL, *data_param = NULL, *key = NULL, *value = NULL, *_0 = NULL, **_3, *_4$$3 = NULL;
 	zval *path = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -217,16 +220,24 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "compile", NULL, 0, path);
 	zephir_check_call_status();
 	zephir_get_strval(path, _0);
-	ZEPHIR_MAKE_REF(data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 131, data);
-	ZEPHIR_UNREF(data);
-	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 132);
+	zephir_is_iterable(data, &_2, &_1, 0, 0, "ice/mvc/view/engine/sleet.zep", 105);
+	for (
+	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_2, &_1)
+	) {
+		ZEPHIR_GET_HMKEY(key, _2, _1);
+		ZEPHIR_GET_HVALUE(value, _3);
+		ZEPHIR_CPY_WRT(_4$$3, value);
+		if (zephir_set_symbol(key, _4$$3 TSRMLS_CC) == FAILURE) {
+			return;
+		}
+	}
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 130);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 133);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 131);
 	zephir_check_call_status();
 	RETURN_MM();
 

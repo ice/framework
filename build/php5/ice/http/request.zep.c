@@ -511,11 +511,11 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 106, client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 105, client, &_4);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 106, forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 105, forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(_5)) {
 		ZEPHIR_CPY_WRT(ip, client);

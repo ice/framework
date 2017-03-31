@@ -12,6 +12,7 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
+#include "kernel/hash.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/require.h"
@@ -46,9 +47,11 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
+	HashTable *_1;
+	HashPosition _0;
 	int ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
-	zval *path_param = NULL, *data_param = NULL;
+	zval *path_param = NULL, *data_param = NULL, *key = NULL, *value = NULL, **_2, *_3$$3 = NULL;
 	zval *path = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -72,16 +75,24 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	}
 
 
-	ZEPHIR_MAKE_REF(data);
-	ZEPHIR_CALL_FUNCTION(NULL, "extract", NULL, 131, data);
-	ZEPHIR_UNREF(data);
-	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 132);
+	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/mvc/view/engine/php.zep", 33);
+	for (
+	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zephir_hash_move_forward_ex(_1, &_0)
+	) {
+		ZEPHIR_GET_HMKEY(key, _1, _0);
+		ZEPHIR_GET_HVALUE(value, _2);
+		ZEPHIR_CPY_WRT(_3$$3, value);
+		if (zephir_set_symbol(key, _3$$3 TSRMLS_CC) == FAILURE) {
+			return;
+		}
+	}
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 130);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 133);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 131);
 	zephir_check_call_status();
 	RETURN_MM();
 

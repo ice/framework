@@ -181,7 +181,7 @@ PHP_METHOD(Ice_Validation_Validator_NotIn, validate) {
 		ZEPHIR_INIT_NVAR(_4$$6);
 		zephir_fast_join_str(_4$$6, SL(", "), values TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":values"), &_4$$6, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_16$$6, "strtr", NULL, 87, message, replace);
+		ZEPHIR_CALL_FUNCTION(&_16$$6, "strtr", NULL, 86, message, replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, field, _16$$6);
 		zephir_check_call_status();
