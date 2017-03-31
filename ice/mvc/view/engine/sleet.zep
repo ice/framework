@@ -94,9 +94,14 @@ class Sleet extends Engine
      */
     public function render(string! path, array data = [])
     {
+        var key, value;
+
         let path = this->compile(path);
 
-        extract(data);
+        for key, value in data {
+            let {key} = value;
+        }
+
         ob_start();
 
         require path;
