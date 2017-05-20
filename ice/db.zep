@@ -38,7 +38,7 @@ class Db
 
             switch driver {
                 case "mongo":
-                    let driver = "mongo",
+                    let driver = "Ice\\Db\\Driver\\Mongo",
                         this->driver = new {driver}(dsn, name);
                     break;
                 case "mongodb":
