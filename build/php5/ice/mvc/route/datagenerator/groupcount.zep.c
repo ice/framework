@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "kernel/hash.h"
 #include "kernel/object.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
@@ -43,7 +42,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	zval *_11$$3 = NULL;
 	HashTable *_1;
 	HashPosition _0;
-	int ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
+	zend_long ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
 	zephir_fcall_cache_entry *_5 = NULL, *_9 = NULL;
 	zval *regexToRoutesMap, *routeMap = NULL, *regex = NULL, *route = NULL, *regexes = NULL, *numGroups = NULL, *numVariables = NULL, **_2, *_13, *_14 = NULL, *_3$$3 = NULL, *_4$$3 = NULL, *_6$$3 = NULL, _7$$3 = zval_used_for_init, _8$$3 = zval_used_for_init, *_10$$3 = NULL, *_12$$3 = NULL;
 
@@ -60,8 +59,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZVAL_LONG(numGroups, 0);
 	zephir_is_iterable(regexToRoutesMap, &_1, &_0, 0, 0, "ice/mvc/route/datagenerator/groupcount.zep", 33);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(regex, _1, _0);
 		ZEPHIR_GET_HVALUE(route, _2);

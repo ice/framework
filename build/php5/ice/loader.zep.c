@@ -19,7 +19,6 @@
 #include "kernel/string.h"
 #include "kernel/operators.h"
 #include "kernel/object.h"
-#include "kernel/hash.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
 
@@ -53,7 +52,7 @@ PHP_METHOD(Ice_Loader, register) {
 
 	zval *_1;
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -81,7 +80,7 @@ PHP_METHOD(Ice_Loader, register) {
 PHP_METHOD(Ice_Loader, addNamespace) {
 
 	zval *_10$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_12 = NULL;
 	zend_bool prepend;
 	zval *prefix_param = NULL, *baseDir_param = NULL, *prepend_param = NULL, *_0, _1, *_2, *_3, _4, *_5, *_6, _7, *_8, *_9, *_11$$3 = NULL, *_13$$4, *_14$$4, *_15$$4 = NULL, *_16$$5, *_17$$5, *_18$$5 = NULL;
@@ -161,7 +160,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
  */
 PHP_METHOD(Ice_Loader, loadClass) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	zval *className_param = NULL, *prefix = NULL, *pos = NULL, *relativeClass = NULL, *mappedFile = NULL, _0, _2$$3 = zval_used_for_init, _3$$3 = zval_used_for_init, _4$$3 = zval_used_for_init, *_6$$3 = NULL, _7$$3 = zval_used_for_init, _8$$3 = zval_used_for_init;
 	zval *className = NULL;
@@ -222,7 +221,7 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	HashTable *_4;
 	HashPosition _3;
 	zephir_fcall_cache_entry *_13 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *prefix_param = NULL, *relativeClass_param = NULL, *baseDir = NULL, *file = NULL, *_0, *_1, *_2, **_5, *_6$$4 = NULL, _7$$4 = zval_used_for_init, _8$$4 = zval_used_for_init, *_9$$4 = NULL, _10$$4 = zval_used_for_init, _11$$4 = zval_used_for_init, *_12$$4 = NULL;
 	zval *prefix = NULL, *relativeClass = NULL;
 
@@ -241,8 +240,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	zephir_array_fetch(&_2, _1, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 118 TSRMLS_CC);
 	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/loader.zep", 133);
 	for (
-	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_4, &_3)
+	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
+	  ; zend_hash_move_forward_ex(_4, &_3)
 	) {
 		ZEPHIR_GET_HVALUE(baseDir, _5);
 		ZEPHIR_INIT_NVAR(_6$$4);
@@ -305,16 +304,27 @@ zend_object_value zephir_init_properties_Ice_Loader(zend_class_entry *class_type
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("prefixes"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("prefixes"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

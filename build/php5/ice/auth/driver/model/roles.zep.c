@@ -43,7 +43,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 
 	zval *_1;
 	zval *_0 = NULL, *_2, *_3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

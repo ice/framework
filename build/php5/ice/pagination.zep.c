@@ -20,7 +20,6 @@
 #include "kernel/math.h"
 #include "kernel/array.h"
 #include "kernel/concat.h"
-#include "kernel/hash.h"
 
 
 /**
@@ -49,7 +48,7 @@ PHP_METHOD(Ice_Pagination, getDi) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "di");
+	RETURN_MEMBER(getThis(), "di");
 
 }
 
@@ -57,7 +56,7 @@ PHP_METHOD(Ice_Pagination, getTag) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "tag");
+	RETURN_MEMBER(getThis(), "tag");
 
 }
 
@@ -68,7 +67,7 @@ PHP_METHOD(Ice_Pagination, getTag) {
  */
 PHP_METHOD(Ice_Pagination, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL;
 	zval *options_param = NULL, *di = NULL, *_2 = NULL, *_3;
 	zval *options = NULL;
@@ -84,17 +83,17 @@ PHP_METHOD(Ice_Pagination, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, this_ptr, "__construct", &_0, 5, options);
+	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, getThis(), "__construct", &_0, 5, options);
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
 	ZVAL_STRING(_3, "tag", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(&_2, di, "get", NULL, 0, _3);
 	zephir_check_temp_parameter(_3);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("tag"), _2 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("tag"), _2 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -109,7 +108,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	zval *_11;
 	zend_bool _2;
 	zval *items = NULL, *data = NULL, *_0, *_1 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, _7, _8, _9, *_10 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, limit = 0, page = 0, pages = 0, total = 0, previous = 0, next = 0;
+	zend_long ZEPHIR_LAST_CALL_STATUS, limit = 0, page = 0, pages = 0, total = 0, previous = 0, next = 0;
 
 	ZEPHIR_MM_GROW();
 
@@ -229,7 +228,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 PHP_METHOD(Ice_Pagination, prepareButton) {
 
 	zval *_26, *_8$$9;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool active, pages, _12;
 	zval *page = NULL, *url = NULL, *active_param = NULL, *symbol = NULL, *query = NULL, *i18n = NULL, *title = NULL, *liClass = NULL, *spanClass = NULL, *aClass = NULL, *_1 = NULL, *_5, *_6 = NULL, *_7, *_11 = NULL, *_13 = NULL, *_23 = NULL, *_24, *_25 = NULL, *_27 = NULL, *_0$$7 = NULL, *_2$$8 = NULL, *_3$$8 = NULL, *_4$$8 = NULL, *_9$$9, *_10$$10 = NULL, *_14$$12, *_15$$12 = NULL, *_16$$12 = NULL, *_17$$11 = NULL, *_18$$11 = NULL, *_19$$11, *_20$$11, *_21$$14, *_22$$15;
 
@@ -465,7 +464,7 @@ PHP_METHOD(Ice_Pagination, minimal) {
 
 	zend_bool _9;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, i = 0, _10;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, _10;
 	zval *parameters = NULL, *_1;
 	zval *url = NULL, *parameters_param = NULL, *html = NULL, *_0, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_11 = NULL, *_16 = NULL, *_17 = NULL, *_18, *_19 = NULL, *_12$$3 = NULL, *_13$$3 = NULL, *_14$$3 = NULL, *_15$$3 = NULL;
 
@@ -584,7 +583,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 
 	zend_bool _12;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, i = 0, _13;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, _13;
 	zval *parameters = NULL, *_1;
 	zval *url = NULL, *parameters_param = NULL, *html = NULL, *_0, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10 = NULL, *_11 = NULL, *_14 = NULL, *_19 = NULL, *_20 = NULL, *_21 = NULL, *_22 = NULL, *_23 = NULL, *_24, *_25 = NULL, *_15$$3 = NULL, *_16$$3 = NULL, *_17$$3 = NULL, *_18$$3 = NULL;
 
@@ -743,7 +742,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	HashPosition _38;
 	zend_bool useMiddle = 0, useN3 = 0, useN6 = 0, _10, _13, _15, _20, _25;
 	zephir_fcall_cache_entry *_3 = NULL, *_6 = NULL, *_34 = NULL;
-	int countOut, countIn, ZEPHIR_LAST_CALL_STATUS, n1 = 0, n3 = 0, n6 = 0, i = 0, _16;
+	zend_long countOut, countIn, ZEPHIR_LAST_CALL_STATUS, n1 = 0, n3 = 0, n6 = 0, i = 0, _16;
 	zval *parameters = NULL, *_30;
 	zval *url = NULL, *parameters_param = NULL, *countOut_param = NULL, *countIn_param = NULL, *html = NULL, *links = NULL, *page = NULL, *content = NULL, *n2 = NULL, *n4 = NULL, *n5 = NULL, *n7 = NULL, *n8 = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_5 = NULL, *_7 = NULL, *_8 = NULL, *_9, *_11, *_12, *_14, *_17 = NULL, *_21 = NULL, *_22 = NULL, *_26 = NULL, *_27 = NULL, *_29, *_31 = NULL, *_32 = NULL, *_33 = NULL, *_35 = NULL, *_36 = NULL, *_37 = NULL, **_40, *_44 = NULL, *_45 = NULL, *_46 = NULL, *_47 = NULL, *_48 = NULL, *_49 = NULL, *_50, *_51 = NULL, *_18$$4 = NULL, *_19$$5, *_23$$6 = NULL, *_24$$7, *_28$$8 = NULL, *_41$$9 = NULL, *_42$$9 = NULL, *_43$$9 = NULL;
 
@@ -966,8 +965,8 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_concat_self(&html, _35 TSRMLS_CC);
 	zephir_is_iterable(links, &_39, &_38, 0, 0, "ice/pagination.zep", 321);
 	for (
-	  ; zephir_hash_get_current_data_ex(_39, (void**) &_40, &_38) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_39, &_38)
+	  ; zend_hash_get_current_data_ex(_39, (void**) &_40, &_38) == SUCCESS
+	  ; zend_hash_move_forward_ex(_39, &_38)
 	) {
 		ZEPHIR_GET_HMKEY(page, _39, _38);
 		ZEPHIR_GET_HVALUE(content, _40);

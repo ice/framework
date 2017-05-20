@@ -72,7 +72,8 @@ PHP_METHOD(Ice_Auth_Social_Adapter, setAccessToken) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("accessToken"), accessToken TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("accessToken"), accessToken TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -80,7 +81,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getAccessToken) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "accessToken");
+	RETURN_MEMBER(getThis(), "accessToken");
 
 }
 
@@ -88,7 +89,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getProvider) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "provider");
+	RETURN_MEMBER(getThis(), "provider");
 
 }
 
@@ -96,7 +97,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getResponseType) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "responseType");
+	RETURN_MEMBER(getThis(), "responseType");
 
 }
 
@@ -110,7 +111,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 
 	zval *_18$$8;
 	zend_bool _13, _15, _3$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *config = NULL, *clientId = NULL, *clientSecret = NULL, *redirectUri = NULL, *di = NULL, *auth = NULL, *_12, *_14, *_16, *_1$$3 = NULL, *_2$$3 = NULL, *_4$$3 = NULL, *_5$$3, *_6$$4 = NULL, *_7$$4, *_8$$7 = NULL, *_9$$7 = NULL, *_10$$7 = NULL, *_11$$7 = NULL, *_17$$8, *_19$$8 = NULL;
 
@@ -155,11 +156,11 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 	}
 	ZEPHIR_OBS_VAR(clientId);
 	if (zephir_array_isset_string_fetch(&clientId, config, SS("client_id"), 0 TSRMLS_CC)) {
-		zephir_update_property_this(this_ptr, SL("clientId"), clientId TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("clientId"), clientId TSRMLS_CC);
 	}
 	ZEPHIR_OBS_VAR(clientSecret);
 	if (zephir_array_isset_string_fetch(&clientSecret, config, SS("client_secret"), 0 TSRMLS_CC)) {
-		zephir_update_property_this(this_ptr, SL("clientSecret"), clientSecret TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("clientSecret"), clientSecret TSRMLS_CC);
 	}
 	ZEPHIR_OBS_VAR(redirectUri);
 	if (zephir_array_isset_string_fetch(&redirectUri, config, SS("redirect_uri"), 0 TSRMLS_CC)) {
@@ -180,7 +181,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		} else {
 			ZEPHIR_CPY_WRT(_8$$7, redirectUri);
 		}
-		zephir_update_property_this(this_ptr, SL("redirectUri"), _8$$7 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("redirectUri"), _8$$7 TSRMLS_CC);
 	}
 	_12 = zephir_fetch_nproperty_this(this_ptr, SL("clientId"), PH_NOISY_CC);
 	_13 = !zephir_is_true(_12);
@@ -216,7 +217,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("options"), config TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("options"), config TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -230,18 +231,18 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
  */
 PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *arguments = NULL, *key = NULL, *value = NULL, _0$$3, *_1$$3, *_2$$3 = NULL;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &name_param, &arguments);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(name);
@@ -348,7 +349,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 PHP_METHOD(Ice_Auth_Social_Adapter, getAuthUrl) {
 
 	zval *config = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -380,11 +381,11 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getOption) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
-	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(key);
@@ -420,7 +421,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 	zval *params = NULL;
 	zval *url = NULL;
 	zval *method_param = NULL, *url_param = NULL, *params_param = NULL, *parse_param = NULL, *curl = NULL, *result = NULL, _11 = zval_used_for_init, *_0$$3 = NULL, *_2$$3 = NULL, *_4$$3, _5$$3, _7$$4 = zval_used_for_init, _8$$4, *_9$$4 = NULL, *_10$$4 = NULL, *_12$$5;
-	int method, ZEPHIR_LAST_CALL_STATUS;
+	zend_long method, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &method_param, &url_param, &params_param, &parse_param);
@@ -500,16 +501,27 @@ zend_object_value zephir_init_properties_Ice_Auth_Social_Adapter(zend_class_entr
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("socialFieldsMap"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("socialFieldsMap"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("socialFieldsMap"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

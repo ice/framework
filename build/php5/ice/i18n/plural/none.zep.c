@@ -46,7 +46,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_None) {
 PHP_METHOD(Ice_I18n_Plural_None, getCategory) {
 
 	zval *count_param = NULL;
-	int count;
+	zend_long count;
 
 	zephir_fetch_params(0, 1, 0, &count_param);
 

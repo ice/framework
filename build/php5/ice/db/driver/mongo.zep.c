@@ -53,7 +53,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getId) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "id");
+	RETURN_MEMBER(getThis(), "id");
 
 }
 
@@ -61,7 +61,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getType) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "type");
+	RETURN_MEMBER(getThis(), "type");
 
 }
 
@@ -69,7 +69,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getClient) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "client");
+	RETURN_MEMBER(getThis(), "client");
 
 }
 
@@ -77,7 +77,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getLastInsertId) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "lastInsertId");
+	RETURN_MEMBER(getThis(), "lastInsertId");
 
 }
 
@@ -90,7 +90,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getLastInsertId) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL;
 	zval *dsn_param = NULL, *dbname_param = NULL, *options_param = NULL, *_0, *_1;
 	zval *dsn = NULL, *dbname = NULL;
@@ -121,7 +121,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 0, _1, dbname);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("client"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("client"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -134,7 +134,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, __construct) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, getIdValue) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *id_param = NULL;
 	zval *id = NULL;
 
@@ -161,7 +161,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getIdValue) {
 PHP_METHOD(Ice_Db_Driver_Mongo, getDateTime) {
 
 	zend_bool _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value = NULL, *model = NULL, *date = NULL, *_1$$5 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, getDateTime) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0, *_1, *_2 = NULL, *_3 = NULL;
 	zval *from = NULL;
@@ -222,11 +222,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -288,7 +288,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, findOne) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *result = NULL, *_0 = NULL;
 	zval *from = NULL;
@@ -296,11 +296,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -345,7 +345,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, find) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *options = NULL, *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *options_param = NULL, *fields_param = NULL, *filtered = NULL, *collection = NULL, *result = NULL, *tmp = NULL, *_0, *_4, *_8, *_9 = NULL, *_1$$4, *_2$$7, *_3$$7 = NULL, *_5$$9, *_6$$10, *_7$$11;
 	zval *from = NULL;
@@ -353,11 +353,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -442,7 +442,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
 	_8 = zephir_fetch_nproperty_this(this_ptr, SL("client"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_9, _8, "lasterror", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("error"), _9 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("error"), _9 TSRMLS_CC);
 	RETURN_CCTOR(result);
 
 }
@@ -455,7 +455,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, select) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL;
 	zval *from_param = NULL, *fields_param = NULL, *collection = NULL, *status = NULL, *_0, *_1, *_2, *_3 = NULL, *_4;
 	zval *from = NULL;
@@ -463,11 +463,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &fields_param);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -489,8 +489,8 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
 	ZEPHIR_OBS_VAR(_2);
 	zephir_read_property_this(&_2, this_ptr, SL("id"), PH_NOISY_CC);
 	zephir_array_fetch(&_1, fields, _2, PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 189 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("lastInsertId"), _1 TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("error"), status TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("lastInsertId"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_3);
 	zephir_array_fetch_string(&_4, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 192 TSRMLS_CC);
 	if (Z_TYPE_P(_4) == IS_NULL) {
@@ -511,7 +511,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, insert) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL;
 	zval *from_param = NULL, *filters = NULL, *fields_param = NULL, *collection = NULL, *status = NULL, *_0, *_1 = NULL, *_2;
 	zval *from = NULL;
@@ -519,11 +519,11 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &from_param, &filters, &fields_param);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -546,7 +546,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, collection, "update", NULL, 0, filters, fields);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("error"), status TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 210 TSRMLS_CC);
 	if (Z_TYPE_P(_2) == IS_NULL) {
@@ -566,18 +566,18 @@ PHP_METHOD(Ice_Db_Driver_Mongo, update) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *from_param = NULL, *filters = NULL, *collection = NULL, *status = NULL, *_0, *_1 = NULL, *_2;
 	zval *from = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
 
-	if (unlikely(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(from_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
 		zephir_get_strval(from, from_param);
 	} else {
 		ZEPHIR_INIT_VAR(from);
@@ -594,7 +594,7 @@ PHP_METHOD(Ice_Db_Driver_Mongo, remove) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, collection, "remove", NULL, 0, filters);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("error"), status TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("error"), status TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_1);
 	zephir_array_fetch_string(&_2, status, SL("err"), PH_NOISY | PH_READONLY, "ice/db/driver/mongo.zep", 227 TSRMLS_CC);
 	if (Z_TYPE_P(_2) == IS_NULL) {

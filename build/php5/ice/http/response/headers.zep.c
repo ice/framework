@@ -47,7 +47,7 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 	zend_object_iterator *_1$$3;
 	zval *header = NULL, *value = NULL, *_0 = NULL, *_2$$5 = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

@@ -17,7 +17,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -45,7 +44,7 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
  */
 PHP_METHOD(Ice_Config_Ini, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL;
 	zval *data = NULL, *ini = NULL, *raw = NULL, _1;
 
@@ -71,7 +70,7 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&data, this_ptr, "map", NULL, 60, ini, raw);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 26, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, getThis(), "__construct", &_2, 26, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -162,7 +161,7 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	HashTable *_1;
 	HashPosition _0;
 	zephir_fcall_cache_entry *_5 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *ini, *raw, *key = NULL, *value = NULL, *data = NULL, **_2, *_3$$4 = NULL, *_4$$4, *_6$$5 = NULL, *_7$$5;
 
 	ZEPHIR_MM_GROW();
@@ -174,8 +173,8 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	array_init(data);
 	zephir_is_iterable(ini, &_1, &_0, 0, 0, "ice/config/ini.zep", 94);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);

@@ -50,7 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_One) {
 PHP_METHOD(Ice_I18n_Plural_One, getCategory) {
 
 	zval *count_param = NULL, *_0;
-	int count;
+	zend_long count;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count_param);

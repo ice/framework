@@ -48,7 +48,7 @@ PHP_METHOD(Ice_I18n_Plural_Zero, getCategory) {
 
 	zend_bool _0;
 	zval *count_param = NULL;
-	int count;
+	zend_long count;
 
 	zephir_fetch_params(0, 1, 0, &count_param);
 

@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 
 
@@ -40,7 +39,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("staticRouteMap"), staticRouteMap TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("staticRouteMap"), staticRouteMap TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -52,7 +52,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("variableRouteData"), variableRouteData TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("variableRouteData"), variableRouteData TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -74,9 +75,9 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 	if (zephir_fast_count_int(data TSRMLS_CC)) {
 		zephir_array_fetch_long(&_0$$3, data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 16 TSRMLS_CC);
-		zephir_update_property_this(this_ptr, SL("staticRouteMap"), _0$$3 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("staticRouteMap"), _0$$3 TSRMLS_CC);
 		zephir_array_fetch_long(&_1$$3, data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 17 TSRMLS_CC);
-		zephir_update_property_this(this_ptr, SL("variableRouteData"), _1$$3 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("variableRouteData"), _1$$3 TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -86,7 +87,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
 	HashTable *_1, *_10$$3;
 	HashPosition _0, _9$$3;
-	int i = 0, j = 0;
+	zend_long i = 0, j = 0;
 	zval *routeData, *uri, *data = NULL, *matches = NULL, *handler = NULL, *varName = NULL, *varNames = NULL, *vars = NULL, **_2, *_14, *_3$$3 = NULL, *_4$$3, *_5$$3, *_6$$3, *_7$$3, *_8$$3, **_11$$3, *_13$$3 = NULL, *_12$$5;
 
 	ZEPHIR_MM_GROW();
@@ -98,8 +99,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 	ZVAL_NULL(matches);
 	zephir_is_iterable(routeData, &_1, &_0, 0, 0, "ice/mvc/route/dispatcher/groupcount.zep", 48);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HVALUE(data, _2);
 		ZEPHIR_INIT_NVAR(_3$$3);
@@ -120,8 +121,8 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 		i = 0;
 		zephir_is_iterable(varNames, &_10$$3, &_9$$3, 0, 0, "ice/mvc/route/dispatcher/groupcount.zep", 45);
 		for (
-		  ; zephir_hash_get_current_data_ex(_10$$3, (void**) &_11$$3, &_9$$3) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_10$$3, &_9$$3)
+		  ; zend_hash_get_current_data_ex(_10$$3, (void**) &_11$$3, &_9$$3) == SUCCESS
+		  ; zend_hash_move_forward_ex(_10$$3, &_9$$3)
 		) {
 			ZEPHIR_GET_HVALUE(varName, _11$$3);
 			i++;

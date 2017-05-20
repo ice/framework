@@ -70,21 +70,21 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Unique) {
 PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 
 	zval *_22$$18, *_23$$19;
-	zephir_nts_static zend_class_entry *_17$$15 = NULL;
+	zend_class_entry *_17$$15 = NULL;
 	zend_bool _0, _31$$20;
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
 	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace = NULL, *di = NULL, *db = NULL, *from = NULL, *custom = NULL, *except = NULL, *tmp = NULL, *caseInsensitive = NULL, *result = NULL, *id = NULL, *_2 = NULL, *_3 = NULL, *_6 = NULL, *_9 = NULL, *_12 = NULL, *_4$$4, *_5$$5, *_7$$6, *_8$$7, *_10$$9, *_11$$10, *_13$$11, *_14$$12, *_15$$13 = NULL, *_16$$14 = NULL, *_18$$15, *_19$$15, *_20$$16, *_21$$18 = NULL, *_24$$20 = NULL, *_25$$20 = NULL, *_27$$20 = NULL, *_30$$20 = NULL, *_32$$20 = NULL, *_33$$20 = NULL, *_37$$20 = NULL, *_26$$21, *_28$$23, *_29$$24, *_34$$25 = NULL, *_35$$25, *_36$$25 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(field);

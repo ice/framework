@@ -22,7 +22,6 @@
 #include "kernel/file.h"
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/hash.h"
 #include "kernel/require.h"
 
 
@@ -49,7 +48,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "compiler");
+	RETURN_MEMBER(getThis(), "compiler");
 
 }
 
@@ -62,18 +61,18 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 	zephir_fcall_cache_entry *_15 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, *compileDir = NULL, *compile = NULL, *trim = NULL, *dir = NULL, *file = NULL, *compiledPath = NULL, *old = NULL, *compiled = NULL, *_0, *_1, *_2, *_3, _4, *_5, *_6 = NULL, *_7 = NULL, _8, _9, *_10$$9, *_11$$9, *_12$$10, *_13$$12 = NULL, *_16$$12, _14$$13 = zval_used_for_init;
 	zval *path = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &path_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(path);
@@ -141,7 +140,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		object_init_ex(_10$$9, ice_mvc_view_engine_sleet_compiler_ce);
 		ZEPHIR_CALL_METHOD(NULL, _10$$9, "__construct", NULL, 133, this_ptr);
 		zephir_check_call_status();
-		zephir_update_property_this(this_ptr, SL("compiler"), _10$$9 TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("compiler"), _10$$9 TSRMLS_CC);
 		_11$$9 = zephir_fetch_nproperty_this(this_ptr, SL("compiler"), PH_NOISY_CC);
 		ZEPHIR_CALL_METHOD(&compiled, _11$$9, "compile", NULL, 0, path);
 		zephir_check_call_status();
@@ -191,7 +190,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
 	HashTable *_2;
 	HashPosition _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *path_param = NULL, *data_param = NULL, *key = NULL, *value = NULL, *_0 = NULL, **_3, *_4$$3 = NULL;
 	zval *path = NULL;
@@ -199,11 +198,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(path);
@@ -222,8 +221,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	zephir_get_strval(path, _0);
 	zephir_is_iterable(data, &_2, &_1, 0, 0, "ice/mvc/view/engine/sleet.zep", 105);
 	for (
-	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_2, &_1)
+	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);

@@ -48,7 +48,8 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("users"), users TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("users"), users TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -60,7 +61,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *defaultValue = NULL, *username = NULL, *user = NULL, *_0, *_3, *_2$$5, *_4$$6;
 
@@ -74,16 +75,16 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 40, defaultValue);
+		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, getThis(), "getuser", &_1, 40, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(username, defaultValue)) {
-			zephir_update_property_this(this_ptr, SL("user"), defaultValue TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("user"), defaultValue TSRMLS_CC);
 		} else {
 			ZEPHIR_OBS_VAR(user);
 			_2$$5 = zephir_fetch_nproperty_this(this_ptr, SL("users"), PH_NOISY_CC);
 			zephir_array_isset_fetch(&user, _2$$5, username, 0 TSRMLS_CC);
 			zephir_array_update_string(&user, SL("username"), &username, PH_COPY | PH_SEPARATE);
-			zephir_update_property_this(this_ptr, SL("user"), user TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("user"), user TSRMLS_CC);
 		}
 	}
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
@@ -94,7 +95,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-	RETURN_MM_MEMBER(this_ptr, "user");
+	RETURN_MM_MEMBER(getThis(), "user");
 
 }
 
@@ -142,7 +143,7 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, login) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool remember, force, _0, _2$$3, _5$$3;
 	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, *force_param = NULL, *user = NULL, *_1, *_3$$3, *_4$$3 = NULL, *_6$$5;
 	zval *username = NULL, *password = NULL;

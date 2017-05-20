@@ -12,7 +12,6 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/hash.h"
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/require.h"
@@ -49,7 +48,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 	HashTable *_1;
 	HashPosition _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *path_param = NULL, *data_param = NULL, *key = NULL, *value = NULL, **_2, *_3$$3 = NULL;
 	zval *path = NULL;
@@ -57,11 +56,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(path);
@@ -77,8 +76,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/mvc/view/engine/php.zep", 33);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);

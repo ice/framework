@@ -64,7 +64,8 @@ PHP_METHOD(Ice_Assets, setCollections) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("collections"), collections TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("collections"), collections TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -72,7 +73,7 @@ PHP_METHOD(Ice_Assets, getCollections) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "collections");
+	RETURN_MEMBER(getThis(), "collections");
 
 }
 
@@ -84,7 +85,8 @@ PHP_METHOD(Ice_Assets, setOptions) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("options"), options TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -94,14 +96,14 @@ PHP_METHOD(Ice_Assets, setOptions) {
 PHP_METHOD(Ice_Assets, __construct) {
 
 	zval *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 1);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("di"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -145,7 +147,7 @@ PHP_METHOD(Ice_Assets, getOption) {
 PHP_METHOD(Ice_Assets, add) {
 
 	zend_bool _0, _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *version = NULL, *collection = NULL;
 	zval *parameters = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *type = NULL;
 
@@ -222,7 +224,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 
 	zend_bool _4;
 	zephir_fcall_cache_entry *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *version = NULL, *collection = NULL, *_13$$8;
 	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_10$$8 = NULL, *_11$$8, *_12$$8 = NULL, *_14$$8, *_15$$8 = NULL;
 	zval *parameters = NULL, *_6$$7;
@@ -341,7 +343,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 
 	zend_bool _4;
 	zephir_fcall_cache_entry *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *version = NULL, *collection = NULL, *_13$$8;
 	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, *content = NULL, *local = NULL, *tag = NULL, *_0, *_1, *_2$$5, *_3$$5, *_5$$7 = NULL, *_7$$7 = NULL, *_8$$7, *_10$$8 = NULL, *_11$$8, *_12$$8 = NULL, *_14$$8, *_15$$8 = NULL;
 	zval *parameters = NULL, *_6$$7;
@@ -481,7 +483,7 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 PHP_METHOD(Ice_Assets, getCss) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -502,7 +504,7 @@ PHP_METHOD(Ice_Assets, getCss) {
 PHP_METHOD(Ice_Assets, getJs) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -553,18 +555,18 @@ PHP_METHOD(Ice_Assets, get) {
  */
 PHP_METHOD(Ice_Assets, minify) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content_param = NULL, *type, *_0, *_1 = NULL, *_2, *_3;
 	zval *content = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
 
-	if (unlikely(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(content_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(content_param) == IS_STRING)) {
 		zephir_get_strval(content, content_param);
 	} else {
 		ZEPHIR_INIT_VAR(content);
@@ -597,18 +599,18 @@ PHP_METHOD(Ice_Assets, minify) {
 PHP_METHOD(Ice_Assets, prepare) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_14 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, *source = NULL, *target = NULL, *dir = NULL, *file = NULL, *uriMin = NULL, *destination = NULL, *exist = NULL, *old = NULL, *minified = NULL, *_0 = NULL, *_2 = NULL, *_5$$8 = NULL, *_6$$8, *_7$$10 = NULL, *_8$$11, *_9$$11, *_10$$12, *_11$$14 = NULL, *_12$$14 = NULL, *_16$$14, _13$$15 = zval_used_for_init, *_15$$15 = NULL;
 	zval *uri = NULL, *type = NULL, *_4;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
 
-	if (unlikely(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(uri_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(uri_param) == IS_STRING)) {
 		zephir_get_strval(uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(uri);
@@ -739,22 +741,33 @@ zend_object_value zephir_init_properties_Ice_Assets(zend_class_entry *class_type
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("options"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("options"), _1$$3 TSRMLS_CC);
 		}
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("collections"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3$$4);
 			array_init(_3$$4);
-			zephir_update_property_this(this_ptr, SL("collections"), _3$$4 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("collections"), _3$$4 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

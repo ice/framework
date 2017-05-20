@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Facebook) {
 PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 
 	zval *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, *_0;
 
@@ -60,8 +60,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "facebook", 1);
-	zephir_update_property_this(this_ptr, SL("provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, this_ptr, "__construct", &_1, 51, config);
+	zephir_update_property_this(getThis(), SL("provider"), _0 TSRMLS_CC);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, getThis(), "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 6, 0 TSRMLS_CC);
@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	add_assoc_stringl_ex(_2, SS("sex"), SL("gender"), 1);
 	add_assoc_stringl_ex(_2, SS("socialPage"), SL("link"), 1);
 	add_assoc_stringl_ex(_2, SS("birthday"), SL("birthday"), 1);
-	zephir_update_property_this(this_ptr, SL("socialFieldsMap"), _2 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("socialFieldsMap"), _2 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -84,7 +84,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 
 	zval *_0 = NULL, *_1, *_2$$3 = NULL, *_3$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -114,7 +114,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 
 	zend_bool result = 0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *_GET, *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *_0$$3 = NULL, *_1$$3, *_5$$3, *_2$$4, *_3$$4, *_4$$5, *_6$$6, *_7$$6 = NULL, *_8$$6 = NULL, *_9$$6 = NULL, *_10$$6, *_11$$6;
 
 	ZEPHIR_MM_GROW();
@@ -147,7 +147,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			zephir_check_call_status();
 			if (zephir_array_isset_string(tokenInfo, SS("access_token"))) {
 				zephir_array_fetch_string(&_4$$5, tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/facebook.zep", 75 TSRMLS_CC);
-				zephir_update_property_this(this_ptr, SL("accessToken"), _4$$5 TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("accessToken"), _4$$5 TSRMLS_CC);
 			}
 		}
 		_5$$3 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
@@ -176,7 +176,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			_10$$6 = zephir_fetch_nproperty_this(this_ptr, SL("socialFieldsMap"), PH_NOISY_CC);
 			zephir_array_fetch_string(&_11$$6, _10$$6, SL("socialId"), PH_READONLY, "ice/auth/social/facebook.zep", 86 TSRMLS_CC);
 			if (zephir_array_isset(userInfo, _11$$6)) {
-				zephir_update_property_this(this_ptr, SL("userInfo"), userInfo TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("userInfo"), userInfo TSRMLS_CC);
 				result = 1;
 			}
 		}
@@ -194,7 +194,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 
 	zval *_1 = NULL, *_2 = NULL, *_3, *_4;
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

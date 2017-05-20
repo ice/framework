@@ -42,7 +42,7 @@ PHP_METHOD(Ice_Auth_Social, getAdapter) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "adapter");
+	RETURN_MEMBER(getThis(), "adapter");
 
 }
 
@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("adapter"), adapter TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("adapter"), adapter TSRMLS_CC);
 
 }
 
@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 PHP_METHOD(Ice_Auth_Social, authenticate) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -91,7 +91,7 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
  */
 PHP_METHOD(Ice_Auth_Social, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, *_0;
 	zval *key = NULL;
 
@@ -121,7 +121,7 @@ PHP_METHOD(Ice_Auth_Social, get) {
 PHP_METHOD(Ice_Auth_Social, __call) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, *_1;
 	zval *method = NULL;
 

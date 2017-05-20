@@ -58,7 +58,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	unsigned char _2$$3;
 	zend_bool _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$33;
 	long _0;
-	int i = 0, tmp = 0, state, inParen;
+	zend_long i = 0, tmp = 0, state, inParen;
 	char c = 0, next = 0;
 	zval *css_param = NULL;
 	zval *css = NULL, *min;

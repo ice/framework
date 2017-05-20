@@ -17,7 +17,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
@@ -53,7 +52,7 @@ PHP_METHOD(Ice_Arr, getData) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "data");
+	RETURN_MEMBER(getThis(), "data");
 
 }
 
@@ -78,7 +77,7 @@ PHP_METHOD(Ice_Arr, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("data"), data TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("data"), data TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -170,7 +169,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	HashTable *_1;
 	HashPosition _0;
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, *key = NULL, *value = NULL, **_2;
 	zval *data = NULL;
 
@@ -182,8 +181,8 @@ PHP_METHOD(Ice_Arr, replace) {
 
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/arr.zep", 85);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
@@ -201,7 +200,7 @@ PHP_METHOD(Ice_Arr, replace) {
  */
 PHP_METHOD(Ice_Arr, all) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -223,7 +222,7 @@ PHP_METHOD(Ice_Arr, only) {
 	HashTable *_1;
 	HashPosition _0;
 	zephir_fcall_cache_entry *_6 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool strict, _3$$3, _4$$3;
 	zval *keys_param = NULL, *strict_param = NULL, *key = NULL, *only = NULL, **_2, *_5$$3 = NULL, *_7$$4 = NULL;
 	zval *keys = NULL;
@@ -243,8 +242,8 @@ PHP_METHOD(Ice_Arr, only) {
 	array_init(only);
 	zephir_is_iterable(keys, &_1, &_0, 0, 0, "ice/arr.zep", 113);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HVALUE(key, _2);
 		_3$$3 = !strict;
@@ -290,7 +289,7 @@ PHP_METHOD(Ice_Arr, only) {
 PHP_METHOD(Ice_Arr, getValue) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool allowEmpty, _4, _5;
 	zval *key_param = NULL, *filters = NULL, *defaultValue = NULL, *allowEmpty_param = NULL, *value = NULL, *filter = NULL, *_0$$3 = NULL, *_2$$3, *_3$$3 = NULL;
 	zval *key = NULL;
@@ -364,7 +363,7 @@ PHP_METHOD(Ice_Arr, setData) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("data"), data TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("data"), data TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -421,7 +420,7 @@ PHP_METHOD(Ice_Arr, clear) {
 
 	ZEPHIR_INIT_VAR(_0);
 	array_init(_0);
-	zephir_update_property_this(this_ptr, SL("data"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("data"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -449,7 +448,7 @@ PHP_METHOD(Ice_Arr, count) {
 PHP_METHOD(Ice_Arr, getIterator) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -483,7 +482,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 
 	HashTable *_13$$13;
 	HashPosition _12$$13;
-	int ZEPHIR_LAST_CALL_STATUS, _8$$7;
+	zend_long ZEPHIR_LAST_CALL_STATUS, _8$$7;
 	zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL, *_16 = NULL, *_17 = NULL;
 	zval *delimiter = NULL, *_3$$4, *_4$$4;
 	zval *path = NULL, *defaultValue = NULL, *delimiter_param = NULL, *data = NULL, *keys = NULL, *key = NULL, *_0, *_1$$5, *_2$$4 = NULL, *_6$$6 = NULL, *_9$$9 = NULL, *_10$$10, *_11$$12, *values$$13 = NULL, *value$$13 = NULL, *arr$$13 = NULL, **_14$$13, *_15$$15 = NULL;
@@ -556,8 +555,8 @@ PHP_METHOD(Ice_Arr, getPath) {
 			array_init(values$$13);
 			zephir_is_iterable(data, &_13$$13, &_12$$13, 0, 0, "ice/arr.zep", 293);
 			for (
-			  ; zephir_hash_get_current_data_ex(_13$$13, (void**) &_14$$13, &_12$$13) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_13$$13, &_12$$13)
+			  ; zend_hash_get_current_data_ex(_13$$13, (void**) &_14$$13, &_12$$13) == SUCCESS
+			  ; zend_hash_move_forward_ex(_13$$13, &_12$$13)
 			) {
 				ZEPHIR_GET_HVALUE(arr$$13, _14$$13);
 				if (Z_TYPE_P(arr$$13) == IS_ARRAY) {
@@ -596,7 +595,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	HashTable *_2;
 	HashPosition _1;
 	zval *key = NULL, *value = NULL, *tmp = NULL, *_0, **_3, *_4$$5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -605,8 +604,8 @@ PHP_METHOD(Ice_Arr, toArray) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
 	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/arr.zep", 331);
 	for (
-	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_2, &_1)
+	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
@@ -635,7 +634,7 @@ PHP_METHOD(Ice_Arr, toArray) {
  */
 PHP_METHOD(Ice_Arr, offsetExists) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval *offset = NULL;
 
@@ -660,7 +659,7 @@ PHP_METHOD(Ice_Arr, offsetExists) {
  */
 PHP_METHOD(Ice_Arr, offsetGet) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval *offset = NULL;
 
@@ -686,7 +685,7 @@ PHP_METHOD(Ice_Arr, offsetGet) {
  */
 PHP_METHOD(Ice_Arr, offsetSet) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL, *value;
 	zval *offset = NULL;
 
@@ -711,7 +710,7 @@ PHP_METHOD(Ice_Arr, offsetSet) {
  */
 PHP_METHOD(Ice_Arr, offsetUnset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval *offset = NULL;
 
@@ -732,7 +731,7 @@ PHP_METHOD(Ice_Arr, offsetUnset) {
  */
 PHP_METHOD(Ice_Arr, __isset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL;
 	zval *key = NULL;
 
@@ -754,7 +753,7 @@ PHP_METHOD(Ice_Arr, __isset) {
  */
 PHP_METHOD(Ice_Arr, __get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, *_0$$3;
 
 	ZEPHIR_MM_GROW();
@@ -779,7 +778,7 @@ PHP_METHOD(Ice_Arr, __get) {
  */
 PHP_METHOD(Ice_Arr, __set) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *value;
 	zval *key = NULL;
 
@@ -790,7 +789,7 @@ PHP_METHOD(Ice_Arr, __set) {
 
 
 	if (zephir_isset_property_zval(this_ptr, key TSRMLS_CC)) {
-		zephir_update_property_zval_zval(this_ptr, key, value TSRMLS_CC);
+		zephir_update_property_zval_zval(getThis(), key, value TSRMLS_CC);
 	} else {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, key, value);
 		zephir_check_call_status();
@@ -822,16 +821,27 @@ zend_object_value zephir_init_properties_Ice_Arr(zend_class_entry *class_type TS
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("data"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("data"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

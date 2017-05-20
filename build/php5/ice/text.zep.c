@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Text, random) {
 	zephir_fcall_cache_entry *_3 = NULL, *_18 = NULL;
 	long length;
 	zval *type_param = NULL, *length_param = NULL, *pool = NULL, *str = NULL, _0$$3 = zval_used_for_init, _1$$3 = zval_used_for_init, *_2$$3 = NULL, *_4$$3 = NULL, _5$$4 = zval_used_for_init, _6$$4 = zval_used_for_init, *_7$$4 = NULL, *_8$$4 = NULL, _9$$5, _10$$5, _11$$6, _12$$6, _13$$7 = zval_used_for_init, _14$$7 = zval_used_for_init, *_15$$7 = NULL, *_16$$7 = NULL, *_17$$7 = NULL, *_19$$8, _20$$8 = zval_used_for_init, _21$$8 = zval_used_for_init;
-	int type, ZEPHIR_LAST_CALL_STATUS, end = 0;
+	zend_long type, ZEPHIR_LAST_CALL_STATUS, end = 0;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &type_param, &length_param);
@@ -84,13 +84,13 @@ PHP_METHOD(Ice_Text, random) {
 			ZVAL_STRING(&_0$$3, "a", 0);
 			ZEPHIR_SINIT_VAR(_1$$3);
 			ZVAL_STRING(&_1$$3, "z", 0);
-			ZEPHIR_CALL_FUNCTION(&_2$$3, "range", &_3, 162, &_0$$3, &_1$$3);
+			ZEPHIR_CALL_FUNCTION(&_2$$3, "range", &_3, 161, &_0$$3, &_1$$3);
 			zephir_check_call_status();
 			ZEPHIR_SINIT_NVAR(_0$$3);
 			ZVAL_STRING(&_0$$3, "A", 0);
 			ZEPHIR_SINIT_NVAR(_1$$3);
 			ZVAL_STRING(&_1$$3, "Z", 0);
-			ZEPHIR_CALL_FUNCTION(&_4$$3, "range", &_3, 162, &_0$$3, &_1$$3);
+			ZEPHIR_CALL_FUNCTION(&_4$$3, "range", &_3, 161, &_0$$3, &_1$$3);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(pool);
 			zephir_fast_array_merge(pool, &(_2$$3), &(_4$$3) TSRMLS_CC);
@@ -101,13 +101,13 @@ PHP_METHOD(Ice_Text, random) {
 			ZVAL_LONG(&_5$$4, 0);
 			ZEPHIR_SINIT_VAR(_6$$4);
 			ZVAL_LONG(&_6$$4, 9);
-			ZEPHIR_CALL_FUNCTION(&_7$$4, "range", &_3, 162, &_5$$4, &_6$$4);
+			ZEPHIR_CALL_FUNCTION(&_7$$4, "range", &_3, 161, &_5$$4, &_6$$4);
 			zephir_check_call_status();
 			ZEPHIR_SINIT_NVAR(_5$$4);
 			ZVAL_STRING(&_5$$4, "a", 0);
 			ZEPHIR_SINIT_NVAR(_6$$4);
 			ZVAL_STRING(&_6$$4, "f", 0);
-			ZEPHIR_CALL_FUNCTION(&_8$$4, "range", &_3, 162, &_5$$4, &_6$$4);
+			ZEPHIR_CALL_FUNCTION(&_8$$4, "range", &_3, 161, &_5$$4, &_6$$4);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(pool);
 			zephir_fast_array_merge(pool, &(_7$$4), &(_8$$4) TSRMLS_CC);
@@ -118,7 +118,7 @@ PHP_METHOD(Ice_Text, random) {
 			ZVAL_LONG(&_9$$5, 0);
 			ZEPHIR_SINIT_VAR(_10$$5);
 			ZVAL_LONG(&_10$$5, 9);
-			ZEPHIR_CALL_FUNCTION(&pool, "range", &_3, 162, &_9$$5, &_10$$5);
+			ZEPHIR_CALL_FUNCTION(&pool, "range", &_3, 161, &_9$$5, &_10$$5);
 			zephir_check_call_status();
 			break;
 		}
@@ -127,7 +127,7 @@ PHP_METHOD(Ice_Text, random) {
 			ZVAL_LONG(&_11$$6, 1);
 			ZEPHIR_SINIT_VAR(_12$$6);
 			ZVAL_LONG(&_12$$6, 9);
-			ZEPHIR_CALL_FUNCTION(&pool, "range", &_3, 162, &_11$$6, &_12$$6);
+			ZEPHIR_CALL_FUNCTION(&pool, "range", &_3, 161, &_11$$6, &_12$$6);
 			zephir_check_call_status();
 			break;
 		}
@@ -135,21 +135,21 @@ PHP_METHOD(Ice_Text, random) {
 		ZVAL_LONG(&_13$$7, 0);
 		ZEPHIR_SINIT_VAR(_14$$7);
 		ZVAL_LONG(&_14$$7, 9);
-		ZEPHIR_CALL_FUNCTION(&_15$$7, "range", &_3, 162, &_13$$7, &_14$$7);
+		ZEPHIR_CALL_FUNCTION(&_15$$7, "range", &_3, 161, &_13$$7, &_14$$7);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_13$$7);
 		ZVAL_STRING(&_13$$7, "a", 0);
 		ZEPHIR_SINIT_NVAR(_14$$7);
 		ZVAL_STRING(&_14$$7, "z", 0);
-		ZEPHIR_CALL_FUNCTION(&_16$$7, "range", &_3, 162, &_13$$7, &_14$$7);
+		ZEPHIR_CALL_FUNCTION(&_16$$7, "range", &_3, 161, &_13$$7, &_14$$7);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_NVAR(_13$$7);
 		ZVAL_STRING(&_13$$7, "A", 0);
 		ZEPHIR_SINIT_NVAR(_14$$7);
 		ZVAL_STRING(&_14$$7, "Z", 0);
-		ZEPHIR_CALL_FUNCTION(&_17$$7, "range", &_3, 162, &_13$$7, &_14$$7);
+		ZEPHIR_CALL_FUNCTION(&_17$$7, "range", &_3, 161, &_13$$7, &_14$$7);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&pool, "array_merge", &_18, 163, _15$$7, _16$$7, _17$$7);
+		ZEPHIR_CALL_FUNCTION(&pool, "array_merge", &_18, 162, _15$$7, _16$$7, _17$$7);
 		zephir_check_call_status();
 		break;
 	} while(0);

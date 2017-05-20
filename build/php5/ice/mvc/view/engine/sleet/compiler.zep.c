@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "parser");
+	RETURN_MEMBER(getThis(), "parser");
 
 }
 
@@ -67,7 +67,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *view = NULL, *_0;
 
 	ZEPHIR_MM_GROW();
@@ -78,12 +78,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("view"), view TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("view"), view TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, ice_mvc_view_engine_sleet_parser_ce);
 	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 134);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("parser"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("parser"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -96,7 +96,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, *content = NULL, *_0, *_1 = NULL;
 	zval *path = NULL;
 
@@ -108,12 +108,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 	ZEPHIR_INIT_VAR(content);
 	zephir_file_get_contents(content, path TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("content"), content TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("content"), content TSRMLS_CC);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("parser"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(&_1, _0, "text", NULL, 0, content);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("parsed"), _1 TSRMLS_CC);
-	RETURN_MM_MEMBER(this_ptr, "parsed");
+	zephir_update_property_this(getThis(), SL("parsed"), _1 TSRMLS_CC);
+	RETURN_MM_MEMBER(getThis(), "parsed");
 
 }
 
@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "parsed");
+	RETURN_MEMBER(getThis(), "parsed");
 
 }
 

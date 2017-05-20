@@ -164,7 +164,7 @@ void zephir_concat_vvvs(zval **result, zval *op1, zval *op2, zval *op3, const ch
 void zephir_concat_vvvsv(zval **result, zval *op1, zval *op2, zval *op3, const char *op4, zend_uint op4_len, zval *op5, int self_var TSRMLS_DC);
 void zephir_concat_vvvv(zval **result, zval *op1, zval *op2, zval *op3, zval *op4, int self_var TSRMLS_DC);
 void zephir_concat_vvvvv(zval **result, zval *op1, zval *op2, zval *op3, zval *op4, zval *op5, int self_var TSRMLS_DC);
-#define zephir_concat_function(result, op1, op2) concat_function(result, op1, op2 TSRMLS_CC)
+#define zephir_concat_function(d, l, r) _zephir_concat_function(d, l, r TSRMLS_CC)
+void _zephir_concat_function(zval *result, zval *op1, zval *op2 TSRMLS_DC);
 
 #endif /* ZEPHIR_KERNEL_CONCAT_H */
-

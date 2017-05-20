@@ -20,7 +20,6 @@
 #include "kernel/concat.h"
 #include "kernel/object.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -52,7 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *file_param = NULL, *_0$$3 = NULL, *_1$$4, *_4 = NULL, *_5$$5;
 	zval *file = NULL, *_2$$4, *_6$$5;
 
@@ -90,7 +89,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("file"), file TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -105,7 +104,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
  */
 PHP_METHOD(Ice_Log_Driver_File, log) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message = NULL;
 	zval *level, *message_param = NULL, *context_param = NULL, *line = NULL, _0 = zval_used_for_init, *_1 = NULL, *_2, *_3 = NULL, *_4, *_5;
@@ -154,7 +153,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 
 	HashTable *_1;
 	HashPosition _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *replace = NULL, *key = NULL, *value = NULL, **_2, *_3$$3 = NULL;
 	zval *message = NULL;
@@ -175,8 +174,8 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	array_init(replace);
 	zephir_is_iterable(context, &_1, &_0, 0, 0, "ice/log/driver/file.zep", 77);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);

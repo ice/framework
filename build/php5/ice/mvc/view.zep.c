@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
-#include "kernel/hash.h"
 #include "Zend/zend_closures.h"
 #include "kernel/array.h"
 #include "kernel/exception.h"
@@ -67,7 +66,8 @@ PHP_METHOD(Ice_Mvc_View, setEngines) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("engines"), engines TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("engines"), engines TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -79,7 +79,8 @@ PHP_METHOD(Ice_Mvc_View, setContent) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("content"), content TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("content"), content TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -87,7 +88,7 @@ PHP_METHOD(Ice_Mvc_View, getContent) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "content");
+	RETURN_MEMBER(getThis(), "content");
 
 }
 
@@ -99,7 +100,8 @@ PHP_METHOD(Ice_Mvc_View, setMainView) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("mainView"), mainView TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("mainView"), mainView TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -107,7 +109,7 @@ PHP_METHOD(Ice_Mvc_View, getMainView) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "mainView");
+	RETURN_MEMBER(getThis(), "mainView");
 
 }
 
@@ -119,7 +121,8 @@ PHP_METHOD(Ice_Mvc_View, setLayoutsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("layoutsDir"), layoutsDir TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("layoutsDir"), layoutsDir TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -127,7 +130,7 @@ PHP_METHOD(Ice_Mvc_View, getLayoutsDir) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "layoutsDir");
+	RETURN_MEMBER(getThis(), "layoutsDir");
 
 }
 
@@ -139,7 +142,8 @@ PHP_METHOD(Ice_Mvc_View, setPartialsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("partialsDir"), partialsDir TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("partialsDir"), partialsDir TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -147,7 +151,7 @@ PHP_METHOD(Ice_Mvc_View, getPartialsDir) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "partialsDir");
+	RETURN_MEMBER(getThis(), "partialsDir");
 
 }
 
@@ -159,7 +163,8 @@ PHP_METHOD(Ice_Mvc_View, setViewsDir) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("viewsDir"), viewsDir TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("viewsDir"), viewsDir TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -167,7 +172,7 @@ PHP_METHOD(Ice_Mvc_View, getViewsDir) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "viewsDir");
+	RETURN_MEMBER(getThis(), "viewsDir");
 
 }
 
@@ -179,7 +184,8 @@ PHP_METHOD(Ice_Mvc_View, setFile) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("file"), file TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -187,7 +193,7 @@ PHP_METHOD(Ice_Mvc_View, getFile) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "file");
+	RETURN_MEMBER(getThis(), "file");
 
 }
 
@@ -199,7 +205,8 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("silent"), silent TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("silent"), silent TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -211,7 +218,7 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
  */
 PHP_METHOD(Ice_Mvc_View, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *data = NULL;
 	zval *file = NULL, *data_param = NULL;
@@ -231,9 +238,9 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 
 
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("file"), file TSRMLS_CC);
 	}
-	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, this_ptr, "__construct", &_0, 5, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, getThis(), "__construct", &_0, 5, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -249,7 +256,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	HashPosition _4;
 	zval *ext = NULL, *engine = NULL, *_0, *_3, **_6, *_1$$3, *_2$$3, *_7$$6 = NULL, *_9$$8 = NULL, *_11$$9 = NULL, _12$$9 = zval_used_for_init, *_13$$9 = NULL;
 	zephir_fcall_cache_entry *_14 = NULL, *_15 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -266,8 +273,8 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("engines"), PH_NOISY_CC);
 	zephir_is_iterable(_3, &_5, &_4, 0, 0, "ice/mvc/view.zep", 67);
 	for (
-	  ; zephir_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_5, &_4)
+	  ; zend_hash_get_current_data_ex(_5, (void**) &_6, &_4) == SUCCESS
+	  ; zend_hash_move_forward_ex(_5, &_4)
 	) {
 		ZEPHIR_GET_HMKEY(ext, _5, _4);
 		ZEPHIR_GET_HVALUE(engine, _6);
@@ -305,7 +312,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 			}
 		}
 	}
-	RETURN_MM_MEMBER(this_ptr, "engines");
+	RETURN_MM_MEMBER(getThis(), "engines");
 
 }
 
@@ -322,7 +329,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	HashPosition _1, _6$$5;
 	zend_bool exists = 0, _15;
 	zephir_fcall_cache_entry *_10 = NULL, *_12 = NULL, *_13 = NULL, *_19 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *file = NULL, *data_param = NULL, *ext = NULL, *engine = NULL, *engines = NULL, *path = NULL, *dir = NULL, *dirs = NULL, *content = NULL, *_0, **_3, *_14, *_4$$5 = NULL, **_8$$5, *_5$$7 = NULL, *_9$$8, *_11$$9 = NULL, *_16$$10, _17$$10, *_18$$10 = NULL;
 
@@ -344,7 +351,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	ZEPHIR_INIT_VAR(content);
 	ZVAL_NULL(content);
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_this(this_ptr, SL("file"), file TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("file"), file TSRMLS_CC);
 	}
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 	if (ZEPHIR_IS_EMPTY(_0)) {
@@ -355,8 +362,8 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	zephir_check_call_status();
 	zephir_is_iterable(engines, &_2, &_1, 0, 0, "ice/mvc/view.zep", 112);
 	for (
-	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_2, &_1)
+	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(ext, _2, _1);
 		ZEPHIR_GET_HVALUE(engine, _3);
@@ -374,8 +381,8 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		}
 		zephir_is_iterable(dirs, &_7$$5, &_6$$5, 0, 0, "ice/mvc/view.zep", 110);
 		for (
-		  ; zephir_hash_get_current_data_ex(_7$$5, (void**) &_8$$5, &_6$$5) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_7$$5, &_6$$5)
+		  ; zend_hash_get_current_data_ex(_7$$5, (void**) &_8$$5, &_6$$5) == SUCCESS
+		  ; zend_hash_move_forward_ex(_7$$5, &_6$$5)
 		) {
 			ZEPHIR_GET_HVALUE(dir, _8$$5);
 			_9$$8 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
@@ -424,7 +431,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
  */
 PHP_METHOD(Ice_Mvc_View, load) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *file_param = NULL, *data_param = NULL;
 	zval *file = NULL;
@@ -432,11 +439,11 @@ PHP_METHOD(Ice_Mvc_View, load) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(file_param) == IS_STRING)) {
 		zephir_get_strval(file, file_param);
 	} else {
 		ZEPHIR_INIT_VAR(file);
@@ -465,7 +472,7 @@ PHP_METHOD(Ice_Mvc_View, load) {
  */
 PHP_METHOD(Ice_Mvc_View, partial) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *file_param = NULL, *data_param = NULL, *_0, *_1;
 	zval *file = NULL;
@@ -473,11 +480,11 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(file_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(file_param) == IS_STRING)) {
 		zephir_get_strval(file, file_param);
 	} else {
 		ZEPHIR_INIT_VAR(file);
@@ -509,7 +516,7 @@ PHP_METHOD(Ice_Mvc_View, partial) {
  */
 PHP_METHOD(Ice_Mvc_View, layout) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
 	zval *file = NULL, *data_param = NULL, *_0, *_1;
 
@@ -550,18 +557,18 @@ PHP_METHOD(Ice_Mvc_View, layout) {
  */
 PHP_METHOD(Ice_Mvc_View, setVar) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *value;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(name);
@@ -582,7 +589,7 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
  */
 PHP_METHOD(Ice_Mvc_View, setVars) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *vars_param = NULL;
 	zval *vars = NULL;
 
@@ -605,7 +612,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
  */
 PHP_METHOD(Ice_Mvc_View, setLayout) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *layout_param = NULL;
 	zval *layout = NULL;
 
@@ -626,7 +633,7 @@ PHP_METHOD(Ice_Mvc_View, setLayout) {
  */
 PHP_METHOD(Ice_Mvc_View, __toString) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

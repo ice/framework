@@ -56,7 +56,8 @@ PHP_METHOD(Ice_Crypt, setKey) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("key"), key TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -68,7 +69,8 @@ PHP_METHOD(Ice_Crypt, setCipher) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("cipher"), cipher TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("cipher"), cipher TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -80,7 +82,8 @@ PHP_METHOD(Ice_Crypt, setMode) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("mode"), mode TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("mode"), mode TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -92,7 +95,8 @@ PHP_METHOD(Ice_Crypt, setBlock) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("block"), block TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("block"), block TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -118,7 +122,7 @@ PHP_METHOD(Ice_Crypt, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("key"), key TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("key"), key TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -133,7 +137,7 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 
 	zval *_5;
 	zephir_fcall_cache_entry *_2 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, *iv = NULL, *value = NULL, *mac = NULL, *_0 = NULL, *_1 = NULL, *_3 = NULL, *_4;
 	zval *text = NULL;
 
@@ -179,7 +183,7 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	zval *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -200,7 +204,7 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
  */
 PHP_METHOD(Ice_Crypt, doEncrypt) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, *_0, *_1, *_2, *_3, _4;
 	zval *value = NULL, *iv = NULL;
 
@@ -233,7 +237,7 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 PHP_METHOD(Ice_Crypt, decrypt) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, *value = NULL, *payload = NULL, *iv = NULL, *_0, *_2, *_3 = NULL, *_4 = NULL;
 	zval *text = NULL;
 
@@ -270,7 +274,7 @@ PHP_METHOD(Ice_Crypt, decrypt) {
  */
 PHP_METHOD(Ice_Crypt, doDecrypt) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, *_0, *_1, *_2, *_3, _4;
 	zval *value = NULL, *iv = NULL;
 
@@ -303,7 +307,7 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 PHP_METHOD(Ice_Crypt, getJsonPayload) {
 
 	zend_bool _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, *payload = NULL, *_0 = NULL, *_2 = NULL, *_3, *_4 = NULL, *_5;
 	zval *text = NULL;
 
@@ -349,7 +353,7 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
  */
 PHP_METHOD(Ice_Crypt, hash) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *_0, _1;
 	zval *value = NULL;
 
@@ -376,7 +380,7 @@ PHP_METHOD(Ice_Crypt, hash) {
  */
 PHP_METHOD(Ice_Crypt, addPadding) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *pad = NULL, *len = NULL, *_0, *_1, *_2, *_3 = NULL, *_4 = NULL;
 	zval *value = NULL;
 
@@ -412,7 +416,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 PHP_METHOD(Ice_Crypt, stripPadding) {
 
 	unsigned char _0;
-	int ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
+	zend_long ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
 	zval *value_param = NULL, _1 = zval_used_for_init, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_5, _6;
 	zval *value = NULL;
 
@@ -425,7 +429,7 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 	len = zephir_fast_strlen_ev(value);
 	_0 = ZEPHIR_STRING_OFFSET(value, (len - 1));
 	ZEPHIR_SINIT_VAR(_1);
-	ZVAL_LONG(&_1, _0);
+	ZVAL_STRINGL(&_1, &_0, 1, 1);
 	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 68, &_1);
 	zephir_check_call_status();
 	pad = zephir_get_intval(_2);
@@ -458,7 +462,7 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 
 	zval *value = NULL;
 	zval *pad_param = NULL, *value_param = NULL, *beforePad = NULL, *_0, _1, *_2, _3, *_4 = NULL;
-	int pad, ZEPHIR_LAST_CALL_STATUS;
+	zend_long pad, ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &pad_param, &value_param);
@@ -521,7 +525,7 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
 PHP_METHOD(Ice_Crypt, getIvSize) {
 
 	zval *_0, *_1, *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

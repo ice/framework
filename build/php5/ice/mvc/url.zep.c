@@ -46,7 +46,7 @@ PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "baseUri");
+	RETURN_MEMBER(getThis(), "baseUri");
 
 }
 
@@ -58,7 +58,8 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("baseUri"), baseUri TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("baseUri"), baseUri TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -66,7 +67,7 @@ PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "staticUri");
+	RETURN_MEMBER(getThis(), "staticUri");
 
 }
 
@@ -78,7 +79,8 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("staticUri"), staticUri TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("staticUri"), staticUri TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -90,7 +92,7 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
  */
 PHP_METHOD(Ice_Mvc_Url, getStatic) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL, *_0 = NULL;
 	zval *uri = NULL;
 
@@ -122,7 +124,7 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
  */
 PHP_METHOD(Ice_Mvc_Url, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool local, _0$$3, _1$$3, _5$$8, _6$$10, _8$$12;
 	zval *uri = NULL, *args = NULL, *local_param = NULL, *_GET, *baseUri = NULL, *queryString = NULL, *_2$$4, *_3$$4, _4$$4, *_7$$11, _9$$13, *_10$$13, *_11$$14, *_12$$15;
 

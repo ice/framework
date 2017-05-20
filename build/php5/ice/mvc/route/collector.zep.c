@@ -17,7 +17,6 @@
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
@@ -40,7 +39,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("routeParser"), routeParser TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("routeParser"), routeParser TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -52,7 +52,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("dataGenerator"), dataGenerator TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("dataGenerator"), dataGenerator TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -64,7 +65,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *routeParser = NULL, *dataGenerator = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -98,8 +99,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 			zephir_check_call_status();
 		}
 	}
-	zephir_update_property_this(this_ptr, SL("routeParser"), routeParser TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("dataGenerator"), dataGenerator TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("routeParser"), routeParser TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("dataGenerator"), dataGenerator TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -117,7 +118,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
 	HashTable *_2, *_5$$4;
 	HashPosition _1, _4$$4;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *route = NULL;
 	zval *httpMethod = NULL, *route_param = NULL, *handler = NULL, *routeDatas = NULL, *routeData = NULL, *method = NULL, *_0, **_3, **_6$$4, *_7$$5;
 
@@ -142,14 +143,14 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	}
 	zephir_is_iterable(httpMethod, &_2, &_1, 0, 0, "ice/mvc/route/collector.zep", 60);
 	for (
-	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_2, &_1)
+	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HVALUE(method, _3);
 		zephir_is_iterable(routeDatas, &_5$$4, &_4$$4, 0, 0, "ice/mvc/route/collector.zep", 59);
 		for (
-		  ; zephir_hash_get_current_data_ex(_5$$4, (void**) &_6$$4, &_4$$4) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_5$$4, &_4$$4)
+		  ; zend_hash_get_current_data_ex(_5$$4, (void**) &_6$$4, &_4$$4) == SUCCESS
+		  ; zend_hash_move_forward_ex(_5$$4, &_4$$4)
 		) {
 			ZEPHIR_GET_HVALUE(routeData, _6$$4);
 			_7$$5 = zephir_fetch_nproperty_this(this_ptr, SL("dataGenerator"), PH_NOISY_CC);
@@ -169,7 +170,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

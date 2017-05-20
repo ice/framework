@@ -53,7 +53,7 @@ PHP_METHOD(Ice_I18n_Plural_Arabic, getCategory) {
 
 	zend_bool _1, _2, _3, _4;
 	zval *count_param = NULL, *isInt = NULL, *_0;
-	int count, ZEPHIR_LAST_CALL_STATUS, i100 = 0;
+	zend_long count, ZEPHIR_LAST_CALL_STATUS, i100 = 0;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count_param);

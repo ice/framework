@@ -18,7 +18,6 @@
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -47,7 +46,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	HashPosition _5;
 	zval *_1, *_4$$3;
 	zephir_fcall_cache_entry *_10 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *route, *routeWithoutClosingOptionals = NULL, *numOptionals = NULL, *segments = NULL, *currentRoute = NULL, *routeDatas = NULL, *n = NULL, *segment = NULL, _0, **_7, *_2$$3, *_3$$3, *_9$$5 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -84,8 +83,8 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	array_init(routeDatas);
 	zephir_is_iterable(segments, &_6, &_5, 0, 0, "ice/mvc/route/parser/std.zep", 48);
 	for (
-	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_6, &_5)
+	  ; zend_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
+	  ; zend_hash_move_forward_ex(_6, &_5)
 	) {
 		ZEPHIR_GET_HMKEY(n, _6, _5);
 		ZEPHIR_GET_HVALUE(segment, _7);
@@ -115,7 +114,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	HashTable *_4;
 	HashPosition _3;
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *route, *matches = NULL, *routeData = NULL, *value = NULL, *offset = NULL, *_1, *_2 = NULL, **_5, *_6$$4, *_7$$4, *_13$$4, *_14$$4 = NULL, *_15$$4 = NULL, *_16$$4, *_17$$4, *_18$$4, *_19$$4, *_20$$4, *_21$$4, *_8$$5, *_9$$5, _10$$5 = zval_used_for_init, *_11$$5 = NULL, *_22$$6;
 
 	ZEPHIR_MM_GROW();
@@ -144,8 +143,8 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	array_init(routeData);
 	zephir_is_iterable(matches, &_4, &_3, 0, 0, "ice/mvc/route/parser/std.zep", 79);
 	for (
-	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_4, &_3)
+	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
+	  ; zend_hash_move_forward_ex(_4, &_3)
 	) {
 		ZEPHIR_GET_HVALUE(value, _5);
 		zephir_array_fetch_long(&_6$$4, value, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/parser/std.zep", 68 TSRMLS_CC);

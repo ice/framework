@@ -51,7 +51,7 @@ PHP_METHOD(Ice_Cli_Console, getModules) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "modules");
+	RETURN_MEMBER(getThis(), "modules");
 
 }
 
@@ -63,7 +63,8 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("modules"), modules TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("modules"), modules TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -74,7 +75,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
  */
 PHP_METHOD(Ice_Cli_Console, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
@@ -85,7 +86,7 @@ PHP_METHOD(Ice_Cli_Console, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "console", ZEPHIR_TEMP_PARAM_COPY);
@@ -104,7 +105,7 @@ PHP_METHOD(Ice_Cli_Console, __construct) {
  */
 PHP_METHOD(Ice_Cli_Console, handle) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *arguments = NULL, *router = NULL, *response = NULL, *dispatcher = NULL, *_0, *_1 = NULL, *_2, *_3, *_4, *_5, *_6, *_7;
 
 	ZEPHIR_MM_GROW();
@@ -162,7 +163,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
  */
 PHP_METHOD(Ice_Cli_Console, color) {
 
-	int decoration;
+	zend_long decoration;
 	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, *colors = NULL, *bgColors = NULL, *colored = NULL, *e = NULL, *foreground = NULL, *background = NULL, _0, *_1 = NULL, *_2$$3;
 	zval *text = NULL, *color = NULL, *bgColor = NULL;
 

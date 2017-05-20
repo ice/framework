@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Mvc_App, getAutoRender) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "autoRender");
+	RETURN_MEMBER(getThis(), "autoRender");
 
 }
 
@@ -57,7 +57,8 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("autoRender"), autoRender TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("autoRender"), autoRender TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -65,7 +66,7 @@ PHP_METHOD(Ice_Mvc_App, getModules) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "modules");
+	RETURN_MEMBER(getThis(), "modules");
 
 }
 
@@ -77,7 +78,8 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("modules"), modules TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("modules"), modules TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -88,7 +90,7 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
  */
 PHP_METHOD(Ice_Mvc_App, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, *_0, *_1;
 
 	ZEPHIR_MM_GROW();
@@ -99,7 +101,7 @@ PHP_METHOD(Ice_Mvc_App, __construct) {
 	}
 
 
-	zephir_update_property_this(this_ptr, SL("di"), di TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("di"), di TSRMLS_CC);
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_1);
 	ZVAL_STRING(_1, "app", ZEPHIR_TEMP_PARAM_COPY);
@@ -121,7 +123,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 
 	zval *_9, *_37, *_18$$7;
 	zend_bool _3, _10, _4$$5, _16$$7, _20$$7;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method = NULL, *uri = NULL, *_SERVER, *argv = NULL, *router = NULL, *request = NULL, *response = NULL, *dispatcher = NULL, *returned = NULL, *controller = NULL, *view = NULL, *_0, *_1 = NULL, *_5, *_6 = NULL, *_7, *_8, *_36, *_2$$4, *_11$$7, *_12$$7, *_13$$7, *_14$$7, *_15$$7, *_17$$7, *_19$$7, *_21$$9, *_22$$9, *_23$$9, *_24$$9, *_25$$10 = NULL, *_34$$10 = NULL, *_35$$10 = NULL, *_26$$11 = NULL, *_31$$11 = NULL, *_33$$11 = NULL, *_27$$12, *_28$$12 = NULL, *_29$$12 = NULL, *_30$$12, *_32$$13 = NULL;
 
 	ZEPHIR_MM_GROW();

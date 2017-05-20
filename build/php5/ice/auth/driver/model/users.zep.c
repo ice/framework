@@ -46,7 +46,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 
 	zval *_1, *_5, *_7;
 	zval *_0 = NULL, *_2 = NULL, *_3 = NULL, *_4 = NULL, *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -101,7 +101,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 
 	zval *_0 = NULL, *_1 = NULL, *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -112,10 +112,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_1);
 	ZVAL_LONG(_1, (zephir_get_numberval(_0) + 1));
-	zephir_update_property_this(this_ptr, SL("logins"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("logins"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_2);
 	zephir_time(_2);
-	zephir_update_property_this(this_ptr, SL("lastlogin"), _2 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("lastlogin"), _2 TSRMLS_CC);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL, 0);
 	zephir_check_call_status();
 	RETURN_THIS();
@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 
 	zval *_2, *_3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *name_param = NULL, *role = NULL, *roles = NULL, *_0 = NULL, *_4 = NULL, *_5 = NULL;
 	zval *name = NULL;

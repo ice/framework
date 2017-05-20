@@ -14,7 +14,6 @@
 #include "kernel/main.h"
 #include "kernel/operators.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
@@ -48,7 +47,7 @@ PHP_METHOD(Ice_Config, __construct) {
 	HashPosition _0, _3$$8;
 	zend_bool hasNumericKey = 0;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL, *key = NULL, *value = NULL, *subkey = NULL, *subvalue = NULL, **_2, **_5$$8, *_6$$12 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -69,8 +68,8 @@ PHP_METHOD(Ice_Config, __construct) {
 	}
 	zephir_is_iterable(data, &_1, &_0, 0, 0, "ice/config.zep", 56);
 	for (
-	  ; zephir_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_1, &_0)
+	  ; zend_hash_get_current_data_ex(_1, (void**) &_2, &_0) == SUCCESS
+	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HMKEY(key, _1, _0);
 		ZEPHIR_GET_HVALUE(value, _2);
@@ -82,8 +81,8 @@ PHP_METHOD(Ice_Config, __construct) {
 			hasNumericKey = 0;
 			zephir_is_iterable(value, &_4$$8, &_3$$8, 0, 0, "ice/config.zep", 47);
 			for (
-			  ; zephir_hash_get_current_data_ex(_4$$8, (void**) &_5$$8, &_3$$8) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_4$$8, &_3$$8)
+			  ; zend_hash_get_current_data_ex(_4$$8, (void**) &_5$$8, &_3$$8) == SUCCESS
+			  ; zend_hash_move_forward_ex(_4$$8, &_3$$8)
 			) {
 				ZEPHIR_GET_HMKEY(subkey, _4$$8, _3$$8);
 				ZEPHIR_GET_HVALUE(subvalue, _5$$8);

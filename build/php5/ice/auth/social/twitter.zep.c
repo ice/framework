@@ -47,7 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Twitter) {
 PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 
 	zval *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, *_0;
 
@@ -62,8 +62,8 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "twitter", 1);
-	zephir_update_property_this(this_ptr, SL("provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, this_ptr, "__construct", &_1, 51, config);
+	zephir_update_property_this(getThis(), SL("provider"), _0 TSRMLS_CC);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, getThis(), "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 5, 0 TSRMLS_CC);
@@ -72,10 +72,10 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 	add_assoc_stringl_ex(_2, SS("name"), SL("name"), 1);
 	add_assoc_stringl_ex(_2, SS("sex"), SL("sex"), 1);
 	add_assoc_stringl_ex(_2, SS("birthday"), SL("bdate"), 1);
-	zephir_update_property_this(this_ptr, SL("socialFieldsMap"), _2 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("socialFieldsMap"), _2 TSRMLS_CC);
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "oauth_token", 1);
-	zephir_update_property_this(this_ptr, SL("responseType"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("responseType"), _0 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 PHP_METHOD(Ice_Auth_Social_Twitter, getSocialPage) {
 
 	zval *_0 = NULL, *_1, *_2$$3 = NULL, *_3$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -118,7 +118,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, getSocialPage) {
 PHP_METHOD(Ice_Auth_Social_Twitter, getImage) {
 
 	zval *_0 = NULL, *_1, *_2$$3, *_3$$3 = NULL, *_4$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -152,7 +152,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 	zval *_10$$5;
 	zend_bool result = 0, _0, _7$$4, _8$$4, _9$$4;
 	zephir_fcall_cache_entry *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *_GET, *params = NULL, *tokenInfo = NULL, *userInfo = NULL, *accessTokenUrl = NULL, *getDataUrl = NULL, *_1$$3 = NULL, *_2$$3, *_12$$3, *_3$$4 = NULL, *_5$$4, *_6$$4, *_11$$5 = NULL, *_13$$6, *_14$$6 = NULL, *_15$$6, *_16$$6 = NULL, *_17$$6, *_18$$6, *_19$$6;
 
 	ZEPHIR_MM_GROW();
@@ -215,7 +215,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 				ZEPHIR_OBS_NVAR(_11$$5);
 				zephir_array_fetch_string(&_11$$5, tokenInfo, SL("screen_name"), PH_NOISY, "ice/auth/social/twitter.zep", 96 TSRMLS_CC);
 				zephir_array_update_string(&_10$$5, SL("screen_name"), &_11$$5, PH_COPY | PH_SEPARATE);
-				zephir_update_property_this(this_ptr, SL("accessToken"), _10$$5 TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("accessToken"), _10$$5 TSRMLS_CC);
 			}
 		}
 		_12$$3 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
@@ -243,7 +243,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, _19$$6, getDataUrl, params);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(userInfo, SS("id"))) {
-				zephir_update_property_this(this_ptr, SL("userInfo"), userInfo TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("userInfo"), userInfo TSRMLS_CC);
 				result = 1;
 			}
 		}
@@ -261,7 +261,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 
 	zval *_0, *_4;
 	zval *requestTokenUrl = NULL, *requestTokens = NULL, *params = NULL, *_1, *_2, *_3, *_5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -311,7 +311,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 
 	zval *_1;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *url_param = NULL, *params = NULL, *oauthToken_param = NULL, *type_param = NULL, *sigBaseStr = NULL, *key = NULL, *_0, *_2, *_3 = NULL, *_4 = NULL, *_5 = NULL, *_6 = NULL, *_8 = NULL, *_9 = NULL, *_10, _11 = zval_used_for_init, *_12 = NULL, *_13 = NULL, *_14 = NULL;
 	zval *url = NULL, *oauthToken = NULL, *type = NULL;
 

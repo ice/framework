@@ -43,7 +43,7 @@ PHP_METHOD(Ice_Db, getDriver) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "driver");
+	RETURN_MEMBER(getThis(), "driver");
 
 }
 
@@ -55,7 +55,8 @@ PHP_METHOD(Ice_Db, setDriver) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("driver"), driver TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -73,7 +74,7 @@ PHP_METHOD(Ice_Db, __construct) {
 
 	zend_class_entry *_5$$5;
 	zend_bool _0;
-	int port, ZEPHIR_LAST_CALL_STATUS;
+	zend_long port, ZEPHIR_LAST_CALL_STATUS;
 	zval *host = NULL, *name = NULL, *user = NULL, *password = NULL, *_2$$4;
 	zval *driver = NULL, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, *dsn$$4 = NULL, _1$$4, *_3$$5, *_4$$5 = NULL, *_6$$6, *_7$$7, _8$$7, *_9$$7;
 
@@ -116,7 +117,7 @@ PHP_METHOD(Ice_Db, __construct) {
 		_0 = (zephir_instance_of_ev(driver, ice_db_dbinterface_ce TSRMLS_CC));
 	}
 	if (_0) {
-		zephir_update_property_this(this_ptr, SL("driver"), driver TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("driver"), driver TSRMLS_CC);
 	} else if (Z_TYPE_P(driver) == IS_STRING) {
 		ZEPHIR_SINIT_VAR(_1$$4);
 		ZVAL_LONG(&_1$$4, port);
@@ -126,7 +127,7 @@ PHP_METHOD(Ice_Db, __construct) {
 		do {
 			if (ZEPHIR_IS_STRING(driver, "mongo")) {
 				ZEPHIR_INIT_NVAR(driver);
-				ZVAL_STRING(driver, "mongo", 1);
+				ZVAL_STRING(driver, "Ice\\Db\\Driver\\Mongo", 1);
 				ZEPHIR_INIT_VAR(_3$$5);
 				zephir_fetch_safe_class(_4$$5, driver);
 					_5$$5 = zend_fetch_class(Z_STRVAL_P(_4$$5), Z_STRLEN_P(_4$$5), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
@@ -135,7 +136,7 @@ PHP_METHOD(Ice_Db, __construct) {
 					ZEPHIR_CALL_METHOD(NULL, _3$$5, "__construct", NULL, 0, dsn$$4, name);
 					zephir_check_call_status();
 				}
-				zephir_update_property_this(this_ptr, SL("driver"), _3$$5 TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("driver"), _3$$5 TSRMLS_CC);
 				break;
 			}
 			if (ZEPHIR_IS_STRING(driver, "mongodb")) {
@@ -143,7 +144,7 @@ PHP_METHOD(Ice_Db, __construct) {
 				object_init_ex(_6$$6, ice_db_driver_mongodb_ce);
 				ZEPHIR_CALL_METHOD(NULL, _6$$6, "__construct", NULL, 70, dsn$$4, name);
 				zephir_check_call_status();
-				zephir_update_property_this(this_ptr, SL("driver"), _6$$6 TSRMLS_CC);
+				zephir_update_property_this(getThis(), SL("driver"), _6$$6 TSRMLS_CC);
 				break;
 			}
 			ZEPHIR_INIT_VAR(_7$$7);
@@ -154,7 +155,7 @@ PHP_METHOD(Ice_Db, __construct) {
 			ZEPHIR_CONCAT_VSVSVSV(_9$$7, driver, ":host=", host, ";port=", &_8$$7, ";dbname=", name);
 			ZEPHIR_CALL_METHOD(NULL, _7$$7, "__construct", NULL, 71, _9$$7, user, password);
 			zephir_check_call_status();
-			zephir_update_property_this(this_ptr, SL("driver"), _7$$7 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("driver"), _7$$7 TSRMLS_CC);
 			break;
 		} while(0);
 
@@ -169,7 +170,7 @@ PHP_METHOD(Ice_Db, __construct) {
 PHP_METHOD(Ice_Db, __call) {
 
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, *_1;
 	zval *method = NULL;
 

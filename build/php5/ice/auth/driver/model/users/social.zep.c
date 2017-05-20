@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 
 	zval *_5;
 	zval *auth = NULL, *_0 = NULL, *_1 = NULL, *_2 = NULL, *_3, *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -87,7 +87,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct) {
 
 	zval *_1 = NULL;
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 

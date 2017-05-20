@@ -16,7 +16,6 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
@@ -71,18 +70,18 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 	HashPosition _3, _20$$13;
 	zend_bool _0, _6$$6, _14$$8;
 	zephir_fcall_cache_entry *_24 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *field = NULL;
 	zval *validation, *field_param = NULL, *value = NULL, *label = NULL, *message = NULL, *i18n = NULL, *replace = NULL, *fields = NULL, *without = NULL, *tmp = NULL, *except = NULL, *key = NULL, *translate = NULL, *_1, **_5, *_2$$4, *_7$$8 = NULL, *_8$$8 = NULL, *_10$$8 = NULL, *_13$$8 = NULL, *_15$$8 = NULL, *_16$$8 = NULL, *_25$$8 = NULL, *_9$$9, *_11$$11, *_12$$12, *_17$$13 = NULL, *_18$$13, *_19$$13 = NULL, **_22$$13, *_23$$14 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(field);
@@ -118,8 +117,8 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 	}
 	zephir_is_iterable(fields, &_4, &_3, 0, 0, "ice/validation/validator/without.zep", 75);
 	for (
-	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_4, &_3)
+	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
+	  ; zend_hash_move_forward_ex(_4, &_3)
 	) {
 		ZEPHIR_GET_HVALUE(without, _5);
 		ZEPHIR_CALL_METHOD(&tmp, validation, "getvalue", NULL, 0, without);
@@ -195,8 +194,8 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 			ZEPHIR_CPY_WRT(message, _19$$13);
 			zephir_is_iterable(except, &_21$$13, &_20$$13, 1, 0, "ice/validation/validator/without.zep", 97);
 			for (
-			  ; zephir_hash_get_current_data_ex(_21$$13, (void**) &_22$$13, &_20$$13) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_21$$13, &_20$$13)
+			  ; zend_hash_get_current_data_ex(_21$$13, (void**) &_22$$13, &_20$$13) == SUCCESS
+			  ; zend_hash_move_forward_ex(_21$$13, &_20$$13)
 			) {
 				ZEPHIR_GET_HMKEY(key, _21$$13, _20$$13);
 				ZEPHIR_GET_HVALUE(translate, _22$$13);

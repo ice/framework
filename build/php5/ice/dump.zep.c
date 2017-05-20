@@ -21,7 +21,6 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/concat.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 
 
@@ -74,7 +73,7 @@ PHP_METHOD(Ice_Dump, getDetailed) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "detailed");
+	RETURN_MEMBER(getThis(), "detailed");
 
 }
 
@@ -86,7 +85,8 @@ PHP_METHOD(Ice_Dump, setDetailed) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("detailed"), detailed TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("detailed"), detailed TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -94,7 +94,7 @@ PHP_METHOD(Ice_Dump, getPlain) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "plain");
+	RETURN_MEMBER(getThis(), "plain");
 
 }
 
@@ -106,7 +106,8 @@ PHP_METHOD(Ice_Dump, setPlain) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("plain"), plain TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("plain"), plain TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -114,7 +115,7 @@ PHP_METHOD(Ice_Dump, getSkipDi) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "skipDi");
+	RETURN_MEMBER(getThis(), "skipDi");
 
 }
 
@@ -126,7 +127,8 @@ PHP_METHOD(Ice_Dump, setSkipDi) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("skipDi"), skipDi TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("skipDi"), skipDi TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -138,7 +140,7 @@ PHP_METHOD(Ice_Dump, setSkipDi) {
  */
 PHP_METHOD(Ice_Dump, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *detailed_param = NULL, *styles = NULL;
 	zend_bool detailed;
 
@@ -160,12 +162,12 @@ PHP_METHOD(Ice_Dump, __construct) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setstyles", NULL, 0, styles);
 		zephir_check_call_status();
 	} else if (Z_TYPE_P(styles) == IS_BOOL) {
-		zephir_update_property_this(this_ptr, SL("plain"), styles TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("plain"), styles TSRMLS_CC);
 	}
 	if (detailed) {
-		zephir_update_property_this(this_ptr, SL("detailed"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("detailed"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
 	} else {
-		zephir_update_property_this(this_ptr, SL("detailed"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("detailed"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -186,7 +188,7 @@ PHP_METHOD(Ice_Dump, all) {
 
 	zval *_1 = NULL;
 	zval *_0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -218,11 +220,11 @@ PHP_METHOD(Ice_Dump, getStyle) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &type_param);
 
-	if (unlikely(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(type_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(type_param) == IS_STRING)) {
 		zephir_get_strval(type, type_param);
 	} else {
 		ZEPHIR_INIT_VAR(type);
@@ -281,8 +283,8 @@ PHP_METHOD(Ice_Dump, setStyles) {
 	add_assoc_stringl_ex(defaultStyles, SS("str"), SL("color:teal"), 1);
 	ZEPHIR_INIT_VAR(_0);
 	zephir_fast_array_merge(_0, &(defaultStyles), &(styles) TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("styles"), _0 TSRMLS_CC);
-	RETURN_MM_MEMBER(this_ptr, "styles");
+	zephir_update_property_this(getThis(), SL("styles"), _0 TSRMLS_CC);
+	RETURN_MM_MEMBER(getThis(), "styles");
 
 }
 
@@ -299,7 +301,7 @@ PHP_METHOD(Ice_Dump, setStyles) {
  */
 PHP_METHOD(Ice_Dump, one) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name = NULL;
 	zval *variable, *name_param = NULL;
 
@@ -335,7 +337,7 @@ PHP_METHOD(Ice_Dump, output) {
 	HashPosition _7$$4, _46$$11, _84$$20;
 	zval *_145, *_2$$4, *_14$$5 = NULL, *_30$$8, *_78$$8, *_37$$9, *_52$$12 = NULL, *_68$$14 = NULL, *_92$$23 = NULL, *_100$$24 = NULL, *_110$$25, *_116$$26, *_121$$27, *_126$$28, *_134$$29, *_140$$30;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL, *_11 = NULL, *_24 = NULL, *_34 = NULL, *_59 = NULL, *_63 = NULL, *_70 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *variable, *name = NULL, *tab = NULL, *key = NULL, *value = NULL, *output = NULL, *space = NULL, *type = NULL, *attr = NULL, *_113 = NULL, *_143 = NULL, *_144, *_146 = NULL, *_147, *_0$$4 = NULL, *_1$$4, *_3$$4 = NULL, *_4$$4, **_9$$4, _26$$4, *_27$$4 = NULL, *_10$$5 = NULL, *_12$$5 = NULL, *_13$$5, *_15$$5 = NULL, *_16$$5 = NULL, *_17$$5 = NULL, *_21$$7 = NULL, *_22$$7 = NULL, *_23$$7 = NULL, *_25$$7 = NULL, *className$$8 = NULL, *_28$$8 = NULL, *_29$$8, *_31$$8 = NULL, *_32$$8 = NULL, *_33$$8 = NULL, *_40$$8, *_42$$8, *_75$$8 = NULL, *_76$$8 = NULL, *_77$$8, *_79$$8 = NULL, *_80$$8, *_81$$8, _106$$8, *_107$$8 = NULL, *_35$$9 = NULL, *_36$$9, *_38$$9 = NULL, *_39$$9, *_43$$10 = NULL, *_44$$10, *_45$$11 = NULL, **_48$$11, *_49$$12 = NULL, *_50$$12 = NULL, *_51$$12, *_53$$12 = NULL, *_54$$12 = NULL, *_55$$12 = NULL, *_56$$12 = NULL, *_57$$12 = NULL, *_58$$12 = NULL, *_60$$14 = NULL, _61$$14 = zval_used_for_init, *_62$$14 = NULL, *_65$$14 = NULL, *_66$$14 = NULL, *_67$$14, *_69$$14 = NULL, *_71$$14 = NULL, *_72$$14 = NULL, *_73$$14 = NULL, *_74$$14 = NULL, *_64$$17, *_82$$19 = NULL, *_83$$19, **_86$$20, *_104$$20 = NULL, *_105$$20, *_87$$21, _88$$23 = zval_used_for_init, *_89$$23 = NULL, *_90$$23 = NULL, *_91$$23, *_93$$23 = NULL, *_94$$23 = NULL, *_95$$23 = NULL, _96$$24 = zval_used_for_init, *_97$$24 = NULL, *_98$$24 = NULL, *_99$$24, *_101$$24 = NULL, *_102$$24 = NULL, *_103$$24 = NULL, *_108$$25 = NULL, *_109$$25, *_111$$25 = NULL, *_112$$25, *_114$$26 = NULL, *_115$$26, *_117$$26 = NULL, *_118$$26, *_119$$27 = NULL, *_120$$27, *_122$$27 = NULL, *_123$$27, *_124$$28 = NULL, *_125$$28, *_127$$28 = NULL, *_128$$28, _129$$28, _130$$28, *_131$$28 = NULL, *_132$$29 = NULL, *_133$$29, *_135$$29 = NULL, *_136$$29, *_137$$29 = NULL, *_138$$30 = NULL, *_139$$30, *_141$$30 = NULL, *_142$$30;
 
 	ZEPHIR_MM_GROW();
@@ -382,8 +384,8 @@ PHP_METHOD(Ice_Dump, output) {
 		zephir_concat_self(&output, _3$$4 TSRMLS_CC);
 		zephir_is_iterable(variable, &_8$$4, &_7$$4, 0, 0, "ice/dump.zep", 169);
 		for (
-		  ; zephir_hash_get_current_data_ex(_8$$4, (void**) &_9$$4, &_7$$4) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_8$$4, &_7$$4)
+		  ; zend_hash_get_current_data_ex(_8$$4, (void**) &_9$$4, &_7$$4) == SUCCESS
+		  ; zend_hash_move_forward_ex(_8$$4, &_7$$4)
 		) {
 			ZEPHIR_GET_HMKEY(key, _8$$4, _7$$4);
 			ZEPHIR_GET_HVALUE(value, _9$$4);
@@ -515,8 +517,8 @@ PHP_METHOD(Ice_Dump, output) {
 			zephir_check_call_status();
 			zephir_is_iterable(_45$$11, &_47$$11, &_46$$11, 0, 0, "ice/dump.zep", 192);
 			for (
-			  ; zephir_hash_get_current_data_ex(_47$$11, (void**) &_48$$11, &_46$$11) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_47$$11, &_46$$11)
+			  ; zend_hash_get_current_data_ex(_47$$11, (void**) &_48$$11, &_46$$11) == SUCCESS
+			  ; zend_hash_move_forward_ex(_47$$11, &_46$$11)
 			) {
 				ZEPHIR_GET_HMKEY(key, _47$$11, _46$$11);
 				ZEPHIR_GET_HVALUE(value, _48$$11);
@@ -671,8 +673,8 @@ PHP_METHOD(Ice_Dump, output) {
 		} else {
 			zephir_is_iterable(attr, &_85$$20, &_84$$20, 0, 0, "ice/dump.zep", 239);
 			for (
-			  ; zephir_hash_get_current_data_ex(_85$$20, (void**) &_86$$20, &_84$$20) == SUCCESS
-			  ; zephir_hash_move_forward_ex(_85$$20, &_84$$20)
+			  ; zend_hash_get_current_data_ex(_85$$20, (void**) &_86$$20, &_84$$20) == SUCCESS
+			  ; zend_hash_move_forward_ex(_85$$20, &_84$$20)
 			) {
 				ZEPHIR_GET_HVALUE(value, _86$$20);
 				_87$$21 = zephir_fetch_nproperty_this(this_ptr, SL("methods"), PH_NOISY_CC);
@@ -953,7 +955,7 @@ PHP_METHOD(Ice_Dump, output) {
 PHP_METHOD(Ice_Dump, variable) {
 
 	zval *_2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name = NULL;
 	zval *variable, *name_param = NULL, *_0 = NULL, *_1, *_3 = NULL, *_4;
 
@@ -1015,7 +1017,7 @@ PHP_METHOD(Ice_Dump, vars) {
 	HashPosition _1;
 	zval *key = NULL, *value = NULL, *output = NULL, *_0, **_3, *_4$$3 = NULL, *_5$$3 = NULL;
 	zephir_fcall_cache_entry *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
 
@@ -1025,8 +1027,8 @@ PHP_METHOD(Ice_Dump, vars) {
 	zephir_get_args(_0 TSRMLS_CC);
 	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/dump.zep", 312);
 	for (
-	  ; zephir_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_2, &_1)
+	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
+	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
 		ZEPHIR_GET_HMKEY(key, _2, _1);
 		ZEPHIR_GET_HVALUE(value, _3);
@@ -1047,22 +1049,33 @@ zend_object_value zephir_init_properties_Ice_Dump(zend_class_entry *class_type T
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("styles"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
 			array_init(_1$$3);
-			zephir_update_property_this(this_ptr, SL("styles"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("styles"), _1$$3 TSRMLS_CC);
 		}
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("methods"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3$$4);
 			array_init(_3$$4);
-			zephir_update_property_this(this_ptr, SL("methods"), _3$$4 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("methods"), _3$$4 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }

@@ -49,7 +49,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
 
 	
 
-	RETURN_MEMBER(this_ptr, "method");
+	RETURN_MEMBER(getThis(), "method");
 
 }
 
@@ -61,7 +61,8 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("method"), method TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("method"), method TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -73,7 +74,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	zval *action = NULL, *_0, *_1, *_2, *_3, *_4, *_5;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -91,7 +92,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	if ((zephir_method_exists(_5, action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 123);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 123);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -100,12 +101,12 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	zval *parent = NULL, *response = NULL, *_1, *_2, *_3 = NULL, *_4 = NULL, *_5$$3, *_8$$3, *_9$$3, *_10$$3, *_6$$4 = NULL, *_7$$4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, this_ptr, "dispatch", &_0, 124);
+	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 124);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);

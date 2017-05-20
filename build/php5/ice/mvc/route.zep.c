@@ -67,10 +67,10 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	zephir_get_arrval(variables, variables_param);
 
 
-	zephir_update_property_this(this_ptr, SL("httpMethod"), httpMethod TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("handler"), handler TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("regex"), regex TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("variables"), variables TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("httpMethod"), httpMethod TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("handler"), handler TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("regex"), regex TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("variables"), variables TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
 }

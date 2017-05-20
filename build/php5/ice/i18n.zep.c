@@ -18,7 +18,6 @@
 #include "kernel/operators.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
-#include "kernel/hash.h"
 #include "kernel/concat.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
@@ -79,7 +78,7 @@ PHP_METHOD(Ice_I18n, __construct) {
 	ZEPHIR_INIT_VAR(_0);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 	zephir_fast_array_merge(_0, &(_1), &(options) TSRMLS_CC);
-	zephir_update_property_this(this_ptr, SL("options"), _0 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("options"), _0 TSRMLS_CC);
 	zephir_update_static_property_ce(ice_i18n_ce, SL("i18n"), &this_ptr TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 
@@ -208,7 +207,7 @@ PHP_METHOD(Ice_I18n, iso) {
  */
 PHP_METHOD(Ice_I18n, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *form = NULL, *lang_param = NULL, *messages = NULL, *translation = NULL, *_0$$3, *_1$$3, _3$$5, *_4$$6, *_5$$7;
 	zval *str = NULL, *lang = NULL, *_2$$3 = NULL;
 
@@ -303,8 +302,8 @@ PHP_METHOD(Ice_I18n, load) {
 	zephir_array_fast_append(_2, parts);
 	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/i18n.zep", 182);
 	for (
-	  ; zephir_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_4, &_3)
+	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
+	  ; zend_hash_move_forward_ex(_4, &_3)
 	) {
 		ZEPHIR_GET_HVALUE(tail, _5);
 		if (Z_TYPE_P(tail) != IS_ARRAY) {
@@ -315,8 +314,8 @@ PHP_METHOD(Ice_I18n, load) {
 		}
 		zephir_is_iterable(tail, &_7$$4, &_6$$4, 0, 0, "ice/i18n.zep", 180);
 		for (
-		  ; zephir_hash_get_current_data_ex(_7$$4, (void**) &_8$$4, &_6$$4) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_7$$4, &_6$$4)
+		  ; zend_hash_get_current_data_ex(_7$$4, (void**) &_8$$4, &_6$$4) == SUCCESS
+		  ; zend_hash_move_forward_ex(_7$$4, &_6$$4)
 		) {
 			ZEPHIR_GET_HVALUE(found, _8$$4);
 			_9$$6 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
@@ -353,18 +352,18 @@ PHP_METHOD(Ice_I18n, load) {
  */
 PHP_METHOD(Ice_I18n, plural) {
 
-	int count, ZEPHIR_LAST_CALL_STATUS;
+	zend_long count, ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, *rules = NULL, *form = NULL, *code = NULL, *_0, *_4, *_1$$3 = NULL, *_2$$3, *_3$$3;
 	zval *str = NULL, *lang = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &count_param, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(str);
@@ -414,7 +413,7 @@ PHP_METHOD(Ice_I18n, plural) {
 PHP_METHOD(Ice_I18n, pluralRules) {
 
 	zval *_0, *_3, *_5, *_7, *_9, *_11, *_13, *_15;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *code_param = NULL, *_1 = NULL, *_2 = NULL, *_4 = NULL, *_6 = NULL, *_8 = NULL, *_10 = NULL, *_12 = NULL, *_14 = NULL, *_16 = NULL, *_17$$13;
 	zval *code = NULL, *_18$$13;
 
@@ -1022,7 +1021,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
  */
 PHP_METHOD(Ice_I18n, _) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *values = NULL;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, *lang_param = NULL;
 	zval *str = NULL, *lang = NULL;
@@ -1030,11 +1029,11 @@ PHP_METHOD(Ice_I18n, _) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(str);
@@ -1074,7 +1073,7 @@ PHP_METHOD(Ice_I18n, _) {
  */
 PHP_METHOD(Ice_I18n, translate) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *values = NULL, *_9$$9;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, *lang_param = NULL, *_0$$3, *_1$$3, *_3$$4 = NULL, *_4$$5 = NULL, *_5$$7, _6$$7, *_7$$7 = NULL, *_8$$9, _10$$9;
 	zval *str = NULL, *lang = NULL, *_2$$3 = NULL;
@@ -1082,11 +1081,11 @@ PHP_METHOD(Ice_I18n, translate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(str);
@@ -1162,8 +1161,19 @@ zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type T
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
@@ -1171,28 +1181,28 @@ zend_object_value zephir_init_properties_Ice_I18n(zend_class_entry *class_type T
 			add_assoc_stringl_ex(_1$$3, SS("source"), SL("en-gb"), 1);
 			add_assoc_stringl_ex(_1$$3, SS("lang"), SL("en-gb"), 1);
 			add_assoc_stringl_ex(_1$$3, SS("dir"), SL(""), 1);
-			zephir_update_property_this(this_ptr, SL("options"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("options"), _1$$3 TSRMLS_CC);
 		}
 		_2 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 		if (Z_TYPE_P(_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_3$$4);
 			array_init(_3$$4);
-			zephir_update_property_this(this_ptr, SL("rules"), _3$$4 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("rules"), _3$$4 TSRMLS_CC);
 		}
 		_4 = zephir_fetch_nproperty_this(this_ptr, SL("cache"), PH_NOISY_CC);
 		if (Z_TYPE_P(_4) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_5$$5);
 			array_init(_5$$5);
-			zephir_update_property_this(this_ptr, SL("cache"), _5$$5 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("cache"), _5$$5 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }
 
 PHP_FUNCTION(g_ice__t) {
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *values = NULL;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, *lang_param = NULL, *i18n = NULL;
@@ -1201,11 +1211,11 @@ PHP_FUNCTION(g_ice__t) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(str);

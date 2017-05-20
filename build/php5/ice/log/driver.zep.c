@@ -46,7 +46,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
  */
 PHP_METHOD(Ice_Log_Driver, emergency) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -83,7 +83,7 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
  */
 PHP_METHOD(Ice_Log_Driver, alert) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -120,7 +120,7 @@ PHP_METHOD(Ice_Log_Driver, alert) {
  */
 PHP_METHOD(Ice_Log_Driver, critical) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -155,7 +155,7 @@ PHP_METHOD(Ice_Log_Driver, critical) {
  */
 PHP_METHOD(Ice_Log_Driver, error) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -192,7 +192,7 @@ PHP_METHOD(Ice_Log_Driver, error) {
  */
 PHP_METHOD(Ice_Log_Driver, warning) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Log_Driver, warning) {
  */
 PHP_METHOD(Ice_Log_Driver, notice) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -264,7 +264,7 @@ PHP_METHOD(Ice_Log_Driver, notice) {
  */
 PHP_METHOD(Ice_Log_Driver, info) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;
@@ -299,7 +299,7 @@ PHP_METHOD(Ice_Log_Driver, info) {
  */
 PHP_METHOD(Ice_Log_Driver, debug) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *context = NULL;
 	zval *message_param = NULL, *context_param = NULL, *_0;
 	zval *message = NULL;

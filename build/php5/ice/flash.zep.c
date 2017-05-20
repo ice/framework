@@ -19,7 +19,6 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/concat.h"
 
 
@@ -55,7 +54,8 @@ PHP_METHOD(Ice_Flash, setOptions) {
 
 
 
-	zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("options"), options TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -66,7 +66,7 @@ PHP_METHOD(Ice_Flash, setOptions) {
  */
 PHP_METHOD(Ice_Flash, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *options_param = NULL, *di = NULL, *_1 = NULL, *_2 = NULL, *_3 = NULL;
 	zval *options = NULL;
@@ -89,15 +89,15 @@ PHP_METHOD(Ice_Flash, __construct) {
 	ZEPHIR_CALL_METHOD(&_1, di, "get", NULL, 0, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("session"), _1 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("session"), _1 TSRMLS_CC);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "tag", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_CALL_METHOD(&_3, di, "get", NULL, 0, _2);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
-	zephir_update_property_this(this_ptr, SL("tag"), _3 TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("tag"), _3 TSRMLS_CC);
 	if (zephir_fast_count_int(options TSRMLS_CC)) {
-		zephir_update_property_this(this_ptr, SL("options"), options TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("options"), options TSRMLS_CC);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -118,11 +118,11 @@ PHP_METHOD(Ice_Flash, getOption) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
-	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(key);
@@ -153,7 +153,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	HashTable *_3$$3;
 	HashPosition _2$$3;
 	zephir_fcall_cache_entry *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *remove_param = NULL, *key = NULL, *type = NULL, *message = NULL, *messages = NULL, *body = NULL, *_0, *_1, **_4$$3, *_5$$4 = NULL, *_7$$5;
 	zend_bool remove;
 
@@ -180,8 +180,8 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	if (Z_TYPE_P(messages) == IS_ARRAY) {
 		zephir_is_iterable(messages, &_3$$3, &_2$$3, 0, 0, "ice/flash.zep", 80);
 		for (
-		  ; zephir_hash_get_current_data_ex(_3$$3, (void**) &_4$$3, &_2$$3) == SUCCESS
-		  ; zephir_hash_move_forward_ex(_3$$3, &_2$$3)
+		  ; zend_hash_get_current_data_ex(_3$$3, (void**) &_4$$3, &_2$$3) == SUCCESS
+		  ; zend_hash_move_forward_ex(_3$$3, &_2$$3)
 		) {
 			ZEPHIR_GET_HMKEY(type, _3$$3, _2$$3);
 			ZEPHIR_GET_HVALUE(message, _4$$3);
@@ -212,7 +212,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	HashPosition _5;
 	zval *_3, *_12$$5 = NULL, *_14$$5 = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *messages = NULL, *params = NULL, *body = NULL, *close = NULL, *message = NULL, *_0, *_2, *_4 = NULL, **_7, *_8$$4 = NULL, *_9$$4 = NULL, *_10$$5, *_11$$5 = NULL, *_13$$5 = NULL, *_15$$5 = NULL, *_16$$5 = NULL, *_17$$5 = NULL, *_18$$5 = NULL, *_19$$6 = NULL, *_20$$6 = NULL;
 	zval *type = NULL;
 
@@ -248,8 +248,8 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	}
 	zephir_is_iterable(messages, &_6, &_5, 0, 0, "ice/flash.zep", 116);
 	for (
-	  ; zephir_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
-	  ; zephir_hash_move_forward_ex(_6, &_5)
+	  ; zend_hash_get_current_data_ex(_6, (void**) &_7, &_5) == SUCCESS
+	  ; zend_hash_move_forward_ex(_6, &_5)
 	) {
 		ZEPHIR_GET_HVALUE(message, _7);
 		ZEPHIR_INIT_NVAR(_9$$4);
@@ -303,7 +303,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
  */
 PHP_METHOD(Ice_Flash, message) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *message_param = NULL, *key = NULL, *messages = NULL, *_0 = NULL, *_1, *_3, *_2$$3;
 	zval *type = NULL, *message = NULL;
 
@@ -345,7 +345,7 @@ PHP_METHOD(Ice_Flash, message) {
  */
 PHP_METHOD(Ice_Flash, success) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -369,7 +369,7 @@ PHP_METHOD(Ice_Flash, success) {
  */
 PHP_METHOD(Ice_Flash, ok) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -396,7 +396,7 @@ PHP_METHOD(Ice_Flash, ok) {
  */
 PHP_METHOD(Ice_Flash, info) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -420,7 +420,7 @@ PHP_METHOD(Ice_Flash, info) {
  */
 PHP_METHOD(Ice_Flash, notice) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -447,7 +447,7 @@ PHP_METHOD(Ice_Flash, notice) {
  */
 PHP_METHOD(Ice_Flash, warning) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -471,7 +471,7 @@ PHP_METHOD(Ice_Flash, warning) {
  */
 PHP_METHOD(Ice_Flash, alert) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -498,7 +498,7 @@ PHP_METHOD(Ice_Flash, alert) {
  */
 PHP_METHOD(Ice_Flash, danger) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -522,7 +522,7 @@ PHP_METHOD(Ice_Flash, danger) {
  */
 PHP_METHOD(Ice_Flash, error) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, *_0;
 	zval *message = NULL;
 
@@ -549,8 +549,19 @@ zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type 
 		ZEPHIR_MM_GROW();
 	
 	{
-		zval *this_ptr = NULL;
-		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zval zthis       = zval_used_for_init;
+		zval *this_ptr   = &zthis;
+		zend_object* obj = ecalloc(1, sizeof(zend_object));
+		zend_object_value retval;
+
+		zend_object_std_init(obj, class_type TSRMLS_CC);
+		object_properties_init(obj, class_type);
+		retval.handle   = zend_objects_store_put(obj, (zend_objects_store_dtor_t)zend_objects_destroy_object, zephir_free_object_storage, NULL TSRMLS_CC);
+		retval.handlers = zend_get_std_object_handlers();
+
+		Z_TYPE(zthis)   = IS_OBJECT;
+		Z_OBJVAL(zthis) = retval;
+
 		_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(_1$$3);
@@ -573,10 +584,10 @@ zend_object_value zephir_init_properties_Ice_Flash(zend_class_entry *class_type 
 			add_assoc_stringl_ex(_2$$3, SS("class"), SL("alert alert-danger"), 1);
 			zephir_array_update_string(&_1$$3, SL("danger"), &_2$$3, PH_COPY | PH_SEPARATE);
 			zephir_array_update_string(&_1$$3, SL("html"), &ZEPHIR_GLOBAL(global_true), PH_COPY | PH_SEPARATE);
-			zephir_update_property_this(this_ptr, SL("options"), _1$$3 TSRMLS_CC);
+			zephir_update_property_this(getThis(), SL("options"), _1$$3 TSRMLS_CC);
 		}
 		ZEPHIR_MM_RESTORE();
-		return Z_OBJVAL_P(this_ptr);
+		return retval;
 	}
 
 }
