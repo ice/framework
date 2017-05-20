@@ -244,7 +244,7 @@ class Tag
      * @param array parameters
      * @return string
      */
-    private function input(string type, array parameters) -> string
+    public function input(string type, array parameters) -> string
     {
         var defaultParams;
 
