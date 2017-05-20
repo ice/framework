@@ -17,7 +17,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -45,10 +44,10 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
  */
 PHP_METHOD(Ice_Config_Ini, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL;
 	zval *data = NULL, data_sub, __$true, __$null, ini, raw, _1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_BOOL(&__$true, 1);
@@ -79,7 +78,7 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(data, this_ptr, "map", NULL, 52, &ini, &raw);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, this_ptr, "__construct", &_2, 0, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, getThis(), "__construct", &_2, 0, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -96,7 +95,7 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 
 	zend_bool _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
 	zval *ini, ini_sub, *raw, raw_sub, _7$$7, _8$$7, _9$$7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&ini_sub);
 	ZVAL_UNDEF(&raw_sub);
@@ -177,9 +176,9 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	zend_string *_2;
 	zend_ulong _1;
 	zephir_fcall_cache_entry *_5 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *ini, ini_sub, *raw, raw_sub, key, value, data, *_0, _3$$4, _4$$4, _6$$5, _7$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&ini_sub);
 	ZVAL_UNDEF(&raw_sub);

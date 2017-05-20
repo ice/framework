@@ -19,7 +19,6 @@
 #include "kernel/array.h"
 #include "Zend/zend_closures.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 #include "kernel/concat.h"
 #include "ext/spl/spl_exceptions.h"
@@ -52,7 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Di) {
 PHP_METHOD(Ice_Di, setDefaults) {
 
 	zval *defaults, defaults_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaults_sub);
 
@@ -61,6 +60,7 @@ PHP_METHOD(Ice_Di, setDefaults) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaults"), defaults);
+	RETURN_THISW();
 
 }
 
@@ -71,11 +71,11 @@ PHP_METHOD(Ice_Di, setDefaults) {
  */
 PHP_METHOD(Ice_Di, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *data_param = NULL;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 
@@ -90,9 +90,9 @@ PHP_METHOD(Ice_Di, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, this_ptr, "__construct", &_0, 0, &data);
+	ZEPHIR_CALL_PARENT(NULL, ice_di_ce, getThis(), "__construct", &_0, 0, &data);
 	zephir_check_call_status();
-	zephir_update_static_property_ce(ice_di_ce, SL("di"), this_ptr);
+	zend_update_static_property(ice_di_ce, ZEND_STRL("di"), this_ptr);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -105,7 +105,7 @@ PHP_METHOD(Ice_Di, __construct) {
 PHP_METHOD(Ice_Di, fetch) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -124,10 +124,10 @@ PHP_METHOD(Ice_Di, fetch) {
 PHP_METHOD(Ice_Di, get) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *parameters = NULL, parameters_sub, __$null, predefined, _0, _2$$4, _3$$4;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&parameters_sub);
@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Di, get) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "has", NULL, 0, &key);
 	zephir_check_call_status();
 	if (zephir_is_true(&_0)) {
-		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, this_ptr, "get", &_1, 0, &key, parameters);
+		ZEPHIR_RETURN_CALL_PARENT(ice_di_ce, getThis(), "get", &_1, 0, &key, parameters);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
@@ -180,10 +180,10 @@ PHP_METHOD(Ice_Di, get) {
  */
 PHP_METHOD(Ice_Di, set) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *value, value_sub, service;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
@@ -211,7 +211,7 @@ PHP_METHOD(Ice_Di, getDefaults) {
 
 	zval _1;
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -250,9 +250,9 @@ PHP_METHOD(Ice_Di, getDefaults) {
  */
 PHP_METHOD(Ice_Di, resolve) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service = NULL, service_sub, params, _0$$5, _1$$8, _2$$10, _3$$10, _4$$11, _5$$11, _6$$11;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&service_sub);
 	ZVAL_UNDEF(&params);
@@ -332,9 +332,9 @@ PHP_METHOD(Ice_Di, resolve) {
 PHP_METHOD(Ice_Di, build) {
 
 	zval _2$$5;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *service, service_sub, *parameters = NULL, parameters_sub, reflector, constructor, dependencies, _0, _4, _1$$5, _3$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&service_sub);
 	ZVAL_UNDEF(&parameters_sub);
@@ -421,7 +421,7 @@ PHP_METHOD(Ice_Di, getParameters) {
 	zend_ulong _1;
 	zval *dependencies_param = NULL, *parameters_param = NULL, key, value, dependency, *_0, _3$$4;
 	zval dependencies, parameters;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dependencies);
 	ZVAL_UNDEF(&parameters);
@@ -471,10 +471,10 @@ PHP_METHOD(Ice_Di, getParameters) {
 PHP_METHOD(Ice_Di, getDependencies) {
 
 	zephir_fcall_cache_entry *_6 = NULL, *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *parameters_param = NULL, *primitives_param = NULL, dependencies, parameter, dependency, *_0, _1$$3, _2$$4, _3$$4, _4$$5, _5$$6, _7$$7, _8$$7;
 	zval parameters, primitives;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&primitives);
@@ -547,9 +547,9 @@ PHP_METHOD(Ice_Di, getDependencies) {
 PHP_METHOD(Ice_Di, resolveNonClass) {
 
 	zval _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *parameter, parameter_sub, _0, _1, _3, _4, _5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameter_sub);
 	ZVAL_UNDEF(&_0);
@@ -602,10 +602,10 @@ PHP_METHOD(Ice_Di, resolveNonClass) {
 PHP_METHOD(Ice_Di, errors) {
 
 	zval _0, _2, _3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *className_param = NULL, _1;
 	zval className;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&_1);
@@ -662,10 +662,10 @@ PHP_METHOD(Ice_Di, errors) {
 PHP_METHOD(Ice_Di, hook) {
 
 	zval _1$$3;
-	int priority;
+	zend_long priority;
 	zval *name_param = NULL, *callback, callback_sub, *priority_param = NULL, _0, _2$$3;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&callback_sub);
@@ -708,11 +708,11 @@ PHP_METHOD(Ice_Di, hook) {
  */
 PHP_METHOD(Ice_Di, applyHook) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval args, _1$$3;
 	zval *name_param = NULL, *args_param = NULL, priority, callback, _0, _3, _4, _2$$3, _5$$4, _6$$4, *_7$$4, *_8$$6, _9$$7;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&priority);
@@ -790,7 +790,7 @@ PHP_METHOD(Ice_Di, getHooks) {
 
 	zval *name_param = NULL, _0$$3, _1$$3, _2$$3;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0$$3);
@@ -819,7 +819,7 @@ PHP_METHOD(Ice_Di, getHooks) {
 		}
 		RETURN_CCTOR(_0$$3);
 	} else {
-		RETURN_MM_MEMBER(this_ptr, "hooks");
+		RETURN_MM_MEMBER(getThis(), "hooks");
 	}
 
 }
@@ -837,7 +837,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 	zend_bool _0;
 	zval *name_param = NULL, key, _1, _3$$3, _4$$4, _5$$4, *_6$$4, _8$$5;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&key);
@@ -903,11 +903,11 @@ PHP_METHOD(Ice_Di, clearHooks) {
  */
 PHP_METHOD(Ice_Di, __call) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, value, _7, _0$$3, _1$$3, _2$$3, _4$$4, _5$$4, _6$$4;
 	zval method, _8;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&_8);
@@ -925,11 +925,11 @@ PHP_METHOD(Ice_Di, __call) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
 
-	if (unlikely(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(method_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
 		zephir_get_strval(&method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(&method);

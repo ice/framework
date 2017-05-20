@@ -43,8 +43,8 @@ ZEPHIR_INIT_CLASS(Ice_Session) {
  */
 PHP_METHOD(Ice_Session, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();
@@ -63,8 +63,8 @@ PHP_METHOD(Ice_Session, __construct) {
 PHP_METHOD(Ice_Session, start) {
 
 	zval __$true, __$false, _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
@@ -95,10 +95,10 @@ PHP_METHOD(Ice_Session, start) {
  */
 PHP_METHOD(Ice_Session, isStarted) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "started");
+	RETURN_MEMBER(getThis(), "started");
 
 }
 
@@ -109,8 +109,8 @@ PHP_METHOD(Ice_Session, isStarted) {
  */
 PHP_METHOD(Ice_Session, getId) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();
@@ -128,8 +128,8 @@ PHP_METHOD(Ice_Session, getId) {
  */
 PHP_METHOD(Ice_Session, regenerate) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();
@@ -147,9 +147,9 @@ PHP_METHOD(Ice_Session, regenerate) {
  */
 PHP_METHOD(Ice_Session, destroy) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval __$true, __$false;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
@@ -175,7 +175,7 @@ PHP_METHOD(Ice_Session, has) {
 
 	zval *key_param = NULL, _SESSION;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_SESSION);
@@ -199,7 +199,7 @@ PHP_METHOD(Ice_Session, get) {
 	zend_bool required;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _SESSION, __$null, value;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -236,10 +236,9 @@ PHP_METHOD(Ice_Session, get) {
  */
 PHP_METHOD(Ice_Session, set) {
 
-	int _0;
 	zval *key_param = NULL, *value, value_sub, _SESSION;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
@@ -252,11 +251,7 @@ PHP_METHOD(Ice_Session, set) {
 	zephir_get_strval(&key, key_param);
 
 
-	_0 = zephir_maybe_separate_zval(&_SESSION);
-	zephir_array_update_zval(&_SESSION, &key, value, PH_COPY | PH_SEPARATE);
-	if (_0) {
-		ZEPHIR_SET_SYMBOL(&EG(symbol_table), "_SESSION", &_SESSION);
-	}
+	zephir_array_update_zval(&_SESSION, &key, value, PH_COPY);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -268,7 +263,7 @@ PHP_METHOD(Ice_Session, remove) {
 
 	zval *key_param = NULL, _SESSION;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_SESSION);

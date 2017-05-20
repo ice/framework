@@ -20,7 +20,6 @@
 #include "kernel/math.h"
 #include "kernel/array.h"
 #include "kernel/concat.h"
-#include "kernel/hash.h"
 
 
 /**
@@ -47,19 +46,19 @@ ZEPHIR_INIT_CLASS(Ice_Pagination) {
 
 PHP_METHOD(Ice_Pagination, getDi) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "di");
+	RETURN_MEMBER(getThis(), "di");
 
 }
 
 PHP_METHOD(Ice_Pagination, getTag) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "tag");
+	RETURN_MEMBER(getThis(), "tag");
 
 }
 
@@ -70,11 +69,11 @@ PHP_METHOD(Ice_Pagination, getTag) {
  */
 PHP_METHOD(Ice_Pagination, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL;
 	zval *options_param = NULL, di, _2, _3;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&di);
@@ -92,7 +91,7 @@ PHP_METHOD(Ice_Pagination, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, this_ptr, "__construct", &_0, 0, &options);
+	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, getThis(), "__construct", &_0, 0, &options);
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
@@ -116,8 +115,8 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	zval _10;
 	zend_bool _2;
 	zval items, data, _0, _1, _3, _4, _5, _6, _7, _8, _9;
-	int ZEPHIR_LAST_CALL_STATUS, limit = 0, page = 0, pages = 0, total = 0, previous = 0, next = 0;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS, limit = 0, page = 0, pages = 0, total = 0, previous = 0, next = 0;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&items);
 	ZVAL_UNDEF(&data);
@@ -239,10 +238,10 @@ PHP_METHOD(Ice_Pagination, calculate) {
 PHP_METHOD(Ice_Pagination, prepareButton) {
 
 	zval _27, _8$$9;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool active, pages, _12;
 	zval *page = NULL, page_sub, *url = NULL, url_sub, *active_param = NULL, *symbol = NULL, symbol_sub, __$null, query, i18n, title, liClass, spanClass, aClass, _1, _5, _6, _7, _11, _13, _24, _25, _26, _28, _0$$7, _2$$8, _3$$8, _4$$8, _9$$9, _10$$10, _14$$12, _15$$12, _16$$12, _17$$12, _18$$11, _19$$11, _20$$11, _21$$11, _22$$14, _23$$15;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&page_sub);
 	ZVAL_UNDEF(&url_sub);
@@ -504,10 +503,10 @@ PHP_METHOD(Ice_Pagination, minimal) {
 
 	zend_bool _9;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, i = 0, _10;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, _10;
 	zval parameters, _1;
 	zval *url = NULL, url_sub, *parameters_param = NULL, __$null, html, _0, _2, _3, _4, _5, _6, _8, _11, _17, _18, _19, _12$$3, _13$$3, _14$$3, _15$$3, _16$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&url_sub);
 	ZVAL_NULL(&__$null);
@@ -633,10 +632,10 @@ PHP_METHOD(Ice_Pagination, basic) {
 
 	zend_bool _12;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, i = 0, _13;
+	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, _13;
 	zval parameters, _1;
 	zval *url = NULL, url_sub, *parameters_param = NULL, __$null, html, _0, _2, _3, _4, _5, _6, _8, _9, _10, _11, _14, _20, _21, _22, _23, _24, _25, _15$$3, _16$$3, _17$$3, _18$$3, _19$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&url_sub);
 	ZVAL_NULL(&__$null);
@@ -800,10 +799,10 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zend_ulong _39;
 	zend_bool useMiddle = 0, useN3 = 0, useN6 = 0, _11, _14, _16, _21, _26;
 	zephir_fcall_cache_entry *_4 = NULL, *_7 = NULL, *_34 = NULL;
-	int countOut, countIn, ZEPHIR_LAST_CALL_STATUS, n1 = 0, n3 = 0, n6 = 0, i = 0, _17;
+	zend_long countOut, countIn, ZEPHIR_LAST_CALL_STATUS, n1 = 0, n3 = 0, n6 = 0, i = 0, _17;
 	zval parameters, _30;
 	zval *url = NULL, url_sub, *parameters_param = NULL, *countOut_param = NULL, *countIn_param = NULL, __$null, html, links, page, content, n2, n4, n5, n7, n8, _0, _1, _2, _3, _5, _6, _8, _9, _10, _12, _13, _15, _18, _22, _23, _27, _28, _31, _32, _33, _35, _36, _37, *_38, _45, _46, _47, _48, _49, _50, _51, _19$$4, _20$$5, _24$$6, _25$$7, _29$$8, _41$$9, _42$$9, _43$$9, _44$$9;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&url_sub);
 	ZVAL_NULL(&__$null);

@@ -59,7 +59,7 @@ ZEPHIR_INIT_CLASS(Ice_Assets) {
 PHP_METHOD(Ice_Assets, setCollections) {
 
 	zval *collections, collections_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&collections_sub);
 
@@ -68,22 +68,23 @@ PHP_METHOD(Ice_Assets, setCollections) {
 
 
 	zephir_update_property_zval(this_ptr, SL("collections"), collections);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Assets, getCollections) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "collections");
+	RETURN_MEMBER(getThis(), "collections");
 
 }
 
 PHP_METHOD(Ice_Assets, setOptions) {
 
 	zval *options, options_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options_sub);
 
@@ -92,6 +93,7 @@ PHP_METHOD(Ice_Assets, setOptions) {
 
 
 	zephir_update_property_zval(this_ptr, SL("options"), options);
+	RETURN_THISW();
 
 }
 
@@ -101,9 +103,9 @@ PHP_METHOD(Ice_Assets, setOptions) {
 PHP_METHOD(Ice_Assets, __construct) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -126,7 +128,7 @@ PHP_METHOD(Ice_Assets, __construct) {
 PHP_METHOD(Ice_Assets, getOption) {
 
 	zval *key, key_sub, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -163,10 +165,10 @@ PHP_METHOD(Ice_Assets, getOption) {
 PHP_METHOD(Ice_Assets, add) {
 
 	zend_bool _0, _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection;
 	zval *parameters = NULL, parameters_sub, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, type;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameters_sub);
 	ZVAL_UNDEF(&minify_sub);
@@ -250,11 +252,11 @@ PHP_METHOD(Ice_Assets, addCss) {
 
 	zend_bool _4;
 	zephir_fcall_cache_entry *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection, _13$$8;
 	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, local, tag, _0, _1, _2$$5, _3$$5, _5$$7, _7$$7, _8$$7, _10$$8, _11$$8, _12$$8, _14$$8, _15$$8;
 	zval parameters, _6$$7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_6$$7);
@@ -389,11 +391,11 @@ PHP_METHOD(Ice_Assets, addJs) {
 
 	zend_bool _4;
 	zephir_fcall_cache_entry *_9 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection, _13$$8;
 	zval *parameters_param = NULL, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, local, tag, _0, _1, _2$$5, _3$$5, _5$$7, _7$$7, _8$$7, _10$$8, _11$$8, _12$$8, _14$$8, _15$$8;
 	zval parameters, _6$$7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_6$$7);
@@ -524,7 +526,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 PHP_METHOD(Ice_Assets, addToCollection) {
 
 	zval *key, key_sub, *value, value_sub, _0, _1$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&value_sub);
@@ -555,8 +557,8 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 PHP_METHOD(Ice_Assets, getCss) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -578,8 +580,8 @@ PHP_METHOD(Ice_Assets, getCss) {
 PHP_METHOD(Ice_Assets, getJs) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -603,7 +605,7 @@ PHP_METHOD(Ice_Assets, get) {
 
 	zval *key_param = NULL, collection, _0, _1;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&collection);
@@ -637,10 +639,10 @@ PHP_METHOD(Ice_Assets, get) {
  */
 PHP_METHOD(Ice_Assets, minify) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content_param = NULL, *type, type_sub, _0, _1, _2, _3;
 	zval content;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&content);
 	ZVAL_UNDEF(&type_sub);
@@ -652,11 +654,11 @@ PHP_METHOD(Ice_Assets, minify) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
 
-	if (unlikely(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(content_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(content_param) == IS_STRING)) {
 		zephir_get_strval(&content, content_param);
 	} else {
 		ZEPHIR_INIT_VAR(&content);
@@ -688,10 +690,10 @@ PHP_METHOD(Ice_Assets, minify) {
 PHP_METHOD(Ice_Assets, prepare) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_14 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, minify_sub, __$true, source, target, dir, file, uriMin, destination, exist, old, minified, _0, _2, _5$$8, _6$$8, _7$$10, _8$$11, _9$$11, _10$$12, _11$$14, _12$$14, _16$$14, _13$$15, _15$$15;
 	zval uri, type, _4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&type);
@@ -724,11 +726,11 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
 
-	if (unlikely(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(uri_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(uri_param) == IS_STRING)) {
 		zephir_get_strval(&uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(&uri);

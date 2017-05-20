@@ -43,7 +43,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_File) {
 PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 	zval *users, users_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&users_sub);
 
@@ -52,6 +52,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 
 	zephir_update_property_zval(this_ptr, SL("users"), users);
+	RETURN_THISW();
 
 }
 
@@ -63,10 +64,10 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, username, user, _0, _3, _2$$5, _4$$6;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -88,7 +89,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	zephir_read_property(&_0, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, this_ptr, "getuser", &_1, 0, defaultValue);
+		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, getThis(), "getuser", &_1, 0, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(&username, defaultValue)) {
 			zephir_update_property_zval(this_ptr, SL("user"), defaultValue);
@@ -108,7 +109,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-	RETURN_MM_MEMBER(this_ptr, "user");
+	RETURN_MM_MEMBER(getThis(), "user");
 
 }
 
@@ -123,7 +124,7 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
 	zval role;
 	zval *user, user_sub, *role_param = NULL, _0$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&_0$$3);
@@ -161,11 +162,11 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, login) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool remember, force, _0, _2$$3, _5$$3;
 	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, *force_param = NULL, user, _1, _3$$3, _4$$3, _6$$5;
 	zval username, password;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&username);
 	ZVAL_UNDEF(&password);

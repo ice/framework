@@ -235,7 +235,7 @@ ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
 	PHP_ME(Ice_Tag, button, arginfo_ice_tag_button, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, checkField, arginfo_ice_tag_checkfield, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, radioField, arginfo_ice_tag_radiofield, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Tag, input, arginfo_ice_tag_input, ZEND_ACC_PRIVATE)
+	PHP_ME(Ice_Tag, input, arginfo_ice_tag_input, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, form, arginfo_ice_tag_form, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, endForm, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, textArea, arginfo_ice_tag_textarea, ZEND_ACC_PUBLIC)

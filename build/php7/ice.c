@@ -145,6 +145,7 @@ PHP_INI_END()
 static PHP_MINIT_FUNCTION(ice)
 {
 	REGISTER_INI_ENTRIES();
+	zephir_module_init();
 	ZEPHIR_INIT(Ice_I18n_Plural_PluralInterface);
 	ZEPHIR_INIT(Ice_Auth_Social_SocialInterface);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine_EngineInterface);

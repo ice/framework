@@ -16,7 +16,6 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
@@ -71,10 +70,10 @@ PHP_METHOD(Ice_Validation_Validator_With, validate) {
 	zend_ulong _19$$13;
 	zend_bool _0, _4$$6, _12$$8;
 	zephir_fcall_cache_entry *_22 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, fields, with, tmp, required, key, translate, _1, *_3, _2$$4, _5$$8, _6$$8, _8$$8, _11$$8, _13$$8, _14$$8, _23$$8, _7$$9, _9$$11, _10$$12, _15$$13, _16$$13, _17$$13, *_18$$13, _21$$14;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
@@ -109,11 +108,11 @@ PHP_METHOD(Ice_Validation_Validator_With, validate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);

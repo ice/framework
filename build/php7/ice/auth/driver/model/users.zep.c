@@ -46,8 +46,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 
 	zval _1, _5, _7;
 	zval _0, _2, _3, _4, _6;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -105,8 +105,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -139,11 +139,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 
 	zval _2, _3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *name_param = NULL, role, roles, _0, _4, _5;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&role);

@@ -18,7 +18,6 @@
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -47,9 +46,9 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	zend_ulong _6;
 	zval _1, _4$$3;
 	zephir_fcall_cache_entry *_10 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *route, route_sub, routeWithoutClosingOptionals, numOptionals, segments, currentRoute, routeDatas, n, segment, _0, *_5, _2$$3, _3$$3, _9$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&route_sub);
 	ZVAL_UNDEF(&routeWithoutClosingOptionals);
@@ -135,9 +134,9 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 
 	zval _10$$4;
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *route, route_sub, matches, routeData, value, offset, _1, _2, *_3, _4$$4, _5$$4, _11$$4, _12$$4, _13$$4, _14$$4, _15$$4, _16$$4, _17$$4, _18$$4, _19$$4, _6$$5, _7$$5, _8$$5, _9$$5, _20$$6;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&route_sub);
 	ZVAL_UNDEF(&matches);

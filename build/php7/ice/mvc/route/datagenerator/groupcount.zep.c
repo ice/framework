@@ -13,7 +13,6 @@
 
 #include "kernel/main.h"
 #include "kernel/memory.h"
-#include "kernel/hash.h"
 #include "kernel/object.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
@@ -32,7 +31,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount) {
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
 	RETURN_LONG(10);
@@ -44,10 +43,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	zval _11$$3;
 	zend_string *_2;
 	zend_ulong _1;
-	int ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
+	zend_long ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
 	zephir_fcall_cache_entry *_5 = NULL, *_9 = NULL;
 	zval *regexToRoutesMap, regexToRoutesMap_sub, routeMap, regex, route, regexes, numGroups, numVariables, *_0, _13, _14, _3$$3, _4$$3, _6$$3, _7$$3, _8$$3, _10$$3, _12$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&regexToRoutesMap_sub);
 	ZVAL_UNDEF(&routeMap);

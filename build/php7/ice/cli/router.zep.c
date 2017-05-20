@@ -18,7 +18,6 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 #include "kernel/operators.h"
 
@@ -58,17 +57,17 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
 PHP_METHOD(Ice_Cli_Router, getDefaultModule) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultModule");
+	RETURN_MEMBER(getThis(), "defaultModule");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, setDefaultModule) {
 
 	zval *defaultModule, defaultModule_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultModule_sub);
 
@@ -77,22 +76,23 @@ PHP_METHOD(Ice_Cli_Router, setDefaultModule) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultModule"), defaultModule);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getDefaultHandler) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultHandler");
+	RETURN_MEMBER(getThis(), "defaultHandler");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, setDefaultHandler) {
 
 	zval *defaultHandler, defaultHandler_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultHandler_sub);
 
@@ -101,22 +101,23 @@ PHP_METHOD(Ice_Cli_Router, setDefaultHandler) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultHandler"), defaultHandler);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getDefaultAction) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultAction");
+	RETURN_MEMBER(getThis(), "defaultAction");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, setDefaultAction) {
 
 	zval *defaultAction, defaultAction_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultAction_sub);
 
@@ -125,42 +126,43 @@ PHP_METHOD(Ice_Cli_Router, setDefaultAction) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultAction"), defaultAction);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getModule) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "module");
+	RETURN_MEMBER(getThis(), "module");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getHandler) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "handler");
+	RETURN_MEMBER(getThis(), "handler");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getAction) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "action");
+	RETURN_MEMBER(getThis(), "action");
 
 }
 
 PHP_METHOD(Ice_Cli_Router, getParams) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "params");
+	RETURN_MEMBER(getThis(), "params");
 
 }
 
@@ -173,7 +175,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
 
 	zval *defaults_param = NULL, module, handler, action;
 	zval defaults;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaults);
 	ZVAL_UNDEF(&module);
@@ -212,9 +214,9 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
 PHP_METHOD(Ice_Cli_Router, handle) {
 
 	zend_bool _13, _16, _19;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *arguments = NULL, arguments_sub, __$null, params, argument, _0, _1, _2, *_3, _14, _17, _20, _22, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$6, _11$$6, _12$$6, _15$$8, _18$$9, _21$$10;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&arguments_sub);
 	ZVAL_NULL(&__$null);

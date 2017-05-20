@@ -20,7 +20,6 @@
 #include "kernel/concat.h"
 #include "kernel/string.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/iterator.h"
 
@@ -88,26 +87,26 @@ ZEPHIR_INIT_CLASS(Ice_Validation) {
 
 PHP_METHOD(Ice_Validation, getDi) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "di");
+	RETURN_MEMBER(getThis(), "di");
 
 }
 
 PHP_METHOD(Ice_Validation, getData) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "data");
+	RETURN_MEMBER(getThis(), "data");
 
 }
 
 PHP_METHOD(Ice_Validation, setRules) {
 
 	zval *rules, rules_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&rules_sub);
 
@@ -116,22 +115,23 @@ PHP_METHOD(Ice_Validation, setRules) {
 
 
 	zephir_update_property_zval(this_ptr, SL("rules"), rules);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Validation, getRules) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "rules");
+	RETURN_MEMBER(getThis(), "rules");
 
 }
 
 PHP_METHOD(Ice_Validation, setFilters) {
 
 	zval *filters, filters_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&filters_sub);
 
@@ -140,13 +140,14 @@ PHP_METHOD(Ice_Validation, setFilters) {
 
 
 	zephir_update_property_zval(this_ptr, SL("filters"), filters);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Validation, setLabels) {
 
 	zval *labels, labels_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&labels_sub);
 
@@ -155,13 +156,14 @@ PHP_METHOD(Ice_Validation, setLabels) {
 
 
 	zephir_update_property_zval(this_ptr, SL("labels"), labels);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Validation, setAliases) {
 
 	zval *aliases, aliases_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&aliases_sub);
 
@@ -170,13 +172,14 @@ PHP_METHOD(Ice_Validation, setAliases) {
 
 
 	zephir_update_property_zval(this_ptr, SL("aliases"), aliases);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Validation, setTranslate) {
 
 	zval *translate, translate_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&translate_sub);
 
@@ -185,22 +188,23 @@ PHP_METHOD(Ice_Validation, setTranslate) {
 
 
 	zephir_update_property_zval(this_ptr, SL("translate"), translate);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Validation, getTranslate) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "translate");
+	RETURN_MEMBER(getThis(), "translate");
 
 }
 
 PHP_METHOD(Ice_Validation, setHumanLabels) {
 
 	zval *humanLabels, humanLabels_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&humanLabels_sub);
 
@@ -209,6 +213,7 @@ PHP_METHOD(Ice_Validation, setHumanLabels) {
 
 
 	zephir_update_property_zval(this_ptr, SL("humanLabels"), humanLabels);
+	RETURN_THISW();
 
 }
 
@@ -219,11 +224,11 @@ PHP_METHOD(Ice_Validation, setHumanLabels) {
  */
 PHP_METHOD(Ice_Validation, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *data_param = NULL, _0, _2;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0);
@@ -263,10 +268,10 @@ PHP_METHOD(Ice_Validation, __construct) {
 PHP_METHOD(Ice_Validation, resolve) {
 
 	zval _6;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *alias_param = NULL, *field_param = NULL, *options = NULL, options_sub, __$null, rule, _0, _5, _1$$3, _2$$4, _3$$4, _4$$4;
 	zval alias, field;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&alias);
 	ZVAL_UNDEF(&field);
@@ -351,10 +356,10 @@ PHP_METHOD(Ice_Validation, rule) {
 	zend_string *_3$$4;
 	zend_ulong _2$$4;
 	zephir_fcall_cache_entry *_4 = NULL, *_10 = NULL, *_12 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *field_param = NULL, *validators, validators_sub, *options = NULL, options_sub, __$null, validator, rules, rule, alias, values, _0, *_1$$4, _5$$7, _6$$7, _8$$7, _9$$7, *_11$$9;
 	zval field;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&validators_sub);
@@ -405,7 +410,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 152, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 151, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -489,11 +494,11 @@ PHP_METHOD(Ice_Validation, rules) {
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_fcall_cache_entry *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool merge;
 	zval *validators_param = NULL, *merge_param = NULL, field, rules, *_1, _0$$3;
 	zval validators;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validators);
 	ZVAL_UNDEF(&field);
@@ -547,11 +552,11 @@ PHP_METHOD(Ice_Validation, validate) {
 
 	zend_string *_4;
 	zend_ulong _3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool clear;
 	zval *data_param = NULL, *clear_param = NULL, __$true, __$false, tmp, field, rules, rule, _1, *_2, _7, _0$$4, *_5$$5, _6$$6;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 	ZVAL_BOOL(&__$true, 1);
@@ -637,7 +642,7 @@ PHP_METHOD(Ice_Validation, validate) {
 			zephir_update_property_zval(this_ptr, SL("valid"), &__$false);
 		}
 	}
-	RETURN_MM_MEMBER(this_ptr, "valid");
+	RETURN_MM_MEMBER(getThis(), "valid");
 
 }
 
@@ -648,10 +653,10 @@ PHP_METHOD(Ice_Validation, validate) {
  */
 PHP_METHOD(Ice_Validation, valid) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "valid");
+	RETURN_MEMBER(getThis(), "valid");
 
 }
 
@@ -663,10 +668,10 @@ PHP_METHOD(Ice_Validation, valid) {
  */
 PHP_METHOD(Ice_Validation, hasValue) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *field_param = NULL, _0;
 	zval field;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&_0);
@@ -674,11 +679,11 @@ PHP_METHOD(Ice_Validation, hasValue) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -702,11 +707,11 @@ PHP_METHOD(Ice_Validation, hasValue) {
  */
 PHP_METHOD(Ice_Validation, getValue) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool filtered;
 	zval *field_param = NULL, *filtered_param = NULL, filters, _1, _0$$3;
 	zval field;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&filters);
@@ -716,11 +721,11 @@ PHP_METHOD(Ice_Validation, getValue) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &field_param, &filtered_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -770,10 +775,10 @@ PHP_METHOD(Ice_Validation, getValues) {
 
 	zend_object_iterator *_0$$3;
 	zephir_fcall_cache_entry *_5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool filtered;
 	zval *fields = NULL, fields_sub, *filtered_param = NULL, __$null, data, field, _1$$3, _2$$3, _3$$4, _4$$4, _6$$5, *_7$$6, _8$$7, _9$$8, _10$$8, _11$$9;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&fields_sub);
 	ZVAL_NULL(&__$null);
@@ -877,10 +882,10 @@ PHP_METHOD(Ice_Validation, getValues) {
  */
 PHP_METHOD(Ice_Validation, getLabel) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *field_param = NULL, label, _0, _1$$3, _2$$4, _3$$4, _4$$4;
 	zval field;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&label);
@@ -893,11 +898,11 @@ PHP_METHOD(Ice_Validation, getLabel) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -937,7 +942,7 @@ PHP_METHOD(Ice_Validation, setDefaultMessages) {
 
 	zval *messages_param = NULL, _0, _1;
 	zval messages;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&messages);
 	ZVAL_UNDEF(&_0);
@@ -972,7 +977,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 
 	zval *type_param = NULL, message, _0, _1$$3;
 	zval type;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&message);
@@ -982,11 +987,11 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &type_param);
 
-	if (unlikely(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(type_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(type_param) == IS_STRING)) {
 		zephir_get_strval(&type, type_param);
 	} else {
 		ZEPHIR_INIT_VAR(&type);
@@ -1016,7 +1021,7 @@ PHP_METHOD(Ice_Validation, addMessage) {
 
 	zval *field_param = NULL, *message_param = NULL;
 	zval field, message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&message);
@@ -1024,11 +1029,11 @@ PHP_METHOD(Ice_Validation, addMessage) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &field_param, &message_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -1050,8 +1055,8 @@ PHP_METHOD(Ice_Validation, addMessage) {
 PHP_METHOD(Ice_Validation, getMessages) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 

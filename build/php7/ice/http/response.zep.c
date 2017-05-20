@@ -52,17 +52,17 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response) {
 
 PHP_METHOD(Ice_Http_Response, getProtocolVersion) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "protocolVersion");
+	RETURN_MEMBER(getThis(), "protocolVersion");
 
 }
 
 PHP_METHOD(Ice_Http_Response, setProtocolVersion) {
 
 	zval *protocolVersion, protocolVersion_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&protocolVersion_sub);
 
@@ -71,22 +71,23 @@ PHP_METHOD(Ice_Http_Response, setProtocolVersion) {
 
 
 	zephir_update_property_zval(this_ptr, SL("protocolVersion"), protocolVersion);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Http_Response, getStatus) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "status");
+	RETURN_MEMBER(getThis(), "status");
 
 }
 
 PHP_METHOD(Ice_Http_Response, setStatus) {
 
 	zval *status, status_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&status_sub);
 
@@ -95,22 +96,23 @@ PHP_METHOD(Ice_Http_Response, setStatus) {
 
 
 	zephir_update_property_zval(this_ptr, SL("status"), status);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Http_Response, getLoops) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "loops");
+	RETURN_MEMBER(getThis(), "loops");
 
 }
 
 PHP_METHOD(Ice_Http_Response, setLoops) {
 
 	zval *loops, loops_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&loops_sub);
 
@@ -119,31 +121,32 @@ PHP_METHOD(Ice_Http_Response, setLoops) {
 
 
 	zephir_update_property_zval(this_ptr, SL("loops"), loops);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Http_Response, getRedirects) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "redirects");
+	RETURN_MEMBER(getThis(), "redirects");
 
 }
 
 PHP_METHOD(Ice_Http_Response, getBody) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "body");
+	RETURN_MEMBER(getThis(), "body");
 
 }
 
 PHP_METHOD(Ice_Http_Response, setBody) {
 
 	zval *body, body_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&body_sub);
 
@@ -152,6 +155,7 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 
 
 	zephir_update_property_zval(this_ptr, SL("body"), body);
+	RETURN_THISW();
 
 }
 
@@ -163,10 +167,10 @@ PHP_METHOD(Ice_Http_Response, setBody) {
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
-	int status, ZEPHIR_LAST_CALL_STATUS;
+	zend_long status, ZEPHIR_LAST_CALL_STATUS;
 	zval *body_param = NULL, *status_param = NULL, _0, _1, _2, _3;
 	zval body;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&body);
 	ZVAL_UNDEF(&_0);
@@ -218,8 +222,8 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 PHP_METHOD(Ice_Http_Response, getHeaders) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -240,10 +244,10 @@ PHP_METHOD(Ice_Http_Response, getHeaders) {
  */
 PHP_METHOD(Ice_Http_Response, hasHeader) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -269,10 +273,10 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
  */
 PHP_METHOD(Ice_Http_Response, getHeader) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -298,10 +302,10 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
  */
 PHP_METHOD(Ice_Http_Response, setHeader) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *value_param = NULL, _0;
 	zval name, value;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&value);
@@ -328,10 +332,10 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
  */
 PHP_METHOD(Ice_Http_Response, setHeaders) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *headers_param = NULL, _0;
 	zval headers;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&headers);
 	ZVAL_UNDEF(&_0);
@@ -356,10 +360,10 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
  */
 PHP_METHOD(Ice_Http_Response, removeHeader) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -387,7 +391,7 @@ PHP_METHOD(Ice_Http_Response, setContent) {
 
 	zval *contet_param = NULL;
 	zval contet;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&contet);
 
@@ -413,9 +417,9 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 
 	zval _1;
 	zend_bool sendBody = 0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *request, request_sub, _0, _2, _6, _3$$3, _4$$3, _5$$3, _7$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&request_sub);
 	ZVAL_UNDEF(&_0);
@@ -480,8 +484,8 @@ PHP_METHOD(Ice_Http_Response, send) {
 	zend_bool _21$$3;
 	zval _0, _1$$3, _2$$3, _3$$3, di$$3, _19$$3, _20$$3, _22$$3, _25$$3, _4$$4, _5$$4, _6$$4, _8$$4, _9$$4, _12$$5, _13$$5, _14$$5, _15$$5, _16$$5, _17$$5, _23$$6, _24$$6;
 	zephir_fcall_cache_entry *_7 = NULL, *_10 = NULL, *_11 = NULL, *_18 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
@@ -584,10 +588,10 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 
 	zephir_fcall_cache_entry *_0 = NULL;
 	zend_bool external, _6;
-	int status, ZEPHIR_LAST_CALL_STATUS, redirects = 0;
+	zend_long status, ZEPHIR_LAST_CALL_STATUS, redirects = 0;
 	zval *location_param = NULL, *status_param = NULL, *external_param = NULL, url, di, _1, _4, _5, _11, _2$$3, _3$$3, session$$4, _7$$4, _8$$4, _9$$4, _10$$4;
 	zval location;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&location);
 	ZVAL_UNDEF(&url);
@@ -691,7 +695,7 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
 
 	zval _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -724,7 +728,7 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
 
 	zend_bool _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -748,7 +752,7 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
 PHP_METHOD(Ice_Http_Response, isOk) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -767,7 +771,7 @@ PHP_METHOD(Ice_Http_Response, isSuccessful) {
 
 	zend_bool _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -792,7 +796,7 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
 
 	zval _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -828,7 +832,7 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
 
 	zend_bool _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -852,7 +856,7 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
 PHP_METHOD(Ice_Http_Response, isForbidden) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -870,7 +874,7 @@ PHP_METHOD(Ice_Http_Response, isForbidden) {
 PHP_METHOD(Ice_Http_Response, isNotFound) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -889,7 +893,7 @@ PHP_METHOD(Ice_Http_Response, isClientError) {
 
 	zend_bool _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -914,7 +918,7 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 
 	zend_bool _1;
 	zval _0, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
@@ -939,8 +943,8 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 PHP_METHOD(Ice_Http_Response, getMessage) {
 
 	zval *code_param = NULL, message, _0, _1;
-	int code, ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long code, ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -977,7 +981,7 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
  */
 PHP_METHOD(Ice_Http_Response, getMessages) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
 	zephir_create_array(return_value, 61, 0 TSRMLS_CC);
@@ -1052,10 +1056,10 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
  */
 PHP_METHOD(Ice_Http_Response, __toString) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "body");
+	RETURN_MEMBER(getThis(), "body");
 
 }
 

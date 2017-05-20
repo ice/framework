@@ -44,11 +44,11 @@ ZEPHIR_INIT_CLASS(Ice_Di_Access) {
 PHP_METHOD(Ice_Di_Access, __get) {
 
 	zend_bool _1, _3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zval *property_param = NULL, di, service, _0, _2, _4, _7, _5$$3;
 	zval property;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&property);
 	ZVAL_UNDEF(&di);
@@ -100,11 +100,11 @@ PHP_METHOD(Ice_Di_Access, __get) {
 PHP_METHOD(Ice_Di_Access, __set) {
 
 	zend_bool _1, _3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zval *property_param = NULL, *value, value_sub, _0, _2, _4, _7, _5$$3;
 	zval property;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&property);
 	ZVAL_UNDEF(&value_sub);

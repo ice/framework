@@ -19,7 +19,6 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "kernel/hash.h"
 #include "kernel/concat.h"
 
 
@@ -50,7 +49,7 @@ ZEPHIR_INIT_CLASS(Ice_Flash) {
 PHP_METHOD(Ice_Flash, setOptions) {
 
 	zval *options, options_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options_sub);
 
@@ -59,6 +58,7 @@ PHP_METHOD(Ice_Flash, setOptions) {
 
 
 	zephir_update_property_zval(this_ptr, SL("options"), options);
+	RETURN_THISW();
 
 }
 
@@ -69,11 +69,11 @@ PHP_METHOD(Ice_Flash, setOptions) {
  */
 PHP_METHOD(Ice_Flash, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *options_param = NULL, di, _1, _2, _3;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&di);
@@ -122,7 +122,7 @@ PHP_METHOD(Ice_Flash, getOption) {
 
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -133,11 +133,11 @@ PHP_METHOD(Ice_Flash, getOption) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
-	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
@@ -169,10 +169,10 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	zend_string *_4$$3;
 	zend_ulong _3$$3;
 	zephir_fcall_cache_entry *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *remove_param = NULL, key, type, message, messages, body, _0, _1, *_2$$3, _5$$4, _7$$5;
 	zend_bool remove;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&type);
@@ -242,10 +242,10 @@ PHP_METHOD(Ice_Flash, getMessage) {
 
 	zval _3, _10$$5, _12$$5;
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *messages = NULL, messages_sub, params, body, close, message, _0, _2, _4, *_5, _6$$4, _7$$4, _8$$5, _9$$5, _11$$5, _13$$5, _14$$5, _15$$5, _16$$5, _17$$6, _18$$6;
 	zval type;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&messages_sub);
@@ -353,10 +353,10 @@ PHP_METHOD(Ice_Flash, getMessage) {
  */
 PHP_METHOD(Ice_Flash, message) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *message_param = NULL, key, messages, _0, _1, _3, _2$$3;
 	zval type, message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&message);
@@ -404,10 +404,10 @@ PHP_METHOD(Ice_Flash, message) {
  */
 PHP_METHOD(Ice_Flash, success) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -431,10 +431,10 @@ PHP_METHOD(Ice_Flash, success) {
  */
 PHP_METHOD(Ice_Flash, ok) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -461,10 +461,10 @@ PHP_METHOD(Ice_Flash, ok) {
  */
 PHP_METHOD(Ice_Flash, info) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -488,10 +488,10 @@ PHP_METHOD(Ice_Flash, info) {
  */
 PHP_METHOD(Ice_Flash, notice) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -518,10 +518,10 @@ PHP_METHOD(Ice_Flash, notice) {
  */
 PHP_METHOD(Ice_Flash, warning) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -545,10 +545,10 @@ PHP_METHOD(Ice_Flash, warning) {
  */
 PHP_METHOD(Ice_Flash, alert) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -575,10 +575,10 @@ PHP_METHOD(Ice_Flash, alert) {
  */
 PHP_METHOD(Ice_Flash, danger) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
@@ -602,10 +602,10 @@ PHP_METHOD(Ice_Flash, danger) {
  */
 PHP_METHOD(Ice_Flash, error) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);

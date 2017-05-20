@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 
 
 /**
@@ -54,7 +53,7 @@ PHP_METHOD(Ice_Validation_Validator, __construct) {
 
 	zval *options_param = NULL;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 
@@ -93,7 +92,7 @@ PHP_METHOD(Ice_Validation_Validator, validate) {
 PHP_METHOD(Ice_Validation_Validator, has) {
 
 	zval *key, key_sub, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
@@ -117,7 +116,7 @@ PHP_METHOD(Ice_Validation_Validator, has) {
 PHP_METHOD(Ice_Validation_Validator, get) {
 
 	zval *key, key_sub, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -152,7 +151,7 @@ PHP_METHOD(Ice_Validation_Validator, get) {
 PHP_METHOD(Ice_Validation_Validator, set) {
 
 	zval *key, key_sub, *value, value_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&value_sub);
@@ -177,7 +176,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 	zend_ulong _2;
 	zval options;
 	zval *keys = NULL, keys_sub, *options_param = NULL, key, value, _0, *_1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&keys_sub);
 	ZVAL_UNDEF(&key);

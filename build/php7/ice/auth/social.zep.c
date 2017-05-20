@@ -40,10 +40,10 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social) {
 
 PHP_METHOD(Ice_Auth_Social, getAdapter) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "adapter");
+	RETURN_MEMBER(getThis(), "adapter");
 
 }
 
@@ -55,7 +55,7 @@ PHP_METHOD(Ice_Auth_Social, getAdapter) {
 PHP_METHOD(Ice_Auth_Social, __construct) {
 
 	zval *adapter, adapter_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&adapter_sub);
 
@@ -75,8 +75,8 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 PHP_METHOD(Ice_Auth_Social, authenticate) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -98,10 +98,10 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
  */
 PHP_METHOD(Ice_Auth_Social, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -135,10 +135,10 @@ PHP_METHOD(Ice_Auth_Social, get) {
 PHP_METHOD(Ice_Auth_Social, __call) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _1;
 	zval method;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&arguments_sub);

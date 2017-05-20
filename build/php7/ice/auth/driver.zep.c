@@ -57,11 +57,11 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
  */
 PHP_METHOD(Ice_Auth_Driver, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *options_param = NULL, di, _1, _2, _3, _4, _5, _6;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&di);
@@ -117,10 +117,10 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
  */
 PHP_METHOD(Ice_Auth_Driver, checkHash) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, *hash_param = NULL, _0;
 	zval password, hash;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&hash);
@@ -149,10 +149,10 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 PHP_METHOD(Ice_Auth_Driver, completeLogin) {
 
 	zephir_fcall_cache_entry *_5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval roles;
 	zval *user, user_sub, *roles_param = NULL, sessionRoles, _0, _1, _2, _3, _4, _6$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&sessionRoles);
@@ -211,7 +211,7 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -222,11 +222,11 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
-	if (unlikely(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(key_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
@@ -255,9 +255,9 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
  */
 PHP_METHOD(Ice_Auth_Driver, getUser) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, _0, _1, _2;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -294,10 +294,10 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
 PHP_METHOD(Ice_Auth_Driver, hash) {
 
 	zephir_fcall_cache_entry *_2 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, _0, _1, _3;
 	zval password;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&_0);
@@ -332,10 +332,10 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
  */
 PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *role_param = NULL, user, sessionRoles, roles, _0$$4, _1$$6;
 	zval role;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&role);
 	ZVAL_UNDEF(&user);
@@ -392,10 +392,10 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 PHP_METHOD(Ice_Auth_Driver, logout) {
 
 	zephir_fcall_cache_entry *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *destroy_param = NULL, *logoutAll_param = NULL, sessionRoles, _7, _0$$3, _1$$4, _2$$4, _3$$4, _6$$4, _5$$5;
 	zend_bool destroy, logoutAll;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&sessionRoles);
 	ZVAL_UNDEF(&_7);

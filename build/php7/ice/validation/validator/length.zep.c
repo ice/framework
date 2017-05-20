@@ -72,10 +72,10 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 
 	zend_bool _0, _11, _25, _17$$12, _31$$16;
 	zephir_fcall_cache_entry *_24 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, min, max, length, _1, _2, _5, _8, _9, _3$$4, _4$$5, _6$$6, _7$$7, _10$$10, _12$$12, _13$$12, _16$$12, _18$$12, _19$$12, _23$$12, _14$$13, _15$$14, _20$$15, _21$$15, _22$$15, _26$$16, _27$$16, _30$$16, _32$$16, _33$$16, _37$$16, _28$$17, _29$$18, _34$$19, _35$$19, _36$$19;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
@@ -123,11 +123,11 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_check_call_status();
 	}
 	if ((zephir_function_exists_ex(SL("mb_strlen") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 161, &value);
+		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 160, &value);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(&length);

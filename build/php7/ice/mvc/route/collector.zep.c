@@ -17,7 +17,6 @@
 #include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
@@ -35,7 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
 PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 
 	zval *routeParser, routeParser_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeParser_sub);
 
@@ -44,13 +43,14 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 
 
 	zephir_update_property_zval(this_ptr, SL("routeParser"), routeParser);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 
 	zval *dataGenerator, dataGenerator_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dataGenerator_sub);
 
@@ -59,6 +59,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 
 
 	zephir_update_property_zval(this_ptr, SL("dataGenerator"), dataGenerator);
+	RETURN_THISW();
 
 }
 
@@ -70,9 +71,9 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *routeParser = NULL, routeParser_sub, *dataGenerator = NULL, dataGenerator_sub, __$null;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeParser_sub);
 	ZVAL_UNDEF(&dataGenerator_sub);
@@ -128,10 +129,10 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval route;
 	zval *httpMethod = NULL, httpMethod_sub, *route_param = NULL, *handler = NULL, handler_sub, __$null, routeDatas, routeData, method, _0, *_1, *_2$$4, _3$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&handler_sub);
@@ -192,8 +193,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 

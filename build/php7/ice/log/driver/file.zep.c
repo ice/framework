@@ -20,7 +20,6 @@
 #include "kernel/concat.h"
 #include "kernel/object.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 #include "kernel/array.h"
 
 
@@ -52,10 +51,10 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *file_param = NULL, _0$$3, _1$$4, _4, _5$$5;
 	zval file, _2$$4, _6$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&file);
 	ZVAL_UNDEF(&_2$$4);
@@ -114,11 +113,11 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
  */
 PHP_METHOD(Ice_Log_Driver_File, log) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval message;
 	zval *level, level_sub, *message_param = NULL, *context_param = NULL, line, _0, _1, _2, _3, _4, _5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&level_sub);
 	ZVAL_UNDEF(&line);
@@ -174,11 +173,11 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 
 	zend_string *_2;
 	zend_ulong _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, replace, key, value, *_0, _3$$3;
 	zval message;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&replace);

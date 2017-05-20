@@ -47,17 +47,17 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
 
 PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "method");
+	RETURN_MEMBER(getThis(), "method");
 
 }
 
 PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 	zval *method, method_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
 
@@ -66,6 +66,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 
 	zephir_update_property_zval(this_ptr, SL("method"), method);
+	RETURN_THISW();
 
 }
 
@@ -77,9 +78,9 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	zval action, _0, _1, _2, _3, _4, _5;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&action);
 	ZVAL_UNDEF(&_0);
@@ -104,7 +105,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	if ((zephir_method_exists(&_5, &action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, this_ptr, "getactivemethod", &_6, 0);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -113,9 +114,9 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	zval parent, response, _1, _2, _3, _4, _5$$3, _8$$3, _9$$3, _10$$3, _6$$4, _7$$4;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parent);
 	ZVAL_UNDEF(&response);
@@ -132,7 +133,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, this_ptr, "dispatch", &_0, 0);
+	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 0);
 	zephir_check_call_status();
 	zephir_read_property(&_1, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);

@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
-#include "kernel/hash.h"
 #include "kernel/concat.h"
 #include "kernel/object.h"
 #include "kernel/string.h"
@@ -52,10 +51,10 @@ ZEPHIR_INIT_CLASS(Ice_Exception) {
 PHP_METHOD(Ice_Exception, __construct) {
 
 	zval _11;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *message = NULL, message_sub, *code = NULL, code_sub, *previous = NULL, previous_sub, __$null, di, values, str, _2, _3, _12, _1$$3, _4$$5, _5$$5, _6$$6, _7$$6, _8$$6, _9$$8, _10$$8;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message_sub);
 	ZVAL_UNDEF(&code_sub);
@@ -143,7 +142,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 	}
 	zephir_get_strval(&_11, message);
 	ZVAL_LONG(&_12, zephir_get_intval(code));
-	ZEPHIR_CALL_PARENT(NULL, ice_exception_ce, this_ptr, "__construct", NULL, 0, &_11, &_12, previous);
+	ZEPHIR_CALL_PARENT(NULL, ice_exception_ce, getThis(), "__construct", NULL, 0, &_11, &_12, previous);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -158,9 +157,9 @@ PHP_METHOD(Ice_Exception, __construct) {
 PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 
 	zephir_fcall_cache_entry *_21 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS, count;
+	zend_long ZEPHIR_LAST_CALL_STATUS, count;
 	zval *e, e_sub, output, frame, args, arg, node, _0, *_1, _2$$4, *_3$$4, _4$$5, _5$$6, _6$$7, _7$$8, _8$$9, _9$$10, _10$$10, _11$$3, _12$$3, _13$$3, _14$$3, _15$$3, _16$$3, _17$$3, _18$$3, _19$$3, _20$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&e_sub);
 	ZVAL_UNDEF(&output);
@@ -313,8 +312,8 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 	zval context;
 	zval message, file;
 	zval *code_param = NULL, *message_param = NULL, *file_param = NULL, *line_param = NULL, *context_param = NULL, _0, _1$$3, _2$$3, _3$$3, _4$$3;
-	int code, line, ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long code, line, ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
@@ -376,9 +375,9 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 PHP_METHOD(Ice_Exception, handler) {
 
 	zval _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *e, e_sub, _0, _1, _3, _4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&e_sub);
 	ZVAL_UNDEF(&_0);
@@ -406,8 +405,8 @@ PHP_METHOD(Ice_Exception, handler) {
 	zephir_array_fast_append(&_2, e);
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(&_0, &_1, &_2 TSRMLS_CC);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
 	ZVAL_LONG(&_4, 1);
+	ZEPHIR_MM_RESTORE();
 	zephir_exit(&_4);
 	ZEPHIR_MM_RESTORE();
 
@@ -424,8 +423,8 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 	zval _2;
 	zend_bool _0;
 	zval e, _1, _3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&e);
 	ZVAL_UNDEF(&_1);
@@ -477,8 +476,8 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(NULL, "handler", NULL, 0, &_4$$3);
 		zephir_check_call_status();
-		ZEPHIR_MM_RESTORE();
 		ZVAL_LONG(&_9$$3, 1);
+		ZEPHIR_MM_RESTORE();
 		zephir_exit(&_9$$3);
 	}
 	ZEPHIR_MM_RESTORE();

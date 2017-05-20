@@ -52,8 +52,8 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 	zval _3$$3;
 	zval token, user, userRoles, roles, role, _0, _1, _5$$4, _6$$4, _7$$4, _8$$4, _13$$5, _10$$6, _11$$6, _14$$7, _15$$7, _16$$7, _17$$7;
 	zephir_fcall_cache_entry *_2 = NULL, *_12 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&token);
 	ZVAL_UNDEF(&user);
@@ -160,10 +160,10 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
 
 	zephir_fcall_cache_entry *_0 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval roles;
 	zval *user, user_sub, *roles_param = NULL, _1$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&_1$$3);
@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&_1$$3, "serialize", NULL, 13, user);
 		zephir_check_call_status();
-		ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, this_ptr, "completelogin", &_0, 0, &_1$$3, &roles);
+		ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, getThis(), "completelogin", &_0, 0, &_1$$3, &roles);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -200,10 +200,10 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, data, _0, _2, user$$5, _3$$7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
@@ -224,7 +224,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 
 	zephir_read_property(&_0, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_PARENT(&data, ice_auth_driver_model_ce, this_ptr, "getuser", &_1, 0, defaultValue);
+		ZEPHIR_CALL_PARENT(&data, ice_auth_driver_model_ce, getThis(), "getuser", &_1, 0, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(&data, defaultValue)) {
 			zephir_update_property_zval(this_ptr, SL("user"), defaultValue);
@@ -242,7 +242,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("user"), &_3$$7);
 	}
-	RETURN_MM_MEMBER(this_ptr, "user");
+	RETURN_MM_MEMBER(getThis(), "user");
 
 }
 
@@ -256,10 +256,10 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
 
 	zend_bool _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval role;
 	zval *user, user_sub, *role_param = NULL, _1$$3, _2$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user_sub);
 	ZVAL_UNDEF(&_1$$3);
@@ -313,11 +313,11 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 	zend_class_entry *_3$$5;
 	zval _2$$5;
 	zephir_fcall_cache_entry *_13 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool remember, force, _4, _5$$7, _9$$7;
 	zval password;
 	zval *username, username_sub, *password_param = NULL, *remember_param = NULL, *force_param = NULL, user, users, roles, userRoles, role, token, lifetime, _0$$5, _1$$5, _6$$7, _7$$7, _8$$7, _14$$9, _11$$10, _12$$10, _15$$12, _16$$12, _17$$12, _18$$12, _19$$12, _20$$12, _21$$12, _22$$12, _23$$13, _24$$13, _25$$13, _26$$13;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&username_sub);
 	ZVAL_UNDEF(&user);
@@ -501,11 +501,11 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 
 	zend_object_iterator *_7$$4;
 	zval _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_10 = NULL;
 	zend_bool remember, _5, _6$$3;
 	zval *social, social_sub, *remember_param = NULL, user, userSocial, roles, userRoles, role, token, lifetime, _2, _3, _4, _11$$4, _8$$5, _9$$5, _12$$7, _13$$7, _14$$7, _15$$7, _16$$7, _17$$7, _18$$7, _19$$7, _20$$8, _21$$8, _22$$8, _23$$8;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&social_sub);
 	ZVAL_UNDEF(&user);
@@ -660,10 +660,10 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
 
 	zval _5$$3, _6$$6;
 	zephir_fcall_cache_entry *_4 = NULL, *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *destroy_param = NULL, *logoutAll_param = NULL, token, tokens, user, _0, _1, _9, _2$$3, _3$$3, _7$$6;
 	zend_bool destroy, logoutAll;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&token);
 	ZVAL_UNDEF(&tokens);
@@ -735,7 +735,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
 	} else {
 		ZVAL_BOOL(&_9, 0);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, this_ptr, "logout", &_8, 0, &_9);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, getThis(), "logout", &_8, 0, &_9);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -753,8 +753,8 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 	zend_bool _0$$4, _1$$4;
 	zval user, refreshed, userRoles, userRole, roles, role, _2$$4, _3$$4, _4$$5, _5$$5, _11$$5, _7$$6, _8$$6;
 	zephir_fcall_cache_entry *_9 = NULL, *_10 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&user);
 	ZVAL_UNDEF(&refreshed);
@@ -819,7 +819,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 			zend_iterator_dtor(_6$$5);
 			ZEPHIR_CALL_FUNCTION(&_11$$5, "serialize", NULL, 13, &user);
 			zephir_check_call_status();
-			ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, this_ptr, "completelogin", &_10, 0, &_11$$5, &roles);
+			ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, getThis(), "completelogin", &_10, 0, &_11$$5, &roles);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("user"), &user);
 		}

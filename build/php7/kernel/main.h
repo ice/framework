@@ -3,7 +3,7 @@
   +------------------------------------------------------------------------+
   | Zephir Language                                                        |
   +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2016 Zephir Team (http://www.zephir-lang.com)       |
+  | Copyright (c) 2011-2017 Zephir Team (http://www.zephir-lang.com)       |
   +------------------------------------------------------------------------+
   | This source file is subject to the New BSD License that is bundled     |
   | with this package in the file docs/LICENSE.txt.                        |
@@ -23,6 +23,11 @@
 #include <Zend/zend_interfaces.h>
 #include <ext/spl/spl_exceptions.h>
 #include <ext/spl/spl_iterators.h>
+#include <Zend/zend_string.h>
+
+extern zend_string* i_parent;
+extern zend_string* i_static;
+extern zend_string* i_self;
 
 /** Main macros */
 #define PH_DEBUG 0
@@ -136,11 +141,11 @@
 
 /** Return zval with always ctor, without restoring the memory stack */
 #define RETURN_THISW() \
-	RETURN_ZVAL(this_ptr, 1, 0);
+	RETURN_ZVAL(getThis(), 1, 0);
 
 /** Return this pointer */
 #define RETURN_THIS() { \
-		RETVAL_ZVAL(this_ptr, 1, 0); \
+		RETVAL_ZVAL(getThis(), 1, 0); \
 	} \
 	ZEPHIR_MM_RESTORE(); \
 	return;
@@ -303,16 +308,9 @@ int zephir_declare_class_constant_string(zend_class_entry *ce, const char *name,
 #define ZEPHIR_DEBUG_PARAMS_DUMMY , "", 0
 #endif
 
-#define ZEPHIR_INIT_THIS() zval this_zv; \
-    zval *this_ptr = getThis(); \
-    if (EXPECTED(this_ptr)) { \
-        ZVAL_OBJ(&this_zv, Z_OBJ_P(this_ptr)); \
-        this_ptr = &this_zv; \
-    } else { \
-        this_ptr = NULL; \
-    }
-
 void zephir_get_args(zval* return_value);
 void zephir_get_arg(zval* return_value, zend_long idx);
+
+void zephir_module_init();
 
 #endif /* ZEPHIR_KERNEL_MAIN_H */

@@ -41,17 +41,17 @@ ZEPHIR_INIT_CLASS(Ice_Db) {
 
 PHP_METHOD(Ice_Db, getDriver) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "driver");
+	RETURN_MEMBER(getThis(), "driver");
 
 }
 
 PHP_METHOD(Ice_Db, setDriver) {
 
 	zval *driver, driver_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&driver_sub);
 
@@ -60,6 +60,7 @@ PHP_METHOD(Ice_Db, setDriver) {
 
 
 	zephir_update_property_zval(this_ptr, SL("driver"), driver);
+	RETURN_THISW();
 
 }
 
@@ -77,10 +78,10 @@ PHP_METHOD(Ice_Db, __construct) {
 
 	zend_class_entry *_5$$5;
 	zend_bool _0;
-	int port, ZEPHIR_LAST_CALL_STATUS;
+	zend_long port, ZEPHIR_LAST_CALL_STATUS;
 	zval host, name, user, password, _2$$4;
 	zval *driver = NULL, driver_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, dsn$$4, _1$$4, _3$$5, _4$$5, _6$$6, _7$$7, _8$$7, _9$$7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&driver_sub);
 	ZVAL_UNDEF(&dsn$$4);
@@ -146,7 +147,7 @@ PHP_METHOD(Ice_Db, __construct) {
 		do {
 			if (ZEPHIR_IS_STRING(driver, "mongo")) {
 				ZEPHIR_INIT_NVAR(driver);
-				ZVAL_STRING(driver, "mongo");
+				ZVAL_STRING(driver, "Ice\\Db\\Driver\\Mongo");
 				ZEPHIR_INIT_VAR(&_3$$5);
 				zephir_fetch_safe_class(&_4$$5, driver);
 				_5$$5 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_4$$5), Z_STRLEN_P(&_4$$5), ZEND_FETCH_CLASS_AUTO);
@@ -189,10 +190,10 @@ PHP_METHOD(Ice_Db, __construct) {
 PHP_METHOD(Ice_Db, __call) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _1;
 	zval method;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&arguments_sub);

@@ -19,7 +19,6 @@
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
-#include "kernel/hash.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
 #include "kernel/concat.h"
@@ -83,17 +82,17 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Router) {
 
 PHP_METHOD(Ice_Mvc_Router, getDefaultModule) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultModule");
+	RETURN_MEMBER(getThis(), "defaultModule");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setDefaultModule) {
 
 	zval *defaultModule, defaultModule_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultModule_sub);
 
@@ -102,22 +101,23 @@ PHP_METHOD(Ice_Mvc_Router, setDefaultModule) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultModule"), defaultModule);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getDefaultHandler) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultHandler");
+	RETURN_MEMBER(getThis(), "defaultHandler");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setDefaultHandler) {
 
 	zval *defaultHandler, defaultHandler_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultHandler_sub);
 
@@ -126,22 +126,23 @@ PHP_METHOD(Ice_Mvc_Router, setDefaultHandler) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultHandler"), defaultHandler);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getDefaultAction) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "defaultAction");
+	RETURN_MEMBER(getThis(), "defaultAction");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setDefaultAction) {
 
 	zval *defaultAction, defaultAction_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaultAction_sub);
 
@@ -150,58 +151,59 @@ PHP_METHOD(Ice_Mvc_Router, setDefaultAction) {
 
 
 	zephir_update_property_zval(this_ptr, SL("defaultAction"), defaultAction);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getMethod) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "method");
+	RETURN_MEMBER(getThis(), "method");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getModule) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "module");
+	RETURN_MEMBER(getThis(), "module");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getHandler) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "handler");
+	RETURN_MEMBER(getThis(), "handler");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getAction) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "action");
+	RETURN_MEMBER(getThis(), "action");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getParams) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "params");
+	RETURN_MEMBER(getThis(), "params");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setSilent) {
 
 	zval *silent, silent_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&silent_sub);
 
@@ -210,31 +212,32 @@ PHP_METHOD(Ice_Mvc_Router, setSilent) {
 
 
 	zephir_update_property_zval(this_ptr, SL("silent"), silent);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getOptions) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "options");
+	RETURN_MEMBER(getThis(), "options");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getRoutes) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "routes");
+	RETURN_MEMBER(getThis(), "routes");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setRoutes) {
 
 	zval *routes, routes_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routes_sub);
 
@@ -243,22 +246,23 @@ PHP_METHOD(Ice_Mvc_Router, setRoutes) {
 
 
 	zephir_update_property_zval(this_ptr, SL("routes"), routes);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getCollector) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "collector");
+	RETURN_MEMBER(getThis(), "collector");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setCollector) {
 
 	zval *collector, collector_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&collector_sub);
 
@@ -267,22 +271,23 @@ PHP_METHOD(Ice_Mvc_Router, setCollector) {
 
 
 	zephir_update_property_zval(this_ptr, SL("collector"), collector);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, getDispatcher) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "dispatcher");
+	RETURN_MEMBER(getThis(), "dispatcher");
 
 }
 
 PHP_METHOD(Ice_Mvc_Router, setDispatcher) {
 
 	zval *dispatcher, dispatcher_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dispatcher_sub);
 
@@ -291,6 +296,7 @@ PHP_METHOD(Ice_Mvc_Router, setDispatcher) {
 
 
 	zephir_update_property_zval(this_ptr, SL("dispatcher"), dispatcher);
+	RETURN_THISW();
 
 }
 
@@ -303,7 +309,7 @@ PHP_METHOD(Ice_Mvc_Router, setDefaults) {
 
 	zval *defaults_param = NULL, module, handler, action;
 	zval defaults;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaults);
 	ZVAL_UNDEF(&module);
@@ -339,7 +345,7 @@ PHP_METHOD(Ice_Mvc_Router, setOptions) {
 
 	zval *options_param = NULL;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 
@@ -361,9 +367,9 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 
 	zend_bool _3, _5, _22, _24;
 	zval _0, _13$$4, _14$$4;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval __$false, __$true, options, data, route, handler, _1, _2, _4, _6, _12, _16, *_17, _21, _23, _25, _28, _37, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3, _15$$4, _18$$5, _19$$5, _20$$5, _26$$6, _27$$6, _29$$7, _30$$9, _31$$9, _32$$10, _33$$10, _34$$10, _35$$10, _36$$11;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$false, 0);
 	ZVAL_BOOL(&__$true, 1);
@@ -567,9 +573,9 @@ PHP_METHOD(Ice_Mvc_Router, fastRoute) {
 PHP_METHOD(Ice_Mvc_Router, handle) {
 
 	zephir_fcall_cache_entry *_5 = NULL, *_12 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method = NULL, method_sub, *uri = NULL, uri_sub, __$null, module, handler, action, params, holders, data, route, response, _0, _1, _2, _3$$4, _9$$4, _10$$4, _11$$4, _4$$5, _6$$5, _7$$5, _8$$5, _13$$6, _18$$6, _19$$6, _20$$6, _14$$7, _15$$7, _16$$7, _17$$7, _21$$10, _22$$10, _23$$10, _24$$13, _25$$13, _26$$13, _27$$16, _28$$16, _29$$16;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_UNDEF(&uri_sub);

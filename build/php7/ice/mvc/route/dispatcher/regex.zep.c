@@ -19,7 +19,6 @@
 #include "kernel/exception.h"
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
-#include "kernel/hash.h"
 
 
 ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex) {
@@ -38,7 +37,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex) {
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 
 	zval *staticRouteMap, staticRouteMap_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&staticRouteMap_sub);
 
@@ -47,13 +46,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 
 
 	zephir_update_property_zval(this_ptr, SL("staticRouteMap"), staticRouteMap);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
 
 	zval *variableRouteData, variableRouteData_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variableRouteData_sub);
 
@@ -62,6 +62,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
 
 
 	zephir_update_property_zval(this_ptr, SL("variableRouteData"), variableRouteData);
+	RETURN_THISW();
 
 }
 
@@ -69,7 +70,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 
 	zval *data_param = NULL, _0, _1;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0);
@@ -104,9 +105,9 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	zend_ulong _26, _30;
 	zend_bool _1, _28$$13;
 	zephir_fcall_cache_entry *_8 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *uri, uri_sub, handler, varRouteData, result, allowedMethods, uriMap, method, routeData, _0, _2, _3, _17, _18, _24, *_25, *_29, _4$$3, _5$$3, _6$$3, _7$$4, _9$$4, _10$$6, _11$$6, _12$$7, _13$$7, _14$$7, _15$$8, _16$$8, _19$$10, _20$$10, _21$$10, _22$$11, _23$$11, _32$$15, _33$$18, _34$$19;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&uri_sub);

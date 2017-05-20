@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/operators.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 
 
@@ -35,7 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_GroupCount) {
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap) {
 
 	zval *staticRouteMap, staticRouteMap_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&staticRouteMap_sub);
 
@@ -44,13 +43,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap) {
 
 
 	zephir_update_property_zval(this_ptr, SL("staticRouteMap"), staticRouteMap);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData) {
 
 	zval *variableRouteData, variableRouteData_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variableRouteData_sub);
 
@@ -59,6 +59,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData) {
 
 
 	zephir_update_property_zval(this_ptr, SL("variableRouteData"), variableRouteData);
+	RETURN_THISW();
 
 }
 
@@ -66,7 +67,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 	zval *data_param = NULL, _0$$3, _1$$3;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0$$3);
@@ -95,9 +96,9 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
-	int i = 0, j = 0;
+	zend_long i = 0, j = 0;
 	zval *routeData, routeData_sub, *uri, uri_sub, data, matches, handler, varName, varNames, vars, *_0, _10, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, *_7$$3, _9$$3, _8$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&uri_sub);

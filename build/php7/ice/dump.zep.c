@@ -21,7 +21,6 @@
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
 #include "kernel/concat.h"
-#include "kernel/hash.h"
 #include "kernel/string.h"
 
 
@@ -72,17 +71,17 @@ ZEPHIR_INIT_CLASS(Ice_Dump) {
 
 PHP_METHOD(Ice_Dump, getDetailed) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "detailed");
+	RETURN_MEMBER(getThis(), "detailed");
 
 }
 
 PHP_METHOD(Ice_Dump, setDetailed) {
 
 	zval *detailed, detailed_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&detailed_sub);
 
@@ -91,22 +90,23 @@ PHP_METHOD(Ice_Dump, setDetailed) {
 
 
 	zephir_update_property_zval(this_ptr, SL("detailed"), detailed);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Dump, getPlain) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "plain");
+	RETURN_MEMBER(getThis(), "plain");
 
 }
 
 PHP_METHOD(Ice_Dump, setPlain) {
 
 	zval *plain, plain_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&plain_sub);
 
@@ -115,22 +115,23 @@ PHP_METHOD(Ice_Dump, setPlain) {
 
 
 	zephir_update_property_zval(this_ptr, SL("plain"), plain);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Dump, getSkipDi) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "skipDi");
+	RETURN_MEMBER(getThis(), "skipDi");
 
 }
 
 PHP_METHOD(Ice_Dump, setSkipDi) {
 
 	zval *skipDi, skipDi_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&skipDi_sub);
 
@@ -139,6 +140,7 @@ PHP_METHOD(Ice_Dump, setSkipDi) {
 
 
 	zephir_update_property_zval(this_ptr, SL("skipDi"), skipDi);
+	RETURN_THISW();
 
 }
 
@@ -150,10 +152,10 @@ PHP_METHOD(Ice_Dump, setSkipDi) {
  */
 PHP_METHOD(Ice_Dump, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *detailed_param = NULL, *styles = NULL, styles_sub, __$true, __$false;
 	zend_bool detailed;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&styles_sub);
 	ZVAL_BOOL(&__$true, 1);
@@ -204,8 +206,8 @@ PHP_METHOD(Ice_Dump, all) {
 
 	zval _1;
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -236,7 +238,7 @@ PHP_METHOD(Ice_Dump, getStyle) {
 
 	zval *type_param = NULL, style, _0;
 	zval type;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&type);
 	ZVAL_UNDEF(&style);
@@ -245,11 +247,11 @@ PHP_METHOD(Ice_Dump, getStyle) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &type_param);
 
-	if (unlikely(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(type_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(type_param) == IS_STRING)) {
 		zephir_get_strval(&type, type_param);
 	} else {
 		ZEPHIR_INIT_VAR(&type);
@@ -277,7 +279,7 @@ PHP_METHOD(Ice_Dump, setStyles) {
 
 	zval *styles_param = NULL, defaultStyles, _0;
 	zval styles;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&styles);
 	ZVAL_UNDEF(&defaultStyles);
@@ -314,7 +316,7 @@ PHP_METHOD(Ice_Dump, setStyles) {
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_fast_array_merge(&_0, &defaultStyles, &styles TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("styles"), &_0);
-	RETURN_MM_MEMBER(this_ptr, "styles");
+	RETURN_MM_MEMBER(getThis(), "styles");
 
 }
 
@@ -331,10 +333,10 @@ PHP_METHOD(Ice_Dump, setStyles) {
  */
 PHP_METHOD(Ice_Dump, one) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval name;
 	zval *variable, variable_sub, *name_param = NULL;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variable_sub);
 	ZVAL_UNDEF(&name);
@@ -371,9 +373,9 @@ PHP_METHOD(Ice_Dump, output) {
 	zend_ulong _8$$4, _47$$11;
 	zval _139, _2$$4, _14$$5, _30$$8, _77$$8, _37$$9, _52$$12, _67$$14, _88$$23, _95$$24, _105$$25, _111$$26, _116$$27, _121$$28, _128$$29, _134$$30;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL, *_11 = NULL, *_24 = NULL, *_34 = NULL, *_59 = NULL, *_63 = NULL, *_69 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *variable, variable_sub, *name = NULL, name_sub, *tab = NULL, tab_sub, __$null, key, value, output, space, type, attr, _108, _137, _138, _140, _141, _0$$4, _1$$4, _3$$4, _4$$4, *_7$$4, _26$$4, _27$$4, _10$$5, _12$$5, _13$$5, _15$$5, _16$$5, _17$$5, _21$$7, _22$$7, _23$$7, _25$$7, className$$8, _28$$8, _29$$8, _31$$8, _32$$8, _33$$8, _40$$8, _42$$8, _74$$8, _75$$8, _76$$8, _78$$8, _79$$8, _80$$8, _101$$8, _102$$8, _35$$9, _36$$9, _38$$9, _39$$9, _43$$10, _44$$10, _45$$11, *_46$$11, _49$$12, _50$$12, _51$$12, _53$$12, _54$$12, _55$$12, _56$$12, _57$$12, _58$$12, _60$$14, _61$$14, _62$$14, _65$$14, _66$$14, _68$$14, _70$$14, _71$$14, _72$$14, _73$$14, _64$$17, _81$$19, _82$$19, *_83$$20, _99$$20, _100$$20, _84$$21, _85$$23, _86$$23, _87$$23, _89$$23, _90$$23, _91$$23, _92$$24, _93$$24, _94$$24, _96$$24, _97$$24, _98$$24, _103$$25, _104$$25, _106$$25, _107$$25, _109$$26, _110$$26, _112$$26, _113$$26, _114$$27, _115$$27, _117$$27, _118$$27, _119$$28, _120$$28, _122$$28, _123$$28, _124$$28, _125$$28, _126$$29, _127$$29, _129$$29, _130$$29, _131$$29, _132$$30, _133$$30, _135$$30, _136$$30;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variable_sub);
 	ZVAL_UNDEF(&name_sub);
@@ -1111,10 +1113,10 @@ PHP_METHOD(Ice_Dump, output) {
 PHP_METHOD(Ice_Dump, variable) {
 
 	zval _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval name;
 	zval *variable, variable_sub, *name_param = NULL, _0, _1, _3, _4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variable_sub);
 	ZVAL_UNDEF(&_0);
@@ -1181,8 +1183,8 @@ PHP_METHOD(Ice_Dump, vars) {
 	zend_ulong _2;
 	zval key, value, output, _0, *_1, _4$$3, _5$$3;
 	zephir_fcall_cache_entry *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);

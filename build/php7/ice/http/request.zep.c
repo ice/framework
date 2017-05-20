@@ -51,9 +51,9 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request) {
 PHP_METHOD(Ice_Http_Request, __construct) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval _FILES, _GET, _POST, _SERVER, _REQUEST, _0, _2, _3, _4;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_FILES);
 	ZVAL_UNDEF(&_GET);
@@ -92,7 +92,7 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_4, "__construct", &_1, 4, &_SERVER);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("server"), &_4);
-	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, this_ptr, "__construct", &_5, 0, &_REQUEST);
+	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, getThis(), "__construct", &_5, 0, &_REQUEST);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -106,21 +106,21 @@ PHP_METHOD(Ice_Http_Request, __construct) {
  */
 PHP_METHOD(Ice_Http_Request, hasRequest) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -142,10 +142,10 @@ PHP_METHOD(Ice_Http_Request, hasRequest) {
  */
 PHP_METHOD(Ice_Http_Request, hasPost) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -153,11 +153,11 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -180,10 +180,10 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
  */
 PHP_METHOD(Ice_Http_Request, hasGet) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -191,11 +191,11 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -218,10 +218,10 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
  */
 PHP_METHOD(Ice_Http_Request, hasServer) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -229,11 +229,11 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -256,10 +256,10 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
  */
 PHP_METHOD(Ice_Http_Request, hasFile) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
@@ -267,11 +267,11 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -294,8 +294,8 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 PHP_METHOD(Ice_Http_Request, isPost) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -315,8 +315,8 @@ PHP_METHOD(Ice_Http_Request, isPost) {
 PHP_METHOD(Ice_Http_Request, isGet) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -336,8 +336,8 @@ PHP_METHOD(Ice_Http_Request, isGet) {
 PHP_METHOD(Ice_Http_Request, isPut) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -357,8 +357,8 @@ PHP_METHOD(Ice_Http_Request, isPut) {
 PHP_METHOD(Ice_Http_Request, isPatch) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -378,8 +378,8 @@ PHP_METHOD(Ice_Http_Request, isPatch) {
 PHP_METHOD(Ice_Http_Request, isHead) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -399,8 +399,8 @@ PHP_METHOD(Ice_Http_Request, isHead) {
 PHP_METHOD(Ice_Http_Request, isDelete) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -420,8 +420,8 @@ PHP_METHOD(Ice_Http_Request, isDelete) {
 PHP_METHOD(Ice_Http_Request, isOptions) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -441,8 +441,8 @@ PHP_METHOD(Ice_Http_Request, isOptions) {
 PHP_METHOD(Ice_Http_Request, isAjax) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -467,8 +467,8 @@ PHP_METHOD(Ice_Http_Request, isAjax) {
 PHP_METHOD(Ice_Http_Request, getMethod) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -495,8 +495,8 @@ PHP_METHOD(Ice_Http_Request, getMethod) {
 PHP_METHOD(Ice_Http_Request, getUserAgent) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -523,8 +523,8 @@ PHP_METHOD(Ice_Http_Request, getUserAgent) {
 PHP_METHOD(Ice_Http_Request, getHTTPReferer) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -551,8 +551,8 @@ PHP_METHOD(Ice_Http_Request, getHTTPReferer) {
 PHP_METHOD(Ice_Http_Request, getClientAddress) {
 
 	zval client, forward, remote, ip, _0, _1, _2, _3, _4, _5, _6;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&client);
 	ZVAL_UNDEF(&forward);
@@ -623,11 +623,11 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
  */
 PHP_METHOD(Ice_Http_Request, getQuery) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool allowEmpty;
 	zval *key_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *allowEmpty_param = NULL, __$null, _0$$3, _1$$3, _2$$3, _3$$4, _4$$4;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&filters_sub);
@@ -675,7 +675,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		ZVAL_STRING(&_1$$3, "_url");
 		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "remove", NULL, 0, &_1$$3);
 		zephir_check_call_status();
-		RETURN_MM_MEMBER(this_ptr, "get");
+		RETURN_MM_MEMBER(getThis(), "get");
 	} else {
 		zephir_read_property(&_3$$4, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
 		if (allowEmpty) {
@@ -713,11 +713,11 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
  */
 PHP_METHOD(Ice_Http_Request, getPost) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool allowEmpty;
 	zval *key_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *allowEmpty_param = NULL, __$null, _0$$4, _1$$4;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&filters_sub);
@@ -751,7 +751,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 
 
 	if (!(!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key))) {
-		RETURN_MM_MEMBER(this_ptr, "post");
+		RETURN_MM_MEMBER(getThis(), "post");
 	} else {
 		zephir_read_property(&_0$$4, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
 		if (allowEmpty) {
@@ -775,10 +775,10 @@ PHP_METHOD(Ice_Http_Request, getPost) {
  */
 PHP_METHOD(Ice_Http_Request, getServer) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, _0, _1;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -822,10 +822,10 @@ PHP_METHOD(Ice_Http_Request, getServer) {
  */
 PHP_METHOD(Ice_Http_Request, getFiles) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, _0, _1;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);

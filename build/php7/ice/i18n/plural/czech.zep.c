@@ -50,8 +50,8 @@ PHP_METHOD(Ice_I18n_Plural_Czech, getCategory) {
 
 	zend_bool _2, _3;
 	zval *count_param = NULL, _0, _1;
-	int count, ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long count, ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -87,7 +87,7 @@ PHP_METHOD(Ice_I18n_Plural_Czech, isInt) {
 
 	zend_bool _0;
 	zval *value, value_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
 

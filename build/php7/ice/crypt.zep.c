@@ -51,7 +51,7 @@ ZEPHIR_INIT_CLASS(Ice_Crypt) {
 PHP_METHOD(Ice_Crypt, setKey) {
 
 	zval *key, key_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 
@@ -60,13 +60,14 @@ PHP_METHOD(Ice_Crypt, setKey) {
 
 
 	zephir_update_property_zval(this_ptr, SL("key"), key);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Crypt, setCipher) {
 
 	zval *cipher, cipher_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&cipher_sub);
 
@@ -75,13 +76,14 @@ PHP_METHOD(Ice_Crypt, setCipher) {
 
 
 	zephir_update_property_zval(this_ptr, SL("cipher"), cipher);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Crypt, setMode) {
 
 	zval *mode, mode_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&mode_sub);
 
@@ -90,13 +92,14 @@ PHP_METHOD(Ice_Crypt, setMode) {
 
 
 	zephir_update_property_zval(this_ptr, SL("mode"), mode);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Crypt, setBlock) {
 
 	zval *block, block_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&block_sub);
 
@@ -105,6 +108,7 @@ PHP_METHOD(Ice_Crypt, setBlock) {
 
 
 	zephir_update_property_zval(this_ptr, SL("block"), block);
+	RETURN_THISW();
 
 }
 
@@ -118,7 +122,7 @@ PHP_METHOD(Ice_Crypt, __construct) {
 
 	zval *key_param = NULL;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 
@@ -148,10 +152,10 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 
 	zval _5;
 	zephir_fcall_cache_entry *_2 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, iv, value, mac, _0, _1, _3, _4;
 	zval text;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&iv);
@@ -205,8 +209,8 @@ PHP_METHOD(Ice_Crypt, encrypt) {
 PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -229,10 +233,10 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
  */
 PHP_METHOD(Ice_Crypt, doEncrypt) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, _0, _1, _2, _3, _4;
 	zval value, iv;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&iv);
@@ -270,10 +274,10 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 PHP_METHOD(Ice_Crypt, decrypt) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, value, payload, iv, _0, _2, _3, _4;
 	zval text;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&value);
@@ -317,10 +321,10 @@ PHP_METHOD(Ice_Crypt, decrypt) {
  */
 PHP_METHOD(Ice_Crypt, doDecrypt) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *iv_param = NULL, _0, _1, _2, _3, _4;
 	zval value, iv;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&iv);
@@ -358,10 +362,10 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 PHP_METHOD(Ice_Crypt, getJsonPayload) {
 
 	zend_bool _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *text_param = NULL, __$true, payload, _0, _2, _3, _4, _5;
 	zval text;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
 	ZVAL_BOOL(&__$true, 1);
@@ -414,10 +418,10 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
  */
 PHP_METHOD(Ice_Crypt, hash) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, _0, _1;
 	zval value;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
@@ -446,10 +450,10 @@ PHP_METHOD(Ice_Crypt, hash) {
  */
 PHP_METHOD(Ice_Crypt, addPadding) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, pad, len, _0, _1, _2, _3, _4;
 	zval value;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&pad);
@@ -492,10 +496,10 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 PHP_METHOD(Ice_Crypt, stripPadding) {
 
 	unsigned char _0;
-	int ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
+	zend_long ZEPHIR_LAST_CALL_STATUS, pad = 0, len = 0;
 	zval *value_param = NULL, _1, _2, _3, _4, _5;
 	zval value;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_1);
@@ -512,22 +516,23 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 
 	len = zephir_fast_strlen_ev(&value);
 	_0 = ZEPHIR_STRING_OFFSET(&value, (len - 1));
-	ZVAL_LONG(&_1, _0);
+	ZEPHIR_INIT_VAR(&_1);
+	ZVAL_STRINGL(&_1, &_0, 1);
 	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 60, &_1);
 	zephir_check_call_status();
 	pad = zephir_get_intval(&_2);
-	ZEPHIR_INIT_VAR(&_3);
-	ZVAL_LONG(&_1, pad);
-	ZEPHIR_CALL_METHOD(&_4, this_ptr, "paddingisvalid", NULL, 0, &_1, &value);
+	ZEPHIR_INIT_NVAR(&_1);
+	ZVAL_LONG(&_4, pad);
+	ZEPHIR_CALL_METHOD(&_3, this_ptr, "paddingisvalid", NULL, 0, &_4, &value);
 	zephir_check_call_status();
-	if (zephir_is_true(&_4)) {
-		ZVAL_LONG(&_1, 0);
+	if (zephir_is_true(&_3)) {
+		ZVAL_LONG(&_4, 0);
 		ZVAL_LONG(&_5, (len - pad));
-		zephir_substr(&_3, &value, 0 , zephir_get_intval(&_5), 0);
+		zephir_substr(&_1, &value, 0 , zephir_get_intval(&_5), 0);
 	} else {
-		ZEPHIR_CPY_WRT(&_3, &value);
+		ZEPHIR_CPY_WRT(&_1, &value);
 	}
-	RETURN_CCTOR(_3);
+	RETURN_CCTOR(_1);
 
 }
 
@@ -542,8 +547,8 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 
 	zval value;
 	zval *pad_param = NULL, *value_param = NULL, beforePad, _0, _1, _2, _3, _4;
-	int pad, ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long pad, ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&beforePad);
 	ZVAL_UNDEF(&_0);
@@ -585,7 +590,7 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
 	zend_bool _0, _1;
 	zval *data_param = NULL;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 
@@ -615,8 +620,8 @@ PHP_METHOD(Ice_Crypt, invalidPayload) {
 PHP_METHOD(Ice_Crypt, getIvSize) {
 
 	zval _0, _1, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);

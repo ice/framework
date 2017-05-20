@@ -67,10 +67,10 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Alnum) {
 PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 
 	zend_bool _0, _9$$4;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, _1, _2$$4, _3$$4, _5$$4, _8$$4, _10$$4, _11$$4, _15$$4, _4$$5, _6$$7, _7$$8, _12$$9, _13$$9, _14$$9;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validation_sub);
 	ZVAL_UNDEF(&value);
@@ -97,11 +97,11 @@ PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
-	if (unlikely(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(field_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
@@ -118,7 +118,7 @@ PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 153, &value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 152, &value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_3$$4);

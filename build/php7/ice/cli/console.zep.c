@@ -49,17 +49,17 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 
 PHP_METHOD(Ice_Cli_Console, getModules) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "modules");
+	RETURN_MEMBER(getThis(), "modules");
 
 }
 
 PHP_METHOD(Ice_Cli_Console, setModules) {
 
 	zval *modules, modules_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&modules_sub);
 
@@ -68,6 +68,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 
 
 	zephir_update_property_zval(this_ptr, SL("modules"), modules);
+	RETURN_THISW();
 
 }
 
@@ -78,9 +79,9 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
  */
 PHP_METHOD(Ice_Cli_Console, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, di_sub, __$null, _0, _1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_NULL(&__$null);
@@ -114,9 +115,9 @@ PHP_METHOD(Ice_Cli_Console, __construct) {
  */
 PHP_METHOD(Ice_Cli_Console, handle) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *arguments = NULL, arguments_sub, __$null, router, response, dispatcher, _0, _1, _2, _3, _4, _5, _6, _7;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&arguments_sub);
 	ZVAL_NULL(&__$null);
@@ -186,10 +187,10 @@ PHP_METHOD(Ice_Cli_Console, handle) {
  */
 PHP_METHOD(Ice_Cli_Console, color) {
 
-	int decoration;
+	zend_long decoration;
 	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, colors, bgColors, colored, e, foreground, background, _0, _1, _2$$3;
 	zval text, color, bgColor;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&color);

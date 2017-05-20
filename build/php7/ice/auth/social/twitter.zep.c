@@ -47,10 +47,10 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Twitter) {
 PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 
 	zval _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *config = NULL, config_sub, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&config_sub);
 	ZVAL_UNDEF(&_0);
@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "twitter");
 	zephir_update_property_zval(this_ptr, SL("provider"), &_0);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, this_ptr, "__construct", &_1, 0, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, getThis(), "__construct", &_1, 0, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 5, 0 TSRMLS_CC);
@@ -95,8 +95,8 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 PHP_METHOD(Ice_Auth_Social_Twitter, getSocialPage) {
 
 	zval _0, _1, _2$$3, _3$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -129,8 +129,8 @@ PHP_METHOD(Ice_Auth_Social_Twitter, getSocialPage) {
 PHP_METHOD(Ice_Auth_Social_Twitter, getImage) {
 
 	zval _0, _1, _2$$3, _3$$3, _4$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -168,9 +168,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 	zval _10$$5;
 	zend_bool result = 0, _0, _7$$4, _8$$4, _9$$4;
 	zephir_fcall_cache_entry *_4 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval _GET, params, tokenInfo, userInfo, accessTokenUrl, getDataUrl, _1$$3, _2$$3, _12$$3, _3$$4, _5$$4, _6$$4, _11$$5, _13$$6, _14$$6, _15$$6, _16$$6, _17$$6, _18$$6, _19$$6;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_GET);
 	ZVAL_UNDEF(&params);
@@ -297,8 +297,8 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 
 	zval _0, _4;
 	zval requestTokenUrl, requestTokens, params, _1, _2, _3, _5;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&requestTokenUrl);
 	ZVAL_UNDEF(&requestTokens);
@@ -356,10 +356,10 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 
 	zval _1;
 	zephir_fcall_cache_entry *_7 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *url_param = NULL, *params = NULL, params_sub, *oauthToken_param = NULL, *type_param = NULL, __$true, sigBaseStr, key, _0, _2, _3, _4, _5, _6, _8, _9, _10, _11, _12, _13;
 	zval url, oauthToken, type;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&url);
 	ZVAL_UNDEF(&oauthToken);

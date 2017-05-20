@@ -43,7 +43,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Service) {
 PHP_METHOD(Ice_Mvc_Service, setModel) {
 
 	zval *model, model_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
 
@@ -52,15 +52,16 @@ PHP_METHOD(Ice_Mvc_Service, setModel) {
 
 
 	zephir_update_property_zval(this_ptr, SL("model"), model);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_Service, getModel) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "model");
+	RETURN_MEMBER(getThis(), "model");
 
 }
 
@@ -75,10 +76,10 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 
 	zval _3$$3;
 	zend_bool _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _0, _2, _4$$3;
 	zval method;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method);
 	ZVAL_UNDEF(&arguments_sub);
@@ -91,11 +92,11 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
 
-	if (unlikely(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(method_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
 		zephir_get_strval(&method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(&method);

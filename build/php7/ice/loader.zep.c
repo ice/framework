@@ -19,7 +19,6 @@
 #include "kernel/string.h"
 #include "kernel/operators.h"
 #include "kernel/object.h"
-#include "kernel/hash.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
 
@@ -53,8 +52,8 @@ PHP_METHOD(Ice_Loader, register) {
 
 	zval _1;
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -85,12 +84,12 @@ PHP_METHOD(Ice_Loader, register) {
 PHP_METHOD(Ice_Loader, addNamespace) {
 
 	zval _10$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_12 = NULL;
 	zend_bool prepend;
 	zval *prefix_param = NULL, *baseDir_param = NULL, *prepend_param = NULL, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _11$$3, _13$$4, _14$$4, _15$$4, _16$$5, _17$$5, _18$$5;
 	zval prefix, baseDir;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&baseDir);
@@ -187,11 +186,11 @@ PHP_METHOD(Ice_Loader, addNamespace) {
  */
 PHP_METHOD(Ice_Loader, loadClass) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	zval *className_param = NULL, prefix, pos, relativeClass, mappedFile, _0, _2$$3, _3$$3, _4$$3, _6$$3, _7$$3;
 	zval className;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&className);
 	ZVAL_UNDEF(&prefix);
@@ -256,10 +255,10 @@ PHP_METHOD(Ice_Loader, loadClass) {
 PHP_METHOD(Ice_Loader, loadMappedFile) {
 
 	zephir_fcall_cache_entry *_11 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *prefix_param = NULL, *relativeClass_param = NULL, baseDir, file, _0, _1, _2, *_3, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$4;
 	zval prefix, relativeClass;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&prefix);
 	ZVAL_UNDEF(&relativeClass);
@@ -331,7 +330,7 @@ PHP_METHOD(Ice_Loader, requireFile) {
 
 	zval *file_param = NULL;
 	zval file;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&file);
 

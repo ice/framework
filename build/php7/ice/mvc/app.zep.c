@@ -43,17 +43,17 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
 
 PHP_METHOD(Ice_Mvc_App, getAutoRender) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "autoRender");
+	RETURN_MEMBER(getThis(), "autoRender");
 
 }
 
 PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 
 	zval *autoRender, autoRender_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&autoRender_sub);
 
@@ -62,22 +62,23 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 
 
 	zephir_update_property_zval(this_ptr, SL("autoRender"), autoRender);
+	RETURN_THISW();
 
 }
 
 PHP_METHOD(Ice_Mvc_App, getModules) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "modules");
+	RETURN_MEMBER(getThis(), "modules");
 
 }
 
 PHP_METHOD(Ice_Mvc_App, setModules) {
 
 	zval *modules, modules_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&modules_sub);
 
@@ -86,6 +87,7 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 
 
 	zephir_update_property_zval(this_ptr, SL("modules"), modules);
+	RETURN_THISW();
 
 }
 
@@ -96,9 +98,9 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
  */
 PHP_METHOD(Ice_Mvc_App, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, di_sub, __$null, _0, _1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_NULL(&__$null);
@@ -135,9 +137,9 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 
 	zval _9, _36, _18$$7;
 	zend_bool _3, _10, _4$$5, _16$$7, _20$$7;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method = NULL, method_sub, *uri = NULL, uri_sub, _SERVER, __$null, argv, router, request, response, dispatcher, returned, controller, view, _0, _1, _5, _6, _7, _8, _35, _2$$4, _11$$7, _12$$7, _13$$7, _14$$7, _15$$7, _17$$7, _19$$7, _21$$9, _22$$9, _23$$9, _24$$10, _33$$10, _34$$10, _25$$11, _30$$11, _32$$11, _26$$12, _27$$12, _28$$12, _29$$12, _31$$13;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_UNDEF(&uri_sub);

@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine) {
 PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 
 	zval *options, options_sub;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options_sub);
 
@@ -54,6 +54,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 
 
 	zephir_update_property_zval(this_ptr, SL("options"), options);
+	RETURN_THISW();
 
 }
 
@@ -63,7 +64,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
 	zval *view, view_sub, *di = NULL, di_sub, __$null;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_UNDEF(&di_sub);
@@ -90,8 +91,8 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -112,11 +113,11 @@ PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, load) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, _0;
 	zval path;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&_0);
@@ -125,11 +126,11 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
@@ -158,11 +159,11 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, _0;
 	zval path;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&_0);
@@ -171,11 +172,11 @@ PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);

@@ -22,7 +22,6 @@
 #include "kernel/file.h"
 #include "kernel/exception.h"
 #include "ext/spl/spl_exceptions.h"
-#include "kernel/hash.h"
 #include "kernel/require.h"
 
 
@@ -47,10 +46,10 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
 
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "compiler");
+	RETURN_MEMBER(getThis(), "compiler");
 
 }
 
@@ -63,10 +62,10 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 	zephir_fcall_cache_entry *_15 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, __$true, compileDir, compile, trim, dir, file, compiledPath, old, compiled, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10$$9, _11$$9, _12$$10, _13$$12, _16$$12, _14$$13;
 	zval path;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_BOOL(&__$true, 1);
@@ -98,11 +97,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &path_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
@@ -218,11 +217,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
 	zend_string *_3;
 	zend_ulong _2;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, key, value, _0, *_1, _4$$3;
 	zval path;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&key);
@@ -234,11 +233,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
-	if (unlikely(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(path_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);

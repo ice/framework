@@ -54,10 +54,10 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
 
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "parser");
+	RETURN_MEMBER(getThis(), "parser");
 
 }
 
@@ -68,9 +68,9 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *view = NULL, view_sub, __$null, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_NULL(&__$null);
@@ -103,10 +103,10 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, content, _0, _1;
 	zval path;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&content);
@@ -126,7 +126,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 	ZEPHIR_CALL_METHOD(&_1, &_0, "text", NULL, 0, &content);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("parsed"), &_1);
-	RETURN_MM_MEMBER(this_ptr, "parsed");
+	RETURN_MM_MEMBER(getThis(), "parsed");
 
 }
 
@@ -135,10 +135,10 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "parsed");
+	RETURN_MEMBER(getThis(), "parsed");
 
 }
 

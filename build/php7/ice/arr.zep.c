@@ -17,7 +17,6 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
@@ -51,10 +50,10 @@ ZEPHIR_INIT_CLASS(Ice_Arr) {
 
 PHP_METHOD(Ice_Arr, getData) {
 
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 
-	RETURN_MEMBER(this_ptr, "data");
+	RETURN_MEMBER(getThis(), "data");
 
 }
 
@@ -67,7 +66,7 @@ PHP_METHOD(Ice_Arr, __construct) {
 
 	zval *data_param = NULL;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 
@@ -97,7 +96,7 @@ PHP_METHOD(Ice_Arr, has) {
 
 	zval *key_param = NULL, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
@@ -125,7 +124,7 @@ PHP_METHOD(Ice_Arr, get) {
 
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -163,7 +162,7 @@ PHP_METHOD(Ice_Arr, set) {
 
 	zval *key_param = NULL, *value, value_sub;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
@@ -190,10 +189,10 @@ PHP_METHOD(Ice_Arr, replace) {
 	zend_string *_2;
 	zend_ulong _1;
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data_param = NULL, key, value, *_0;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&key);
@@ -232,8 +231,8 @@ PHP_METHOD(Ice_Arr, replace) {
  */
 PHP_METHOD(Ice_Arr, all) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 
 	ZEPHIR_MM_GROW();
@@ -254,11 +253,11 @@ PHP_METHOD(Ice_Arr, all) {
 PHP_METHOD(Ice_Arr, only) {
 
 	zephir_fcall_cache_entry *_4 = NULL, *_6 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool strict, _1$$3, _2$$3;
 	zval *keys_param = NULL, *strict_param = NULL, key, only, *_0, _3$$3, _5$$4;
 	zval keys;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&keys);
 	ZVAL_UNDEF(&key);
@@ -328,11 +327,11 @@ PHP_METHOD(Ice_Arr, only) {
 PHP_METHOD(Ice_Arr, getValue) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool allowEmpty, _4, _5;
 	zval *key_param = NULL, *filters = NULL, filters_sub, *defaultValue = NULL, defaultValue_sub, *allowEmpty_param = NULL, __$null, value, filter, _0$$3, _2$$3, _3$$3;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&filters_sub);
@@ -402,7 +401,7 @@ PHP_METHOD(Ice_Arr, setData) {
 
 	zval *data_param = NULL;
 	zval data;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data);
 
@@ -430,7 +429,7 @@ PHP_METHOD(Ice_Arr, setData) {
 PHP_METHOD(Ice_Arr, keys) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -451,7 +450,7 @@ PHP_METHOD(Ice_Arr, remove) {
 
 	zval *key_param = NULL, _0;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_0);
@@ -476,7 +475,7 @@ PHP_METHOD(Ice_Arr, remove) {
 PHP_METHOD(Ice_Arr, clear) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -497,7 +496,7 @@ PHP_METHOD(Ice_Arr, clear) {
 PHP_METHOD(Ice_Arr, count) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -515,8 +514,8 @@ PHP_METHOD(Ice_Arr, count) {
 PHP_METHOD(Ice_Arr, getIterator) {
 
 	zval _0;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -550,11 +549,11 @@ PHP_METHOD(Ice_Arr, getIterator) {
  */
 PHP_METHOD(Ice_Arr, getPath) {
 
-	int ZEPHIR_LAST_CALL_STATUS, _8$$7;
+	zend_long ZEPHIR_LAST_CALL_STATUS, _8$$7;
 	zephir_fcall_cache_entry *_5 = NULL, *_7 = NULL, *_14 = NULL, *_15 = NULL;
 	zval delimiter, _3$$4, _4$$4;
 	zval *path = NULL, path_sub, *defaultValue = NULL, defaultValue_sub, *delimiter_param = NULL, __$null, data, keys, key, _0, _1$$5, _2$$4, _6$$6, _9$$9, _10$$10, _11$$12, values$$13, value$$13, arr$$13, *_12$$13, _13$$15;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path_sub);
 	ZVAL_UNDEF(&defaultValue_sub);
@@ -686,8 +685,8 @@ PHP_METHOD(Ice_Arr, toArray) {
 	zend_string *_3;
 	zend_ulong _2;
 	zval key, value, tmp, _0, *_1, _4$$5;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
@@ -738,10 +737,10 @@ PHP_METHOD(Ice_Arr, toArray) {
  */
 PHP_METHOD(Ice_Arr, offsetExists) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset);
 
@@ -766,10 +765,10 @@ PHP_METHOD(Ice_Arr, offsetExists) {
  */
 PHP_METHOD(Ice_Arr, offsetGet) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset);
 
@@ -795,10 +794,10 @@ PHP_METHOD(Ice_Arr, offsetGet) {
  */
 PHP_METHOD(Ice_Arr, offsetSet) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL, *value, value_sub;
 	zval offset;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset);
 	ZVAL_UNDEF(&value_sub);
@@ -824,10 +823,10 @@ PHP_METHOD(Ice_Arr, offsetSet) {
  */
 PHP_METHOD(Ice_Arr, offsetUnset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *offset_param = NULL;
 	zval offset;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset);
 
@@ -848,10 +847,10 @@ PHP_METHOD(Ice_Arr, offsetUnset) {
  */
 PHP_METHOD(Ice_Arr, __isset) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 
@@ -873,9 +872,9 @@ PHP_METHOD(Ice_Arr, __isset) {
  */
 PHP_METHOD(Ice_Arr, __get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, _0$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0$$3);
@@ -902,10 +901,10 @@ PHP_METHOD(Ice_Arr, __get) {
  */
 PHP_METHOD(Ice_Arr, __set) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *value, value_sub;
 	zval key;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
@@ -932,7 +931,7 @@ PHP_METHOD(Ice_Arr, __set) {
 PHP_METHOD(Ice_Arr, __unset) {
 
 	zval *key, key_sub, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);

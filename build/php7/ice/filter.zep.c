@@ -18,7 +18,6 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/string.h"
-#include "kernel/hash.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
 #include "Zend/zend_closures.h"
@@ -54,7 +53,7 @@ PHP_METHOD(Ice_Filter, add) {
 
 	zval *name_param = NULL, *body, body_sub;
 	zval name;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&body_sub);
@@ -62,11 +61,11 @@ PHP_METHOD(Ice_Filter, add) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &body);
 
-	if (unlikely(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(name_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
@@ -93,9 +92,9 @@ PHP_METHOD(Ice_Filter, add) {
 PHP_METHOD(Ice_Filter, sanitize) {
 
 	zephir_fcall_cache_entry *_3 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value = NULL, value_sub, *filters = NULL, filters_sub, filter, _0$$3, *_1$$4, _2$$5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&filters_sub);
@@ -143,10 +142,10 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 
 	zval _1$$4, _30$$19, _32$$19;
 	zephir_fcall_cache_entry *_14 = NULL, *_22 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value_param = NULL, *filter_param = NULL, custom, _0, _2$$5, _3$$5, _4$$6, _5$$6, _6$$7, _7$$8, _8$$9, _9$$9, _10$$9, _11$$9, _12$$9, _13$$9, _15$$10, _16$$11, _17$$12, _18$$12, _19$$13, _20$$13, _21$$14, _23$$15, _24$$16, _25$$16, _26$$16, _27$$17, _28$$17, _29$$18, _31$$19, _33$$19, _34$$19, _35$$19, _37$$20, _38$$21, _39$$22, _40$$22, _41$$22;
 	zval value, filter, _36$$20;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&filter);
@@ -196,11 +195,11 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 	zephir_fetch_params(1, 2, 0, &value_param, &filter_param);
 
 	zephir_get_strval(&value, value_param);
-	if (unlikely(Z_TYPE_P(filter_param) != IS_STRING && Z_TYPE_P(filter_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(filter_param) != IS_STRING && Z_TYPE_P(filter_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'filter' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(filter_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(filter_param) == IS_STRING)) {
 		zephir_get_strval(&filter, filter_param);
 	} else {
 		ZEPHIR_INIT_VAR(&filter);

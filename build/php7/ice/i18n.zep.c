@@ -18,7 +18,6 @@
 #include "kernel/operators.h"
 #include "kernel/string.h"
 #include "kernel/fcall.h"
-#include "kernel/hash.h"
 #include "kernel/concat.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
@@ -64,7 +63,7 @@ PHP_METHOD(Ice_I18n, __construct) {
 
 	zval *options_param = NULL, _0, _1;
 	zval options;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
@@ -85,7 +84,7 @@ PHP_METHOD(Ice_I18n, __construct) {
 	zephir_read_property(&_1, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(&_0, &_1, &options TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("options"), &_0);
-	zephir_update_static_property_ce(ice_i18n_ce, SL("i18n"), this_ptr);
+	zend_update_static_property(ice_i18n_ce, ZEND_STRL("i18n"), this_ptr);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -98,7 +97,7 @@ PHP_METHOD(Ice_I18n, __construct) {
 PHP_METHOD(Ice_I18n, fetch) {
 
 	zval _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 
@@ -118,7 +117,7 @@ PHP_METHOD(Ice_I18n, lang) {
 
 	zval *lang_param = NULL, _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5, _6;
 	zval lang;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_0$$3);
@@ -170,7 +169,7 @@ PHP_METHOD(Ice_I18n, iso) {
 
 	zend_bool country, _6;
 	zval *lang = NULL, lang_sub, *country_param = NULL, __$null, parts, _1, _2, _3, _4, _5, _0$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&lang_sub);
 	ZVAL_NULL(&__$null);
@@ -238,10 +237,10 @@ PHP_METHOD(Ice_I18n, iso) {
  */
 PHP_METHOD(Ice_I18n, get) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *form = NULL, form_sub, *lang_param = NULL, __$null, messages, translation, _0$$3, _1$$3, _3$$5, _4$$6, _5$$7;
 	zval str, lang, _2$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
@@ -319,7 +318,7 @@ PHP_METHOD(Ice_I18n, load) {
 	zval _2;
 	zval *lang_param = NULL, cache, parts, subdir, tail, tmp, found, path, messages, _0, _1, *_3, _9, _10, *_4$$4, _5$$6, _6$$6, _8$$7;
 	zval lang, _7$$6;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&lang);
 	ZVAL_UNDEF(&_7$$6);
@@ -416,10 +415,10 @@ PHP_METHOD(Ice_I18n, load) {
  */
 PHP_METHOD(Ice_I18n, plural) {
 
-	int count, ZEPHIR_LAST_CALL_STATUS;
+	zend_long count, ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, rules, form, code, _0, _4, _1$$3, _2$$3, _3$$3;
 	zval str, lang;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
@@ -435,11 +434,11 @@ PHP_METHOD(Ice_I18n, plural) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &count_param, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
@@ -488,10 +487,10 @@ PHP_METHOD(Ice_I18n, plural) {
 PHP_METHOD(Ice_I18n, pluralRules) {
 
 	zval _0, _3, _5, _7, _9, _11, _13, _15;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *code_param = NULL, __$true, _1, _2, _4, _6, _8, _10, _12, _14, _16, _17$$13;
 	zval code, _18$$13;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&code);
 	ZVAL_UNDEF(&_18$$13);
@@ -1119,11 +1118,11 @@ PHP_METHOD(Ice_I18n, pluralRules) {
  */
 PHP_METHOD(Ice_I18n, _) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval values;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, context_sub, *lang_param = NULL, __$null;
 	zval str, lang;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
@@ -1134,11 +1133,11 @@ PHP_METHOD(Ice_I18n, _) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
@@ -1179,11 +1178,11 @@ PHP_METHOD(Ice_I18n, _) {
  */
 PHP_METHOD(Ice_I18n, translate) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval values, _9$$9;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, context_sub, *lang_param = NULL, __$null, _0$$3, _1$$3, _3$$4, _4$$5, _5$$7, _6$$7, _7$$7, _8$$9, _10$$9;
 	zval str, lang, _2$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&lang);
@@ -1205,11 +1204,11 @@ PHP_METHOD(Ice_I18n, translate) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
@@ -1322,7 +1321,7 @@ zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS
 }
 
 PHP_FUNCTION(g_ice__t) {
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval values;
 	zval *str_param = NULL, *values_param = NULL, *context = NULL, context_sub, *lang_param = NULL, __$null, i18n;
@@ -1337,11 +1336,11 @@ PHP_FUNCTION(g_ice__t) {
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
 
-	if (unlikely(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
+	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be a string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
-	if (likely(Z_TYPE_P(str_param) == IS_STRING)) {
+	if (EXPECTED(Z_TYPE_P(str_param) == IS_STRING)) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);

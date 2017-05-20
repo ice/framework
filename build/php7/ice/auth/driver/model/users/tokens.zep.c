@@ -51,8 +51,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	zend_bool _9, _11;
 	zval _5;
 	zval __$true, auth, _0, _1, _2, _3, _4, _6, _7, _8, _10, _12;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&auth);
@@ -138,9 +138,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&fields_sub);
 	ZVAL_UNDEF(&extra_sub);
@@ -164,7 +164,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), &_0);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "create", &_1, 0, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", &_1, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -180,8 +180,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	zend_object_iterator *_3;
 	zval _0, _1;
 	zval token, expired, _2;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&token);
 	ZVAL_UNDEF(&expired);
@@ -225,9 +225,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&fields_sub);
 	ZVAL_UNDEF(&extra_sub);
@@ -251,7 +251,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("token"), &_0);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, this_ptr, "update", &_1, 0, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", &_1, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -268,8 +268,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 	zval _12;
 	zval __$true, token, _10, _0$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3;
 	zephir_fcall_cache_entry *_1 = NULL, *_8 = NULL, *_9 = NULL, *_11 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&token);

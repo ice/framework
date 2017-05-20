@@ -17,7 +17,6 @@
 #include "kernel/operators.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
-#include "kernel/hash.h"
 #include "kernel/math.h"
 #include "kernel/exception.h"
 #include "kernel/concat.h"
@@ -48,9 +47,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, processChunk) {
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addRoute) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, _0;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
@@ -78,8 +77,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addRoute) {
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, getData) {
 
 	zval _0, _3, _4, _1$$3, _2$$3;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3);
@@ -118,8 +117,8 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	zend_ulong _2;
 	zval __$true, chunkSize, chunks, data, method, regexToRoutesMap, _0, *_1, _4$$3, _8$$3, _9$$3;
 	zephir_fcall_cache_entry *_5 = NULL, *_6 = NULL, *_10 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
-	ZEPHIR_INIT_THIS();
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&chunkSize);
@@ -173,9 +172,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 
 	double round = 0, ceil = 0;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *count, count_sub, numParts, _0, _1, _2, _3, _4, _5;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&count_sub);
 	ZVAL_UNDEF(&numParts);
@@ -214,7 +213,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute) {
 
 	zend_bool _0;
 	zval *routeData, routeData_sub, _1;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&_1);
@@ -235,10 +234,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute) {
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 
 	zend_bool _1;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, routeStr, route, _0, _2, _3, _9, _4$$3, _5$$3, _6$$3, _10$$4, _11$$4, *_12$$4, _13$$5, _14$$6, _15$$6, _16$$6, _17$$6;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
@@ -324,9 +323,9 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 
 	zend_bool _4;
 	zephir_fcall_cache_entry *_1 = NULL;
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *httpMethod, httpMethod_sub, *routeData, routeData_sub, *handler, handler_sub, regex, variables, _0, _2, _3, _5, _6, _10, _7$$3, _8$$3, _9$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpMethod_sub);
 	ZVAL_UNDEF(&routeData_sub);
@@ -387,10 +386,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 
-	int ZEPHIR_LAST_CALL_STATUS;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_3 = NULL, *_7 = NULL, *_8 = NULL;
 	zval *routeData, routeData_sub, regex, variables, part, varName, regexPart, *_0, _1$$4, _2$$4, _4$$5, _5$$5, _6$$5, _9$$3;
-	ZEPHIR_INIT_THIS();
+	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&regex);
