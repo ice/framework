@@ -23,29 +23,29 @@ class Db
      * Db constructor.
      *
      * @param mixed driver
-     * @param string host 
+     * @param string host
      * @param int port
      * @param string name
      * @param string user
      * @param string password
+     * @param array options
      */
-    public function __construct(var driver, string host = null, int port = null, string name = null, string user = null, string password = null)
+    public function __construct(var driver, string host = null, int port = null, string name = null, string user = null, string password = null, array options = [])
     {
         if typeof driver == "object" && (driver instanceof DbInterface) {
             let this->driver = driver;
         } elseif typeof driver == "string" {
-            var dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name;
-
             switch driver {
-                case "mongo":
-                    let driver = "Ice\\Db\\Driver\\Mongo",
-                        this->driver = new {driver}(dsn, name);
+                case "oci":
+                    var tns = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" . host . ")(PORT=" . port . "))(CONNECT_DATA=(SID=orcl)))";
+                    let this driver = new Pdo("oci:dbname=" . tns, user, password, options);
                     break;
                 case "mongodb":
-                    let this->driver = new Mongodb(dsn, name);
+                    var dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name;
+                    let this->driver = new Mongodb(dsn, name, options);
                     break;
                 default:
-                    let this->driver = new Pdo(driver . ":host=" . host . ";port=" . port . ";dbname=" . name, user, password);
+                    let this->driver = new Pdo(driver . ":host=" . host . ";port=" . port . ";dbname=" . name, user, password, options);
                     break;
             }
         }
