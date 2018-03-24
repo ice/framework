@@ -38,7 +38,7 @@ class Db
             switch driver {
                 case "oci":
                     var tns = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" . host . ")(PORT=" . port . "))(CONNECT_DATA=(SID=orcl)))";
-                    let this driver = new Pdo("oci:dbname=" . tns, user, password, options);
+                    let this->driver = new Pdo("oci:dbname=" . tns, user, password, options);
                     break;
                 case "mongodb":
                     var dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name;
