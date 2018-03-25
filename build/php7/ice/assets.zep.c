@@ -30,7 +30,7 @@
  * @package     Ice/Assets
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Assets) {
@@ -167,7 +167,7 @@ PHP_METHOD(Ice_Assets, add) {
 	zend_bool _0, _1;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection;
-	zval *parameters = NULL, parameters_sub, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, type;
+	zval *parameters = NULL, parameters_sub, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, type, link;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parameters_sub);
@@ -175,6 +175,7 @@ PHP_METHOD(Ice_Assets, add) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&content);
 	ZVAL_UNDEF(&type);
+	ZVAL_UNDEF(&link);
 	ZVAL_UNDEF(&version);
 	ZVAL_UNDEF(&collection);
 
@@ -200,13 +201,14 @@ PHP_METHOD(Ice_Assets, add) {
 	}
 
 
-	ZEPHIR_OBS_VAR(&content);
 	if (Z_TYPE_P(parameters) == IS_STRING) {
-		ZEPHIR_CPY_WRT(&content, parameters);
+		ZEPHIR_CPY_WRT(&link, parameters);
 		ZEPHIR_INIT_NVAR(parameters);
 		array_init(parameters);
-		zephir_array_append(parameters, &content, PH_SEPARATE, "ice/assets.zep", 67);
-	} else if (!(zephir_array_isset_string_fetch(&content, parameters, SL("content"), 0))) {
+		zephir_array_append(parameters, &link, PH_SEPARATE, "ice/assets.zep", 67);
+	}
+	ZEPHIR_OBS_VAR(&content);
+	if (!(zephir_array_isset_string_fetch(&content, parameters, SL("content"), 0))) {
 		ZEPHIR_OBS_NVAR(&content);
 		zephir_array_isset_long_fetch(&content, parameters, 0, 0 TSRMLS_CC);
 	}
@@ -839,7 +841,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 			ZEPHIR_INIT_VAR(&_16$$14);
 			zephir_file_put_contents(&_16$$14, &destination, &minified TSRMLS_CC);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(&_16$$14)) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 307);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 309);
 				return;
 			}
 		}
