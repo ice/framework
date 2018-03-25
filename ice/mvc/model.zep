@@ -13,7 +13,7 @@ use Ice\Validation;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Model extends Arr implements \Serializable
@@ -21,6 +21,7 @@ abstract class Model extends Arr implements \Serializable
 
     protected di { get };
     protected db { get };
+    protected service = "db";
     protected from { set };
     protected primary { set, get };
     protected autoincrement = true { set };
@@ -48,7 +49,7 @@ abstract class Model extends Arr implements \Serializable
 
         let di = Di::$fetch(),
             this->di = di,
-            this->db = di->get("db");
+            this->db = di->get(this->service);
 
         let data = array_merge(array_fill_keys(this->fields, null), data);
 
@@ -110,7 +111,7 @@ abstract class Model extends Arr implements \Serializable
         if this->has(key) {
             let value = this->get(key);
         } else {
-            let value = key;   
+            let value = key;
         }
 
         return this->db->getDateTime(value, model);
@@ -440,7 +441,7 @@ abstract class Model extends Arr implements \Serializable
      *  //Remove current user
      *  $user = Users::findOne(100);
      *  $user->delete();
-     *  
+     *
      *  //Remove all unactive users
      *  $status = (new Users())->remove(["status" => 0]);
      * </code></pre>
@@ -676,10 +677,10 @@ abstract class Model extends Arr implements \Serializable
      * <pre><code>
      *  // Get rules for one field
      *  $this->getRules('password');
-     *  
+     *
      *  // Get rules for multiple fields
      *  $this->getRules(['fullName', 'about']);
-     *  
+     *
      *  // Get all rules
      *  $this->getRules();
      * </code></pre>

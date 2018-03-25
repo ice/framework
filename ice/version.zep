@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
@@ -21,8 +21,8 @@ class Version
     const STABLE = 4;
     // Don't forget to update config.json and run zephir fullclean
     const MAJOR = 1;
-    const MINOR = 2;
-    const PATCH = 11;
+    const MINOR = 3;
+    const PATCH = 0;
     const STAGE = self::STABLE;
     const BUILD = 0;
 
@@ -44,7 +44,7 @@ class Version
 
     /**
      * Get version string.
-     * 
+     *
      * 1.0.0-dev
      * 1.0.0-alpha.3
      * 1.0.0-beta.2
@@ -90,11 +90,11 @@ class Version
     {
         var id;
 
-        let id = 
-            self::MAJOR . 
-            sprintf("%02s", self::MINOR) . 
-            sprintf("%02s", self::PATCH) . 
-            self::STAGE . 
+        let id =
+            self::MAJOR .
+            sprintf("%02s", self::MINOR) .
+            sprintf("%02s", self::PATCH) .
+            self::STAGE .
             self::BUILD;
 
         return (int) id;

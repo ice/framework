@@ -10,10 +10,10 @@ use Ice\Mvc\ModuleInterface;
  * @package     Ice/Dispatcher
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
-abstract class Dispatcher 
+abstract class Dispatcher
 {
 
     protected di;
@@ -160,7 +160,7 @@ abstract class Dispatcher
                 if !fetch module, modules[this->module] {
                     throw new Exception(["Module '%s' isn't registered in the application container", this->module]);
                 }
-                
+
                 if typeof module != "array" {
                     throw new Exception("Module definition must be an array");
                 }

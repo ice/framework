@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Sun Mar 25 12:26:06 UTC 2018
+
+- Ice 1.3.0
+ * Model, add db service name as a property
+ * Db, add options, oracle fix #150
+ * Dump, use the reflection class instead of each function
+ * PHP 5.5, drop support
+ * Travis, enable PHP 7.2, remove legacy mongo
+ * Composer, use working zephir
+ * Assets, memory observe fix phalcon/zephir#1538
+
+-------------------------------------------------------------------
 Sat May 20 12:38:11 UTC 2017
 
 - Ice 1.2.11

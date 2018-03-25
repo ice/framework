@@ -11,7 +11,7 @@ use Ice\Di\Access;
  * @package     Ice/Di/Access
  * @category    Handler
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 class Task extends Access

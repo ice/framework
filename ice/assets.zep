@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Assets
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 class Assets
@@ -59,13 +59,15 @@ class Assets
      */
     public function add(var parameters, string version = null, string collection = null, var minify = null)
     {
-        var content, type;
+        var content, type, link;
 
         if typeof parameters == "string" {
-            let content = parameters,
+            let link = parameters,
                 parameters = [],
-                parameters[] = content;
-        } elseif !fetch content, parameters["content"] {
+                parameters[] = link;
+        }
+
+        if !fetch content, parameters["content"] {
             fetch content, parameters[0];
         }
 
