@@ -30,7 +30,7 @@
  * @package     Ice/Di
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Di) {
@@ -250,7 +250,7 @@ PHP_METHOD(Ice_Di, resolve) {
 		} else {
 			if (Z_TYPE_P(service) == IS_ARRAY) {
 				ZEPHIR_MAKE_REF(service);
-				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 75, service);
+				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 74, service);
 				ZEPHIR_UNREF(service);
 				zephir_check_call_status();
 				ZEPHIR_MAKE_REF(service);

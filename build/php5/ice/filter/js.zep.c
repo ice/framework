@@ -27,7 +27,7 @@
  * @package     Ice/Filter
  * @category    Minification
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  * @uses        jsmin.c www.crockford.com
  */
@@ -479,7 +479,7 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	ZVAL_STRING(&_1, "\\xef", 0);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_LONG(&_2, 1);
-	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 108, _0, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 106, _0, &_1, &_2);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(_3, 0)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_4, 0);

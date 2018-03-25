@@ -7,8 +7,8 @@ PHP_METHOD(Ice_Dump, getDetailed);
 PHP_METHOD(Ice_Dump, setDetailed);
 PHP_METHOD(Ice_Dump, getPlain);
 PHP_METHOD(Ice_Dump, setPlain);
-PHP_METHOD(Ice_Dump, getSkipDi);
-PHP_METHOD(Ice_Dump, setSkipDi);
+PHP_METHOD(Ice_Dump, getSkip);
+PHP_METHOD(Ice_Dump, setSkip);
 PHP_METHOD(Ice_Dump, __construct);
 PHP_METHOD(Ice_Dump, all);
 PHP_METHOD(Ice_Dump, getStyle);
@@ -27,8 +27,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setplain, 0, 0, 1)
 	ZEND_ARG_INFO(0, plain)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setskipdi, 0, 0, 1)
-	ZEND_ARG_INFO(0, skipDi)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setskip, 0, 0, 1)
+	ZEND_ARG_INFO(0, skip)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump___construct, 0, 0, 0)
@@ -65,8 +65,8 @@ ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, setDetailed, arginfo_ice_dump_setdetailed, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, getPlain, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setPlain, arginfo_ice_dump_setplain, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Dump, getSkipDi, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Dump, setSkipDi, arginfo_ice_dump_setskipdi, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, getSkip, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, setSkip, arginfo_ice_dump_setskip, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, __construct, arginfo_ice_dump___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Dump, all, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, getStyle, arginfo_ice_dump_getstyle, ZEND_ACC_PROTECTED)

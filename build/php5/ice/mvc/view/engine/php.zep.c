@@ -26,7 +26,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
@@ -86,12 +86,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 130);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 128);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 131);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 129);
 	zephir_check_call_status();
 	RETURN_MM();
 

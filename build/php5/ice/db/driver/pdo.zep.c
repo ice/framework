@@ -30,7 +30,7 @@
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Db_Driver_Pdo) {
@@ -443,7 +443,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 75, item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 74, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(value) == IS_ARRAY) {
@@ -452,7 +452,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 75, value);
+						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 74, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(value, _11$$10);

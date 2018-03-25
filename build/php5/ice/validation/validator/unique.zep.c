@@ -29,7 +29,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -199,10 +199,12 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 				}
 			} else {
 				object_init_ex(value, zephir_get_internal_ce(SS("mongoregex") TSRMLS_CC));
-				ZEPHIR_INIT_VAR(_20$$16);
-				ZEPHIR_CONCAT_SVS(_20$$16, "/^", tmp, "$/i");
-				ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _20$$16);
-				zephir_check_call_status();
+				if (zephir_has_constructor(value TSRMLS_CC)) {
+					ZEPHIR_INIT_VAR(_20$$16);
+					ZEPHIR_CONCAT_SVS(_20$$16, "/^", tmp, "$/i");
+					ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _20$$16);
+					zephir_check_call_status();
+				}
 			}
 		} else {
 			ZEPHIR_INIT_NVAR(value);

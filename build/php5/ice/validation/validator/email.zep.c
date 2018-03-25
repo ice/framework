@@ -26,7 +26,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2016 Ice Team
+ * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -92,7 +92,7 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 	}
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_LONG(&_1, 274);
-	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 105, value, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 103, value, &_1);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_2))) {
 		ZEPHIR_INIT_VAR(_4$$4);
