@@ -75,23 +75,33 @@ class Loader
         // work backwards through the namespace names of the fully-qualified
         // class name to find a mapped file name
         let pos = strrpos(prefix, "\\");
-        while pos !== false {
-            // retain the trailing namespace separator in the prefix
-            let prefix = substr(className, 0, pos + 1);
 
-            // the rest is the relative class name
-            let relativeClass = substr(className, pos + 1);
-
+        if pos === false {        
             // try to load a mapped file for the prefix and relative class
-            let mappedFile = this->loadMappedFile(prefix, relativeClass);
+            let mappedFile = this->loadMappedFile("\\", className);
             if mappedFile {
                 return mappedFile;
             }
+        } else {        
+            do {
+                // retain the trailing namespace separator in the prefix
+                let prefix = substr(className, 0, pos + 1);
 
-            // remove the trailing namespace separator for the next iteration
-            // of strrpos()
-            let prefix = rtrim(prefix, "\\");
-            let pos = strrpos(prefix, "\\");
+                // the rest is the relative class name
+                let relativeClass = substr(className, pos + 1);
+
+                // try to load a mapped file for the prefix and relative class
+                let mappedFile = this->loadMappedFile(prefix, relativeClass);
+                if mappedFile {
+                    return mappedFile;
+                }
+
+                // remove the trailing namespace separator for the next iteration
+                // of strrpos()
+                let prefix = rtrim(prefix, "\\");
+                let pos = strrpos(prefix, "\\");
+            } 
+            while pos !== false;
         }
 
         // never found a mapped file
