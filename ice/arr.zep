@@ -338,7 +338,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return boolean
      * @abstracting ArrayAccess
      */
-    public function offsetExists(string offset) -> boolean
+    public function offsetExists(offset) -> boolean
     {
         return this->has(offset);
     }
@@ -350,7 +350,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return mixed
      * @abstracting ArrayAccess
      */
-    public function offsetGet(string offset)
+    public function offsetGet(offset)
     {
         return this->get(offset);
     }
@@ -363,7 +363,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return void
      * @abstracting ArrayAccess
      */
-    public function offsetSet(string offset, var value) -> void
+    public function offsetSet(offset, var value) -> void
     {
         this->set(offset, value);
     }
@@ -375,7 +375,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @return void
      * @abstracting ArrayAccess
      */
-    public function offsetUnset(string offset) -> void
+    public function offsetUnset(offset) -> void
     {
         this->remove(offset);
     }
