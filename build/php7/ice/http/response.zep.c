@@ -1056,10 +1056,19 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
  */
 PHP_METHOD(Ice_Http_Response, __toString) {
 
+	zval _1;
+	zval _0;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 
-	RETURN_MEMBER(getThis(), "body");
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_OBS_VAR(&_0);
+	zephir_read_property(&_0, this_ptr, SL("body"), PH_NOISY_CC);
+	zephir_get_strval(&_1, &_0);
+	RETURN_CTOR(_1);
 
 }
 
