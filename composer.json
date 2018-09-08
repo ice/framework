@@ -15,7 +15,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.7.5 <6.0.0",
-        "phalcon/zephir": "dev-master#a5f585482bf9c1f6a37d8162936765ebb3d9bfea"
+        "iceframework/zephir-parser": "1.1.2",
+        "phalcon/zephir": "0.11.0"
     },
     "scripts": {
         "post-install-cmd": ["./install"],
