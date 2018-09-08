@@ -105,12 +105,9 @@ class View extends Arr implements ViewInterface
                     let exists = true;
                     this->replace(data);
                     let content = engine->render(path, this->all());
-                    break;
+                    // no need to lookup and parse the other view
+                    break 2;
                 }
-            }
-            // no need to lookup and parse the other view
-            if exists {
-                break;
             }
         }
 
