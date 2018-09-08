@@ -50,17 +50,18 @@ class View extends Arr implements ViewInterface
 
         if !this->engines {
             let this->engines[".phtml"] = new Php(this);
-        }
-        for ext, engine in this->engines {
-            if typeof engine == "object" {
-                if engine instanceof \Closure {
-                    let this->engines[ext] = call_user_func_array(engine, [this]);
-                }
-            } else {
-                if typeof engine == "string" {
-                    let this->engines[ext] = create_instance_params(engine, [this]);
+        } else {
+            for ext, engine in this->engines {
+                if typeof engine == "object" {
+                    if engine instanceof \Closure {
+                        let this->engines[ext] = call_user_func_array(engine, [this]);
+                    }
                 } else {
-                    throw new Exception(sprintf("Invalid template engine registration for '%s' extension", ext));
+                    if typeof engine == "string" {
+                        let this->engines[ext] = create_instance_params(engine, [this]);
+                    } else {
+                        throw new Exception(sprintf("Invalid template engine registration for '%s' extension", ext));
+                    }
                 }
             }
         }
@@ -91,20 +92,21 @@ class View extends Arr implements ViewInterface
 
         let engines = this->getEngines();
 
-        for ext, engine in engines {
-            if typeof this->viewsDir == "array" {
-                let dirs = this->viewsDir;
-            } else {
-                let dirs = [this->viewsDir];
-            }
+        if typeof this->viewsDir == "array" {
+            let dirs = this->viewsDir;
+        } else {
+            let dirs = [this->viewsDir];
+        }
 
+        for ext, engine in engines {
             for dir in dirs {
                 let path = dir . this->file . ext;
                 if file_exists(path) {
                     let exists = true;
                     this->replace(data);
                     let content = engine->render(path, this->all());
-                    break;
+                    // no need to lookup and parse the other view
+                    break 2;
                 }
             }
         }
