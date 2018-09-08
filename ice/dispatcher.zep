@@ -179,14 +179,14 @@ abstract class Dispatcher
                     let moduleNamespace = moduleClass;
                 }
 
-                let loader = new Loader(),
+                let loader = this->di->get("loader"),
                     this->$namespace = moduleNamespace;
 
                 loader->addNamespace(moduleNamespace, path)->register();
 
                 let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->di]);
 
-                module->registerAutoloaders(this->di);
+                module->registerAutoloaders(loader);
                 module->registerServices(this->di);
             }
 

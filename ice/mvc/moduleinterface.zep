@@ -2,6 +2,7 @@
 namespace Ice\Mvc;
 
 use Ice\Di;
+use Ice\Loader;
 
 /**
  * Module interface.
@@ -15,7 +16,7 @@ use Ice\Di;
 interface ModuleInterface
 {
 
-    public function registerAutoloaders(<Di> di = null);
+    public function registerAutoloaders(<Loader> loader = null);
 
     public function registerServices(<Di> di);
 }
