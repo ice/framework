@@ -411,6 +411,6 @@ class Response implements ResponseInterface
      */
     public function __toString() -> string
     {
-        return this->body;
+        return (string) this->body;
     }
 }
