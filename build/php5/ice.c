@@ -7,6 +7,7 @@
 
 #include <php.h>
 
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 #include <locale.h>
 #endif
@@ -148,6 +149,7 @@ PHP_INI_END()
 
 static PHP_MINIT_FUNCTION(ice)
 {
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 	char* old_lc_all = setlocale(LC_ALL, NULL);
 	if (old_lc_all) {
@@ -276,7 +278,9 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Validation_Validator_With);
 	ZEPHIR_INIT(Ice_Validation_Validator_Without);
 	ZEPHIR_INIT(Ice_Version);
+	
 
+// TODO: Deprecated. Will be removed in future
 #if PHP_VERSION_ID < 50500
 	setlocale(LC_ALL, old_lc_all);
 	free(old_lc_all);
@@ -287,7 +291,7 @@ static PHP_MINIT_FUNCTION(ice)
 #ifndef ZEPHIR_RELEASE
 static PHP_MSHUTDOWN_FUNCTION(ice)
 {
-
+	
 	zephir_deinitialize_memory(TSRMLS_C);
 	UNREGISTER_INI_ENTRIES();
 	return SUCCESS;
@@ -316,7 +320,8 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 	/* Static cache */
 	memset(ice_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
-
+	
+	
 }
 
 /**
@@ -324,31 +329,29 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
  */
 static void php_zephir_init_module_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 {
-
+	
 }
 
 static PHP_RINIT_FUNCTION(ice)
 {
-
 	zend_ice_globals *ice_globals_ptr = ZEPHIR_VGLOBAL;
 
 	php_zephir_init_globals(ice_globals_ptr TSRMLS_CC);
 	//zephir_init_interned_strings(TSRMLS_C);
-
 	zephir_initialize_memory(ice_globals_ptr TSRMLS_CC);
 
-
+	
 	return SUCCESS;
 }
 
 static PHP_RSHUTDOWN_FUNCTION(ice)
 {
-
 	
-
 	zephir_deinitialize_memory(TSRMLS_C);
 	return SUCCESS;
 }
+
+
 
 static PHP_MINFO_FUNCTION(ice)
 {
@@ -363,7 +366,7 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_row(2, "Build Date", __DATE__ " " __TIME__ );
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_ICE_ZEPVERSION);
 	php_info_print_table_end();
-	php_info_print_table_start();
+		php_info_print_table_start();
 	php_info_print_table_row(2, "Website", "http://www.iceframework.org");
 	php_info_print_table_row(2, "Email", "info@iceframework.org");
 	php_info_print_table_row(2, "FreeNode", "#iceframework");
@@ -382,7 +385,7 @@ static PHP_GINIT_FUNCTION(ice)
 
 static PHP_GSHUTDOWN_FUNCTION(ice)
 {
-
+	
 }
 
 PHP_FUNCTION(g_ice__t);
@@ -395,7 +398,7 @@ ZEND_END_ARG_INFO()
 
 
 zend_function_entry php_ice_functions[] = {
-ZEND_NAMED_FE(_t, ZEND_FN(g_ice__t), arginfo_g_ice__t)
+	ZEND_NAMED_FE(_t, ZEND_FN(g_ice__t), arginfo_g_ice__t)
 ZEND_FE_END
 
 };
@@ -419,7 +422,11 @@ zend_module_entry ice_module_entry = {
 	ZEND_MODULE_GLOBALS(ice),
 	PHP_GINIT(ice),
 	PHP_GSHUTDOWN(ice),
+#ifdef ZEPHIR_POST_REQUEST
+	PHP_PRSHUTDOWN(ice),
+#else
 	NULL,
+#endif
 	STANDARD_MODULE_PROPERTIES_EX
 };
 

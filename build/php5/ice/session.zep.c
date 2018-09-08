@@ -217,7 +217,7 @@ PHP_METHOD(Ice_Session, set) {
 	zephir_get_strval(key, key_param);
 
 
-	zephir_array_update_zval(&_SESSION, key, &value, PH_COPY);
+	zephir_array_update_zval(&_SESSION, key, &value, PH_COPY | PH_SEPARATE);
 	ZEPHIR_MM_RESTORE();
 
 }

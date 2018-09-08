@@ -94,7 +94,7 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 
 
 	if (Z_TYPE_P(ini) == IS_STRING) {
-		_0$$3 = ZEPHIR_IS_LONG(ini, 1);
+		_0$$3 = ZEPHIR_IS_STRING(ini, "1");
 		if (_0$$3) {
 			_1$$3 = ZEPHIR_IS_STRING_IDENTICAL(raw, "true");
 			if (!(_1$$3)) {
