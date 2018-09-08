@@ -123,6 +123,21 @@ abstract class Dispatcher
     }
 
     /**
+     * Add module with its dir path, initial class name and namespace
+     *
+     * @param string name
+     * @param array options The keys can be [path|class|namespace]
+     * @return object Dispatcher
+     */
+    public function addModule(string name, array options)
+    {
+        // add or replace module
+        let this->modules[name] = options;
+
+        return this;
+    }
+
+    /**
      * Dispatches a handle action taking into account the routing parameters.
      *
      * @return object
