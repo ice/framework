@@ -296,9 +296,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 		ZVAL_LONG(&_6$$3, 32);
 		ZEPHIR_CALL_METHOD(&_4$$3, &_2$$3, "random", NULL, 0, &_5$$3, &_6$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_7$$3, "uniqid", &_8, 43, &_4$$3, &__$true);
+		ZEPHIR_CALL_FUNCTION(&_7$$3, "uniqid", &_8, 42, &_4$$3, &__$true);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_9, 39, &_7$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_9, 38, &_7$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_12);
 		zephir_create_array(&_12, 1, 0 TSRMLS_CC);

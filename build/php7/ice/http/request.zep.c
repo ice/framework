@@ -584,10 +584,10 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	ZEPHIR_CALL_METHOD(&remote, &_3, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 94, &client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 93, &client, &_4);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 94, &forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 93, &forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(&_5)) {
 		ZEPHIR_CPY_WRT(&ip, &client);

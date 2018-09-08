@@ -512,7 +512,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 98);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 97);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
@@ -530,7 +530,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			ZVAL_STRING(&_8$$4, "Status: %d %s");
 			ZEPHIR_CALL_FUNCTION(&_9$$4, "sprintf", &_10, 11, &_8$$4, &_4$$4, &_5$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 99, &_9$$4);
+			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 98, &_9$$4);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_CALL_METHOD(&_12$$5, this_ptr, "getprotocolversion", NULL, 0);
@@ -543,7 +543,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 			ZVAL_STRING(&_16$$5, "%s %d %s");
 			ZEPHIR_CALL_FUNCTION(&_17$$5, "sprintf", &_10, 11, &_16$$5, &_12$$5, &_13$$5, &_14$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 99, &_17$$5);
+			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 98, &_17$$5);
 			zephir_check_call_status();
 		}
 		ZEPHIR_CALL_CE_STATIC(&di$$3, ice_di_ce, "fetch", &_18, 0);
