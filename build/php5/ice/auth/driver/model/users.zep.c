@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 1, 0 TSRMLS_CC);
 	zephir_array_update_string(&_2, SL("name"), &name, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_CE_STATIC(&_0, ice_auth_driver_model_roles_ce, "findone", &_1, 41, _2);
+	ZEPHIR_CALL_CE_STATIC(&_0, ice_auth_driver_model_roles_ce, "findone", &_1, 40, _2);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(role, _0);
 	if (!(zephir_is_true(role))) {

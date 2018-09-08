@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", &_1, 48, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", &_1, 47, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -224,7 +224,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_this(getThis(), SL("token"), _0 TSRMLS_CC);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", &_1, 49, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", &_1, 48, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -259,9 +259,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 		ZVAL_LONG(_5$$3, 32);
 		ZEPHIR_CALL_METHOD(&_4$$3, _2$$3, "random", NULL, 0, _3$$3, _5$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_6$$3, "uniqid", &_7, 50, _4$$3, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(&_6$$3, "uniqid", &_7, 49, _4$$3, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_8, 42, _6$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_8, 41, _6$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_11);
 		zephir_create_array(_11, 1, 0 TSRMLS_CC);
