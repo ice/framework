@@ -186,7 +186,7 @@ abstract class Dispatcher
 
                 let module = <ModuleInterface> create_instance_params(moduleNamespace . "\\" . moduleClass, [this->di]);
 
-                module->registerAutoloaders();
+                module->registerAutoloaders(this->di);
                 module->registerServices(this->di);
             }
 
