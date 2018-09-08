@@ -21,8 +21,8 @@ before_install:
   - composer install --prefer-source --no-scripts
 
 before_script:
-  - (cd vendor/iceframework/zephir-parser; ./install)
-  - php -d memory_limit=512M -d extension=$TRAVIS_BUILD_DIR/vendor/iceframework/zephir-parser/parser/modules/zephir_parser.so ./vendor/phalcon/zephir/compiler.php generate --parser-compiled=yes
+  - (cd vendor/iceframework/zephir-parser; ./install; phpenv config-add tests/ci/zephir_parser.ini)
+  - php -d memory_limit=512M ./vendor/phalcon/zephir/compiler.php generate --parser-compiled=yes
   - (mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
