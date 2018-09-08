@@ -306,7 +306,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 		ZEPHIR_CALL_SELF(&_10, "findone", &_11, 0, &_12);
 		zephir_check_call_status();
 	} while (zephir_is_true(&_10));
-	RETURN_CCTOR(token);
+	RETURN_CCTOR(&token);
 
 }
 

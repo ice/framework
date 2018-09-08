@@ -240,7 +240,7 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1 TSRMLS_CC)) {
-		RETURN_CTOR(value);
+		RETURN_CTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();

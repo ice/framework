@@ -82,6 +82,13 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
 ZEND_END_ARG_INFO()
 
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_getidkey, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_getidkey, 0, 0, IS_STRING, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getdatetime, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
 	ZEND_ARG_INFO(0, model)
@@ -109,7 +116,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_fields, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_INFO(0, primary)
+	ZEND_ARG_TYPE_INFO(0, primary, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_create, 0, 0, 0)
@@ -136,28 +143,28 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_exists, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_belongsto, 0, 0, 3)
-	ZEND_ARG_INFO(0, field)
-	ZEND_ARG_INFO(0, referenceModel)
-	ZEND_ARG_INFO(0, referencedField)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_hasone, 0, 0, 3)
-	ZEND_ARG_INFO(0, field)
-	ZEND_ARG_INFO(0, referenceModel)
-	ZEND_ARG_INFO(0, referencedField)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_hasmany, 0, 0, 3)
-	ZEND_ARG_INFO(0, field)
-	ZEND_ARG_INFO(0, referenceModel)
-	ZEND_ARG_INFO(0, referencedField)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrelated, 0, 0, 1)
-	ZEND_ARG_INFO(0, alias)
+	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, filters, 1)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
@@ -168,15 +175,22 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, rules, 1)
-	ZEND_ARG_INFO(0, merge)
+	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 1)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_serialize, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_serialize, 0, 0, IS_STRING, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_unserialize, 0, 0, 1)
-	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___call, 0, 0, 1)
-	ZEND_ARG_INFO(0, method)
+	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 	ZEND_ARG_INFO(0, arguments)
 ZEND_END_ARG_INFO()
 
@@ -199,7 +213,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, setMessages, arginfo_ice_mvc_model_setmessages, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __construct, arginfo_ice_mvc_model___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Model, getId, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Model, getIdKey, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, getIdKey, arginfo_ice_mvc_model_getidkey, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getDateTime, arginfo_ice_mvc_model_getdatetime, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, loadOne, arginfo_ice_mvc_model_loadone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, load, arginfo_ice_mvc_model_load, ZEND_ACC_PUBLIC)
@@ -218,7 +232,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, getRelated, arginfo_ice_mvc_model_getrelated, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getRules, arginfo_ice_mvc_model_getrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setRules, arginfo_ice_mvc_model_setrules, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Model, serialize, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, serialize, arginfo_ice_mvc_model_serialize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, unserialize, arginfo_ice_mvc_model_unserialize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __call, arginfo_ice_mvc_model___call, ZEND_ACC_PUBLIC)
 	PHP_FE_END

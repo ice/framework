@@ -146,7 +146,7 @@ PHP_METHOD(Ice_Assets, getOption) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, key, 1 TSRMLS_CC)) {
-		RETURN_CTORW(value);
+		RETURN_CTORW(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	return;
@@ -628,7 +628,7 @@ PHP_METHOD(Ice_Assets, get) {
 	} else {
 		array_init(&_1);
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 
@@ -805,7 +805,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 		} else {
 			ZEPHIR_CPY_WRT(&_7$$10, &uri);
 		}
-		RETURN_CCTOR(_7$$10);
+		RETURN_CCTOR(&_7$$10);
 	} else {
 		ZEPHIR_INIT_VAR(&_8$$11);
 		ZEPHIR_INIT_VAR(&_9$$11);
@@ -845,7 +845,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				return;
 			}
 		}
-		RETURN_CCTOR(uriMin);
+		RETURN_CCTOR(&uriMin);
 	}
 	ZEPHIR_MM_RESTORE();
 

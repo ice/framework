@@ -38,50 +38,104 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_setblock, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_encrypt, 0, 0, 1)
-	ZEND_ARG_INFO(0, text)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_encrypt, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_encrypt, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_doencrypt, 0, 0, 2)
-	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, iv)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_generateinputvector, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_generateinputvector, 0, 0, IS_STRING, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_decrypt, 0, 0, 1)
-	ZEND_ARG_INFO(0, text)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_doencrypt, 0, 2, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_doencrypt, 0, 2, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, iv, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_dodecrypt, 0, 0, 2)
-	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, iv)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_decrypt, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_decrypt, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_getjsonpayload, 0, 0, 1)
-	ZEND_ARG_INFO(0, text)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_dodecrypt, 0, 2, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_dodecrypt, 0, 2, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, iv, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_hash, 0, 0, 1)
-	ZEND_ARG_INFO(0, value)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_getjsonpayload, 0, 1, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_getjsonpayload, 0, 1, IS_NULL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_addpadding, 0, 0, 1)
-	ZEND_ARG_INFO(0, value)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_hash, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_hash, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_strippadding, 0, 0, 1)
-	ZEND_ARG_INFO(0, value)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_addpadding, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_addpadding, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_paddingisvalid, 0, 0, 2)
-	ZEND_ARG_INFO(0, pad)
-	ZEND_ARG_INFO(0, value)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_strippadding, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_strippadding, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_crypt_invalidpayload, 0, 0, 1)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_paddingisvalid, 0, 2, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_paddingisvalid, 0, 2, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, pad, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_invalidpayload, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_invalidpayload, 0, 1, _IS_BOOL, NULL, 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, data, 0)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_getivsize, 0, 0, IS_LONG, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_crypt_getivsize, 0, 0, IS_LONG, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_crypt_method_entry) {
@@ -91,7 +145,7 @@ ZEPHIR_INIT_FUNCS(ice_crypt_method_entry) {
 	PHP_ME(Ice_Crypt, setBlock, arginfo_ice_crypt_setblock, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Crypt, __construct, arginfo_ice_crypt___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Crypt, encrypt, arginfo_ice_crypt_encrypt, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Crypt, generateInputVector, NULL, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Crypt, generateInputVector, arginfo_ice_crypt_generateinputvector, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, doEncrypt, arginfo_ice_crypt_doencrypt, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, decrypt, arginfo_ice_crypt_decrypt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Crypt, doDecrypt, arginfo_ice_crypt_dodecrypt, ZEND_ACC_PROTECTED)
@@ -101,6 +155,6 @@ ZEPHIR_INIT_FUNCS(ice_crypt_method_entry) {
 	PHP_ME(Ice_Crypt, stripPadding, arginfo_ice_crypt_strippadding, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, paddingIsValid, arginfo_ice_crypt_paddingisvalid, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Crypt, invalidPayload, arginfo_ice_crypt_invalidpayload, ZEND_ACC_PROTECTED)
-	PHP_ME(Ice_Crypt, getIvSize, NULL, ZEND_ACC_PROTECTED)
+	PHP_ME(Ice_Crypt, getIvSize, arginfo_ice_crypt_getivsize, ZEND_ACC_PROTECTED)
 	PHP_FE_END
 };

@@ -202,7 +202,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 			}
 		}
 	}
-	RETURN_CCTOR(compiledPath);
+	RETURN_CCTOR(&compiledPath);
 
 }
 

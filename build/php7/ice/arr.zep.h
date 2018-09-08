@@ -34,17 +34,21 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_has, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_has, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_has, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_get, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 	ZEND_ARG_INFO(0, defaultValue)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_set, 0, 0, 2)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
@@ -52,51 +56,98 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_replace, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_only, 0, 0, 1)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_all, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_all, 0, 0, IS_NULL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_only, 0, 1, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_only, 0, 1, IS_NULL, NULL, 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, keys, 0)
-	ZEND_ARG_INFO(0, strict)
+	ZEND_ARG_TYPE_INFO(0, strict, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getvalue, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_INFO(0, defaultValue)
-	ZEND_ARG_INFO(0, allowEmpty)
+	ZEND_ARG_TYPE_INFO(0, allowEmpty, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_setdata, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
 ZEND_END_ARG_INFO()
 
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_keys, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_keys, 0, 0, IS_NULL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_remove, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_count, 0, 0, IS_LONG, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_count, 0, 0, IS_LONG, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_arr_getiterator, 0, 0, ArrayIterator, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_getiterator, 0, 0, NULL, "ArrayIterator", 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getpath, 0, 0, 1)
 	ZEND_ARG_INFO(0, path)
 	ZEND_ARG_INFO(0, defaultValue)
-	ZEND_ARG_INFO(0, delimiter)
+	ZEND_ARG_TYPE_INFO(0, delimiter, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetexists, 0, 0, 1)
-	ZEND_ARG_INFO(0, offset)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_toarray, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_toarray, 0, 0, IS_NULL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetexists, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetexists, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, offset, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetget, 0, 0, 1)
-	ZEND_ARG_INFO(0, offset)
+	ZEND_ARG_TYPE_INFO(0, offset, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetset, 0, 0, 2)
-	ZEND_ARG_INFO(0, offset)
+	ZEND_ARG_TYPE_INFO(0, offset, IS_STRING, 0)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetunset, 0, 0, 1)
-	ZEND_ARG_INFO(0, offset)
+	ZEND_ARG_TYPE_INFO(0, offset, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___isset, 0, 0, 1)
-	ZEND_ARG_INFO(0, key)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___isset, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___isset, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___get, 0, 0, 1)
@@ -104,7 +155,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___get, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___set, 0, 0, 2)
-	ZEND_ARG_INFO(0, key)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
@@ -119,17 +170,17 @@ ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
 	PHP_ME(Ice_Arr, get, arginfo_ice_arr_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, set, arginfo_ice_arr_set, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, replace, arginfo_ice_arr_replace, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, all, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, all, arginfo_ice_arr_all, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, only, arginfo_ice_arr_only, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, getValue, arginfo_ice_arr_getvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, setData, arginfo_ice_arr_setdata, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, keys, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, keys, arginfo_ice_arr_keys, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, remove, arginfo_ice_arr_remove, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, clear, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, count, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, getIterator, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, count, arginfo_ice_arr_count, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, getIterator, arginfo_ice_arr_getiterator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, getPath, arginfo_ice_arr_getpath, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Arr, toArray, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Arr, toArray, arginfo_ice_arr_toarray, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetExists, arginfo_ice_arr_offsetexists, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetGet, arginfo_ice_arr_offsetget, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, offsetSet, arginfo_ice_arr_offsetset, ZEND_ACC_PUBLIC)

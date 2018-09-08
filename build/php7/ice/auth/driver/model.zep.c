@@ -139,7 +139,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 					zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, 0, &user, &roles);
 					zephir_check_call_status();
-					RETURN_CCTOR(user);
+					RETURN_CCTOR(&user);
 				}
 			}
 			ZEPHIR_CALL_METHOD(NULL, &token, "remove", NULL, 0);
@@ -290,7 +290,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
 		} else {
 			ZVAL_BOOL(&_1$$3, 0);
 		}
-		RETURN_CCTOR(_1$$3);
+		RETURN_CCTOR(&_1$$3);
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an object", "ice/auth/driver/model.zep", 138);
 		return;
@@ -824,7 +824,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 			zephir_update_property_zval(this_ptr, SL("user"), &user);
 		}
 	}
-	RETURN_CCTOR(user);
+	RETURN_CCTOR(&user);
 
 }
 

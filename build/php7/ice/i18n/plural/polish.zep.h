@@ -6,8 +6,12 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Polish);
 PHP_METHOD(Ice_I18n_Plural_Polish, getCategory);
 PHP_METHOD(Ice_I18n_Plural_Polish, isInt);
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n_plural_polish_getcategory, 0, 0, 1)
-	ZEND_ARG_INFO(0, count)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_i18n_plural_polish_getcategory, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_i18n_plural_polish_getcategory, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, count, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_i18n_plural_polish_isint, 0, 0, 1)

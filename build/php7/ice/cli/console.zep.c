@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &dispatcher, "dispatch", NULL, 0);
 	zephir_check_call_status();
-	RETURN_CCTOR(response);
+	RETURN_CCTOR(&response);
 
 }
 
@@ -230,26 +230,26 @@ PHP_METHOD(Ice_Cli_Console, color) {
 
 	ZEPHIR_INIT_VAR(&colors);
 	zephir_create_array(&colors, 9, 0 TSRMLS_CC);
-	add_assoc_long_ex(&colors, SL("black"), 30);
-	add_assoc_long_ex(&colors, SL("red"), 31);
-	add_assoc_long_ex(&colors, SL("green"), 32);
-	add_assoc_long_ex(&colors, SL("yellow"), 33);
-	add_assoc_long_ex(&colors, SL("blue"), 34);
-	add_assoc_long_ex(&colors, SL("magenta"), 35);
-	add_assoc_long_ex(&colors, SL("cyan"), 36);
-	add_assoc_long_ex(&colors, SL("lightgray"), 37);
-	add_assoc_long_ex(&colors, SL("white"), 97);
+	add_assoc_stringl_ex(&colors, SL("black"), SL("30"));
+	add_assoc_stringl_ex(&colors, SL("red"), SL("31"));
+	add_assoc_stringl_ex(&colors, SL("green"), SL("32"));
+	add_assoc_stringl_ex(&colors, SL("yellow"), SL("33"));
+	add_assoc_stringl_ex(&colors, SL("blue"), SL("34"));
+	add_assoc_stringl_ex(&colors, SL("magenta"), SL("35"));
+	add_assoc_stringl_ex(&colors, SL("cyan"), SL("36"));
+	add_assoc_stringl_ex(&colors, SL("lightgray"), SL("37"));
+	add_assoc_stringl_ex(&colors, SL("white"), SL("97"));
 	ZEPHIR_INIT_VAR(&bgColors);
 	zephir_create_array(&bgColors, 9, 0 TSRMLS_CC);
-	add_assoc_long_ex(&bgColors, SL("black"), 40);
-	add_assoc_long_ex(&bgColors, SL("red"), 41);
-	add_assoc_long_ex(&bgColors, SL("green"), 42);
-	add_assoc_long_ex(&bgColors, SL("yellow"), 43);
-	add_assoc_long_ex(&bgColors, SL("blue"), 44);
-	add_assoc_long_ex(&bgColors, SL("magenta"), 45);
-	add_assoc_long_ex(&bgColors, SL("cyan"), 46);
-	add_assoc_long_ex(&bgColors, SL("lightgray"), 47);
-	add_assoc_long_ex(&bgColors, SL("white"), 107);
+	add_assoc_stringl_ex(&bgColors, SL("black"), SL("40"));
+	add_assoc_stringl_ex(&bgColors, SL("red"), SL("41"));
+	add_assoc_stringl_ex(&bgColors, SL("green"), SL("42"));
+	add_assoc_stringl_ex(&bgColors, SL("yellow"), SL("43"));
+	add_assoc_stringl_ex(&bgColors, SL("blue"), SL("44"));
+	add_assoc_stringl_ex(&bgColors, SL("magenta"), SL("45"));
+	add_assoc_stringl_ex(&bgColors, SL("cyan"), SL("46"));
+	add_assoc_stringl_ex(&bgColors, SL("lightgray"), SL("47"));
+	add_assoc_stringl_ex(&bgColors, SL("white"), SL("107"));
 	zephir_array_isset_fetch(&foreground, &colors, &color, 1 TSRMLS_CC);
 	zephir_array_isset_fetch(&background, &bgColors, &bgColor, 1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&e);

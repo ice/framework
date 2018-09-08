@@ -376,7 +376,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, text) {
 	ZEPHIR_INIT_VAR(&_60);
 	zephir_substr(&_60, &text, zephir_get_intval(&pos), 0, ZEPHIR_SUBSTR_NO_LENGTH);
 	zephir_concat_self(&parsedText, &_60 TSRMLS_CC);
-	RETURN_CCTOR(parsedText);
+	RETURN_CCTOR(&parsedText);
 
 }
 
@@ -830,7 +830,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, doParse) {
 		ZEPHIR_CALL_METHOD(NULL, &i, "next", &_25, 135);
 		zephir_check_call_status();
 	}
-	RETURN_CCTOR(parsed);
+	RETURN_CCTOR(&parsed);
 
 }
 
@@ -932,7 +932,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 					} else {
 						ZEPHIR_CPY_WRT(&_8$$8, &str);
 					}
-					RETURN_CCTOR(_8$$8);
+					RETURN_CCTOR(&_8$$8);
 				}
 				do {
 					if (ZEPHIR_IS_STRING(&str, "in")) {
@@ -945,7 +945,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 						} else {
 							ZVAL_STRING(&_11$$10, " == ");
 						}
-						RETURN_CCTOR(_11$$10);
+						RETURN_CCTOR(&_11$$10);
 					}
 					if (ZEPHIR_IS_STRING(&str, "and")) {
 						RETURN_MM_STRING(" && ");
@@ -957,7 +957,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 						RETURN_MM_STRING("!");
 					}
 					if (ZEPHIR_IS_STRING(&str, "false") || ZEPHIR_IS_STRING(&str, "true") || ZEPHIR_IS_STRING(&str, "null")) {
-						RETURN_CTOR(str);
+						RETURN_CTOR(&str);
 					}
 					_12$$15 = ZEPHIR_IS_STRING(prev, ".");
 					if (!(_12$$15)) {
@@ -977,7 +977,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 						_13$$15 = _17$$15;
 					}
 					if (_13$$15) {
-						RETURN_CTOR(str);
+						RETURN_CTOR(&str);
 					}
 					ZEPHIR_CONCAT_SV(return_value, "$", &str);
 					RETURN_MM();
@@ -985,7 +985,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 
 			}
 			zephir_array_fetch_long(&_18$$17, token, 1, PH_NOISY | PH_READONLY, "ice/mvc/view/engine/sleet/parser.zep", 362 TSRMLS_CC);
-			RETURN_CTOR(_18$$17);
+			RETURN_CTOR(&_18$$17);
 		} while(0);
 
 	} else {

@@ -54,21 +54,36 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setbody, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response___construct, 0, 0, 0)
-	ZEND_ARG_INFO(0, body)
-	ZEND_ARG_INFO(0, status)
+	ZEND_ARG_TYPE_INFO(0, body, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, status, IS_LONG, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_hasheader, 0, 0, 1)
-	ZEND_ARG_INFO(0, name)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getheaders, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getheaders, 0, 0, IS_NULL, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_getheader, 0, 0, 1)
-	ZEND_ARG_INFO(0, name)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_hasheader, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_hasheader, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getheader, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getheader, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setheader, 0, 0, 2)
-	ZEND_ARG_INFO(0, name)
-	ZEND_ARG_INFO(0, value)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setheaders, 0, 0, 1)
@@ -76,11 +91,15 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setheaders, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_removeheader, 0, 0, 1)
-	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setcontent, 0, 0, 1)
-	ZEND_ARG_INFO(0, contet)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_http_response_setcontent, 0, 1, NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_setcontent, 0, 1, NULL, "NULL", 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, contet, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_finalize, 0, 0, 1)
@@ -88,13 +107,101 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_finalize, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_redirect, 0, 0, 0)
-	ZEND_ARG_INFO(0, location)
-	ZEND_ARG_INFO(0, status)
-	ZEND_ARG_INFO(0, external)
+	ZEND_ARG_TYPE_INFO(0, location, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, status, IS_LONG, 1)
+	ZEND_ARG_TYPE_INFO(0, external, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_getmessage, 0, 0, 0)
-	ZEND_ARG_INFO(0, code)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isempty, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isempty, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isinformational, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isinformational, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isok, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isok, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_issuccessful, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_issuccessful, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isredirect, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isredirect, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isredirection, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isredirection, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isforbidden, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isforbidden, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isnotfound, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isnotfound, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isclienterror, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isclienterror, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isservererror, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isservererror, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessage, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessage, 0, 0, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, code, IS_LONG, 1)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessages, 0, 0, IS_NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessages, 0, 0, IS_NULL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response___tostring, 0, 0, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response___tostring, 0, 0, IS_STRING, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
@@ -108,7 +215,7 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, getBody, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setBody, arginfo_ice_http_response_setbody, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __construct, arginfo_ice_http_response___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(Ice_Http_Response, getHeaders, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getHeaders, arginfo_ice_http_response_getheaders, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, hasHeader, arginfo_ice_http_response_hasheader, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getHeader, arginfo_ice_http_response_getheader, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setHeader, arginfo_ice_http_response_setheader, ZEND_ACC_PUBLIC)
@@ -118,18 +225,18 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, finalize, arginfo_ice_http_response_finalize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, send, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, redirect, arginfo_ice_http_response_redirect, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isEmpty, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isInformational, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isOk, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isSuccessful, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isRedirect, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isRedirection, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isForbidden, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isNotFound, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isClientError, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, isServerError, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isEmpty, arginfo_ice_http_response_isempty, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isInformational, arginfo_ice_http_response_isinformational, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isOk, arginfo_ice_http_response_isok, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isSuccessful, arginfo_ice_http_response_issuccessful, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isRedirect, arginfo_ice_http_response_isredirect, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isRedirection, arginfo_ice_http_response_isredirection, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isForbidden, arginfo_ice_http_response_isforbidden, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isNotFound, arginfo_ice_http_response_isnotfound, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isClientError, arginfo_ice_http_response_isclienterror, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, isServerError, arginfo_ice_http_response_isservererror, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessage, arginfo_ice_http_response_getmessage, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, getMessages, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Http_Response, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getMessages, arginfo_ice_http_response_getmessages, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, __toString, arginfo_ice_http_response___tostring, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -184,7 +184,7 @@ PHP_METHOD(Ice_Text, random) {
 		zephir_array_fetch_long(&_23$$8, &pool, zephir_mt_rand(zephir_get_intval(&_24$$8), zephir_get_intval(&_25$$8) TSRMLS_CC), PH_NOISY | PH_READONLY, "ice/text.zep", 60 TSRMLS_CC);
 		zephir_concat_self(&str, &_23$$8 TSRMLS_CC);
 	}
-	RETURN_CCTOR(str);
+	RETURN_CCTOR(&str);
 
 }
 

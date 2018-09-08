@@ -111,7 +111,7 @@ PHP_METHOD(Ice_Di, fetch) {
 
 
 	zephir_read_static_property_ce(&_0, ice_di_ce, SL("di"), PH_NOISY_CC | PH_READONLY);
-	RETURN_CTORW(_0);
+	RETURN_CTORW(&_0);
 
 }
 
@@ -198,7 +198,7 @@ PHP_METHOD(Ice_Di, set) {
 	ZEPHIR_CALL_METHOD(&service, this_ptr, "resolve", NULL, 0, value);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("data"), &key, &service TSRMLS_CC);
-	RETURN_CCTOR(service);
+	RETURN_CCTOR(&service);
 
 }
 
@@ -458,7 +458,7 @@ PHP_METHOD(Ice_Di, getParameters) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	RETURN_CTOR(parameters);
+	RETURN_CTOR(&parameters);
 
 }
 
@@ -532,7 +532,7 @@ PHP_METHOD(Ice_Di, getDependencies) {
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&parameter);
-	RETURN_CCTOR(dependencies);
+	RETURN_CCTOR(&dependencies);
 
 }
 
@@ -817,7 +817,7 @@ PHP_METHOD(Ice_Di, getHooks) {
 		} else {
 			ZVAL_NULL(&_0$$3);
 		}
-		RETURN_CCTOR(_0$$3);
+		RETURN_CCTOR(&_0$$3);
 	} else {
 		RETURN_MM_MEMBER(getThis(), "hooks");
 	}

@@ -7,14 +7,18 @@ PHP_METHOD(Ice_Mvc_Route, __construct);
 PHP_METHOD(Ice_Mvc_Route, matches);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route___construct, 0, 0, 4)
-	ZEND_ARG_INFO(0, httpMethod)
+	ZEND_ARG_TYPE_INFO(0, httpMethod, IS_STRING, 0)
 	ZEND_ARG_INFO(0, handler)
-	ZEND_ARG_INFO(0, regex)
+	ZEND_ARG_TYPE_INFO(0, regex, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, variables, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_matches, 0, 0, 1)
-	ZEND_ARG_INFO(0, str)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_route_matches, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_route_matches, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, str, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_route_method_entry) {

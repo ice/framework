@@ -261,7 +261,7 @@ PHP_METHOD(Ice_Dump, getStyle) {
 
 	zephir_read_property(&_0, this_ptr, SL("styles"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&style, &_0, &type, 1 TSRMLS_CC)) {
-		RETURN_CTOR(style);
+		RETURN_CTOR(&style);
 	} else {
 		RETURN_MM_STRING("color:gray");
 	}
@@ -1272,7 +1272,7 @@ PHP_METHOD(Ice_Dump, vars) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	RETURN_CCTOR(output);
+	RETURN_CCTOR(&output);
 
 }
 

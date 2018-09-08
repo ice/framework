@@ -76,13 +76,10 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	zephir_fcall_cache_entry *_23 = NULL, *_68 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
-	zval *validation, validation_sub, *field_param = NULL, _SERVER, _POST, _FILES, value, message, label, i18n, replace, types, byteUnits, unit, maxSize, matches, bytes, mime, tmp, width, height, minResolution, maxResolution, minWidth, maxWidth, minHeight, maxHeight, _0, _1, _3, _7, _10, _24, _28, _31, _33, _34, _61, _86, _102, _104, _2$$3, _11$$5, _12$$5, _15$$5, _17$$5, _18$$5, _22$$5, _13$$6, _14$$7, _19$$8, _20$$8, _21$$8, _35$$10, _36$$10, _39$$10, _41$$10, _42$$10, _46$$10, _37$$11, _38$$12, _43$$13, _44$$13, _45$$13, _49$$14, _50$$14, _53$$14, _55$$14, _56$$14, _60$$14, _51$$15, _52$$16, _57$$17, _58$$17, _59$$17, _62$$18, _63$$18, _64$$18, _65$$18, _66$$18, _67$$18, _69$$18, _70$$18, _71$$18, _72$$18, _73$$18, _74$$20, _75$$20, _78$$20, _80$$20, _81$$20, _85$$20, _76$$21, _77$$22, _82$$23, _83$$23, _84$$23, _87$$24, _88$$26, _89$$26, _90$$28, _91$$28, _94$$28, _96$$28, _97$$28, _101$$28, _92$$29, _93$$30, _98$$31, _99$$31, _100$$31, _105$$32, _106$$32, _107$$32, _123$$32, _108$$33, _109$$33, _111$$35, _112$$35, _115$$35, _117$$35, _118$$35, _122$$35, _113$$36, _114$$37, _119$$38, _120$$38, _121$$38, _124$$39, _125$$39, _127$$40, _128$$40, _131$$40, _133$$40, _134$$40, _138$$40, _129$$41, _130$$42, _135$$43, _136$$43, _137$$43;
+	zval *validation, validation_sub, *field_param = NULL, *_SERVER, *_POST, *_FILES, value, message, label, i18n, replace, types, byteUnits, unit, maxSize, matches, bytes, mime, tmp, width, height, minResolution, maxResolution, minWidth, maxWidth, minHeight, maxHeight, _0, _1, _3, _7, _10, _24, _28, _31, _33, _34, _61, _86, _102, _104, _2$$3, _11$$5, _12$$5, _15$$5, _17$$5, _18$$5, _22$$5, _13$$6, _14$$7, _19$$8, _20$$8, _21$$8, _35$$10, _36$$10, _39$$10, _41$$10, _42$$10, _46$$10, _37$$11, _38$$12, _43$$13, _44$$13, _45$$13, _49$$14, _50$$14, _53$$14, _55$$14, _56$$14, _60$$14, _51$$15, _52$$16, _57$$17, _58$$17, _59$$17, _62$$18, _63$$18, _64$$18, _65$$18, _66$$18, _67$$18, _69$$18, _70$$18, _71$$18, _72$$18, _73$$18, _74$$20, _75$$20, _78$$20, _80$$20, _81$$20, _85$$20, _76$$21, _77$$22, _82$$23, _83$$23, _84$$23, _87$$24, _88$$26, _89$$26, _90$$28, _91$$28, _94$$28, _96$$28, _97$$28, _101$$28, _92$$29, _93$$30, _98$$31, _99$$31, _100$$31, _105$$32, _106$$32, _107$$32, _123$$32, _108$$33, _109$$33, _111$$35, _112$$35, _115$$35, _117$$35, _118$$35, _122$$35, _113$$36, _114$$37, _119$$38, _120$$38, _121$$38, _124$$39, _125$$39, _127$$40, _128$$40, _131$$40, _133$$40, _134$$40, _138$$40, _129$$41, _130$$42, _135$$43, _136$$43, _137$$43;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validation_sub);
-	ZVAL_UNDEF(&_SERVER);
-	ZVAL_UNDEF(&_POST);
-	ZVAL_UNDEF(&_FILES);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&label);
@@ -253,18 +250,18 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		ZEPHIR_CALL_METHOD(&label, validation, "getlabel", NULL, 0, &field);
 		zephir_check_call_status();
 	}
-	zephir_array_fetch_string(&_3, &_SERVER, SL("REQUEST_METHOD"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 63 TSRMLS_CC);
+	zephir_array_fetch_string(&_3, _SERVER, SL("REQUEST_METHOD"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 63 TSRMLS_CC);
 	_4 = ZEPHIR_IS_STRING(&_3, "POST");
 	if (_4) {
-		_4 = ZEPHIR_IS_EMPTY(&_POST);
+		_4 = ZEPHIR_IS_EMPTY(_POST);
 	}
 	_5 = _4;
 	if (_5) {
-		_5 = ZEPHIR_IS_EMPTY(&_FILES);
+		_5 = ZEPHIR_IS_EMPTY(_FILES);
 	}
 	_6 = _5;
 	if (_6) {
-		zephir_array_fetch_string(&_7, &_SERVER, SL("CONTENT_LENGTH"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 63 TSRMLS_CC);
+		zephir_array_fetch_string(&_7, _SERVER, SL("CONTENT_LENGTH"), PH_NOISY | PH_READONLY, "ice/validation/validator/file.zep", 63 TSRMLS_CC);
 		_6 = ZEPHIR_GT_LONG(&_7, 0);
 	}
 	_8 = _6;

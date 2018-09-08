@@ -138,12 +138,11 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	zval _9, _36, _18$$7;
 	zend_bool _3, _10, _4$$5, _16$$7, _20$$7;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *method = NULL, method_sub, *uri = NULL, uri_sub, _SERVER, __$null, argv, router, request, response, dispatcher, returned, controller, view, _0, _1, _5, _6, _7, _8, _35, _2$$4, _11$$7, _12$$7, _13$$7, _14$$7, _15$$7, _17$$7, _19$$7, _21$$9, _22$$9, _23$$9, _24$$10, _33$$10, _34$$10, _25$$11, _30$$11, _32$$11, _26$$12, _27$$12, _28$$12, _29$$12, _31$$13;
+	zval *method = NULL, method_sub, *uri = NULL, uri_sub, *_SERVER, __$null, argv, router, request, response, dispatcher, returned, controller, view, _0, _1, _5, _6, _7, _8, _35, _2$$4, _11$$7, _12$$7, _13$$7, _14$$7, _15$$7, _17$$7, _19$$7, _21$$9, _22$$9, _23$$9, _24$$10, _33$$10, _34$$10, _25$$11, _30$$11, _32$$11, _26$$12, _27$$12, _28$$12, _29$$12, _31$$13;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
 	ZVAL_UNDEF(&uri_sub);
-	ZVAL_UNDEF(&_SERVER);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&argv);
 	ZVAL_UNDEF(&router);
@@ -229,7 +228,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 		ZEPHIR_INIT_NVAR(method);
 		ZVAL_STRING(method, "GET");
 		ZEPHIR_OBS_VAR(&argv);
-		zephir_array_fetch_string(&argv, &_SERVER, SL("argv"), PH_NOISY, "ice/mvc/app.zep", 60 TSRMLS_CC);
+		zephir_array_fetch_string(&argv, _SERVER, SL("argv"), PH_NOISY, "ice/mvc/app.zep", 60 TSRMLS_CC);
 		_4$$5 = !zephir_is_true(uri);
 		if (_4$$5) {
 			_4$$5 = zephir_array_isset_long(&argv, 1);

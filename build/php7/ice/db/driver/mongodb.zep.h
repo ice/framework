@@ -19,13 +19,17 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, remove);
 PHP_METHOD(Ice_Db_Driver_Mongodb, getError);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, dsn)
-	ZEND_ARG_INFO(0, dbname)
+	ZEND_ARG_TYPE_INFO(0, dsn, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, dbname, IS_STRING, 1)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_getidvalue, 0, 0, 1)
-	ZEND_ARG_INFO(0, id)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_db_driver_mongodb_getidvalue, 0, 1, NULL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_mongodb_getidvalue, 0, 1, NULL, "NULL", 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, id, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_getdatetime, 0, 0, 0)
@@ -34,39 +38,39 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_getdatetime, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_findone, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_find, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_select, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, options, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_insert, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_update, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_remove, 0, 0, 1)
-	ZEND_ARG_INFO(0, from)
+	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 

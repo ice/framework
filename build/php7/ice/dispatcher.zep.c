@@ -565,7 +565,7 @@ PHP_METHOD(Ice_Dispatcher, getParam) {
 	ZEPHIR_CALL_METHOD(NULL, &params, "__construct", NULL, 4, &_0);
 	zephir_check_call_status();
 	if (!(!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key))) {
-		RETURN_CCTOR(params);
+		RETURN_CCTOR(&params);
 	} else {
 		if (allowEmpty) {
 			ZVAL_BOOL(&_1$$4, 1);
@@ -729,7 +729,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &response, "setbody", &_12, 0, &_10$$5);
 				zephir_check_call_status();
-				RETURN_CCTOR(response);
+				RETURN_CCTOR(&response);
 			}
 			ZEPHIR_INIT_NVAR(&_13$$4);
 			object_init_ex(&_13$$4, ice_exception_ce);
@@ -859,7 +859,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &response, "setbody", &_46, 0, &_44$$15);
 				zephir_check_call_status();
-				RETURN_CCTOR(response);
+				RETURN_CCTOR(&response);
 			}
 			ZEPHIR_INIT_NVAR(&_47$$14);
 			object_init_ex(&_47$$14, ice_exception_ce);
@@ -908,7 +908,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &response, "setbody", &_59, 0, &_57$$21);
 				zephir_check_call_status();
-				RETURN_CCTOR(response);
+				RETURN_CCTOR(&response);
 			}
 			ZEPHIR_INIT_NVAR(&_60$$20);
 			object_init_ex(&_60$$20, ice_exception_ce);
@@ -962,7 +962,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		}
 		fresh = 0;
 	}
-	RETURN_CCTOR(handler);
+	RETURN_CCTOR(&handler);
 
 }
 

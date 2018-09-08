@@ -138,12 +138,11 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool local, _0$$3, _1$$3, _5$$8, _6$$10, _8$$12;
-	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, baseUri, queryString, _2$$4, _3$$4, _4$$4, _7$$11, _9$$13, _10$$13, _11$$14, _12$$15;
+	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, *_GET, __$null, baseUri, queryString, _2$$4, _3$$4, _4$$4, _7$$11, _9$$13, _10$$13, _11$$14, _12$$15;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri_sub);
 	ZVAL_UNDEF(&args_sub);
-	ZVAL_UNDEF(&_GET);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&baseUri);
 	ZVAL_UNDEF(&queryString);
@@ -206,11 +205,11 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	if (local) {
 		_5$$8 = ZEPHIR_IS_FALSE_IDENTICAL(uri);
 		if (_5$$8) {
-			_5$$8 = zephir_array_isset_string(&_GET, SL("_url"));
+			_5$$8 = zephir_array_isset_string(_GET, SL("_url"));
 		}
 		if (_5$$8) {
 			ZEPHIR_OBS_NVAR(uri);
-			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 61 TSRMLS_CC);
+			zephir_array_fetch_string(uri, _GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 61 TSRMLS_CC);
 		} else {
 			_6$$10 = !(zephir_start_with_str(uri, SL("#")));
 			if (_6$$10) {

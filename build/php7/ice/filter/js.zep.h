@@ -13,11 +13,11 @@ PHP_METHOD(Ice_Filter_Js, next);
 PHP_METHOD(Ice_Filter_Js, peek);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_js_sanitize, 0, 0, 1)
-	ZEND_ARG_INFO(0, js)
+	ZEND_ARG_TYPE_INFO(0, js, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_js_action, 0, 0, 1)
-	ZEND_ARG_INFO(0, command)
+	ZEND_ARG_TYPE_INFO(0, command, IS_LONG, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_js_isalphanum, 0, 0, 1)

@@ -297,7 +297,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 		count++;
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&frame);
-	RETURN_CCTOR(output);
+	RETURN_CCTOR(&output);
 
 }
 

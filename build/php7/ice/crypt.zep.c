@@ -406,7 +406,7 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "MAC for payload is invalid.", "ice/crypt.zep", 136);
 		return;
 	}
-	RETURN_CCTOR(payload);
+	RETURN_CCTOR(&payload);
 
 }
 
@@ -532,7 +532,7 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 	} else {
 		ZEPHIR_CPY_WRT(&_1, &value);
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 

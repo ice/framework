@@ -134,7 +134,7 @@ PHP_METHOD(Ice_Validation_Validator, get) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, key, 1 TSRMLS_CC)) {
-		RETURN_CTORW(value);
+		RETURN_CTORW(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	return;
@@ -232,7 +232,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	RETURN_CTOR(options);
+	RETURN_CTOR(&options);
 
 }
 

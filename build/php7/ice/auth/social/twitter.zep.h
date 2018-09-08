@@ -15,10 +15,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_social_twitter___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_social_twitter_prepareurlparams, 0, 0, 1)
-	ZEND_ARG_INFO(0, url)
+	ZEND_ARG_TYPE_INFO(0, url, IS_STRING, 0)
 	ZEND_ARG_INFO(0, params)
-	ZEND_ARG_INFO(0, oauthToken)
-	ZEND_ARG_INFO(0, type)
+	ZEND_ARG_TYPE_INFO(0, oauthToken, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, type, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_social_twitter_method_entry) {

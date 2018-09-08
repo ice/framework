@@ -663,7 +663,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &response, "setbody", NULL, 0, &_8$$5);
 				zephir_check_call_status();
-				RETURN_CCTOR(response);
+				RETURN_CCTOR(&response);
 			}
 			ZEPHIR_INIT_VAR(&_9$$4);
 			object_init_ex(&_9$$4, ice_exception_ce);
@@ -693,7 +693,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, &response, "setbody", NULL, 0, &_17$$7);
 				zephir_check_call_status();
-				RETURN_CCTOR(response);
+				RETURN_CCTOR(&response);
 			}
 			ZEPHIR_INIT_VAR(&_18$$6);
 			object_init_ex(&_18$$6, ice_exception_ce);

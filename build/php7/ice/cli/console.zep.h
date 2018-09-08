@@ -22,10 +22,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_handle, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_color, 0, 0, 1)
-	ZEND_ARG_INFO(0, text)
-	ZEND_ARG_INFO(0, color)
-	ZEND_ARG_INFO(0, decoration)
-	ZEND_ARG_INFO(0, bgColor)
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, color, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, decoration, IS_LONG, 1)
+	ZEND_ARG_TYPE_INFO(0, bgColor, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_cli_console_method_entry) {

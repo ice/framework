@@ -200,7 +200,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 			zephir_concat_self_char(&min, c TSRMLS_CC);
 		}
 	}
-	RETURN_CTOR(min);
+	RETURN_CTOR(&min);
 
 }
 

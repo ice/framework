@@ -389,7 +389,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 	}
 	zephir_read_property(&_3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_3, &key, 1 TSRMLS_CC)) {
-		RETURN_CTOR(value);
+		RETURN_CTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
@@ -468,7 +468,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getOption) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1 TSRMLS_CC)) {
-		RETURN_CTOR(value);
+		RETURN_CTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
@@ -571,7 +571,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 		zephir_json_decode(&_12$$5, &result, zephir_get_intval(&__$true) );
 		ZEPHIR_CPY_WRT(&result, &_12$$5);
 	}
-	RETURN_CCTOR(result);
+	RETURN_CCTOR(&result);
 
 }
 

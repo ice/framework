@@ -268,12 +268,11 @@ PHP_METHOD(Ice_Cookies, __construct) {
  */
 PHP_METHOD(Ice_Cookies, has) {
 
-	zval *key_param = NULL, _COOKIE;
+	zval *key_param = NULL, *_COOKIE;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
-	ZVAL_UNDEF(&_COOKIE);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_COOKIE, SL("_COOKIE"));
@@ -282,7 +281,7 @@ PHP_METHOD(Ice_Cookies, has) {
 	zephir_get_strval(&key, key_param);
 
 
-	RETURN_MM_BOOL(zephir_array_isset(&_COOKIE, &key));
+	RETURN_MM_BOOL(zephir_array_isset(_COOKIE, &key));
 
 }
 
@@ -297,13 +296,12 @@ PHP_METHOD(Ice_Cookies, has) {
 PHP_METHOD(Ice_Cookies, get) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, _COOKIE, __$null, cookie, tmp, hash, value, _0, _1, _2$$4, _3$$5, _4$$6, _5$$6, _6$$6, _7$$6;
+	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *_COOKIE, __$null, cookie, tmp, hash, value, _0, _1, _2$$4, _3$$5, _4$$6, _5$$6, _6$$6, _7$$6;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
-	ZVAL_UNDEF(&_COOKIE);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&cookie);
 	ZVAL_UNDEF(&tmp);
@@ -330,7 +328,7 @@ PHP_METHOD(Ice_Cookies, get) {
 
 
 	ZEPHIR_OBS_VAR(&cookie);
-	if (!(zephir_array_isset_fetch(&cookie, &_COOKIE, &key, 0 TSRMLS_CC))) {
+	if (!(zephir_array_isset_fetch(&cookie, _COOKIE, &key, 0 TSRMLS_CC))) {
 		RETVAL_ZVAL(defaultValue, 1, 0);
 		RETURN_MM();
 	}
@@ -359,7 +357,7 @@ PHP_METHOD(Ice_Cookies, get) {
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(&value, &_7$$6);
 			}
-			RETURN_CCTOR(value);
+			RETURN_CCTOR(&value);
 		}
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0, &key);
 		zephir_check_call_status();
@@ -456,12 +454,11 @@ PHP_METHOD(Ice_Cookies, set) {
 PHP_METHOD(Ice_Cookies, remove) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *key_param = NULL, _COOKIE, _0, _1, _2, _3, _4, _5;
+	zval *key_param = NULL, *_COOKIE, _0, _1, _2, _3, _4, _5;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
-	ZVAL_UNDEF(&_COOKIE);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -476,7 +473,7 @@ PHP_METHOD(Ice_Cookies, remove) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_array_unset(&_COOKIE, &key, PH_SEPARATE);
+	zephir_array_unset(_COOKIE, &key, PH_SEPARATE);
 	zephir_read_property(&_0, this_ptr, SL("path"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_1, this_ptr, SL("domain"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_2, this_ptr, SL("secure"), PH_NOISY_CC | PH_READONLY);

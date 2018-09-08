@@ -8,17 +8,21 @@ PHP_METHOD(Ice_Log_Driver_File, log);
 PHP_METHOD(Ice_Log_Driver_File, interpolate);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_file___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, file)
+	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_file_log, 0, 0, 2)
 	ZEND_ARG_INFO(0, level)
-	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, context, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_file_interpolate, 0, 0, 1)
-	ZEND_ARG_INFO(0, message)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_file_interpolate, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_file_interpolate, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, context, 1)
 ZEND_END_ARG_INFO()
 

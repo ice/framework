@@ -616,7 +616,7 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	ZEPHIR_CALL_METHOD(&_19, &_6, "endtag", NULL, 0, &_2);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_19 TSRMLS_CC);
-	RETURN_CCTOR(html);
+	RETURN_CCTOR(&html);
 
 }
 
@@ -779,7 +779,7 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZEPHIR_CALL_METHOD(&_25, &_6, "endtag", NULL, 0, &_2);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_25 TSRMLS_CC);
-	RETURN_CCTOR(html);
+	RETURN_CCTOR(&html);
 
 }
 
@@ -1109,7 +1109,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_CALL_METHOD(&_51, &_6, "endtag", NULL, 0, &_1);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_51 TSRMLS_CC);
-	RETURN_CCTOR(html);
+	RETURN_CCTOR(&html);
 
 }
 

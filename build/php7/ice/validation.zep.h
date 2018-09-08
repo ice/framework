@@ -58,56 +58,86 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_resolve, 0, 0, 2)
-	ZEND_ARG_INFO(0, alias)
-	ZEND_ARG_INFO(0, field)
+	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rule, 0, 0, 2)
-	ZEND_ARG_INFO(0, field)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 	ZEND_ARG_INFO(0, validators)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rules, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, validators, 0)
-	ZEND_ARG_INFO(0, merge)
+	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validate, 0, 0, 0)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validate, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validate, 0, 0, _IS_BOOL, NULL, 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, data, 1)
-	ZEND_ARG_INFO(0, clear)
+	ZEND_ARG_TYPE_INFO(0, clear, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_hasvalue, 0, 0, 1)
-	ZEND_ARG_INFO(0, field)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_valid, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_valid, 0, 0, _IS_BOOL, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_hasvalue, 0, 1, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_hasvalue, 0, 1, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalue, 0, 0, 1)
-	ZEND_ARG_INFO(0, field)
-	ZEND_ARG_INFO(0, filtered)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalues, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_INFO(0, filtered)
+	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getlabel, 0, 0, 1)
-	ZEND_ARG_INFO(0, field)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getlabel, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getlabel, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_setdefaultmessages, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, messages, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 0, 1)
-	ZEND_ARG_INFO(0, type)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 1, IS_STRING, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 1, IS_STRING, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, type, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_addmessage, 0, 0, 2)
-	ZEND_ARG_INFO(0, field)
-	ZEND_ARG_INFO(0, message)
+	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
+ZEND_END_ARG_INFO()
+
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_validation_getmessages, 0, 0, Ice\\Arr, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getmessages, 0, 0, NULL, "Ice\\Arr", 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
@@ -126,7 +156,7 @@ ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
 	PHP_ME(Ice_Validation, rule, arginfo_ice_validation_rule, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, rules, arginfo_ice_validation_rules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, validate, arginfo_ice_validation_validate, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Validation, valid, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Validation, valid, arginfo_ice_validation_valid, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, hasValue, arginfo_ice_validation_hasvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getValue, arginfo_ice_validation_getvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getValues, arginfo_ice_validation_getvalues, ZEND_ACC_PUBLIC)
@@ -134,6 +164,6 @@ ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
 	PHP_ME(Ice_Validation, setDefaultMessages, arginfo_ice_validation_setdefaultmessages, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, getDefaultMessage, arginfo_ice_validation_getdefaultmessage, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, addMessage, arginfo_ice_validation_addmessage, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Validation, getMessages, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Validation, getMessages, arginfo_ice_validation_getmessages, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

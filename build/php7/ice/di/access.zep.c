@@ -88,12 +88,12 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	ZEPHIR_CPY_WRT(&di, &_7);
 	if (ZEPHIR_IS_STRING(&property, "di")) {
 		zephir_update_property_zval(this_ptr, SL("di"), &di);
-		RETURN_CCTOR(di);
+		RETURN_CCTOR(&di);
 	}
 	ZEPHIR_CALL_METHOD(&service, &di, "get", NULL, 0, &property);
 	zephir_check_call_status();
 	zephir_update_property_zval_zval(this_ptr, &property, &service TSRMLS_CC);
-	RETURN_CCTOR(service);
+	RETURN_CCTOR(&service);
 
 }
 

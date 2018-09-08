@@ -222,7 +222,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 		ZEPHIR_CALL_METHOD(&mappedFile, this_ptr, "loadmappedfile", &_3, 0, &_2$$3, &className);
 		zephir_check_call_status();
 		if (zephir_is_true(&mappedFile)) {
-			RETURN_CCTOR(mappedFile);
+			RETURN_CCTOR(&mappedFile);
 		}
 	} else {
 		do {
@@ -236,7 +236,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 			ZEPHIR_CALL_METHOD(&mappedFile, this_ptr, "loadmappedfile", &_3, 0, &prefix, &relativeClass);
 			zephir_check_call_status();
 			if (zephir_is_true(&mappedFile)) {
-				RETURN_CCTOR(mappedFile);
+				RETURN_CCTOR(&mappedFile);
 			}
 			ZEPHIR_INIT_NVAR(&_7$$6);
 			ZEPHIR_INIT_NVAR(&_8$$6);
@@ -320,7 +320,7 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 		ZEPHIR_CALL_METHOD(&_10$$4, this_ptr, "requirefile", &_11, 0, &file);
 		zephir_check_call_status();
 		if (zephir_is_true(&_10$$4)) {
-			RETURN_CCTOR(file);
+			RETURN_CCTOR(&file);
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&baseDir);

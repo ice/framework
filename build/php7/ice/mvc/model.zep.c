@@ -634,7 +634,7 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&result, &instance, "loadone", NULL, 0, filters, &options);
 	zephir_check_call_status();
-	RETURN_CCTOR(result);
+	RETURN_CCTOR(&result);
 
 }
 
@@ -686,7 +686,7 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&result, &instance, "load", NULL, 0, filters, &options);
 	zephir_check_call_status();
-	RETURN_CCTOR(result);
+	RETURN_CCTOR(&result);
 
 }
 
@@ -1055,7 +1055,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	ZVAL_STRING(&_6, "model.after.create");
 	ZEPHIR_CALL_METHOD(NULL, &_47, "applyhook", NULL, 0, &_6, &_48);
 	zephir_check_call_status();
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -1268,7 +1268,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	ZVAL_STRING(&_14, "model.after.update");
 	ZEPHIR_CALL_METHOD(NULL, &_39, "applyhook", NULL, 0, &_14, &_40);
 	zephir_check_call_status();
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -1409,7 +1409,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 	zephir_read_property(&_9, this_ptr, SL("from"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&status, &_8, "remove", NULL, 0, &_9, filters);
 	zephir_check_call_status();
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -1839,7 +1839,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 			if (!(zephir_is_true(&_10$$4))) {
 				RETURN_MM_BOOL(0);
 			}
-			RETURN_CCTOR(result);
+			RETURN_CCTOR(&result);
 		}
 		if (ZEPHIR_IS_LONG(&_5, 3)) {
 			ZEPHIR_INIT_VAR(&_11$$6);
@@ -1853,7 +1853,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 			_14$$6 = zephir_fetch_class(&referenceModel TSRMLS_CC);
 			ZEPHIR_CALL_CE_STATIC(&result, _14$$6, "find", NULL, 0, &filters, &options);
 			zephir_check_call_status();
-			RETURN_CCTOR(result);
+			RETURN_CCTOR(&result);
 		}
 	} while(0);
 
@@ -1926,11 +1926,11 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 				}
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(&field);
-			RETURN_CCTOR(rules);
+			RETURN_CCTOR(&rules);
 		} else if (_0$$3) {
 			zephir_read_property(&_6$$7, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
 			zephir_array_fetch(&_7$$7, &_6$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 707 TSRMLS_CC);
-			RETURN_CTOR(_7$$7);
+			RETURN_CTOR(&_7$$7);
 		}
 	}
 	RETURN_MM_MEMBER(getThis(), "rules");

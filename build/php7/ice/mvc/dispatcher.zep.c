@@ -103,7 +103,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	ZEPHIR_CONCAT_VVV(&action, &_0, &_2, &_4);
 	zephir_read_property(&_5, this_ptr, SL("activeHandler"), PH_NOISY_CC | PH_READONLY);
 	if ((zephir_method_exists(&_5, &action TSRMLS_CC)  == SUCCESS)) {
-		RETURN_CCTOR(action);
+		RETURN_CCTOR(&action);
 	}
 	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 0);
 	zephir_check_call_status();
@@ -155,7 +155,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &response, "setbody", NULL, 0, &_7$$4);
 			zephir_check_call_status();
-			RETURN_CCTOR(response);
+			RETURN_CCTOR(&response);
 		}
 		ZEPHIR_INIT_VAR(&_8$$3);
 		object_init_ex(&_8$$3, ice_exception_ce);
@@ -168,7 +168,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	RETURN_CCTOR(parent);
+	RETURN_CCTOR(&parent);
 
 }
 

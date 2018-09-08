@@ -507,7 +507,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	RETURN_CCTOR(content);
+	RETURN_CCTOR(&content);
 
 }
 

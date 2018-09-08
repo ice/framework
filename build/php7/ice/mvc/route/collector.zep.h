@@ -24,7 +24,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_collector_addroute, 0, 0, 2)
 	ZEND_ARG_INFO(0, httpMethod)
-	ZEND_ARG_INFO(0, route)
+	ZEND_ARG_TYPE_INFO(0, route, IS_STRING, 0)
 	ZEND_ARG_INFO(0, handler)
 ZEND_END_ARG_INFO()
 

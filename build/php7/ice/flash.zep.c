@@ -151,7 +151,7 @@ PHP_METHOD(Ice_Flash, getOption) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1 TSRMLS_CC)) {
-		RETURN_CTOR(value);
+		RETURN_CTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 		ZEPHIR_CALL_METHOD(NULL, &_7$$5, "remove", NULL, 0, &key);
 		zephir_check_call_status();
 	}
-	RETURN_CCTOR(body);
+	RETURN_CCTOR(&body);
 
 }
 
@@ -340,7 +340,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&message);
-	RETURN_CCTOR(body);
+	RETURN_CCTOR(&body);
 
 }
 

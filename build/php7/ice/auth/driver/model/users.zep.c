@@ -192,7 +192,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	} else {
 		ZVAL_BOOL(&_4, 0);
 	}
-	RETURN_CCTOR(_4);
+	RETURN_CCTOR(&_4);
 
 }
 

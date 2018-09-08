@@ -970,7 +970,7 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 	} else {
 		ZVAL_STRING(&_1, "");
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 
@@ -1068,7 +1068,7 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, SL("body"), PH_NOISY_CC);
 	zephir_get_strval(&_1, &_0);
-	RETURN_CTOR(_1);
+	RETURN_CTOR(&_1);
 
 }
 

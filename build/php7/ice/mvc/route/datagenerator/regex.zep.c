@@ -165,7 +165,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&regexToRoutesMap);
 	ZEPHIR_INIT_NVAR(&method);
-	RETURN_CCTOR(data);
+	RETURN_CCTOR(&data);
 
 }
 

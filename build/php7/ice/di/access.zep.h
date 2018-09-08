@@ -7,11 +7,11 @@ PHP_METHOD(Ice_Di_Access, __get);
 PHP_METHOD(Ice_Di_Access, __set);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_access___get, 0, 0, 1)
-	ZEND_ARG_INFO(0, property)
+	ZEND_ARG_TYPE_INFO(0, property, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_access___set, 0, 0, 2)
-	ZEND_ARG_INFO(0, property)
+	ZEND_ARG_TYPE_INFO(0, property, IS_STRING, 0)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 

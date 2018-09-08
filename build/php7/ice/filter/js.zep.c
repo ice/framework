@@ -509,7 +509,7 @@ PHP_METHOD(Ice_Filter_Js, get) {
 		_7 = ZEPHIR_GE_LONG(&_8, 32);
 	}
 	if (_7) {
-		RETURN_CCTOR(c);
+		RETURN_CCTOR(&c);
 	}
 	RETURN_MM_STRING(" ");
 
@@ -767,7 +767,7 @@ PHP_METHOD(Ice_Filter_Js, next) {
 					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 59, &c);
 					zephir_check_call_status();
 					if (ZEPHIR_LE_LONG(&_3$$5, 10)) {
-						RETURN_CCTOR(c);
+						RETURN_CCTOR(&c);
 					}
 				}
 			}
@@ -799,11 +799,11 @@ PHP_METHOD(Ice_Filter_Js, next) {
 
 				}
 			}
-			RETURN_CCTOR(c);
+			RETURN_CCTOR(&c);
 		} while(0);
 
 	}
-	RETURN_CCTOR(c);
+	RETURN_CCTOR(&c);
 
 }
 

@@ -52,14 +52,9 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 
 	zephir_fcall_cache_entry *_1 = NULL, *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval _FILES, _GET, _POST, _SERVER, _REQUEST, _0, _2, _3, _4;
+	zval *_FILES, *_GET, *_POST, *_SERVER, *_REQUEST, _0, _2, _3, _4;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&_FILES);
-	ZVAL_UNDEF(&_GET);
-	ZVAL_UNDEF(&_POST);
-	ZVAL_UNDEF(&_SERVER);
-	ZVAL_UNDEF(&_REQUEST);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
@@ -74,25 +69,25 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", &_1, 4, &_FILES);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", &_1, 4, _FILES);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("files"), &_0);
 	ZEPHIR_INIT_VAR(&_2);
 	object_init_ex(&_2, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", &_1, 4, &_GET);
+	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", &_1, 4, _GET);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("get"), &_2);
 	ZEPHIR_INIT_VAR(&_3);
 	object_init_ex(&_3, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", &_1, 4, &_POST);
+	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", &_1, 4, _POST);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("post"), &_3);
 	ZEPHIR_INIT_VAR(&_4);
 	object_init_ex(&_4, ice_arr_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_4, "__construct", &_1, 4, &_SERVER);
+	ZEPHIR_CALL_METHOD(NULL, &_4, "__construct", &_1, 4, _SERVER);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("server"), &_4);
-	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, getThis(), "__construct", &_5, 0, &_REQUEST);
+	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, getThis(), "__construct", &_5, 0, _REQUEST);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -596,7 +591,7 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	} else {
 		ZEPHIR_CPY_WRT(&ip, &remote);
 	}
-	RETURN_CCTOR(ip);
+	RETURN_CCTOR(&ip);
 
 }
 
@@ -809,7 +804,7 @@ PHP_METHOD(Ice_Http_Request, getServer) {
 	} else {
 		zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC);
 	}
-	RETURN_CCTOR(_0);
+	RETURN_CCTOR(&_0);
 
 }
 
@@ -856,7 +851,7 @@ PHP_METHOD(Ice_Http_Request, getFiles) {
 	} else {
 		zephir_read_property(&_0, this_ptr, SL("files"), PH_NOISY_CC);
 	}
-	RETURN_CCTOR(_0);
+	RETURN_CCTOR(&_0);
 
 }
 

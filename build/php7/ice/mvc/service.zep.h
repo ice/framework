@@ -12,7 +12,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_service_setmodel, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_service___call, 0, 0, 1)
-	ZEND_ARG_INFO(0, method)
+	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
 	ZEND_ARG_INFO(0, arguments)
 ZEND_END_ARG_INFO()
 

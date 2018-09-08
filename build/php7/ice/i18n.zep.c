@@ -103,7 +103,7 @@ PHP_METHOD(Ice_I18n, fetch) {
 
 
 	zephir_read_static_property_ce(&_0, ice_i18n_ce, SL("i18n"), PH_NOISY_CC | PH_READONLY);
-	RETURN_CTORW(_0);
+	RETURN_CTORW(&_0);
 
 }
 
@@ -154,7 +154,7 @@ PHP_METHOD(Ice_I18n, lang) {
 	}
 	zephir_read_property(&_5, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_string(&_6, &_5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 74 TSRMLS_CC);
-	RETURN_CTOR(_6);
+	RETURN_CTOR(&_6);
 
 }
 
@@ -222,7 +222,7 @@ PHP_METHOD(Ice_I18n, iso) {
 	} else {
 		zephir_array_fetch_long(&_5, &parts, 0, PH_NOISY, "ice/i18n.zep", 94 TSRMLS_CC);
 	}
-	RETURN_CCTOR(_5);
+	RETURN_CCTOR(&_5);
 
 }
 
@@ -290,10 +290,10 @@ PHP_METHOD(Ice_I18n, get) {
 			ZVAL_STRING(&_3$$5, "other");
 			if (zephir_array_key_exists(&translation, form TSRMLS_CC)) {
 				zephir_array_fetch(&_4$$6, &translation, form, PH_NOISY | PH_READONLY, "ice/i18n.zep", 129 TSRMLS_CC);
-				RETURN_CTOR(_4$$6);
+				RETURN_CTOR(&_4$$6);
 			} else if (zephir_array_key_exists(&translation, &_3$$5 TSRMLS_CC)) {
 				zephir_array_fetch_string(&_5$$7, &translation, SL("other"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 131 TSRMLS_CC);
-				RETURN_CTOR(_5$$7);
+				RETURN_CTOR(&_5$$7);
 			}
 			ZEPHIR_MAKE_REF(&translation);
 			ZEPHIR_RETURN_CALL_FUNCTION("reset", NULL, 100, &translation);
@@ -301,9 +301,9 @@ PHP_METHOD(Ice_I18n, get) {
 			zephir_check_call_status();
 			RETURN_MM();
 		}
-		RETURN_CCTOR(translation);
+		RETURN_CCTOR(&translation);
 	}
-	RETURN_CTOR(str);
+	RETURN_CTOR(&str);
 
 }
 
@@ -348,7 +348,7 @@ PHP_METHOD(Ice_I18n, load) {
 	ZEPHIR_OBS_VAR(&cache);
 	zephir_read_property(&_0, this_ptr, SL("cache"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&cache, &_0, &lang, 0 TSRMLS_CC)) {
-		RETURN_CCTOR(cache);
+		RETURN_CCTOR(&cache);
 	}
 	ZEPHIR_INIT_VAR(&parts);
 	zephir_fast_explode_str(&parts, SL("-"), &lang, LONG_MAX TSRMLS_CC);
@@ -400,7 +400,7 @@ PHP_METHOD(Ice_I18n, load) {
 	zephir_update_property_array(this_ptr, SL("cache"), &lang, &messages TSRMLS_CC);
 	zephir_read_property(&_9, this_ptr, SL("cache"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_10, &_9, &lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 184 TSRMLS_CC);
-	RETURN_CTOR(_10);
+	RETURN_CTOR(&_10);
 
 }
 
@@ -1249,7 +1249,7 @@ PHP_METHOD(Ice_I18n, translate) {
 		zephir_get_strval(&str, &_4$$5);
 	}
 	if (!(zephir_fast_count_int(&values TSRMLS_CC))) {
-		RETURN_CTOR(str);
+		RETURN_CTOR(&str);
 	} else {
 		ZEPHIR_INIT_VAR(&_5$$7);
 		zephir_array_keys(&_5$$7, &values TSRMLS_CC);

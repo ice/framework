@@ -869,7 +869,7 @@ PHP_METHOD(Ice_Validation, getValues) {
 		} while(0);
 
 	}
-	RETURN_CCTOR(data);
+	RETURN_CCTOR(&data);
 
 }
 
@@ -928,7 +928,7 @@ PHP_METHOD(Ice_Validation, getLabel) {
 			ZEPHIR_CPY_WRT(&label, &field);
 		}
 	}
-	RETURN_CCTOR(label);
+	RETURN_CCTOR(&label);
 
 }
 
@@ -1006,7 +1006,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 		ZEPHIR_OBS_NVAR(&message);
 		zephir_array_fetch_string(&message, &_1$$3, SL("default"), PH_NOISY, "ice/validation.zep", 375 TSRMLS_CC);
 	}
-	RETURN_CCTOR(message);
+	RETURN_CCTOR(&message);
 
 }
 

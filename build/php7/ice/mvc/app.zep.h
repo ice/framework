@@ -22,7 +22,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app___construct, 0, 0, 0)
 	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app_handle, 0, 0, 0)
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_mvc_app_handle, 0, 0, Ice\\Http\\Response\\ResponseInterface, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_app_handle, 0, 0, NULL, "Ice\\Http\\Response\\ResponseInterface", 0)
+#endif
 	ZEND_ARG_INFO(0, method)
 	ZEND_ARG_INFO(0, uri)
 ZEND_END_ARG_INFO()

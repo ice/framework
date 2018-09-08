@@ -240,7 +240,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getDateTime) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-	RETURN_CCTOR(date);
+	RETURN_CCTOR(&date);
 
 }
 
@@ -322,7 +322,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 	} else {
 		ZVAL_BOOL(&_1, 0);
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 
@@ -762,7 +762,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	ZEPHIR_CALL_METHOD(&_12, &query, "errorinfo", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("error"), &_12);
-	RETURN_CCTOR(query);
+	RETURN_CCTOR(&query);
 
 }
 
@@ -860,7 +860,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	ZEPHIR_CALL_METHOD(&_9, &query, "errorinfo", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("error"), &_9);
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -970,7 +970,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	ZEPHIR_CALL_METHOD(&_10, &query, "errorinfo", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("error"), &_10);
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -1033,7 +1033,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
 	ZEPHIR_CALL_METHOD(&_2, &query, "errorinfo", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, SL("error"), &_2);
-	RETURN_CCTOR(status);
+	RETURN_CCTOR(&status);
 
 }
 
@@ -1076,7 +1076,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getError) {
 
 	zephir_read_property(&_0, this_ptr, SL("error"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_isset_long_fetch(&error, &_0, 0, 1 TSRMLS_CC);
-	RETURN_CTORW(error);
+	RETURN_CTORW(&error);
 
 }
 

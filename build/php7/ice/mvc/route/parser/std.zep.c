@@ -123,7 +123,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&segment);
 	ZEPHIR_INIT_NVAR(&n);
-	RETURN_CCTOR(routeDatas);
+	RETURN_CCTOR(&routeDatas);
 
 }
 
@@ -234,7 +234,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 		zephir_substr(&_20$$6, route, zephir_get_intval(&offset), 0, ZEPHIR_SUBSTR_NO_LENGTH);
 		zephir_array_append(&routeData, &_20$$6, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 80);
 	}
-	RETURN_CCTOR(routeData);
+	RETURN_CCTOR(&routeData);
 
 }
 

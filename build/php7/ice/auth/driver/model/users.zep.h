@@ -8,7 +8,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin);
 PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_getrole, 0, 0, 0)
-	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_method_entry) {

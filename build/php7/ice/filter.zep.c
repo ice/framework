@@ -252,12 +252,12 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(&filter, "camelize")) {
 			ZEPHIR_INIT_VAR(&_6$$7);
 			zephir_camelize(&_6$$7, &value, NULL  );
-			RETURN_CCTOR(_6$$7);
+			RETURN_CCTOR(&_6$$7);
 		}
 		if (ZEPHIR_IS_STRING(&filter, "uncamelize")) {
 			ZEPHIR_INIT_VAR(&_7$$8);
 			zephir_uncamelize(&_7$$8, &value, NULL  );
-			RETURN_CCTOR(_7$$8);
+			RETURN_CCTOR(&_7$$8);
 		}
 		if (ZEPHIR_IS_STRING(&filter, "human")) {
 			ZEPHIR_INIT_VAR(&_8$$9);
@@ -287,7 +287,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			} else {
 				zephir_fast_strtolower(&_15$$10, &value);
 			}
-			RETURN_CCTOR(_15$$10);
+			RETURN_CCTOR(&_15$$10);
 		}
 		if (ZEPHIR_IS_STRING(&filter, "upper")) {
 			ZEPHIR_INIT_VAR(&_16$$11);
@@ -297,7 +297,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			} else {
 				zephir_fast_strtoupper(&_16$$11, &value);
 			}
-			RETURN_CCTOR(_16$$11);
+			RETURN_CCTOR(&_16$$11);
 		}
 		if (ZEPHIR_IS_STRING(&filter, "alnum")) {
 			ZEPHIR_INIT_VAR(&_17$$12);

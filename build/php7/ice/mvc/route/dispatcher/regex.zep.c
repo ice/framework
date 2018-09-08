@@ -180,7 +180,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_9$$4, &result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 35 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(&_9$$4, 1)) {
-			RETURN_CCTOR(result);
+			RETURN_CCTOR(&result);
 		}
 	}
 	if (ZEPHIR_IS_STRING_IDENTICAL(httpMethod, "HEAD")) {
@@ -207,7 +207,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 			zephir_check_call_status();
 			zephir_array_fetch_long(&_16$$8, &result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 50 TSRMLS_CC);
 			if (ZEPHIR_IS_LONG_IDENTICAL(&_16$$8, 1)) {
-				RETURN_CCTOR(result);
+				RETURN_CCTOR(&result);
 			}
 		}
 	}
@@ -234,7 +234,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		zephir_check_call_status();
 		zephir_array_fetch_long(&_23$$11, &result, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 65 TSRMLS_CC);
 		if (ZEPHIR_IS_LONG_IDENTICAL(&_23$$11, 1)) {
-			RETURN_CCTOR(result);
+			RETURN_CCTOR(&result);
 		}
 	}
 	ZEPHIR_INIT_VAR(&allowedMethods);

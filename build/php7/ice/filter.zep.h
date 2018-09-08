@@ -8,7 +8,7 @@ PHP_METHOD(Ice_Filter, sanitize);
 PHP_METHOD(Ice_Filter, doSanitize);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_add, 0, 0, 2)
-	ZEND_ARG_INFO(0, name)
+	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 	ZEND_ARG_INFO(0, body)
 ZEND_END_ARG_INFO()
 
@@ -18,8 +18,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_sanitize, 0, 0, 2)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_filter_dosanitize, 0, 0, 2)
-	ZEND_ARG_INFO(0, value)
-	ZEND_ARG_INFO(0, filter)
+	ZEND_ARG_TYPE_INFO(0, value, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, filter, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_filter_method_entry) {

@@ -67,7 +67,7 @@ PHP_METHOD(Ice_I18n_Plural_One, getCategory) {
 	} else {
 		ZVAL_STRING(&_0, "other");
 	}
-	RETURN_CCTOR(_0);
+	RETURN_CCTOR(&_0);
 
 }
 

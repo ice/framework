@@ -281,7 +281,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 		}
 	}
 	if (zephir_is_true(model)) {
-		RETURN_CCTOR(date);
+		RETURN_CCTOR(&date);
 	}
 	ZEPHIR_RETURN_CALL_METHOD(&date, "todatetime", NULL, 0);
 	zephir_check_call_status();
@@ -362,7 +362,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	} else {
 		ZVAL_BOOL(&_1, 0);
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 
@@ -634,7 +634,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, insert) {
 	} else {
 		ZVAL_BOOL(&_2, 0);
 	}
-	RETURN_CCTOR(_2);
+	RETURN_CCTOR(&_2);
 
 }
 
@@ -705,7 +705,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, update) {
 	} else {
 		ZVAL_BOOL(&_2, 0);
 	}
-	RETURN_CCTOR(_2);
+	RETURN_CCTOR(&_2);
 
 }
 
@@ -763,7 +763,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, remove) {
 	} else {
 		ZVAL_BOOL(&_1, 0);
 	}
-	RETURN_CCTOR(_1);
+	RETURN_CCTOR(&_1);
 
 }
 
@@ -783,7 +783,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getError) {
 
 	zephir_read_property(&_0, this_ptr, SL("error"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_isset_string_fetch(&error, &_0, SL("err"), 1);
-	RETURN_CTORW(error);
+	RETURN_CTORW(&error);
 
 }
 
