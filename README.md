@@ -5,7 +5,6 @@ Simple and fast PHP framework delivered as C-extension.
 
 ### Stage
 [![Build Status](https://travis-ci.org/ice/framework.svg?branch=dev)](https://travis-ci.org/ice/framework)
-[![Dependency Status](https://www.versioneye.com/user/projects/54d4f6963ca0840b19000383/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54d4f6963ca0840b19000383)
 
 ##### How to contribute?
 1. Fork the [ice/framework](https://github.com/ice/framework) repository.
