@@ -601,6 +601,35 @@ PHP_METHOD(Ice_Dispatcher, getActiveMethod) {
 }
 
 /**
+ * Add module with its dir path, initial class name and namespace
+ *
+ * @param string name
+ * @param array options The keys can be [path|class|namespace]
+ * @return object Dispatcher
+ */
+PHP_METHOD(Ice_Dispatcher, addModule) {
+
+	zval options;
+	zval *name_param = NULL, *options_param = NULL;
+	zval name;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&name);
+	ZVAL_UNDEF(&options);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &name_param, &options_param);
+
+	zephir_get_strval(&name, name_param);
+	zephir_get_arrval(&options, options_param);
+
+
+	zephir_update_property_array(this_ptr, SL("modules"), &name, &options TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
+/**
  * Dispatches a handle action taking into account the routing parameters.
  *
  * @return object
@@ -738,7 +767,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_15$$4, 1);
 			ZEPHIR_CALL_METHOD(NULL, &_13$$4, "__construct", &_16, 12, &_14$$4, &_15$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_13$$4, "ice/dispatcher.zep", 153 TSRMLS_CC);
+			zephir_throw_exception_debug(&_13$$4, "ice/dispatcher.zep", 168 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -765,12 +794,12 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_array_fast_append(&_20$$7, &_22$$7);
 				ZEPHIR_CALL_METHOD(NULL, &_19$$7, "__construct", &_16, 12, &_20$$7);
 				zephir_check_call_status();
-				zephir_throw_exception_debug(&_19$$7, "ice/dispatcher.zep", 161 TSRMLS_CC);
+				zephir_throw_exception_debug(&_19$$7, "ice/dispatcher.zep", 176 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
 			if (Z_TYPE_P(&module) != IS_ARRAY) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 165);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 180);
 				return;
 			}
 			ZEPHIR_OBS_NVAR(&path);
@@ -786,7 +815,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 					zephir_array_fast_append(&_24$$10, &path);
 					ZEPHIR_CALL_METHOD(NULL, &_23$$10, "__construct", &_16, 12, &_24$$10);
 					zephir_check_call_status();
-					zephir_throw_exception_debug(&_23$$10, "ice/dispatcher.zep", 170 TSRMLS_CC);
+					zephir_throw_exception_debug(&_23$$10, "ice/dispatcher.zep", 185 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}
@@ -872,7 +901,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_50$$14, 2);
 			ZEPHIR_CALL_METHOD(NULL, &_47$$14, "__construct", &_16, 12, &_48$$14, &_50$$14);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_47$$14, "ice/dispatcher.zep", 209 TSRMLS_CC);
+			zephir_throw_exception_debug(&_47$$14, "ice/dispatcher.zep", 224 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -922,7 +951,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_63$$20, 3);
 			ZEPHIR_CALL_METHOD(NULL, &_60$$20, "__construct", &_16, 12, &_61$$20, &_63$$20);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_60$$20, "ice/dispatcher.zep", 241 TSRMLS_CC);
+			zephir_throw_exception_debug(&_60$$20, "ice/dispatcher.zep", 256 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -936,7 +965,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_67$$22, 4);
 			ZEPHIR_CALL_METHOD(NULL, &_65$$22, "__construct", &_16, 12, &_66$$22, &_67$$22);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_65$$22, "ice/dispatcher.zep", 246 TSRMLS_CC);
+			zephir_throw_exception_debug(&_65$$22, "ice/dispatcher.zep", 261 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
