@@ -93,7 +93,8 @@ class App extends Access
                     view = controller->view;
 
                 // Load views and set the response body if auto render
-                if this->autoRender {
+                // and there is no content in the response
+                if this->autoRender && response->getBody() === null {
                     if view->getContent() === null {
                         if !view->getFile() {
                             view->setSilent(true);
@@ -105,8 +106,11 @@ class App extends Access
 
                         view->setContent(view->render());
                     }
-
-                    response->setBody(view->layout(view->getMainView()));
+                    // if there is main layout view, other case e.g. load partial view through ajax
+                    let returned = view->getMainView();
+                    if returned {
+                        response->setBody(view->layout(returned));
+                    }
                 }
             }
         }
