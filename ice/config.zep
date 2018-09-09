@@ -66,7 +66,7 @@ class Config extends Arr
         var config;
 
         if file_exists(file) {
-            let config = include file;
+            let config = require file;
             return new Config(config);
         }
         
