@@ -115,4 +115,19 @@ class App extends Access
 
         return response->send();
     }
+
+    /**
+     * Add module with its dir path, initial class name and namespace
+     *
+     * @param string name
+     * @param array options The keys can be [path|class|namespace]
+     * @return object App
+     */
+    public function addModule(string name, array options)
+    {
+        // add or replace module
+        let this->modules[name] = options;
+
+        return this;
+    }
 }

@@ -38,6 +38,21 @@ class Console extends Access
     }
 
     /**
+     * Add module with its dir path, initial class name and namespace
+     *
+     * @param string name
+     * @param array options The keys can be [path|class|namespace]
+     * @return object Console
+     */
+    public function addModule(string name, array options)
+    {
+        // add or replace module
+        let this->modules[name] = options;
+
+        return this;
+    }
+
+    /**
      * Handle an command-line request.
      *
      * @param array arguments
