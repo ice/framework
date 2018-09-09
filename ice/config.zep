@@ -20,10 +20,17 @@ class Config extends Arr
      */
     public function __construct(var data = null)
     {
-        var key, value,hasNumericKey, subkey, subvalue;
-
-        if typeof data != "array" {
-            if data !== null {
+        var type, key, value,hasNumericKey, subkey, subvalue;
+        
+        let type = typeof data;
+        if type != "array" {
+            if type == "string" {
+                if file_exists(data) {
+                    let data = require data;
+                } else {
+                    throw new Exception(["Config file '%s' doesn't exist", data]);
+                }
+            } else if data !== null {
                 throw new Exception("The configuration must be an Array");
             } else {
                 return;
@@ -53,24 +60,6 @@ class Config extends Arr
                 let this->data[key] = value;
             }
         }
-    }
-    
-    /**
-     * Load config from php file, which must return an array.
-     *
-     * @param string file The path of the config
-     * @return object Config
-     */
-    public static function load(string file)
-    {
-        var config;
-
-        if file_exists(file) {
-            let config = require file;
-            return new Config(config);
-        }
-        
-        throw new Exception(["Config file '%s' doesn't exist", file]);
     }
     
 }
