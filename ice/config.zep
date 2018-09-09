@@ -30,10 +30,12 @@ class Config extends Arr
                 } else {
                     throw new Exception(["Config file '%s' doesn't exist", data]);
                 }
-            } else if data !== null {
-                throw new Exception("The configuration must be an Array");
             } else {
-                return;
+                if data !== null {
+                    throw new Exception("The configuration must be an Array");
+                } else {
+                    return;
+                }
             }
         }
 
