@@ -54,4 +54,23 @@ class Config extends Arr
             }
         }
     }
+    
+    /**
+     * Load config from php file, which must return an array.
+     *
+     * @param string file The path of the config
+     * @return object Config
+     */
+    public static function load(string file)
+    {
+        var config;
+
+        if file_exists(file) {
+            let config = include file;
+            return new Config(config);
+        }
+        
+        throw new Exception(["Config file '%s' doesn't exist", file]);
+    }
+    
 }
