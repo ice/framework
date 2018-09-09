@@ -28,7 +28,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Whether or not an data exists by key.
+     * Whether or not a data exists by key.
      *
      * @param string key The data key
      * @return boolean
@@ -173,12 +173,12 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     }
 
     /**
-     * Remove an data by key.
+     * Remove a data by key.
      *
      * @param string key The data key
      * @return void
      */
-    public function remove(string key) -> void
+    public function erase(string key) -> void
     {
         unset this->data[key];
     }
@@ -377,7 +377,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function offsetUnset(offset) -> void
     {
-        this->remove(offset);
+        this->erase(offset);
     }
 
     /**

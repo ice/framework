@@ -18,5 +18,5 @@ interface DispatcherInterface
      *
      * @return array
      */
-    public function dispatch(string httpMethod,  stringuri);
+    public function dispatch(string httpMethod,  string uri);
 }

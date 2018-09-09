@@ -18,7 +18,7 @@ abstract class Regex implements DispatcherInterface
 
     protected abstract function dispatchVariableRoute(routeData, uri);
 
-    public function dispatch(httpMethod, uri)
+    public function dispatch(string httpMethod, string uri)
     {
         var handler, varRouteData, result, allowedMethods, uriMap, method, routeData;
 
