@@ -32,7 +32,7 @@ class Response implements ResponseInterface
      * @param string body The HTTP response body
      * @param int status The HTTP response status
      */
-    public function __construct(string body = "", int status = 200)
+    public function __construct(string body = null, int status = 200)
     {
         let this->headers = new Headers(),
             this->status = status,
