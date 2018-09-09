@@ -145,23 +145,19 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 /**
  * Response constructor. Fetch Di and set it as a property.
  *
- * @param string body The HTTP response body
+ * @param string|null body The HTTP response body
  * @param int status The HTTP response status
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
 	zend_long status, ZEPHIR_LAST_CALL_STATUS;
-	zval *body_param = NULL, *status_param = NULL, *_0, *_1, *_2, *_3;
-	zval *body = NULL;
+	zval *body = NULL, *status_param = NULL, *_0, *_1, *_2, *_3;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &body_param, &status_param);
+	zephir_fetch_params(1, 0, 2, &body, &status_param);
 
-	if (!body_param) {
-		ZEPHIR_INIT_VAR(body);
-		ZVAL_STRING(body, "", 1);
-	} else {
-		zephir_get_strval(body, body_param);
+	if (!body) {
+		body = ZEPHIR_GLOBAL(global_null);
 	}
 	if (!status_param) {
 		status = 200;
