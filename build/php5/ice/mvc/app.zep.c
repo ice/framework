@@ -317,3 +317,28 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 
 }
 
+/**
+ * Add module with its dir path, initial class name and namespace
+ *
+ * @param string name
+ * @param array options The keys can be [path|class|namespace]
+ * @return object App
+ */
+PHP_METHOD(Ice_Mvc_App, addModule) {
+
+	zval *options = NULL;
+	zval *name_param = NULL, *options_param = NULL;
+	zval *name = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &name_param, &options_param);
+
+	zephir_get_strval(name, name_param);
+	zephir_get_arrval(options, options_param);
+
+
+	zephir_update_property_array(this_ptr, SL("modules"), name, options TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
