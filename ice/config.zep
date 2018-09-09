@@ -20,22 +20,21 @@ class Config extends Arr
      */
     public function __construct(var data = null)
     {
-        var type, key, value,hasNumericKey, subkey, subvalue;
+        var key, value, hasNumericKey, subkey, subvalue;
         
-        let type = typeof data;
-        if type != "array" {
-            if type == "string" {
-                if file_exists(data) {
-                    let data = require data;
-                } else {
-                    throw new Exception(["Config file '%s' doesn't exist", data]);
-                }
+        if typeof data == "string" && data != '' {
+            if file_exists(data) {
+                let data = require data;
             } else {
-                if data !== null {
-                    throw new Exception("The configuration must be an Array");
-                } else {
-                    return;
-                }
+                throw new Exception(["Config file '%s' doesn't exist", data]);
+            }
+        }
+
+        if typeof data != "array" {
+            if data !== null {
+                throw new Exception("The configuration must be an Array");
+            } else {
+                return;
             }
         }
 
