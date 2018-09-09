@@ -74,9 +74,13 @@ class File extends Driver implements DriverInterface
      * @param boolean force login without password
      * @return boolean
      */
-    public function login(string username, string password, boolean remember = false, boolean force = false) -> boolean | null
+    public function login(var username, string password, boolean remember = false, boolean force = false) -> boolean | null
     {
         var user;
+
+        if typeof username != "string" {
+            throw new Exception("Username must be a string");
+        }
 
         if username && fetch user, this->users[username] {
             if empty password && !force {

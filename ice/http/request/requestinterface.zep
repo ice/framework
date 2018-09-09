@@ -41,11 +41,11 @@ interface RequestInterface
 
     public function getHTTPReferer() -> string;
 
-    public function get(string key, var defaultValue = null);
+    public function getQuery(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false);
 
-    public function request(string key, var defaultValue = null);
+    public function getFiles(string key = null, var defaultValue = null);
 
-    public function post(string key, var defaultValue = null);
+    public function getPost(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false);
 
-    public function server(string key, var defaultValue = null);
+    public function getServer(string key = null, var defaultValue = null);
 }

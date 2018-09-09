@@ -739,10 +739,10 @@ abstract class Model extends Arr implements \Serializable
     /**
      * Unserialize and set the data.
      */
-    public function unserialize(string! data)
+    public function unserialize(serialized)
     {
         this->__construct();
-        let this->data = unserialize(base64_decode(data));
+        let this->data = unserialize(base64_decode(serialized));
     }
 
     /**

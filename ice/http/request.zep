@@ -3,6 +3,7 @@ namespace Ice\Http;
 
 use Ice\Arr;
 use Ice\Di;
+use Ice\Http\Request\RequestInterface;
 
 /**
  * Inspect the current HTTP request.
@@ -13,7 +14,7 @@ use Ice\Di;
  * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
-class Request extends Arr
+class Request extends Arr implements RequestInterface
 {
 
     protected files;
