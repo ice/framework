@@ -162,30 +162,28 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 /**
  * Response constructor. Fetch Di and set it as a property.
  *
- * @param string body The HTTP response body
+ * @param string|null body The HTTP response body
  * @param int status The HTTP response status
  */
 PHP_METHOD(Ice_Http_Response, __construct) {
 
 	zend_long status, ZEPHIR_LAST_CALL_STATUS;
-	zval *body_param = NULL, *status_param = NULL, _0, _1, _2, _3;
-	zval body;
+	zval *body = NULL, body_sub, *status_param = NULL, __$null, _0, _1, _2, _3;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&body);
+	ZVAL_UNDEF(&body_sub);
+	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 2, &body_param, &status_param);
+	zephir_fetch_params(1, 0, 2, &body, &status_param);
 
-	if (!body_param) {
-		ZEPHIR_INIT_VAR(&body);
-		ZVAL_STRING(&body, "");
-	} else {
-		zephir_get_strval(&body, body_param);
+	if (!body) {
+		body = &body_sub;
+		body = &__$null;
 	}
 	if (!status_param) {
 		status = 200;
@@ -202,7 +200,7 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_1);
 	ZVAL_LONG(&_1, status);
 	zephir_update_property_zval(this_ptr, SL("status"), &_1);
-	zephir_update_property_zval(this_ptr, SL("body"), &body);
+	zephir_update_property_zval(this_ptr, SL("body"), body);
 	zephir_read_property(&_1, this_ptr, SL("headers"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "Content-Type");

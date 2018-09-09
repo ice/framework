@@ -54,7 +54,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setbody, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response___construct, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, body, IS_STRING, 1)
+	ZEND_ARG_INFO(0, body)
 	ZEND_ARG_TYPE_INFO(0, status, IS_LONG, 1)
 ZEND_END_ARG_INFO()
 
