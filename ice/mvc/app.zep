@@ -107,9 +107,10 @@ class App extends Access
                         view->setContent(view->render());
                     }
                     // if there is main layout view, other case e.g. load partial view through ajax
-                    let returned = view->getMainView();
-                    if returned {
-                        response->setBody(view->layout(returned));
+                    if view->getMainView() {
+                        response->setBody(view->layout(view->getMainView()));
+                    } else {
+                        response->setBody(view->getContent());
                     }
                 }
             }
