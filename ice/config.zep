@@ -20,7 +20,15 @@ class Config extends Arr
      */
     public function __construct(var data = null)
     {
-        var key, value,hasNumericKey, subkey, subvalue;
+        var key, value, hasNumericKey, subkey, subvalue;
+        
+        if typeof data == "string" && data != "" {
+            if file_exists(data) {
+                let data = require data;
+            } else {
+                throw new Exception(["Config file '%s' doesn't exist", data]);
+            }
+        }
 
         if typeof data != "array" {
             if data !== null {
@@ -54,4 +62,5 @@ class Config extends Arr
             }
         }
     }
+    
 }
