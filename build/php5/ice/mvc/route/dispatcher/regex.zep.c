@@ -95,11 +95,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 	zend_bool _1, _28$$13;
 	zephir_fcall_cache_entry *_8 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *httpMethod, *uri, *handler = NULL, *varRouteData = NULL, *result = NULL, *allowedMethods = NULL, *uriMap = NULL, *method = NULL, *routeData = NULL, *_0, *_2, *_3, *_17, *_18, *_24, **_27, **_31, *_4$$3, *_5$$3, *_6$$3 = NULL, *_7$$4, *_9$$4, *_10$$6, *_11$$6, *_12$$7, *_13$$7, *_14$$7 = NULL, *_15$$8, *_16$$8, *_19$$10, *_20$$10, *_21$$10 = NULL, *_22$$11, *_23$$11, *_32$$15, *_33$$18, *_34$$19;
+	zval *httpMethod_param = NULL, *uri_param = NULL, *handler = NULL, *varRouteData = NULL, *result = NULL, *allowedMethods = NULL, *uriMap = NULL, *method = NULL, *routeData = NULL, *_0, *_2, *_3, *_17, *_18, *_24, **_27, **_31, *_4$$3, *_5$$3, *_6$$3 = NULL, *_7$$4, *_9$$4, *_10$$6, *_11$$6, *_12$$7, *_13$$7, *_14$$7 = NULL, *_15$$8, *_16$$8, *_19$$10, *_20$$10, *_21$$10 = NULL, *_22$$11, *_23$$11, *_32$$15, *_33$$18, *_34$$19;
+	zval *httpMethod = NULL, *uri = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &httpMethod, &uri);
+	zephir_fetch_params(1, 2, 0, &httpMethod_param, &uri_param);
 
+	zephir_get_strval(httpMethod, httpMethod_param);
+	zephir_get_strval(uri, uri_param);
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("staticRouteMap"), PH_NOISY_CC);

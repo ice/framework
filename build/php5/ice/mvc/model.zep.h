@@ -172,7 +172,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_unserialize, 0, 0, 1)
-	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, serialized)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___call, 0, 0, 1)

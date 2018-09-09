@@ -25,6 +25,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/datagenerator", "datageneratorinterface.zep.c regex.zep.c groupcount.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/dispatcher", "dispatcherinterface.zep.c regex.zep.c groupcount.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view", "engine.zep.c viewinterface.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/http/request", "requestinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/response", "headersinterface.zep.c responseinterface.zep.c headers.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/parser", "parserinterface.zep.c std.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver/model", "roles.zep.c users.zep.c", "ice");
@@ -35,7 +36,6 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/db/driver", "mongodb.zep.c pdo.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/filter", "css.zep.c js.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http", "request.zep.c response.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice/http/request", "requestinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/log/driver", "file.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route", "collector.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view/engine/sleet", "compiler.zep.c parser.zep.c", "ice");

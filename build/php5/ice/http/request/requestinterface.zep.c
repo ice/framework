@@ -57,11 +57,11 @@ ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getUserAgent);
 
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getHTTPReferer);
 
-ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, get);
+ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getQuery);
 
-ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, request);
+ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getFiles);
 
-ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, post);
+ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getPost);
 
-ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, server);
+ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getServer);
 
