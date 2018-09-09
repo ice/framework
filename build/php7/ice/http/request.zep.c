@@ -41,6 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request) {
 
 	zend_declare_property_null(ice_http_request_ce, SL("server"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_class_implements(ice_http_request_ce TSRMLS_CC, 1, ice_http_request_requestinterface_ce);
 	return SUCCESS;
 
 }

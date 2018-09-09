@@ -26,6 +26,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
 	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
 	ice/mvc/view/engine.zep.c
+	ice/http/request/requestinterface.zep.c
 	ice/http/response/headersinterface.zep.c
 	ice/http/response/responseinterface.zep.c
 	ice/log/driver.zep.c
@@ -65,7 +66,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/filter/js.zep.c
 	ice/flash.zep.c
 	ice/http/request.zep.c
-	ice/http/request/requestinterface.zep.c
 	ice/http/response.zep.c
 	ice/http/response/headers.zep.c
 	ice/i18n.zep.c

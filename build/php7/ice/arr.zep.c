@@ -87,7 +87,7 @@ PHP_METHOD(Ice_Arr, __construct) {
 }
 
 /**
- * Whether or not an data exists by key.
+ * Whether or not a data exists by key.
  *
  * @param string key The data key
  * @return boolean
@@ -441,12 +441,12 @@ PHP_METHOD(Ice_Arr, keys) {
 }
 
 /**
- * Remove an data by key.
+ * Remove a data by key.
  *
  * @param string key The data key
  * @return void
  */
-PHP_METHOD(Ice_Arr, remove) {
+PHP_METHOD(Ice_Arr, erase) {
 
 	zval *key_param = NULL, _0;
 	zval key;
@@ -738,19 +738,17 @@ PHP_METHOD(Ice_Arr, toArray) {
 PHP_METHOD(Ice_Arr, offsetExists) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset_param = NULL;
-	zval offset;
+	zval *offset, offset_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&offset);
+	ZVAL_UNDEF(&offset_sub);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &offset_param);
-
-	zephir_get_strval(&offset, offset_param);
+	zephir_fetch_params(1, 1, 0, &offset);
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "has", NULL, 0, &offset);
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "has", NULL, 0, offset);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -766,19 +764,17 @@ PHP_METHOD(Ice_Arr, offsetExists) {
 PHP_METHOD(Ice_Arr, offsetGet) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset_param = NULL;
-	zval offset;
+	zval *offset, offset_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&offset);
+	ZVAL_UNDEF(&offset_sub);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &offset_param);
-
-	zephir_get_strval(&offset, offset_param);
+	zephir_fetch_params(1, 1, 0, &offset);
 
 
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, &offset);
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, offset);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -795,20 +791,18 @@ PHP_METHOD(Ice_Arr, offsetGet) {
 PHP_METHOD(Ice_Arr, offsetSet) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset_param = NULL, *value, value_sub;
-	zval offset;
+	zval *offset, offset_sub, *value, value_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&offset);
+	ZVAL_UNDEF(&offset_sub);
 	ZVAL_UNDEF(&value_sub);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 0, &offset_param, &value);
-
-	zephir_get_strval(&offset, offset_param);
+	zephir_fetch_params(1, 2, 0, &offset, &value);
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, &offset, value);
+
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, offset, value);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -824,19 +818,17 @@ PHP_METHOD(Ice_Arr, offsetSet) {
 PHP_METHOD(Ice_Arr, offsetUnset) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset_param = NULL;
-	zval offset;
+	zval *offset, offset_sub;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&offset);
+	ZVAL_UNDEF(&offset_sub);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &offset_param);
-
-	zephir_get_strval(&offset, offset_param);
+	zephir_fetch_params(1, 1, 0, &offset);
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0, &offset);
+
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "erase", NULL, 0, offset);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

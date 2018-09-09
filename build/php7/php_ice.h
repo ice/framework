@@ -11,7 +11,7 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.3.0"
+#define PHP_ICE_VERSION     "1.4.0"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
 #define PHP_ICE_ZEPVERSION  "0.11.0-f5a5a14837"

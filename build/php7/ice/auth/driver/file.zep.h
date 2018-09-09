@@ -30,7 +30,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_file_login, 0, 2
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_file_login, 0, 2, _IS_BOOL, NULL, 1)
 #endif
-	ZEND_ARG_TYPE_INFO(0, username, IS_STRING, 0)
+	ZEND_ARG_INFO(0, username)
 	ZEND_ARG_TYPE_INFO(0, password, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, remember, _IS_BOOL, 1)
 	ZEND_ARG_TYPE_INFO(0, force, _IS_BOOL, 1)

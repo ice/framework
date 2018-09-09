@@ -2013,32 +2013,21 @@ PHP_METHOD(Ice_Mvc_Model, serialize) {
 PHP_METHOD(Ice_Mvc_Model, unserialize) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *data_param = NULL, _0, _1;
-	zval data;
+	zval *serialized, serialized_sub, _0, _1;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&data);
+	ZVAL_UNDEF(&serialized_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &data_param);
+	zephir_fetch_params(1, 1, 0, &serialized);
 
-	if (UNEXPECTED(Z_TYPE_P(data_param) != IS_STRING && Z_TYPE_P(data_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'data' must be a string") TSRMLS_CC);
-		RETURN_MM_NULL();
-	}
-	if (EXPECTED(Z_TYPE_P(data_param) == IS_STRING)) {
-		zephir_get_strval(&data, data_param);
-	} else {
-		ZEPHIR_INIT_VAR(&data);
-		ZVAL_EMPTY_STRING(&data);
-	}
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "__construct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_0, "base64_decode", NULL, 15, &data);
+	ZEPHIR_CALL_FUNCTION(&_0, "base64_decode", NULL, 15, serialized);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_1, "unserialize", NULL, 16, &_0);
 	zephir_check_call_status();

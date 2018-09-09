@@ -163,23 +163,22 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 PHP_METHOD(Ice_Auth_Driver_File, login) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool remember, force, _0, _2$$3, _5$$3;
-	zval *username_param = NULL, *password_param = NULL, *remember_param = NULL, *force_param = NULL, user, _1, _3$$3, _4$$3, _6$$5;
-	zval username, password;
+	zend_bool remember, force, _0, _2$$4, _5$$4;
+	zval password;
+	zval *username, username_sub, *password_param = NULL, *remember_param = NULL, *force_param = NULL, user, _1, _3$$4, _4$$4, _6$$6;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&username);
-	ZVAL_UNDEF(&password);
+	ZVAL_UNDEF(&username_sub);
 	ZVAL_UNDEF(&user);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_6$$5);
+	ZVAL_UNDEF(&_3$$4);
+	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_6$$6);
+	ZVAL_UNDEF(&password);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 2, &username_param, &password_param, &remember_param, &force_param);
+	zephir_fetch_params(1, 2, 2, &username, &password_param, &remember_param, &force_param);
 
-	zephir_get_strval(&username, username_param);
 	zephir_get_strval(&password, password_param);
 	if (!remember_param) {
 		remember = 0;
@@ -193,30 +192,34 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	}
 
 
-	_0 = zephir_is_true(&username);
+	if (Z_TYPE_P(username) != IS_STRING) {
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Username must be a string", "ice/auth/driver/file.zep", 82);
+		return;
+	}
+	_0 = zephir_is_true(username);
 	if (_0) {
 		ZEPHIR_OBS_VAR(&user);
 		zephir_read_property(&_1, this_ptr, SL("users"), PH_NOISY_CC | PH_READONLY);
-		_0 = zephir_array_isset_fetch(&user, &_1, &username, 0 TSRMLS_CC);
+		_0 = zephir_array_isset_fetch(&user, &_1, username, 0 TSRMLS_CC);
 	}
 	if (_0) {
-		_2$$3 = ZEPHIR_IS_EMPTY(&password);
-		if (_2$$3) {
-			_2$$3 = !force;
+		_2$$4 = ZEPHIR_IS_EMPTY(&password);
+		if (_2$$4) {
+			_2$$4 = !force;
 		}
-		if (_2$$3) {
+		if (_2$$4) {
 			RETURN_MM_BOOL(0);
 		}
-		zephir_array_fetch_string(&_3$$3, &user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 86 TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&_4$$3, this_ptr, "hash", NULL, 0, &password);
+		zephir_array_fetch_string(&_3$$4, &user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 90 TSRMLS_CC);
+		ZEPHIR_CALL_METHOD(&_4$$4, this_ptr, "hash", NULL, 0, &password);
 		zephir_check_call_status();
-		_5$$3 = ZEPHIR_IS_IDENTICAL(&_3$$3, &_4$$3);
-		if (!(_5$$3)) {
-			_5$$3 = force;
+		_5$$4 = ZEPHIR_IS_IDENTICAL(&_3$$4, &_4$$4);
+		if (!(_5$$4)) {
+			_5$$4 = force;
 		}
-		if (_5$$3) {
-			zephir_array_fetch_string(&_6$$5, &user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 88 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, 0, &username, &_6$$5);
+		if (_5$$4) {
+			zephir_array_fetch_string(&_6$$6, &user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 92 TSRMLS_CC);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, 0, username, &_6$$6);
 			zephir_check_call_status();
 			RETURN_MM_BOOL(1);
 		}

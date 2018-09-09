@@ -5,7 +5,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_DispatcherInterface);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_dispatcherinterface_dispatch, 0, 0, 2)
 	ZEND_ARG_TYPE_INFO(0, httpMethod, IS_STRING, 0)
-	ZEND_ARG_INFO(0, stringuri)
+	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_route_dispatcher_dispatcherinterface_method_entry) {
