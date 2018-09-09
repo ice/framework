@@ -22,7 +22,7 @@ class Config extends Arr
     {
         var key, value, hasNumericKey, subkey, subvalue;
         
-        if typeof data == "string" && data != '' {
+        if typeof data == "string" && !data {
             if file_exists(data) {
                 let data = require data;
             } else {
