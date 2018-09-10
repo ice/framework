@@ -269,7 +269,7 @@ class Response implements ResponseInterface
             // HTTP/1.1 416 Requested Range Not Satisfiable
             if range[2] != null {
                 header(range[2]);
-                exit;
+                exit();
             }
 
             // Partial Content
@@ -353,7 +353,7 @@ class Response implements ResponseInterface
         }
 
         // Stop execution
-        exit;
+        exit();
     }
 
     /**
