@@ -262,9 +262,8 @@ class Response implements ResponseInterface
             this->headers->set("Content-Length", size);
         } else {
             // Calculate byte range to download.
-            let range = this->getByteRange(size),
-                start = range[0],
-                end = range[1];
+            let range = this->getByteRange(size);
+            let start = range[0], end = range[1];
 
             // HTTP/1.1 416 Requested Range Not Satisfiable
             if this->status == 416 {                
