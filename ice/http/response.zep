@@ -231,9 +231,6 @@ class Response implements ResponseInterface
             // Write the current response into the file
             fwrite(file, data);
 
-            // File data is no longer needed
-            let data = null;
-
             let isDelete = false;
         } else {
             // Get the complete file path
@@ -243,7 +240,7 @@ class Response implements ResponseInterface
             let size = filesize(filepath);
 
             // Open the file for reading
-            let file = fopen(filepath, 'rb');
+            let file = fopen(filepath, "rb");
 
             fetch isDelete, options["delete"];
         }
@@ -619,7 +616,7 @@ class Response implements ResponseInterface
 
         // Defaults to start with when the HTTP_RANGE header doesn't exist.
         if isset _SERVER["HTTP_RANGE"] {
-            let range = explode('=', _SERVER['HTTP_RANGE'], 2);
+            let range = explode("=", _SERVER["HTTP_RANGE"], 2);
 
             if range[0] != "bytes" {
                 let this->status = 416;
