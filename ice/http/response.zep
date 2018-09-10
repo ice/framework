@@ -346,7 +346,7 @@ class Response implements ResponseInterface
             try {
                 // Attempt to remove the file
                 unlink(filepath);
-            } catch (Exception e) {
+            } catch \Exception {
                 // TODO: Write log for this exception
                 // Do NOT display the exception, it will corrupt the output!
             }
@@ -619,7 +619,7 @@ class Response implements ResponseInterface
             error = null;
 
         // Defaults to start with when the HTTP_RANGE header doesn't exist.
-        if _SERVER["HTTP_RANGE"] {
+        if isset _SERVER["HTTP_RANGE"] {
             let range = explode('=', _SERVER['HTTP_RANGE'], 2);
 
             if range[0] != "bytes" {
@@ -630,7 +630,7 @@ class Response implements ResponseInterface
                 let range = explode(",", range[1], 2), range = range[0];
 
                 // A negative value means we start from the end
-                if (range[0] == "-") {
+                if range[0] == "-" {
                     let start = abs(size - abs((int)range));
                 } else {
                     let range = explode("-", range), start = abs((int)range[0]);
