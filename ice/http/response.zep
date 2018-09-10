@@ -216,7 +216,7 @@ class Response implements ResponseInterface
      */
     public function sendFile(string filename, string mime, array options = [])
     {
-        var file, filepath, data, size, isDelete, disposition, block, pos, speed, range;
+        var file, filepath, data, size, isDelete, disposition, block, pos, speed, range, start, end;
 
         if empty options["file"] {
             // Force the data to be rendered if
