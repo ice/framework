@@ -249,7 +249,7 @@ class Response implements ResponseInterface
         }
 
         if !is_resource(file) {
-            throw new Exception(['Could not read file to send: %s',  filename]);
+            throw new Exception(["Could not read file to send: %s",  filename]);
         }
 
         if empty options["inline"] {
