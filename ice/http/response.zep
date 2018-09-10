@@ -243,7 +243,7 @@ class Response implements ResponseInterface
             let size = filesize(filepath);
 
             // Open the file for reading
-            file = fopen(filepath, 'rb');
+            let file = fopen(filepath, 'rb');
 
             fetch isDelete, options["delete"];
         }
