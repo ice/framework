@@ -80,7 +80,7 @@ class Response implements ResponseInterface
      * @param string value
      * @return Response
      */
-    public function setHeader(string name, string value) -> void
+    public function setHeader(string name, string value)
     {
         this->headers->set(name, value);
 
@@ -93,7 +93,7 @@ class Response implements ResponseInterface
      * @param array headers
      * @return Response
      */
-    public function setHeaders(array headers) -> void
+    public function setHeaders(array headers)
     {
         this->headers->replace(headers);
 
@@ -106,7 +106,7 @@ class Response implements ResponseInterface
      * @param string name
      * @return Response
      */
-    public function removeHeader(string name) -> void
+    public function removeHeader(string name)
     {
         this->headers->remove(name);
 
@@ -234,7 +234,7 @@ class Response implements ResponseInterface
             // File data is no longer needed
             unset(data);
 
-            let isDelete = true;
+            let isDelete = false;
         } else {
             // Get the complete file path
             let filepath = realpath(options["file"]);
@@ -268,6 +268,7 @@ class Response implements ResponseInterface
 
             // HTTP/1.1 416 Requested Range Not Satisfiable
             if range[2] != null {
+                let this->status = 416;
                 header(range[2]);
                 exit();
             }
