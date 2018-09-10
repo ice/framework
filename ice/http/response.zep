@@ -232,7 +232,7 @@ class Response implements ResponseInterface
             fwrite(file, data);
 
             // File data is no longer needed
-            unset(data);
+            unset data;
 
             let isDelete = false;
         } else {
