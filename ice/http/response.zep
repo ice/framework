@@ -232,7 +232,7 @@ class Response implements ResponseInterface
             fwrite(file, data);
 
             // File data is no longer needed
-            unset data;
+            let data = null;
 
             let isDelete = false;
         } else {
@@ -267,9 +267,8 @@ class Response implements ResponseInterface
                 end = range[1];
 
             // HTTP/1.1 416 Requested Range Not Satisfiable
-            if range[2] != null {
-                let this->status = 416;
-                header(range[2]);
+            if this->status == 416 {                
+                header(sprintf("%s %d %s", this->getProtocolVersion(), this->status, this->getMessage(this->status)));
                 exit();
             }
 
@@ -613,18 +612,17 @@ class Response implements ResponseInterface
      */
     protected function getByteRange(int size) -> array
     {
-        var start, end, error, range;
+        var start, end, range;
 
         let start = 0,
-            end = size - 1,
-            error = null;
+            end = size - 1;
 
         // Defaults to start with when the HTTP_RANGE header doesn't exist.
         if isset _SERVER["HTTP_RANGE"] {
             let range = explode('=', _SERVER['HTTP_RANGE'], 2);
 
             if range[0] != "bytes" {
-                let error = "HTTP/1.1 416 Requested Range Not Satisfiable";
+                let this->status = 416;
             } else {
                 // multiple ranges could be specified at the same time,
                 // but for simplicity only serve the first range ATM
@@ -646,10 +644,10 @@ class Response implements ResponseInterface
                 }
 
                 if start > end || start > size - 1 || end >= size {
-                    let error = "HTTP/1.1 416 Requested Range Not Satisfiable";
+                    let this->status = 416;
                 }
             }
         }
-        return [start, end, error];
+        return [start, end];
     }
 }
