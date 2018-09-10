@@ -78,30 +78,39 @@ class Response implements ResponseInterface
      *
      * @param string name
      * @param string value
+     * @return Response
      */
-    public function setHeader(string name, string value) -> void
+    public function setHeader(string name, string value)
     {
         this->headers->set(name, value);
+
+        return this;
     }
 
     /**
      * Set multiple header values.
      *
      * @param array headers
+     * @return Response
      */
-    public function setHeaders(array headers) -> void
+    public function setHeaders(array headers)
     {
         this->headers->replace(headers);
+
+        return this;
     }
 
     /**
      * Remove header by index name.
      *
      * @param string name
+     * @return Response
      */
-    public function removeHeader(string name) -> void
+    public function removeHeader(string name)
     {
         this->headers->remove(name);
+
+        return this;
     }
 
     /**
@@ -173,6 +182,175 @@ class Response implements ResponseInterface
         }
 
         return this;
+    }
+
+    /**
+     * Send file download as the response. All execution will be halted when
+     * this method is called! The third parameter allows the following
+     * options to be set:
+     *
+     * Type      | Option    | Description                        | Default Value
+     * ----------|-----------|------------------------------------|--------------
+     * string    | file      | file that already exists           | null
+     * boolean   | inline    | Display inline instead of download | FALSE
+     * boolean   | resumable | Allow to resumable download        | FALSE
+     * boolean   | delete    | Delete the file after sending      | FALSE
+     * int       | timeout   | Execute time for the script        | 0
+     * int       | speed     | Download speed in millisecond      | 0
+     *
+     * Download a file that already exists:
+     *
+     *     $request->sendFile('ice.zip', 'application/zip', ['file' => '/download/latest.zip']);
+     *
+     * Download generated content as a file:
+     *
+     *     $response->setContent($content);
+     *     $response->sendFile($filename, $mineType);
+     *
+     * Attention: No further processing can be done after this method is called!
+     *
+     * @param string filename The file name of the attachment
+     * @param string mime Manual mime type
+     * @param array options The keys can be [file|inline|resumable|delete|timeout|speed]
+     * @return  void
+     */
+    public function sendFile(string filename, string mime, array options = [])
+    {
+        var file, filepath, data, size, isDelete, disposition, block, pos, speed, range, start, end;
+
+        if empty options["file"] {
+            // Force the data to be rendered if
+            let data = (string) this->body;
+
+            // Get the content size
+            let size = strlen(data);
+
+            // Create a temporary file to hold the current response
+            let file = tmpfile();
+
+            // Write the current response into the file
+            fwrite(file, data);
+
+            let isDelete = false;
+        } else {
+            // Get the complete file path
+            let filepath = realpath(options["file"]);
+
+            // Get the file size
+            let size = filesize(filepath);
+
+            // Open the file for reading
+            let file = fopen(filepath, "rb");
+
+            fetch isDelete, options["delete"];
+        }
+
+        if !is_resource(file) {
+            throw new Exception(["Could not read file to send: %s",  filename]);
+        }
+
+        if empty options["inline"] {
+            let disposition = "attachment";
+        } else {
+            let disposition = "inline";
+        }
+
+        if empty options["resumable"] {
+            this->headers->set("Content-Length", size);
+        } else {
+            // Calculate byte range to download.
+            let range = this->getByteRange(size),
+                start = range[0],
+                end = range[1];
+
+            // HTTP/1.1 416 Requested Range Not Satisfiable
+            if this->status == 416 {                
+                header(sprintf("%s %d %s", this->getProtocolVersion(), this->status, this->getMessage(this->status)));
+                exit();
+            }
+
+            // Partial Content
+            if start > 0 || end < size - 1 {
+                let this->status = 206;
+            }
+
+            // Range of bytes being sent
+            this->headers->set("Accept-Ranges", "bytes");
+            this->headers->set("Content-Range", "bytes ".start."-".end."/".size);
+            this->headers->set("Content-Length", end - start + 1);
+        }
+
+        // Set the headers for a download
+        this->headers->set("Content-Disposition", disposition."; filename=\"".filename."\"");
+        this->headers->set("Content-Type", mime);
+
+        // Send all headers now
+        this->headers->send();
+
+        while ob_get_level() {
+            // Flush all output buffers
+            ob_end_flush();
+        }
+
+        // Manually stop execution
+        ignore_user_abort(true);
+
+        if empty options["timeout"] {
+            // Keep the script running forever
+            set_time_limit(0);
+        } else {
+            set_time_limit((int)options["timeout"]);
+        }
+
+        // Send data in 16kb blocks
+        let block = 1024 * 16;
+
+        if !empty options["sleep"] {
+            let speed = ((int)options["sleep"]) * 1000;
+        } else {
+            let speed = 0;
+        }
+
+        fseek(file, start);
+
+        while !feof(file)  {
+            let pos = ftell(file);
+
+            if pos > end || connection_aborted() {
+                break;
+            }
+
+            if pos + block > end {
+                // Don't read past the buffer.
+                let block = end - pos + 1;
+            }
+
+            // Output a block of the file
+            echo fread(file, block);
+
+            // Send the data now
+            flush();
+
+            if speed > 0 {
+                usleep(speed);
+            }
+        }
+
+        // Close the file
+        fclose(file);
+
+        if isDelete {
+            try {
+                // Attempt to remove the file
+                unlink(filepath);
+            } catch \Exception {
+                // TODO: Write log for this exception
+                // Do NOT display the exception, it will corrupt the output!
+            }
+        }
+
+        // Stop execution
+        exit();
     }
 
     /**
@@ -412,5 +590,61 @@ class Response implements ResponseInterface
     public function __toString() -> string
     {
         return (string) this->body;
+    }
+
+    /**
+     *
+     * At the moment we only support single ranges.
+     * Multiple ranges requires some more work to ensure it works correctly
+     * and comply with the spesifications:
+     *    http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.2
+     *
+     * Multirange support annouces itself with:
+     * header('Accept-Ranges: bytes');
+     *
+     * Multirange content must be sent with multipart/byteranges mediatype,
+     * as well as a boundry header to indicate the various chunks of data.
+     *
+     * @return array The bytes range start and end, error message if there is
+     */
+    protected function getByteRange(int size) -> array
+    {
+        var start, end, range;
+
+        let start = 0,
+            end = size - 1;
+
+        // Defaults to start with when the HTTP_RANGE header doesn't exist.
+        if isset _SERVER["HTTP_RANGE"] {
+            let range = explode("=", _SERVER["HTTP_RANGE"], 2);
+
+            if range[0] != "bytes" {
+                let this->status = 416;
+            } else {
+                // multiple ranges could be specified at the same time,
+                // but for simplicity only serve the first range ATM
+                let range = explode(",", range[1], 2), range = range[0];
+
+                // A negative value means we start from the end
+                if range[0] == "-" {
+                    let start = abs(size - abs((int)range));
+                } else {
+                    let range = explode("-", range), start = abs((int)range[0]);
+
+                    if range[1] && is_numeric(range[1]) {
+                        let end = (int)range[1];
+                    }
+                }
+
+                if end > size {
+                    let end = size - 1;
+                }
+
+                if start > end || start > size - 1 || end >= size {
+                    let this->status = 416;
+                }
+            }
+        }
+        return [start, end];
     }
 }
