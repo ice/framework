@@ -1,5 +1,7 @@
 
 - Ice 1.4.0
+ * Always return this from setters
+ * Response, send file
  * App, add new module to the app
  * App, allow to render page without main layout fix #169
  * Response, set response content in controller fail fix #168

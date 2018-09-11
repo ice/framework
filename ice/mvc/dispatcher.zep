@@ -18,6 +18,7 @@ class Dispatcher extends \Ice\Dispatcher
 {
 
     protected method { get, set };
+    protected handlers = "Controllers";
     protected handlerSuffix = "Controller";
 
     const REDIRECT_CYCLIC = 5;
