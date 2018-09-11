@@ -285,6 +285,7 @@ abstract class Dispatcher
      *
      * @param array forward
      * @param boolean force
+     * @return object
      */
     public function forward(array! forward, boolean force = false)
     {
@@ -317,7 +318,8 @@ abstract class Dispatcher
             this->forwarded = true;
 
         if force {
-            this->dispatch();
+            return this->dispatch();
         }
+        return this;
     }
 }
