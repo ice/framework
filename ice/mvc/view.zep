@@ -164,30 +164,39 @@ class View extends Arr implements ViewInterface
      *
      * @param string name
      * @param mixed value
+     * @return object View
      */
     public function setVar(string! name, value)
     {
         this->set(name, value);
+        
+        return this;
     }
 
     /**
      * Set multiple vars to the view.
      *
      * @param array vars
+     * @return object View
      */
     public function setVars(array! vars)
     {
         this->replace(vars);
+        
+        return this;
     }
 
     /**
      * Alias of the `setMainView` method.
      *
      * @param array vars
+     * @return object View
      */
     public function setLayout(string layout)
     {
         this->setMainView(layout);
+        
+        return this;
     }
 
     /**

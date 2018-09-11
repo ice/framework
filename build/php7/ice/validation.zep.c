@@ -263,7 +263,7 @@ PHP_METHOD(Ice_Validation, __construct) {
  * @param string alias
  * @param string field
  * @param mixed options
- * @return void
+ * @return object Validation
  */
 PHP_METHOD(Ice_Validation, resolve) {
 
@@ -325,7 +325,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 	ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(&_5, &rule, &_6 TSRMLS_CC);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("rules"), &_5 TSRMLS_CC, SL("za"), 2, &field);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -348,7 +348,7 @@ PHP_METHOD(Ice_Validation, resolve) {
  * @param string field
  * @param mixed validators
  * @param mixed options
- * @return void
+ * @return object Validation
  */
 PHP_METHOD(Ice_Validation, rule) {
 
@@ -396,7 +396,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_0, "array")) {
-			zephir_is_iterable(validators, 0, "ice/validation.zep", 144);
+			zephir_is_iterable(validators, 0, "ice/validation.zep", 146);
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(validators), _2$$4, _3$$4, _1$$4)
 			{
 				ZEPHIR_INIT_NVAR(&validator);
@@ -410,7 +410,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 149, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 163, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -436,7 +436,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			} else {
 				ZEPHIR_INIT_VAR(&rules);
 				zephir_fast_explode_str(&rules, SL("|"), validators, LONG_MAX TSRMLS_CC);
-				zephir_is_iterable(&rules, 0, "ice/validation.zep", 163);
+				zephir_is_iterable(&rules, 0, "ice/validation.zep", 165);
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&rules), _11$$9)
 				{
 					ZEPHIR_INIT_NVAR(&rule);
@@ -463,7 +463,7 @@ PHP_METHOD(Ice_Validation, rule) {
 		}
 	} while(0);
 
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -487,7 +487,7 @@ PHP_METHOD(Ice_Validation, rule) {
  *
  * @param array validators
  * @param boolean merge
- * @return void
+ * @return object Validation
  */
 PHP_METHOD(Ice_Validation, rules) {
 
@@ -521,7 +521,7 @@ PHP_METHOD(Ice_Validation, rules) {
 		array_init(&_0$$3);
 		zephir_update_property_zval(this_ptr, SL("rules"), &_0$$3);
 	}
-	zephir_is_iterable(&validators, 0, "ice/validation.zep", 201);
+	zephir_is_iterable(&validators, 0, "ice/validation.zep", 205);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&validators), _2, _3, _1)
 	{
 		ZEPHIR_INIT_NVAR(&field);
@@ -537,7 +537,7 @@ PHP_METHOD(Ice_Validation, rules) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&rules);
 	ZEPHIR_INIT_NVAR(&field);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -604,7 +604,7 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_update_property_zval(this_ptr, SL("messages"), &_0$$4);
 	}
 	zephir_read_property(&_1, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_1, 0, "ice/validation.zep", 237);
+	zephir_is_iterable(&_1, 0, "ice/validation.zep", 242);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_1), _3, _4, _2)
 	{
 		ZEPHIR_INIT_NVAR(&field);
@@ -615,7 +615,7 @@ PHP_METHOD(Ice_Validation, validate) {
 		}
 		ZEPHIR_INIT_NVAR(&rules);
 		ZVAL_COPY(&rules, _2);
-		zephir_is_iterable(&rules, 0, "ice/validation.zep", 234);
+		zephir_is_iterable(&rules, 0, "ice/validation.zep", 239);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&rules), _5$$5)
 		{
 			ZEPHIR_INIT_NVAR(&rule);
@@ -836,7 +836,7 @@ PHP_METHOD(Ice_Validation, getValues) {
 		zephir_gettype(&_6$$5, fields TSRMLS_CC);
 		do {
 			if (ZEPHIR_IS_STRING(&_6$$5, "array")) {
-				zephir_is_iterable(fields, 0, "ice/validation.zep", 320);
+				zephir_is_iterable(fields, 0, "ice/validation.zep", 325);
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(fields), _7$$6)
 				{
 					ZEPHIR_INIT_NVAR(&field);
@@ -936,7 +936,7 @@ PHP_METHOD(Ice_Validation, getLabel) {
  * Set the default messages.
  *
  * @param array messages
- * @return void
+ * @return object Validation
  */
 PHP_METHOD(Ice_Validation, setDefaultMessages) {
 
@@ -963,7 +963,7 @@ PHP_METHOD(Ice_Validation, setDefaultMessages) {
 	zephir_read_property(&_1, this_ptr, SL("defaultMessages"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(&_0, &_1, &messages TSRMLS_CC);
 	zephir_update_property_zval(this_ptr, SL("defaultMessages"), &_0);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -1004,7 +1004,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	if (!(zephir_array_isset_fetch(&message, &_0, &type, 0 TSRMLS_CC))) {
 		zephir_read_property(&_1$$3, this_ptr, SL("defaultMessages"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_NVAR(&message);
-		zephir_array_fetch_string(&message, &_1$$3, SL("default"), PH_NOISY, "ice/validation.zep", 375 TSRMLS_CC);
+		zephir_array_fetch_string(&message, &_1$$3, SL("default"), PH_NOISY, "ice/validation.zep", 382 TSRMLS_CC);
 	}
 	RETURN_CCTOR(&message);
 
@@ -1015,7 +1015,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
  *
  * @param string field
  * @param string message
- * @return void
+ * @return object Validation
  */
 PHP_METHOD(Ice_Validation, addMessage) {
 
@@ -1043,14 +1043,14 @@ PHP_METHOD(Ice_Validation, addMessage) {
 
 
 	zephir_update_property_array_multi(this_ptr, SL("messages"), &message TSRMLS_CC, SL("za"), 2, &field);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
 /**
  * Get the validation's messages.
  *
- * @return Arr
+ * @return object Arr
  */
 PHP_METHOD(Ice_Validation, getMessages) {
 

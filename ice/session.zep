@@ -92,6 +92,7 @@ class Session extends Arr
 
     /**
      * Retrieve a single key from the session.
+     * @return mix
      */
     public function get(string key, var defaultValue = null, boolean required = false)
     {
@@ -106,17 +107,23 @@ class Session extends Arr
 
     /**
      * Assigns a value to the specified session key.
+     * @return object Session
      */
     public function set(string key, var value)
     {
         let _SESSION[key] = value;
+        
+        return this;
     }
 
     /**
      * Remove session key.
+     * @return object Session
      */
     public function remove(string key)
     {
         unset _SESSION[key];
+        
+        return this;
     }
 }

@@ -349,7 +349,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
  *
  * @param string type
  * @param string message
- * @return void
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, message) {
 
@@ -392,7 +392,7 @@ PHP_METHOD(Ice_Flash, message) {
 	zephir_read_property(&_3, this_ptr, SL("session"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_3, "set", NULL, 0, &key, &messages);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -400,7 +400,7 @@ PHP_METHOD(Ice_Flash, message) {
  * Add success message.
  *
  * @param string message
- * @return void
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, success) {
 
@@ -422,12 +422,13 @@ PHP_METHOD(Ice_Flash, success) {
 	ZVAL_STRING(&_0, "success");
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
 /**
  * Alias of success message.
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, ok) {
 
@@ -447,9 +448,9 @@ PHP_METHOD(Ice_Flash, ok) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "success");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
@@ -457,7 +458,7 @@ PHP_METHOD(Ice_Flash, ok) {
  * Add info message.
  *
  * @param string message
- * @return void
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, info) {
 
@@ -477,14 +478,15 @@ PHP_METHOD(Ice_Flash, info) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "info");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
 /**
  * Alias of info message.
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, notice) {
 
@@ -504,9 +506,9 @@ PHP_METHOD(Ice_Flash, notice) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "info");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
@@ -514,7 +516,7 @@ PHP_METHOD(Ice_Flash, notice) {
  * Add warning message.
  *
  * @param string message
- * @return void
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, warning) {
 
@@ -534,14 +536,15 @@ PHP_METHOD(Ice_Flash, warning) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "warning");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
 /**
  * Alias of warning message.
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, alert) {
 
@@ -561,9 +564,9 @@ PHP_METHOD(Ice_Flash, alert) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "warning");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
@@ -571,7 +574,7 @@ PHP_METHOD(Ice_Flash, alert) {
  * Add danger message.
  *
  * @param string message
- * @return void
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, danger) {
 
@@ -591,14 +594,15 @@ PHP_METHOD(Ice_Flash, danger) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "danger");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
 /**
  * Alias of danger message.
+ * @return object Flash
  */
 PHP_METHOD(Ice_Flash, error) {
 
@@ -618,9 +622,9 @@ PHP_METHOD(Ice_Flash, error) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "danger");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 

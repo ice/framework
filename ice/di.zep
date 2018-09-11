@@ -289,6 +289,7 @@ class Di extends Arr
      *
      * @param string name The hook name
      * @param mixed hookArg Argument for hooked functions
+     * @return object Di
      */
     public function applyHook(string name, array args = null)
     {
@@ -312,6 +313,7 @@ class Di extends Arr
                 }
             }
         }
+        return this;
     }
 
     /**
@@ -338,6 +340,7 @@ class Di extends Arr
      * will be cleared.
      *
      * @param  string $name A hook name (Optional)
+     * @return object Di
      */
     public function clearHooks(string name = null)
     {
@@ -350,6 +353,7 @@ class Di extends Arr
                 let this->hooks[key] = [[]];
             }
         }
+        return this;
     }
 
     /**

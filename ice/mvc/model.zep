@@ -535,6 +535,7 @@ abstract class Model extends Arr implements \Serializable
      * @param string referenceModel
      * @param string referencedField
      * @param array options
+     * @return object Model
      */
     public function belongsTo(string field, string referenceModel, string referencedField, array options = [])
     {
@@ -551,6 +552,8 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
+        
+        return this;
     }
 
     /**
@@ -570,6 +573,7 @@ abstract class Model extends Arr implements \Serializable
      * @param string referenceModel
      * @param string referencedField
      * @param array options
+     * @return object Model
      */
     public function hasOne(string field, string referenceModel, string referencedField, array options = [])
     {
@@ -586,6 +590,8 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
+        
+        return this;
     }
 
     /**
@@ -612,6 +618,7 @@ abstract class Model extends Arr implements \Serializable
      * @param string referenceModel
      * @param string referencedField
      * @param array options
+     * @return object Model
      */
     public function hasMany(string field, string referenceModel, string referencedField, array options = [])
     {
@@ -628,6 +635,8 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
+        
+        return this;
     }
 
     /**
@@ -716,6 +725,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array rules
      * @param boolean merge
+     * @return object Model
      */
     public function setRules(array! rules = [], boolean merge = true)
     {
@@ -724,6 +734,7 @@ abstract class Model extends Arr implements \Serializable
         } else {
             let this->rules = rules;
         }
+        return this;
     }
 
     /**
@@ -738,11 +749,14 @@ abstract class Model extends Arr implements \Serializable
 
     /**
      * Unserialize and set the data.
+     * @return object Model
      */
     public function unserialize(serialized)
     {
         this->__construct();
         let this->data = unserialize(base64_decode(serialized));
+        
+        return this;
     }
 
     /**

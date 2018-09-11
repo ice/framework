@@ -45,6 +45,7 @@ class Router
      * Set defaults values
      *
      * @param array defaults
+     * @return object Router
      */
     public function setDefaults(array! defaults)
     {
@@ -61,13 +62,14 @@ class Router
         if fetch action, defaults["action"] {
             let this->defaultAction = action;
         }
+        return this;
     }
 
     /**
      * Set options.
      *
      * @param array options
-     * @return object this
+     * @return object Router
      */
     public function setOptions(array! options)
     {
@@ -78,6 +80,7 @@ class Router
 
     /**
      * Prepare the FastRoute.
+     * @return object Router
      */
     public function fastRoute()
     {
@@ -133,6 +136,8 @@ class Router
         this->dispatcher->setData(data);
 
         let this->ready = true;
+        
+        return this;
     }
 
     /**

@@ -858,6 +858,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
  *
  * @param array forward
  * @param boolean force
+ * @return object Dispatcher|handler Dispached handler if force forward, otherwise is current dispatcher
  */
 PHP_METHOD(Ice_Dispatcher, forward) {
 
@@ -910,10 +911,11 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 		zephir_update_property_this(getThis(), SL("forwarded"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 	}
 	if (force) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "dispatch", NULL, 0);
+		ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dispatch", NULL, 0);
 		zephir_check_call_status();
+		RETURN_MM();
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
