@@ -73,11 +73,13 @@ abstract class Validator
      *
      * @param string key The data key
      * @param mixed value
-     * @return void
+     * @return object Validator
      */
     public function set(var key, var value)
     {
         let this->options[key] = value;
+        
+        return this;
     }
 
     /**
