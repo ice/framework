@@ -88,9 +88,9 @@ class Validation
      * @param string alias
      * @param string field
      * @param mixed options
-     * @return void
+     * @return object Validation
      */
-    public function resolve(string alias, string field, var options = null) -> void
+    public function resolve(string alias, string field, var options = null)
     {
         var rule;
 
@@ -103,6 +103,8 @@ class Validation
         }
 
         let this->rules[field][] = <Validator> create_instance_params(rule, [options]);
+        
+        return this;
     }
 
     /**
@@ -124,9 +126,9 @@ class Validation
      * @param string field
      * @param mixed validators
      * @param mixed options
-     * @return void
+     * @return object Validation
      */
-    public function rule(string field, var validators, var options = null) -> void
+    public function rule(string field, var validators, var options = null)
     {
         var validator, rules, rule, alias, values;
 
@@ -163,6 +165,7 @@ class Validation
                 }
             break;
         }
+        return this;
     }
 
     /**
@@ -185,9 +188,9 @@ class Validation
      *
      * @param array validators
      * @param boolean merge
-     * @return void
+     * @return object Validation
      */
-    public function rules(array! validators, boolean merge = true) -> void
+    public function rules(array! validators, boolean merge = true)
     {
         var field, rules;
 
@@ -198,6 +201,8 @@ class Validation
         for field, rules in validators {
             this->rule(field, rules);
         }
+        
+        return this;
     }
 
     /**
@@ -354,11 +359,13 @@ class Validation
      * Set the default messages.
      *
      * @param array messages
-     * @return void
+     * @return object Validation
      */
-    public function setDefaultMessages(array messages = []) -> void
+    public function setDefaultMessages(array messages = [])
     {
         let this->defaultMessages = array_merge(this->defaultMessages, messages);
+        
+        return this;
     }
 
     /**
@@ -383,17 +390,19 @@ class Validation
      *
      * @param string field
      * @param string message
-     * @return void
+     * @return object Validation
      */
-    public function addMessage(string! field, string message) -> void
+    public function addMessage(string! field, string message)
     {
         let this->messages[field][] = message;
+        
+        return this;
     }
 
     /**
      * Get the validation's messages.
      *
-     * @return Arr
+     * @return object Arr
      */
     public function getMessages() -> <Arr>
     {
