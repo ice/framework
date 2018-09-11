@@ -62,7 +62,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string key The data key
      * @param mixed value
-     * @return Arr
+     * @return object Arr
      */
     public function set(string key, var value)
     {
@@ -180,17 +180,19 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * Remove a data by key.
      *
      * @param string key The data key
-     * @return void
+     * @return object Arr
      */
-    public function erase(string key) -> void
+    public function erase(string key)
     {
         unset this->data[key];
+        
+        return this;
     }
 
     /**
      * Clear all values.
      *
-     * @return Arr
+     * @return object Arr
      */
     public function clear()
     {
