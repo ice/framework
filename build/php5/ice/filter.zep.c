@@ -48,6 +48,7 @@ ZEPHIR_INIT_CLASS(Ice_Filter) {
  *
  * @param string name
  * @param callable body
+ * @return object Filter
  */
 PHP_METHOD(Ice_Filter, add) {
 
@@ -70,11 +71,11 @@ PHP_METHOD(Ice_Filter, add) {
 
 
 	if (Z_TYPE_P(body) != IS_OBJECT) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 27);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 28);
 		return;
 	}
 	zephir_update_property_array(this_ptr, SL("filters"), name, body TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -106,7 +107,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
 		ZEPHIR_CPY_WRT(filters, _0$$3);
 	}
 	if (Z_TYPE_P(filters) == IS_ARRAY) {
-		zephir_is_iterable(filters, &_2$$4, &_1$$4, 0, 0, "ice/filter.zep", 52);
+		zephir_is_iterable(filters, &_2$$4, &_1$$4, 0, 0, "ice/filter.zep", 55);
 		for (
 		  ; zend_hash_get_current_data_ex(_2$$4, (void**) &_3$$4, &_1$$4) == SUCCESS
 		  ; zend_hash_move_forward_ex(_2$$4, &_1$$4)
@@ -360,7 +361,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _41$$22, "__construct", NULL, 13, _43$$22);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_41$$22, "ice/filter.zep", 131 TSRMLS_CC);
+		zephir_throw_exception_debug(_41$$22, "ice/filter.zep", 134 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	} while(0);

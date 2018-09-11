@@ -131,7 +131,7 @@ PHP_METHOD(Ice_Validation_Validator, get) {
  *
  * @param string key The data key
  * @param mixed value
- * @return void
+ * @return object Validator
  */
 PHP_METHOD(Ice_Validation_Validator, set) {
 
@@ -142,6 +142,7 @@ PHP_METHOD(Ice_Validation_Validator, set) {
 
 
 	zephir_update_property_array(this_ptr, SL("options"), key, value TSRMLS_CC);
+	RETURN_THISW();
 
 }
 
@@ -174,7 +175,7 @@ PHP_METHOD(Ice_Validation_Validator, getOptions) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("options"), PH_NOISY_CC);
-	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation/validator.zep", 111);
+	zephir_is_iterable(_0, &_2, &_1, 0, 0, "ice/validation/validator.zep", 113);
 	for (
 	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zend_hash_move_forward_ex(_2, &_1)

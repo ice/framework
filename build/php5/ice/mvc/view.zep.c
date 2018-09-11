@@ -558,6 +558,7 @@ PHP_METHOD(Ice_Mvc_View, layout) {
  *
  * @param string name
  * @param mixed value
+ * @return object View
  */
 PHP_METHOD(Ice_Mvc_View, setVar) {
 
@@ -582,7 +583,7 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, name, value);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -590,6 +591,7 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
  * Set multiple vars to the view.
  *
  * @param array vars
+ * @return object View
  */
 PHP_METHOD(Ice_Mvc_View, setVars) {
 
@@ -605,7 +607,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, vars);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -613,6 +615,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
  * Alias of the `setMainView` method.
  *
  * @param array vars
+ * @return object View
  */
 PHP_METHOD(Ice_Mvc_View, setLayout) {
 
@@ -628,7 +631,7 @@ PHP_METHOD(Ice_Mvc_View, setLayout) {
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setmainview", NULL, 0, layout);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
