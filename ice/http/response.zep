@@ -78,30 +78,39 @@ class Response implements ResponseInterface
      *
      * @param string name
      * @param string value
+     * @return object Response
      */
-    public function setHeader(string name, string value) -> void
+    public function setHeader(string name, string value)
     {
         this->headers->set(name, value);
+        
+        return this;
     }
 
     /**
      * Set multiple header values.
      *
      * @param array headers
+     * @return object Response
      */
-    public function setHeaders(array headers) -> void
+    public function setHeaders(array headers)
     {
         this->headers->replace(headers);
+        
+        return this;
     }
 
     /**
      * Remove header by index name.
      *
      * @param string name
+     * @return object Response
      */
-    public function removeHeader(string name) -> void
+    public function removeHeader(string name)
     {
         this->headers->remove(name);
+        
+        return this;
     }
 
     /**
@@ -122,7 +131,7 @@ class Response implements ResponseInterface
      * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
      *
      * @param RequestInterface request
-     * @return Response
+     * @return object Response
      */
     public function finalize(<RequestInterface> request)
     {
@@ -152,7 +161,7 @@ class Response implements ResponseInterface
     /**
      * Send HTTP response headers.
      *
-     * @return Response
+     * @return object Response
      */
     public function send()
     {
@@ -181,7 +190,7 @@ class Response implements ResponseInterface
      *
      * @param string location The redirect destination
      * @param int status The redirect HTTP status code
-     * @return object this
+     * @return object Response
      */
     public function redirect(string location = null, int status = 302, boolean external = false)
     {
