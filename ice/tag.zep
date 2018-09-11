@@ -47,11 +47,13 @@ class Tag
      *
      * @param string title
      * @param string separator
-     * @return void
+     * @return object Tag
      */
-    public function appendTitle(string title, string separator = null) -> void
+    public function appendTitle(string title, string separator = null)
     {
         let this->title = this->title . (separator ? separator : this->titleSeparator) . title;
+        
+        return this;
     }
 
     /**
@@ -59,11 +61,13 @@ class Tag
      *
      * @param string title
      * @param string separator
-     * @return void
+     * @return object Tag
      */
-    public function prependTitle(string title, string separator = null) -> void
+    public function prependTitle(string title, string separator = null)
     {
         let this->title = title . (separator ? separator : this->titleSeparator) . this->title;
+        
+        return this;
     }
 
     /**
@@ -825,9 +829,9 @@ class Tag
      *
      * @param string id
      * @param mixed value
-     * @return void
+     * @return object Tag
      */
-    public function setValue(string! id, value) -> void
+    public function setValue(string! id, value)
     {
         if value !== null {
             if typeof value == "array" || typeof value == "object" {
@@ -835,6 +839,8 @@ class Tag
             }
         }
         let this->values[id] = value;
+        
+        return this;
     }
 
     /**
@@ -842,9 +848,9 @@ class Tag
      *
      * @param array values
      * @param boolean merge
-     * @return void
+     * @return object Tag
      */
-    public function setValues(array values, boolean merge = false) -> void
+    public function setValues(array values, boolean merge = false)
     {
         var current;
 
@@ -862,6 +868,8 @@ class Tag
         } else {
             let this->values = values;
         }
+        
+        return this;
     }
 
     /**

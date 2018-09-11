@@ -20,6 +20,7 @@ class Filter
      *
      * @param string name
      * @param callable body
+     * @return object Filter
      */
     public function add(string! name, body)
     {
@@ -28,6 +29,8 @@ class Filter
         }
 
         let this->filters[name] = body;
+        
+        return this;
     }
 
     /**

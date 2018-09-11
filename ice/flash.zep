@@ -121,9 +121,9 @@ class Flash
      *
      * @param string type
      * @param string message
-     * @return void
+     * @return object Flash
      */
-    public function message(string type, string message) -> void
+    public function message(string type, string message)
     {
         var key, messages;
 
@@ -137,81 +137,89 @@ class Flash
         let messages[type][] = message;
 
         this->session->set(key, messages);
+        
+        return this;
     }
 
     /**
      * Add success message.
      *
      * @param string message
-     * @return void
+     * @return object Flash
      */
-    public function success(string message) -> void
+    public function success(string message)
     {
         this->message("success", message);
+        
+        return this;
     }
 
     /**
      * Alias of success message.
+     * @return object Flash
      */
-    public function ok(string message) -> void
+    public function ok(string message)
     {
-        this->message("success", message);
+        return this->message("success", message);
     }
 
     /**
      * Add info message.
      *
      * @param string message
-     * @return void
+     * @return object Flash
      */
-    public function info(string message) -> void
+    public function info(string message)
     {
-        this->message("info", message);
+        return this->message("info", message);
     }
 
     /**
      * Alias of info message.
+     * @return object Flash
      */
-    public function notice(string message) -> void
+    public function notice(string message)
     {
-        this->message("info", message);
+        return this->message("info", message);
     }
 
     /**
      * Add warning message.
      *
      * @param string message
-     * @return void
+     * @return object Flash
      */
-    public function warning(string message) -> void
+    public function warning(string message)
     {
-        this->message("warning", message);
+        return this->message("warning", message);
     }
 
     /**
      * Alias of warning message.
+     * @return object Flash
      */
-    public function alert(string message) -> void
+    public function alert(string message)
     {
-        this->message("warning", message);
+        return this->message("warning", message);
     }
 
     /**
      * Add danger message.
      *
      * @param string message
-     * @return void
+     * @return object Flash
      */
-    public function danger(string message) -> void
+    public function danger(string message)
     {
-        this->message("danger", message);
+        return this->message("danger", message);
     }
 
     /**
      * Alias of danger message.
+     * @return object Flash
      */
-    public function error(string message) -> void
+    public function error(string message)
     {
-        this->message("danger", message);
+        return this->message("danger", message);
     }
 }
