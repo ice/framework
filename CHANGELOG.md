@@ -1,3 +1,20 @@
+
+- Ice 1.4.0
+ * Always return this from setters
+ * Response, send file
+ * App, add new module to the app
+ * App, allow to render page without main layout fix #169
+ * Response, set response content in controller fail fix #168
+ * Request, implement interface
+ * Arr, rename the remove method to erase
+ * Config, load config from php file
+ * PHP, fix declaration errors
+ * Travis, update to xenial dist
+ * Composer, use zephir v0.11.0 and zephir-parser v1.1.2
+ * View, stop finding view when it meets the right engine and file
+ * Modules, use loader from di and pass it to autoloaders fix #156
+ * Loader, no namespace classes loading for the loader fix #154
+
 -------------------------------------------------------------------
 Sun Mar 25 12:26:06 UTC 2018
 

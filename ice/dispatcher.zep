@@ -36,6 +36,7 @@ abstract class Dispatcher
     protected params = [] { get, set };
     protected returnedValue = null { get, set };
 
+    protected handlers = "Handlers" { get, set };
     protected handlerSuffix = "Handler" { get, set };
     protected actionSuffix = "Action" { get, set };
 
@@ -206,7 +207,7 @@ abstract class Dispatcher
             }
 
             if !this->defaultNamespace {
-                this->setDefaultNamespace(this->$namespace . "\\" . this->getHandlerSuffix());
+                this->setDefaultNamespace(this->$namespace . "\\" . this->handlers);
             }
 
             let handlerName = this->handler,
@@ -285,9 +286,10 @@ abstract class Dispatcher
      *
      * @param array forward
      * @param boolean force
-     * @return object Dispatcher|handler Dispached handler if force forward, otherwise is current dispatcher
+     * @param boolean clear
+     * @return object Dispatcher
      */
-    public function forward(array! forward, boolean force = false)
+    public function forward(array! forward, boolean force = false, boolean clear = false)
     {
         var module, handler, action, params;
 
@@ -295,31 +297,40 @@ abstract class Dispatcher
         if fetch module, forward["module"] {
             let this->previousModule = this->module,
                 this->module = module;
+        } elseif clear {
+            this->setModule(this->di->router->getDefaultModule());
         }
 
         // Check if we need to forward to another handler
         if fetch handler, forward["handler"] {
             let this->previousHandler = this->handler,
                 this->handler = handler;
+        } elseif clear {
+            this->setHandler(this->di->router->getDefaultHandler());
         }
 
         // Check if we need to forward to another action
         if fetch action, forward["action"] {
             let this->previousAction = this->action,
                 this->action = action;
+        } elseif clear {
+            this->setAction(this->di->router->getDefaultAction());
         }
 
         // Check if we need to forward changing the current parameters
         if fetch params, forward["params"] {
             let this->params = params;
+        } elseif clear {
+            this->setParams([]);
         }
 
         let this->finished = false,
             this->forwarded = true;
 
         if force {
-            return this->dispatch();
+            this->dispatch();
         }
+
         return this;
     }
 }

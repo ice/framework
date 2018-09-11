@@ -16,5 +16,6 @@ use Ice\Cli\Task;
 class Dispatcher extends \Ice\Dispatcher
 {
 
+    protected handlers = "Tasks";
     protected handlerSuffix = "Task";
 }

@@ -64,5 +64,8 @@
         "static-constant-class-folding": true,
         "call-gatherer-pass": true,
         "check-invalid-reads": false
+    },
+    "prototype-dir": {
+        "mongodb": "prototypes/mongodb"
     }
 }
