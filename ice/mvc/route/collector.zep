@@ -40,6 +40,7 @@ class Collector
      * @param string|array $httpMethod
      * @param string $route
      * @param mixed  $handler
+     * @return object Collector
      */
     public function addRoute(var httpMethod, string route, handler = null)
     {
@@ -57,6 +58,8 @@ class Collector
                 this->dataGenerator->addRoute(method, routeData, handler);
             }
         }
+        
+        return this;
     }
 
     /**
