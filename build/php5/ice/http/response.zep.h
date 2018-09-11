@@ -22,6 +22,7 @@ PHP_METHOD(Ice_Http_Response, removeHeader);
 PHP_METHOD(Ice_Http_Response, setContent);
 PHP_METHOD(Ice_Http_Response, finalize);
 PHP_METHOD(Ice_Http_Response, send);
+PHP_METHOD(Ice_Http_Response, sendFile);
 PHP_METHOD(Ice_Http_Response, redirect);
 PHP_METHOD(Ice_Http_Response, isEmpty);
 PHP_METHOD(Ice_Http_Response, isInformational);
@@ -36,6 +37,7 @@ PHP_METHOD(Ice_Http_Response, isServerError);
 PHP_METHOD(Ice_Http_Response, getMessage);
 PHP_METHOD(Ice_Http_Response, getMessages);
 PHP_METHOD(Ice_Http_Response, __toString);
+PHP_METHOD(Ice_Http_Response, getByteRange);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_setprotocolversion, 0, 0, 1)
 	ZEND_ARG_INFO(0, protocolVersion)
@@ -87,6 +89,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_finalize, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, request, Ice\\Http\\Request\\RequestInterface, 0)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_sendfile, 0, 0, 2)
+	ZEND_ARG_INFO(0, filename)
+	ZEND_ARG_INFO(0, mime)
+	ZEND_ARG_ARRAY_INFO(0, options, 1)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_redirect, 0, 0, 0)
 	ZEND_ARG_INFO(0, location)
 	ZEND_ARG_INFO(0, status)
@@ -95,6 +103,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_getmessage, 0, 0, 0)
 	ZEND_ARG_INFO(0, code)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_getbyterange, 0, 0, 1)
+	ZEND_ARG_INFO(0, size)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
@@ -117,6 +129,7 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, setContent, arginfo_ice_http_response_setcontent, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, finalize, arginfo_ice_http_response_finalize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, send, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, sendFile, arginfo_ice_http_response_sendfile, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, redirect, arginfo_ice_http_response_redirect, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, isEmpty, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, isInformational, NULL, ZEND_ACC_PUBLIC)
@@ -131,5 +144,6 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, getMessage, arginfo_ice_http_response_getmessage, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessages, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __toString, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, getByteRange, arginfo_ice_http_response_getbyterange, ZEND_ACC_PROTECTED)
 	PHP_FE_END
 };
