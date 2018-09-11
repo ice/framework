@@ -28,6 +28,8 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Dispatcher) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Dispatcher, ice, cli_dispatcher, ice_dispatcher_ce, NULL, 0);
 
+	zend_declare_property_string(ice_cli_dispatcher_ce, SL("handlers"), "Tasks", ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	zend_declare_property_string(ice_cli_dispatcher_ce, SL("handlerSuffix"), "Task", ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
