@@ -285,7 +285,7 @@ abstract class Dispatcher
      *
      * @param array forward
      * @param boolean force
-     * @return object
+     * @return object Dispatcher|handler Dispached handler if force forward, otherwise is current dispatcher
      */
     public function forward(array! forward, boolean force = false)
     {
