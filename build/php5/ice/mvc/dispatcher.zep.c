@@ -37,6 +37,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
 
 	zend_declare_property_null(ice_mvc_dispatcher_ce, SL("method"), ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlers"), "Controllers", ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlerSuffix"), "Controller", ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	zend_declare_class_constant_long(ice_mvc_dispatcher_ce, SL("REDIRECT_CYCLIC"), 5 TSRMLS_CC);
@@ -142,7 +144,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		ZEPHIR_CALL_METHOD(NULL, _8$$3, "__construct", NULL, 13, _9$$3, _10$$3);
 		zephir_check_temp_parameter(_9$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_8$$3, "ice/mvc/dispatcher.zep", 58 TSRMLS_CC);
+		zephir_throw_exception_debug(_8$$3, "ice/mvc/dispatcher.zep", 59 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

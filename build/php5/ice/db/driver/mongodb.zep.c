@@ -155,7 +155,6 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
 
-	zend_class_entry *_0 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *id_param = NULL;
 	zval *id = NULL;
@@ -166,10 +165,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
 	zephir_get_strval(id, id_param);
 
 
-	if (!_0) {
-		_0 = zend_fetch_class(SL("MongoDB\\BSON\\ObjectID"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-	}
-	object_init_ex(return_value, _0);
+	object_init_ex(return_value, zephir_get_internal_ce(SS("mongodb\\bson\\objectid") TSRMLS_CC));
 	if (zephir_has_constructor(return_value TSRMLS_CC)) {
 		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, id);
 		zephir_check_call_status();
@@ -187,7 +183,6 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
  */
 PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 
-	zend_class_entry *_4$$4 = NULL;
 	long tmp$$4 = 0;
 	zend_bool _0;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -208,7 +203,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 
 	_0 = Z_TYPE_P(value) == IS_OBJECT;
 	if (_0) {
-		_0 = zephir_is_instance_of(value, SL("MongoDB\\BSON\\UTCDateTime") TSRMLS_CC);
+		_0 = zephir_instance_of_ev(value, zephir_get_internal_ce(SS("mongodb\\bson\\utcdatetime") TSRMLS_CC) TSRMLS_CC);
 	}
 	if (_0) {
 		ZEPHIR_CPY_WRT(date, value);
@@ -239,10 +234,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 		} while(0);
 
 		ZEPHIR_INIT_NVAR(date);
-		if (!_4$$4) {
-			_4$$4 = zend_fetch_class(SL("MongoDB\\BSON\\UTCDateTime"), ZEND_FETCH_CLASS_AUTO TSRMLS_CC);
-		}
-		object_init_ex(date, _4$$4);
+		object_init_ex(date, zephir_get_internal_ce(SS("mongodb\\bson\\utcdatetime") TSRMLS_CC));
 		if (zephir_has_constructor(date TSRMLS_CC)) {
 			ZEPHIR_CALL_METHOD(NULL, date, "__construct", NULL, 0, value);
 			zephir_check_call_status();
@@ -437,7 +429,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	zephir_gettype(_0, filters TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_STRING(_0, "object")) {
-			if (zephir_is_instance_of(filters, SL("MongoDB\\BSON\\ObjectID") TSRMLS_CC)) {
+			if (zephir_instance_of_ev(filters, zephir_get_internal_ce(SS("mongodb\\bson\\objectid") TSRMLS_CC) TSRMLS_CC)) {
 				ZEPHIR_INIT_VAR(filtered);
 				zephir_create_array(filtered, 1, 0 TSRMLS_CC);
 				ZEPHIR_OBS_VAR(_1$$4);
