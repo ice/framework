@@ -62,26 +62,30 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @param string key The data key
      * @param mixed value
-     * @return void
+     * @return Arr
      */
-    public function set(string key, var value) -> void
+    public function set(string key, var value)
     {
         let this->data[key] = value;
+        
+        return this;
     }
 
     /**
      * Add data to set, replaces the existing data.
      *
      * @param array data
-     * @return void
+     * @return Arr
      */
-    public function replace(array! data) -> void
+    public function replace(array! data)
     {
         var key, value;
 
         for key, value in data {
             this->set(key, value);
         }
+        
+        return this;
     }
 
     /**
@@ -186,11 +190,13 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Clear all values.
      *
-     * @return void
+     * @return Arr
      */
-    public function clear() -> void
+    public function clear()
     {
         let this->data = [];
+        
+        return this;
     }
 
     /**
