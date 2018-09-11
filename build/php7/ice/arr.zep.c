@@ -156,7 +156,7 @@ PHP_METHOD(Ice_Arr, get) {
  *
  * @param string key The data key
  * @param mixed value
- * @return void
+ * @return object Arr
  */
 PHP_METHOD(Ice_Arr, set) {
 
@@ -174,7 +174,7 @@ PHP_METHOD(Ice_Arr, set) {
 
 
 	zephir_update_property_array(this_ptr, SL("data"), &key, value TSRMLS_CC);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -182,7 +182,7 @@ PHP_METHOD(Ice_Arr, set) {
  * Add data to set, replaces the existing data.
  *
  * @param array data
- * @return void
+ * @return Arr
  */
 PHP_METHOD(Ice_Arr, replace) {
 
@@ -204,7 +204,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
 
 
-	zephir_is_iterable(&data, 0, "ice/arr.zep", 85);
+	zephir_is_iterable(&data, 0, "ice/arr.zep", 88);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _1, _2, _0)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -220,7 +220,7 @@ PHP_METHOD(Ice_Arr, replace) {
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -278,7 +278,7 @@ PHP_METHOD(Ice_Arr, only) {
 
 	ZEPHIR_INIT_VAR(&only);
 	array_init(&only);
-	zephir_is_iterable(&keys, 0, "ice/arr.zep", 113);
+	zephir_is_iterable(&keys, 0, "ice/arr.zep", 117);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&keys), _0)
 	{
 		ZEPHIR_INIT_NVAR(&key);
@@ -444,7 +444,7 @@ PHP_METHOD(Ice_Arr, keys) {
  * Remove a data by key.
  *
  * @param string key The data key
- * @return void
+ * @return object Arr
  */
 PHP_METHOD(Ice_Arr, erase) {
 
@@ -463,14 +463,14 @@ PHP_METHOD(Ice_Arr, erase) {
 
 	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_unset(&_0, &key, PH_SEPARATE);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
 /**
  * Clear all values.
  *
- * @return void
+ * @return object Arr
  */
 PHP_METHOD(Ice_Arr, clear) {
 
@@ -484,7 +484,7 @@ PHP_METHOD(Ice_Arr, clear) {
 	ZEPHIR_INIT_VAR(&_0);
 	array_init(&_0);
 	zephir_update_property_zval(this_ptr, SL("data"), &_0);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -598,7 +598,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 		ZEPHIR_CPY_WRT(&keys, path);
 	} else {
 		if (zephir_array_key_exists(&data, path TSRMLS_CC)) {
-			zephir_array_fetch(&_1$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 246 TSRMLS_CC);
+			zephir_array_fetch(&_1$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 254 TSRMLS_CC);
 			RETURN_CTOR(&_1$$5);
 		}
 		ZEPHIR_INIT_VAR(&_2$$4);
@@ -629,21 +629,21 @@ PHP_METHOD(Ice_Arr, getPath) {
 		if (zephir_array_isset(&data, &key)) {
 			if (zephir_is_true(&keys)) {
 				ZEPHIR_OBS_NVAR(&_9$$9);
-				zephir_array_fetch(&_9$$9, &data, &key, PH_NOISY, "ice/arr.zep", 267 TSRMLS_CC);
+				zephir_array_fetch(&_9$$9, &data, &key, PH_NOISY, "ice/arr.zep", 275 TSRMLS_CC);
 				if (Z_TYPE_P(&_9$$9) == IS_ARRAY) {
-					zephir_array_fetch(&_10$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 269 TSRMLS_CC);
+					zephir_array_fetch(&_10$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 277 TSRMLS_CC);
 					ZEPHIR_CPY_WRT(&data, &_10$$10);
 				} else {
 					break;
 				}
 			} else {
-				zephir_array_fetch(&_11$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 276 TSRMLS_CC);
+				zephir_array_fetch(&_11$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 284 TSRMLS_CC);
 				RETURN_CTOR(&_11$$12);
 			}
 		} else if (ZEPHIR_IS_STRING_IDENTICAL(&key, "*")) {
 			ZEPHIR_INIT_NVAR(&values$$13);
 			array_init(&values$$13);
-			zephir_is_iterable(&data, 0, "ice/arr.zep", 293);
+			zephir_is_iterable(&data, 0, "ice/arr.zep", 301);
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _12$$13)
 			{
 				ZEPHIR_INIT_NVAR(&arr$$13);
@@ -656,7 +656,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 					ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 5, &keys);
 					zephir_check_call_status();
 					if (zephir_is_true(&value$$13)) {
-						zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 289);
+						zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 297);
 					}
 				}
 			} ZEND_HASH_FOREACH_END();
@@ -699,7 +699,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	ZEPHIR_INIT_VAR(&tmp);
 	array_init(&tmp);
 	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "ice/arr.zep", 331);
+	zephir_is_iterable(&_0, 0, "ice/arr.zep", 339);
 	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
 	{
 		ZEPHIR_INIT_NVAR(&key);

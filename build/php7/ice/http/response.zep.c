@@ -301,7 +301,7 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
  *
  * @param string name
  * @param string value
- * @return Response
+ * @return object Response
  */
 PHP_METHOD(Ice_Http_Response, setHeader) {
 
@@ -332,7 +332,7 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
  * Set multiple header values.
  *
  * @param array headers
- * @return Response
+ * @return object Response
  */
 PHP_METHOD(Ice_Http_Response, setHeaders) {
 
@@ -361,7 +361,7 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
  * Remove header by index name.
  *
  * @param string name
- * @return Response
+ * @return object Response     
  */
 PHP_METHOD(Ice_Http_Response, removeHeader) {
 
@@ -416,7 +416,7 @@ PHP_METHOD(Ice_Http_Response, setContent) {
  * Apply final preparations to the resposne object so that it is suitable for delivery to the client.
  *
  * @param RequestInterface request
- * @return Response
+ * @return object Response
  */
 PHP_METHOD(Ice_Http_Response, finalize) {
 
@@ -482,7 +482,7 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 /**
  * Send HTTP response headers.
  *
- * @return Response
+ * @return object Response
  */
 PHP_METHOD(Ice_Http_Response, send) {
 
@@ -921,7 +921,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
  *
  * @param string location The redirect destination
  * @param int status The redirect HTTP status code
- * @return object this
+ * @return object Response
  */
 PHP_METHOD(Ice_Http_Response, redirect) {
 

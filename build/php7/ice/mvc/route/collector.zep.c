@@ -126,6 +126,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
  * @param string|array $httpMethod
  * @param string $route
  * @param mixed  $handler
+ * @return object Collector
  */
 PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 
@@ -164,12 +165,12 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 		zephir_create_array(httpMethod, 1, 0 TSRMLS_CC);
 		zephir_array_fast_append(httpMethod, &method);
 	}
-	zephir_is_iterable(httpMethod, 0, "ice/mvc/route/collector.zep", 60);
+	zephir_is_iterable(httpMethod, 0, "ice/mvc/route/collector.zep", 62);
 	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(httpMethod), _1)
 	{
 		ZEPHIR_INIT_NVAR(&method);
 		ZVAL_COPY(&method, _1);
-		zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 59);
+		zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 60);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&routeDatas), _2$$4)
 		{
 			ZEPHIR_INIT_NVAR(&routeData);
@@ -181,7 +182,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 		ZEPHIR_INIT_NVAR(&routeData);
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&method);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 

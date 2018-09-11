@@ -192,6 +192,7 @@ PHP_METHOD(Ice_Session, has) {
 
 /**
  * Retrieve a single key from the session.
+ * @return mix
  */
 PHP_METHOD(Ice_Session, get) {
 
@@ -231,6 +232,7 @@ PHP_METHOD(Ice_Session, get) {
 
 /**
  * Assigns a value to the specified session key.
+ * @return object Session
  */
 PHP_METHOD(Ice_Session, set) {
 
@@ -249,12 +251,13 @@ PHP_METHOD(Ice_Session, set) {
 
 
 	zephir_array_update_zval(_SESSION, &key, value, PH_COPY | PH_SEPARATE);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
 /**
  * Remove session key.
+ * @return object Session
  */
 PHP_METHOD(Ice_Session, remove) {
 
@@ -272,7 +275,7 @@ PHP_METHOD(Ice_Session, remove) {
 
 
 	zephir_array_unset(_SESSION, &key, PH_SEPARATE);
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
