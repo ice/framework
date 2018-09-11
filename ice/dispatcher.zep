@@ -328,7 +328,7 @@ abstract class Dispatcher
             this->forwarded = true;
 
         if force {
-            return this->dispatch();
+            this->dispatch();
         }
 
         return this;
