@@ -347,7 +347,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 161, field, validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 175, field, validator, options);
 				zephir_check_call_status();
 			}
 			break;

@@ -18,6 +18,10 @@
 #include "kernel/operators.h"
 #include "kernel/array.h"
 #include "kernel/string.h"
+#include "kernel/file.h"
+#include "kernel/exception.h"
+#include "kernel/exit.h"
+#include "kernel/concat.h"
 
 
 /**
@@ -262,6 +266,7 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
  *
  * @param string name
  * @param string value
+ * @return Response
  */
 PHP_METHOD(Ice_Http_Response, setHeader) {
 
@@ -279,7 +284,7 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, _0, "set", NULL, 0, name, value);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -287,6 +292,7 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
  * Set multiple header values.
  *
  * @param array headers
+ * @return Response
  */
 PHP_METHOD(Ice_Http_Response, setHeaders) {
 
@@ -303,7 +309,7 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, _0, "replace", NULL, 0, headers);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -311,6 +317,7 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
  * Remove header by index name.
  *
  * @param string name
+ * @return Response
  */
 PHP_METHOD(Ice_Http_Response, removeHeader) {
 
@@ -327,7 +334,7 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
 	ZEPHIR_CALL_METHOD(NULL, _0, "remove", NULL, 0, name);
 	zephir_check_call_status();
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -489,6 +496,288 @@ PHP_METHOD(Ice_Http_Response, send) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
+
+}
+
+/**
+ * Send file download as the response. All execution will be halted when
+ * this method is called! The third parameter allows the following
+ * options to be set:
+ *
+ * Type      | Option    | Description                        | Default Value
+ * ----------|-----------|------------------------------------|--------------
+ * string    | file      | file that already exists           | null
+ * boolean   | inline    | Display inline instead of download | FALSE
+ * boolean   | resumable | Allow to resumable download        | FALSE
+ * boolean   | delete    | Delete the file after sending      | FALSE
+ * int       | timeout   | Execute time for the script        | 0
+ * int       | speed     | Download speed in millisecond      | 0
+ *
+ * Download a file that already exists:
+ *
+ *     $request->sendFile('ice.zip', 'application/zip', ['file' => '/download/latest.zip']);
+ *
+ * Download generated content as a file:
+ *
+ *     $response->setContent($content);
+ *     $response->sendFile($filename, $mineType);
+ *
+ * Attention: No further processing can be done after this method is called!
+ *
+ * @param string filename The file name of the attachment
+ * @param string mime Manual mime type
+ * @param array options The keys can be [file|inline|resumable|delete|timeout|speed]
+ * @return  void
+ */
+PHP_METHOD(Ice_Http_Response, sendFile) {
+
+	zend_bool _19$$9, _44$$17;
+	zephir_fcall_cache_entry *_34 = NULL, *_35 = NULL, *_38 = NULL, *_43 = NULL, *_46 = NULL, *_50 = NULL, *_51 = NULL, *_53 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS, block = 0, speed = 0;
+	zval *options = NULL, *_6$$5;
+	zval *filename_param = NULL, *mime_param = NULL, *options_param = NULL, *file = NULL, *filepath = NULL, *data = NULL, *size = NULL, *isDelete = NULL, *disposition = NULL, *pos = NULL, *range = NULL, *start = NULL, *end = NULL, *_0, *_8, *_9, *_28, *_29, *_30 = NULL, *_31, *_32, *_33 = NULL, *_36, *_41, *_1$$3, *_3$$4, _4$$4, *_5$$5, *_7$$5, *_10$$8, *_11$$8, *_12$$9, *_21$$9, *_22$$9 = NULL, *_23$$9 = NULL, *_24$$9, *_25$$9, *_26$$9, _27$$9, *_13$$10 = NULL, *_14$$10, *_15$$10 = NULL, *_16$$10, _17$$10, *_18$$10 = NULL, *_20$$11, _37$$13, *_39$$14, _40$$14, *_42$$15, *_45$$17 = NULL, _48$$17 = zval_used_for_init, *_49$$17 = NULL, _47$$19 = zval_used_for_init, _52$$20 = zval_used_for_init, *_54$$21, *_55$$21 = NULL;
+	zval *filename = NULL, *mime = NULL, *_2$$3 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 1, &filename_param, &mime_param, &options_param);
+
+	zephir_get_strval(filename, filename_param);
+	zephir_get_strval(mime, mime_param);
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(options);
+		array_init(options);
+	} else {
+		zephir_get_arrval(options, options_param);
+	}
+
+
+	zephir_array_fetch_string(&_0, options, SL("file"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 221 TSRMLS_CC);
+	if (ZEPHIR_IS_EMPTY(_0)) {
+		ZEPHIR_OBS_VAR(_1$$3);
+		zephir_read_property_this(&_1$$3, this_ptr, SL("body"), PH_NOISY_CC);
+		zephir_get_strval(_2$$3, _1$$3);
+		ZEPHIR_CPY_WRT(data, _2$$3);
+		ZEPHIR_INIT_VAR(size);
+		ZVAL_LONG(size, zephir_fast_strlen_ev(data));
+		ZEPHIR_CALL_FUNCTION(&file, "tmpfile", NULL, 108);
+		zephir_check_call_status();
+		zephir_fwrite(NULL, file, data TSRMLS_CC);
+		ZEPHIR_INIT_VAR(isDelete);
+		ZVAL_BOOL(isDelete, 0);
+	} else {
+		zephir_array_fetch_string(&_3$$4, options, SL("file"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 237 TSRMLS_CC);
+		ZEPHIR_CALL_FUNCTION(&filepath, "realpath", NULL, 109, _3$$4);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(&size, "filesize", NULL, 110, filepath);
+		zephir_check_call_status();
+		ZEPHIR_SINIT_VAR(_4$$4);
+		ZVAL_STRING(&_4$$4, "rb", 0);
+		ZEPHIR_CALL_FUNCTION(&file, "fopen", NULL, 111, filepath, &_4$$4);
+		zephir_check_call_status();
+		ZEPHIR_OBS_NVAR(isDelete);
+		zephir_array_isset_string_fetch(&isDelete, options, SS("delete"), 0 TSRMLS_CC);
+	}
+	if (!(Z_TYPE_P(file) == IS_RESOURCE)) {
+		ZEPHIR_INIT_VAR(_5$$5);
+		object_init_ex(_5$$5, ice_exception_ce);
+		ZEPHIR_INIT_VAR(_6$$5);
+		zephir_create_array(_6$$5, 2, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_7$$5);
+		ZVAL_STRING(_7$$5, "Could not read file to send: %s", 1);
+		zephir_array_fast_append(_6$$5, _7$$5);
+		zephir_array_fast_append(_6$$5, filename);
+		ZEPHIR_CALL_METHOD(NULL, _5$$5, "__construct", NULL, 13, _6$$5);
+		zephir_check_call_status();
+		zephir_throw_exception_debug(_5$$5, "ice/http/response.zep", 249 TSRMLS_CC);
+		ZEPHIR_MM_RESTORE();
+		return;
+	}
+	zephir_array_fetch_string(&_8, options, SL("inline"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 252 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(disposition);
+	if (ZEPHIR_IS_EMPTY(_8)) {
+		ZVAL_STRING(disposition, "attachment", 1);
+	} else {
+		ZVAL_STRING(disposition, "inline", 1);
+	}
+	zephir_array_fetch_string(&_9, options, SL("resumable"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 258 TSRMLS_CC);
+	if (ZEPHIR_IS_EMPTY(_9)) {
+		_10$$8 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_11$$8);
+		ZVAL_STRING(_11$$8, "Content-Length", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, _10$$8, "set", NULL, 0, _11$$8, size);
+		zephir_check_temp_parameter(_11$$8);
+		zephir_check_call_status();
+	} else {
+		ZEPHIR_CALL_METHOD(&range, this_ptr, "getbyterange", NULL, 0, size);
+		zephir_check_call_status();
+		ZEPHIR_OBS_VAR(start);
+		zephir_array_fetch_long(&start, range, 0, PH_NOISY, "ice/http/response.zep", 263 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(end);
+		zephir_array_fetch_long(&end, range, 1, PH_NOISY, "ice/http/response.zep", 264 TSRMLS_CC);
+		_12$$9 = zephir_fetch_nproperty_this(this_ptr, SL("status"), PH_NOISY_CC);
+		if (ZEPHIR_IS_LONG(_12$$9, 416)) {
+			ZEPHIR_CALL_METHOD(&_13$$10, this_ptr, "getprotocolversion", NULL, 0);
+			zephir_check_call_status();
+			_14$$10 = zephir_fetch_nproperty_this(this_ptr, SL("status"), PH_NOISY_CC);
+			_16$$10 = zephir_fetch_nproperty_this(this_ptr, SL("status"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_15$$10, this_ptr, "getmessage", NULL, 0, _16$$10);
+			zephir_check_call_status();
+			ZEPHIR_SINIT_VAR(_17$$10);
+			ZVAL_STRING(&_17$$10, "%s %d %s", 0);
+			ZEPHIR_CALL_FUNCTION(&_18$$10, "sprintf", NULL, 12, &_17$$10, _13$$10, _14$$10, _15$$10);
+			zephir_check_call_status();
+			ZEPHIR_CALL_FUNCTION(NULL, "header", NULL, 107, _18$$10);
+			zephir_check_call_status();
+			ZEPHIR_MM_RESTORE();
+			zephir_exit_empty();
+		}
+		_19$$9 = ZEPHIR_GT_LONG(start, 0);
+		if (!(_19$$9)) {
+			_19$$9 = ZEPHIR_LT_LONG(end, (zephir_get_numberval(size) - 1));
+		}
+		if (_19$$9) {
+			ZEPHIR_INIT_ZVAL_NREF(_20$$11);
+			ZVAL_LONG(_20$$11, 206);
+			zephir_update_property_this(getThis(), SL("status"), _20$$11 TSRMLS_CC);
+		}
+		_21$$9 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_22$$9);
+		ZVAL_STRING(_22$$9, "Accept-Ranges", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_VAR(_23$$9);
+		ZVAL_STRING(_23$$9, "bytes", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, _21$$9, "set", NULL, 0, _22$$9, _23$$9);
+		zephir_check_temp_parameter(_22$$9);
+		zephir_check_temp_parameter(_23$$9);
+		zephir_check_call_status();
+		_24$$9 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+		ZEPHIR_INIT_VAR(_25$$9);
+		ZEPHIR_CONCAT_SVSVSV(_25$$9, "bytes ", start, "-", end, "/", size);
+		ZEPHIR_INIT_NVAR(_22$$9);
+		ZVAL_STRING(_22$$9, "Content-Range", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, _24$$9, "set", NULL, 0, _22$$9, _25$$9);
+		zephir_check_temp_parameter(_22$$9);
+		zephir_check_call_status();
+		_26$$9 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+		ZEPHIR_SINIT_VAR(_27$$9);
+		zephir_sub_function(&_27$$9, end, start);
+		ZEPHIR_INIT_NVAR(_22$$9);
+		ZVAL_STRING(_22$$9, "Content-Length", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_NVAR(_23$$9);
+		ZVAL_LONG(_23$$9, (zephir_get_numberval(&_27$$9) + 1));
+		ZEPHIR_CALL_METHOD(NULL, _26$$9, "set", NULL, 0, _22$$9, _23$$9);
+		zephir_check_temp_parameter(_22$$9);
+		zephir_check_call_status();
+	}
+	_28 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_29);
+	ZEPHIR_CONCAT_VSVS(_29, disposition, "; filename=\"", filename, "\"");
+	ZEPHIR_INIT_VAR(_30);
+	ZVAL_STRING(_30, "Content-Disposition", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _28, "set", NULL, 0, _30, _29);
+	zephir_check_temp_parameter(_30);
+	zephir_check_call_status();
+	_31 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+	ZEPHIR_INIT_NVAR(_30);
+	ZVAL_STRING(_30, "Content-Type", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _31, "set", NULL, 0, _30, mime);
+	zephir_check_temp_parameter(_30);
+	zephir_check_call_status();
+	_32 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+	ZEPHIR_CALL_METHOD(NULL, _32, "send", NULL, 0);
+	zephir_check_call_status();
+	while (1) {
+		ZEPHIR_CALL_FUNCTION(&_33, "ob_get_level", &_34, 97);
+		zephir_check_call_status();
+		if (!(zephir_is_true(_33))) {
+			break;
+		}
+		ZEPHIR_CALL_FUNCTION(NULL, "ob_end_flush", &_35, 112);
+		zephir_check_call_status();
+	}
+	ZEPHIR_CALL_FUNCTION(NULL, "ignore_user_abort", NULL, 113, ZEPHIR_GLOBAL(global_true));
+	zephir_check_call_status();
+	zephir_array_fetch_string(&_36, options, SL("timeout"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 298 TSRMLS_CC);
+	if (ZEPHIR_IS_EMPTY(_36)) {
+		ZEPHIR_SINIT_VAR(_37$$13);
+		ZVAL_LONG(&_37$$13, 0);
+		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_38, 114, &_37$$13);
+		zephir_check_call_status();
+	} else {
+		ZEPHIR_OBS_VAR(_39$$14);
+		zephir_array_fetch_string(&_39$$14, options, SL("timeout"), PH_NOISY, "ice/http/response.zep", 302 TSRMLS_CC);
+		ZEPHIR_SINIT_VAR(_40$$14);
+		ZVAL_LONG(&_40$$14, zephir_get_intval(_39$$14));
+		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_38, 114, &_40$$14);
+		zephir_check_call_status();
+	}
+	block = 16384;
+	zephir_array_fetch_string(&_41, options, SL("sleep"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 308 TSRMLS_CC);
+	if (!(ZEPHIR_IS_EMPTY(_41))) {
+		ZEPHIR_OBS_VAR(_42$$15);
+		zephir_array_fetch_string(&_42$$15, options, SL("sleep"), PH_NOISY, "ice/http/response.zep", 309 TSRMLS_CC);
+		speed = (zephir_get_intval(_42$$15) * 1000);
+	} else {
+		speed = 0;
+	}
+	ZEPHIR_CALL_FUNCTION(NULL, "fseek", NULL, 115, file, start);
+	zephir_check_call_status();
+	while (1) {
+		if (!(!(zephir_feof(file TSRMLS_CC)))) {
+			break;
+		}
+		ZEPHIR_CALL_FUNCTION(&pos, "ftell", &_43, 116, file);
+		zephir_check_call_status();
+		_44$$17 = ZEPHIR_GT(pos, end);
+		if (!(_44$$17)) {
+			ZEPHIR_CALL_FUNCTION(&_45$$17, "connection_aborted", &_46, 117);
+			zephir_check_call_status();
+			_44$$17 = zephir_is_true(_45$$17);
+		}
+		if (_44$$17) {
+			break;
+		}
+		if (ZEPHIR_LT_LONG(end, (zephir_get_numberval(pos) + block))) {
+			ZEPHIR_SINIT_NVAR(_47$$19);
+			zephir_sub_function(&_47$$19, end, pos);
+			block = (zephir_get_numberval(&_47$$19) + 1);
+		}
+		ZEPHIR_SINIT_NVAR(_48$$17);
+		ZVAL_LONG(&_48$$17, block);
+		ZEPHIR_CALL_FUNCTION(&_49$$17, "fread", &_50, 118, file, &_48$$17);
+		zephir_check_call_status();
+		zend_print_zval(_49$$17, 0);
+		ZEPHIR_CALL_FUNCTION(NULL, "flush", &_51, 119);
+		zephir_check_call_status();
+		if (speed > 0) {
+			ZEPHIR_SINIT_NVAR(_52$$20);
+			ZVAL_LONG(&_52$$20, speed);
+			ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_53, 120, &_52$$20);
+			zephir_check_call_status();
+		}
+	}
+	zephir_fclose(file TSRMLS_CC);
+	if (zephir_is_true(isDelete)) {
+
+		/* try_start_1: */
+
+			ZEPHIR_CALL_FUNCTION(NULL, "unlink", NULL, 121, filepath);
+			zephir_check_call_status_or_jump(try_end_1);
+
+		try_end_1:
+
+		if (EG(exception)) {
+			ZEPHIR_INIT_VAR(_54$$21);
+			ZEPHIR_CPY_WRT(_54$$21, EG(exception));
+			ZEPHIR_INIT_VAR(_55$$21);
+			if (zephir_instance_of_ev(_54$$21, zend_exception_get_default(TSRMLS_C) TSRMLS_CC)) {
+				zend_clear_exception(TSRMLS_C);
+				ZEPHIR_CPY_WRT(_55$$21, _54$$21);
+			}
+		}
+	}
+	ZEPHIR_MM_RESTORE();
+	zephir_exit_empty();
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -929,6 +1218,113 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 	zephir_read_property_this(&_0, this_ptr, SL("body"), PH_NOISY_CC);
 	zephir_get_strval(_1, _0);
 	RETURN_CTOR(_1);
+
+}
+
+/**
+ *
+ * At the moment we only support single ranges.
+ * Multiple ranges requires some more work to ensure it works correctly
+ * and comply with the spesifications:
+ *    http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.2
+ *
+ * Multirange support annouces itself with:
+ * header('Accept-Ranges: bytes');
+ *
+ * Multirange content must be sent with multipart/byteranges mediatype,
+ * as well as a boundry header to indicate the various chunks of data.
+ *
+ * @return array The bytes range start and end, error message if there is
+ */
+PHP_METHOD(Ice_Http_Response, getByteRange) {
+
+	zend_bool _15$$5, _16$$5, _12$$7;
+	zephir_fcall_cache_entry *_7 = NULL;
+	zval *size_param = NULL, *_SERVER, *start = NULL, *end = NULL, *range = NULL, *_0$$3, *_1$$3, *_2$$4, *_3$$5, *_4$$5, _5$$6 = zval_used_for_init, *_6$$6 = NULL, *_8$$7, *_9$$7, _10$$7, *_11$$7, *_13$$7, *_14$$8, *_17$$10;
+	zend_long size, ZEPHIR_LAST_CALL_STATUS;
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_SERVER, SS("_SERVER") TSRMLS_CC);
+	zephir_fetch_params(1, 1, 0, &size_param);
+
+	size = zephir_get_intval(size_param);
+
+
+	ZEPHIR_INIT_VAR(start);
+	ZVAL_LONG(start, 0);
+	ZEPHIR_INIT_VAR(end);
+	ZVAL_LONG(end, (size - 1));
+	if (zephir_array_isset_string(_SERVER, SS("HTTP_RANGE"))) {
+		zephir_array_fetch_string(&_0$$3, _SERVER, SL("HTTP_RANGE"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 619 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(range);
+		zephir_fast_explode_str(range, SL("="), _0$$3, 2  TSRMLS_CC);
+		zephir_array_fetch_long(&_1$$3, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 621 TSRMLS_CC);
+		if (!ZEPHIR_IS_STRING(_1$$3, "bytes")) {
+			ZEPHIR_INIT_ZVAL_NREF(_2$$4);
+			ZVAL_LONG(_2$$4, 416);
+			zephir_update_property_this(getThis(), SL("status"), _2$$4 TSRMLS_CC);
+		} else {
+			zephir_array_fetch_long(&_3$$5, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 626 TSRMLS_CC);
+			ZEPHIR_INIT_NVAR(range);
+			zephir_fast_explode_str(range, SL(","), _3$$5, 2  TSRMLS_CC);
+			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 626 TSRMLS_CC);
+			ZEPHIR_CPY_WRT(range, _4$$5);
+			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 629 TSRMLS_CC);
+			if (ZEPHIR_IS_STRING(_4$$5, "-")) {
+				ZEPHIR_SINIT_VAR(_5$$6);
+				ZVAL_LONG(&_5$$6, zephir_get_intval(range));
+				ZEPHIR_CALL_FUNCTION(&_6$$6, "abs", &_7, 122, &_5$$6);
+				zephir_check_call_status();
+				ZEPHIR_SINIT_NVAR(_5$$6);
+				ZVAL_LONG(&_5$$6, (size - zephir_get_numberval(_6$$6)));
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 122, &_5$$6);
+				zephir_check_call_status();
+			} else {
+				ZEPHIR_INIT_VAR(_8$$7);
+				zephir_fast_explode_str(_8$$7, SL("-"), range, LONG_MAX TSRMLS_CC);
+				ZEPHIR_CPY_WRT(range, _8$$7);
+				ZEPHIR_OBS_VAR(_9$$7);
+				zephir_array_fetch_long(&_9$$7, range, 0, PH_NOISY, "ice/http/response.zep", 632 TSRMLS_CC);
+				ZEPHIR_SINIT_VAR(_10$$7);
+				ZVAL_LONG(&_10$$7, zephir_get_intval(_9$$7));
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 122, &_10$$7);
+				zephir_check_call_status();
+				zephir_array_fetch_long(&_11$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 634 TSRMLS_CC);
+				_12$$7 = zephir_is_true(_11$$7);
+				if (_12$$7) {
+					zephir_array_fetch_long(&_13$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 634 TSRMLS_CC);
+					_12$$7 = zephir_is_numeric(_13$$7);
+				}
+				if (_12$$7) {
+					ZEPHIR_OBS_VAR(_14$$8);
+					zephir_array_fetch_long(&_14$$8, range, 1, PH_NOISY, "ice/http/response.zep", 635 TSRMLS_CC);
+					ZEPHIR_INIT_NVAR(end);
+					ZVAL_LONG(end, zephir_get_intval(_14$$8));
+				}
+			}
+			if (ZEPHIR_GT_LONG(end, size)) {
+				ZEPHIR_INIT_NVAR(end);
+				ZVAL_LONG(end, (size - 1));
+			}
+			_15$$5 = ZEPHIR_GT(start, end);
+			if (!(_15$$5)) {
+				_15$$5 = ZEPHIR_GT_LONG(start, (size - 1));
+			}
+			_16$$5 = _15$$5;
+			if (!(_16$$5)) {
+				_16$$5 = ZEPHIR_GE_LONG(end, size);
+			}
+			if (_16$$5) {
+				ZEPHIR_INIT_ZVAL_NREF(_17$$10);
+				ZVAL_LONG(_17$$10, 416);
+				zephir_update_property_this(getThis(), SL("status"), _17$$10 TSRMLS_CC);
+			}
+		}
+	}
+	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
+	zephir_array_fast_append(return_value, start);
+	zephir_array_fast_append(return_value, end);
+	RETURN_MM();
 
 }
 
