@@ -68,9 +68,7 @@ abstract class Model extends Arr implements \Serializable
         }
 
         if filters {
-            if !this->loadOne(filters) {
-                throw new Exception("Not Found");
-            }
+            this->loadOne(filters);
         }
 
         if method_exists(this, "initialize") {
@@ -147,15 +145,14 @@ abstract class Model extends Arr implements \Serializable
      */
     public function load(var filters, array options = [])
     {
-        var result, instances, data, model;
+        var result, instances, data;
 
         let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
-            let model = get_called_class();
             for data in iterator(result) {
-                let instances[] = create_instance_params(model, [null, data]);
+                let instances[] = new static(null, data);
             }
         }
         return new Arr(instances);
@@ -179,11 +176,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        var model;
-
-        let model = get_called_class();
-
-        return new {model}(filters, options);
+        return new static(filters, options);
     }
 
     /**
@@ -200,13 +193,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function find(var filters = null, array options = [])
     {
-        var result, model, instance;
+        var model;
 
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->load(filters, options);
+        let model = new static;
 
-        return result;
+        return model->load(filters, options);
     }
 
     /**
@@ -324,7 +315,7 @@ abstract class Model extends Arr implements \Serializable
 
         let status = this->db->insert(this->from, this->getData());
 
-        if status {
+        if status && autoincrement {
             this->set(this->db->getId(), this->db->getLastInsertId());
         }
 
@@ -499,7 +490,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        return self::findOne(filters);
+        return static::findOne(filters);
     }
 
     /**
