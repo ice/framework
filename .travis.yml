@@ -7,6 +7,7 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - 7.3
   - nightly
 
 matrix:
@@ -21,6 +22,7 @@ services:
 
 before_install:
   - mysql -e 'CREATE DATABASE ice_test;'
+  - echo "source tests/ci/ice_test.sql;" | mysql -u root ice_test
   - sleep 5
   - mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
