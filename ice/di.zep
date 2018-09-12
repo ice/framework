@@ -29,7 +29,7 @@ class Di extends Arr
     {
         parent::__construct(data);
 
-        let self::di = this;
+        let static::di = this;
     }
 
     /**
@@ -39,7 +39,7 @@ class Di extends Arr
      */
     public static function $fetch() -> <Di>
     {
-        return self::di;
+        return static::di;
     }
 
     /**
@@ -272,6 +272,7 @@ class Di extends Arr
      * @param string name The hook name
      * @param mixed callable A callable object
      * @param int priority The hook priority; 0 = high, 10 = low
+     * @return object Di
      */
     public function hook(string name, var callback, int priority = 10)
     {
@@ -282,6 +283,8 @@ class Di extends Arr
         if typeof callback == "callable" {
             let this->hooks[name][priority][] = callback;
         }
+
+        return this;
     }
 
     /**
