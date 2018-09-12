@@ -147,14 +147,15 @@ abstract class Model extends Arr implements \Serializable
      */
     public function load(var filters, array options = [])
     {
-        var result, instances, data;
+        var result, instances, data, model;
 
         let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
+            let model = get_called_class();
             for data in iterator(result) {
-                let instances[] = create_instance_params(get_called_class(), [null, data]);
+                let instances[] = create_instance_params(model, [null, data]);
             }
         }
         return new Arr(instances);
@@ -178,13 +179,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        var result, model, instance;
+        var model;
 
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->loadOne(filters, options);
+        let model = get_called_class();
 
-        return result;
+        return new {model}(filters, options);
     }
 
     /**
