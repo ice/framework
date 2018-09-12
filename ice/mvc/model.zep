@@ -219,16 +219,16 @@ abstract class Model extends Arr implements \Serializable
     protected function fields(var fields = [], boolean primary = true)
     {
         // Check if model has defined valid fields
-        if !count(this->fields) {
+        if empty this->fields {
             // No defined model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all model's data as fields
                 let fields = this->all();
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values
                     let fields = array_merge(this->all(), fields);
                 } else {
@@ -239,13 +239,13 @@ abstract class Model extends Arr implements \Serializable
         } else {
             // Only valid model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all valid model's data as fields
                 let fields = array_intersect_key(this->all(), array_flip(this->fields));
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values, get only valid model's fields
                     let fields = array_intersect_key(array_merge(this->all(), fields), array_flip(this->fields));
                 } else {
@@ -292,7 +292,7 @@ abstract class Model extends Arr implements \Serializable
         this->di->applyHook("model.before.validate", [this]);
 
         // Run validation if rules or validation is specified
-        if count(this->rules) || typeof this->validation == "object" && (this->validation instanceof Validation) {
+        if !empty this->rules || typeof this->validation == "object" && (this->validation instanceof Validation) {
             if !(typeof this->validation == "object" && (this->validation instanceof Validation)) {
                 let this->validation = new Validation();
             }
@@ -316,7 +316,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.after.validate", [this]);
 
-        if count(this->messages) {
+        if !empty this->messages {
             return false;
         }
 
@@ -384,7 +384,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.after.validate", [this]);
 
-        if count(this->messages) {
+        if !empty this->messages {
             // Rollback changes and restore old data
             this->setData(data);
             return false;
