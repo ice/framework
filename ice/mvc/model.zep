@@ -176,7 +176,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        return new static(filters, options);
+        return (new static)->loadOne(filters, options);
     }
 
     /**
@@ -315,7 +315,7 @@ abstract class Model extends Arr implements \Serializable
 
         let status = this->db->insert(this->from, this->getData());
 
-        if status && autoincrement {
+        if status && this->autoincrement {
             this->set(this->db->getId(), this->db->getLastInsertId());
         }
 
