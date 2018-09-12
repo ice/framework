@@ -714,6 +714,7 @@ abstract class Model extends Arr implements \Serializable
             } elseif typeof fields == "string" && isset this->rules[fields] {
                 return this->rules[fields];
             }
+            return null;
         }
 
         return this->rules;
