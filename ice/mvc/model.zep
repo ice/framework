@@ -32,6 +32,8 @@ abstract class Model extends Arr implements \Serializable
     protected labels = [] { set };
     protected rules = [];
     protected messages = [] { get, set };
+    
+    protected isLoaded = false;
 
     const BELONGS_TO = 1;
     const HAS_ONE = 2;
@@ -68,7 +70,7 @@ abstract class Model extends Arr implements \Serializable
         }
 
         if filters {
-            this->loadOne(filters);
+            let this->isLoaded = this->loadOne(filters);
         }
 
         if method_exists(this, "initialize") {
@@ -149,14 +151,16 @@ abstract class Model extends Arr implements \Serializable
      */
     public function load(var filters, array options = [])
     {
-        var result, instances, data;
+        var result, instances, data, model;
 
         let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
             for data in iterator(result) {
-                let instances[] = new static(null, data);
+                let model = new static(null, data),
+                    model->isLoaded = true,
+                    instances[] = model;
             }
         }
         return new Arr(instances);
@@ -180,7 +184,9 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        return (new static)->loadOne(filters, options);
+        var model;
+        let model = new static(filters, options);
+        return model->isLoaded ? model : false;
     }
 
     /**
