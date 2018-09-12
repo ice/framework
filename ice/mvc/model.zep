@@ -126,6 +126,10 @@ abstract class Model extends Arr implements \Serializable
     {
         var result;
 
+        if empty filters {
+            return false;
+        }
+
         let result = this->db->findOne(this->from, filters, options);
 
         if result {
