@@ -7,12 +7,22 @@ php:
   - 7.0
   - 7.1
   - 7.2
+  - nightly
 
 matrix:
   allow_failures:
-    - php: 7.3
+    - php:
+        - 7.3
+        - nightly
+
+services:
+  - mongodb
+  - mysql
 
 before_install:
+  - mysql -e 'CREATE DATABASE ice_test;'
+  - sleep 5
+  - mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_pgp.enc -out ~/.gnupg/id_pgp -d; chmod 600 ~/.gnupg/id_pgp; gpg --allow-secret-key-import --import ~/.gnupg/id_pgp; fi
   - git config push.default simple
