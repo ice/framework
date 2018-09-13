@@ -79,6 +79,45 @@ class Pdo implements DbInterface
 
         return date;
     }
+    
+    /**
+     * Query sql statement. execute the statement and populate into Model object:
+     * $m = $this->db->query('select*from t where id=:id', [':id' => 1], new static);
+     *
+     * @param string sql SQL with kinda of placeholders
+     * @param array values Replace placeholders in the sql
+     * @param mixed obj The object will be populated from query result
+     * @return PDOStatement|object|null
+     */
+    public function query(string sql, array values = [], var obj = null)
+    {
+        var query, result;
+        
+        let query = this->client->prepare(sql);
+   
+        query->execute(values);
+
+        let this->error = query->errorInfo();
+        
+        if empty this->error && obj {
+            if typeof obj == "string" {
+                let obj = new {obj}();
+            }
+            if obj instanceof Arr {
+                let result = query->fetch(PDO::FETCH_ASSOC);
+                if result {
+                    obj->replace(result);
+                } else {
+                    let obj = null;
+                }
+                return obj;
+            } else {
+                throw new Exception(["Only instance of Arr is allowed for populate the result. %s given", get_class(obj)]);
+            }
+        }
+
+        return query;
+    }
 
     /**
      * Find one row that match criteria.
