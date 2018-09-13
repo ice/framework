@@ -80,17 +80,19 @@ class DbTest extends PHPUnit
         $roles = $this->mongo->find('roles');
 
         if (!$roles->count()) {
-            $create = $this->mongo->create('roles', [
+            $insert = $this->mongo->insert('roles', [
+                'id' => 1,
                 'name' => 'login',
                 'description' => 'Login privileges, granted after account confirmation.',
             ]);
-            $this->assertTrue($create);
+            $this->assertTrue($insert);
 
-            $create = $this->mongo->create('roles', [
+            $insert = $this->mongo->insert('roles', [
+                'id' => 2,
                 'name' => 'admin',
                 'description' => 'Administrative user, has access to everything.',
             ]);
-            $this->assertTrue($create);
+            $this->assertTrue($insert);
         }
     }
 
@@ -102,6 +104,10 @@ class DbTest extends PHPUnit
     public function testMongoFindOne($from, $filters, $expected)
     {
         $return = $this->mongo->findOne($from, $filters);
+
+        if ($return instanceof Arr) {
+            unset($return['_id']);
+        }
 
         if (is_array($expected)) {
             $expected = new Arr($expected);
