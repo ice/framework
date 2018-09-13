@@ -1026,14 +1026,13 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
  *
  * @param array forward
  * @param boolean force
- * @param boolean clear
  * @return object Dispatcher
  */
 PHP_METHOD(Ice_Dispatcher, forward) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool force, clear;
-	zval *forward_param = NULL, *force_param = NULL, *clear_param = NULL, __$true, __$false, module, handler, action, params, _0$$3, _1$$4, _2$$4, _3$$4, _4$$5, _5$$6, _6$$6, _7$$6, _8$$7, _9$$8, _10$$8, _11$$8, _12$$10;
+	zend_bool force;
+	zval *forward_param = NULL, *force_param = NULL, __$true, __$false, module, handler, action, params, _0$$3, _1$$4, _2$$5;
 	zval forward;
 	zval *this_ptr = getThis();
 
@@ -1046,31 +1045,16 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$4);
-	ZVAL_UNDEF(&_2$$4);
-	ZVAL_UNDEF(&_3$$4);
-	ZVAL_UNDEF(&_4$$5);
-	ZVAL_UNDEF(&_5$$6);
-	ZVAL_UNDEF(&_6$$6);
-	ZVAL_UNDEF(&_7$$6);
-	ZVAL_UNDEF(&_8$$7);
-	ZVAL_UNDEF(&_9$$8);
-	ZVAL_UNDEF(&_10$$8);
-	ZVAL_UNDEF(&_11$$8);
-	ZVAL_UNDEF(&_12$$10);
+	ZVAL_UNDEF(&_2$$5);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 2, &forward_param, &force_param, &clear_param);
+	zephir_fetch_params(1, 1, 1, &forward_param, &force_param);
 
 	ZEPHIR_OBS_COPY_OR_DUP(&forward, forward_param);
 	if (!force_param) {
 		force = 0;
 	} else {
 		force = zephir_get_boolval(force_param);
-	}
-	if (!clear_param) {
-		clear = 0;
-	} else {
-		clear = zephir_get_boolval(clear_param);
 	}
 
 
@@ -1079,48 +1063,22 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 		zephir_read_property(&_0$$3, this_ptr, SL("module"), PH_NOISY_CC | PH_READONLY);
 		zephir_update_property_zval(this_ptr, SL("previousModule"), &_0$$3);
 		zephir_update_property_zval(this_ptr, SL("module"), &module);
-	} else if (clear) {
-		zephir_read_property(&_1$$4, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_2$$4, &_1$$4, SL("router"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(&_3$$4, &_2$$4, "getdefaultmodule", NULL, 0);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setmodule", NULL, 0, &_3$$4);
-		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&handler);
 	if (zephir_array_isset_string_fetch(&handler, &forward, SL("handler"), 0)) {
-		zephir_read_property(&_4$$5, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
-		zephir_update_property_zval(this_ptr, SL("previousHandler"), &_4$$5);
+		zephir_read_property(&_1$$4, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
+		zephir_update_property_zval(this_ptr, SL("previousHandler"), &_1$$4);
 		zephir_update_property_zval(this_ptr, SL("handler"), &handler);
-	} else if (clear) {
-		zephir_read_property(&_5$$6, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_6$$6, &_5$$6, SL("router"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(&_7$$6, &_6$$6, "getdefaulthandler", NULL, 0);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "sethandler", NULL, 0, &_7$$6);
-		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&action);
 	if (zephir_array_isset_string_fetch(&action, &forward, SL("action"), 0)) {
-		zephir_read_property(&_8$$7, this_ptr, SL("action"), PH_NOISY_CC | PH_READONLY);
-		zephir_update_property_zval(this_ptr, SL("previousAction"), &_8$$7);
+		zephir_read_property(&_2$$5, this_ptr, SL("action"), PH_NOISY_CC | PH_READONLY);
+		zephir_update_property_zval(this_ptr, SL("previousAction"), &_2$$5);
 		zephir_update_property_zval(this_ptr, SL("action"), &action);
-	} else if (clear) {
-		zephir_read_property(&_9$$8, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
-		zephir_read_property(&_10$$8, &_9$$8, SL("router"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_METHOD(&_11$$8, &_10$$8, "getdefaultaction", NULL, 0);
-		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setaction", NULL, 0, &_11$$8);
-		zephir_check_call_status();
 	}
 	ZEPHIR_OBS_VAR(&params);
 	if (zephir_array_isset_string_fetch(&params, &forward, SL("params"), 0)) {
 		zephir_update_property_zval(this_ptr, SL("params"), &params);
-	} else if (clear) {
-		ZEPHIR_INIT_VAR(&_12$$10);
-		array_init(&_12$$10);
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setparams", NULL, 0, &_12$$10);
-		zephir_check_call_status();
 	}
 	if (0) {
 		zephir_update_property_zval(this_ptr, SL("finished"), &__$true);
@@ -1136,6 +1094,53 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "dispatch", NULL, 0);
 		zephir_check_call_status();
 	}
+	RETURN_THIS();
+
+}
+
+/**
+ * Reset module, handler and action to default ones, and empty the params.
+ *
+ * @return object Dispatcher
+ */
+PHP_METHOD(Ice_Dispatcher, reset) {
+
+	zval router, _0, _1, _2, _3, _4, _5, _6, _7, _8;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&router);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_3);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_8);
+
+	ZEPHIR_MM_GROW();
+
+	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, &_0, SL("router"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CPY_WRT(&router, &_1);
+	ZEPHIR_CALL_METHOD(&_3, &router, "getdefaultmodule", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_2, this_ptr, "setmodule", NULL, 0, &_3);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_5, &router, "getdefaulthandler", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_4, &_2, "sethandler", NULL, 0, &_5);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_7, &router, "getdefaultaction", NULL, 0);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_6, &_4, "setaction", NULL, 0, &_7);
+	zephir_check_call_status();
+	ZEPHIR_INIT_VAR(&_8);
+	array_init(&_8);
+	ZEPHIR_CALL_METHOD(NULL, &_6, "setparams", NULL, 0, &_8);
+	zephir_check_call_status();
 	RETURN_THIS();
 
 }
