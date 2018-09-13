@@ -44,6 +44,25 @@ class ModelTest extends PHPUnit
     }
 
     /**
+     * Test construct
+     *
+     * @dataProvider roles
+     */
+    public function testConstruct($filters, $expected)
+    {
+        $role = new Roles($filters);
+
+        if ($expected) {
+            $this->assertTrue($role->exists());
+
+            $data = $role->getData();
+            $this->assertEquals($expected, $data);
+        } else {
+            $this->assertFalse($role->exists());
+        }
+    }
+
+    /**
      * Test find one
      *
      * @dataProvider roles
