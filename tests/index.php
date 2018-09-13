@@ -5,6 +5,8 @@ if (!defined('__ROOT__')) {
 }
 
 (new Ice\Loader())
-    ->addNamespace('App', __ROOT__ . '/app')
+    ->addNamespace('App', __ROOT__ . '/App')
     ->addNamespace('Tests', __ROOT__ . '/tests')
     ->register();
+
+include_once __ROOT__ . '/vendor/autoload.php';
