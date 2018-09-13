@@ -18,7 +18,7 @@
         'password' => 'password',
         'name'     => 'ice_test',
         'options' => [
-            'authMechanism' => 'MONGODB-CR',
+            'authMechanism' => 'SCRAM-SHA-1',
         ],
     ],
 ];

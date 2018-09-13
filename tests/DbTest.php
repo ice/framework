@@ -77,7 +77,7 @@ class DbTest extends PHPUnit
 
     public function testMongoAddRoles()
     {
-        $roles = $this->mongo->find();
+        $roles = $this->mongo->find('roles');
 
         if (!$roles->count()) {
             $create = $this->mongo->create('roles', [
