@@ -32,6 +32,20 @@ class DbTest extends PHPUnit
             return $db;
         });
 
+        $di->set('mongo', function () use ($config) {
+            $db = new Db(
+                $config->mongodb->type,
+                $config->mongodb->host,
+                $config->mongodb->port,
+                $config->mongodb->name,
+                $config->mongodb->user,
+                $config->mongodb->password,
+                $config->mongodb->options
+            );
+
+            return $db;
+        });
+
         self::$di = $di;
     }
 
@@ -57,6 +71,21 @@ class DbTest extends PHPUnit
         if (is_array($expected)) {
             $expected = new Arr($expected);
         }
+
+        $this->assertEquals($expected, $return);
+    }
+
+    /**
+     * Test find one
+     *
+     * @dataProvider roles
+     */
+    public function testMongoFindOne($from, $filters, $expected)
+    {
+        $return = $this->mongo->findOne($from, $filters);
+
+        // No roles yet
+        $expected = false;
 
         $this->assertEquals($expected, $return);
     }

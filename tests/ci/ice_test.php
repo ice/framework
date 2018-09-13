@@ -16,7 +16,7 @@
         'port'     => 27017,
         'user'     => 'root',
         'password' => 'password',
-        'name'     => 'ice',
+        'name'     => 'ice_test',
         'options' => [
             'authMechanism' => 'MONGODB-CR',
         ],
