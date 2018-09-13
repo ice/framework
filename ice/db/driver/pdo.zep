@@ -89,7 +89,7 @@ class Pdo implements DbInterface
      * @param mixed obj The object will be populated from query result
      * @return PDOStatement|object|null
      */
-    public function query(string sql, array values = [], var obj = null)
+    public function query(string! sql, array values = [], var obj = null)
     {
         var query, result;
         
