@@ -40,7 +40,7 @@ class DbTest extends PHPUnit
                 $config->mongodb->name,
                 $config->mongodb->user,
                 $config->mongodb->password,
-                $config->mongodb->options
+                $config->mongodb->options->toArray()
             );
 
             return $db;
@@ -75,6 +75,25 @@ class DbTest extends PHPUnit
         $this->assertEquals($expected, $return);
     }
 
+    public function testMongoAddRoles()
+    {
+        $roles = $this->mongo->find();
+
+        if (!$roles->count()) {
+            $create = $this->mongo->create('roles', [
+                'name' => 'login',
+                'description' => 'Login privileges, granted after account confirmation.',
+            ]);
+            $this->assertTrue($create);
+
+            $create = $this->mongo->create('roles', [
+                'name' => 'admin',
+                'description' => 'Administrative user, has access to everything.',
+            ]);
+            $this->assertTrue($create);
+        }
+    }
+
     /**
      * Test find one
      *
@@ -84,8 +103,9 @@ class DbTest extends PHPUnit
     {
         $return = $this->mongo->findOne($from, $filters);
 
-        // No roles yet
-        $expected = false;
+        if (is_array($expected)) {
+            $expected = new Arr($expected);
+        }
 
         $this->assertEquals($expected, $return);
     }
