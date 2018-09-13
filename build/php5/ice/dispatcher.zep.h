@@ -41,6 +41,7 @@ PHP_METHOD(Ice_Dispatcher, getActiveMethod);
 PHP_METHOD(Ice_Dispatcher, addModule);
 PHP_METHOD(Ice_Dispatcher, dispatch);
 PHP_METHOD(Ice_Dispatcher, forward);
+PHP_METHOD(Ice_Dispatcher, reset);
 zend_object_value zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_setdefaultnamespace, 0, 0, 1)
@@ -119,7 +120,6 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dispatcher_forward, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, forward, 0)
 	ZEND_ARG_INFO(0, force)
-	ZEND_ARG_INFO(0, clear)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
@@ -161,5 +161,6 @@ ZEPHIR_INIT_FUNCS(ice_dispatcher_method_entry) {
 	PHP_ME(Ice_Dispatcher, addModule, arginfo_ice_dispatcher_addmodule, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, dispatch, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dispatcher, forward, arginfo_ice_dispatcher_forward, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dispatcher, reset, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
