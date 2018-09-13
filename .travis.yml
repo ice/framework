@@ -24,6 +24,7 @@ before_install:
   - echo "source tests/ci/ice_test.sql;" | mysql -u root ice_test
   - sleep 5
   - mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
+  - pecl install mongodb
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_rsa.enc -out ~/.ssh/id_rsa -d; chmod 600 ~/.ssh/id_rsa; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then openssl aes-256-cbc -k "$encrypted_key" -in id_pgp.enc -out ~/.gnupg/id_pgp -d; chmod 600 ~/.gnupg/id_pgp; gpg --allow-secret-key-import --import ~/.gnupg/id_pgp; fi
   - git config push.default simple
