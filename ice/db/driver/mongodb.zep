@@ -102,7 +102,7 @@ class Mongodb implements DbInterface
      * @param mixed obj The object will be populated from query result
      * @return todo
      */
-    public function query(string sql, array values = [], var obj = null)
+    public function query(string! sql, array values = [], var obj = null)
     {
         throw new Exception("This function is not implement yet. please use find(...) for your need");
     }
