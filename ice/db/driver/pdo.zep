@@ -104,7 +104,7 @@ class Pdo implements DbInterface
                 let obj = new {obj}();
             }
             if obj instanceof Arr {
-                let result = query->$fetch(PDO::FETCH_ASSOC);
+                let result = query->$fetch();
                 if result {
                     obj->replace(result);
                 } else {
