@@ -106,6 +106,7 @@ class DbTest extends PHPUnit
         $return = $this->mongo->findOne($from, $filters);
 
         if ($return instanceof Arr) {
+            // Remove the ObjectId
             unset($return['_id']);
         }
 
@@ -124,7 +125,7 @@ class DbTest extends PHPUnit
     public function roles()
     {
         return [
-            ['roles', 1, ['id' => 1, 'name' => 'login', 'description' => 'Login privileges, granted after account confirmation']],
+            ['roles', ['id' => 1], ['id' => 1, 'name' => 'login', 'description' => 'Login privileges, granted after account confirmation']],
             ['roles', ['name' => 'admin'], ['id' => 2, 'name' => 'admin', 'description' => 'Administrative user, has access to everything.']],
             ['roles', ['name' => 'mod'], false],
         ];
