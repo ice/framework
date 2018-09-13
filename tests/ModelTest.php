@@ -8,7 +8,7 @@ use Tests\App\Bootstrap;
 use Tests\App\Models\Roles;
 use Tests\App\Models\MongoRoles;
 
-class DbTest extends PHPUnit
+class ModelTest extends PHPUnit
 {
     private static $di;
 
