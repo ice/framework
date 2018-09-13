@@ -286,10 +286,9 @@ abstract class Dispatcher
      *
      * @param array forward
      * @param boolean force
-     * @param boolean clear
      * @return object Dispatcher
      */
-    public function forward(array! forward, boolean force = false, boolean clear = false)
+    public function forward(array! forward, boolean force = false)
     {
         var module, handler, action, params;
 
@@ -297,31 +296,23 @@ abstract class Dispatcher
         if fetch module, forward["module"] {
             let this->previousModule = this->module,
                 this->module = module;
-        } elseif clear {
-            this->setModule(this->di->router->getDefaultModule());
         }
 
         // Check if we need to forward to another handler
         if fetch handler, forward["handler"] {
             let this->previousHandler = this->handler,
                 this->handler = handler;
-        } elseif clear {
-            this->setHandler(this->di->router->getDefaultHandler());
         }
 
         // Check if we need to forward to another action
         if fetch action, forward["action"] {
             let this->previousAction = this->action,
                 this->action = action;
-        } elseif clear {
-            this->setAction(this->di->router->getDefaultAction());
         }
 
         // Check if we need to forward changing the current parameters
         if fetch params, forward["params"] {
             let this->params = params;
-        } elseif clear {
-            this->setParams([]);
         }
 
         let this->finished = false,
@@ -330,6 +321,24 @@ abstract class Dispatcher
         if force {
             this->dispatch();
         }
+
+        return this;
+    }
+    /**
+     * Reset module, handler and action to default ones, and empty the params.
+     *
+     * @return object Dispatcher
+     */
+    public function reset()
+    {
+        var router;
+
+        let router = this->di->router;
+
+        this->setModule(router->getDefaultModule())
+            ->setHandler(router->getDefaultHandler())
+            ->setAction(router->getDefaultAction())
+            ->setParams([]);
 
         return this;
     }
