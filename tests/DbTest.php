@@ -4,49 +4,15 @@ namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Arr;
-use Ice\Di;
-use Ice\Db;
-use Ice\Config;
+use Tests\App\Bootstrap;
 
 class DbTest extends PHPUnit
 {
-
     private static $di;
 
     public static function setUpBeforeClass()
     {
-        $di = new Di();
-        $config = new Config(__ROOT__ . '/tests/ci/ice_test.php');
-
-        $di->set('db', function () use ($config) {
-            $db = new Db(
-                $config->mysql->type,
-                $config->mysql->host,
-                $config->mysql->port,
-                $config->mysql->name,
-                $config->mysql->user,
-                $config->mysql->password,
-                $config->mysql->options
-            );
-
-            return $db;
-        });
-
-        $di->set('mongo', function () use ($config) {
-            $db = new Db(
-                $config->mongodb->type,
-                $config->mongodb->host,
-                $config->mongodb->port,
-                $config->mongodb->name,
-                $config->mongodb->user,
-                $config->mongodb->password,
-                $config->mongodb->options->toArray()
-            );
-
-            return $db;
-        });
-
-        self::$di = $di;
+        self::$di = (new Bootstrap(['config', 'db', 'mongo']))->getDi();
     }
 
     public static function tearDownAfterClass()
