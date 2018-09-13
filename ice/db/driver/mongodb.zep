@@ -95,6 +95,19 @@ class Mongodb implements DbInterface
     }
 
     /**
+     * Query sql statement. execute the statement and populate into Model object:
+     *
+     * @param string sql SQL with kinda of placeholders
+     * @param array values Replace placeholders in the sql
+     * @param mixed obj The object will be populated from query result
+     * @return todo
+     */
+    public function query(string sql, array values = [], var obj = null)
+    {
+        throw new Exception("This function is not implement yet. please use find(...) for your need");
+    }
+
+    /**
      * Find one document that match criteria.
      *
      * @param string from Collection name
