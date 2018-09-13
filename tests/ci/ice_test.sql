@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `description`) VALUES
-(1, 'login', 'Login privileges, granted after account confirmation'),
+(1, 'login', 'Login privileges, granted after account confirmation.'),
 (2, 'admin', 'Administrative user, has access to everything.');
 
 -- --------------------------------------------------------
