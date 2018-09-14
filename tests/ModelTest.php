@@ -3,6 +3,7 @@
 namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
+use Ice\Exception;
 use Ice\Arr;
 use Tests\App\Bootstrap;
 use Tests\App\Models\Roles;
@@ -50,15 +51,14 @@ class ModelTest extends PHPUnit
      */
     public function testConstruct($filters, $expected)
     {
-        $role = new Roles($filters);
-
         if ($expected) {
-            $this->assertTrue($role->exists());
-
+            $role = new Roles($filters);
             $data = $role->getData();
             $this->assertEquals($expected, $data);
         } else {
-            $this->assertFalse($role->exists());
+            $this->expectException(\Ice\Exception::class);
+            $this->expectExceptionMessage('Not Found');
+            $role = new Roles($filters);
         }
     }
 
