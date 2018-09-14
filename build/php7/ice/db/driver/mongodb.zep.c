@@ -186,10 +186,8 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
 
 
 	object_init_ex(return_value, zephir_get_internal_ce(SL("mongodb\\bson\\objectid")));
-	if (zephir_has_constructor(return_value TSRMLS_CC)) {
-		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, &id);
-		zephir_check_call_status();
-	}
+	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0, &id);
+	zephir_check_call_status();
 	RETURN_MM();
 
 }
@@ -267,10 +265,8 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 
 		ZEPHIR_INIT_NVAR(&date);
 		object_init_ex(&date, zephir_get_internal_ce(SL("mongodb\\bson\\utcdatetime")));
-		if (zephir_has_constructor(&date TSRMLS_CC)) {
-			ZEPHIR_CALL_METHOD(NULL, &date, "__construct", NULL, 0, value);
-			zephir_check_call_status();
-		}
+		ZEPHIR_CALL_METHOD(NULL, &date, "__construct", NULL, 0, value);
+		zephir_check_call_status();
 	}
 	if (zephir_is_true(model)) {
 		RETURN_CCTOR(&date);
