@@ -14,7 +14,10 @@
         <directory>./</directory>
     </testsuite>
     <testsuite name="stable">
+        <file>CryptTest.php</file>
+        <file>DbTest.php</file>
         <file>FastRouteTest.php</file>
+        <file>ModelTest.php</file>
         <file>SleetTest.php</file>
         <file>TagTest.php</file>
         <file>ValidationTest.php</file>
