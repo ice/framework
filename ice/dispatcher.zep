@@ -262,7 +262,7 @@ abstract class Dispatcher
                 throw new Exception("Action parameters must be an array", self::INVALID_PARAMS);
             }
 
-            let this->returnedValue = call_user_func_array([handler, actionMethod], params);
+            let this->returnedValue = handler->{actionMethod}(...params);
 
             if this->finished === false {
                 continue;
