@@ -184,15 +184,13 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 			ZEPHIR_INIT_NVAR(value);
 			if (zephir_instance_of_ev(_16$$14, ice_db_driver_mongodb_ce TSRMLS_CC)) {
 				object_init_ex(value, zephir_get_internal_ce(SS("mongodb\\bson\\regex") TSRMLS_CC));
-				if (zephir_has_constructor(value TSRMLS_CC)) {
-					ZEPHIR_INIT_VAR(_17$$15);
-					ZEPHIR_CONCAT_SVS(_17$$15, "^", tmp, "$");
-					ZEPHIR_INIT_VAR(_18$$15);
-					ZVAL_STRING(_18$$15, "i", ZEPHIR_TEMP_PARAM_COPY);
-					ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _17$$15, _18$$15);
-					zephir_check_temp_parameter(_18$$15);
-					zephir_check_call_status();
-				}
+				ZEPHIR_INIT_VAR(_17$$15);
+				ZEPHIR_CONCAT_SVS(_17$$15, "^", tmp, "$");
+				ZEPHIR_INIT_VAR(_18$$15);
+				ZVAL_STRING(_18$$15, "i", ZEPHIR_TEMP_PARAM_COPY);
+				ZEPHIR_CALL_METHOD(NULL, value, "__construct", NULL, 0, _17$$15, _18$$15);
+				zephir_check_temp_parameter(_18$$15);
+				zephir_check_call_status();
 			} else {
 				object_init_ex(value, zephir_get_internal_ce(SS("mongoregex") TSRMLS_CC));
 				if (zephir_has_constructor(value TSRMLS_CC)) {
