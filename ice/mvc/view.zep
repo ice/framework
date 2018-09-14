@@ -98,19 +98,35 @@ class View extends Arr implements ViewInterface
             let dirs = [this->viewsDir];
         }
 
-        for ext, engine in engines {
-            for dir in dirs {
-                let path = dir . this->file . ext;
-                if file_exists(path) {
-                    let exists = true;
-                    this->replace(data);
-                    let content = engine->render(path, this->all());
-                    break;
+        let ext = pathinfo(this->file, PATHINFO_EXTENSION);
+
+        if !empty ext {
+            if fetch engine, engines["." . ext] {            
+                for dir in dirs {
+                    let path = dir . this->file;
+                    if file_exists(path) {
+                        let exists = true;
+                        this->replace(data);
+                        let content = engine->render(path, this->all());
+                        break;
+                    }
                 }
             }
-            // no need to lookup and parse the other view
-            if exists {
-                break;
+        } else {
+            for ext, engine in engines {
+                for dir in dirs {
+                    let path = dir . this->file . ext;
+                    if file_exists(path) {
+                        let exists = true;
+                        this->replace(data);
+                        let content = engine->render(path, this->all());
+                        break;
+                    }
+                }
+                // no need to lookup and parse the other view
+                if exists {
+                    break;
+                }
             }
         }
 
