@@ -118,7 +118,7 @@ PHP_METHOD(Ice_Validation_Validator_Alpha, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alpha", NULL, 165, &value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alpha", NULL, 166, &value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_1))) {
 		ZEPHIR_INIT_VAR(&_3$$4);
