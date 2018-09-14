@@ -200,6 +200,19 @@ class View extends Arr implements ViewInterface
     }
 
     /**
+     * Add view directory.
+     *
+     * @param mixed dir View directory or directories
+     * @return object View
+     */
+    public function addViewsDir(var dir)
+    {
+        let this->viewsDir = array_unique(array_merge((array)this->viewsDir, (array)dir));
+
+        return this;
+    }
+
+    /**
      * Magic toStrint, get the rendered view.
      */
     public function __toString()
