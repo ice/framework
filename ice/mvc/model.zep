@@ -32,6 +32,8 @@ abstract class Model extends Arr implements \Serializable
     protected labels = [] { set };
     protected rules = [];
     protected messages = [] { get, set };
+    
+    protected isLoaded = false;
 
     const BELONGS_TO = 1;
     const HAS_ONE = 2;
@@ -68,9 +70,7 @@ abstract class Model extends Arr implements \Serializable
         }
 
         if filters {
-            if !this->loadOne(filters) {
-                throw new Exception("Not Found");
-            }
+            let this->isLoaded = this->loadOne(filters);
         }
 
         if method_exists(this, "initialize") {
@@ -128,6 +128,10 @@ abstract class Model extends Arr implements \Serializable
     {
         var result;
 
+        if empty filters {
+            return false;
+        }
+
         let result = this->db->findOne(this->from, filters, options);
 
         if result {
@@ -147,14 +151,16 @@ abstract class Model extends Arr implements \Serializable
      */
     public function load(var filters, array options = [])
     {
-        var result, instances, data;
+        var result, instances, data, model;
 
         let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
             for data in iterator(result) {
-                let instances[] = create_instance_params(get_called_class(), [null, data]);
+                let model = new static(null, data),
+                    model->isLoaded = true,
+                    instances[] = model;
             }
         }
         return new Arr(instances);
@@ -178,13 +184,9 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        var result, model, instance;
-
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->loadOne(filters, options);
-
-        return result;
+        var model;
+        let model = new static(filters, options);
+        return model->isLoaded ? model : false;
     }
 
     /**
@@ -201,13 +203,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function find(var filters = null, array options = [])
     {
-        var result, model, instance;
+        var model;
 
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->load(filters, options);
+        let model = new static;
 
-        return result;
+        return model->load(filters, options);
     }
 
     /**
@@ -220,16 +220,16 @@ abstract class Model extends Arr implements \Serializable
     protected function fields(var fields = [], boolean primary = true)
     {
         // Check if model has defined valid fields
-        if !count(this->fields) {
+        if empty this->fields {
             // No defined model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all model's data as fields
                 let fields = this->all();
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values
                     let fields = array_merge(this->all(), fields);
                 } else {
@@ -240,13 +240,13 @@ abstract class Model extends Arr implements \Serializable
         } else {
             // Only valid model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all valid model's data as fields
                 let fields = array_intersect_key(this->all(), array_flip(this->fields));
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values, get only valid model's fields
                     let fields = array_intersect_key(array_merge(this->all(), fields), array_flip(this->fields));
                 } else {
@@ -293,7 +293,7 @@ abstract class Model extends Arr implements \Serializable
         this->di->applyHook("model.before.validate", [this]);
 
         // Run validation if rules or validation is specified
-        if count(this->rules) || typeof this->validation == "object" && (this->validation instanceof Validation) {
+        if !empty this->rules || typeof this->validation == "object" && (this->validation instanceof Validation) {
             if !(typeof this->validation == "object" && (this->validation instanceof Validation)) {
                 let this->validation = new Validation();
             }
@@ -317,7 +317,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.after.validate", [this]);
 
-        if count(this->messages) {
+        if !empty this->messages {
             return false;
         }
 
@@ -325,7 +325,7 @@ abstract class Model extends Arr implements \Serializable
 
         let status = this->db->insert(this->from, this->getData());
 
-        if status {
+        if status && this->autoincrement {
             this->set(this->db->getId(), this->db->getLastInsertId());
         }
 
@@ -385,7 +385,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.after.validate", [this]);
 
-        if count(this->messages) {
+        if !empty this->messages {
             // Rollback changes and restore old data
             this->setData(data);
             return false;
@@ -500,7 +500,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        return self::findOne(filters);
+        return static::findOne(filters);
     }
 
     /**
@@ -715,6 +715,7 @@ abstract class Model extends Arr implements \Serializable
             } elseif typeof fields == "string" && isset this->rules[fields] {
                 return this->rules[fields];
             }
+            return null;
         }
 
         return this->rules;
