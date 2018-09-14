@@ -101,9 +101,9 @@ class View extends Arr implements ViewInterface
         let ext = pathinfo(this->file, PATHINFO_EXTENSION);
 
         if !empty ext {
-            if fetch engine, engines[ext] {            
+            if fetch engine, engines["." . ext] {            
                 for dir in dirs {
-                    let path = dir . this->file . ext;
+                    let path = dir . this->file;
                     if file_exists(path) {
                         let exists = true;
                         this->replace(data);
