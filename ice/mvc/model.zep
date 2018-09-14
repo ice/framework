@@ -192,7 +192,7 @@ abstract class Model extends Arr implements \Serializable
 
         let model = create_instance_params(get_called_class(), [filters, null, options]);
 
-        return model->isLoaded ? instance : false;
+        return model->isLoaded ? model : false;
     }
 
     /**
