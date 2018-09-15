@@ -129,7 +129,7 @@ class Di extends Arr
                 // Array definitions store class name at first parameter
                 if typeof service == "array" {
                     let params = current(service),
-                        service = this->build(key(service), params == "array" ? params : [params]);
+                        service = this->build(key(service), typeof params == "array" ? params : [params]);
                 }
             }
         }
