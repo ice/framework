@@ -258,8 +258,18 @@ class Assets
             dir = dirname(uri) . DIRECTORY_SEPARATOR,
             file = basename(uri, "." . type),
             uriMin = target . dir . file . ".min." . type,
-            destination = source . uriMin,
+            destination = _SERVER["DOCUMENT_ROOT"] . uriMin,
             exist = false;
+
+        // there is no source dir, try to load from document root
+        if uri[0] != "/" && empty source {
+            let uri = "/" . uri;
+        }
+
+        // uri is start from absolute path, try to load from document root
+        if uri[0] == "/" || empty source {
+            let source = _SERVER["DOCUMENT_ROOT"];
+        }
 
         switch minify {
             case self::NOT_EXIST:
