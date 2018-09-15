@@ -24,6 +24,8 @@ class App extends Access
      * App constructor
      *
      * @param Di $di
+     * @param array modules
+     * @param boolean isAutoRender
      */
     public function __construct(<Di> di = null, array modules = [], boolean isAutoRender = true)
     {
