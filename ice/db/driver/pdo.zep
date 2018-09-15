@@ -366,7 +366,7 @@ class Pdo implements DbInterface
         var filtered, sql, values, query, status;
 
         let filtered = this->where(filters),
-            sql = "DELETE FROM " . sprintf(this->identifier, key) . " WHERE " . filtered[0],
+            sql = "DELETE FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
             values = filtered[1],
             query = this->client->prepare(sql),
             status = query->execute(values),
