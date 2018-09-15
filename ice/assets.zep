@@ -262,12 +262,12 @@ class Assets
             exist = false;
 
         // there is no source dir, try to load from document root
-        if uri[0] != "/" && empty source {
+        if !starts_with("/", uri) && empty source {
             let uri = "/" . uri;
         }
 
         // uri is start from absolute path, try to load from document root
-        if uri[0] == "/" || empty source {
+        if starts_with("/", uri) || empty source {
             let source = _SERVER["DOCUMENT_ROOT"];
         }
 
