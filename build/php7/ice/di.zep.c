@@ -293,7 +293,7 @@ PHP_METHOD(Ice_Di, resolve) {
 				ZEPHIR_CALL_FUNCTION(&_2$$10, "key", NULL, 68, service);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(&_3$$10);
-				if (ZEPHIR_IS_STRING(&params, "array")) {
+				if (Z_TYPE_P(&params) == IS_ARRAY) {
 					ZEPHIR_CPY_WRT(&_3$$10, &params);
 				} else {
 					ZEPHIR_INIT_NVAR(&_3$$10);
