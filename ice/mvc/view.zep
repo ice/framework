@@ -203,11 +203,20 @@ class View extends Arr implements ViewInterface
      * Add view directory.
      *
      * @param mixed dir View directory or directories
+     * @param boolean prepend Prepend to the current views dir
      * @return object View
      */
-    public function addViewsDir(var dir)
+    public function addViewsDir(var dir, boolean prepend = false)
     {
-        let this->viewsDir = array_unique(array_merge((array)this->viewsDir, (array)dir));
+        var dirs;
+        
+        if prepend {
+            let dirs = array_merge((array)dir, (array)this->viewsDir);
+        } else {
+            let dirs = array_merge((array)this->viewsDir, (array)dir);
+        }
+
+        let this->viewsDir = array_unique(dirs);
 
         return this;
     }
