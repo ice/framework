@@ -133,7 +133,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_check_call_status();
 	}
 	if ((zephir_function_exists_ex(SS("mb_strlen") TSRMLS_CC) == SUCCESS)) {
-		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 184, value);
+		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 185, value);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(length);
