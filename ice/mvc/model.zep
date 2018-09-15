@@ -684,7 +684,7 @@ abstract class Model extends Arr implements \Serializable
             case self::BELONGS_TO:
             case self::HAS_ONE:
                 let filters = array_merge(filters, [referencedField: this->{field}]),
-                    result = create_instance_params(referenceModel, [filters]);
+                    result = create_instance_params(referenceModel, [filters, null, options]);
 
                 if !result->count() {
                     return false;
