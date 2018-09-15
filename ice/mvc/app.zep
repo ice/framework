@@ -25,10 +25,12 @@ class App extends Access
      *
      * @param Di $di
      */
-    public function __construct(<Di> di = null)
+    public function __construct(<Di> di = null, array modules = [], boolean isAutoRender = true)
     {
         // Set the dependency injector
-        let this->di = di;
+        let this->di = di,
+            this->modules = modules,
+            this->autoRender = isAutoRender;
 
         // Register the app itself as a service
         this->di->set("app", this);
