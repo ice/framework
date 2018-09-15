@@ -41,7 +41,7 @@ class Tokens extends Model
         }
 
         // This object has expired
-        if this->has("expires") && this->get("expires") && this->get("expires") < time() {
+        if this->has("expires") && this->get("expires") < time() {
             this->remove();
         }
     }
@@ -63,19 +63,13 @@ class Tokens extends Model
     /**
      * Deletes all expired tokens.
      *
-     * @return void
+     * @return bool status
      */
     public function deleteExpired()
     {
-        var token, expired;
-
-        let expired = this->load([
+        return this->remove([
             "expires": ["<": time()]
         ]);
-
-        for token in iterator(expired) {
-            token->remove();
-        }
     }
 
     /**
@@ -103,7 +97,7 @@ class Tokens extends Model
         var token;
 
         do {
-            let token = sha1(uniqid(this->getDi()->get("text")->random(Text::ALNUM, 32), true));
+            let token = bin2hex(openssl_random_pseudo_bytes(16));
         } while Tokens::findOne(["token": token]);
 
         return token;
