@@ -26,13 +26,9 @@ class Url
     public function getStatic(string uri = null) -> string
     {
         var staticUri;
-        let staticUri = this->staticUri;
+        let staticUri = rtrim(this->staticUri, "/");
         if uri[0] != '/' {
-            if staticUri[-1] != '/' {
-                let staticUri = staticUri . "/";
-            }
-        } elseif staticUri[-1] == '/' {
-            let staticUri = rtrim(staticUri, "/");
+            let staticUri = staticUri . "/";
         }
         return staticUri . uri;
     }
