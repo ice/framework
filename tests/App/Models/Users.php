@@ -31,6 +31,7 @@ class Users extends IceUsers
 
         $this->di->hook('model.before.create', function ($model) {
             $model->set('password', md5($model->get('password')));
+            $model->set('logins', intval($model->get('logins')));
         });
 
         $create = parent::create($fields, $extra);
