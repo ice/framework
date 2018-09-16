@@ -25,7 +25,12 @@ class Url
      */
     public function getStatic(string uri = null) -> string
     {
-        return this->getStaticUri() . uri;
+        var staticUri;
+        let staticUri = rtrim(this->staticUri, "/");
+        if uri[0] != '/' {
+            let staticUri = staticUri . "/";
+        }
+        return staticUri . uri;
     }
 
     /**
