@@ -274,6 +274,9 @@ class Assets
         if target[0] == '/' {
             let destination = _SERVER["DOCUMENT_ROOT"] . uriMin;
         } else {
+            if source[-1] != '/' {
+                let source = source . "/";
+            }
             let destination = source . uriMin;
         }
 
