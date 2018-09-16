@@ -27,7 +27,7 @@ class Url
     {
         var staticUri;
         let staticUri = this->staticUri;
-        if uri[0] != '/' ｛
+        if uri[0] != '/' {
             if staticUri[-1] != '/' {
                 let staticUri = staticUri . "/";
             }
