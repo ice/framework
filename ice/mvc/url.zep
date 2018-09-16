@@ -47,7 +47,7 @@ class Url
 
         if !local {
             if typeof uri == "string" && (memstr(uri, "//") || memstr(uri, ":")) {
-                if preg_match("#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i", uri) {
+                if preg_match("#^(?://|[a-z0-9]+://|[a-z0-9]+:)#i", uri) {
                     let local = false;
                 } else {
                     let local = true;
