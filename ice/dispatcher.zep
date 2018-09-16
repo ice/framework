@@ -132,9 +132,10 @@ abstract class Dispatcher
      */
     public function addModule(string name, array options)
     {
+        if name[0] == '/' {
         // add or replace module
         let this->modules[name] = options;
-
+        }
         return this;
     }
 
