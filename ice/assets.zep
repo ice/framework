@@ -93,13 +93,11 @@ class Assets
      *
      * @param array parameters Parameters of link/style
      * @param string version Version appending to the uri
-     * @param string Collection Collection name
      * @param mixed minify Local minify option
      * @return object this
      */
-    public function addCss(array! parameters, string version = null, string collection = "css", var minify = null)
+    public function addCss(array! parameters, string version = null, var minify = null)
     {
-
         var content, local, tag;
 
         let tag = this->di->get("tag");
@@ -125,10 +123,10 @@ class Assets
 
         // Check if resource is inline or in file
         if isset parameters["content"] {
-            this->addToCollection(collection, tag->style(["content": minify ? this->minify(content, "css") : content]));
+            this->addToCollection("css", tag->style(["content": minify ? this->minify(content, "css") : content]));
         } else {
             let parameters["href"] = this->prepare(content, "css", minify) . (version ? "?v=" . version : "");
-            this->addToCollection(collection, tag->link(parameters));
+            this->addToCollection("css", tag->link(parameters));
         }
 
         return this;
@@ -139,11 +137,10 @@ class Assets
      *
      * @param array parameters Parameters of script
      * @param string version Version appending to the uri
-     * @param string Collection Collection name
      * @param mixed minify Local minify option
      * @return object this
      */
-    public function addJs(array! parameters, string version = null, string collection = "js", var minify = null)
+    public function addJs(array! parameters, string version = null, var minify = null)
     {
         var content, local, tag;
 
@@ -170,10 +167,10 @@ class Assets
 
         // Check if resource is inline or in file
         if isset parameters["content"] {
-            this->addToCollection(collection, tag->script(["content": minify ? this->minify(content, "js") : content]));
+            this->addToCollection("js", tag->script(["content": minify ? this->minify(content, "js") : content]));
         } else {
             let parameters["src"] = this->prepare(content, "js", minify) . (version ? "?v=" . version : "");
-            this->addToCollection(collection, tag->script(parameters));
+            this->addToCollection("js", tag->script(parameters));
         }
 
         return this;
