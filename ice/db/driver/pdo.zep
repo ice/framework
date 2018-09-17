@@ -21,6 +21,8 @@ class Pdo implements DbInterface
     protected error;
     protected client { get };
 
+    protected identifier = "\"%s\"";
+
     /**
      * Instantiate pdo connection.
      *
@@ -31,14 +33,27 @@ class Pdo implements DbInterface
      */
     public function __construct(string dsn, string user = NULL, string password = NULL, array options = [])
     {
-        var parts, pdo;
+        var driver, pdo;
 
-        let parts = null;
-
-        preg_match("/^.+?(?:dbname|database)=(.+?)(?=;|$)/i", dsn, parts);
-
-        if isset parts[0] && strstr(parts[0], ":", TRUE) == "mysql" {
-            let dsn = dsn . ";charset=utf8";
+        let driver = explode(":", dsn, 2)[0];
+        
+        switch driver {
+            case "mysql":
+                let this->identifier = "`%s`";
+                let dsn = dsn . ";charset=utf8";
+            break;
+            case "sqlsrv":
+                let this->identifier = "[%s]";
+            break;
+            case "sqlite":
+                let this->identifier = "[%s]";
+            break;
+            case "oci":
+                let this->identifier = "\"%s\"";
+            break;
+            case "pgsql":
+                let this->identifier = "\"%s\"";
+            break;
         }
 
         let pdo = "Pdo",
@@ -198,18 +213,18 @@ class Pdo implements DbInterface
 
                                     let value = "(" . join(", ", ids) . ")";
                                 }
-                                let condition = "`" . key . "` " . is . " " . value;
+                                let condition = sprintf(this->identifier, key) . is . " " . value;
                             break;
                             case "IS":
                             case "is":
                             case "IS NOT":
                             case "is not":
                                 // Don't bind value
-                                let condition = "`" . key . "` " . is . " " . value;
+                                let condition = sprintf(this->identifier, key) . is . " " . value;
                             break;
                             default:
                                 // Bind value
-                                let condition = "`" . key . "` " . is . " " . index,
+                                let condition = sprintf(this->identifier, key) . is . " " . index,
                                     values[index] = value;
                             break;
                         }
@@ -228,7 +243,7 @@ class Pdo implements DbInterface
                 let sql .= join(" AND ", and);
             break;
             case "integer":
-                let sql .= "`id` = " . filters;
+                let sql .= sprintf(this->identifier, this->id) . "=" . filters;
             break;
             case "string":
                 let sql .= filters;
@@ -260,7 +275,7 @@ class Pdo implements DbInterface
         }
 
         let filtered = this->where(filters),
-            sql = "SELECT " . columns . " FROM `" . from . "` WHERE " . filtered[0],
+            sql = "SELECT " . columns . " FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
             values = filtered[1];
 
         if isset options["group"] {
@@ -299,11 +314,11 @@ class Pdo implements DbInterface
             values = [];
 
         for key, value in fields {
-            let columns[] = "`" . key . "`",
+            let columns[] = sprintf(this->identifier, key),
                 values[":" . key] = value;
         }
 
-        let sql = "INSERT INTO `" . from . "` (" . join(", ", columns) . ") VALUES (" . join(", ", array_keys(values)) . ")",
+        let sql = "INSERT INTO " . sprintf(this->identifier, from) . " (" . join(", ", columns) . ") VALUES (" . join(", ", array_keys(values)) . ")",
             query = this->client->prepare(sql),
             status = query->execute(values),
             this->error = query->errorInfo();
@@ -327,11 +342,11 @@ class Pdo implements DbInterface
 
         for key, value in fields {
             let values[":" . key] = value,
-                columns[] = "`" . key . "` = :" . key;
+                columns[] = sprintf(this->identifier, key) . " = :" . key;
         }
 
         let filtered = this->where(filters, values),
-            sql = "UPDATE `" . from . "` SET " . join(", ", columns) . " WHERE " . filtered[0],
+            sql = "UPDATE " . sprintf(this->identifier, from) . " SET " . join(", ", columns) . " WHERE " . filtered[0],
             values = array_merge(values, filtered[1]),
             query = this->client->prepare(sql),
             status = query->execute(values),
@@ -351,7 +366,7 @@ class Pdo implements DbInterface
         var filtered, sql, values, query, status;
 
         let filtered = this->where(filters),
-            sql = "DELETE FROM `" . from . "` WHERE " . filtered[0],
+            sql = "DELETE FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
             values = filtered[1],
             query = this->client->prepare(sql),
             status = query->execute(values),
