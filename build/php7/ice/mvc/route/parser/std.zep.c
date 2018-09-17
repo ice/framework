@@ -78,7 +78,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	ZVAL_LONG(&numOptionals, (zephir_fast_strlen_ev(route) - zephir_fast_strlen_ev(&routeWithoutClosingOptionals)));
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_SSS(&_1, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "(*SKIP)(*F) | \\[~x");
-	ZEPHIR_CALL_FUNCTION(&segments, "preg_split", NULL, 125, &_1, &routeWithoutClosingOptionals);
+	ZEPHIR_CALL_FUNCTION(&segments, "preg_split", NULL, 124, &_1, &routeWithoutClosingOptionals);
 	zephir_check_call_status();
 	if (!ZEPHIR_IS_LONG_IDENTICAL(&numOptionals, (zephir_fast_count_int(&segments TSRMLS_CC) - 1))) {
 		ZEPHIR_INIT_VAR(&_2$$3);
@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 			return;
 		}
 		zephir_concat_self(&currentRoute, &segment TSRMLS_CC);
-		ZEPHIR_CALL_METHOD(&_9$$5, this_ptr, "parseplaceholders", &_10, 126, &currentRoute);
+		ZEPHIR_CALL_METHOD(&_9$$5, this_ptr, "parseplaceholders", &_10, 125, &currentRoute);
 		zephir_check_call_status();
 		zephir_array_append(&routeDatas, &_9$$5, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 45);
 	} ZEND_HASH_FOREACH_END();
@@ -175,7 +175,7 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	ZEPHIR_CONCAT_SSS(&_0, "~", "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}", "~x");
 	ZVAL_LONG(&_1, (256 | 2));
 	ZEPHIR_MAKE_REF(&matches);
-	ZEPHIR_CALL_FUNCTION(&_2, "preg_match_all", NULL, 127, &_0, route, &matches, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "preg_match_all", NULL, 126, &_0, route, &matches, &_1);
 	ZEPHIR_UNREF(&matches);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_2))) {
