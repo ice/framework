@@ -132,9 +132,10 @@ abstract class Dispatcher
      */
     public function addModule(string name, array options)
     {
+        if name[0] == '/' {
         // add or replace module
         let this->modules[name] = options;
-
+        }
         return this;
     }
 
@@ -262,7 +263,7 @@ abstract class Dispatcher
                 throw new Exception("Action parameters must be an array", self::INVALID_PARAMS);
             }
 
-            let this->returnedValue = call_user_func_array([handler, actionMethod], params);
+            let this->returnedValue = handler->{actionMethod}(...params);
 
             if this->finished === false {
                 continue;
