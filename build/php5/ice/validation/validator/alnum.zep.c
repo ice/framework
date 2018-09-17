@@ -95,7 +95,7 @@ PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 	if (_0) {
 		RETURN_MM_BOOL(1);
 	}
-	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 177, value);
+	ZEPHIR_CALL_FUNCTION(&_1, "ctype_alnum", NULL, 176, value);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_1))) {
 		ZEPHIR_INIT_VAR(_3$$4);
@@ -162,7 +162,7 @@ PHP_METHOD(Ice_Validation_Validator_Alnum, validate) {
 		ZEPHIR_INIT_VAR(replace);
 		zephir_create_array(replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_15$$4, "strtr", NULL, 85, message, replace);
+		ZEPHIR_CALL_FUNCTION(&_15$$4, "strtr", NULL, 84, message, replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, field, _15$$4);
 		zephir_check_call_status();

@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_11$$9, "/(?<=\\w)(?=[A-Z])/", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_12$$9);
 			ZVAL_STRING(_12$$9, " $1", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 99, _11$$9, _12$$9, value);
+			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 98, _11$$9, _12$$9, value);
 			zephir_check_temp_parameter(_11$$9);
 			zephir_check_temp_parameter(_12$$9);
 			zephir_check_call_status();
@@ -231,7 +231,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(filter, "lower")) {
 			ZEPHIR_INIT_VAR(_17$$10);
 			if ((zephir_function_exists_ex(SS("mb_strtolower") TSRMLS_CC) == SUCCESS)) {
-				ZEPHIR_CALL_FUNCTION(&_17$$10, "mb_strtolower", NULL, 100, value);
+				ZEPHIR_CALL_FUNCTION(&_17$$10, "mb_strtolower", NULL, 99, value);
 				zephir_check_call_status();
 			} else {
 				zephir_fast_strtolower(_17$$10, value);
@@ -241,7 +241,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(filter, "upper")) {
 			ZEPHIR_INIT_VAR(_18$$11);
 			if ((zephir_function_exists_ex(SS("mb_strtoupper") TSRMLS_CC) == SUCCESS)) {
-				ZEPHIR_CALL_FUNCTION(&_18$$11, "mb_strtoupper", NULL, 101, value);
+				ZEPHIR_CALL_FUNCTION(&_18$$11, "mb_strtoupper", NULL, 100, value);
 				zephir_check_call_status();
 			} else {
 				zephir_fast_strtoupper(_18$$11, value);
@@ -253,7 +253,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_19$$12, "/[^a-z0-9]/i", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_20$$12);
 			ZVAL_STRING(_20$$12, "", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 99, _19$$12, _20$$12, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 98, _19$$12, _20$$12, value);
 			zephir_check_temp_parameter(_19$$12);
 			zephir_check_temp_parameter(_20$$12);
 			zephir_check_call_status();
@@ -264,7 +264,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_21$$13, "/[^a-z]/i", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_22$$13);
 			ZVAL_STRING(_22$$13, "", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 99, _21$$13, _22$$13, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 98, _21$$13, _22$$13, value);
 			zephir_check_temp_parameter(_21$$13);
 			zephir_check_temp_parameter(_22$$13);
 			zephir_check_call_status();
@@ -273,14 +273,14 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(filter, "email")) {
 			ZEPHIR_SINIT_VAR(_23$$14);
 			ZVAL_LONG(&_23$$14, 517);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 102, value, &_23$$14);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 101, value, &_23$$14);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(filter, "bool") || ZEPHIR_IS_STRING(filter, "boolean")) {
 			ZEPHIR_SINIT_VAR(_25$$15);
 			ZVAL_LONG(&_25$$15, 258);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 102, value, &_25$$15);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 101, value, &_25$$15);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -289,21 +289,21 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_LONG(&_26$$16, 520);
 			ZEPHIR_SINIT_VAR(_27$$16);
 			ZVAL_LONG(&_27$$16, 4096);
-			ZEPHIR_CALL_FUNCTION(&_28$$16, "filter_var", &_24, 102, value, &_26$$16, &_27$$16);
+			ZEPHIR_CALL_FUNCTION(&_28$$16, "filter_var", &_24, 101, value, &_26$$16, &_27$$16);
 			zephir_check_call_status();
 			RETURN_MM_DOUBLE(zephir_get_doubleval(_28$$16));
 		}
 		if (ZEPHIR_IS_STRING(filter, "int") || ZEPHIR_IS_STRING(filter, "integer")) {
 			ZEPHIR_SINIT_VAR(_29$$17);
 			ZVAL_LONG(&_29$$17, 519);
-			ZEPHIR_CALL_FUNCTION(&_30$$17, "filter_var", &_24, 102, value, &_29$$17);
+			ZEPHIR_CALL_FUNCTION(&_30$$17, "filter_var", &_24, 101, value, &_29$$17);
 			zephir_check_call_status();
 			RETURN_MM_LONG(zephir_get_intval(_30$$17));
 		}
 		if (ZEPHIR_IS_STRING(filter, "string")) {
 			ZEPHIR_SINIT_VAR(_31$$18);
 			ZVAL_LONG(&_31$$18, 513);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 102, value, &_31$$18);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_24, 101, value, &_31$$18);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -334,7 +334,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZEPHIR_INIT_VAR(_37$$19);
 			ZVAL_STRING(_37$$19, "$1$1$1", 1);
 			zephir_array_fast_append(_34$$19, _37$$19);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 99, _32$$19, _34$$19, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 98, _32$$19, _34$$19, value);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -342,14 +342,14 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			zephir_get_strval(_38$$20, value);
 			ZEPHIR_SINIT_VAR(_39$$20);
 			ZVAL_LONG(&_39$$20, (3 | 48));
-			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars", NULL, 103, _38$$20, &_39$$20);
+			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars", NULL, 102, _38$$20, &_39$$20);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(filter, "unescape") || ZEPHIR_IS_STRING(filter, "unstrip_special")) {
 			ZEPHIR_SINIT_VAR(_40$$21);
 			ZVAL_LONG(&_40$$21, (3 | 48));
-			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars_decode", NULL, 104, value, &_40$$21);
+			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars_decode", NULL, 103, value, &_40$$21);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
