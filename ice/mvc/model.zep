@@ -211,7 +211,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var model;
 
-        let model = new static;
+        let model = create_instance(get_called_class());
 
         return model->load(filters, options);
     }
@@ -407,7 +407,7 @@ abstract class Model extends Arr implements \Serializable
         if !status {
             // Rollback changes and restore old data
             this->setData(data);
-        } else {        
+        } else {
             let this->isLoaded = true;
         }
 
@@ -477,7 +477,7 @@ abstract class Model extends Arr implements \Serializable
         }
 
         let status = this->db->remove(this->from, filters);
-        
+
         if status {
             // this model doesn't exist in db
             let this->isLoaded = false;
@@ -572,7 +572,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -610,7 +610,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -655,7 +655,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -776,7 +776,7 @@ abstract class Model extends Arr implements \Serializable
     {
         this->__construct();
         let this->data = unserialize(base64_decode(serialized));
-        
+
         return this;
     }
 
