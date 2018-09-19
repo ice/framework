@@ -245,7 +245,7 @@ class Request extends Arr implements RequestInterface
      * @param boolean allowEmpty
      * @return mixed
      */
-    public function getQuery(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
+    public function getQuery(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = true)
     {
         if !key {
             // Remove `_url` from GET
@@ -279,7 +279,7 @@ class Request extends Arr implements RequestInterface
      * @param boolean allowEmpty
      * @return mixed
      */
-    public function getPost(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = false)
+    public function getPost(string key = null, var filters = null, var defaultValue = null, boolean allowEmpty = true)
     {
         if !key {
             return this->post;
