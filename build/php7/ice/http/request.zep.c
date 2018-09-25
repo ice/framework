@@ -653,7 +653,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		defaultValue = &__$null;
 	}
 	if (!allowEmpty_param) {
-		allowEmpty = 0;
+		allowEmpty = 1;
 	} else {
 		allowEmpty = zephir_get_boolval(allowEmpty_param);
 	}
@@ -669,7 +669,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		zephir_read_property(&_2$$3, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&_1$$3);
 		ZVAL_STRING(&_1$$3, "_url");
-		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "remove", NULL, 0, &_1$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "erase", NULL, 0, &_1$$3);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(getThis(), "get");
 	} else {
@@ -740,7 +740,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 		defaultValue = &__$null;
 	}
 	if (!allowEmpty_param) {
-		allowEmpty = 0;
+		allowEmpty = 1;
 	} else {
 		allowEmpty = zephir_get_boolval(allowEmpty_param);
 	}
