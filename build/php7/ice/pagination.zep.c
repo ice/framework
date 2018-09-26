@@ -462,7 +462,7 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 		} else {
 			ZEPHIR_INIT_VAR(&_23$$15);
 			ZVAL_STRING(&_23$$15, "page");
-			ZEPHIR_CALL_METHOD(NULL, &query, "remove", NULL, 0, &_23$$15);
+			ZEPHIR_CALL_METHOD(NULL, &query, "erase", NULL, 0, &_23$$15);
 			zephir_check_call_status();
 		}
 	}
