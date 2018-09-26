@@ -157,7 +157,7 @@ class Pagination extends Arr
             if page > 1 {
                 query->set("page", page);
             } else {
-                query->remove("page");
+                query->erase("page");
             }
         }
 
