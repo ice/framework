@@ -668,7 +668,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function getRelated(string alias, array filters = [], array options = [])
     {
-        var relation, field, referenceModel, referencedField, from, result;
+        var relation, field, referenceModel, referencedField, result;
 
         if !fetch relation, this->relations[alias] {
             throw new Exception(sprintf("Alias '%s' not found", alias));
@@ -678,12 +678,10 @@ abstract class Model extends Arr implements \Serializable
         fetch referenceModel, relation["referenceModel"];
         fetch referencedField, relation["referencedField"];
 
-        let from = uncamelize(get_class_ns(referenceModel));
-
         switch relation["type"] {
             case self::BELONGS_TO:
             case self::HAS_ONE:
-                let filters = array_merge(filters, [referencedField: this->{field}]),
+                let filters[referencedField] = this->{field},
                     result = create_instance_params(referenceModel, [filters, null, options]);
 
                 if !result->count() {
@@ -693,7 +691,7 @@ abstract class Model extends Arr implements \Serializable
                 return result;
 
             case self::HAS_MANY:
-                let filters = array_merge(filters, [referencedField: this->{field}]);
+                let filters[referencedField] = this->{field},
                     let result = {referenceModel}::find(filters, options);
 
                 return result;
