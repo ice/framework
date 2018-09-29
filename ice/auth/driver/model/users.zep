@@ -1,7 +1,6 @@
 
 namespace Ice\Auth\Driver\Model;
 
-use Ice\Auth\Driver\Model\Roles;
 use Ice\Mvc\Model;
 
 /**
@@ -15,6 +14,25 @@ use Ice\Mvc\Model;
  */
 class Users extends Model
 {
+    /**
+     * Role class name.
+     */
+    protected $roleClass = "Ice\\Auth\\Driver\\Model\\Roles";
+
+    /**
+     * Token class name.
+     */
+    protected $tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Tokens";
+
+    /**
+     * User class name.
+     */
+    protected $userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
+
+    /**
+     * Social class name.
+     */
+    protected $tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Social";
 
     /**
      * Initialize user's relations.
@@ -23,17 +41,14 @@ class Users extends Model
      */
     public function initialize()
     {
-        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Users\\Tokens", "user_id", [
-            "alias": "Tokens"
-        ]);
+        var idKey;
+        let idKey = this->getIdKey();
 
-        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Roles\\Users", "user_id", [
-            "alias": "Roles"
-        ]);
+        this->hasMany(idKey, this->tokenClass, "user_id", ["alias": "Tokens"]);
 
-        this->hasOne(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Users\\Social", "user_id", [
-            "alias": "Social"
-        ]);
+        this->hasMany(idKey, this->userClass, "user_id", ["alias": "Roles"]);
+
+        this->hasOne(idKey, this->socialClass, "user_id", ["alias": "Social"]);
     }
 
     /**
@@ -62,7 +77,7 @@ class Users extends Model
     {
         var role, roles;
 
-        let role = <Roles> Roles::findOne(["name": name]);
+        let role = {this->roleClass}::findOne(["name": name]);
 
         if !role {
             // Role does not exist
