@@ -692,7 +692,7 @@ abstract class Model extends Arr implements \Serializable
 
             case self::HAS_MANY:
                 let filters[referencedField] = this->{field},
-                    let result = {referenceModel}::find(filters, options);
+                    result = {referenceModel}::find(filters, options);
 
                 return result;
         }
