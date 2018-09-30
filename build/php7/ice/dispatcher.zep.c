@@ -599,7 +599,7 @@ PHP_METHOD(Ice_Dispatcher, getParam) {
 		} else {
 			ZVAL_BOOL(&_1$$4, 0);
 		}
-		ZEPHIR_RETURN_CALL_METHOD(&params, "getvalue", NULL, 26, &key, filters, defaultValue, &_1$$4);
+		ZEPHIR_RETURN_CALL_METHOD(&params, "getvalue", NULL, 42, &key, filters, defaultValue, &_1$$4);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

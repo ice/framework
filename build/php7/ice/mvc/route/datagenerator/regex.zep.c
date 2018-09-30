@@ -151,7 +151,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZVAL_LONG(&_4$$3, zephir_fast_count_int(&regexToRoutesMap TSRMLS_CC));
 		ZEPHIR_CALL_METHOD(&chunkSize, this_ptr, "computechunksize", &_5, 0, &_4$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 27, &regexToRoutesMap, &chunkSize, &__$true);
+		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 43, &regexToRoutesMap, &chunkSize, &__$true);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_7$$3);
 		zephir_create_array(&_7$$3, 2, 0 TSRMLS_CC);
@@ -159,7 +159,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZEPHIR_INIT_NVAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "processChunk");
 		zephir_array_fast_append(&_7$$3, &_8$$3);
-		ZEPHIR_CALL_FUNCTION(&_9$$3, "array_map", &_10, 28, &_7$$3, &chunks);
+		ZEPHIR_CALL_FUNCTION(&_9$$3, "array_map", &_10, 44, &_7$$3, &chunks);
 		zephir_check_call_status();
 		zephir_array_update_zval(&data, &method, &_9$$3, PH_COPY | PH_SEPARATE);
 	} ZEND_HASH_FOREACH_END();
@@ -199,7 +199,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	ZVAL_DOUBLE(&_3, round);
 	zephir_round(&_2, &_3, NULL, NULL TSRMLS_CC);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 29, &_4, &_2);
+	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 45, &_4, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
 	div_function(&_5, count, &numParts TSRMLS_CC);
@@ -377,7 +377,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	}
 	ZEPHIR_INIT_VAR(&_10);
 	object_init_ex(&_10, ice_mvc_route_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_10, "__construct", NULL, 30, httpMethod, handler, &regex, &variables);
+	ZEPHIR_CALL_METHOD(NULL, &_10, "__construct", NULL, 46, httpMethod, handler, &regex, &variables);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("methodToRegexToRoutesMap"), &_10 TSRMLS_CC, SL("zz"), 2, httpMethod, &regex);
 	ZEPHIR_MM_RESTORE();
@@ -421,7 +421,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 		if (Z_TYPE_P(&part) == IS_STRING) {
 			ZEPHIR_INIT_NVAR(&_1$$4);
 			ZVAL_STRING(&_1$$4, "~");
-			ZEPHIR_CALL_FUNCTION(&_2$$4, "preg_quote", &_3, 31, &part, &_1$$4);
+			ZEPHIR_CALL_FUNCTION(&_2$$4, "preg_quote", &_3, 47, &part, &_1$$4);
 			zephir_check_call_status();
 			zephir_concat_self(&regex, &_2$$4 TSRMLS_CC);
 			continue;

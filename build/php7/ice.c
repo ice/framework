@@ -43,6 +43,7 @@ zend_class_entry *ice_di_access_ce;
 zend_class_entry *ice_mvc_model_ce;
 zend_class_entry *ice_auth_social_adapter_ce;
 zend_class_entry *ice_auth_driver_ce;
+zend_class_entry *ice_cli_websocket_websocket_ce;
 zend_class_entry *ice_config_ce;
 zend_class_entry *ice_dispatcher_ce;
 zend_class_entry *ice_mvc_view_engine_ce;
@@ -66,6 +67,8 @@ zend_class_entry *ice_cli_console_ce;
 zend_class_entry *ice_cli_dispatcher_ce;
 zend_class_entry *ice_cli_router_ce;
 zend_class_entry *ice_cli_task_ce;
+zend_class_entry *ice_cli_websocket_client_ce;
+zend_class_entry *ice_cli_websocket_server_ce;
 zend_class_entry *ice_config_ini_ce;
 zend_class_entry *ice_config_json_ce;
 zend_class_entry *ice_cookies_ce;
@@ -166,6 +169,7 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Mvc_Model);
 	ZEPHIR_INIT(Ice_Auth_Social_Adapter);
 	ZEPHIR_INIT(Ice_Auth_Driver);
+	ZEPHIR_INIT(Ice_Cli_Websocket_Websocket);
 	ZEPHIR_INIT(Ice_Config);
 	ZEPHIR_INIT(Ice_Dispatcher);
 	ZEPHIR_INIT(Ice_Mvc_View_Engine);
@@ -189,6 +193,8 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Cli_Dispatcher);
 	ZEPHIR_INIT(Ice_Cli_Router);
 	ZEPHIR_INIT(Ice_Cli_Task);
+	ZEPHIR_INIT(Ice_Cli_Websocket_Client);
+	ZEPHIR_INIT(Ice_Cli_Websocket_Server);
 	ZEPHIR_INIT(Ice_Config_Ini);
 	ZEPHIR_INIT(Ice_Config_Json);
 	ZEPHIR_INIT(Ice_Cookies);
@@ -317,6 +323,7 @@ static PHP_RINIT_FUNCTION(ice)
 	php_zephir_init_globals(ice_globals_ptr TSRMLS_CC);
 	zephir_initialize_memory(ice_globals_ptr TSRMLS_CC);
 
+		zephir_init_static_properties_Ice_Cli_Websocket_Websocket(TSRMLS_C);
 	
 	return SUCCESS;
 }
