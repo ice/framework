@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/object.h"
 #include "kernel/array.h"
 
 
@@ -31,6 +32,11 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social) {
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Users, Social, ice, auth_driver_model_users_social, ice_mvc_model_ce, ice_auth_driver_model_users_social_method_entry, 0);
 
 	zend_declare_property_string(ice_auth_driver_model_users_social_ce, SL("from"), "user_social", ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	/**
+	 * User class name.
+	 */
+	zend_declare_property_string(ice_auth_driver_model_users_social_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -64,10 +70,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
+	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "users");
-	ZEPHIR_INIT_VAR(&_3);
-	ZVAL_STRING(&_3, "Ice\\Auth\\Driver\\Model\\Users");
 	ZEPHIR_CALL_METHOD(&_2, &auth, "getoption", NULL, 0, &_1, &_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL, 0);

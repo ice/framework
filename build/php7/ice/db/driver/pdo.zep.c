@@ -562,14 +562,14 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 				{
 					ZEPHIR_INIT_NVAR(&item);
 					ZVAL_COPY(&item, _6$$5);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_7, 67, &item);
+					ZEPHIR_CALL_FUNCTION(&key, "key", &_7, 68, &item);
 					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_8, 65, &item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_8, 66, &item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(&value) == IS_ARRAY) {
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_7, 67, &value);
+						ZEPHIR_CALL_FUNCTION(&is, "key", &_7, 68, &value);
 						zephir_check_call_status();
-						ZEPHIR_CALL_FUNCTION(&_9$$10, "current", &_8, 65, &value);
+						ZEPHIR_CALL_FUNCTION(&_9$$10, "current", &_8, 66, &value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(&value, &_9$$10);
 					} else {

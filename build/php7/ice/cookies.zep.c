@@ -581,7 +581,7 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 	ZVAL_LONG(&_0, expire);
 	ZVAL_BOOL(&_1, (secure ? 1 : 0));
 	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 53, &name, &value, &_0, &path, &domain, &_1, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 55, &name, &value, &_0, &path, &domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
