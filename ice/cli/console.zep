@@ -92,26 +92,26 @@ class Console extends Access
         var colors, bgColors, colored, e, foreground, background;
 
         let colors = [
-            "black": "30",   
-            "red": "31", 
-            "green": "32",   
-            "yellow": "33",  
-            "blue": "34",    
-            "magenta": "35", 
-            "cyan": "36",    
-            "lightgray": "37",   
+            "black": "30",
+            "red": "31",
+            "green": "32",
+            "yellow": "33",
+            "blue": "34",
+            "magenta": "35",
+            "cyan": "36",
+            "lightgray": "37",
             "white": "97"
         ];
 
         let bgColors = [
-            "black": "40",   
-            "red": "41", 
-            "green": "42",   
-            "yellow": "43",  
-            "blue": "44",    
-            "magenta": "45", 
-            "cyan": "46",    
-            "lightgray": "47",  
+            "black": "40",
+            "red": "41",
+            "green": "42",
+            "yellow": "43",
+            "blue": "44",
+            "magenta": "45",
+            "cyan": "46",
+            "lightgray": "47",
             "white": "107"
         ];
 

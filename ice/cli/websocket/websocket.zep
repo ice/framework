@@ -1,6 +1,8 @@
 
 namespace Ice\Cli\Websocket;
 
+use Ice\Cli\Console;
+
 /**
  * A base class used in the server class.
  * It handles all encoding / decoding / masking / socket operations.
@@ -298,10 +300,13 @@ class Websocket
      * Display text on the console.
      *
      * @param string text Text to display
+     * @param string color The foreground color
+     * @param int decoration Formatting type
+     * @param string bgColor The background color
      * @param boolean exit Die if true
      * @return self
      */
-    public function console(string text, boolean exit = false)
+    public function console(string text, string color = null, int decoration = Console::NORMAL, string bgColor = null, boolean exit = false)
     {
         var text;
 
@@ -312,7 +317,7 @@ class Websocket
         }
 
         if this->getParam("verbose", false) {
-            echo text;
+            echo Console::color(text, color, decoration, bgColor);
         }
 
         return this;
