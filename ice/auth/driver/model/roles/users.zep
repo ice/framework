@@ -19,6 +19,16 @@ class Users extends Model
     protected from = "roles_users";
 
     /**
+     * User class name.
+     */
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Users";
+
+    /**
+     * Role class name.
+     */
+    protected roleClass = "Ice\\Auth\\Driver\\Model\\Roles";
+
+    /**
      * Initialize roles-users relations.
      *
      * @return void
@@ -29,11 +39,11 @@ class Users extends Model
 
         let auth = this->getDi()->get("auth");
 
-        this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
+        this->belongsTo("user_id", auth->getOption("users", this->userClass), this->getIdKey(), [
             "alias": "User"
         ]);
 
-        this->belongsTo("role_id", "Ice\\Auth\\Driver\\Model\\Roles", this->getIdKey(), [
+        this->belongsTo("role_id", this->roleClass, this->getIdKey(), [
             "alias": "Role"
         ]);
     }

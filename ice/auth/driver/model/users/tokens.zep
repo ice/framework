@@ -20,6 +20,11 @@ class Tokens extends Model
     protected from = "user_tokens";
 
     /**
+     * User class name.
+     */
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Users";
+
+    /**
      * Initialize token's relations, remove expired tokens.
      *
      * @return void
@@ -30,7 +35,7 @@ class Tokens extends Model
 
         let auth = this->getDi()->get("auth");
 
-        this->belongsTo("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
+        this->belongsTo("user_id", auth->getOption("users", this->userClass), this->getIdKey(), [
             "alias": "User",
             "foreignKey": true
         ]);
@@ -103,8 +108,8 @@ class Tokens extends Model
         var token;
 
         do {
-            let token = sha1(uniqid(this->getDi()->get("text")->random(Text::ALNUM, 32), true));
-        } while Tokens::findOne(["token": token]);
+            let token = bin2hex(openssl_random_pseudo_bytes(16));
+        } while static::findOne(["token": token]);
 
         return token;
     }

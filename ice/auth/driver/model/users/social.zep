@@ -18,6 +18,11 @@ class Social extends Model
     protected from = "user_social";
 
     /**
+     * User class name.
+     */
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Users";
+
+    /**
      * Initialize relations.
      *
      * @return void
@@ -28,7 +33,7 @@ class Social extends Model
 
         let auth = this->getDi()->get("auth");
 
-        this->hasOne("user_id", auth->getOption("users", "Ice\\Auth\\Driver\\Model\\Users"), this->getIdKey(), [
+        this->hasOne("user_id", auth->getOption("users", this->userClass), this->getIdKey(), [
             "alias": "User"
         ]);
     }
