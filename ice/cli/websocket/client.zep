@@ -63,8 +63,8 @@ class Client extends Websocket
             let headers[name] = name . ": " . value;
         }
 
-        if isset addr["path"] && strlen(addr["path"]) {
-            let res = addr["path"] . (isset addr["query"] && strlen(addr["query"]) ? "?" . addr["query"] : "");
+        if !empty addr["path"] {
+            let res = addr["path"] . (empty addr["query"] ? "" : "?" . addr["query"]);
         } else {
             let res = "/";
         }
@@ -78,8 +78,8 @@ class Client extends Websocket
             throw new Exception("Bad response");
         }
 
-        if trim(matches[1]) !== base64_encode(pack("H*", sha1(key.self::magic))) {
-            throw new Exception(sprintf("Bad key `%s` `%s`", trim(matches[1]), base64_encode(pack("H*", sha1(key.self::magic)))));
+        if trim(matches[1]) !== base64_encode(pack("H*", sha1(key . self::magic))) {
+            throw new Exception(sprintf("Bad key `%s` `%s`", trim(matches[1]), base64_encode(pack("H*", sha1(key . self::magic)))));
         }
 
         return this;
@@ -97,10 +97,10 @@ class Client extends Websocket
 
         let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"$&/()=[]{}0123456789",
             key = "",
-            length = strlen(chars);
+            length = strlen(chars) - 1;
 
         while i < 16 {
-            let key .= chars[mt_rand(0, length - 1)],
+            let key .= chars[mt_rand(0, length)],
                 i++;
         }
 
@@ -125,9 +125,11 @@ class Client extends Websocket
             }
 
             if name !== false {
-                let name = str_replace("_", " ", strtolower(name)),
-                    name = str_replace("-", " ", strtolower(name)),
-                    name = str_replace(" ", "-", ucwords(name)),
+                let name = ucwords(str_replace(
+                     ["_", "-", " "],
+                     [" ", " ", "-"],
+                     strtolower(name)
+                 ),  "-"),
                     cleaned[name] = value;
             }
         }
@@ -176,7 +178,7 @@ class Client extends Websocket
                     }
                 }
             }
-            usleep(5000);
+            usleep(this->getParam("sleep", 5000));
         }
     }
 

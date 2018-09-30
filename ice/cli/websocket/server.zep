@@ -127,7 +127,7 @@ class Server extends Websocket
                 }
             }
 
-            usleep(5000);
+            usleep(this->getParam("sleep", 5000));
         }
     }
 
