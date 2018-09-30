@@ -77,7 +77,7 @@ class Users extends Model
     {
         var role, roles;
 
-        let role = {this->roleClass}::findOne(["name": name]);
+        let role = this->roleClass::findOne(["name": name]);
 
         if !role {
             // Role does not exist
