@@ -17,22 +17,22 @@ class Users extends Model
     /**
      * Role class name.
      */
-    protected $roleClass = "Ice\\Auth\\Driver\\Model\\Roles";
+    protected roleClass = "Ice\\Auth\\Driver\\Model\\Roles";
 
     /**
      * Token class name.
      */
-    protected $tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Tokens";
+    protected tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Tokens";
 
     /**
      * User class name.
      */
-    protected $userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
 
     /**
      * Social class name.
      */
-    protected $tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Social";
+    protected tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Social";
 
     /**
      * Initialize user's relations.
