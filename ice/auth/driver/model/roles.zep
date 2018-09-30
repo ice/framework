@@ -17,7 +17,7 @@ class Roles extends Model
     /**
      * User class name.
      */
-    protected $userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
 
     /**
      * Initialize role's relations.
