@@ -20,6 +20,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view/engine", "engineinterface.zep.c php.zep.c sleet.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth", "driver.zep.c social.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver", "driverinterface.zep.c file.zep.c model.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/cli/websocket", "websocket.zep.c client.zep.c server.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/db", "dbinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/log", "loggerinterface.zep.c driver.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/datagenerator", "datageneratorinterface.zep.c regex.zep.c groupcount.zep.c", "ice");

@@ -460,20 +460,20 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 				) {
 					ZEPHIR_GET_HVALUE(item, _8$$5);
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 76, item);
+					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 103, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 74, item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 101, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(value) == IS_ARRAY) {
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 76, value);
+						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 103, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 74, value);
+						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 101, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(value, _11$$10);
