@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "twitter", 1);
 	zephir_update_property_this(getThis(), SL("provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, getThis(), "__construct", &_1, 50, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_twitter_ce, getThis(), "__construct", &_1, 51, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 5, 0 TSRMLS_CC);
@@ -178,7 +178,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 		if (!(zephir_is_true(_2$$3))) {
 			ZEPHIR_INIT_VAR(accessTokenUrl);
 			ZVAL_STRING(accessTokenUrl, "https://api.twitter.com/oauth/access_token", 1);
-			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "prepareurlparams", &_4, 53, accessTokenUrl, params);
+			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "prepareurlparams", &_4, 54, accessTokenUrl, params);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(params, _3$$4);
 			ZEPHIR_INIT_VAR(_5$$4);
@@ -188,7 +188,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "call", NULL, 0, _5$$4, accessTokenUrl, params, _6$$4);
 			zephir_check_call_status();
 			ZEPHIR_MAKE_REF(tokenInfo);
-			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 54, _3$$4, tokenInfo);
+			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 55, _3$$4, tokenInfo);
 			ZEPHIR_UNREF(tokenInfo);
 			zephir_check_call_status();
 			_7$$4 = zephir_fast_count_int(tokenInfo TSRMLS_CC) > 0;
@@ -235,7 +235,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 			add_assoc_stringl_ex(params, SS("include_entities"), SL("false"), 1);
 			_17$$6 = zephir_fetch_nproperty_this(this_ptr, SL("accessToken"), PH_NOISY_CC);
 			zephir_array_fetch_string(&_18$$6, _17$$6, SL("oauth_token_secret"), PH_NOISY | PH_READONLY, "ice/auth/social/twitter.zep", 107 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_16$$6, this_ptr, "prepareurlparams", &_4, 53, getDataUrl, params, _18$$6);
+			ZEPHIR_CALL_METHOD(&_16$$6, this_ptr, "prepareurlparams", &_4, 54, getDataUrl, params, _18$$6);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(params, _16$$6);
 			ZEPHIR_INIT_VAR(_19$$6);
@@ -272,7 +272,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZEPHIR_OBS_VAR(_1);
 	zephir_read_property_this(&_1, this_ptr, SL("redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("oauth_callback"), &_1, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&params, this_ptr, "prepareurlparams", NULL, 53, requestTokenUrl, _0);
+	ZEPHIR_CALL_METHOD(&params, this_ptr, "prepareurlparams", NULL, 54, requestTokenUrl, _0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	ZVAL_LONG(_2, 0);
@@ -281,7 +281,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZEPHIR_CALL_METHOD(&requestTokens, this_ptr, "call", NULL, 0, _2, requestTokenUrl, params, _3);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(requestTokens);
-	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 54, requestTokens, requestTokens);
+	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 55, requestTokens, requestTokens);
 	ZEPHIR_UNREF(requestTokens);
 	zephir_check_call_status();
 	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
@@ -346,9 +346,9 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 	zephir_read_property_this(&_2, this_ptr, SL("clientId"), PH_NOISY_CC);
 	zephir_array_update_string(&_1, SL("oauth_consumer_key"), &_2, PH_COPY | PH_SEPARATE);
 	ZEPHIR_INIT_VAR(_3);
-	ZEPHIR_CALL_FUNCTION(&_4, "rand", NULL, 55);
+	ZEPHIR_CALL_FUNCTION(&_4, "rand", NULL, 56);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_5, "uniqid", NULL, 49, _4, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_5, "uniqid", NULL, 57, _4, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	zephir_md5(_3, _5);
 	zephir_array_update_string(&_1, SL("oauth_nonce"), &_3, PH_COPY | PH_SEPARATE);
@@ -361,14 +361,14 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 	zephir_fast_array_merge(_0, &(_1), &(params) TSRMLS_CC);
 	ZEPHIR_CPY_WRT(params, _0);
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "ksort", NULL, 56, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "ksort", NULL, 58, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_6, "urlencode", &_7, 57, url);
+	ZEPHIR_CALL_FUNCTION(&_6, "urlencode", &_7, 59, url);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_8, "http_build_query", NULL, 19, params);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_9, "urlencode", &_7, 57, _8);
+	ZEPHIR_CALL_FUNCTION(&_9, "urlencode", &_7, 59, _8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(sigBaseStr);
 	ZEPHIR_CONCAT_VSVSV(sigBaseStr, type, "&", _6, "&", _9);
