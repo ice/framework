@@ -15,24 +15,24 @@ use Ice\Mvc\Model;
 class Users extends Model
 {
     /**
-     * Role class name.
+     * Role class name must extend from Ice\Auth\Driver\Model\Roles
      */
     protected roleClass = "Ice\\Auth\\Driver\\Model\\Roles";
 
     /**
-     * Token class name.
+     * Token class name must extend from Ice\Auth\Driver\Model\Users\Tokens
      */
     protected tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Tokens";
 
     /**
-     * User class name.
+     * User class name must extend from Ice\Auth\Driver\Model\Roles\Users
      */
     protected userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
 
     /**
-     * Social class name.
+     * Social class name must extend from Ice\Auth\Driver\Model\Users\Social
      */
-    protected tokenClass = "Ice\\Auth\\Driver\\Model\\Users\\Social";
+    protected socialClass = "Ice\\Auth\\Driver\\Model\\Users\\Social";
 
     /**
      * Initialize user's relations.
@@ -77,7 +77,8 @@ class Users extends Model
     {
         var role, roles;
 
-        let role = this->roleClass::findOne(["name": name]);
+        let roles = this->roleClass,
+            role = {roles}::findOne(["name": name]);
 
         if !role {
             // Role does not exist
