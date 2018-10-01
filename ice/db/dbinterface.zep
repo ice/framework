@@ -24,4 +24,6 @@ interface DbInterface
     public function update(string! from, var filters = [], array fields = []);
 
     public function remove(string! from, var filters = []);
+
+    public function query(string! sql, array values = [], var obj = null);
 }
