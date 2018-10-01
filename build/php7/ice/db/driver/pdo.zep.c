@@ -1116,6 +1116,132 @@ PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
 }
 
 /**
+ * Query sql statement. execute the statement and populate into Model object:
+ * $m = $this->db->query('select*from t where id=:id', [':id' => 1], new static);
+ *
+ * @param string sql SQL with kinda of placeholders
+ * @param array values Replace placeholders in the sql
+ * @param mixed obj The object will be populated from query result
+ * @return PDOStatement|object|null
+ */
+PHP_METHOD(Ice_Db_Driver_Pdo, query) {
+
+	zend_class_entry *_8$$8 = NULL;
+	zend_class_entry *_5$$4;
+	zend_bool _3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval values, _9$$8;
+	zval *sql_param = NULL, *values_param = NULL, *obj = NULL, obj_sub, __$null, query, result, _0, _1, _2, _4$$4, _6$$5, _7$$8, _10$$8;
+	zval sql;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&sql);
+	ZVAL_UNDEF(&obj_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&query);
+	ZVAL_UNDEF(&result);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_6$$5);
+	ZVAL_UNDEF(&_7$$8);
+	ZVAL_UNDEF(&_10$$8);
+	ZVAL_UNDEF(&values);
+	ZVAL_UNDEF(&_9$$8);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &sql_param, &values_param, &obj);
+
+	if (UNEXPECTED(Z_TYPE_P(sql_param) != IS_STRING && Z_TYPE_P(sql_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'sql' must be a string") TSRMLS_CC);
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(sql_param) == IS_STRING)) {
+		zephir_get_strval(&sql, sql_param);
+	} else {
+		ZEPHIR_INIT_VAR(&sql);
+		ZVAL_EMPTY_STRING(&sql);
+	}
+	if (!values_param) {
+		ZEPHIR_INIT_VAR(&values);
+		array_init(&values);
+	} else {
+		zephir_get_arrval(&values, values_param);
+	}
+	if (!obj) {
+		obj = &obj_sub;
+		ZEPHIR_CPY_WRT(obj, &__$null);
+	} else {
+		ZEPHIR_SEPARATE_PARAM(obj);
+	}
+
+
+	zephir_read_property(&_0, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&query, &_0, "prepare", NULL, 0, &sql);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(NULL, &query, "execute", NULL, 0, &values);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_1, &query, "errorinfo", NULL, 0);
+	zephir_check_call_status();
+	zephir_update_property_zval(this_ptr, SL("error"), &_1);
+	zephir_read_property(&_2, this_ptr, SL("error"), PH_NOISY_CC | PH_READONLY);
+	_3 = ZEPHIR_IS_EMPTY(&_2);
+	if (_3) {
+		_3 = zephir_is_true(obj);
+	}
+	if (_3) {
+		if (Z_TYPE_P(obj) == IS_STRING) {
+			ZEPHIR_INIT_NVAR(obj);
+			zephir_fetch_safe_class(&_4$$4, obj);
+			_5$$4 = zephir_fetch_class_str_ex(Z_STRVAL_P(&_4$$4), Z_STRLEN_P(&_4$$4), ZEND_FETCH_CLASS_AUTO);
+			object_init_ex(obj, _5$$4);
+			if (zephir_has_constructor(obj TSRMLS_CC)) {
+				ZEPHIR_CALL_METHOD(NULL, obj, "__construct", NULL, 0);
+				zephir_check_call_status();
+			}
+		}
+		if (zephir_instance_of_ev(obj, ice_arr_ce TSRMLS_CC)) {
+			ZVAL_LONG(&_6$$5, 2);
+			ZEPHIR_CALL_METHOD(&result, &query, "fetch", NULL, 0, &_6$$5);
+			zephir_check_call_status();
+			if (zephir_is_true(&result)) {
+				ZEPHIR_CALL_METHOD(NULL, obj, "replace", NULL, 0, &result);
+				zephir_check_call_status();
+			} else {
+				ZEPHIR_INIT_NVAR(obj);
+				ZVAL_NULL(obj);
+			}
+			RETVAL_ZVAL(obj, 1, 0);
+			RETURN_MM();
+		} else {
+			ZEPHIR_INIT_VAR(&_7$$8);
+			if (!_8$$8) {
+			_8$$8 = zephir_fetch_class_str_ex(SL("Ice\\Db\\Driver\\Exception"), ZEND_FETCH_CLASS_AUTO);
+			}
+			object_init_ex(&_7$$8, _8$$8);
+			if (zephir_has_constructor(&_7$$8 TSRMLS_CC)) {
+				ZEPHIR_INIT_VAR(&_9$$8);
+				zephir_create_array(&_9$$8, 2, 0 TSRMLS_CC);
+				ZEPHIR_INIT_VAR(&_10$$8);
+				ZVAL_STRING(&_10$$8, "Only instance of Arr is allowed for populate the result. %s given");
+				zephir_array_fast_append(&_9$$8, &_10$$8);
+				ZEPHIR_INIT_NVAR(&_10$$8);
+				zephir_get_class(&_10$$8, obj, 0 TSRMLS_CC);
+				zephir_array_fast_append(&_9$$8, &_10$$8);
+				ZEPHIR_CALL_METHOD(NULL, &_7$$8, "__construct", NULL, 0, &_9$$8);
+				zephir_check_call_status();
+			}
+			zephir_throw_exception_debug(&_7$$8, "ice/db/driver/pdo.zep", 410 TSRMLS_CC);
+			ZEPHIR_MM_RESTORE();
+			return;
+		}
+	}
+	RETURN_CCTOR(&query);
+
+}
+
+/**
  * Get last inserted ID.
  *
  * @return int
