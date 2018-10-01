@@ -406,7 +406,13 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.before.update", [this]);
 
-        let status = this->db->update(this->from, primary, this->fields(this->getData(), !this->autoincrement));
+        let fields = this->fields(this->getData(), !this->autoincrement);
+
+        if typeof this->primary == "array" {
+            let fields = array_diff_key(fields, primary);
+        }
+
+        let status = this->db->update(this->from, primary, fields);
 
         if !status {
             // Rollback changes and restore old data
