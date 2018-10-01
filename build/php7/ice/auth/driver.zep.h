@@ -7,6 +7,7 @@ PHP_METHOD(Ice_Auth_Driver, __construct);
 PHP_METHOD(Ice_Auth_Driver, checkHash);
 PHP_METHOD(Ice_Auth_Driver, completeLogin);
 PHP_METHOD(Ice_Auth_Driver, getOption);
+PHP_METHOD(Ice_Auth_Driver, setOption);
 PHP_METHOD(Ice_Auth_Driver, getUser);
 PHP_METHOD(Ice_Auth_Driver, hash);
 PHP_METHOD(Ice_Auth_Driver, loggedIn);
@@ -36,6 +37,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_getoption, 0, 0, 1)
 	ZEND_ARG_INFO(0, defaultValue)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_setoption, 0, 0, 2)
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+	ZEND_ARG_INFO(0, value)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_getuser, 0, 0, 0)
 	ZEND_ARG_INFO(0, defaultValue)
 ZEND_END_ARG_INFO()
@@ -62,6 +68,7 @@ ZEPHIR_INIT_FUNCS(ice_auth_driver_method_entry) {
 	PHP_ME(Ice_Auth_Driver, checkHash, arginfo_ice_auth_driver_checkhash, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver, completeLogin, arginfo_ice_auth_driver_completelogin, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Auth_Driver, getOption, arginfo_ice_auth_driver_getoption, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Auth_Driver, setOption, arginfo_ice_auth_driver_setoption, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver, getUser, arginfo_ice_auth_driver_getuser, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver, hash, arginfo_ice_auth_driver_hash, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver, loggedIn, arginfo_ice_auth_driver_loggedin, ZEND_ACC_PUBLIC)
