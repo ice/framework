@@ -100,6 +100,20 @@ abstract class Driver
     }
 
     /**
+     * Assigns a value to the specified options.
+     *
+     * @param string key The option key
+     * @param mixed value
+     * @return object self
+     */
+    public function setOption(string key, var value)
+    {
+        let this->options[key] = value;
+
+        return this;
+    }
+
+    /**
      * Gets the currently logged in user from the session. Returns NULL if no user is currently logged in.
      *
      * @param mixed defaultValue Default value to return if the user is currently not logged in.
