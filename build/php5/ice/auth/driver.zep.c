@@ -220,6 +220,29 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 }
 
 /**
+ * Assigns a value to the specified options.
+ *
+ * @param string key The option key
+ * @param mixed value
+ * @return object self
+ */
+PHP_METHOD(Ice_Auth_Driver, setOption) {
+
+	zval *key_param = NULL, *value;
+	zval *key = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 2, 0, &key_param, &value);
+
+	zephir_get_strval(key, key_param);
+
+
+	zephir_update_property_array(this_ptr, SL("options"), key, value TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
+/**
  * Gets the currently logged in user from the session. Returns NULL if no user is currently logged in.
  *
  * @param mixed defaultValue Default value to return if the user is currently not logged in.
