@@ -302,7 +302,7 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 	ZEPHIR_CALL_METHOD(&_3, this_ptr, "getoption", &_2, 0, _1);
 	zephir_check_temp_parameter(_1);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 25, _0, password, _3);
+	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 26, _0, password, _3);
 	zephir_check_call_status();
 	RETURN_MM();
 

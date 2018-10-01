@@ -61,7 +61,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	ZEPHIR_INIT_ZVAL_NREF(_0);
 	ZVAL_STRING(_0, "facebook", 1);
 	zephir_update_property_this(getThis(), SL("provider"), _0 TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, getThis(), "__construct", &_1, 68, config);
+	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_facebook_ce, getThis(), "__construct", &_1, 69, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_create_array(_2, 6, 0 TSRMLS_CC);
