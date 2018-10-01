@@ -562,14 +562,14 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 				{
 					ZEPHIR_INIT_NVAR(&item);
 					ZVAL_COPY(&item, _6$$5);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_7, 93, &item);
+					ZEPHIR_CALL_FUNCTION(&key, "key", &_7, 94, &item);
 					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_8, 91, &item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_8, 92, &item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(&value) == IS_ARRAY) {
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_7, 93, &value);
+						ZEPHIR_CALL_FUNCTION(&is, "key", &_7, 94, &value);
 						zephir_check_call_status();
-						ZEPHIR_CALL_FUNCTION(&_9$$10, "current", &_8, 91, &value);
+						ZEPHIR_CALL_FUNCTION(&_9$$10, "current", &_8, 92, &value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(&value, &_9$$10);
 					} else {
@@ -620,7 +620,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 								ZEPHIR_CONCAT_SVS(&value, "(", &_16$$14, ")");
 							}
 							zephir_read_property(&_17$$13, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-							ZEPHIR_CALL_FUNCTION(&_18$$13, "sprintf", &_19, 11, &_17$$13, &key);
+							ZEPHIR_CALL_FUNCTION(&_18$$13, "sprintf", &_19, 12, &_17$$13, &key);
 							zephir_check_call_status();
 							ZEPHIR_INIT_NVAR(&condition);
 							ZEPHIR_CONCAT_VVSV(&condition, &_18$$13, &is, " ", &value);
@@ -628,14 +628,14 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 						}
 						if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
 							zephir_read_property(&_20$$16, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-							ZEPHIR_CALL_FUNCTION(&_21$$16, "sprintf", &_19, 11, &_20$$16, &key);
+							ZEPHIR_CALL_FUNCTION(&_21$$16, "sprintf", &_19, 12, &_20$$16, &key);
 							zephir_check_call_status();
 							ZEPHIR_INIT_NVAR(&condition);
 							ZEPHIR_CONCAT_VVSV(&condition, &_21$$16, &is, " ", &value);
 							break;
 						}
 						zephir_read_property(&_22$$17, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-						ZEPHIR_CALL_FUNCTION(&_23$$17, "sprintf", &_19, 11, &_22$$17, &key);
+						ZEPHIR_CALL_FUNCTION(&_23$$17, "sprintf", &_19, 12, &_22$$17, &key);
 						zephir_check_call_status();
 						ZEPHIR_INIT_NVAR(&condition);
 						ZEPHIR_CONCAT_VVSV(&condition, &_23$$17, &is, " ", &index);
@@ -668,7 +668,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 		if (ZEPHIR_IS_STRING(&_1, "integer")) {
 			zephir_read_property(&_27$$21, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
 			zephir_read_property(&_28$$21, this_ptr, SL("id"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_FUNCTION(&_29$$21, "sprintf", &_19, 11, &_27$$21, &_28$$21);
+			ZEPHIR_CALL_FUNCTION(&_29$$21, "sprintf", &_19, 12, &_27$$21, &_28$$21);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&_30$$21);
 			ZEPHIR_CONCAT_VSV(&_30$$21, &_29$$21, "=", filters);
@@ -773,7 +773,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	ZEPHIR_CALL_METHOD(&filtered, this_ptr, "where", NULL, 0, filters);
 	zephir_check_call_status();
 	zephir_read_property(&_0, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_1, "sprintf", NULL, 11, &_0, &from);
+	ZEPHIR_CALL_FUNCTION(&_1, "sprintf", NULL, 12, &_0, &from);
 	zephir_check_call_status();
 	zephir_array_fetch_long(&_2, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 278 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&sql);
@@ -894,7 +894,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 		ZEPHIR_INIT_NVAR(&value);
 		ZVAL_COPY(&value, _0);
 		zephir_read_property(&_3$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", &_5, 11, &_3$$3, &key);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", &_5, 12, &_3$$3, &key);
 		zephir_check_call_status();
 		zephir_array_append(&columns, &_4$$3, PH_SEPARATE, "ice/db/driver/pdo.zep", 317);
 		ZEPHIR_INIT_LNVAR(_6$$3);
@@ -904,7 +904,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	zephir_read_property(&_7, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_8, "sprintf", &_5, 11, &_7, &from);
+	ZEPHIR_CALL_FUNCTION(&_8, "sprintf", &_5, 12, &_7, &from);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_9);
 	zephir_fast_join_str(&_9, SL(", "), &columns TSRMLS_CC);
@@ -1013,7 +1013,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 		ZEPHIR_CONCAT_SV(&_3$$3, ":", &key);
 		zephir_array_update_zval(&values, &_3$$3, &value, PH_COPY | PH_SEPARATE);
 		zephir_read_property(&_4$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_5$$3, "sprintf", &_6, 11, &_4$$3, &key);
+		ZEPHIR_CALL_FUNCTION(&_5$$3, "sprintf", &_6, 12, &_4$$3, &key);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_7$$3);
 		ZEPHIR_CONCAT_VSV(&_7$$3, &_5$$3, " = :", &key);
@@ -1024,7 +1024,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	ZEPHIR_CALL_METHOD(&filtered, this_ptr, "where", NULL, 0, filters, &values);
 	zephir_check_call_status();
 	zephir_read_property(&_8, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_9, "sprintf", &_6, 11, &_8, &from);
+	ZEPHIR_CALL_FUNCTION(&_9, "sprintf", &_6, 12, &_8, &from);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_10);
 	zephir_fast_join_str(&_10, SL(", "), &columns TSRMLS_CC);
@@ -1096,7 +1096,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
 	ZEPHIR_CALL_METHOD(&filtered, this_ptr, "where", NULL, 0, filters);
 	zephir_check_call_status();
 	zephir_read_property(&_0, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_1, "sprintf", NULL, 11, &_0, &from);
+	ZEPHIR_CALL_FUNCTION(&_1, "sprintf", NULL, 12, &_0, &from);
 	zephir_check_call_status();
 	zephir_array_fetch_long(&_2, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 369 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&sql);

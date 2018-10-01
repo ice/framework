@@ -181,7 +181,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	}
 	ZVAL_LONG(&_7, (limit * ((page - 1))));
 	ZVAL_LONG(&_8, limit);
-	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 109, &data, &_7, &_8);
+	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 110, &data, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "items");
@@ -895,7 +895,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_CALL_METHOD(&_2, this_ptr, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, countOut);
-	ZEPHIR_CALL_FUNCTION(&n2, "min", &_4, 28, &_3, &_2);
+	ZEPHIR_CALL_FUNCTION(&n2, "min", &_4, 29, &_3, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "pages");
@@ -903,7 +903,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 1);
 	ZVAL_LONG(&_6, ((zephir_get_numberval(&_5) - countOut) + 1));
-	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 45, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 46, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "pages");
@@ -915,7 +915,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, (zephir_get_numberval(&n2) + 1));
 	ZVAL_LONG(&_6, (zephir_get_numberval(&_8) - countIn));
-	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 45, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 46, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "current");
@@ -923,7 +923,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, (zephir_get_numberval(&n7) - 1));
 	ZVAL_LONG(&_6, (zephir_get_numberval(&_9) + countIn));
-	ZEPHIR_CALL_FUNCTION(&n5, "min", &_4, 28, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n5, "min", &_4, 29, &_3, &_6);
 	zephir_check_call_status();
 	useMiddle = (ZEPHIR_GE(&n5, &n4));
 	ZEPHIR_INIT_VAR(&_10);

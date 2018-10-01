@@ -98,7 +98,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			ZVAL_STRING(&_4$$5, "Config file '%s' doesn't exist");
 			zephir_array_fast_append(&_3$$5, &_4$$5);
 			zephir_array_fast_append(&_3$$5, data);
-			ZEPHIR_CALL_METHOD(NULL, &_2$$5, "__construct", &_5, 12, &_3$$5);
+			ZEPHIR_CALL_METHOD(NULL, &_2$$5, "__construct", &_5, 13, &_3$$5);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_2$$5, "ice/config.zep", 29 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -153,7 +153,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			} else {
 				ZEPHIR_INIT_NVAR(&_12$$15);
 				object_init_ex(&_12$$15, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_12$$15, "__construct", &_13, 41, &value);
+				ZEPHIR_CALL_METHOD(NULL, &_12$$15, "__construct", &_13, 42, &value);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("data"), &key, &_12$$15 TSRMLS_CC);
 			}
