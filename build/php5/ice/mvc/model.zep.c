@@ -745,6 +745,7 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+ * @return null|boolean If validate fail return null, else return insert status
  */
 PHP_METHOD(Ice_Mvc_Model, create) {
 
@@ -877,7 +878,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_check_call_status();
 	_38 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
 	if (!(ZEPHIR_IS_EMPTY(_38))) {
-		RETURN_MM_BOOL(0);
+		RETURN_MM_NULL();
 	}
 	_39 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_40);
@@ -937,6 +938,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+ * @return null|boolean If validate fail return null, else return update status
  */
 PHP_METHOD(Ice_Mvc_Model, update) {
 
@@ -970,7 +972,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_read_property_this(&_0, this_ptr, SL("primary"), PH_NOISY_CC);
 	if (Z_TYPE_P(_0) == IS_ARRAY) {
 		_1$$3 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-		zephir_is_iterable(_1$$3, &_3$$3, &_2$$3, 0, 0, "ice/mvc/model.zep", 372);
+		zephir_is_iterable(_1$$3, &_3$$3, &_2$$3, 0, 0, "ice/mvc/model.zep", 374);
 		for (
 		  ; zend_hash_get_current_data_ex(_3$$3, (void**) &_4$$3, &_2$$3) == SUCCESS
 		  ; zend_hash_move_forward_ex(_3$$3, &_2$$3)
@@ -1063,7 +1065,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	if (!(ZEPHIR_IS_EMPTY(_34))) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdata", NULL, 0, data);
 		zephir_check_call_status();
-		RETURN_MM_BOOL(0);
+		RETURN_MM_NULL();
 	}
 	_35 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_36);
@@ -1134,7 +1136,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
  *
  * @param array fields
  * @param Validation extra
- * @return boolean
+ * @return null|boolean If validate fail return null, else return save status
  */
 PHP_METHOD(Ice_Mvc_Model, save) {
 
@@ -1208,7 +1210,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 		zephir_read_property_this(&_0$$3, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_0$$3) == IS_ARRAY) {
 			_1$$4 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 484);
+			zephir_is_iterable(_1$$4, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 486);
 			for (
 			  ; zend_hash_get_current_data_ex(_3$$4, (void**) &_4$$4, &_2$$4) == SUCCESS
 			  ; zend_hash_move_forward_ex(_3$$4, &_2$$4)
@@ -1288,7 +1290,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		zephir_read_property_this(&_3$$4, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(_3$$4) == IS_ARRAY) {
 			_4$$5 = zephir_fetch_nproperty_this(this_ptr, SL("primary"), PH_NOISY_CC);
-			zephir_is_iterable(_4$$5, &_6$$5, &_5$$5, 0, 0, "ice/mvc/model.zep", 524);
+			zephir_is_iterable(_4$$5, &_6$$5, &_5$$5, 0, 0, "ice/mvc/model.zep", 526);
 			for (
 			  ; zend_hash_get_current_data_ex(_6$$5, (void**) &_7$$5, &_5$$5) == SUCCESS
 			  ; zend_hash_move_forward_ex(_6$$5, &_5$$5)
@@ -1581,7 +1583,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 14, _3$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_1$$3, "ice/mvc/model.zep", 684 TSRMLS_CC);
+		zephir_throw_exception_debug(_1$$3, "ice/mvc/model.zep", 686 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1591,7 +1593,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zephir_array_isset_string_fetch(&referenceModel, relation, SS("referenceModel"), 0 TSRMLS_CC);
 	ZEPHIR_OBS_VAR(referencedField);
 	zephir_array_isset_string_fetch(&referencedField, relation, SS("referencedField"), 0 TSRMLS_CC);
-	zephir_array_fetch_string(&_4, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 691 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 693 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(_4, 1) || ZEPHIR_IS_LONG(_4, 2)) {
 			ZEPHIR_OBS_VAR(_5$$4);
@@ -1668,7 +1670,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		if (Z_TYPE_P(fields) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(rules);
 			array_init(rules);
-			zephir_is_iterable(fields, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 742);
+			zephir_is_iterable(fields, &_3$$4, &_2$$4, 0, 0, "ice/mvc/model.zep", 744);
 			for (
 			  ; zend_hash_get_current_data_ex(_3$$4, (void**) &_4$$4, &_2$$4) == SUCCESS
 			  ; zend_hash_move_forward_ex(_3$$4, &_2$$4)
@@ -1677,14 +1679,14 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 				_5$$5 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
 				if (zephir_array_isset(_5$$5, field)) {
 					_6$$6 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-					zephir_array_fetch(&_7$$6, _6$$6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 738 TSRMLS_CC);
+					zephir_array_fetch(&_7$$6, _6$$6, field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 740 TSRMLS_CC);
 					zephir_array_update_zval(&rules, field, &_7$$6, PH_COPY | PH_SEPARATE);
 				}
 			}
 			RETURN_CCTOR(rules);
 		} else if (_0$$3) {
 			_8$$7 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
-			zephir_array_fetch(&_9$$7, _8$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 744 TSRMLS_CC);
+			zephir_array_fetch(&_9$$7, _8$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 746 TSRMLS_CC);
 			RETURN_CTOR(_9$$7);
 		}
 		RETURN_MM_NULL();
@@ -1821,7 +1823,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, _3, "__construct", NULL, 14, _5);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_3, "ice/mvc/model.zep", 805 TSRMLS_CC);
+	zephir_throw_exception_debug(_3, "ice/mvc/model.zep", 807 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
