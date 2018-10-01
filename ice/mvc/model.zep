@@ -287,7 +287,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function create(var fields = [], <Validation> extra = null)
     {
-        var status;
+        var status, called;
 
         this->setData(this->fields(fields, !this->autoincrement));
 
@@ -299,7 +299,9 @@ abstract class Model extends Arr implements \Serializable
             let this->messages = [];
         }
 
-        this->di->applyHook("model.before.validate", [this]);
+        let called = get_called_class();
+
+        this->di->applyHook("model.before.validate." . called, [this]);
 
         // Run validation if rules or validation is specified
         if !empty this->rules || typeof this->validation == "object" && (this->validation instanceof Validation) {
@@ -324,13 +326,13 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        this->di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate." . called, [this]);
 
         if !empty this->messages {
             return null;
         }
 
-        this->di->applyHook("model.before.create", [this]);
+        this->di->applyHook("model.before.create." . called, [this]);
 
         let status = this->db->insert(this->from, this->getData());
 
@@ -341,7 +343,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        this->di->applyHook("model.after.create", [this]);
+        this->di->applyHook("model.after.create." . called, [this]);
 
         return status;
     }
@@ -362,7 +364,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function update(var fields = [], <Validation> extra = null)
     {
-        var data, status, primary, key;
+        var data, status, primary, key, called;
 
         let data = this->getData(),
             primary = [];
@@ -385,7 +387,9 @@ abstract class Model extends Arr implements \Serializable
             let this->messages = [];
         }
 
-        this->di->applyHook("model.before.validate", [this]);
+        let called = get_called_class();
+
+        this->di->applyHook("model.before.validate." . called, [this]);
 
         if typeof this->validation == "object" && (this->validation instanceof Validation) {
             this->validation->validate(this->getData());
@@ -398,7 +402,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        this->di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate." . called, [this]);
 
         if !empty this->messages {
             // Rollback changes and restore old data
@@ -406,7 +410,7 @@ abstract class Model extends Arr implements \Serializable
             return null;
         }
 
-        this->di->applyHook("model.before.update", [this]);
+        this->di->applyHook("model.before.update." . called, [this]);
 
         let fields = this->fields(this->getData(), !this->autoincrement);
 
@@ -423,7 +427,7 @@ abstract class Model extends Arr implements \Serializable
             let this->isLoaded = true;
         }
 
-        this->di->applyHook("model.after.update", [this]);
+        this->di->applyHook("model.after.update." . called, [this]);
 
         return status;
     }
