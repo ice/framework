@@ -283,6 +283,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+     * @return null|boolean If validate fail return null, else return insert status
      */
     public function create(var fields = [], <Validation> extra = null)
     {
@@ -326,7 +327,7 @@ abstract class Model extends Arr implements \Serializable
         this->di->applyHook("model.after.validate", [this]);
 
         if !empty this->messages {
-            return false;
+            return null;
         }
 
         this->di->applyHook("model.before.create", [this]);
@@ -357,6 +358,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+     * @return null|boolean If validate fail return null, else return update status
      */
     public function update(var fields = [], <Validation> extra = null)
     {
@@ -401,7 +403,7 @@ abstract class Model extends Arr implements \Serializable
         if !empty this->messages {
             // Rollback changes and restore old data
             this->setData(data);
-            return false;
+            return null;
         }
 
         this->di->applyHook("model.before.update", [this]);
@@ -444,7 +446,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields
      * @param Validation extra
-     * @return boolean
+     * @return null|boolean If validate fail return null, else return save status
      */
     public function save(var fields = [], <Validation> extra = null)
     {
