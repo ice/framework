@@ -294,6 +294,8 @@ abstract class Model extends Arr implements \Serializable
             extra->validate();
 
             let this->messages = extra->getMessages()->all();
+        } else {
+            let this->messages = [];
         }
 
         this->di->applyHook("model.before.validate", [this]);
@@ -377,6 +379,8 @@ abstract class Model extends Arr implements \Serializable
             extra->validate();
 
             let this->messages = extra->getMessages()->all();
+        } else {
+            let this->messages = [];
         }
 
         this->di->applyHook("model.before.validate", [this]);
