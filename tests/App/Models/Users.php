@@ -29,7 +29,7 @@ class Users extends IceUsers
     {
         $model = $this;
 
-        $this->di->hook('model.before.create', function ($model) {
+        $this->di->hook('model.before.create.' . get_called_class(), function ($model) {
             $model->set('password', md5($model->get('password')));
             $model->set('logins', intval($model->get('logins')));
         });
