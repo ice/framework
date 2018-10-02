@@ -1,4 +1,4 @@
-<?php
+
 namespace Ice\Mvc;
 
 use Ice\Di;
