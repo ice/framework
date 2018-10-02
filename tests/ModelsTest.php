@@ -124,11 +124,11 @@ class ModelsTest extends PHPUnit
     public function users()
     {
         return [
-            [['email' => 'user@example.com', 'username' => 'user', 'password' => 'password']],
-            [['email' => 'user2@example.com', 'username' => 'user2', 'password' => 'password2']],
-            [['email' => 'user3@example.com', 'username' => 'user3', 'password' => 'password3']],
-            [['email' => 'admin@example.com', 'username' => 'admin', 'password' => 'password']],
-            [['email' => 'admin2@example.com', 'username' => 'admin2', 'password' => 'password2']],
+            [['id'=>1, 'email' => 'user@example.com', 'username' => 'user', 'password' => 'password']],
+            [['id'=>2, 'email' => 'user2@example.com', 'username' => 'user2', 'password' => 'password2']],
+            [['id'=>3, 'email' => 'user3@example.com', 'username' => 'user3', 'password' => 'password3']],
+            [['id'=>4, 'email' => 'admin@example.com', 'username' => 'admin', 'password' => 'password']],
+            [['id'=>5, 'email' => 'admin2@example.com', 'username' => 'admin2', 'password' => 'password2']],
         ];
     }
 
@@ -140,12 +140,12 @@ class ModelsTest extends PHPUnit
     public function posts()
     {
         return [
-            [['user_id' => 1, 'title' => 'Post 1', 'content' => 'Post 1 content', 'status' => 1]],
-            [['user_id' => 2, 'title' => 'Post 2', 'content' => 'Post 2 content', 'status' => 1]],
-            [['user_id' => 3, 'title' => 'Post 3', 'content' => 'Post 3 content', 'status' => 1]],
-            [['user_id' => 1, 'title' => 'Post 4', 'content' => 'Post 4 content', 'status' => 0]],
-            [['user_id' => 1, 'title' => 'Post 5', 'content' => 'Post 5 content', 'status' => 1]],
-            [['user_id' => 2, 'title' => 'Post 6', 'content' => 'Post 6 content', 'status' => 1]],
+            [['id'=>1, 'user_id' => 1, 'title' => 'Post 1', 'content' => 'Post 1 content', 'status' => 1]],
+            [['id'=>2, 'user_id' => 2, 'title' => 'Post 2', 'content' => 'Post 2 content', 'status' => 1]],
+            [['id'=>3, 'user_id' => 3, 'title' => 'Post 3', 'content' => 'Post 3 content', 'status' => 1]],
+            [['id'=>4, 'user_id' => 1, 'title' => 'Post 4', 'content' => 'Post 4 content', 'status' => 0]],
+            [['id'=>5, 'user_id' => 1, 'title' => 'Post 5', 'content' => 'Post 5 content', 'status' => 1]],
+            [['id'=>6, 'user_id' => 2, 'title' => 'Post 6', 'content' => 'Post 6 content', 'status' => 1]],
         ];
     }
 
@@ -157,24 +157,24 @@ class ModelsTest extends PHPUnit
     public function comments()
     {
         return [
-            [['user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 1', 'status' => 1]],
-            [['user_id' => 2, 'post_id' => 1, 'content' => 'Post 1 comment 2', 'status' => 1]],
-            [['user_id' => 3, 'post_id' => 1, 'content' => 'Post 1 comment 3', 'status' => 1]],
-            [['user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 4', 'status' => 0]],
-            [['user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 5', 'status' => 1]],
-            [['user_id' => 2, 'post_id' => 1, 'content' => 'Post 1 comment 6', 'status' => 1]],
+            [['id'=>1, 'user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 1', 'status' => 1]],
+            [['id'=>2, 'user_id' => 2, 'post_id' => 1, 'content' => 'Post 1 comment 2', 'status' => 1]],
+            [['id'=>3, 'user_id' => 3, 'post_id' => 1, 'content' => 'Post 1 comment 3', 'status' => 1]],
+            [['id'=>4, 'user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 4', 'status' => 0]],
+            [['id'=>5, 'user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 5', 'status' => 1]],
+            [['id'=>6, 'user_id' => 2, 'post_id' => 1, 'content' => 'Post 1 comment 6', 'status' => 1]],
 
-            [['user_id' => 1, 'post_id' => 2, 'content' => 'Post 2 comment 1', 'status' => 1]],
-            [['user_id' => 2, 'post_id' => 2, 'content' => 'Post 2 comment 2', 'status' => 1]],
-            [['user_id' => 3, 'post_id' => 2, 'content' => 'Post 2 comment 3', 'status' => 1]],
+            [['id'=>7, 'user_id' => 1, 'post_id' => 2, 'content' => 'Post 2 comment 1', 'status' => 1]],
+            [['id'=>8, 'user_id' => 2, 'post_id' => 2, 'content' => 'Post 2 comment 2', 'status' => 1]],
+            [['id'=>9, 'user_id' => 3, 'post_id' => 2, 'content' => 'Post 2 comment 3', 'status' => 1]],
 
-            [['user_id' => 1, 'post_id' => 3, 'content' => 'Post 3 comment 1', 'status' => 0]],
-            [['user_id' => 2, 'post_id' => 3, 'content' => 'Post 3 comment 2', 'status' => 0]],
+            [['id'=>10, 'user_id' => 1, 'post_id' => 3, 'content' => 'Post 3 comment 1', 'status' => 0]],
+            [['id'=>11, 'user_id' => 2, 'post_id' => 3, 'content' => 'Post 3 comment 2', 'status' => 0]],
 
-            [['user_id' => 2, 'post_id' => 4, 'content' => 'Post 4 comment 1', 'status' => 1]],
+            [['id'=>12, 'user_id' => 2, 'post_id' => 4, 'content' => 'Post 4 comment 1', 'status' => 1]],
 
-            [['user_id' => 3, 'post_id' => 5, 'content' => 'Post 5 comment 1', 'status' => 1]],
-            [['user_id' => 4, 'post_id' => 5, 'content' => 'Post 5 comment 2', 'status' => 1]],
+            [['id'=>13, 'user_id' => 3, 'post_id' => 5, 'content' => 'Post 5 comment 1', 'status' => 1]],
+            [['id'=>14, 'user_id' => 4, 'post_id' => 5, 'content' => 'Post 5 comment 2', 'status' => 1]],
         ];
     }
 }
