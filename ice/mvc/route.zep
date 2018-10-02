@@ -1,3 +1,4 @@
+<?php
 namespace Ice\Mvc;
 
 use Ice\Di;
@@ -9,16 +10,16 @@ use Ice\Exception;
  * and a route. Routes may also contain keys which can be used to set the
  * controller, action, and parameters.
  *
- * Each <key> will be translated to a regular expression using a default
+ * Each {key} will be translated to a regular expression using a default
  * regular expression pattern. You can override the default pattern by providing
  * a pattern for the key:
  *
  * <pre><code>
- *     // This route will only match when <id> is a digit
- *     Route::set("blog", "blog/<action>/<id>", ["id" => "\d+"], ['GET', 'POST']);
+ *     // This route will only match when {id} is a digit
+ *     Route::set("blog", "blog/{action}/{id}", ["id" => "\d+"], ['GET', 'POST']);
  *
- *     // This route will match when <path> is anything
- *     Route::set("file", "<path>", ["path" => ".*"]);
+ *     // This route will match when {path} is anything
+ *     Route::set("file", "{path}", ["path" => ".*"]);
  * </code></pre>
  *
  * It is also possible to create optional segments by using parentheses in
@@ -26,10 +27,10 @@ use Ice\Exception;
  *
  * <pre><code>
  *     // This is the standard default route, and no keys are required
- *     Route::set("default", "(<controller>(/<action>(/<id>))(.json))");
+ *     Route::set('default', '[{controller}[/{action}[/{id}]][.json]]');
  *
- *     // This route only requires the <file> key
- *     Route::set("file", "(<path>/)<file>(.<format>)", ["path" => ".*", "format" => "\w+"]);
+ *     // This route only requires the {file} key
+ *     Route::set('file', '[{path}/]{file}[.{ext}]', ['path' => '.*', 'ext' => '\w+']);
  * </code></pre>
  *
  * Routes also provide a way to generate URIs (called "reverse routing"), which
@@ -46,128 +47,126 @@ use Ice\Exception;
  */
 class Route
 {
-	// Defines the pattern of a <placeholder>
-	const REGEX_KEYWORD = "<([a-zA-Z0-9_]++)>";
+    // Defines the pattern of a <placeholder>
+    const REGEX_KEYWORD = "\{([a-zA-Z0-9_]++)\}";
 
-	// What can be part of a <placeholder> value
-	const REGEX_PLACEHOLDER = "[^/.,;?\n]++";
+    // What can be part of a <placeholder> value
+    const REGEX_PLACEHOLDER = "[^/.,;?\n]++";
 
-	// What must be escaped in the route regex
-	const REGEX_ESCAPE  = "[.\\+*?[^\\]${}=!|]";
+    // What must be escaped in the route regex
+    const REGEX_ESCAPE  = "[.\\+*?^\$=!|]";
 
-	// list of route objects
-	protected static routes = [];
+    // list of route objects
+    protected static routes = [];
 
-	/**
-	 * Stores a named route and returns it.
-	 *
+    /**
+     * Stores a named route and returns it.
+     *
      * <pre><code>
-	 *     Route::set("default", "(<controller>(/<action>(/<id>)))")
-	 *         ->defaults(["controller" => "welcome"]);
+     *     Route::set("default", "[{controller}[/{action}[/{id}]]]")
+     *         ->defaults(["controller" => "welcome"]);
      * </code></pre>
-	 *
-	 * @param string route name
-	 * @param string URI pattern
-	 * @param array regex patterns for route keys
-	 * @param mix method Request method limitation, * for no limit or an array of methods
-	 * @return object self
-	 */
-	public static function set(string name, string uri, array regex = NULL, var method = "*")
-	{
+     *
+     * @param string route name
+     * @param string URI pattern
+     * @param array regex patterns for route keys
+     * @param mix method Request method limitation, * for no limit or an array of methods
+     * @return object self
+     */
+    public static function set(string name, string uri, array regex = null, var method = "*")
+    {
         let self::routes[name] = new self(uri, regex, method);
 
-		return self::routes[name];
-	}
+        return self::routes[name];
+    }
 
-	/**
-	 * Retrieves a named route.
-	 *
+    /**
+     * Retrieves a named route.
+     *
      * <pre><code>
-	 *     $route = Route::get("default");
+     *     $route = Route::get("default");
      * </code></pre>
-	 *
-	 * @param   string  route name
-	 * @return  Route
-	 */
-	public static function get(string name)
-	{
-		if !isset self::routes[name] {
-			throw new Exception(["The requested route does not exist: %s", name]);
-		}
+     *
+     * @param   string  route name
+     * @return  Route|null
+     */
+    public static function get(string name)
+    {
+        return isset self::routes[name] ? self::routes[name] : null;
+    }
 
-		return self::routes[name];
-	}
+    /**
+     * Retrieves all named routes.
+     *
+     * @return  array  routes by name
+     */
+    public static function all()
+    {
+        return self::routes;
+    }
 
-	/**
-	 * Retrieves all named routes.
-	 *
-	 * @return  array  routes by name
-	 */
-	public static function all()
-	{
-		return self::routes;
-	}
+    /**
+     * Get the name of a route.
+     *
+     * @param   object Route instance
+     * @return  string
+     */
+    public static function getName(<Route> route)
+    {
+        return array_search(route, self::routes);
+    }
 
-	/**
-	 * Get the name of a route.
-	 *
-	 * @param   object  Route instance
-	 * @return  string
-	 */
-	public static function name(Route route)
-	{
-		return array_search(route, self::routes);
-	}
-
-	/**
-	 * Saves or loads the route cache.
-	 *
-	 * <pre><code>
-	 *     if (! Route::cache()) {
-	 *         // Set routes here
-	 *         Route::cache($filePath);
-	 *     }
+    /**
+     * Saves or loads the route cache.
+     *
+     * <pre><code>
+     *     if (! Route::cache()) {
+     *         // set routes
+     *         Route::set("default", "[{controller}[/{action}[/{id}]]]");
+     *         // cache routes
+     *         Route::cache($filePath);
+     *     }
      * </code></pre>
-	 *
-	 * @param   string file Cache the current routes to the file
-	 * @return  self|boolean when saving routes or loading routes
-	 */
-	public static function cache(string file = FALSE)
-	{
-		if file {
-			// Cache all defined routes
-			file_put_contents(file, "<?php return " . var_export(self::routes, true) . ";");
+     *
+     * @param   string file Cache the current routes to the file
+     * @return  self|boolean when saving routes or loading routes
+     */
+    public static function cache(string file = false)
+    {
+        if file {
+            // Cache all defined routes
+            file_put_contents(file, "<?php return " . var_export(self::routes, true) . ";");
 
-			return this;
-		}
+            return this;
+        }
 
         if file_exists(file) {
             let self::routes = require file;
 
             // Routes were cached
-            return TRUE;
+            return true;
         }
 
         // Routes were not cached
-        return FALSE;
-	}
+        return false;
+    }
 
-	// Route URI string
-	protected routeUri = "";
+    // Route URI string
+    protected routeUri = "";
 
-	// Regular expressions for route keys
-	protected routeKeys = [];
+    // Regular expressions for route keys
+    protected routeKeys = [];
 
-	// Compiled regex cache
-	protected routeRegex;
+    // Compiled regex cache
+    protected routeRegex;
 
-	// default module
+    // default module
     protected defaultModule = "default" { get, set };
 
-	// default handler
+    // default handler
     protected defaultHandler = "index" { get, set };
 
-	// default action
+    // default action
     protected defaultAction = "index" { get, set };
 
     protected method { get };
@@ -175,54 +174,83 @@ class Route
     protected handler { get };
     protected action { get };
     protected params = [] { get };
-    protected silent = false { set };
+    protected silent = false { get, set };
+    protected error { get };
 
-	/**
-	 * Sets the URI and regular expressions for keys.
-	 * Routes should always be created with [Route::set]
-	 * or they will not be properly stored.
-	 *
-	 * <pre><code>
-	 *     $route = new Route($uri, $regex, ['GET', 'POST']);
+    /**
+     * Sets the URI and regular expressions for keys.
+     * Routes should always be created with [Route::set]
+     * or they will not be properly stored.
+     *
+     * <pre><code>
+     *     $route = new Route($uri, $regex, ['GET', 'POST']);
      * </code></pre>
-	 *
-	 * @param string uri Route URI pattern
-	 * @param array regex Key patterns
-	 * @param mix method Request method limitation, * for no limit or an array of methods
-	 */
-	public function __construct(string uri = NULL, array regex = NULL, var method = "*")
-	{
-		if uri === NULL {
-			// Assume the route is from cache
-			return;
-		}
+     *
+     * @param string uri Route URI pattern
+     * @param array regex Key patterns
+     * @param mix method Request method limitation, * for no limit or an array of methods
+     */
+    public function __construct(string uri = null, array regex = null, var method = "*")
+    {
+        var regex, search, replace, key, value;
 
-		// Store the URI that this route will match
-		let this->routeUri = uri;
+        if uri === null {
+            // Assume the route is from cache
+            return;
+        }
 
-		if !empty regex {
-			let this->routeKeys = regex;
-		}
+        // Store the URI that this route will match
+        let this->routeUri = uri;
 
-		let this->method = method;
+        if !empty regex {
+            let this->routeKeys = regex;
+        }
 
-		// Store the compiled regex locally
-		let this->routeRegex = this->parse();
-	}
+        if empty method {
+            let this->method = "*";
+        } else {
+            let this->method = method;
+        }
 
-	/**
-	 * Provides default values for keys when they are not present. The default
-	 * action will always be "index" unless it is overloaded here.
-	 *
-	 * <pre><code>
-	 *     $route->defaults(["handler" => "hello", "action" => "world"]);
+        // The URI should be considered literal except for keys and optional parts
+        // Escape everything preg_quote would escape except for : [ ] { }
+        let regex = preg_replace("#" . self::REGEX_ESCAPE . "#", "\\\\$0", this->routeUri);
+
+        if strpos(regex, "[") !== false {
+            // Make optional parts of the URI non-capturing and optional
+            let regex = str_replace(["[", "]"], ["(?:", ")?"], regex);
+        }
+
+        // Insert default regex for keys
+        let regex = str_replace(["{", "}"], ["(?P<", ">" . self::REGEX_PLACEHOLDER . ")"], regex);
+
+        if !empty this->routeKeys {
+            let search = [], replace = [];
+            for key, value in this->routeKeys {
+                let search[]  = "<" . key . ">" . self::REGEX_PLACEHOLDER,
+                    replace[] = "<" . key . ">" . value;
+            }
+            // Replace the default regex with the user-specified regex
+            let regex = str_replace(search, replace, regex);
+        }
+
+        // Store the compiled regex locally
+        let this->routeRegex = "#^" . regex . "$#uD";
+    }
+
+    /**
+     * Provides default values for keys when they are not present. The default
+     * action will always be "index" unless it is overloaded here.
+     *
+     * <pre><code>
+     *     $route->defaults(["handler" => "hello", "action" => "world"]);
      * </code></pre>
-	 *
-	 * @param   array  key values
-	 * @return  $this
-	 */
-	public function defaults(array! defaults)
-	{
+     *
+     * @param   array  key values
+     * @return  $this
+     */
+    public function defaults(array! defaults)
+    {
         var module, handler, action;
 
         if fetch module, defaults["module"] {
@@ -237,28 +265,27 @@ class Route
             let this->defaultAction = action;
         }
 
-		return this;
-	}
+        return this;
+    }
 
-	/**
-	 * Tests if the route matches a given URI. Return all of the routed parameters
-	 * if successful. A failed match will return null, false for method not allowed.
-	 *
-	 * <pre><code>
-	 *     // Params: controller = blog, action = edit, id = 10
-	 *     $params = route->matches("blog/edit/10");
+    /**
+     * Tests if the route matches a given URI and method.
+     *
+     * <pre><code>
+     *     // Params: controller = blog, action = edit, id = 10
+     *     $params = route->matches("blog/edit/10");
      * </code></pre>
-	 *
-	 * @param   string  URI to match
-	 * @return  array|false|null
-	 */
-	public function matches(string uri, var method = "*")
-	{
+     *
+     * @param string URI to match
+     * @return array|false|null Routed parameters, method not allowed or no match
+     */
+    public function matches(string uri, var method = "*")
+    {
         var defaults, params, matches, key, value;
 
-		if ! preg_match(this->routeRegex, uri, matches) {
+        if ! preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
-			return null;
+            return null;
         }
 
         if this->method !== "*" {
@@ -273,16 +300,14 @@ class Route
             }
         }
 
-		let params = [];
+        let params = [];
 
-		for key, value in matches {
-			if is_int(key) || value === "" {
-				// Skip all unnamed keys
-				continue;
-			}
-			// Set the value for all matched keys
-			let params[key] = value;
-		}
+        for key, value in matches {
+            if is_int(key) || value === "" {
+                continue;
+            }
+            let params[key] = value;
+        }
 
         let params += [
             "module" => this->defaultModule,
@@ -290,85 +315,82 @@ class Route
             "action" => this->defaultAction
         ];
 
-		return params;
-	}
+        return params;
+    }
 
-	/**
-	 * Generates a URI for the current route based on the parameters given.
-	 *
-	 * <pre><code>
-	 *     // Using the "default" route: blog/post/10
-	 *     $uri = $route->uri([
-	 *         "handle"     => "blog",
-	 *         "action"     => "post",
-	 *         "id"         => 10
-	 *     ]);
+    /**
+     * Generates a URI for the current route based on the parameters given.
+     *
+     * <pre><code>
+     *     // Using the "default" route: blog/post/10
+     *     $uri = $route->uri(["controller" => "blog", "action" => "post", "id" => 10]);
+     *     if (!$uri) echo $route->getError();
      * </code></pre>
-	 *
-	 * @param array URI parameters
-	 * @return string
-	 */
-	public function uri(array params = NULL)
-	{
+     *
+     * @param array URI parameters
+     * @return string|false
+     */
+    public function uri(array params = null)
+    {
         var defaults, uri, match, search, key, replace;
 
         let defaults = [
             "module" => this->defaultModule,
-            "handle" => this->defaultHandler,
+            "controller" => this->defaultHandler,
             "action" => this->defaultAction
         ];
 
-		if params === NULL {
-			let params = defaults;
-		} else {
-			let params += defaults;
-		}
+        if params === null {
+            let params = defaults;
+        } else {
+            let params += defaults;
+        }
 
-		// Start with the routed URI
-		let uri = this->routeUri;
+        let uri = this->routeUri;
 
-		if strpos(uri, "<") === FALSE && strpos(uri, "(") === FALSE {
-			// This is a static route, no need to replace anything
-			return uri;
-		}
+        if strpos(uri, "{") === false && strpos(uri, "[") === false {
+            // This is a static route, no need to replace anything
+            return uri;
+        }
 
-		while preg_match("#\([^()]++\)#", uri, match) {
-			// Search for the matched value
-			let search = match[0];
+        while preg_match("#\[[^[]]++\]#", uri, match) {
+            // Search for the matched value
+            let search = match[0];
 
-			// Remove the parenthesis from the match as the replace
-			let replace = substr(match[0], 1, -1);
+            // Remove the parenthesis from the match as the replace
+            let replace = substr(match[0], 1, -1);
 
-			while preg_match("#" . self::REGEX_KEYWORD . "#", replace, match) {
-				list(key, param) = match;
+            while preg_match("#" . self::REGEX_KEYWORD . "#", replace, match) {
+                list(key, param) = match;
 
-				if isset params[param] {
-					// Replace the key with the parameter value
-					let replace = str_replace(key, params[param], replace);
-				} else {
-					// This group has missing parameters
-					let replace = "";
-					break;
-				}
-			}
-			// Replace the group in the URI
-			let uri = str_replace(search, replace, uri);
-		}
+                if isset params[param] {
+                    // Replace the key with the parameter value
+                    let replace = str_replace(key, params[param], replace);
+                } else {
+                    // This group has missing parameters
+                    let replace = "";
+                    break;
+                }
+            }
+            // Replace the group in the URI
+            let uri = str_replace(search, replace, uri);
+        }
 
-		while preg_match("#" . self::REGEX_KEYWORD . "#", uri, match) {
-			list(key, param) = match;
+        while preg_match("#" . self::REGEX_KEYWORD . "#", uri, match) {
+            list(key, param) = match;
 
-			if ! isset params[param] {
-				// Ungrouped parameters are required
-				throw new Exception(["Required route parameter not passed: %s", param]);
-			}
+            if ! isset params[param] {
+                // Ungrouped parameters are required
+                let this->error = "Required route parameter not passed: " . param;
+                return false;
+            }
 
-			let uri = str_replace(key, params[param], uri);
-		}
+            let uri = str_replace(key, params[param], uri);
+        }
 
-		// Trim all extra slashes from the URI
-		return preg_replace("#//+#", "/", rtrim(uri, "/"));
-	}
+        // Trim all extra slashes from the URI
+        return preg_replace("#//+#", "/", rtrim(uri, "/"));
+    }
 
     /**
      * Handles routing information.
@@ -378,98 +400,66 @@ class Route
      * @return mixed
      */
     public function handle(string method = null, string uri = null)
-	{
-        var name, route, params, match;
+    {
+        var name, route, params, match, response;
 
-		// Remove trailing slashes from the URI
-		let uri = trim(uri, '/'),
+        // Remove trailing slashes from the URI
+        let uri = trim(uri, '/'),
             match = null;
 
-		for name, route in self::routes {
+        for name, route in self::routes {
             let params = route->matches(uri);
-			if params {
-				if isset params["module"] {
-					let this->module = params["module"];
-				} else {
-					let this->module = this->defaultModule;
-				}
+            if params {
+                if isset params["module"] {
+                    let this->module = params["module"];
+                } else {
+                    let this->module = this->defaultModule;
+                }
 
-				if isset params['controller'] {
-					let this->handler = params['controller'];
-				} else {
-					let this->handler = this->defaultHandler;
-				}
+                if isset params['controller'] {
+                    let this->handler = params['controller'];
+                } else {
+                    let this->handler = this->defaultHandler;
+                }
 
-				if isset params['action'] {
-					let this->action = params['action'];
-				} else {
-					let this->action = this->defaultAction;
-				}
+                if isset params['action'] {
+                    let this->action = params['action'];
+                } else {
+                    let this->action = this->defaultAction;
+                }
 
-				// These are accessible as public vars and can be overloaded
-				unset params['controller'], params['action'], params['module'];
+                // These are accessible as public vars and can be overloaded
+                unset params['controller'], params['action'], params['module'];
 
-				// Params cannot be changed once matched
-				let this->params = params;
+                // Params cannot be changed once matched
+                let this->params = params;
 
-				return [
+                return [
                     "module": this->module,
                     "handler": this->handler,
                     "action": this->action,
                     "params": this->params
                 ];
-			} elseif params === false {
+            } elseif params === false {
+                // method not allowed
                 let match = false;
-			}
-		}
+            }
+        }
 
         if this->silent {
             // 404 Not Found, 405 Method Not Allowed
-            let response = Di::$fetch()->get("response");
-            response->setStatus(match === null ? 404 : 405);
-            response->setBody(response->getMessage(match === null ? 404 : 405));
-            return response;
+            let response = Di::$fetch()->get("response"),
+                match = match === null ? 404 : 405;
+
+            return response->setStatus(match)
+                ->setBody(response->getMessage(match));
         }
 
-		throw new Exception([
+        throw new Exception([
             match === null
                 ? "Unable to find a route to match the URI: %s"
                 : "Request method not supported by that resource: %s",
             uri
         ]);
-	}
-
-	/**
-	 * Returns the compiled regular expression for the route.
-	 *
-	 * @return  string
-	 */
-	protected function parse()
-	{
-        var regex, search, replace, key, value;
-
-		// The URI should be considered literal except for keys and optional parts
-		// Escape everything preg_quote would escape except for : ( ) < >
-		let regex = preg_replace("#" . self::REGEX_ESCAPE . "#", "\\\\$0", this->routeUri);
-
-		if strpos(regex, "(") !== FALSE {
-			// Make optional parts of the URI non-capturing and optional
-			let regex = str_replace(["(", ")"], ["(?:", ")?"], regex);
-		}
-
-		// Insert default regex for keys
-		let regex = str_replace(["<", ">"], ["(?P<", ">" . self::REGEX_PLACEHOLDER . ")"], regex);
-
-		if ! empty this->routeKeys {
-			let search = [], replace = [];
-			for key, value in this->routeKeys {
-				let search[]  = "<" . key . ">" . self::REGEX_PLACEHOLDER,
-                    replace[] = "<" . key . ">" . value;
-			}
-			// Replace the default regex with the user-specified regex
-			let regex = str_replace(search, replace, regex);
-		}
-
-		return "#^" . regex . "$#uD";
-	}
+    }
 }
