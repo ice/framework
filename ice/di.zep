@@ -271,17 +271,22 @@ class Di extends Arr
      *
      * @param string name The hook name
      * @param mixed callable A callable object
+     * @param mixed context The callback bind to the object
      * @param int priority The hook priority; 0 = high, 10 = low
+     * @return object Di
      */
-    public function hook(string name, var callback, int priority = 10)
+    public function hook(string name, var callback, var context = null, int priority = 10)
     {
-        if !isset this->hooks[name] {
-            let this->hooks[name] = [[]];
-        }
-
         if typeof callback == "callable" {
+            if context != null && is_object(context) {
+                let name = name . spl_object_hash(context);
+            }
+            if !isset this->hooks[name] {
+                let this->hooks[name] = [[]];
+            }
             let this->hooks[name][priority][] = callback;
         }
+        return this;
     }
 
     /**
@@ -289,11 +294,16 @@ class Di extends Arr
      *
      * @param string name The hook name
      * @param mixed hookArg Argument for hooked functions
+     * @param mixed context The callback bind to the object
      * @return object Di
      */
-    public function applyHook(string name, array args = null)
+    public function applyHook(string name, array args = null, var context = null)
     {
         var priority, callback;
+
+        if context != null && is_object(context) {
+            let name = name . spl_object_hash(context);
+        }
 
         if !isset this->hooks[name] {
             let this->hooks[name] = [[]];
@@ -323,11 +333,15 @@ class Di extends Arr
      * are arrays of listeners.
      *
      * @param string name A hook name (Optional)
+     * @param mixed context The callback bind to the object
      * @return array|null
      */
-    public function getHooks(string name = null) -> array | null
+    public function getHooks(string name = null, var context = null) -> array | null
     {
         if name {
+            if context != null && is_object(context) {
+                let name = name . spl_object_hash(context);
+            }
             return isset this->hooks[name] ? this->hooks[name] : null;
         } else {
             return this->hooks;
@@ -340,18 +354,20 @@ class Di extends Arr
      * will be cleared.
      *
      * @param  string $name A hook name (Optional)
+     * @param mixed context The callback bind to the object
      * @return object Di
      */
-    public function clearHooks(string name = null)
+    public function clearHooks(string name = null, var context = null)
     {
         var key;
 
-        if name && isset this->hooks[name] {
-            let this->hooks[name] = [[]];
-        } else {
-            for key in array_keys(this->hooks) {
-                let this->hooks[key] = [[]];
+        if name {            
+            if context != null && is_object(context) {
+                let name = name . spl_object_hash(context);
             }
+            unset this->hooks[name];
+        } else {
+            let this->hooks = [];
         }
         return this;
     }
