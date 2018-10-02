@@ -793,7 +793,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(_7, this_ptr);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "model.before.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _6, "applyhook", NULL, 0, _2, _7);
+	ZEPHIR_CALL_METHOD(NULL, _6, "applyhook", NULL, 0, _2, _7, this_ptr);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	_8 = zephir_fetch_nproperty_this(this_ptr, SL("rules"), PH_NOISY_CC);
@@ -873,7 +873,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(_37, this_ptr);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "model.after.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _36, "applyhook", NULL, 0, _2, _37);
+	ZEPHIR_CALL_METHOD(NULL, _36, "applyhook", NULL, 0, _2, _37, this_ptr);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	_38 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
@@ -886,7 +886,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(_40, this_ptr);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "model.before.create", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _39, "applyhook", NULL, 0, _2, _40);
+	ZEPHIR_CALL_METHOD(NULL, _39, "applyhook", NULL, 0, _2, _40, this_ptr);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	_41 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
@@ -919,7 +919,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(_50, this_ptr);
 	ZEPHIR_INIT_NVAR(_2);
 	ZVAL_STRING(_2, "model.after.create", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _49, "applyhook", NULL, 0, _2, _50);
+	ZEPHIR_CALL_METHOD(NULL, _49, "applyhook", NULL, 0, _2, _50, this_ptr);
 	zephir_check_temp_parameter(_2);
 	zephir_check_call_status();
 	RETURN_CCTOR(status);
@@ -1015,7 +1015,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(_16, this_ptr);
 	ZEPHIR_INIT_VAR(_17);
 	ZVAL_STRING(_17, "model.before.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _15, "applyhook", NULL, 0, _17, _16);
+	ZEPHIR_CALL_METHOD(NULL, _15, "applyhook", NULL, 0, _17, _16, this_ptr);
 	zephir_check_temp_parameter(_17);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(_18);
@@ -1058,7 +1058,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(_33, this_ptr);
 	ZEPHIR_INIT_NVAR(_17);
 	ZVAL_STRING(_17, "model.after.validate", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _32, "applyhook", NULL, 0, _17, _33);
+	ZEPHIR_CALL_METHOD(NULL, _32, "applyhook", NULL, 0, _17, _33, this_ptr);
 	zephir_check_temp_parameter(_17);
 	zephir_check_call_status();
 	_34 = zephir_fetch_nproperty_this(this_ptr, SL("messages"), PH_NOISY_CC);
@@ -1073,7 +1073,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(_36, this_ptr);
 	ZEPHIR_INIT_NVAR(_17);
 	ZVAL_STRING(_17, "model.before.update", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _35, "applyhook", NULL, 0, _17, _36);
+	ZEPHIR_CALL_METHOD(NULL, _35, "applyhook", NULL, 0, _17, _36, this_ptr);
 	zephir_check_temp_parameter(_17);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_37, this_ptr, "getdata", NULL, 0);
@@ -1111,7 +1111,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(_44, this_ptr);
 	ZEPHIR_INIT_NVAR(_17);
 	ZVAL_STRING(_17, "model.after.update", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, _43, "applyhook", NULL, 0, _17, _44);
+	ZEPHIR_CALL_METHOD(NULL, _43, "applyhook", NULL, 0, _17, _44, this_ptr);
 	zephir_check_temp_parameter(_17);
 	zephir_check_call_status();
 	RETURN_CCTOR(status);

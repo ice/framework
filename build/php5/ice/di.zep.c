@@ -19,8 +19,8 @@
 #include "kernel/array.h"
 #include "Zend/zend_closures.h"
 #include "kernel/exception.h"
-#include "kernel/string.h"
 #include "kernel/concat.h"
+#include "kernel/string.h"
 #include "ext/spl/spl_exceptions.h"
 
 
@@ -571,19 +571,25 @@ PHP_METHOD(Ice_Di, errors) {
  *
  * @param string name The hook name
  * @param mixed callable A callable object
+ * @param mixed context The callback bind to the object
  * @param int priority The hook priority; 0 = high, 10 = low
+ * @return object Di
  */
 PHP_METHOD(Ice_Di, hook) {
 
-	zval *_1$$3;
-	zend_long priority;
-	zval *name_param = NULL, *callback, *priority_param = NULL, *_0, *_2$$3;
+	zval *_4$$5;
+	zend_bool _0$$3;
+	zend_long priority, ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, *callback, *context = NULL, *priority_param = NULL, *_3$$3, *_1$$4 = NULL, *_2$$4, *_5$$5;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 2, 1, &name_param, &callback, &priority_param);
+	zephir_fetch_params(1, 2, 2, &name_param, &callback, &context, &priority_param);
 
 	zephir_get_strval(name, name_param);
+	if (!context) {
+		context = ZEPHIR_GLOBAL(global_null);
+	}
 	if (!priority_param) {
 		priority = 10;
 	} else {
@@ -591,19 +597,30 @@ PHP_METHOD(Ice_Di, hook) {
 	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-	if (!(zephir_array_isset(_0, name))) {
-		ZEPHIR_INIT_VAR(_1$$3);
-		zephir_create_array(_1$$3, 1, 0 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_2$$3);
-		array_init(_2$$3);
-		zephir_array_fast_append(_1$$3, _2$$3);
-		zephir_update_property_array(this_ptr, SL("hooks"), name, _1$$3 TSRMLS_CC);
-	}
 	if (zephir_is_callable(callback TSRMLS_CC) == 1) {
+		_0$$3 = Z_TYPE_P(context) != IS_NULL;
+		if (_0$$3) {
+			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
+		}
+		if (_0$$3) {
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 113, context);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_2$$4);
+			ZEPHIR_CONCAT_VV(_2$$4, name, _1$$4);
+			zephir_get_strval(name, _2$$4);
+		}
+		_3$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+		if (!(zephir_array_isset(_3$$3, name))) {
+			ZEPHIR_INIT_VAR(_4$$5);
+			zephir_create_array(_4$$5, 1, 0 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(_5$$5);
+			array_init(_5$$5);
+			zephir_array_fast_append(_4$$5, _5$$5);
+			zephir_update_property_array(this_ptr, SL("hooks"), name, _4$$5 TSRMLS_CC);
+		}
 		zephir_update_property_array_multi(this_ptr, SL("hooks"), &callback TSRMLS_CC, SL("zla"), 3, name, priority);
 	}
-	ZEPHIR_MM_RESTORE();
+	RETURN_THIS();
 
 }
 
@@ -612,19 +629,21 @@ PHP_METHOD(Ice_Di, hook) {
  *
  * @param string name The hook name
  * @param mixed hookArg Argument for hooked functions
+ * @param mixed context The callback bind to the object
  * @return object Di
  */
 PHP_METHOD(Ice_Di, applyHook) {
 
-	HashTable *_8$$4, *_11$$6;
-	HashPosition _7$$4, _10$$6;
+	HashTable *_11$$5, *_14$$7;
+	HashPosition _10$$5, _13$$7;
+	zend_bool _0;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *args = NULL, *_1$$3;
-	zval *name_param = NULL, *args_param = NULL, *priority = NULL, *callback = NULL, *_0, *_3, *_4, *_2$$3, *_5$$4, *_6$$4, **_9$$4, **_12$$6, *_13$$7 = NULL;
+	zval *args = NULL, *_4$$4;
+	zval *name_param = NULL, *args_param = NULL, *context = NULL, *priority = NULL, *callback = NULL, *_3, *_6, *_7, *_1$$3 = NULL, *_2$$3, *_5$$4, *_8$$5, *_9$$5, **_12$$5, **_15$$7, *_16$$8 = NULL;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &name_param, &args_param);
+	zephir_fetch_params(1, 1, 2, &name_param, &args_param, &context);
 
 	zephir_get_strval(name, name_param);
 	if (!args_param) {
@@ -633,37 +652,51 @@ PHP_METHOD(Ice_Di, applyHook) {
 	} else {
 		zephir_get_arrval(args, args_param);
 	}
+	if (!context) {
+		context = ZEPHIR_GLOBAL(global_null);
+	}
 
 
-	_0 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-	if (!(zephir_array_isset(_0, name))) {
-		ZEPHIR_INIT_VAR(_1$$3);
-		zephir_create_array(_1$$3, 1, 0 TSRMLS_CC);
+	_0 = Z_TYPE_P(context) != IS_NULL;
+	if (_0) {
+		_0 = Z_TYPE_P(context) == IS_OBJECT;
+	}
+	if (_0) {
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "spl_object_hash", NULL, 113, context);
+		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2$$3);
-		array_init(_2$$3);
-		zephir_array_fast_append(_1$$3, _2$$3);
-		zephir_update_property_array(this_ptr, SL("hooks"), name, _1$$3 TSRMLS_CC);
+		ZEPHIR_CONCAT_VV(_2$$3, name, _1$$3);
+		zephir_get_strval(name, _2$$3);
 	}
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-	zephir_array_fetch(&_4, _3, name, PH_NOISY | PH_READONLY, "ice/di.zep", 302 TSRMLS_CC);
-	if (!(ZEPHIR_IS_EMPTY(_4))) {
-		_5$$4 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-		zephir_array_fetch(&_6$$4, _5$$4, name, PH_NOISY | PH_READONLY, "ice/di.zep", 308 TSRMLS_CC);
-		zephir_is_iterable(_6$$4, &_8$$4, &_7$$4, 0, 0, "ice/di.zep", 315);
+	if (!(zephir_array_isset(_3, name))) {
+		ZEPHIR_INIT_VAR(_4$$4);
+		zephir_create_array(_4$$4, 1, 0 TSRMLS_CC);
+		ZEPHIR_INIT_VAR(_5$$4);
+		array_init(_5$$4);
+		zephir_array_fast_append(_4$$4, _5$$4);
+		zephir_update_property_array(this_ptr, SL("hooks"), name, _4$$4 TSRMLS_CC);
+	}
+	_6 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+	zephir_array_fetch(&_7, _6, name, PH_NOISY | PH_READONLY, "ice/di.zep", 312 TSRMLS_CC);
+	if (!(ZEPHIR_IS_EMPTY(_7))) {
+		_8$$5 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+		zephir_array_fetch(&_9$$5, _8$$5, name, PH_NOISY | PH_READONLY, "ice/di.zep", 318 TSRMLS_CC);
+		zephir_is_iterable(_9$$5, &_11$$5, &_10$$5, 0, 0, "ice/di.zep", 325);
 		for (
-		  ; zend_hash_get_current_data_ex(_8$$4, (void**) &_9$$4, &_7$$4) == SUCCESS
-		  ; zend_hash_move_forward_ex(_8$$4, &_7$$4)
+		  ; zend_hash_get_current_data_ex(_11$$5, (void**) &_12$$5, &_10$$5) == SUCCESS
+		  ; zend_hash_move_forward_ex(_11$$5, &_10$$5)
 		) {
-			ZEPHIR_GET_HVALUE(priority, _9$$4);
+			ZEPHIR_GET_HVALUE(priority, _12$$5);
 			if (!(ZEPHIR_IS_EMPTY(priority))) {
-				zephir_is_iterable(priority, &_11$$6, &_10$$6, 0, 0, "ice/di.zep", 313);
+				zephir_is_iterable(priority, &_14$$7, &_13$$7, 0, 0, "ice/di.zep", 323);
 				for (
-				  ; zend_hash_get_current_data_ex(_11$$6, (void**) &_12$$6, &_10$$6) == SUCCESS
-				  ; zend_hash_move_forward_ex(_11$$6, &_10$$6)
+				  ; zend_hash_get_current_data_ex(_14$$7, (void**) &_15$$7, &_13$$7) == SUCCESS
+				  ; zend_hash_move_forward_ex(_14$$7, &_13$$7)
 				) {
-					ZEPHIR_GET_HVALUE(callback, _12$$6);
-					ZEPHIR_INIT_NVAR(_13$$7);
-					ZEPHIR_CALL_USER_FUNC_ARRAY(_13$$7, callback, args);
+					ZEPHIR_GET_HVALUE(callback, _15$$7);
+					ZEPHIR_INIT_NVAR(_16$$8);
+					ZEPHIR_CALL_USER_FUNC_ARRAY(_16$$8, callback, args);
 					zephir_check_call_status();
 				}
 			}
@@ -680,15 +713,18 @@ PHP_METHOD(Ice_Di, applyHook) {
  * are arrays of listeners.
  *
  * @param string name A hook name (Optional)
+ * @param mixed context The callback bind to the object
  * @return array|null
  */
 PHP_METHOD(Ice_Di, getHooks) {
 
-	zval *name_param = NULL, *_0$$3, *_1$$3, *_2$$3;
+	zend_bool _0$$3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, *context = NULL, *_3$$3, *_4$$3, *_5$$3, *_1$$4 = NULL, *_2$$4;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &name_param);
+	zephir_fetch_params(1, 0, 2, &name_param, &context);
 
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(name);
@@ -696,18 +732,32 @@ PHP_METHOD(Ice_Di, getHooks) {
 	} else {
 		zephir_get_strval(name, name_param);
 	}
+	if (!context) {
+		context = ZEPHIR_GLOBAL(global_null);
+	}
 
 
 	if (!(!name) && Z_STRLEN_P(name)) {
-		ZEPHIR_INIT_VAR(_0$$3);
-		_1$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-		if (zephir_array_isset(_1$$3, name)) {
-			_2$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-			zephir_array_fetch(&_0$$3, _2$$3, name, PH_NOISY, "ice/di.zep", 331 TSRMLS_CC);
-		} else {
-			ZVAL_NULL(_0$$3);
+		_0$$3 = Z_TYPE_P(context) != IS_NULL;
+		if (_0$$3) {
+			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
 		}
-		RETURN_CCTOR(_0$$3);
+		if (_0$$3) {
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 113, context);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_2$$4);
+			ZEPHIR_CONCAT_VV(_2$$4, name, _1$$4);
+			zephir_get_strval(name, _2$$4);
+		}
+		ZEPHIR_INIT_VAR(_3$$3);
+		_4$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+		if (zephir_array_isset(_4$$3, name)) {
+			_5$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+			zephir_array_fetch(&_3$$3, _5$$3, name, PH_NOISY, "ice/di.zep", 345 TSRMLS_CC);
+		} else {
+			ZVAL_NULL(_3$$3);
+		}
+		RETURN_CCTOR(_3$$3);
 	} else {
 		RETURN_MM_MEMBER(getThis(), "hooks");
 	}
@@ -720,19 +770,18 @@ PHP_METHOD(Ice_Di, getHooks) {
  * will be cleared.
  *
  * @param  string $name A hook name (Optional)
+ * @param mixed context The callback bind to the object
  * @return object Di
  */
 PHP_METHOD(Ice_Di, clearHooks) {
 
-	HashTable *_7$$4;
-	HashPosition _6$$4;
-	zval *_2$$3, *_9$$5 = NULL;
-	zend_bool _0;
-	zval *name_param = NULL, *key = NULL, *_1, *_3$$3, *_4$$4, *_5$$4, **_8$$4, *_10$$5 = NULL;
+	zend_bool _0$$3;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *name_param = NULL, *context = NULL, *_3$$3, *_1$$4 = NULL, *_2$$4, *_4$$5;
 	zval *name = NULL;
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 0, 1, &name_param);
+	zephir_fetch_params(1, 0, 2, &name_param, &context);
 
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(name);
@@ -740,37 +789,29 @@ PHP_METHOD(Ice_Di, clearHooks) {
 	} else {
 		zephir_get_strval(name, name_param);
 	}
-
-
-	_0 = zephir_is_true(name);
-	if (_0) {
-		_1 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-		_0 = zephir_array_isset(_1, name);
+	if (!context) {
+		context = ZEPHIR_GLOBAL(global_null);
 	}
-	if (_0) {
-		ZEPHIR_INIT_VAR(_2$$3);
-		zephir_create_array(_2$$3, 1, 0 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(_3$$3);
-		array_init(_3$$3);
-		zephir_array_fast_append(_2$$3, _3$$3);
-		zephir_update_property_array(this_ptr, SL("hooks"), name, _2$$3 TSRMLS_CC);
-	} else {
-		ZEPHIR_INIT_VAR(_4$$4);
-		_5$$4 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
-		zephir_array_keys(_4$$4, _5$$4 TSRMLS_CC);
-		zephir_is_iterable(_4$$4, &_7$$4, &_6$$4, 0, 0, "ice/di.zep", 355);
-		for (
-		  ; zend_hash_get_current_data_ex(_7$$4, (void**) &_8$$4, &_6$$4) == SUCCESS
-		  ; zend_hash_move_forward_ex(_7$$4, &_6$$4)
-		) {
-			ZEPHIR_GET_HVALUE(key, _8$$4);
-			ZEPHIR_INIT_NVAR(_9$$5);
-			zephir_create_array(_9$$5, 1, 0 TSRMLS_CC);
-			ZEPHIR_INIT_NVAR(_10$$5);
-			array_init(_10$$5);
-			zephir_array_fast_append(_9$$5, _10$$5);
-			zephir_update_property_array(this_ptr, SL("hooks"), key, _9$$5 TSRMLS_CC);
+
+
+	if (!(!name) && Z_STRLEN_P(name)) {
+		_0$$3 = Z_TYPE_P(context) != IS_NULL;
+		if (_0$$3) {
+			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
 		}
+		if (_0$$3) {
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 113, context);
+			zephir_check_call_status();
+			ZEPHIR_INIT_VAR(_2$$4);
+			ZEPHIR_CONCAT_VV(_2$$4, name, _1$$4);
+			zephir_get_strval(name, _2$$4);
+		}
+		_3$$3 = zephir_fetch_nproperty_this(this_ptr, SL("hooks"), PH_NOISY_CC);
+		zephir_array_unset(&_3$$3, name, PH_SEPARATE);
+	} else {
+		ZEPHIR_INIT_VAR(_4$$5);
+		array_init(_4$$5);
+		zephir_update_property_this(getThis(), SL("hooks"), _4$$5 TSRMLS_CC);
 	}
 	RETURN_THIS();
 
@@ -840,7 +881,7 @@ PHP_METHOD(Ice_Di, __call) {
 	ZEPHIR_CONCAT_SVS(_8, "Call to undefined method or service '", method, "'");
 	ZEPHIR_CALL_METHOD(NULL, _7, "__construct", NULL, 14, _8);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(_7, "ice/di.zep", 383 TSRMLS_CC);
+	zephir_throw_exception_debug(_7, "ice/di.zep", 399 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
