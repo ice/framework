@@ -367,7 +367,7 @@ class Di extends Arr
             }
             unset this->hooks[name];
         } else {
-            this->hooks = [];
+            let this->hooks = [];
         }
         return this;
     }
