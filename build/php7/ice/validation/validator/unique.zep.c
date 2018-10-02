@@ -323,7 +323,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_37$$20, "strtr", NULL, 102, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_37$$20, "strtr", NULL, 103, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_37$$20);
 		zephir_check_call_status();

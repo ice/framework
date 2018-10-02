@@ -181,7 +181,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	}
 	ZVAL_LONG(&_7, (limit * ((page - 1))));
 	ZVAL_LONG(&_8, limit);
-	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 110, &data, &_7, &_8);
+	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 111, &data, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "items");

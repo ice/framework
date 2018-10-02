@@ -881,6 +881,7 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+ * @return null|boolean If validate fail return null, else return insert status
  */
 PHP_METHOD(Ice_Mvc_Model, create) {
 
@@ -985,7 +986,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(&_6, this_ptr);
 	ZEPHIR_INIT_VAR(&_7);
 	ZVAL_STRING(&_7, "model.before.validate");
-	ZEPHIR_CALL_METHOD(NULL, &_2, "applyhook", NULL, 0, &_7, &_6);
+	ZEPHIR_CALL_METHOD(NULL, &_2, "applyhook", NULL, 0, &_7, &_6, this_ptr);
 	zephir_check_call_status();
 	zephir_read_property(&_8, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
 	_9 = !(ZEPHIR_IS_EMPTY(&_8));
@@ -1064,11 +1065,11 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(&_37, this_ptr);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "model.after.validate");
-	ZEPHIR_CALL_METHOD(NULL, &_36, "applyhook", NULL, 0, &_7, &_37);
+	ZEPHIR_CALL_METHOD(NULL, &_36, "applyhook", NULL, 0, &_7, &_37, this_ptr);
 	zephir_check_call_status();
 	zephir_read_property(&_38, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
 	if (!(ZEPHIR_IS_EMPTY(&_38))) {
-		RETURN_MM_BOOL(0);
+		RETURN_MM_NULL();
 	}
 	zephir_read_property(&_39, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_40);
@@ -1076,7 +1077,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(&_40, this_ptr);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "model.before.create");
-	ZEPHIR_CALL_METHOD(NULL, &_39, "applyhook", NULL, 0, &_7, &_40);
+	ZEPHIR_CALL_METHOD(NULL, &_39, "applyhook", NULL, 0, &_7, &_40, this_ptr);
 	zephir_check_call_status();
 	zephir_read_property(&_41, this_ptr, SL("db"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_42, this_ptr, SL("from"), PH_NOISY_CC | PH_READONLY);
@@ -1108,7 +1109,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	zephir_array_fast_append(&_50, this_ptr);
 	ZEPHIR_INIT_NVAR(&_7);
 	ZVAL_STRING(&_7, "model.after.create");
-	ZEPHIR_CALL_METHOD(NULL, &_49, "applyhook", NULL, 0, &_7, &_50);
+	ZEPHIR_CALL_METHOD(NULL, &_49, "applyhook", NULL, 0, &_7, &_50, this_ptr);
 	zephir_check_call_status();
 	RETURN_CCTOR(&status);
 
@@ -1126,6 +1127,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
  *
  * @param array fields Fields to save or valid fields
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+ * @return null|boolean If validate fail return null, else return update status
  */
 PHP_METHOD(Ice_Mvc_Model, update) {
 
@@ -1209,7 +1211,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_read_property(&_0, this_ptr, SL("primary"), PH_NOISY_CC);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		zephir_read_property(&_1$$3, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
-		zephir_is_iterable(&_1$$3, 0, "ice/mvc/model.zep", 372);
+		zephir_is_iterable(&_1$$3, 0, "ice/mvc/model.zep", 374);
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_1$$3), _2$$3)
 		{
 			ZEPHIR_INIT_NVAR(&key);
@@ -1252,7 +1254,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(&_14, this_ptr);
 	ZEPHIR_INIT_VAR(&_15);
 	ZVAL_STRING(&_15, "model.before.validate");
-	ZEPHIR_CALL_METHOD(NULL, &_13, "applyhook", NULL, 0, &_15, &_14);
+	ZEPHIR_CALL_METHOD(NULL, &_13, "applyhook", NULL, 0, &_15, &_14, this_ptr);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(&_16);
 	zephir_read_property(&_16, this_ptr, SL("validation"), PH_NOISY_CC);
@@ -1294,13 +1296,13 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(&_31, this_ptr);
 	ZEPHIR_INIT_NVAR(&_15);
 	ZVAL_STRING(&_15, "model.after.validate");
-	ZEPHIR_CALL_METHOD(NULL, &_30, "applyhook", NULL, 0, &_15, &_31);
+	ZEPHIR_CALL_METHOD(NULL, &_30, "applyhook", NULL, 0, &_15, &_31, this_ptr);
 	zephir_check_call_status();
 	zephir_read_property(&_32, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
 	if (!(ZEPHIR_IS_EMPTY(&_32))) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "setdata", NULL, 0, &data);
 		zephir_check_call_status();
-		RETURN_MM_BOOL(0);
+		RETURN_MM_NULL();
 	}
 	zephir_read_property(&_33, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_34);
@@ -1308,7 +1310,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(&_34, this_ptr);
 	ZEPHIR_INIT_NVAR(&_15);
 	ZVAL_STRING(&_15, "model.before.update");
-	ZEPHIR_CALL_METHOD(NULL, &_33, "applyhook", NULL, 0, &_15, &_34);
+	ZEPHIR_CALL_METHOD(NULL, &_33, "applyhook", NULL, 0, &_15, &_34, this_ptr);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_35, this_ptr, "getdata", NULL, 0);
 	zephir_check_call_status();
@@ -1344,7 +1346,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	zephir_array_fast_append(&_42, this_ptr);
 	ZEPHIR_INIT_NVAR(&_15);
 	ZVAL_STRING(&_15, "model.after.update");
-	ZEPHIR_CALL_METHOD(NULL, &_41, "applyhook", NULL, 0, &_15, &_42);
+	ZEPHIR_CALL_METHOD(NULL, &_41, "applyhook", NULL, 0, &_15, &_42, this_ptr);
 	zephir_check_call_status();
 	RETURN_CCTOR(&status);
 
@@ -1368,7 +1370,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
  *
  * @param array fields
  * @param Validation extra
- * @return boolean
+ * @return null|boolean If validate fail return null, else return save status
  */
 PHP_METHOD(Ice_Mvc_Model, save) {
 
@@ -1464,7 +1466,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 		zephir_read_property(&_0$$3, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(&_0$$3) == IS_ARRAY) {
 			zephir_read_property(&_1$$4, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
-			zephir_is_iterable(&_1$$4, 0, "ice/mvc/model.zep", 484);
+			zephir_is_iterable(&_1$$4, 0, "ice/mvc/model.zep", 486);
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_1$$4), _2$$4)
 			{
 				ZEPHIR_INIT_NVAR(&key);
@@ -1562,7 +1564,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		zephir_read_property(&_3$$4, this_ptr, SL("primary"), PH_NOISY_CC);
 		if (Z_TYPE_P(&_3$$4) == IS_ARRAY) {
 			zephir_read_property(&_4$$5, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
-			zephir_is_iterable(&_4$$5, 0, "ice/mvc/model.zep", 524);
+			zephir_is_iterable(&_4$$5, 0, "ice/mvc/model.zep", 526);
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_4$$5), _5$$5)
 			{
 				ZEPHIR_INIT_NVAR(&key);
@@ -1902,7 +1904,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 13, &_3$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "ice/mvc/model.zep", 684 TSRMLS_CC);
+		zephir_throw_exception_debug(&_1$$3, "ice/mvc/model.zep", 686 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -1912,7 +1914,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zephir_array_isset_string_fetch(&referenceModel, &relation, SL("referenceModel"), 0);
 	ZEPHIR_OBS_VAR(&referencedField);
 	zephir_array_isset_string_fetch(&referencedField, &relation, SL("referencedField"), 0);
-	zephir_array_fetch_string(&_4, &relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 691 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 693 TSRMLS_CC);
 	do {
 		if (ZEPHIR_IS_LONG(&_4, 1) || ZEPHIR_IS_LONG(&_4, 2)) {
 			ZEPHIR_OBS_VAR(&_5$$4);
@@ -2000,7 +2002,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		if (Z_TYPE_P(fields) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(&rules);
 			array_init(&rules);
-			zephir_is_iterable(fields, 0, "ice/mvc/model.zep", 742);
+			zephir_is_iterable(fields, 0, "ice/mvc/model.zep", 744);
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(fields), _2$$4)
 			{
 				ZEPHIR_INIT_NVAR(&field);
@@ -2008,7 +2010,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 				zephir_read_property(&_3$$5, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
 				if (zephir_array_isset(&_3$$5, &field)) {
 					zephir_read_property(&_4$$6, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
-					zephir_array_fetch(&_5$$6, &_4$$6, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 738 TSRMLS_CC);
+					zephir_array_fetch(&_5$$6, &_4$$6, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 740 TSRMLS_CC);
 					zephir_array_update_zval(&rules, &field, &_5$$6, PH_COPY | PH_SEPARATE);
 				}
 			} ZEND_HASH_FOREACH_END();
@@ -2016,7 +2018,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 			RETURN_CCTOR(&rules);
 		} else if (_0$$3) {
 			zephir_read_property(&_6$$7, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_fetch(&_7$$7, &_6$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 744 TSRMLS_CC);
+			zephir_array_fetch(&_7$$7, &_6$$7, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 746 TSRMLS_CC);
 			RETURN_CTOR(&_7$$7);
 		}
 		RETURN_MM_NULL();
@@ -2180,7 +2182,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 13, &_5);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 805 TSRMLS_CC);
+	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 807 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
 	return;
 
