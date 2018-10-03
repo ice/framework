@@ -21,6 +21,9 @@ class Route2
     // Compiled regex cache
     protected routeRegex;
 
+    // Regular expressions for route keys
+    protected defaults = ["action": "index"] { get, set };
+
     protected method { get };
     protected error { get };
 
@@ -152,7 +155,7 @@ class Route2
             }
         }
 
-        let params = [];
+        let params = this->defaults;
 
         for key, value in matches {
             if is_int(key) || value === "" {
@@ -169,11 +172,7 @@ class Route2
      *
      * <pre><code>
      *     // Using the "default" route: /blog/post/10
-     *     $uri = $route->uri(["controller" => "blog", "action" => "post", "id" => 10], [
-     *         "module": $defaultModule,
-     *         "controller": $defaultHandler,
-     *         "action": $defaultAction
-     *     ]);
+     *     $uri = $route->uri(["controller" => "blog", "action" => "post", "id" => 10]);
      *     if (!$uri) echo $route->getError();
      * </code></pre>
      *
@@ -181,11 +180,12 @@ class Route2
      * @param array defaults Options for module, controller and action
      * @return string|false
      */
-    public function uri(array! params = null, array defaults = [])
+    public function uri(array! params = null)
     {
-        var uri, match, param, search, key, replace;
+        var defaults, uri, match, param, search, key, replace;
 
-        let uri = this->routeUri;
+        let uri = this->routeUri,
+            defaults = this->defaults;
 
         if strpos(uri, "{") === false && strpos(uri, "[") === false {
             // This is a static route, no need to replace anything
