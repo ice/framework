@@ -19,8 +19,8 @@ class Router2
     // list of route objects
     protected routes = [] { get };
 
-    // get the current match route after handle()
-    protected route;
+    // the name of current matched route after handle()
+    protected route = "default";
 
     protected method { get };
     protected module { get };
@@ -72,7 +72,7 @@ class Router2
     public function getRoute(string name = null)
     {
         if name === null {
-            return this->route;
+            let name = this->route;
         }
 
         return isset this->routes[name] ? this->routes[name] : null;
@@ -109,13 +109,11 @@ class Router2
         if file {
             // Cache all defined routes
             file_put_contents(file, "<?php return " . var_export(this->routes, true) . ";");
-
             return true;
         }
 
         if file_exists(file) {
             let this->routes = require file;
-
             // Routes were cached
             return true;
         }
