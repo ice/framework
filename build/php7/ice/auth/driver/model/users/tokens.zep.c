@@ -285,9 +285,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 
 	do {
 		ZVAL_LONG(&_0$$3, 16);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 59, &_0$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 61, &_0$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 60, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 62, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_6);
 		zephir_create_array(&_6, 1, 0 TSRMLS_CC);

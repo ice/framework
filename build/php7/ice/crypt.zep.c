@@ -218,7 +218,7 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getivsize", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 59, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 61, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -259,7 +259,7 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 84, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 86, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -347,7 +347,7 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 85, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 87, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -436,7 +436,7 @@ PHP_METHOD(Ice_Crypt, hash) {
 	zephir_read_property(&_0, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "sha256");
-	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 25, &_1, &value, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 26, &_1, &value, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -478,9 +478,9 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	mod_function(&_2, &len, &_1 TSRMLS_CC);
 	ZEPHIR_INIT_VAR(&pad);
 	zephir_sub_function(&pad, &_0, &_2);
-	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 37, &pad);
+	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 39, &pad);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 86, &_3, &pad);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 88, &_3, &pad);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VV(return_value, &value, &_4);
 	RETURN_MM();
@@ -518,7 +518,7 @@ PHP_METHOD(Ice_Crypt, stripPadding) {
 	_0 = ZEPHIR_STRING_OFFSET(&value, (len - 1));
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRINGL(&_1, &_0, 1);
-	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 32, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "ord", NULL, 34, &_1);
 	zephir_check_call_status();
 	pad = zephir_get_intval(&_2);
 	ZEPHIR_INIT_NVAR(&_1);
@@ -573,7 +573,7 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_substr(&_2, &value, -1 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
 	ZVAL_LONG(&_3, pad);
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 86, &_2, &_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 88, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_0, &_4));
 
@@ -633,7 +633,7 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 	zephir_read_property(&_1, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 87, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 89, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 
