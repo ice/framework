@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Di;
 use Ice\Mvc\Route2;
 
-class FastRouteTest extends PHPUnit
+class RouteTest extends PHPUnit
 {
 
     private static $di;
