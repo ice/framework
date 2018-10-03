@@ -38,11 +38,7 @@ use Ice\Exception;
  *
  * <pre><code>
  *     // route: blog/post/10
- *     $uri = $route->uri([
- *         "handle"     => "blog",
- *         "action"     => "post",
- *         "id"         => 10
- *     ]);
+ *     $uri = $route->uri(["handle" => "blog", "action" => "post", "id" => 10]);
  * </code></pre
  */
 class Route
@@ -82,8 +78,8 @@ class Route
     // What must be escaped in the route regex
     const REGEX_ESCAPE  = "[.\\+*?^\$=!|]";
 
-    // list of route objects
-    protected static routes = [];
+    // list of route objects = []
+    protected static routes;
 
     /**
      * Stores a named route and returns it.
