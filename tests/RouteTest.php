@@ -17,7 +17,7 @@ class RouteTest extends PHPUnit
         $di->router = new Route2();
         $di->router->setRoutes(self::routes());
         $di->router->setDefaultModule('frontend');
-
+print_r($di->router->all());
         self::$di = $di;
     }
 
