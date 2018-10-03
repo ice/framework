@@ -47,6 +47,32 @@ use Ice\Exception;
  */
 class Route
 {
+    // Route URI string
+    protected routeUri = "";
+
+    // Regular expressions for route keys
+    protected routeKeys = [];
+
+    // Compiled regex cache
+    protected routeRegex;
+
+    // default module
+    protected defaultModule = "default" { get, set };
+
+    // default handler
+    protected defaultHandler = "index" { get, set };
+
+    // default action
+    protected defaultAction = "index" { get, set };
+
+    protected method { get };
+    protected module { get };
+    protected handler { get };
+    protected action { get };
+    protected params = [] { get };
+    protected silent = false { get, set };
+    protected error { get };
+
     // Defines the pattern of a <placeholder>
     const REGEX_KEYWORD = "\{([a-zA-Z0-9_]++)\}";
 
@@ -150,32 +176,6 @@ class Route
         // Routes were not cached
         return false;
     }
-
-    // Route URI string
-    protected routeUri = "";
-
-    // Regular expressions for route keys
-    protected routeKeys = [];
-
-    // Compiled regex cache
-    protected routeRegex;
-
-    // default module
-    protected defaultModule = "default" { get, set };
-
-    // default handler
-    protected defaultHandler = "index" { get, set };
-
-    // default action
-    protected defaultAction = "index" { get, set };
-
-    protected method { get };
-    protected module { get };
-    protected handler { get };
-    protected action { get };
-    protected params = [] { get };
-    protected silent = false { get, set };
-    protected error { get };
 
     /**
      * Sets the URI and regular expressions for keys.
