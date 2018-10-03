@@ -44,7 +44,7 @@ use Ice\Exception;
 class Route
 {
     // list of route objects
-    protected static routes = ["DONT PANIC": null];
+    protected static routes = [];
 
     // Route URI string
     protected routeUri = "";
@@ -359,7 +359,8 @@ class Route
             let replace = substr(search, 1, -1);
 
             while preg_match("#" . self::REGEX_KEYWORD . "#", replace, match) {
-                list(key, param) = match;
+                let key = key(match),
+                    param = current(match);
 
                 if isset params[param] {
                     // Replace the key with the parameter value
@@ -375,7 +376,8 @@ class Route
         }
 
         while preg_match("#" . self::REGEX_KEYWORD . "#", uri, match) {
-            list(key, param) = match;
+            let key = key(match),
+                param = current(match);
 
             if ! isset params[param] {
                 // Ungrouped parameters are required
