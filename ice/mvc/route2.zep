@@ -161,7 +161,7 @@ class Route2
             // Cache all defined routes
             file_put_contents(file, "<?php return " . var_export(self::routes, true) . ";");
 
-            return self;
+            return true;
         }
 
         if file_exists(file) {
