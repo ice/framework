@@ -135,7 +135,7 @@ class Route2
     {
         var params, matches, key, value;
 
-		echo this->routeRegex."====".uri;
+		echo this->routeRegex."====".uri."<br><br><br>";
         if !preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
             return null;
