@@ -52,7 +52,7 @@ class Router2
      * @param mix method Request method limitation, * for no limit or an array of methods
      * @return object self
      */
-    public static function addRoute(string name, string uri, array regex = null, var method = "*")
+    public function addRoute(string name, string uri, array regex = null, var method = "*")
     {
         let this->routes[name] = new Route2(uri, regex, method);
 
