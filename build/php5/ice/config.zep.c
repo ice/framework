@@ -129,7 +129,7 @@ PHP_METHOD(Ice_Config, __construct) {
 			} else {
 				ZEPHIR_INIT_NVAR(_12$$15);
 				object_init_ex(_12$$15, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, _12$$15, "__construct", &_13, 44, value);
+				ZEPHIR_CALL_METHOD(NULL, _12$$15, "__construct", &_13, 46, value);
 				zephir_check_call_status();
 				zephir_update_property_array(this_ptr, SL("data"), key, _12$$15 TSRMLS_CC);
 			}
