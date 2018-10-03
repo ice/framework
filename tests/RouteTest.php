@@ -103,7 +103,7 @@ print_r($di->router->all());
             ['GET', '/{controller}/{action}'
                 , ['controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
             ['GET', '/{controller}', ['controller' => '[a-z]+[/]?']],
-            ['GET', ''],
+ //           ['GET', ''],
         ];
     }
 
