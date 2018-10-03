@@ -446,7 +446,7 @@ class Route2
         var name, route, params, match, response;
 
         // Remove trailing slashes from the URI
-        let uri = trim(uri, "/"),
+        let uri = uri == "/" ? "/" : rtrim(uri, "/"),
             match = null;
 
         for name, route in self::routes {
