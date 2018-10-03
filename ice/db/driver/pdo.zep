@@ -2,6 +2,7 @@
 namespace Ice\Db\Driver;
 
 use Ice\Arr;
+use Ice\Exception;
 use Ice\Db\DbInterface;
 
 /**
