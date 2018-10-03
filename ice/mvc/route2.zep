@@ -208,7 +208,7 @@ class Route2
             let this->method = "*";
         } else {
             if typeof method == "array" {
-                let this->method = array_map('strtoupper', method);
+                let this->method = array_map("strtoupper", method);
             } else {
                 let this->method = strtoupper(method);
             }
