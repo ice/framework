@@ -68,7 +68,7 @@ class Route2
      * @param array regex Key patterns
      * @param mix method Request method limitation, * for no limit or an array of methods
      */
-    public function __construct(string! uri = null, array regex = null, var method = "*")
+    public function __construct(string uri = null, array! regex = null, var method = "*")
     {
         var regex, search, replace, key, value;
 
@@ -182,7 +182,7 @@ class Route2
      */
     public function uri(array! params = null)
     {
-        var defaults, uri, match, param, search, key, replace;
+        var defaults, uri, matches, param, search, key, replace;
 
         let uri = this->routeUri,
             defaults = this->defaults;
@@ -201,16 +201,16 @@ class Route2
             }
         }
 
-        while preg_match("#\[[^[\]]++\]#", uri, match) {
+        while preg_match("#\[[^[\]]++\]#", uri, matches) {
             // Search for the matched value
-            let search = match[0];
+            let search = matches[0];
 
             // Remove the parenthesis from the match as the replace
             let replace = substr(search, 1, -1);
 
-            while preg_match("#" . self::REGEX_KEYWORD . "#", replace, match) {
-                let key = key(match),
-                    param = current(match);
+            while preg_match("#" . self::REGEX_KEYWORD . "#", replace, matches) {
+                let key = key(matches),
+                    param = current(matches);
 
                 if isset defaults[param] {
                     // Replace the key with the parameter value
@@ -225,9 +225,9 @@ class Route2
             let uri = str_replace(search, replace, uri);
         }
 
-        while preg_match("#" . self::REGEX_KEYWORD . "#", uri, match) {
-            let key = key(match),
-                param = current(match);
+        while preg_match("#" . self::REGEX_KEYWORD . "#", uri, matches) {
+            let key = key(matches),
+                param = current(matches);
 
             if !isset defaults[param] {
                 // Ungrouped parameters are required
