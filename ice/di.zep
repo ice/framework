@@ -279,7 +279,7 @@ class Di extends Arr
     {
         if typeof callback == "callable" {
             if context != null && is_object(context) {
-                let name = name . spl_object_hash(context);
+                let name .= spl_object_hash(context);
             }
             if !isset this->hooks[name] {
                 let this->hooks[name] = [[]];
@@ -302,7 +302,7 @@ class Di extends Arr
         var priority, callback;
 
         if context != null && is_object(context) {
-            let name = name . spl_object_hash(context);
+            let name .= spl_object_hash(context);
         }
 
         if !isset this->hooks[name] {
@@ -340,7 +340,7 @@ class Di extends Arr
     {
         if name {
             if context != null && is_object(context) {
-                let name = name . spl_object_hash(context);
+                let name .= spl_object_hash(context);
             }
             return isset this->hooks[name] ? this->hooks[name] : null;
         } else {
@@ -359,11 +359,9 @@ class Di extends Arr
      */
     public function clearHooks(string name = null, var context = null)
     {
-        var key;
-
         if name {            
             if context != null && is_object(context) {
-                let name = name . spl_object_hash(context);
+                let name .= spl_object_hash(context);
             }
             unset this->hooks[name];
         } else {
