@@ -445,7 +445,7 @@ class Route2
         var name, route, params, match, response;
 
         // Remove trailing slashes from the URI
-        let uri = trim(uri, '/'),
+        let uri = trim(uri, "/"),
             match = null;
 
         for name, route in self::routes {
@@ -459,22 +459,22 @@ class Route2
                     let this->module = this->defaultModule;
                 }
 
-                if isset params['controller'] {
-                    let this->handler = params['controller'];
+                if isset params["controller"] {
+                    let this->handler = params["controller"];
                 } else {
                     let this->handler = this->defaultHandler;
                 }
 
-                if isset params['action'] {
-                    let this->action = params['action'];
+                if isset params["action"] {
+                    let this->action = params["action"];
                 } else {
                     let this->action = this->defaultAction;
                 }
 
                 // These are accessible as public vars and can be overloaded
-                unset params['controller'];
-                unset params['action'];
-                unset params['module'];
+                unset params["controller"];
+                unset params["action"];
+                unset params["module"];
 
                 // Params cannot be changed once matched
                 let this->params = params;
