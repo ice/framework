@@ -95,7 +95,7 @@ class Di extends Arr
             "loader": "Ice\\Loader",
             "request": "Ice\\Http\\Request",
             "response": "Ice\\Http\\Response",
-            "router": "Ice\\Mvc\\Route2",
+            "router": "Ice\\Mvc\\Router2",
             "session": "Ice\\Session",
             "tag": "Ice\\Tag",
             "text": "Ice\\Text",
