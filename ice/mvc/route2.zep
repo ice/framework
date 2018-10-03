@@ -135,12 +135,10 @@ class Route2
     {
         var params, matches, key, value;
 
-		echo uri."<br><br><br>";
         if !preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
             return null;
         }
-		print_r($matches);
 
         if this->method != "*" && method != "*" {        
             if !empty method {
