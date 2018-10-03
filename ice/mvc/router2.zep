@@ -108,13 +108,13 @@ class Router2
     {
         if file {
             // Cache all defined routes
-            file_put_contents(file, "<?php return " . var_export(self::routes, true) . ";");
+            file_put_contents(file, "<?php return " . var_export(this->routes, true) . ";");
 
             return true;
         }
 
         if file_exists(file) {
-            let self::routes = require file;
+            let this->routes = require file;
 
             // Routes were cached
             return true;
