@@ -368,7 +368,7 @@ class Route2
      */
     public function uri(array! params = null)
     {
-        var defaults, uri, match, search, key, replace;
+        var defaults, uri, match, param, search, key, replace;
 
         let defaults = [
             "module": this->defaultModule,
@@ -450,7 +450,7 @@ class Route2
 
         for name, route in self::routes {
             let params = route->matches(uri);
-            if params {
+            if !empty params {
                 let this->route = route;
 
                 if isset params["module"] {
