@@ -43,7 +43,7 @@ class Router2
      *
      * <pre><code>
      *     $router->addRoute("default", "[/{controller}[/{action}[/{id}]]]")
-     *         ->defaults(["controller" => "hello"]);
+     *         ->setDefaults(["controller" => "hello"]);
      * </code></pre>
      *
      * @param string route name
@@ -183,7 +183,7 @@ class Router2
             fetch regex, option[2];
             let route = this->addRoute(name, option[1], regex, option[0]);
             if fetch defaults, option[3] {
-                route->defaults(defaults);
+                route->setDefaults(defaults);
             }
         }
 
