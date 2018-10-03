@@ -284,7 +284,7 @@ class Route2
      */
     public function setRoutes(array! routes = null)
     {
-        var name, route, defaults;
+        var name, route, regex, defaults;
 
         if empty routes {
             // Set default routes
@@ -296,10 +296,11 @@ class Route2
         }
 
         for name, route in routes {
+            fetch regex, route[2];
             if fetch defaults, route[3] {
-                static::set(name, route[1], route[2], route[0])->defaults(defaults);
+                static::set(name, route[1], regex, route[0])->defaults(defaults);
             } else {
-                static::set(name, route[1], route[2], route[0]);
+                static::set(name, route[1], regex, route[0]);
             }
         }
 
@@ -321,7 +322,7 @@ class Route2
     {
         var params, matches, key, value;
 
-        if ! preg_match(this->routeRegex, uri, matches) {
+        if empty this->routeRegex || !preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
             return null;
         }
