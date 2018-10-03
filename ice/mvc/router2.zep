@@ -201,11 +201,11 @@ class Router2
      */
     public function handle(string method = null, string uri = null)
     {
-        var name, route, params, match, response;
+        var name, route, params, matches, response;
 
         // Remove trailing slashes from the URI
         let uri = uri == "/" ? "/" : rtrim(uri, "/"),
-            match = null;
+            matches = null;
 
         for name, route in this->routes {
             let params = route->matches(uri, method);
@@ -247,17 +247,17 @@ class Router2
                 ];
             } elseif params === false {
                 // method not allowed
-                let match = false;
+                let matches = false;
             }
         }
 
         if this->silent {
             // 404 Not Found, 405 Method Not Allowed
             let response = Di::$fetch()->get("response"),
-                match = match === null ? 404 : 405;
+                matches = matches === null ? 404 : 405;
 
-            return response->setStatus(match)
-                ->setBody(response->getMessage(match));
+            return response->setStatus(matches)
+                ->setBody(response->getMessage(matches));
         }
 
         throw new Exception([
