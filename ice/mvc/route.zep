@@ -78,7 +78,4 @@ class Route
     // What must be escaped in the route regex
     const REGEX_ESCAPE = "[.\\+*?^$=!|]";
 
-    // list of route objects
-    protected static routes = [];
-
 }
