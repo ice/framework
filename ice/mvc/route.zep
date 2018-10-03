@@ -81,7 +81,7 @@ class Route
     const REGEX_ESCAPE = "[.\\+*?^$=!|]";
 
     // list of route objects
-    protected static routes = ["DONT PANIC" => null];
+    protected static routes = ["DONT PANIC": null];
 
     /**
      * Stores a named route and returns it.
@@ -308,9 +308,9 @@ class Route
         }
 
         let params += [
-            "module" => this->defaultModule,
-            "handle" => this->defaultHandler,
-            "action" => this->defaultAction
+            "module": this->defaultModule,
+            "handle": this->defaultHandler,
+            "action": this->defaultAction
         ];
 
         return params;
@@ -333,9 +333,9 @@ class Route
         var defaults, uri, match, search, key, replace;
 
         let defaults = [
-            "module" => this->defaultModule,
-            "controller" => this->defaultHandler,
-            "action" => this->defaultAction
+            "module": this->defaultModule,
+            "controller": this->defaultHandler,
+            "action": this->defaultAction
         ];
 
         if params === null {
