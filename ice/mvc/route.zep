@@ -429,7 +429,9 @@ class Route
                 }
 
                 // These are accessible as public vars and can be overloaded
-                unset params['controller'], params['action'], params['module'];
+                unset params['controller'];
+                unset params['action'];
+                unset params['module'];
 
                 // Params cannot be changed once matched
                 let this->params = params;
