@@ -209,7 +209,7 @@ class Router2
         let uri = uri == "/" ? "/" : rtrim(uri, "/"),
             matches = null;
 
-        for name, route in this->routes {
+        for name, route in iterator(this->routes) {
             let params = route->matches(uri, method);
             if !empty params {
                 let this->route = name,
