@@ -261,7 +261,7 @@ class Router2
         }
 
         throw new Exception([
-            match === null
+            matches === null
                 ? "Unable to find a route to match the URI: %s"
                 : "Request method not supported by that resource: %s",
             uri
