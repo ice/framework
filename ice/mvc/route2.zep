@@ -237,15 +237,14 @@ class Route2
     }
 
     /**
-     * Provides default values for keys when they are not present. The default
-     * action will always be "index" unless it is overloaded here.
+     * Set defaults values
      *
      * <pre><code>
      *     $route->defaults(["handler" => "hello", "action" => "world"]);
      * </code></pre>
      *
-     * @param   array  key values
-     * @return  $this
+     * @param array defaults values
+     * @return self
      */
     public function defaults(array! defaults)
     {
@@ -261,6 +260,47 @@ class Route2
 
         if fetch action, defaults["action"] {
             let this->defaultAction = action;
+        }
+
+        return this;
+    }
+
+    /**
+     * Set an array of route rules.
+     * httpMethod: *|null - no limit, GET, POST, PUT or PATCH
+     * URI pattern: [] wrap for optional, {} wrap for regex placeholder key
+     * regex: an associate array placeholder key and regex limitation pattern
+     * defaults: default options for the module, handler and action
+     *
+     * <pre><code>
+     *     // the rule format: ['name' => ["httpMethod", "URI pattern", "regex", "defaults"]]
+     *     $route->setRoutes([
+     *         ["default" => ["POST", "/{controller}[.ext]", ["controller" => "[a-z]+", "ext" => "(?:htm|html)"]]]
+     *     ]);
+     * </code></pre>
+     *
+     * @param array routes Route rules
+     * @return self
+     */
+    public function setRoutes(array! routes = null)
+    {
+        var name, route, defaults;
+
+        if empty routes {
+            // Set default routes
+            let routes = [
+                ["*", "/{controller}/{action}[/{param}]", ["controller":"[a-z]+", "action":"[a-z]+"]],
+                ["*", "/{controller}", ["controller":"[a-z]+"]],
+                ["*", ""]
+            ];
+        }
+
+        for name, route in routes {
+            if fetch defaults, route[3] {
+                static::set(name, route[1], route[2], route[0])->defaults(defaults);
+            } else {
+                static::set(name, route[1], route[2], route[0]);
+            }
         }
 
         return this;
@@ -298,7 +338,11 @@ class Route2
             }
         }
 
-        let params = [];
+        let params = [
+            "module": this->defaultModule,
+            "handle": this->defaultHandler,
+            "action": this->defaultAction
+        ];
 
         for key, value in matches {
             if is_int(key) || value === "" {
@@ -306,12 +350,6 @@ class Route2
             }
             let params[key] = value;
         }
-
-        let params += [
-            "module": this->defaultModule,
-            "handle": this->defaultHandler,
-            "action": this->defaultAction
-        ];
 
         return params;
     }
@@ -328,7 +366,7 @@ class Route2
      * @param array URI parameters
      * @return string|false
      */
-    public function uri(array params = null)
+    public function uri(array! params = null)
     {
         var defaults, uri, match, search, key, replace;
 
@@ -338,10 +376,13 @@ class Route2
             "action": this->defaultAction
         ];
 
-        if params === null {
-            let params = defaults;
-        } else {
-            let params += defaults;
+        if params {
+            for key, replace in params {
+                if is_int(key) || replace === "" {
+                    continue;
+                }
+                let defaults[key] = replace;
+            }
         }
 
         let uri = this->routeUri;
@@ -362,9 +403,9 @@ class Route2
                 let key = key(match),
                     param = current(match);
 
-                if isset params[param] {
+                if isset defaults[param] {
                     // Replace the key with the parameter value
-                    let replace = str_replace(key, params[param], replace);
+                    let replace = str_replace(key, defaults[param], replace);
                 } else {
                     // This group has missing parameters
                     let replace = "";
@@ -379,13 +420,13 @@ class Route2
             let key = key(match),
                 param = current(match);
 
-            if ! isset params[param] {
+            if !isset defaults[param] {
                 // Ungrouped parameters are required
                 let this->error = "Required route parameter not passed: " . param;
                 return false;
             }
 
-            let uri = str_replace(key, params[param], uri);
+            let uri = str_replace(key, defaults[param], uri);
         }
 
         // Trim all extra slashes from the URI
