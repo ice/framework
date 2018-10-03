@@ -192,7 +192,7 @@ class Route2
     {
         var regex, search, replace, key, value;
 
-        if uri === null {
+        if !isset uri {
             // Assume the route is from cache
             return;
         }
