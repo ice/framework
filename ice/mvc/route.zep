@@ -81,7 +81,7 @@ class Route
     const REGEX_ESCAPE = "[.\\+*?^$=!|]";
 
     // list of route objects
-    protected static routes = [];
+    protected static routes = ["DONT PANIC" => null];
 
     /**
      * Stores a named route and returns it.
