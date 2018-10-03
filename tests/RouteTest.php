@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Di;
-use Ice\Mvc\Route2;
+use Ice\Mvc\Router2;
 
 class RouteTest extends PHPUnit
 {
@@ -14,10 +14,10 @@ class RouteTest extends PHPUnit
     public static function setUpBeforeClass()
     {
         $di = new Di();
-        $di->router = new Route2();
+        $di->router = new Router2();
         $di->router->setRoutes(self::routes());
         $di->router->setDefaultModule('frontend');
-print_r($di->router->all());
+
         self::$di = $di;
     }
 
@@ -103,7 +103,7 @@ print_r($di->router->all());
             ['GET', '/{controller}/{action}'
                 , ['controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
             ['GET', '/{controller}', ['controller' => '[a-z]+[/]?']],
- //           ['GET', ''],
+            ['GET', '/'],
         ];
     }
 
