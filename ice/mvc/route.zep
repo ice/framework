@@ -351,12 +351,12 @@ class Route
             return uri;
         }
 
-        while preg_match("#\[[^[]]++\]#", uri, match) {
+        while preg_match("#\[[^[\]]++\]#", uri, match) {
             // Search for the matched value
             let search = match[0];
 
             // Remove the parenthesis from the match as the replace
-            let replace = substr(match[0], 1, -1);
+            let replace = substr(search, 1, -1);
 
             while preg_match("#" . self::REGEX_KEYWORD . "#", replace, match) {
                 list(key, param) = match;
