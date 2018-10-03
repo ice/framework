@@ -155,7 +155,7 @@ class Route2
             }
         }
 
-        let params = this->defaults;
+        let params = []; //this->defaults;
 
         for key, value in matches {
             if is_int(key) || value === "" {
