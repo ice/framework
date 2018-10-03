@@ -16,10 +16,10 @@ use Ice\Exception;
  *
  * <pre><code>
  *     // This route will only match when {id} is a digit
- *     Route::set("blog", "blog/{action}/{id}", ["id" => "\d+"], ['GET', 'POST']);
+ *     Route::set("blog", "/blog/{action}/{id}", ["id" => "\d+"], ['GET', 'POST']);
  *
  *     // This route will match when {path} is anything
- *     Route::set("file", "{path}", ["path" => ".*"]);
+ *     Route::set("file", "/{path}", ["path" => ".*"]);
  * </code></pre>
  *
  * It is also possible to create optional segments by using parentheses in
@@ -27,10 +27,10 @@ use Ice\Exception;
  *
  * <pre><code>
  *     // This is the standard default route, and no keys are required
- *     Route::set('default', '[{controller}[/{action}[/{id}]][.json]]');
+ *     Route::set('default', '[/{controller}[/{action}[/{id}]][.json]]');
  *
  *     // This route only requires the {file} key
- *     Route::set('file', '[{path}/]{file}[.{ext}]', ['path' => '.*', 'ext' => '\w+']);
+ *     Route::set('file', '[/{path}/]{file}[.{ext}]', ['path' => '.*', 'ext' => '\w+']);
  * </code></pre>
  *
  * Routes also provide a way to generate URIs (called "reverse routing"), which
@@ -74,10 +74,10 @@ class Route2
     protected silent = false { get, set };
     protected error { get };
 
-    // Defines the pattern of a <placeholder>
+    // Defines the pattern of a {placeholder}
     const REGEX_KEYWORD = "\{([a-zA-Z0-9_]++)\}";
 
-    // What can be part of a <placeholder> value
+    // What can be part of a {placeholder} value
     const REGEX_PLACEHOLDER = "[^/.,;?\n]++";
 
     // What must be escaped in the route regex
@@ -87,7 +87,7 @@ class Route2
      * Stores a named route and returns it.
      *
      * <pre><code>
-     *     Route::set("default", "[{controller}[/{action}[/{id}]]]")
+     *     Route::set("default", "[/{controller}[/{action}[/{id}]]]")
      *         ->defaults(["controller" => "welcome"]);
      * </code></pre>
      *
@@ -146,7 +146,7 @@ class Route2
      * <pre><code>
      *     if (! Route::cache()) {
      *         // set routes
-     *         Route::set("default", "[{controller}[/{action}[/{id}]]]");
+     *         Route::set("default", "[/{controller}[/{action}[/{id}]]]");
      *         // cache routes
      *         Route::cache($filePath);
      *     }
@@ -207,7 +207,11 @@ class Route2
         if empty method {
             let this->method = "*";
         } else {
-            let this->method = method;
+            if typeof method == "array" {
+                let this->method = array_map('strtoupper', method);
+            } else {
+                let this->method = strtoupper(method);
+            }
         }
 
         // The URI should be considered literal except for keys and optional parts
@@ -240,7 +244,7 @@ class Route2
      * Set defaults values
      *
      * <pre><code>
-     *     $route->defaults(["handler" => "hello", "action" => "world"]);
+     *     $route->defaults(["controller" => "hello", "action" => "world"]);
      * </code></pre>
      *
      * @param array defaults values
@@ -254,7 +258,7 @@ class Route2
             let this->defaultModule = module;
         }
 
-        if fetch handler, defaults["handler"] {
+        if fetch handler, defaults["controller"] {
             let this->defaultHandler = handler;
         }
 
@@ -289,9 +293,7 @@ class Route2
         if empty routes {
             // Set default routes
             let routes = [
-                ["*", "/{controller}/{action}[/{param}]", ["controller":"[a-z]+", "action":"[a-z]+"]],
-                ["*", "/{controller}", ["controller":"[a-z]+"]],
-                ["*", ""]
+                ["*", "[/{controller}[/{action}[/{id}[/{param}]]]]", ["controller":"\w+", "action":"\w+"]]
             ];
         }
 
@@ -312,28 +314,31 @@ class Route2
      *
      * <pre><code>
      *     // Params: controller = blog, action = edit, id = 10
-     *     $params = route->matches("blog/edit/10");
+     *     $params = route->matches("/blog/edit/10");
      * </code></pre>
      *
      * @param string URI to match
      * @return array|false|null Routed parameters, method not allowed or no match
      */
-    public function matches(string uri, var method = "*")
+    public function matches(string uri, string method = "*")
     {
         var params, matches, key, value;
 
-        if empty this->routeRegex || !preg_match(this->routeRegex, uri, matches) {
+        if !preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
             return null;
         }
 
-        if this->method !== "*" {
+        if this->method != "*" && method != "*" {        
+            if !empty method {
+                let method = strtoupper(method);
+            }
             // For HEAD requests, attempt fallback to GET
             if method === "HEAD" {
                 let method = "GET";
             }
             if typeof this->method == "string" && method != this->method
-                || typeof this->method === "array" && !in_array(method, this->method) {
+                || typeof this->method == "array" && !in_array(method, this->method) {
                 // METHOD NOT ALLOWED
                 return false;
             }
@@ -359,7 +364,7 @@ class Route2
      * Generates a URI for the current route based on the parameters given.
      *
      * <pre><code>
-     *     // Using the "default" route: blog/post/10
+     *     // Using the "default" route: /blog/post/10
      *     $uri = $route->uri(["controller" => "blog", "action" => "post", "id" => 10]);
      *     if (!$uri) echo $route->getError();
      * </code></pre>
