@@ -20,7 +20,10 @@ abstract class Driver
     protected request;
     protected user;
     protected options = [
-        "hash_method": "sha256",
+        // algorithms are currently supported: PASSWORD_DEFAULT, PASSWORD_BCRYPT and PASSWORD_ARGON2I
+        "hash_method": PASSWORD_BCRYPT,
+        "hash_option": [],
+        // DEPRECATED in 2.0
         "hash_key": "",
         "session_key": "auth_user",
         "session_roles": "auth_user_roles",
@@ -53,7 +56,11 @@ abstract class Driver
      */
     public function checkHash(string password, string hash) -> boolean
     {
-        return this->hash(password) == hash;
+        if typeof this->options["hash_method"] == "string" {
+            return hash_equals(this->hash(password), hash);
+        } else {
+            return password_verify(password, hash);
+        }
     }
 
     /**
@@ -132,7 +139,11 @@ abstract class Driver
      */
     public function hash(string password)
     {
-        return hash_hmac(this->getOption("hash_method"), password, this->getOption("hash_key"));
+        if typeof this->options["hash_method"] == "string" {
+            return hash_hmac(this->options["hash_method"], password, this->options["hash_key"]);
+        } else {
+            return password_hash(password, this->options["hash_method"], this->options["hash_option"]);
+        }
     }
 
     /**
