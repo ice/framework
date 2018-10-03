@@ -188,11 +188,11 @@ class Route2
      * @param array regex Key patterns
      * @param mix method Request method limitation, * for no limit or an array of methods
      */
-    public function __construct(string uri = null, array regex = null, var method = "*")
+    public function __construct(string! uri = null, array regex = null, var method = "*")
     {
         var regex, search, replace, key, value;
 
-        if !isset uri {
+        if uri === null {
             // Assume the route is from cache
             return;
         }
