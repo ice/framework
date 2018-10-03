@@ -76,10 +76,10 @@ class Route
     const REGEX_PLACEHOLDER = "[^/.,;?\n]++";
 
     // What must be escaped in the route regex
-    const REGEX_ESCAPE  = "[.\\+*?^\$=!|]";
+    const REGEX_ESCAPE = "[.\\+*?^$=!|]";
 
-    // list of route objects = []
-    protected static routes;
+    // list of route objects
+    protected static routes = [];
 
     /**
      * Stores a named route and returns it.
