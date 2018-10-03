@@ -43,6 +43,9 @@ use Ice\Exception;
  */
 class Route
 {
+    // list of route objects
+    protected static routes = ["DONT PANIC": null];
+
     // Route URI string
     protected routeUri = "";
 
@@ -79,9 +82,6 @@ class Route
 
     // What must be escaped in the route regex
     const REGEX_ESCAPE = "[.\\+*?^$=!|]";
-
-    // list of route objects
-    protected static routes = ["DONT PANIC": null];
 
     /**
      * Stores a named route and returns it.
