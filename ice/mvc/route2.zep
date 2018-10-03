@@ -155,7 +155,7 @@ class Route2
      * @param   string file Cache the current routes to the file
      * @return  self|boolean when saving routes or loading routes
      */
-    public static function cache(string file = false)
+    public static function cache(string file = null)
     {
         if file {
             // Cache all defined routes
