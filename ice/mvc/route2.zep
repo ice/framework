@@ -319,7 +319,7 @@ class Route2
      */
     public function matches(string uri, var method = "*")
     {
-        var defaults, params, matches, key, value;
+        var params, matches, key, value;
 
         if ! preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
@@ -376,7 +376,7 @@ class Route2
             "action": this->defaultAction
         ];
 
-        if params {
+        if !empty params {
             for key, replace in params {
                 if is_int(key) || replace === "" {
                     continue;
