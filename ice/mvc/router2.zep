@@ -182,7 +182,9 @@ class Router2
         }
 
         for name, option in routes {
-            fetch regex, option[2];
+            if !fetch regex, option[2] {
+                let regex = null;
+            }
             let route = this->addRoute(name, option[1], regex, option[0]);
             if fetch defaults, option[3] {
                 route->setDefaults(defaults);
