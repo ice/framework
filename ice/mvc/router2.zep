@@ -71,11 +71,13 @@ class Router2
      */
     public function getRoute(string name = null)
     {
-        if name === null {
-            let name = this->route;
+        var n = name;
+        
+        if n === null {
+            let n = this->route;
         }
 
-        return isset this->routes[name] ? this->routes[name] : null;
+        return isset this->routes[n] ? this->routes[n] : null;
     }
 
     /**
