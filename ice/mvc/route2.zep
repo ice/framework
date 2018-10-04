@@ -16,7 +16,7 @@ class Route2
     protected routeUri = "";
 
     // Regular expressions for route keys
-    protected routeKeys = [];
+    protected regexMap = [];
 
     // Compiled regex cache
     protected routeRegex;
@@ -68,7 +68,7 @@ class Route2
      * @param array regex Key patterns
      * @param mix method Request method limitation, * for no limit or an array of methods
      */
-    public function __construct(string uri = null, array! regex = null, var method = "*")
+    public function __construct(string uri = null, array! regexMap = null, var method = "*")
     {
         var regex, search, replace, key, value;
 
@@ -80,8 +80,8 @@ class Route2
         // Store the URI that this route will match
         let this->routeUri = uri;
 
-        if !empty regex {
-            let this->routeKeys = regex;
+        if !empty regexMap {
+            let this->regexMap = regexMap;
         }
 
         if empty method {
@@ -106,9 +106,9 @@ class Route2
         // Insert default regex for keys
         let regex = str_replace(["{", "}"], ["(?P<", ">" . self::REGEX_PLACEHOLDER . ")"], regex);
 
-        if !empty this->routeKeys {
+        if !empty this->regexMap {
             let search = [], replace = [];
-            for key, value in this->routeKeys {
+            for key, value in this->regexMap {
                 let search[]  = "<" . key . ">" . self::REGEX_PLACEHOLDER,
                     replace[] = "<" . key . ">" . value;
             }
@@ -133,7 +133,7 @@ class Route2
      */
     public function matches(string uri, string method = "*")
     {
-        var params, matches, key, value;
+        var params, key, value, matches = [];
 
         if !preg_match(this->routeRegex, uri, matches) {
             // NOT FOUND
