@@ -269,4 +269,32 @@ class Router
             uri
         ]);
     }
+
+    /**
+     * Get route matched by uri and method.
+     *
+     * @param string method
+     * @param string uri
+     * @return Route|false|null
+     */
+    public function match(string method = null, string uri = null)
+    {
+        var name, route, params, matches;
+
+        // Remove trailing slashes from the URI
+        let uri = uri == "/" ? "/" : rtrim(uri, "/"),
+            matches = null;
+
+        for name, route in this->routes {
+            let params = route->matches(uri, method);
+            if !empty params {
+                return route;
+            } elseif params === false {
+                // method not allowed
+                let matches = false;
+            }
+        }
+
+        return matches;
+    }
 }
