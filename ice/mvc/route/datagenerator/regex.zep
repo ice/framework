@@ -3,7 +3,7 @@ namespace Ice\Mvc\Route\DataGenerator;
 
 use Ice\Mvc\Route\DataGenerator\DataGeneratorInterface;
 use Ice\Exception;
-use Ice\Mvc\Route;
+use Ice\Mvc\FastRoute;
 
 abstract class Regex implements DataGeneratorInterface
 {
@@ -104,7 +104,7 @@ abstract class Regex implements DataGeneratorInterface
             ));
         }
 
-        let this->methodToRegexToRoutesMap[httpMethod][regex] = new Route(
+        let this->methodToRegexToRoutesMap[httpMethod][regex] = new FastRoute(
             httpMethod, handler, regex, variables
         );
     }
