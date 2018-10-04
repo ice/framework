@@ -183,10 +183,10 @@ class Router2
 
         for name, option in routes {
             if !fetch regex, option[2] {
-                let regex = null;
+                let regex = [];
             }
             let route = this->addRoute(name, option[1], regex, option[0]);
-            if fetch defaults, option[3] {
+            if fetch defaults, option[3] && typeof defaults == "array" {
                 route->setDefaults(defaults);
             }
         }
@@ -209,7 +209,7 @@ class Router2
         let uri = uri == "/" ? "/" : rtrim(uri, "/"),
             matches = null;
 
-        for name, route in iterator(this->routes) {
+        for name, route in this->routes {
             let params = route->matches(uri, method);
             if !empty params {
                 let this->route = name,
