@@ -89,7 +89,7 @@ class RouteTest extends PHPUnit
     {
         $return = $this->router->getRoute(2)->uri(["controller" => "blog", "action" => "post", "id" => 10]);
 
-        $this->assertEquals('/doc/blog/post/10', $return);
+        $this->assertEquals('/doc/blog/post/10', $return, "The reverse route is ".$return);
     }
 
     public static function routes()
@@ -111,6 +111,7 @@ class RouteTest extends PHPUnit
                 , ['controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
             ['GET', '/{controller}', ['controller' => '[a-z]+[/]?']],
             ['GET', '/'],
+            ['GET', ''],
         ];
     }
 
@@ -124,6 +125,7 @@ class RouteTest extends PHPUnit
     {
         return [
             ['', ['frontend', 'index', 'index', []]],
+            ['/', ['frontend', 'index', 'index', []]],
             ['/index', ['frontend', 'index', 'index', []]],
             ['/index/index', ['frontend', 'index', 'index', []]],
             ['/index/test', ['frontend', 'index', 'test', []]],
