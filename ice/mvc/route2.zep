@@ -182,7 +182,7 @@ class Route2
      */
     public function uri(array! params = null)
     {
-        var defaults, uri, matches, param, search, key, replace;
+        var defaults, uri, param, search, key, replace, matches = [];
 
         let uri = this->routeUri,
             defaults = this->defaults;
