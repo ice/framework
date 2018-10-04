@@ -103,6 +103,8 @@ zend_class_entry *ice_log_driver_file_ce;
 zend_class_entry *ice_mvc_app_ce;
 zend_class_entry *ice_mvc_controller_ce;
 zend_class_entry *ice_mvc_dispatcher_ce;
+zend_class_entry *ice_mvc_fastroute_ce;
+zend_class_entry *ice_mvc_fastrouter_ce;
 zend_class_entry *ice_mvc_route_ce;
 zend_class_entry *ice_mvc_route_collector_ce;
 zend_class_entry *ice_mvc_route_datagenerator_groupcount_ce;
@@ -229,6 +231,8 @@ static PHP_MINIT_FUNCTION(ice)
 	ZEPHIR_INIT(Ice_Mvc_App);
 	ZEPHIR_INIT(Ice_Mvc_Controller);
 	ZEPHIR_INIT(Ice_Mvc_Dispatcher);
+	ZEPHIR_INIT(Ice_Mvc_FastRoute);
+	ZEPHIR_INIT(Ice_Mvc_FastRouter);
 	ZEPHIR_INIT(Ice_Mvc_Route);
 	ZEPHIR_INIT(Ice_Mvc_Route_Collector);
 	ZEPHIR_INIT(Ice_Mvc_Route_DataGenerator_GroupCount);

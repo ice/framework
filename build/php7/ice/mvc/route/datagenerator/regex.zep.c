@@ -376,7 +376,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 		return;
 	}
 	ZEPHIR_INIT_VAR(&_10);
-	object_init_ex(&_10, ice_mvc_route_ce);
+	object_init_ex(&_10, ice_mvc_fastroute_ce);
 	ZEPHIR_CALL_METHOD(NULL, &_10, "__construct", NULL, 49, httpMethod, handler, &regex, &variables);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("methodToRegexToRoutesMap"), &_10 TSRMLS_CC, SL("zz"), 2, httpMethod, &regex);

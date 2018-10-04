@@ -83,6 +83,8 @@
 #include "ice/mvc/app.zep.h"
 #include "ice/mvc/controller.zep.h"
 #include "ice/mvc/dispatcher.zep.h"
+#include "ice/mvc/fastroute.zep.h"
+#include "ice/mvc/fastrouter.zep.h"
 #include "ice/mvc/moduleinterface.zep.h"
 #include "ice/mvc/route.zep.h"
 #include "ice/mvc/route/collector.zep.h"
