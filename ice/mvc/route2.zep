@@ -209,8 +209,8 @@ class Route2
             let replace = substr(search, 1, -1);
 
             while preg_match("#" . self::REGEX_KEYWORD . "#", replace, matches) {
-                let key = key(matches),
-                    param = current(matches);
+                let key = matches[0],
+                    param = matches[1];
 
                 if isset defaults[param] {
                     // Replace the key with the parameter value
@@ -226,8 +226,8 @@ class Route2
         }
 
         while preg_match("#" . self::REGEX_KEYWORD . "#", uri, matches) {
-            let key = key(matches),
-                param = current(matches);
+            let key = matches[0],
+                param = matches[1];
 
             if !isset defaults[param] {
                 // Ungrouped parameters are required
