@@ -17,7 +17,7 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
  * @license     http://iceframework.org/license
  * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
-class Router
+class FastRouter
 {
 
     protected defaultModule = "default" { get, set };
