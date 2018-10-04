@@ -3,8 +3,6 @@ namespace Ice\Mvc;
 
 use Ice\Di;
 use Ice\Exception;
-use Ice\Mvc\Route\Collector;
-use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
 
 /**
  * Router is the standard framework router. Routing is the process of taking a URI endpoint and decomposing it into
@@ -15,39 +13,128 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
  * @author      Ice Team
  * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
- * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
 class Router
 {
+    // list of route objects
+    protected routes = [] { get };
 
-    protected defaultModule = "default" { get, set };
-    protected defaultHandler = "index" { get, set };
-    protected defaultAction = "index" { get, set };
+    // the name of current matched route after handle()
+    protected route = "default";
 
     protected method { get };
-    protected module{ get };
+    protected module { get };
     protected handler { get };
     protected action { get };
     protected params = [] { get };
+    protected silent = false { get, set };
 
-    protected ready = false;
-    protected silent = false { set };
-    protected options = [] { get };
-    protected routes { get, set };
-    protected collector { get, set };
-    protected dispatcher { get, set };
+    // default module
+    protected defaultModule = "default" { get, set };
 
-    const NOT_FOUND = 0;
-    const FOUND = 1;
-    const METHOD_NOT_ALLOWED = 2;
+    // default handler
+    protected defaultHandler = "index" { get, set };
+
+    // default action
+    protected defaultAction = "index" { get, set };
+
+    /**
+     * Stores a named route and returns it.
+     *
+     * <pre><code>
+     *     $router->addRoute("default", "[/{controller}[/{action}[/{id}]]]")
+     *         ->setDefaults(["controller" => "hello"]);
+     * </code></pre>
+     *
+     * @param string route name
+     * @param string URI pattern
+     * @param array regex patterns for route keys
+     * @param mix method Request method limitation, * for no limit or an array of methods
+     * @return object self
+     */
+    public function addRoute(string name, string uri, array regex = null, var method = "*")
+    {
+        let this->routes[name] = new Route(uri, regex, method);
+
+        return this->routes[name];
+    }
+
+    /**
+     * Retrieves a named route or the current matched route.
+     *
+     * <pre><code>
+     *     $route = $router->getRoute("default");
+     * </code></pre>
+     *
+     * @param   string route name
+     * @return  Route|null
+     */
+    public function getRoute(string name = null)
+    {
+        var n = name;
+        
+        if n === null {
+            let n = this->route;
+        }
+
+        return isset this->routes[n] ? this->routes[n] : null;
+    }
+
+    /**
+     * Get the name of a route.
+     *
+     * @param   object Route instance
+     * @return  string
+     */
+    public function getRouteName(<Route> route)
+    {
+        return array_search(route, this->routes);
+    }
+
+    /**
+     * Saves or loads the route cache.
+     *
+     * <pre><code>
+     *     if (! $router->cache()) {
+     *         // set routes
+     *         $router->addRoute("default", "[/{controller}[/{action}[/{id}]]]");
+     *         // cache routes
+     *         $router->cache($filePath);
+     *     }
+     * </code></pre>
+     *
+     * @param   string file Cache the current routes to the file
+     * @return  self|boolean when saving routes or loading routes
+     */
+    public function cache(string file = null)
+    {
+        if file {
+            // Cache all defined routes
+            file_put_contents(file, "<?php return " . var_export(this->routes, true) . ";");
+            return true;
+        }
+
+        if file_exists(file) {
+            let this->routes = require file;
+            // Routes were cached
+            return true;
+        }
+
+        // Routes were not cached
+        return false;
+    }
 
     /**
      * Set defaults values
      *
-     * @param array defaults
-     * @return object Router
+     * <pre><code>
+     *     $route->defaults(["controller" => "hello", "action" => "world"]);
+     * </code></pre>
+     *
+     * @param array defaults values
+     * @return self
      */
-    public function setDefaults(array! defaults)
+    public function defaults(array! defaults)
     {
         var module, handler, action;
 
@@ -55,174 +142,184 @@ class Router
             let this->defaultModule = module;
         }
 
-        if fetch handler, defaults["handler"] {
+        if fetch handler, defaults["controller"] {
             let this->defaultHandler = handler;
         }
 
         if fetch action, defaults["action"] {
             let this->defaultAction = action;
         }
+
         return this;
     }
 
     /**
-     * Set options.
+     * Set an array of route rules.
+     * httpMethod: *|null - no limit, GET, POST, PUT or PATCH
+     * URI pattern: [] wrap for optional, {} wrap for regex placeholder key
+     * regex: an associate array placeholder key and regex limitation pattern
+     * defaults: default options for the module, handler and action
      *
-     * @param array options
-     * @return object Router
+     * <pre><code>
+     *     // the rule format: ['name' => ["httpMethod", "URI pattern", "regex", "defaults"]]
+     *     $route->setRoutes([
+     *         ["default" => ["POST", "/{controller}[.ext]", ["controller" => "[a-z]+", "ext" => "(?:htm|html)"]]]
+     *     ]);
+     * </code></pre>
+     *
+     * @param array routes Route rules
+     * @return self
      */
-    public function setOptions(array! options)
+    public function setRoutes(array! routes = null)
     {
-        let this->options = options;
+        var name, option, route, regex, defaults;
 
-        return this;
-    }
-
-    /**
-     * Prepare the FastRoute.
-     * @return object Router
-     */
-    public function fastRoute()
-    {
-        var options, data, route, handler;
-
-        let options = array_merge([
-            "routeParser": "Ice\\Mvc\\Route\\Parser\\Std",
-            "dataGenerator": "Ice\\Mvc\\Route\\DataGenerator\\GroupCount",
-            "dispatcher": "Ice\\Mvc\\Route\\Dispatcher\\GroupCount",
-            "cache": false
-        ], this->options);
-
-        let this->options = options;
-
-        if typeof this->collector != "object" || typeof this->collector == "object" && !(this->collector instanceof Collector) {
-            let this->collector = new Collector(create_instance(options["routeParser"]), create_instance(options["dataGenerator"]));
-        }
-
-        if !this->routes {
+        if empty routes {
             // Set default routes
-            let this->routes = [
-                ["*", "/{controller:[a-z]+}/{action:[a-z]+}[/{param}]"],
-                ["*", "/{controller:[a-z]+}"],
-                ["*", ""]
+            let routes = [
+                ["*", "[/{controller}[/{action}[/{id}[/{param}]]]]", ["controller":"\w+", "action":"\w+"]]
             ];
         }
 
-        for route in this->routes {
-            fetch handler, route[2];
-            this->collector->addRoute(route[0], route[1], handler);
-        }
-
-        if typeof this->dispatcher != "object" || typeof this->dispatcher == "object" && !(this->dispatcher instanceof DispatcherInterface) {
-            let this->dispatcher = create_instance(options["dispatcher"]);
-        }
-
-        if options["cache"] {
-            if !isset options["cacheFile"] {
-                throw new Exception("Must specify 'cacheFile' option");
+        for name, option in routes {
+            if !fetch regex, option[2] {
+                let regex = [];
             }
-
-            if file_exists(options["cacheFile"]) {
-                let data = require options["cacheFile"];
-            } else {
-                let data = this->collector->getData();
-
-                file_put_contents(options["cacheFile"], "<?php return " . var_export(data, true) . ";");
+            let route = this->addRoute(name, option[1], regex, option[0]);
+            if fetch defaults, option[3] && typeof defaults == "array" {
+                route->setDefaults(defaults);
             }
-        } else {
-            let data = this->collector->getData();
         }
 
-        this->dispatcher->setData(data);
-
-        let this->ready = true;
-        
         return this;
     }
 
     /**
-     * Handles routing information received from the FastRoute engine.
+     * Handles routing information.
      *
+     * @param string method
      * @param string uri
      * @return mixed
      */
-    public function handle(method = null, uri = null)
+    public function handle(string method = null, string uri = null)
     {
-        var module, handler, action, params, holders, data, route, response;
+        var name, route, params, matches, response;
 
-        let 
-            handler = this->defaultHandler,
-            action = this->defaultAction,
-            params = [];
+        // Remove trailing slashes from the URI
+        let uri = uri == "/" ? "/" : rtrim(uri, "/"),
+            matches = null;
 
-        if !this->ready {
-            this->fastRoute();
+        for name, route in this->routes {
+            let params = route->matches(uri, method);
+            if !empty params {
+                let this->route = name,
+                    this->method = method;
+
+                if isset params["module"] {
+                    let this->module = params["module"];
+                } else {
+                    let this->module = this->defaultModule;
+                }
+
+                if isset params["controller"] {
+                    let this->handler = params["controller"];
+                } else {
+                    let this->handler = this->defaultHandler;
+                }
+
+                if isset params["action"] {
+                    let this->action = params["action"];
+                } else {
+                    let this->action = this->defaultAction;
+                }
+
+                // These are accessible as public vars and can be overloaded
+                unset params["controller"];
+                unset params["action"];
+                unset params["module"];
+
+                // Params cannot be changed once matched
+                let this->params = params;
+
+                return [
+                    "module": this->module,
+                    "handler": this->handler,
+                    "action": this->action,
+                    "params": this->params
+                ];
+            } elseif params === false {
+                // method not allowed
+                let matches = false;
+            }
         }
 
-        let route = this->dispatcher->dispatch(method, uri);
+        if this->silent {
+            // 404 Not Found, 405 Method Not Allowed
+            let response = Di::$fetch()->get("response"),
+                matches = matches === null ? 404 : 405;
 
-        switch route[0] {
-            case self::NOT_FOUND:
-                if this->silent {
-                    // 404 Not Found
-                    let response = Di::$fetch()->get("response");
-                    response->setStatus(404);
-                    response->setBody(response->getMessage(404));
+            return response->setStatus(matches)
+                ->setBody(response->getMessage(matches));
+        }
 
-                    return response;
-                }
-                throw new Exception("The requested route could not be found", self::NOT_FOUND);
-            case self::METHOD_NOT_ALLOWED:
-                if this->silent {
-                    // 405 Method Not Allowed
-                    let response = Di::$fetch()->get("response");
-                    response->setStatus(405);
-                    response->setBody(response->getMessage(405));
+        throw new Exception([
+            matches === null
+                ? "Unable to find a route to match the URI: %s"
+                : "Request method not supported by that resource: %s",
+            uri
+        ]);
+    }
 
-                    return response;
-                }
-                throw new Exception("A request was made of a resource using a request method not supported by that resource", self::METHOD_NOT_ALLOWED);
-            case self::FOUND:
-                let holders = route[1],
-                    data = route[2];
+    /**
+     * Get route matched by uri and method.
+     *
+     * @param string uri
+     * @param string method
+     * @return Route|false|null
+     */
+    public function match(string uri = null, string method = null)
+    {
+        var name, route, params, matches;
 
-                    if !fetch module, holders["module"] {
-                        if fetch module, data["module"] {
-                            let module = str_replace("/", "", module);
-                            unset data["module"];
-                        } else {
-                            let module = this->defaultModule;
-                        }
-                    }
+        // Remove trailing slashes from the URI
+        let uri = uri == "/" ? "/" : rtrim(uri, "/"),
+            matches = null;
 
-                    if !fetch handler, holders["controller"] {
-                        if fetch handler, data["controller"] {
-                            let handler = str_replace("/", "", handler);
-                            unset data["controller"];
-                        } else {
-                            let handler = this->defaultHandler;
-                        }
-                    }
+        for name, route in this->routes {
+            let params = route->matches(uri, method);
+            if !empty params {
+                return route;
+            } elseif params === false {
+                // method not allowed
+                let matches = false;
+            }
+        }
 
-                    if !fetch action, holders["action"] {
-                        if fetch action, data["action"] {
-                            let action = str_replace("/", "", action);
-                            unset data["action"];
-                        } else {
-                            let action = this->defaultAction;
-                        }
-                    }
+        return matches;
+    }
 
-                    let params = data;
-            break;
-       }
+    /**
+     * Generates a URI based on the parameters given. (AKA. reverse route).
+     *
+     * <pre><code>
+     *     $uri = $router->uri(["controller" => "blog", "action" => "post", "param" => 10]);
+     * </code></pre>
+     *
+     * @param array URI parameters
+     * @param string method
+     * @return string|null
+     */
+    public function uri(array! params, string method = "*")
+    {
+        var name, route, uri;
 
-        let this->method = method,
-            this->module = module,
-            this->handler = handler,
-            this->action = action,
-            this->params = params;
+        for name, route in this->routes {
+            let uri = route->uri(params);
+            if uri !== false && route->checkMethod(method) {
+                return uri;
+            }
+        }
 
-        return ["module": module, "handler": handler, "action": action, "params": params];
+        return null;
     }
 }

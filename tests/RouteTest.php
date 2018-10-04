@@ -4,9 +4,9 @@ namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Di;
-use Ice\Mvc\FastRouter;
+use Ice\Mvc\Router;
 
-class FastRouteTest extends PHPUnit
+class RouteTest extends PHPUnit
 {
 
     private static $di;
@@ -14,7 +14,7 @@ class FastRouteTest extends PHPUnit
     public static function setUpBeforeClass()
     {
         $di = new Di();
-        $di->router = new FastRouter();
+        $di->router = new Router();
         $di->router->setRoutes(self::routes());
         $di->router->setDefaultModule('frontend');
 
@@ -85,21 +85,36 @@ class FastRouteTest extends PHPUnit
         }
     }
 
+    public function testReverseRoute()
+    {
+        $route = $this->router->getRoute(2);
+
+        $return = $route->uri(['module' => 'doc', "controller" => "blog", "action" => "post", "param" => 10]);
+
+        if (!$return) $return = $route->getError();
+
+        $this->assertEquals('/doc/blog/post/10', $return, "The reverse route is ".$return);
+    }
+
     public static function routes()
     {
         return [
-            ['GET', '/license', ['controller' => 'info', 'action' => 'license']],
-            ['POST', '/{controller:info}/{action:contact}'],
+            ['GET', '/license', null, ['controller' => 'info', 'action' => 'license']],
+            ['POST', '/{controller}/{action}', null, ['controller' => 'info', 'action' => 'contact']],
             // Routes for doc module
-            ['GET', '/{module:doc}/{controller:[a-z]+}/{action:[a-z]+}/{param}'],
-            ['GET', '/{module:doc}/{controller:[a-z]+}/{action:[a-z]+[/]?}'],
-            ['GET', '/{module:doc}/{controller:[a-z]+[/]?}'],
-            ['GET', '/{module:doc+[/]?}'],
+            ['GET', '/{module}/{controller}/{action}/{param}'
+                , ['module' => 'doc', 'controller' => '[a-z]+', 'action' => '[a-z]+']],
+            ['GET', '/{module}/{controller}/{action}'
+                , ['module' => 'doc', 'controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
+            ['GET', '/{module}/{controller}', ['module' => 'doc', 'controller' => '[a-z]+[/]?']],
+            ['GET', '/{module}', ['module' => 'doc+[/]?']],
             // Routes for default module
-            ['GET', '/{controller:[a-z]+}/{action:[a-z]+}/{param}'],
-            ['GET', '/{controller:[a-z]+}/{action:[a-z]+[/]?}'],
-            ['GET', '/{controller:[a-z]+[/]?}'],
-            ['GET', ''],
+            ['GET', '/{controller}/{action}/{param}'
+                , ['controller' => '[a-z]+', 'action' => '[a-z]+']],
+            ['GET', '/{controller}/{action}'
+                , ['controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
+            ['GET', '/{controller}', ['controller' => '[a-z]+[/]?']],
+            ['GET', '[/]'], // '/' or ''
         ];
     }
 
@@ -113,6 +128,7 @@ class FastRouteTest extends PHPUnit
     {
         return [
             ['', ['frontend', 'index', 'index', []]],
+            ['/', ['frontend', 'index', 'index', []]],
             ['/index', ['frontend', 'index', 'index', []]],
             ['/index/index', ['frontend', 'index', 'index', []]],
             ['/index/test', ['frontend', 'index', 'test', []]],
