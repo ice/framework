@@ -135,11 +135,6 @@ class Route2
     {
         var params, key, value, matches = [];
 
-        if !preg_match(this->routeRegex, uri, matches) {
-            // NOT FOUND
-            return null;
-        }
-
         if this->method != "*" && method != "*" {        
             if !empty method {
                 let method = strtoupper(method);
@@ -153,6 +148,11 @@ class Route2
                 // METHOD NOT ALLOWED
                 return false;
             }
+        }
+
+        if !preg_match(this->routeRegex, uri, matches) {
+            // NOT FOUND
+            return null;
         }
 
         let params = this->defaults;
