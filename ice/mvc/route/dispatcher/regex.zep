@@ -2,7 +2,7 @@
 namespace Ice\Mvc\Route\Dispatcher;
 
 use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
-use Ice\Mvc\Router;
+use Ice\Mvc\FastRouter;
 
 abstract class Regex implements DispatcherInterface
 {
