@@ -2,7 +2,7 @@
 namespace Ice\Mvc\Route\Dispatcher;
 
 use Ice\Mvc\Route\Dispatcher\Regex;
-use Ice\Mvc\Router;
+use Ice\Mvc\FastRouter;
 
 class GroupCount extends Regex
 {
@@ -42,9 +42,9 @@ class GroupCount extends Regex
                     vars[varName] = matches[i];
             }
 
-            return [Router::FOUND, handler, vars];
+            return [FastRouter::FOUND, handler, vars];
         }
 
-        return [Router::NOT_FOUND];
+        return [FastRouter::NOT_FOUND];
     }
 }
