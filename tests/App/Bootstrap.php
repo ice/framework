@@ -5,6 +5,7 @@ namespace Tests\App;
 use Ice\Di;
 use Ice\Db;
 use Ice\Config;
+use Ice\Auth\Driver\Model as Auth;
 
 class Bootstrap
 {
@@ -67,5 +68,12 @@ class Bootstrap
 
             return $db;
         });
+    }
+
+    public function auth()
+    {
+        $config = $this->di->config;
+
+        $this->di->auth = new Auth($config->auth->toArray());
     }
 }

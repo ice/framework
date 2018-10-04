@@ -21,4 +21,10 @@
             'authMechanism' => 'SCRAM-SHA-1',
         ],
     ],
+    'auth' => [
+        'hash_method' => "sha256",
+        'hash_key'    => "secret_key",
+        'lifetime'    => 1209600,
+        'users'       => 'Tests\\App\\Models\\Users',
+    ],
 ];

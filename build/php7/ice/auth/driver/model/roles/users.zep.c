@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/object.h"
 #include "kernel/array.h"
 
 
@@ -32,6 +33,16 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
 
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("from"), "roles_users", ZEND_ACC_PROTECTED TSRMLS_CC);
 
+	/**
+	 * User class name.
+	 */
+	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	/**
+	 * Role class name.
+	 */
+	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("roleClass"), "Ice\\Auth\\Driver\\Model\\Roles", ZEND_ACC_PROTECTED TSRMLS_CC);
+
 	return SUCCESS;
 
 }
@@ -43,8 +54,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 
-	zval _5, _7;
-	zval auth, _0, _1, _2, _3, _4, _6;
+	zval _5, _8;
+	zval auth, _0, _1, _2, _3, _4, _6, _7;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -55,8 +66,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6);
-	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_5);
+	ZVAL_UNDEF(&_8);
 
 	ZEPHIR_MM_GROW();
 
@@ -66,10 +78,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
+	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "users");
-	ZEPHIR_INIT_VAR(&_3);
-	ZVAL_STRING(&_3, "Ice\\Auth\\Driver\\Model\\Users");
 	ZEPHIR_CALL_METHOD(&_2, &auth, "getoption", NULL, 0, &_1, &_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL, 0);
@@ -81,16 +92,15 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZVAL_STRING(&_1, "user_id");
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_2, &_4, &_5);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_6, this_ptr, "getidkey", NULL, 0);
+	zephir_read_property(&_6, this_ptr, SL("roleClass"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&_7, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_7);
-	zephir_create_array(&_7, 1, 0 TSRMLS_CC);
-	add_assoc_stringl_ex(&_7, SL("alias"), SL("Role"));
+	ZEPHIR_INIT_VAR(&_8);
+	zephir_create_array(&_8, 1, 0 TSRMLS_CC);
+	add_assoc_stringl_ex(&_8, SL("alias"), SL("Role"));
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "role_id");
-	ZEPHIR_INIT_NVAR(&_3);
-	ZVAL_STRING(&_3, "Ice\\Auth\\Driver\\Model\\Roles");
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_3, &_6, &_7);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_6, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

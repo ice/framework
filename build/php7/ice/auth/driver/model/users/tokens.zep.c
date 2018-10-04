@@ -14,11 +14,11 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/object.h"
 #include "kernel/array.h"
 #include "kernel/math.h"
 #include "kernel/operators.h"
 #include "kernel/time.h"
-#include "kernel/object.h"
 #include "kernel/iterator.h"
 
 
@@ -36,6 +36,11 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Users, Tokens, ice, auth_driver_model_users_tokens, ice_mvc_model_ce, ice_auth_driver_model_users_tokens_method_entry, 0);
 
 	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("from"), "user_tokens", ZEND_ACC_PROTECTED TSRMLS_CC);
+
+	/**
+	 * User class name.
+	 */
+	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED TSRMLS_CC);
 
 	return SUCCESS;
 
@@ -76,10 +81,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
+	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "users");
-	ZEPHIR_INIT_VAR(&_3);
-	ZVAL_STRING(&_3, "Ice\\Auth\\Driver\\Model\\Users");
 	ZEPHIR_CALL_METHOD(&_2, &auth, "getoption", NULL, 0, &_1, &_3);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL, 0);
@@ -265,47 +269,32 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 
-	zval _12;
-	zval __$true, token, _10, _0$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3;
-	zephir_fcall_cache_entry *_1 = NULL, *_8 = NULL, *_9 = NULL, *_11 = NULL;
+	zval _6;
+	zval token, _4, _0$$3, _1$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL, *_5 = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&token);
-	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_0$$3);
-	ZVAL_UNDEF(&_2$$3);
-	ZVAL_UNDEF(&_3$$3);
-	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_5$$3);
-	ZVAL_UNDEF(&_6$$3);
-	ZVAL_UNDEF(&_7$$3);
-	ZVAL_UNDEF(&_12);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_6);
 
 	ZEPHIR_MM_GROW();
 
 	do {
-		ZEPHIR_CALL_METHOD(&_0$$3, this_ptr, "getdi", &_1, 0);
+		ZVAL_LONG(&_0$$3, 16);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 61, &_0$$3);
 		zephir_check_call_status();
-		ZEPHIR_INIT_NVAR(&_3$$3);
-		ZVAL_STRING(&_3$$3, "text");
-		ZEPHIR_CALL_METHOD(&_2$$3, &_0$$3, "get", NULL, 0, &_3$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 62, &_1$$3);
 		zephir_check_call_status();
-		ZVAL_LONG(&_5$$3, 0);
-		ZVAL_LONG(&_6$$3, 32);
-		ZEPHIR_CALL_METHOD(&_4$$3, &_2$$3, "random", NULL, 0, &_5$$3, &_6$$3);
+		ZEPHIR_INIT_NVAR(&_6);
+		zephir_create_array(&_6, 1, 0 TSRMLS_CC);
+		zephir_array_update_string(&_6, SL("token"), &token, PH_COPY | PH_SEPARATE);
+		ZEPHIR_CALL_STATIC(&_4, "findone", &_5, 0, &_6);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_7$$3, "uniqid", &_8, 42, &_4$$3, &__$true);
-		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "sha1", &_9, 38, &_7$$3);
-		zephir_check_call_status();
-		ZEPHIR_INIT_NVAR(&_12);
-		zephir_create_array(&_12, 1, 0 TSRMLS_CC);
-		zephir_array_update_string(&_12, SL("token"), &token, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_SELF(&_10, "findone", &_11, 0, &_12);
-		zephir_check_call_status();
-	} while (zephir_is_true(&_10));
+	} while (zephir_is_true(&_4));
 	RETURN_CCTOR(&token);
 
 }

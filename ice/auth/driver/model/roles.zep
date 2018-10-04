@@ -14,6 +14,10 @@ use Ice\Mvc\Model;
  */
 class Roles extends Model
 {
+    /**
+     * User class name.
+     */
+    protected userClass = "Ice\\Auth\\Driver\\Model\\Roles\\Users";
 
     /**
      * Initialize role's relations.
@@ -22,8 +26,6 @@ class Roles extends Model
      */
     public function initialize()
     {
-        this->hasMany(this->getIdKey(), "Ice\\Auth\\Driver\\Model\\Roles\\Users", "role_id", [
-            "alias": "RolesUsers"
-        ]);
+        this->hasMany(this->getIdKey(), this->userClass, "role_id", ["alias": "RolesUsers"]);
     }
 }

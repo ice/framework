@@ -580,10 +580,10 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	ZEPHIR_CALL_METHOD(&remote, &_3, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 93, &client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 121, &client, &_4);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 93, &forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 121, &forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(&_5)) {
 		ZEPHIR_CPY_WRT(&ip, &client);
@@ -653,7 +653,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		defaultValue = &__$null;
 	}
 	if (!allowEmpty_param) {
-		allowEmpty = 0;
+		allowEmpty = 1;
 	} else {
 		allowEmpty = zephir_get_boolval(allowEmpty_param);
 	}
@@ -669,7 +669,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		zephir_read_property(&_2$$3, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&_1$$3);
 		ZVAL_STRING(&_1$$3, "_url");
-		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "remove", NULL, 0, &_1$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "erase", NULL, 0, &_1$$3);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(getThis(), "get");
 	} else {
@@ -740,7 +740,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 		defaultValue = &__$null;
 	}
 	if (!allowEmpty_param) {
-		allowEmpty = 0;
+		allowEmpty = 1;
 	} else {
 		allowEmpty = zephir_get_boolval(allowEmpty_param);
 	}

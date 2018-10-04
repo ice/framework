@@ -64,7 +64,7 @@ PHP_METHOD(Ice_Config_Json, __construct) {
 	ZEPHIR_INIT_VAR(_2);
 	zephir_file_get_contents(_2, data TSRMLS_CC);
 	zephir_json_decode(_1, &(_1), _2, zephir_get_intval(ZEPHIR_GLOBAL(global_true))  TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_0, 26, _1);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_0, 46, _1);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

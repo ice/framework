@@ -166,13 +166,13 @@ PHP_METHOD(Ice_Version, id) {
 	ZVAL_STRING(&_1, "%02s", 0);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_LONG(&_2, 4);
-	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 12, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 13, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_1);
 	ZVAL_STRING(&_1, "%02s", 0);
 	ZEPHIR_SINIT_NVAR(_2);
 	ZVAL_LONG(&_2, 0);
-	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 12, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 13, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_1);
 	ZVAL_LONG(&_1, 4);

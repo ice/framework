@@ -267,9 +267,9 @@ PHP_METHOD(Ice_Validation, resolve) {
 			object_init_ex(_2$$4, ice_exception_ce);
 			ZEPHIR_SINIT_VAR(_3$$4);
 			ZVAL_STRING(&_3$$4, "Validator %s not found", 0);
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 12, &_3$$4, alias);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 13, &_3$$4, alias);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, _2$$4, "__construct", NULL, 13, _4$$4);
+			ZEPHIR_CALL_METHOD(NULL, _2$$4, "__construct", NULL, 14, _4$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_2$$4, "ice/validation.zep", 101 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -347,7 +347,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 175, field, validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 201, field, validator, options);
 				zephir_check_call_status();
 			}
 			break;

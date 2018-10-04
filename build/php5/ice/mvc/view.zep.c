@@ -264,7 +264,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1$$3);
 		object_init_ex(_1$$3, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 141, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 167, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2$$3);
 		ZVAL_STRING(_2$$3, ".phtml", 1);
@@ -302,9 +302,9 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 					object_init_ex(_11$$10, ice_exception_ce);
 					ZEPHIR_SINIT_NVAR(_12$$10);
 					ZVAL_STRING(&_12$$10, "Invalid template engine registration for '%s' extension", 0);
-					ZEPHIR_CALL_FUNCTION(&_13$$10, "sprintf", &_14, 12, &_12$$10, ext);
+					ZEPHIR_CALL_FUNCTION(&_13$$10, "sprintf", &_14, 13, &_12$$10, ext);
 					zephir_check_call_status();
-					ZEPHIR_CALL_METHOD(NULL, _11$$10, "__construct", &_15, 13, _13$$10);
+					ZEPHIR_CALL_METHOD(NULL, _11$$10, "__construct", &_15, 14, _13$$10);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(_11$$10, "ice/mvc/view.zep", 63 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
@@ -326,13 +326,13 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
  */
 PHP_METHOD(Ice_Mvc_View, render) {
 
-	HashTable *_4, *_7$$7;
-	HashPosition _3, _6$$7;
-	zend_bool exists = 0, _15;
-	zephir_fcall_cache_entry *_10 = NULL, *_12 = NULL, *_13 = NULL, *_19 = NULL;
+	HashTable *_7$$8, *_15$$11, *_18$$12;
+	HashPosition _6$$8, _14$$11, _17$$12;
+	zend_bool exists = 0, _24;
+	zephir_fcall_cache_entry *_10 = NULL, *_12 = NULL, *_13 = NULL, *_22 = NULL, *_28 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data = NULL;
-	zval *file = NULL, *data_param = NULL, *ext = NULL, *engine = NULL, *engines = NULL, *path = NULL, *dir = NULL, *dirs = NULL, *content = NULL, *_0, *_1, **_5, *_14, *_2$$6, **_8$$7, *_9$$8, *_11$$9 = NULL, *_16$$11, _17$$11, *_18$$11 = NULL;
+	zval *file = NULL, *data_param = NULL, *ext = NULL, *engine = NULL, *engines = NULL, *path = NULL, *dir = NULL, *dirs = NULL, *content = NULL, *_0, *_1, *_3, _4, *_23, *_2$$6, *_5$$7, **_8$$8, *_9$$9, *_11$$10 = NULL, **_16$$11, **_19$$12, *_20$$13, *_21$$14 = NULL, *_25$$16, _26$$16, *_27$$16 = NULL;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &file, &data_param);
@@ -373,52 +373,85 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		zephir_read_property_this(&_2$$6, this_ptr, SL("viewsDir"), PH_NOISY_CC);
 		zephir_array_fast_append(dirs, _2$$6);
 	}
-	zephir_is_iterable(engines, &_4, &_3, 0, 0, "ice/mvc/view.zep", 117);
-	for (
-	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zend_hash_move_forward_ex(_4, &_3)
-	) {
-		ZEPHIR_GET_HMKEY(ext, _4, _3);
-		ZEPHIR_GET_HVALUE(engine, _5);
-		zephir_is_iterable(dirs, &_7$$7, &_6$$7, 0, 0, "ice/mvc/view.zep", 112);
+	_3 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
+	ZEPHIR_SINIT_VAR(_4);
+	ZVAL_LONG(&_4, 4);
+	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 168, _3, &_4);
+	zephir_check_call_status();
+	if (!(ZEPHIR_IS_EMPTY(ext))) {
+		ZEPHIR_OBS_VAR(engine);
+		ZEPHIR_INIT_VAR(_5$$7);
+		ZEPHIR_CONCAT_SV(_5$$7, ".", ext);
+		if (zephir_array_isset_fetch(&engine, engines, _5$$7, 0 TSRMLS_CC)) {
+			zephir_is_iterable(dirs, &_7$$8, &_6$$8, 0, 0, "ice/mvc/view.zep", 114);
+			for (
+			  ; zend_hash_get_current_data_ex(_7$$8, (void**) &_8$$8, &_6$$8) == SUCCESS
+			  ; zend_hash_move_forward_ex(_7$$8, &_6$$8)
+			) {
+				ZEPHIR_GET_HVALUE(dir, _8$$8);
+				_9$$9 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
+				ZEPHIR_INIT_NVAR(path);
+				ZEPHIR_CONCAT_VV(path, dir, _9$$9);
+				if ((zephir_file_exists(path TSRMLS_CC) == SUCCESS)) {
+					exists = 1;
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, data);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&_11$$10, this_ptr, "all", &_12, 0);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&content, engine, "render", &_13, 0, path, _11$$10);
+					zephir_check_call_status();
+					break;
+				}
+			}
+		}
+	} else {
+		zephir_is_iterable(engines, &_15$$11, &_14$$11, 0, 0, "ice/mvc/view.zep", 131);
 		for (
-		  ; zend_hash_get_current_data_ex(_7$$7, (void**) &_8$$7, &_6$$7) == SUCCESS
-		  ; zend_hash_move_forward_ex(_7$$7, &_6$$7)
+		  ; zend_hash_get_current_data_ex(_15$$11, (void**) &_16$$11, &_14$$11) == SUCCESS
+		  ; zend_hash_move_forward_ex(_15$$11, &_14$$11)
 		) {
-			ZEPHIR_GET_HVALUE(dir, _8$$7);
-			_9$$8 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
-			ZEPHIR_INIT_NVAR(path);
-			ZEPHIR_CONCAT_VVV(path, dir, _9$$8, ext);
-			if ((zephir_file_exists(path TSRMLS_CC) == SUCCESS)) {
-				exists = 1;
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, data);
-				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(&_11$$9, this_ptr, "all", &_12, 0);
-				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(&content, engine, "render", &_13, 0, path, _11$$9);
-				zephir_check_call_status();
+			ZEPHIR_GET_HMKEY(ext, _15$$11, _14$$11);
+			ZEPHIR_GET_HVALUE(engine, _16$$11);
+			zephir_is_iterable(dirs, &_18$$12, &_17$$12, 0, 0, "ice/mvc/view.zep", 127);
+			for (
+			  ; zend_hash_get_current_data_ex(_18$$12, (void**) &_19$$12, &_17$$12) == SUCCESS
+			  ; zend_hash_move_forward_ex(_18$$12, &_17$$12)
+			) {
+				ZEPHIR_GET_HVALUE(dir, _19$$12);
+				_20$$13 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
+				ZEPHIR_INIT_NVAR(path);
+				ZEPHIR_CONCAT_VVV(path, dir, _20$$13, ext);
+				if ((zephir_file_exists(path TSRMLS_CC) == SUCCESS)) {
+					exists = 1;
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, data);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&_21$$14, this_ptr, "all", &_12, 0);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&content, engine, "render", &_22, 0, path, _21$$14);
+					zephir_check_call_status();
+					break;
+				}
+			}
+			if (exists) {
 				break;
 			}
 		}
-		if (exists) {
-			break;
-		}
 	}
-	_14 = zephir_fetch_nproperty_this(this_ptr, SL("silent"), PH_NOISY_CC);
-	_15 = !zephir_is_true(_14);
-	if (_15) {
-		_15 = !exists;
+	_23 = zephir_fetch_nproperty_this(this_ptr, SL("silent"), PH_NOISY_CC);
+	_24 = !zephir_is_true(_23);
+	if (_24) {
+		_24 = !exists;
 	}
-	if (_15) {
-		ZEPHIR_INIT_VAR(_16$$11);
-		object_init_ex(_16$$11, ice_exception_ce);
-		ZEPHIR_SINIT_VAR(_17$$11);
-		ZVAL_STRING(&_17$$11, "The requested view %s could not be found", 0);
-		ZEPHIR_CALL_FUNCTION(&_18$$11, "sprintf", NULL, 12, &_17$$11, path);
+	if (_24) {
+		ZEPHIR_INIT_VAR(_25$$16);
+		object_init_ex(_25$$16, ice_exception_ce);
+		ZEPHIR_SINIT_VAR(_26$$16);
+		ZVAL_STRING(&_26$$16, "The requested view %s could not be found", 0);
+		ZEPHIR_CALL_FUNCTION(&_27$$16, "sprintf", NULL, 13, &_26$$16, path);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _16$$11, "__construct", &_19, 13, _18$$11);
+		ZEPHIR_CALL_METHOD(NULL, _25$$16, "__construct", &_28, 14, _27$$16);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(_16$$11, "ice/mvc/view.zep", 118 TSRMLS_CC);
+		zephir_throw_exception_debug(_25$$16, "ice/mvc/view.zep", 134 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

@@ -16,6 +16,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select);
 PHP_METHOD(Ice_Db_Driver_Pdo, insert);
 PHP_METHOD(Ice_Db_Driver_Pdo, update);
 PHP_METHOD(Ice_Db_Driver_Pdo, remove);
+PHP_METHOD(Ice_Db_Driver_Pdo, query);
 PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId);
 PHP_METHOD(Ice_Db_Driver_Pdo, getError);
 
@@ -77,6 +78,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_remove, 0, 0, 1)
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_query, 0, 0, 1)
+	ZEND_ARG_INFO(0, sql)
+	ZEND_ARG_ARRAY_INFO(0, values, 1)
+	ZEND_ARG_INFO(0, obj)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getType, NULL, ZEND_ACC_PUBLIC)
@@ -91,6 +98,7 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, insert, arginfo_ice_db_driver_pdo_insert, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, update, arginfo_ice_db_driver_pdo_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, remove, arginfo_ice_db_driver_pdo_remove, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Pdo, query, arginfo_ice_db_driver_pdo_query, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getLastInsertId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getError, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END

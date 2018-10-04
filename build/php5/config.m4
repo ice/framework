@@ -19,6 +19,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/view/engine/engineinterface.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c
+	ice/cli/websocket/websocket.zep.c
 	ice/config.zep.c
 	ice/db/dbinterface.zep.c
 	ice/dispatcher.zep.c
@@ -51,6 +52,8 @@ if test "$PHP_ICE" = "yes"; then
 	ice/cli/dispatcher.zep.c
 	ice/cli/router.zep.c
 	ice/cli/task.zep.c
+	ice/cli/websocket/client.zep.c
+	ice/cli/websocket/server.zep.c
 	ice/config/ini.zep.c
 	ice/config/json.zep.c
 	ice/cookies.zep.c

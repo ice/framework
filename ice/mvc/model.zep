@@ -33,6 +33,9 @@ abstract class Model extends Arr implements \Serializable
     protected rules = [];
     protected messages = [] { get, set };
 
+    // this model has been loaded from service
+    protected isLoaded = null;
+
     const BELONGS_TO = 1;
     const HAS_ONE = 2;
     const HAS_MANY = 3;
@@ -42,8 +45,9 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param mixed filters
      * @param array data
+     * @param array options Options to limit/group/orderby results when filters is not null
      */
-    public function __construct(var filters = null, array data = [])
+    public function __construct(var filters = null, array data = [], array options = [])
     {
         var di;
 
@@ -68,9 +72,7 @@ abstract class Model extends Arr implements \Serializable
         }
 
         if filters {
-            if !this->loadOne(filters) {
-                throw new Exception("Not Found");
-            }
+            this->loadOne(filters, options);
         }
 
         if method_exists(this, "initialize") {
@@ -121,19 +123,25 @@ abstract class Model extends Arr implements \Serializable
      * Load one result to the current object.
      *
      * @param mixed filters
-     * @param array options
+     * @param array options Options to limit/group/orderby results
      * @return this|false
      */
     public function loadOne(var filters, array options = [])
     {
         var result;
 
+        if empty filters {
+            return false;
+        }
+
         let result = this->db->findOne(this->from, filters, options);
 
         if result {
             this->replace(result->all());
+            let this->isLoaded = true;
             return this;
         } else {
+            let this->isLoaded = false;
             return false;
         }
     }
@@ -147,14 +155,16 @@ abstract class Model extends Arr implements \Serializable
      */
     public function load(var filters, array options = [])
     {
-        var result, instances, data;
+        var result, instances, data, model;
 
         let result = this->db->find(this->from, filters, options),
             instances = [];
 
         if result->count() {
             for data in iterator(result) {
-                let instances[] = create_instance_params(get_called_class(), [null, data]);
+                let model = create_instance_params(get_called_class(), [null, data]),
+                    model->isLoaded = true,
+                    instances[] = model;
             }
         }
         return new Arr(instances);
@@ -178,13 +188,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function findOne(var filters = null, array options = [])
     {
-        var result, model, instance;
+        var model;
 
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->loadOne(filters, options);
+        let model = create_instance_params(get_called_class(), [filters, null, options]);
 
-        return result;
+        return model->isLoaded ? model : false;
     }
 
     /**
@@ -201,13 +209,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public static function find(var filters = null, array options = [])
     {
-        var result, model, instance;
+        var model;
 
-        let model = get_called_class(),
-            instance = create_instance(model),
-            result = instance->load(filters, options);
+        let model = create_instance(get_called_class());
 
-        return result;
+        return model->load(filters, options);
     }
 
     /**
@@ -220,16 +226,16 @@ abstract class Model extends Arr implements \Serializable
     protected function fields(var fields = [], boolean primary = true)
     {
         // Check if model has defined valid fields
-        if !count(this->fields) {
+        if empty this->fields {
             // No defined model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all model's data as fields
                 let fields = this->all();
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values
                     let fields = array_merge(this->all(), fields);
                 } else {
@@ -240,13 +246,13 @@ abstract class Model extends Arr implements \Serializable
         } else {
             // Only valid model's fields
             // Check if fields param has any elements
-            if !count(fields) {
+            if empty fields {
                 // Get all valid model's data as fields
                 let fields = array_intersect_key(this->all(), array_flip(this->fields));
             } else {
                 // Get only fields from method parameter
                 // Check if fields param is associative or sequential
-                if count(array_filter(array_keys(fields), "is_string")) {
+                if array_filter(array_keys(fields), "is_string") {
                     // Merge model data with fields values, get only valid model's fields
                     let fields = array_intersect_key(array_merge(this->all(), fields), array_flip(this->fields));
                 } else {
@@ -277,6 +283,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+     * @return null|boolean If validate fail return null, else return insert status
      */
     public function create(var fields = [], <Validation> extra = null)
     {
@@ -288,12 +295,14 @@ abstract class Model extends Arr implements \Serializable
             extra->validate();
 
             let this->messages = extra->getMessages()->all();
+        } else {
+            let this->messages = [];
         }
 
-        this->di->applyHook("model.before.validate", [this]);
+        this->di->applyHook("model.before.validate", [this], this);
 
         // Run validation if rules or validation is specified
-        if count(this->rules) || typeof this->validation == "object" && (this->validation instanceof Validation) {
+        if !empty this->rules || typeof this->validation == "object" && (this->validation instanceof Validation) {
             if !(typeof this->validation == "object" && (this->validation instanceof Validation)) {
                 let this->validation = new Validation();
             }
@@ -315,21 +324,24 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        this->di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate", [this], this);
 
-        if count(this->messages) {
-            return false;
+        if !empty this->messages {
+            return null;
         }
 
-        this->di->applyHook("model.before.create", [this]);
+        this->di->applyHook("model.before.create", [this], this);
 
         let status = this->db->insert(this->from, this->getData());
 
         if status {
-            this->set(this->db->getId(), this->db->getLastInsertId());
+            let this->isLoaded = true;
+            if this->autoincrement {
+                this->set(this->db->getId(), this->db->getLastInsertId());
+            }
         }
 
-        this->di->applyHook("model.after.create", [this]);
+        this->di->applyHook("model.after.create", [this], this);
 
         return status;
     }
@@ -346,6 +358,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields Fields to save or valid fields
      * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
+     * @return null|boolean If validate fail return null, else return update status
      */
     public function update(var fields = [], <Validation> extra = null)
     {
@@ -368,9 +381,11 @@ abstract class Model extends Arr implements \Serializable
             extra->validate();
 
             let this->messages = extra->getMessages()->all();
+        } else {
+            let this->messages = [];
         }
 
-        this->di->applyHook("model.before.validate", [this]);
+        this->di->applyHook("model.before.validate", [this], this);
 
         if typeof this->validation == "object" && (this->validation instanceof Validation) {
             this->validation->validate(this->getData());
@@ -383,24 +398,32 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        this->di->applyHook("model.after.validate", [this]);
+        this->di->applyHook("model.after.validate", [this], this);
 
-        if count(this->messages) {
+        if !empty this->messages {
             // Rollback changes and restore old data
             this->setData(data);
-            return false;
+            return null;
         }
 
-        this->di->applyHook("model.before.update", [this]);
+        this->di->applyHook("model.before.update", [this], this);
 
-        let status = this->db->update(this->from, primary, this->fields(this->getData(), !this->autoincrement));
+        let fields = this->fields(this->getData(), !this->autoincrement);
+
+        if typeof this->primary == "array" {
+            let fields = array_diff_key(fields, primary);
+        }
+
+        let status = this->db->update(this->from, primary, fields);
 
         if !status {
             // Rollback changes and restore old data
             this->setData(data);
+        } else {
+            let this->isLoaded = true;
         }
 
-        this->di->applyHook("model.after.update", [this]);
+        this->di->applyHook("model.after.update", [this], this);
 
         return status;
     }
@@ -423,7 +446,7 @@ abstract class Model extends Arr implements \Serializable
      *
      * @param array fields
      * @param Validation extra
-     * @return boolean
+     * @return null|boolean If validate fail return null, else return save status
      */
     public function save(var fields = [], <Validation> extra = null)
     {
@@ -467,6 +490,11 @@ abstract class Model extends Arr implements \Serializable
 
         let status = this->db->remove(this->from, filters);
 
+        if status {
+            // this model doesn't exist in db
+            let this->isLoaded = false;
+        }
+
         return status;
     }
 
@@ -479,6 +507,10 @@ abstract class Model extends Arr implements \Serializable
     public function exists(var filters = [])
     {
         var key;
+
+        if this->isLoaded !== null {
+            return this->isLoaded ? this : false;
+        }
 
         if !filters {
             let filters = [];
@@ -500,7 +532,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        return self::findOne(filters);
+        return static::findOne(filters);
     }
 
     /**
@@ -552,7 +584,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -590,7 +622,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -635,7 +667,7 @@ abstract class Model extends Arr implements \Serializable
             "referencedField": referencedField,
             "options": options
         ];
-        
+
         return this;
     }
 
@@ -648,7 +680,7 @@ abstract class Model extends Arr implements \Serializable
      */
     public function getRelated(string alias, array filters = [], array options = [])
     {
-        var relation, field, referenceModel, referencedField, from, result;
+        var relation, field, referenceModel, referencedField, result;
 
         if !fetch relation, this->relations[alias] {
             throw new Exception(sprintf("Alias '%s' not found", alias));
@@ -658,13 +690,11 @@ abstract class Model extends Arr implements \Serializable
         fetch referenceModel, relation["referenceModel"];
         fetch referencedField, relation["referencedField"];
 
-        let from = uncamelize(get_class_ns(referenceModel));
-
         switch relation["type"] {
             case self::BELONGS_TO:
             case self::HAS_ONE:
-                let filters = array_merge(filters, [referencedField: this->{field}]),
-                    result = create_instance_params(referenceModel, [filters]);
+                let filters[referencedField] = this->{field},
+                    result = create_instance_params(referenceModel, [filters, null, options]);
 
                 if !result->count() {
                     return false;
@@ -673,8 +703,8 @@ abstract class Model extends Arr implements \Serializable
                 return result;
 
             case self::HAS_MANY:
-                let filters = array_merge(filters, [referencedField: this->{field}]);
-                    let result = {referenceModel}::find(filters, options);
+                let filters[referencedField] = this->{field},
+                    result = {referenceModel}::find(filters, options);
 
                 return result;
         }
@@ -715,6 +745,7 @@ abstract class Model extends Arr implements \Serializable
             } elseif typeof fields == "string" && isset this->rules[fields] {
                 return this->rules[fields];
             }
+            return null;
         }
 
         return this->rules;
@@ -755,7 +786,7 @@ abstract class Model extends Arr implements \Serializable
     {
         this->__construct();
         let this->data = unserialize(base64_decode(serialized));
-        
+
         return this;
     }
 
