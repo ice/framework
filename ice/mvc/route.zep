@@ -140,7 +140,7 @@ class Route
     {
         var params, key, value, matches = [];
 
-        if !checkMethod(method) {
+        if !this->checkMethod(method) {
             return false;
         }
 
