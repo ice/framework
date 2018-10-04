@@ -12,14 +12,13 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/memory.h"
-#include "kernel/fcall.h"
 #include "kernel/object.h"
+#include "kernel/fcall.h"
+#include "kernel/memory.h"
 #include "kernel/array.h"
 #include "kernel/math.h"
 #include "kernel/operators.h"
 #include "kernel/time.h"
-#include "kernel/iterator.h"
 
 
 /**
@@ -53,14 +52,15 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 
-	zend_bool _9, _11;
+	zend_bool _8;
 	zval _5;
-	zval __$true, auth, _0, _1, _2, _3, _4, _6, _7, _8, _10, _12;
+	zval __$true, auth, expire, _0, _1, _2, _3, _4, _6, _7;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&auth);
+	ZVAL_UNDEF(&expire);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -68,15 +68,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_10);
-	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_5);
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL, 0);
-	zephir_check_call_status();
+	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
@@ -104,27 +100,15 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	}
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "expires");
-	ZEPHIR_CALL_METHOD(&_8, this_ptr, "has", NULL, 0, &_1);
+	ZEPHIR_CALL_METHOD(&expire, this_ptr, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	_9 = zephir_is_true(&_8);
-	if (_9) {
-		ZEPHIR_INIT_NVAR(&_1);
-		ZVAL_STRING(&_1, "expires");
-		ZEPHIR_CALL_METHOD(&_10, this_ptr, "get", NULL, 0, &_1);
-		zephir_check_call_status();
-		_9 = zephir_is_true(&_10);
-	}
-	_11 = _9;
-	if (_11) {
-		ZEPHIR_INIT_NVAR(&_1);
-		ZVAL_STRING(&_1, "expires");
-		ZEPHIR_CALL_METHOD(&_12, this_ptr, "get", NULL, 0, &_1);
-		zephir_check_call_status();
+	_8 = ZEPHIR_GT_LONG(&expire, 0);
+	if (_8) {
 		ZEPHIR_INIT_NVAR(&_1);
 		zephir_time(&_1);
-		_11 = ZEPHIR_LT(&_12, &_1);
+		_8 = ZEPHIR_LT(&expire, &_1);
 	}
-	if (_11) {
+	if (_8) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -177,21 +161,18 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 /**
  * Deletes all expired tokens.
  *
- * @return void
+ * @return bool status
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 
-	zend_object_iterator *_3;
+	zval _2;
 	zval _0, _1;
-	zval token, expired, _2;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&token);
-	ZVAL_UNDEF(&expired);
-	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 
 	ZEPHIR_MM_GROW();
 
@@ -203,19 +184,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	zephir_time(&_2);
 	zephir_array_update_string(&_1, SL("<"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_0, SL("expires"), &_1, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&expired, this_ptr, "load", NULL, 0, &_0);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 0, &_0);
 	zephir_check_call_status();
-	_3 = zephir_get_iterator(&expired TSRMLS_CC);
-	_3->funcs->rewind(_3 TSRMLS_CC);
-	for (;_3->funcs->valid(_3 TSRMLS_CC) == SUCCESS && !EG(exception); _3->funcs->move_forward(_3 TSRMLS_CC)) {
-		{
-			ZEPHIR_ITERATOR_COPY(&token, _3);
-		}
-		ZEPHIR_CALL_METHOD(NULL, &token, "remove", NULL, 0);
-		zephir_check_call_status();
-	}
-	zend_iterator_dtor(_3);
-	ZEPHIR_MM_RESTORE();
+	RETURN_MM();
 
 }
 
