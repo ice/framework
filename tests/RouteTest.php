@@ -87,7 +87,11 @@ class RouteTest extends PHPUnit
 
     public function testReverseRoute()
     {
-        $return = $this->router->getRoute(2)->uri(["controller" => "blog", "action" => "post", "id" => 10]);
+        $route = $this->router->getRoute(2);
+
+        $return = $route->uri(['module' => 'doc', "controller" => "blog", "action" => "post", "param" => 10]);
+
+        if (!$return) $return = $route->getError();
 
         $this->assertEquals('/doc/blog/post/10', $return, "The reverse route is ".$return);
     }
