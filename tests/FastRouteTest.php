@@ -4,7 +4,7 @@ namespace Tests;
 
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Ice\Di;
-use Ice\Mvc\Router;
+use Ice\Mvc\FastRouter;
 
 class FastRouteTest extends PHPUnit
 {
@@ -14,7 +14,7 @@ class FastRouteTest extends PHPUnit
     public static function setUpBeforeClass()
     {
         $di = new Di();
-        $di->router = new Router();
+        $di->router = new FastRouter();
         $di->router->setRoutes(self::routes());
         $di->router->setDefaultModule('frontend');
 
