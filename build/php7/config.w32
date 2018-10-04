@@ -18,7 +18,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/social", "socialinterface.zep.c adapter.zep.c facebook.zep.c google.zep.c twitter.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view/engine", "engineinterface.zep.c php.zep.c sleet.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth", "driver.zep.c social.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver", "driverinterface.zep.c file.zep.c model.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver", "driverinterface.zep.c db.zep.c file.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/cli/websocket", "websocket.zep.c client.zep.c server.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/db", "dbinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/log", "loggerinterface.zep.c driver.zep.c", "ice");

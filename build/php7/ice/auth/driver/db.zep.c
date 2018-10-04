@@ -23,7 +23,7 @@
 
 
 /**
- * Model Auth driver.
+ * Auth database driver.
  *
  * @package     Ice/Auth
  * @category    Driver
@@ -31,11 +31,11 @@
  * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model) {
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Db) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver, Model, ice, auth_driver_model, ice_auth_driver_ce, ice_auth_driver_model_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver, Db, ice, auth_driver_db, ice_auth_driver_ce, ice_auth_driver_db_method_entry, 0);
 
-	zend_class_implements(ice_auth_driver_model_ce TSRMLS_CC, 1, ice_auth_driver_driverinterface_ce);
+	zend_class_implements(ice_auth_driver_db_ce TSRMLS_CC, 1, ice_auth_driver_driverinterface_ce);
 	return SUCCESS;
 
 }
@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
+PHP_METHOD(Ice_Auth_Driver_Db, autoLogin) {
 
 	zend_object_iterator *_9$$5;
 	zend_bool _4$$4;
@@ -120,7 +120,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
 					ZVAL_STRING(&_11$$6, "name");
 					ZEPHIR_CALL_METHOD(&_10$$6, &role, "get", &_12, 0, &_11$$6);
 					zephir_check_call_status();
-					zephir_array_append(&roles, &_10$$6, PH_SEPARATE, "ice/auth/driver/model.zep", 51);
+					zephir_array_append(&roles, &_10$$6, PH_SEPARATE, "ice/auth/driver/db.zep", 51);
 				}
 				zend_iterator_dtor(_9$$5);
 				ZEPHIR_INIT_VAR(&_13$$5);
@@ -157,7 +157,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, autoLogin) {
  * @param array roles User's roles
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
+PHP_METHOD(Ice_Auth_Driver_Db, completeLogin) {
 
 	zephir_fcall_cache_entry *_0 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_FUNCTION(&_1$$3, "serialize", NULL, 14, user);
 		zephir_check_call_status();
-		ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, getThis(), "completelogin", &_0, 0, &_1$$3, &roles);
+		ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_db_ce, getThis(), "completelogin", &_0, 0, &_1$$3, &roles);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -198,7 +198,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, completeLogin) {
  * @param mixed defaultValue Default value to return if the user is currently not logged in
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
+PHP_METHOD(Ice_Auth_Driver_Db, getUser) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -224,7 +224,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
 
 	zephir_read_property(&_0, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_PARENT(&data, ice_auth_driver_model_ce, getThis(), "getuser", &_1, 0, defaultValue);
+		ZEPHIR_CALL_PARENT(&data, ice_auth_driver_db_ce, getThis(), "getuser", &_1, 0, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(&data, defaultValue)) {
 			zephir_update_property_zval(this_ptr, SL("user"), defaultValue);
@@ -253,7 +253,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, getUser) {
  * @param string role Role name
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
+PHP_METHOD(Ice_Auth_Driver_Db, hasRole) {
 
 	zend_bool _0;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -292,7 +292,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
 		}
 		RETURN_CCTOR(&_1$$3);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an object", "ice/auth/driver/model.zep", 138);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an object", "ice/auth/driver/db.zep", 138);
 		return;
 	}
 
@@ -307,7 +307,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, hasRole) {
  * @param boolean force login without password
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver_Model, login) {
+PHP_METHOD(Ice_Auth_Driver_Db, login) {
 
 	zend_object_iterator *_10$$9;
 	zend_class_entry *_3$$5;
@@ -428,7 +428,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
 				ZVAL_STRING(&_12$$10, "name");
 				ZEPHIR_CALL_METHOD(&_11$$10, &role, "get", &_13, 0, &_12$$10);
 				zephir_check_call_status();
-				zephir_array_append(&roles, &_11$$10, PH_SEPARATE, "ice/auth/driver/model.zep", 181);
+				zephir_array_append(&roles, &_11$$10, PH_SEPARATE, "ice/auth/driver/db.zep", 181);
 			}
 			zend_iterator_dtor(_10$$9);
 			ZEPHIR_INIT_VAR(&_14$$9);
@@ -497,7 +497,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, login) {
  * @param boolean remember enable autologin
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
+PHP_METHOD(Ice_Auth_Driver_Db, loginBy) {
 
 	zend_object_iterator *_7$$4;
 	zval _1;
@@ -588,7 +588,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
 				ZVAL_STRING(&_9$$5, "name");
 				ZEPHIR_CALL_METHOD(&_8$$5, &role, "get", &_10, 0, &_9$$5);
 				zephir_check_call_status();
-				zephir_array_append(&roles, &_8$$5, PH_SEPARATE, "ice/auth/driver/model.zep", 239);
+				zephir_array_append(&roles, &_8$$5, PH_SEPARATE, "ice/auth/driver/db.zep", 239);
 			}
 			zend_iterator_dtor(_7$$4);
 			ZEPHIR_INIT_VAR(&_11$$4);
@@ -656,7 +656,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, loginBy) {
  * @param boolean logoutAll Remove all tokens for user
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver_Model, logout) {
+PHP_METHOD(Ice_Auth_Driver_Db, logout) {
 
 	zval _5$$3, _6$$6;
 	zephir_fcall_cache_entry *_4 = NULL, *_8 = NULL;
@@ -735,7 +735,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
 	} else {
 		ZVAL_BOOL(&_9, 0);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_ce, getThis(), "logout", &_8, 0, &_9);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_db_ce, getThis(), "logout", &_8, 0, &_9);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -747,7 +747,7 @@ PHP_METHOD(Ice_Auth_Driver_Model, logout) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
+PHP_METHOD(Ice_Auth_Driver_Db, refreshUser) {
 
 	zend_object_iterator *_6$$5;
 	zend_bool _0$$4, _1$$4;
@@ -814,12 +814,12 @@ PHP_METHOD(Ice_Auth_Driver_Model, refreshUser) {
 				ZVAL_STRING(&_8$$6, "name");
 				ZEPHIR_CALL_METHOD(&_7$$6, &role, "get", &_9, 0, &_8$$6);
 				zephir_check_call_status();
-				zephir_array_append(&roles, &_7$$6, PH_SEPARATE, "ice/auth/driver/model.zep", 334);
+				zephir_array_append(&roles, &_7$$6, PH_SEPARATE, "ice/auth/driver/db.zep", 334);
 			}
 			zend_iterator_dtor(_6$$5);
 			ZEPHIR_CALL_FUNCTION(&_11$$5, "serialize", NULL, 14, &user);
 			zephir_check_call_status();
-			ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_model_ce, getThis(), "completelogin", &_10, 0, &_11$$5, &roles);
+			ZEPHIR_CALL_PARENT(NULL, ice_auth_driver_db_ce, getThis(), "completelogin", &_10, 0, &_11$$5, &roles);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("user"), &user);
 		}
