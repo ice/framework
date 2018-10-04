@@ -116,7 +116,7 @@ class RouteTest extends PHPUnit
     public function GETrouteProvider()
     {
         return [
-            ['', ['frontend', 'index', 'index', []]],
+//            ['', ['frontend', 'index', 'index', []]],
             ['/index', ['frontend', 'index', 'index', []]],
             ['/index/index', ['frontend', 'index', 'index', []]],
             ['/index/test', ['frontend', 'index', 'test', []]],
