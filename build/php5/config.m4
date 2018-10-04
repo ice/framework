@@ -88,6 +88,8 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/app.zep.c
 	ice/mvc/controller.zep.c
 	ice/mvc/dispatcher.zep.c
+	ice/mvc/fastroute.zep.c
+	ice/mvc/fastrouter.zep.c
 	ice/mvc/moduleinterface.zep.c
 	ice/mvc/route.zep.c
 	ice/mvc/route/collector.zep.c
