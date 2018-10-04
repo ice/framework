@@ -31,9 +31,9 @@ class Tokens extends Model
      */
     public function initialize()
     {
-        var auth;
+        var auth, expire;
 
-        let auth = this->getDi()->get("auth");
+        let auth = this->di->get("auth");
 
         this->belongsTo("user_id", auth->getOption("users", this->userClass), this->getIdKey(), [
             "alias": "User",
@@ -45,8 +45,10 @@ class Tokens extends Model
             this->deleteExpired();
         }
 
+        let expire = this->get("expires");
+
         // This object has expired
-        if this->has("expires") && this->get("expires") < time() {
+        if expire > 0 && expire < time() {
             this->remove();
         }
     }
