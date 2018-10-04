@@ -85,11 +85,18 @@ class RouteTest extends PHPUnit
         }
     }
 
+    public function testReverseRoute()
+    {
+        $return = $this->router->getRoute(2)->uri(["controller" => "blog", "action" => "post", "id" => 10]);
+
+        $this->assertEquals('/doc/blog/post/10', $return);
+    }
+
     public static function routes()
     {
         return [
             ['GET', '/license', null, ['controller' => 'info', 'action' => 'license']],
-            ['POST', '/{controller}/{action}', null, ['handle' => 'info', 'action' => 'contact']],
+            ['POST', '/{controller}/{action}', null, ['controller' => 'info', 'action' => 'contact']],
             // Routes for doc module
             ['GET', '/{module}/{controller}/{action}/{param}'
                 , ['module' => 'doc', 'controller' => '[a-z]+', 'action' => '[a-z]+']],
@@ -116,7 +123,7 @@ class RouteTest extends PHPUnit
     public function GETrouteProvider()
     {
         return [
-//            ['', ['frontend', 'index', 'index', []]],
+            ['', ['frontend', 'index', 'index', []]],
             ['/index', ['frontend', 'index', 'index', []]],
             ['/index/index', ['frontend', 'index', 'index', []]],
             ['/index/test', ['frontend', 'index', 'test', []]],
