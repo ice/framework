@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Cli_Websocket_Client, connect) {
 	zephir_read_static_property_ce(&_35, ice_cli_websocket_client_ce, SL("magic") TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_36);
 	ZEPHIR_CONCAT_VV(_36, key, _35);
-	ZEPHIR_CALL_FUNCTION(&_37, "sha1", &_38, 61, _36);
+	ZEPHIR_CALL_FUNCTION(&_37, "sha1", &_38, 60, _36);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_39);
 	ZVAL_STRING(&_39, "H*", 0);
@@ -232,7 +232,7 @@ PHP_METHOD(Ice_Cli_Websocket_Client, connect) {
 		zephir_read_static_property_ce(&_47$$9, ice_cli_websocket_client_ce, SL("magic") TSRMLS_CC);
 		ZEPHIR_INIT_VAR(_48$$9);
 		ZEPHIR_CONCAT_VV(_48$$9, key, _47$$9);
-		ZEPHIR_CALL_FUNCTION(&_49$$9, "sha1", &_38, 61, _48$$9);
+		ZEPHIR_CALL_FUNCTION(&_49$$9, "sha1", &_38, 60, _48$$9);
 		zephir_check_call_status();
 		ZEPHIR_SINIT_VAR(_50$$9);
 		ZVAL_STRING(&_50$$9, "H*", 0);

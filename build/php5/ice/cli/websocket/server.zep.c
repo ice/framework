@@ -569,7 +569,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, connect) {
 	zephir_read_static_property_ce(&_49, ice_cli_websocket_server_ce, SL("magic") TSRMLS_CC);
 	ZEPHIR_INIT_LNVAR(_47);
 	ZEPHIR_CONCAT_VV(_47, _48, _49);
-	ZEPHIR_CALL_FUNCTION(&_50, "sha1", NULL, 61, _47, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_50, "sha1", NULL, 60, _47, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_51, "base64_encode", NULL, 16, _50);
 	zephir_check_call_status();

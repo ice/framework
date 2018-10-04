@@ -37,8 +37,8 @@ if test "$PHP_ICE" = "yes"; then
 	ice/mvc/view/viewinterface.zep.c
 	ice/assets.zep.c
 	ice/auth.zep.c
+	ice/auth/driver/db.zep.c
 	ice/auth/driver/file.zep.c
-	ice/auth/driver/model.zep.c
 	ice/auth/driver/model/roles.zep.c
 	ice/auth/driver/model/roles/users.zep.c
 	ice/auth/driver/model/users.zep.c

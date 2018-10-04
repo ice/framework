@@ -446,7 +446,7 @@ PHP_METHOD(Ice_Cookies, salt) {
 	_4 = zephir_fetch_nproperty_this(this_ptr, SL("salt"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_5);
 	ZEPHIR_CONCAT_VVVV(_5, userAgent, name, value, _4);
-	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 61, _5);
+	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 60, _5);
 	zephir_check_call_status();
 	RETURN_MM();
 
