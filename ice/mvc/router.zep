@@ -273,11 +273,11 @@ class Router
     /**
      * Get route matched by uri and method.
      *
-     * @param string method
      * @param string uri
+     * @param string method
      * @return Route|false|null
      */
-    public function match(string method = null, string uri = null)
+    public function match(string uri = null, string method = null)
     {
         var name, route, params, matches;
 
@@ -296,5 +296,30 @@ class Router
         }
 
         return matches;
+    }
+
+    /**
+     * Generates a URI based on the parameters given. (AKA. reverse route).
+     *
+     * <pre><code>
+     *     $uri = $router->uri(["controller" => "blog", "action" => "post", "param" => 10]);
+     * </code></pre>
+     *
+     * @param array URI parameters
+     * @param string method
+     * @return string|null
+     */
+    public function uri(array! params, string method = "*")
+    {
+        var name, route, uri;
+
+        for name, route in this->routes {
+            let uri = route->uri(params);
+            if uri !== false && route->checkMethod(method) {
+                return uri;
+            }
+        }
+
+        return null;
     }
 }
