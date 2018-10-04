@@ -133,25 +133,15 @@ class Route
      * </code></pre>
      *
      * @param string URI to match
+     * @param string method
      * @return array|false|null Routed parameters, method not allowed or no match
      */
     public function matches(string uri, string method = "*")
     {
         var params, key, value, matches = [];
 
-        if this->method != "*" && method != "*" {        
-            if !empty method {
-                let method = strtoupper(method);
-            }
-            // For HEAD requests, attempt fallback to GET
-            if method === "HEAD" {
-                let method = "GET";
-            }
-            if typeof this->method == "string" && method != this->method
-                || typeof this->method == "array" && !in_array(method, this->method) {
-                // METHOD NOT ALLOWED
-                return false;
-            }
+        if !checkMethod(method) {
+            return false;
         }
 
         if !preg_match(this->routeRegex, uri, matches) {
@@ -172,6 +162,31 @@ class Route
     }
 
     /**
+     * Tests if the route allows a given method.
+     *
+     * @param string method
+     * @return boolean
+     */
+    public function checkMethod(string method)
+    {
+        if this->method != "*" && method != "*" {
+            if !empty method {
+                let method = strtoupper(method);
+            }
+            // For HEAD requests, attempt fallback to GET
+            if method === "HEAD" {
+                let method = "GET";
+            }
+            if typeof this->method == "string" && method != this->method
+                || typeof this->method == "array" && !in_array(method, this->method) {
+                // METHOD NOT ALLOWED
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Generates a URI for the current route based on the parameters given. (AKA. reverse route)
      *
      * <pre><code>
@@ -181,7 +196,6 @@ class Route
      * </code></pre>
      *
      * @param array URI parameters
-     * @param array defaults Options for module, controller and action
      * @return string|false
      */
     public function uri(array! params = null)
