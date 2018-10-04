@@ -114,7 +114,7 @@ class RouteTest extends PHPUnit
             ['GET', '/{controller}/{action}'
                 , ['controller' => '[a-z]+', 'action' => '[a-z]+[/]?']],
             ['GET', '/{controller}', ['controller' => '[a-z]+[/]?']],
-            ['GET', '/'],
+            ['GET', '[/]'], // '/' or ''
         ];
     }
 
