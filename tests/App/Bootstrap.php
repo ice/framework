@@ -5,7 +5,7 @@ namespace Tests\App;
 use Ice\Di;
 use Ice\Db;
 use Ice\Config;
-use Ice\Auth\Driver\Model as Auth;
+use Ice\Auth\Driver\Db as Auth;
 
 class Bootstrap
 {

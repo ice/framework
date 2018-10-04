@@ -11,7 +11,7 @@ use Ice\Auth\Driver\Model\Users\Tokens;
 use Ice\Auth\Driver\Model\Users\Social as UserSocial;
 
 /**
- * Model Auth driver.
+ * Auth database driver.
  *
  * @package     Ice/Auth
  * @category    Driver
@@ -19,7 +19,7 @@ use Ice\Auth\Driver\Model\Users\Social as UserSocial;
  * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
-class Model extends Driver implements DriverInterface
+class Db extends Driver implements DriverInterface
 {
 
     /**
