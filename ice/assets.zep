@@ -330,8 +330,7 @@ class Assets
                     throw new Exception(["Directory can't be written: %s", destination]);
                 }
             } elseif copy(source, destination) === false {
-                    throw new Exception(["Directory can't be written: %s", destination]);
-                }
+                throw new Exception(["Directory can't be written: %s", destination]);
             }
         }
         return uriMin;
