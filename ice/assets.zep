@@ -264,7 +264,7 @@ class Assets
      */
     protected function prepare(string! uri, var minify)
     {
-        var source, target, file, uriMin, destination, md5Old, md5New, old, minified;
+        var source, target, file, type, uriMin, destination, md5Old, md5New, old, minified;
 
         let source = this->getOption("source"),
             target = this->getOption("target"),
