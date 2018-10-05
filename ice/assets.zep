@@ -291,13 +291,13 @@ class Assets
             throw new Exception(["The request assets do not exist: %s", source]);
         }
 
-        if empty target {
-            let target = "min";
+        if !empty target {
+            let target = "/" . trim(str_replace("\\", "/", target), "/");
         } else {
-            let target = trim(str_replace("\\", "/", target), "/");
+            let target = "";
         }
 
-        let uriMin = "/" . target . "/" . dirname(uri) . "/";
+        let uriMin = target . "/" . dirname(uri) . "/";
 
         // cache min files place to document root always
         let destination = _SERVER["DOCUMENT_ROOT"] . uriMin,
