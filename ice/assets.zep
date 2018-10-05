@@ -277,7 +277,7 @@ class Assets
         if uri[0] == '/' || empty source {
             let source = _SERVER["DOCUMENT_ROOT"];
         } else {
-            let source = str_replace(DIRECTORY_SEPARATOR, "/", source);
+            let source = str_replace("\\", "/", source);
         }
 
         if (source[-1] != '/') {
@@ -294,7 +294,7 @@ class Assets
         if empty target {
             let target = "min";
         } else {
-            let target = trim(str_replace(DIRECTORY_SEPARATOR, "/", target), "/");
+            let target = trim(str_replace("\\", "/", target), "/");
         }
 
         let uriMin = "/" . target . "/" . dirname(uri) . "/";
