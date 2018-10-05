@@ -592,7 +592,7 @@ class Response implements ResponseInterface
     {
         this->headers->set("Content-Type", "application/json;charset=utf-8");
 
-        this->body = json_encode(data, option);
+        let this->body = json_encode(data, option);
 
         return this;
     }
@@ -611,7 +611,7 @@ class Response implements ResponseInterface
 
         this->headers->set("Content-Type", "application/xml;charset=" . charset);
 
-        this->body = this->xmlEncode(data, ["root": rootName, "charset": charset]);
+        let this->body = this->xmlEncode(data, ["root": rootName, "charset": charset]);
 
         return this;
     }
@@ -629,10 +629,6 @@ class Response implements ResponseInterface
     {
         var root, charset, key, val, node;
 
-        if typeof data == "object" {
-            let data = get_object_vars(data);
-        }
-
         if domDoc === null {
             let charset = isset options["charset"] ? options["charset"] : "utf-8",
                 domDoc = new \DOMDocument("1.0", charset),
@@ -644,6 +640,10 @@ class Response implements ResponseInterface
             this->xmlEncode(data, null, domNode, domDoc);
 
             return domDoc->saveXML();
+        }
+
+        if typeof data == "object" {
+            let data = get_object_vars(data);
         }
 
         if typeof data == "array" {
@@ -659,6 +659,9 @@ class Response implements ResponseInterface
                 this->xmlEncode(val, null, node, domDoc);
             }
         } else {
+            if typeof data == "boolean" {
+                let data = data ? "true" : "false";
+            }
             domNode->appendChild(domDoc->createTextNode(data));
         }
     }
