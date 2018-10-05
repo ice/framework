@@ -46,7 +46,7 @@ class Url
         var baseUri, queryString;
 
         if !local && !empty uri {
-            let local = empty parse_url(uri, PHP_URL_HOST);
+            let local = empty parse_url(uri, PHP_URL_HOST) && empty parse_url(uri, PHP_URL_SCHEME);
         }
 
         let baseUri = this->getBaseUri();
