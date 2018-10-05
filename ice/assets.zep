@@ -268,7 +268,7 @@ class Assets
             md5file, md5Old, md5New, old, minified;
 
         let source = this->getOption("source"),
-            target = this->getOption("target"),
+            target = str_replace(DIRECTORY_SEPARATOR, "/", this->getOption("target")),
             file = pathinfo(uri, PATHINFO_FILENAME | PATHINFO_EXTENSION),
             type = file["extension"],
             file = file["filename"];
@@ -276,6 +276,8 @@ class Assets
         // uri is start from absolute path, try to load from document root
         if uri[0] == '/' || empty source {
             let source = _SERVER["DOCUMENT_ROOT"];
+        } else {
+            let source = str_replace(DIRECTORY_SEPARATOR, "/", source);
         }
 
         if (source[-1] != '/') {
