@@ -592,7 +592,7 @@ class Response implements ResponseInterface
     {
         this->headers->set("Content-Type", "application/json;charset=utf-8");
 
-        this->body = json_encode($data, option);
+        this->body = json_encode(data, option);
 
         return this;
     }
@@ -602,7 +602,6 @@ class Response implements ResponseInterface
      *
      * @param mixed data Can be any type excepta resource
      * @param string rootName The key name of root element
-     * @param string nodeName The key name of numberic element
      * @param string charset
      * @return object Response
      */
