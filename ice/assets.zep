@@ -268,7 +268,7 @@ class Assets
             md5file, md5Old, md5New, old, minified;
 
         let source = this->getOption("source"),
-            target = str_replace(DIRECTORY_SEPARATOR, "/", this->getOption("target")),
+            target = this->getOption("target"),
             file = pathinfo(uri, PATHINFO_FILENAME | PATHINFO_EXTENSION),
             type = file["extension"],
             file = file["filename"];
@@ -291,7 +291,13 @@ class Assets
             throw new Exception(["The request assets do not exist: %s", source]);
         }
 
-        let uriMin = "/" . trim(target, "/") . "/" . dirname(uri) . "/";
+        if empty target {
+            let target = "min";
+        } else {
+            let target = trim(str_replace(DIRECTORY_SEPARATOR, "/", target), "/");
+        }
+
+        let uriMin = "/" . target . "/" . dirname(uri) . "/";
 
         // cache min files place to document root always
         let destination = _SERVER["DOCUMENT_ROOT"] . uriMin,
