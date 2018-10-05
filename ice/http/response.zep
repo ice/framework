@@ -588,7 +588,7 @@ class Response implements ResponseInterface
      * @param mixed data Can be any type excepta resource
      * @return object Response
      */
-    public function toJson(var data, var option = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+    public function toJson(var data, var option = null)
     {
         this->headers->set("Content-Type", "application/json;charset=utf-8");
 
