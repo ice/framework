@@ -583,6 +583,86 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Response data to JSON string.
+     *
+     * @param mixed data Can be any type excepta resource
+     * @return object Response
+     */
+    public function toJson(var data, var option = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+    {
+        this->headers->set("Content-Type", "application/json;charset=utf-8");
+
+        this->body = json_encode($data, option);
+
+        return this;
+    }
+
+    /**
+     * Response data to XML string.
+     *
+     * @param mixed data Can be any type excepta resource
+     * @param string rootName The key name of root element
+     * @param string nodeName The key name of numberic element
+     * @param string charset
+     * @return object Response
+     */
+    public function toXml(var data, string rootName = "result", string charset = "utf-8")
+    {
+        var doc;
+
+        this->headers->set("Content-Type", "application/xml;charset=" . charset);
+
+        let doc = new \DOMDocument("1.0", charset),
+            doc->formatOutput = true;
+
+        this->body = this->xmlEncode(data, doc->createElement(rootName), doc);
+
+        return this;
+    }
+
+    /**
+     * Convert data to XML string.
+     *
+     * @param mixed data Can be any type excepta resource
+     * @param DOMElement domNode The node element
+     * @param DOMDocument domDoc The dom document element
+     * @return string xml string
+     */
+    public function xmlEncode(var data, \DOMElement domNode = null, \DOMDocument domDoc = null)
+    {
+        var key, val, node;
+
+        if domDoc === null {
+            let domDoc = new \DOMDocument,
+                domDoc->formatOutput = true;
+            if domNode === null {
+                let domNode = domDoc->createElement("root");
+            }
+        }
+
+        if typeof data == "object" {
+            let data = get_object_vars(data);
+        }
+
+        if typeof data == "array" {
+            for key, val in data {
+                if typeof key == "integer" {
+                    let node = domDoc->createElement("i" . key);
+                } else {
+                    let node = domDoc->createElement(key);
+                }
+                domNode->appendChild(node);
+
+                this->xmlEncode(val, node, domDoc);
+            }
+        } else {
+            domNode->appendChild(domDoc->createTextNode(data));
+        }
+
+        return domDoc->saveXML();
+    }
+
+    /**
      * Magic toString, convert response to string.
      *
      * @return string
