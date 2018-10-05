@@ -28,7 +28,7 @@ class Url
         var staticUri;
         let staticUri = rtrim(this->staticUri, "/");
         if uri[0] != '/' {
-            let staticUri = staticUri . "/";
+            let staticUri .= "/";
         }
         return staticUri . uri;
     }
@@ -45,16 +45,8 @@ class Url
     {
         var baseUri, queryString;
 
-        if !local {
-            if typeof uri == "string" && (memstr(uri, "//") || memstr(uri, ":")) {
-                if preg_match("#^(?://|[a-z0-9]+://|[a-z0-9]+:)#i", uri) {
-                    let local = false;
-                } else {
-                    let local = true;
-                }
-            } else {
-                let local = true;
-            }
+        if !local && !empty uri {
+            let local = empty parse_url(uri, PHP_URL_HOST);
         }
 
         let baseUri = this->getBaseUri();
@@ -72,8 +64,8 @@ class Url
 
         if args {
             let queryString = http_build_query(args);
-            if typeof queryString == "string" && strlen(queryString) {
-                if strpos(queryString, "?") !== false {
+            if queryString {
+                if strpos(uri, "?") !== false {
                     let uri .= "&" . queryString;
                 } else {
                     let uri .= "?" . queryString;
