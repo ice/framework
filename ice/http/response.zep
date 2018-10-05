@@ -611,10 +611,7 @@ class Response implements ResponseInterface
 
         this->headers->set("Content-Type", "application/xml;charset=" . charset);
 
-        let doc = new \DOMDocument("1.0", charset),
-            doc->formatOutput = true;
-
-        this->body = this->xmlEncode(data, doc->createElement(rootName), doc);
+        this->body = this->xmlEncode(data, ["root": rootName, "charset": charset]);
 
         return this;
     }
@@ -623,42 +620,47 @@ class Response implements ResponseInterface
      * Convert data to XML string.
      *
      * @param mixed data Can be any type excepta resource
-     * @param DOMElement domNode The node element
-     * @param DOMDocument domDoc The dom document element
+     * @param array options Config for the dom document [root|charset|format]
+     * @param DOMElement domNode null, ONLY FOR INTERNAL USE
+     * @param DOMDocument domDoc null, ONLY FOR INTERNAL USE
      * @return string xml string
      */
-    public function xmlEncode(var data, \DOMElement domNode = null, \DOMDocument domDoc = null)
+    public function xmlEncode(var data, array! options = null, \DOMElement domNode = null, \DOMDocument domDoc = null)
     {
-        var key, val, node;
-
-        if domDoc === null {
-            let domDoc = new \DOMDocument,
-                domDoc->formatOutput = true;
-            if domNode === null {
-                let domNode = domDoc->createElement("root");
-            }
-        }
+        var root, charset, key, val, node;
 
         if typeof data == "object" {
             let data = get_object_vars(data);
         }
 
+        if domDoc === null {
+            let charset = isset options["charset"] ? options["charset"] : "utf-8",
+                domDoc = new \DOMDocument("1.0", charset),
+                domDoc->formatOutput = isset options["format"] ? options["format"] : true,
+                root = isset options["root"] ? options["root"] : "root",
+                domNode = domDoc->createElement(root);
+
+            domDoc->appendChild(domNode);
+            this->xmlEncode(data, null, domNode, domDoc);
+
+            return domDoc->saveXML();
+        }
+
         if typeof data == "array" {
             for key, val in data {
                 if typeof key == "integer" {
-                    let node = domDoc->createElement("i" . key);
+                    let node = domDoc->createElement("_" . key);
+                       node->setAttribute("i", key);
                 } else {
                     let node = domDoc->createElement(key);
                 }
                 domNode->appendChild(node);
 
-                this->xmlEncode(val, node, domDoc);
+                this->xmlEncode(val, null, node, domDoc);
             }
         } else {
             domNode->appendChild(domDoc->createTextNode(data));
         }
-
-        return domDoc->saveXML();
     }
 
     /**
