@@ -1,5 +1,22 @@
 
 - Ice 1.4.0
+ * Env, add environment helper
+ * Auth, token enhancement, rename Model driver to Db
+ * Router, refactor, rename old router to FastRouter
+ * Auth, password hash enhancement
+ * Di, hook bug fixed #208
+ * Model, clear save status #205
+ * Pdo, add query method fix #166
+ * Model, fixed retry to save invalid model bug #202
+ * Cli, add websocket component #201
+ * Auth, make model classes in users configurable #199
+ * Request, allow for empty string on get, post #197
+ * Model, enhanced and bugs fix #185
+ * Pdo, make it competitable with other dbms #188
+ * Di, resolve bug fix #190
+ * View, allow to render file with specific engine
+ * Tests, add db and model tests
+ * Dispatcher, add reset
  * Always return this from setters
  * Response, send file
  * App, add new module to the app

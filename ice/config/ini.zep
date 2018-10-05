@@ -43,7 +43,7 @@ class Ini extends Config
      * @param mixed raw The same array but with raw strings
      * @return mixed
      */
-    private function cast(ini, raw)
+    protected function cast(ini, raw)
     {
         if typeof ini == "string" {
             // Decode true
@@ -80,7 +80,7 @@ class Ini extends Config
      * @param array raw
      * @return array
      */
-    private function map(ini, raw)
+    protected function map(ini, raw)
     {
         var key, value, data = [];
 

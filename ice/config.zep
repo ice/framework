@@ -21,7 +21,7 @@ class Config extends Arr
     public function __construct(var data = null)
     {
         var key, value, hasNumericKey, subkey, subvalue;
-        
+
         if typeof data == "string" && data != "" {
             if file_exists(data) {
                 let data = require data;
@@ -53,14 +53,14 @@ class Config extends Arr
                     }
                 }
                 if hasNumericKey {
-                    let this->data[key] = value;
+                    this->set(key, value);
                 } else {
-                    let this->data[key] = new Config(value);
+                    this->set(key, new Config(value));
                 }
             } else {
-                let this->data[key] = value;
+                this->set(key, value);
             }
         }
     }
-    
+
 }
