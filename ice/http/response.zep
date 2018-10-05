@@ -625,7 +625,7 @@ class Response implements ResponseInterface
      * @param DOMDocument domDoc null, ONLY FOR INTERNAL USE
      * @return string xml string
      */
-    public function xmlEncode(var data, array! options = null, \DOMElement domNode = null, \DOMDocument domDoc = null)
+    public function xmlEncode(var data, array! options = null, <\DOMElement> domNode = null, <\DOMDocument> domDoc = null)
     {
         var root, charset, key, val, node;
 
