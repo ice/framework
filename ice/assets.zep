@@ -325,7 +325,7 @@ class Assets
                 destination = _SERVER["DOCUMENT_ROOT"] . uriMin;
 
             if minify {
-                minified = this->minify(file_get_contents(source), type);
+                let minified = this->minify(file_get_contents(source), type);
                 if file_put_contents(destination, minified) === false {
                     throw new Exception(["Directory can't be written: %s", destination]);
                 }
