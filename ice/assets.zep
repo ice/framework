@@ -304,7 +304,7 @@ class Assets
                 // new version found
                 let md5file = null;
                 // delete the old version
-                @unlink(md5file);
+                unlink(md5file);
             } else {
                 let uriMin .= file . "." . md5New . "." . type;
             }
