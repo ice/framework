@@ -235,7 +235,7 @@ class Mongodb implements DbInterface
      * @param string from Collection name
      * @param mixed filters Criteria
      */
-    public function remove(string! from, var filters = [])
+    public function delete(string! from, var filters = [])
     {
         var collection, result;
 

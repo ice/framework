@@ -1,5 +1,6 @@
 
 - Ice 1.4.0
+ * Db, Model, rename the remove method to delete fix #221
  * Env, add environment helper
  * Auth, token enhancement, rename Model driver to Db
  * Router, refactor, rename old router to FastRouter
@@ -23,7 +24,6 @@
  * App, allow to render page without main layout fix #169
  * Response, set response content in controller fail fix #168
  * Request, implement interface
- * Arr, rename the remove method to erase
  * Config, load config from php file
  * PHP, fix declaration errors
  * Travis, update to xenial dist

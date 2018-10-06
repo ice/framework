@@ -182,7 +182,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param string key The data key
      * @return object Arr
      */
-    public function erase(string key)
+    public function remove(string key)
     {
         unset this->data[key];
 
@@ -385,7 +385,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function offsetUnset(offset) -> void
     {
-        this->erase(offset);
+        this->remove(offset);
     }
 
     /**
@@ -426,6 +426,6 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __unset(key) -> void
     {
-        this->erase(key);
+        this->remove(key);
     }
 }

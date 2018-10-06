@@ -32,6 +32,8 @@ class Env extends Ini
 
     /**
      * Check whether environment has the key.
+     *
+     * @return boolean
      */
     public function has(string key) -> boolean
     {
@@ -40,7 +42,8 @@ class Env extends Ini
 
     /**
      * Retrieve a single key from the environment.
-     * @return mix
+     *
+     * @return mixed
      */
     public function get(string key, var defaultValue = null, boolean required = false)
     {
@@ -55,6 +58,7 @@ class Env extends Ini
 
     /**
      * Assigns a value to the specified environment key.
+     *
      * @return object
      */
     public function set(string key, var value) -> <self>
@@ -66,9 +70,10 @@ class Env extends Ini
 
     /**
      * Remove environment key.
+     *
      * @return object
      */
-    public function erase(string key) -> <self>
+    public function remove(string key) -> <self>
     {
         unset _ENV[key];
 
@@ -80,7 +85,7 @@ class Env extends Ini
      *
      * @return array
      */
-    public function getData()
+    public function getData() -> array
     {
         return _ENV;
     }

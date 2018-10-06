@@ -250,7 +250,7 @@ class Request extends Arr implements RequestInterface
         if !key {
             // Remove `_url` from GET
             this->get->set("_url", null);
-            this->get->erase("_url");
+            this->get->remove("_url");
 
             return this->get;
         } else {

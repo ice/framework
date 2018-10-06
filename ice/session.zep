@@ -84,6 +84,8 @@ class Session extends Arr
     /**
      * Check whether session has the key.
      * No support for passing variables by reference yet zephir/issues/203
+     *
+     * @return boolean
      */
     public function has(string key) -> boolean
     {
@@ -92,7 +94,8 @@ class Session extends Arr
 
     /**
      * Retrieve a single key from the session.
-     * @return mix
+     *
+     * @return mixed
      */
     public function get(string key, var defaultValue = null, boolean required = false)
     {
@@ -107,9 +110,10 @@ class Session extends Arr
 
     /**
      * Assigns a value to the specified session key.
+     *
      * @return object Session
      */
-    public function set(string key, var value)
+    public function set(string key, var value) -> <self>
     {
         let _SESSION[key] = value;
 
@@ -118,9 +122,10 @@ class Session extends Arr
 
     /**
      * Remove session key.
+     *
      * @return object Session
      */
-    public function remove(string key)
+    public function remove(string key) -> <self>
     {
         unset _SESSION[key];
 
@@ -132,7 +137,7 @@ class Session extends Arr
      *
      * @return array
      */
-    public function getData()
+    public function getData() -> array
     {
         return _SESSION;
     }
