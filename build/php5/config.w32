@@ -11,8 +11,8 @@ if (PHP_ICE != "no") {
     AC_DEFINE("ZEPHIR_USE_PHP_JSON", 1, "Whether PHP json extension is present at compile time");
   }
   
-  ADD_SOURCES(configure_module_dirname + "/ice/validation", "validator.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice", "arr.zep.c config.zep.c dispatcher.zep.c assets.zep.c auth.zep.c cookies.zep.c crypt.zep.c db.zep.c di.zep.c dump.zep.c exception.zep.c filter.zep.c flash.zep.c i18n.zep.c loader.zep.c log.zep.c pagination.zep.c session.zep.c tag.zep.c text.zep.c validation.zep.c version.zep.c", "ice");
+  ADD_SOURCES(configure_module_dirname + "/ice", "arr.zep.c config.zep.c dispatcher.zep.c assets.zep.c auth.zep.c cookies.zep.c crypt.zep.c db.zep.c di.zep.c dump.zep.c env.zep.c exception.zep.c filter.zep.c flash.zep.c i18n.zep.c loader.zep.c log.zep.c pagination.zep.c session.zep.c tag.zep.c text.zep.c validation.zep.c version.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/validation", "validator.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/i18n/plural", "pluralinterface.zep.c arabic.zep.c balkan.zep.c czech.zep.c french.zep.c none.zep.c one.zep.c polish.zep.c romanian.zep.c two.zep.c zero.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/di", "access.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc", "model.zep.c app.zep.c controller.zep.c dispatcher.zep.c fastroute.zep.c fastrouter.zep.c moduleinterface.zep.c route.zep.c router.zep.c service.zep.c url.zep.c view.zep.c", "ice");
@@ -26,6 +26,7 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/datagenerator", "datageneratorinterface.zep.c regex.zep.c groupcount.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/dispatcher", "dispatcherinterface.zep.c regex.zep.c groupcount.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/view", "engine.zep.c viewinterface.zep.c", "ice");
+	ADD_SOURCES(configure_module_dirname + "/ice/config", "ini.zep.c json.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/request", "requestinterface.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http/response", "headersinterface.zep.c responseinterface.zep.c headers.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/mvc/route/parser", "parserinterface.zep.c std.zep.c", "ice");
@@ -33,7 +34,6 @@ if (PHP_ICE != "no") {
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver/model/roles", "users.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/auth/driver/model/users", "social.zep.c tokens.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/cli", "console.zep.c dispatcher.zep.c router.zep.c task.zep.c", "ice");
-	ADD_SOURCES(configure_module_dirname + "/ice/config", "ini.zep.c json.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/db/driver", "mongodb.zep.c pdo.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/filter", "css.zep.c js.zep.c", "ice");
 	ADD_SOURCES(configure_module_dirname + "/ice/http", "request.zep.c response.zep.c", "ice");

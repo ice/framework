@@ -13,10 +13,10 @@
 
 #include "kernel/main.h"
 #include "kernel/exception.h"
-#include "kernel/fcall.h"
-#include "kernel/memory.h"
-#include "kernel/string.h"
 #include "kernel/file.h"
+#include "kernel/memory.h"
+#include "kernel/fcall.h"
+#include "kernel/string.h"
 #include "kernel/operators.h"
 
 
@@ -40,31 +40,36 @@ ZEPHIR_INIT_CLASS(Ice_Config_Json) {
 /**
  * Config json constructor.
  *
- * @param string data Path to the json file
+ * @param string data Path to the file or json string
  */
 PHP_METHOD(Ice_Config_Json, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-	zval *data = NULL, *_1, *_2;
+	zephir_fcall_cache_entry *_1 = NULL;
+	zval *data = NULL, *_0$$4, *_2;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
 
 	if (!data) {
-		data = ZEPHIR_GLOBAL(global_null);
+		ZEPHIR_CPY_WRT(data, ZEPHIR_GLOBAL(global_null));
+	} else {
+		ZEPHIR_SEPARATE_PARAM(data);
 	}
 
 
 	if (Z_TYPE_P(data) != IS_STRING) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/json.zep", 27);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Data must be a json string or path to the file", "ice/config/json.zep", 27);
 		return;
 	}
-	ZEPHIR_INIT_VAR(_1);
+	if ((zephir_file_exists(data TSRMLS_CC) == SUCCESS)) {
+		ZEPHIR_INIT_VAR(_0$$4);
+		zephir_file_get_contents(_0$$4, data TSRMLS_CC);
+		ZEPHIR_CPY_WRT(data, _0$$4);
+	}
 	ZEPHIR_INIT_VAR(_2);
-	zephir_file_get_contents(_2, data TSRMLS_CC);
-	zephir_json_decode(_1, &(_1), _2, zephir_get_intval(ZEPHIR_GLOBAL(global_true))  TSRMLS_CC);
-	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_0, 46, _1);
+	zephir_json_decode(_2, &(_2), data, zephir_get_intval(ZEPHIR_GLOBAL(global_true))  TSRMLS_CC);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_1, 26, _2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 

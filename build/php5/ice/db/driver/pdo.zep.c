@@ -309,11 +309,11 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
  * <pre><code>
  *  //SELECT * FROM users WHERE a=1 and b="q"
  *  $db->find("users", array("a" => 1, "b" => "q"));
- * 
- *  //SELECT * FROM users WHERE age>33 
+ *
+ *  //SELECT * FROM users WHERE age>33
  *  $db->find("users", array("age" => array(">" => 33)));
- * 
- *  //SELECT * FROM users WHERE a=1 or b=2 
+ *
+ *  //SELECT * FROM users WHERE a=1 or b=2
  *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
  * </code></pre>
  *
@@ -460,20 +460,20 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 				) {
 					ZEPHIR_GET_HVALUE(item, _8$$5);
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 107, item);
+					ZEPHIR_CALL_FUNCTION(&key, "key", &_9, 106, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					ZEPHIR_MAKE_REF(item);
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 105, item);
+					ZEPHIR_CALL_FUNCTION(&value, "current", &_10, 104, item);
 					ZEPHIR_UNREF(item);
 					zephir_check_call_status();
 					if (Z_TYPE_P(value) == IS_ARRAY) {
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 107, value);
+						ZEPHIR_CALL_FUNCTION(&is, "key", &_9, 106, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_MAKE_REF(value);
-						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 105, value);
+						ZEPHIR_CALL_FUNCTION(&_11$$10, "current", &_10, 104, value);
 						ZEPHIR_UNREF(value);
 						zephir_check_call_status();
 						ZEPHIR_CPY_WRT(value, _11$$10);
@@ -863,7 +863,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
  * @param string from Table name
  * @param mixed filters Filters to create WHERE conditions
  */
-PHP_METHOD(Ice_Db_Driver_Pdo, remove) {
+PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *from_param = NULL, *filters = NULL, *filtered = NULL, *sql = NULL, *values = NULL, *query = NULL, *status = NULL, *_0, *_1 = NULL, *_2, *_3, *_4 = NULL;

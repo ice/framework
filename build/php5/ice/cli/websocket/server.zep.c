@@ -115,7 +115,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, __construct) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&addr, "parse_url", NULL, 79, address);
+	ZEPHIR_CALL_FUNCTION(&addr, "parse_url", NULL, 81, address);
 	zephir_check_call_status();
 	_0 = ZEPHIR_IS_FALSE_IDENTICAL(addr);
 	if (!(_0)) {
@@ -133,7 +133,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid address", "ice/cli/websocket/server.zep", 38);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&context, "stream_context_create", NULL, 88);
+	ZEPHIR_CALL_FUNCTION(&context, "stream_context_create", NULL, 90);
 	zephir_check_call_status();
 	if (zephir_fast_count_int(options TSRMLS_CC)) {
 		zephir_is_iterable(options, &_4$$4, &_3$$4, 0, 0, "ice/cli/websocket/server.zep", 47);
@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, __construct) {
 			ZEPHIR_GET_HVALUE(value, _5$$4);
 			ZEPHIR_SINIT_NVAR(_6$$5);
 			ZVAL_STRING(&_6$$5, "ssl", 0);
-			ZEPHIR_CALL_FUNCTION(NULL, "stream_context_set_option", &_7, 89, context, &_6$$5, key, value);
+			ZEPHIR_CALL_FUNCTION(NULL, "stream_context_set_option", &_7, 91, context, &_6$$5, key, value);
 			zephir_check_call_status();
 		}
 	}
@@ -179,7 +179,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, __construct) {
 	ZVAL_LONG(_16, (4 | 8));
 	ZEPHIR_MAKE_REF(_11);
 	ZEPHIR_MAKE_REF(_15);
-	ZEPHIR_CALL_FUNCTION(&_17, "stream_socket_server", NULL, 90, _14, _11, _15, _16, context);
+	ZEPHIR_CALL_FUNCTION(&_17, "stream_socket_server", NULL, 92, _14, _11, _15, _16, context);
 	ZEPHIR_UNREF(_11);
 	ZEPHIR_UNREF(_15);
 	zephir_check_call_status();
@@ -216,7 +216,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 	if (zephir_array_isset_string(_0, SS("boot"))) {
 		_1$$3 = zephir_fetch_nproperty_this(this_ptr, SL("callbacks"), PH_NOISY_CC);
 		zephir_array_fetch_string(&_2$$3, _1$$3, SL("boot"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 76 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 86, _2$$3, this_ptr);
+		ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 88, _2$$3, this_ptr);
 		zephir_check_call_status();
 	}
 	while (1) {
@@ -227,7 +227,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 		if (zephir_array_isset_string(_4$$4, SS("tick"))) {
 			_5$$5 = zephir_fetch_nproperty_this(this_ptr, SL("callbacks"), PH_NOISY_CC);
 			zephir_array_fetch_string(&_6$$5, _5$$5, SL("tick"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 81 TSRMLS_CC);
-			ZEPHIR_CALL_FUNCTION(&_7$$5, "call_user_func", &_3, 86, _6$$5, this_ptr);
+			ZEPHIR_CALL_FUNCTION(&_7$$5, "call_user_func", &_3, 88, _6$$5, this_ptr);
 			zephir_check_call_status();
 			if (ZEPHIR_IS_FALSE_IDENTICAL(_7$$5)) {
 				break;
@@ -251,7 +251,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 		ZEPHIR_MAKE_REF(changed);
 		ZEPHIR_MAKE_REF(write);
 		ZEPHIR_MAKE_REF(except);
-		ZEPHIR_CALL_FUNCTION(&stream, "stream_select", &_10, 87, changed, write, except, _8$$4);
+		ZEPHIR_CALL_FUNCTION(&stream, "stream_select", &_10, 89, changed, write, except, _8$$4);
 		ZEPHIR_UNREF(changed);
 		ZEPHIR_UNREF(write);
 		ZEPHIR_UNREF(except);
@@ -268,7 +268,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 				_14$$8 = zephir_fetch_nproperty_this(this_ptr, SL("server"), PH_NOISY_CC);
 				if (ZEPHIR_IS_IDENTICAL(socket, _14$$8)) {
 					_15$$9 = zephir_fetch_nproperty_this(this_ptr, SL("server"), PH_NOISY_CC);
-					ZEPHIR_CALL_FUNCTION(&tmp, "stream_socket_accept", &_16, 91, _15$$9);
+					ZEPHIR_CALL_FUNCTION(&tmp, "stream_socket_accept", &_16, 93, _15$$9);
 					zephir_check_call_status();
 					if (!ZEPHIR_IS_FALSE_IDENTICAL(tmp)) {
 						ZEPHIR_CALL_METHOD(&_17$$10, this_ptr, "connect", &_18, 0, tmp);
@@ -280,7 +280,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 								zephir_array_fetch_string(&_21$$12, _20$$12, SL("connect"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 101 TSRMLS_CC);
 								_22$$12 = zephir_fetch_nproperty_this(this_ptr, SL("clients"), PH_NOISY_CC);
 								zephir_array_fetch_long(&_23$$12, _22$$12, zephir_get_intval(tmp), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 101 TSRMLS_CC);
-								ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 86, _21$$12, _23$$12, this_ptr);
+								ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 88, _21$$12, _23$$12, this_ptr);
 								zephir_check_call_status();
 							}
 						}
@@ -310,7 +310,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 							zephir_array_fetch_string(&_30$$15, _29$$15, SL("disconnect"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 110 TSRMLS_CC);
 							_31$$15 = zephir_fetch_nproperty_this(this_ptr, SL("clients"), PH_NOISY_CC);
 							zephir_array_fetch_long(&_32$$15, _31$$15, zephir_get_intval(socket), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 110 TSRMLS_CC);
-							ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 86, _30$$15, _32$$15, this_ptr);
+							ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 88, _30$$15, _32$$15, this_ptr);
 							zephir_check_call_status();
 						}
 						ZEPHIR_CALL_METHOD(NULL, this_ptr, "disconnect", &_33, 0, socket);
@@ -339,7 +339,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 					zephir_array_fetch_string(&_42$$18, _41$$18, SL("message"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 125 TSRMLS_CC);
 					zephir_array_fetch_string(&_43$$18, message, SL("client"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 125 TSRMLS_CC);
 					zephir_array_fetch_string(&_44$$18, message, SL("message"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 125 TSRMLS_CC);
-					ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 86, _42$$18, _43$$18, _44$$18, this_ptr);
+					ZEPHIR_CALL_FUNCTION(NULL, "call_user_func", &_3, 88, _42$$18, _43$$18, _44$$18, this_ptr);
 					zephir_check_call_status();
 				}
 			}
@@ -351,7 +351,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, run) {
 		ZEPHIR_CALL_METHOD(&_45$$4, this_ptr, "getparam", &_48, 0, _46$$4, _47$$4);
 		zephir_check_temp_parameter(_46$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_49, 33, _45$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_49, 34, _45$$4);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -407,7 +407,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, connect) {
 	ZVAL_STRING(_2, "(\r\n\\s+)", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_STRING(_4, " ", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_FUNCTION(&_5, "preg_replace", NULL, 92, _2, _4, headers);
+	ZEPHIR_CALL_FUNCTION(&_5, "preg_replace", NULL, 94, _2, _4, headers);
 	zephir_check_temp_parameter(_2);
 	zephir_check_temp_parameter(_4);
 	zephir_check_call_status();
@@ -534,7 +534,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, connect) {
 	if (_40) {
 		_41 = zephir_fetch_nproperty_this(this_ptr, SL("callbacks"), PH_NOISY_CC);
 		zephir_array_fetch_string(&_42, _41, SL("validate"), PH_NOISY | PH_READONLY, "ice/cli/websocket/server.zep", 196 TSRMLS_CC);
-		ZEPHIR_CALL_FUNCTION(&_43, "call_user_func", NULL, 86, _42, client, this_ptr);
+		ZEPHIR_CALL_FUNCTION(&_43, "call_user_func", NULL, 88, _42, client, this_ptr);
 		zephir_check_call_status();
 		_40 = !zephir_is_true(_43);
 	}
@@ -569,7 +569,7 @@ PHP_METHOD(Ice_Cli_Websocket_Server, connect) {
 	zephir_read_static_property_ce(&_49, ice_cli_websocket_server_ce, SL("magic") TSRMLS_CC);
 	ZEPHIR_INIT_LNVAR(_47);
 	ZEPHIR_CONCAT_VV(_47, _48, _49);
-	ZEPHIR_CALL_FUNCTION(&_50, "sha1", NULL, 60, _47, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&_50, "sha1", NULL, 62, _47, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_51, "base64_encode", NULL, 16, _50);
 	zephir_check_call_status();

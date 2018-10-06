@@ -2083,7 +2083,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZVAL_STRING(_15, "/[^a-zA-Z0-9\\/_|+ -]/", ZEPHIR_TEMP_PARAM_COPY);
 	ZEPHIR_INIT_VAR(_16);
 	ZVAL_STRING(_16, "", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_17, 92, _15, _16, text);
+	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_17, 94, _15, _16, text);
 	zephir_check_temp_parameter(_15);
 	zephir_check_temp_parameter(_16);
 	zephir_check_call_status();
@@ -2094,7 +2094,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	}
 	ZEPHIR_INIT_NVAR(_15);
 	ZVAL_STRING(_15, "/[\\/_|+ -]+/", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_FUNCTION(&_19, "preg_replace", &_17, 92, _15, separator, friendly);
+	ZEPHIR_CALL_FUNCTION(&_19, "preg_replace", &_17, 94, _15, separator, friendly);
 	zephir_check_temp_parameter(_15);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(friendly, _19);

@@ -122,7 +122,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZVAL_LONG(_4$$3, zephir_fast_count_int(regexToRoutesMap TSRMLS_CC));
 		ZEPHIR_CALL_METHOD(&chunkSize, this_ptr, "computechunksize", &_5, 0, _4$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 48, regexToRoutesMap, chunkSize, ZEPHIR_GLOBAL(global_true));
+		ZEPHIR_CALL_FUNCTION(&chunks, "array_chunk", &_6, 50, regexToRoutesMap, chunkSize, ZEPHIR_GLOBAL(global_true));
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(_7$$3);
 		zephir_create_array(_7$$3, 2, 0 TSRMLS_CC);
@@ -130,7 +130,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 		ZEPHIR_INIT_NVAR(_4$$3);
 		ZVAL_STRING(_4$$3, "processChunk", 1);
 		zephir_array_fast_append(_7$$3, _4$$3);
-		ZEPHIR_CALL_FUNCTION(&_8$$3, "array_map", &_9, 49, _7$$3, chunks);
+		ZEPHIR_CALL_FUNCTION(&_8$$3, "array_map", &_9, 51, _7$$3, chunks);
 		zephir_check_call_status();
 		zephir_array_update_zval(&data, method, &_8$$3, PH_COPY | PH_SEPARATE);
 	}
@@ -160,7 +160,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	zephir_round(_2, &_3, NULL, NULL TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_4);
 	ZVAL_LONG(_4, 1);
-	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 50, _4, _2);
+	ZEPHIR_CALL_FUNCTION(&numParts, "max", NULL, 52, _4, _2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_5);
 	div_function(_5, count, numParts TSRMLS_CC);
@@ -301,7 +301,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	}
 	ZEPHIR_INIT_VAR(_10);
 	object_init_ex(_10, ice_mvc_fastroute_ce);
-	ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 51, httpMethod, handler, regex, variables);
+	ZEPHIR_CALL_METHOD(NULL, _10, "__construct", NULL, 53, httpMethod, handler, regex, variables);
 	zephir_check_call_status();
 	zephir_update_property_array_multi(this_ptr, SL("methodToRegexToRoutesMap"), &_10 TSRMLS_CC, SL("zz"), 2, httpMethod, regex);
 	ZEPHIR_MM_RESTORE();
@@ -334,7 +334,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 		if (Z_TYPE_P(part) == IS_STRING) {
 			ZEPHIR_SINIT_NVAR(_3$$4);
 			ZVAL_STRING(&_3$$4, "~", 0);
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "preg_quote", &_5, 52, part, &_3$$4);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "preg_quote", &_5, 54, part, &_3$$4);
 			zephir_check_call_status();
 			zephir_concat_self(&regex, _4$$4 TSRMLS_CC);
 			continue;

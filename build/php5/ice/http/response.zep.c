@@ -743,7 +743,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 		}
 		ZEPHIR_SINIT_NVAR(_48$$17);
 		ZVAL_LONG(&_48$$17, block);
-		ZEPHIR_CALL_FUNCTION(&_49$$17, "fread", &_50, 31, file, &_48$$17);
+		ZEPHIR_CALL_FUNCTION(&_49$$17, "fread", &_50, 32, file, &_48$$17);
 		zephir_check_call_status();
 		zend_print_zval(_49$$17, 0);
 		ZEPHIR_CALL_FUNCTION(NULL, "flush", &_51, 148);
@@ -751,7 +751,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 		if (speed > 0) {
 			ZEPHIR_SINIT_NVAR(_52$$20);
 			ZVAL_LONG(&_52$$20, speed);
-			ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_53, 33, &_52$$20);
+			ZEPHIR_CALL_FUNCTION(NULL, "usleep", &_53, 34, &_52$$20);
 			zephir_check_call_status();
 		}
 	}

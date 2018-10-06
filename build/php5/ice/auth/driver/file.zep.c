@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("user"), PH_NOISY_CC);
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, getThis(), "getuser", &_1, 62, defaultValue);
+		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, getThis(), "getuser", &_1, 64, defaultValue);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_IDENTICAL(username, defaultValue)) {
 			zephir_update_property_this(getThis(), SL("user"), defaultValue TSRMLS_CC);
@@ -184,7 +184,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 			RETURN_MM_BOOL(0);
 		}
 		zephir_array_fetch_string(&_5$$4, user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 90 TSRMLS_CC);
-		ZEPHIR_CALL_PARENT(&_3$$4, ice_auth_driver_file_ce, getThis(), "checkhash", &_4, 63, password, _5$$4);
+		ZEPHIR_CALL_PARENT(&_3$$4, ice_auth_driver_file_ce, getThis(), "checkhash", &_4, 65, password, _5$$4);
 		zephir_check_call_status();
 		_6$$4 = zephir_is_true(_3$$4);
 		if (!(_6$$4)) {

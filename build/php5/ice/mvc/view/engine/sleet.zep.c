@@ -94,7 +94,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZVAL_STRING(&_4, "/", 0);
 	zephir_fast_trim(_3, compileDir, &_4, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
 	ZEPHIR_INIT_VAR(_5);
-	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 53, path);
+	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 55, path);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_7, "realpath", NULL, 139, _6);
 	zephir_check_call_status();
@@ -105,7 +105,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZEPHIR_CONCAT_VV(dir, _3, _5);
 	ZEPHIR_SINIT_VAR(_9);
 	ZVAL_STRING(&_9, ".sleet", 0);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 54, path, &_9);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 56, path, &_9);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(compiledPath);
 	ZEPHIR_CONCAT_VSVS(compiledPath, dir, "/", file, ".phtml");
@@ -125,7 +125,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 				ZEPHIR_INIT_NVAR(compile);
 				ZVAL_BOOL(compile, 1);
 			} else {
-				ZEPHIR_CALL_FUNCTION(&compile, "md5_file", NULL, 55, compiledPath);
+				ZEPHIR_CALL_FUNCTION(&compile, "md5_file", NULL, 57, compiledPath);
 				zephir_check_call_status();
 			}
 			break;
@@ -153,18 +153,18 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(compile)) {
-			ZEPHIR_CALL_FUNCTION(&_13$$12, "is_dir", NULL, 56, dir);
+			ZEPHIR_CALL_FUNCTION(&_13$$12, "is_dir", NULL, 58, dir);
 			zephir_check_call_status();
 			if (!(zephir_is_true(_13$$12))) {
 				ZEPHIR_SINIT_VAR(_14$$13);
 				ZVAL_LONG(&_14$$13, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_15, 57, &_14$$13);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_15, 59, &_14$$13);
 				zephir_check_call_status();
 				ZEPHIR_SINIT_NVAR(_14$$13);
 				ZVAL_LONG(&_14$$13, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 58, dir, &_14$$13, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 60, dir, &_14$$13, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_15, 57, old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_15, 59, old);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(_16$$12);

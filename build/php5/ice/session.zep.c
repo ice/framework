@@ -153,6 +153,8 @@ PHP_METHOD(Ice_Session, destroy) {
 /**
  * Check whether session has the key.
  * No support for passing variables by reference yet zephir/issues/203
+ *
+ * @return boolean
  */
 PHP_METHOD(Ice_Session, has) {
 
@@ -172,7 +174,8 @@ PHP_METHOD(Ice_Session, has) {
 
 /**
  * Retrieve a single key from the session.
- * @return mix
+ *
+ * @return mixed
  */
 PHP_METHOD(Ice_Session, get) {
 
@@ -205,6 +208,7 @@ PHP_METHOD(Ice_Session, get) {
 
 /**
  * Assigns a value to the specified session key.
+ *
  * @return object Session
  */
 PHP_METHOD(Ice_Session, set) {
@@ -226,6 +230,7 @@ PHP_METHOD(Ice_Session, set) {
 
 /**
  * Remove session key.
+ *
  * @return object Session
  */
 PHP_METHOD(Ice_Session, remove) {
@@ -242,6 +247,23 @@ PHP_METHOD(Ice_Session, remove) {
 
 	zephir_array_unset(&_SESSION, key, PH_SEPARATE);
 	RETURN_THIS();
+
+}
+
+/**
+ * Fetch all data.
+ *
+ * @return array
+ */
+PHP_METHOD(Ice_Session, getData) {
+
+	zval *_SESSION;
+
+	ZEPHIR_MM_GROW();
+	zephir_get_global(&_SESSION, SS("_SESSION") TSRMLS_CC);
+
+	RETVAL_ZVAL(_SESSION, 1, 0);
+	RETURN_MM();
 
 }
 

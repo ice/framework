@@ -123,7 +123,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "Y-m-d H:i:s", 0);
-	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 42, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 43, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_2);
 	zephir_fast_strtoupper(_2, level);
@@ -183,7 +183,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 		ZEPHIR_CONCAT_SVS(_3$$3, "{", key, "}");
 		zephir_array_update_zval(&replace, _3$$3, &value, PH_COPY | PH_SEPARATE);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 117, message, replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 116, message, replace);
 	zephir_check_call_status();
 	RETURN_MM();
 

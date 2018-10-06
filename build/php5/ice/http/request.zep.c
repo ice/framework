@@ -591,7 +591,7 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 		_3$$3 = zephir_fetch_nproperty_this(this_ptr, SL("get"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(_1$$3);
 		ZVAL_STRING(_1$$3, "_url", ZEPHIR_TEMP_PARAM_COPY);
-		ZEPHIR_CALL_METHOD(NULL, _3$$3, "erase", NULL, 0, _1$$3);
+		ZEPHIR_CALL_METHOD(NULL, _3$$3, "remove", NULL, 0, _1$$3);
 		zephir_check_temp_parameter(_1$$3);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(getThis(), "get");

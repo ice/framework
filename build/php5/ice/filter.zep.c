@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_11$$9, "/(?<=\\w)(?=[A-Z])/", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_12$$9);
 			ZVAL_STRING(_12$$9, " $1", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 92, _11$$9, _12$$9, value);
+			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 94, _11$$9, _12$$9, value);
 			zephir_check_temp_parameter(_11$$9);
 			zephir_check_temp_parameter(_12$$9);
 			zephir_check_call_status();
@@ -253,7 +253,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_19$$12, "/[^a-z0-9]/i", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_20$$12);
 			ZVAL_STRING(_20$$12, "", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 92, _19$$12, _20$$12, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 94, _19$$12, _20$$12, value);
 			zephir_check_temp_parameter(_19$$12);
 			zephir_check_temp_parameter(_20$$12);
 			zephir_check_call_status();
@@ -264,7 +264,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(_21$$13, "/[^a-z]/i", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_VAR(_22$$13);
 			ZVAL_STRING(_22$$13, "", ZEPHIR_TEMP_PARAM_COPY);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 92, _21$$13, _22$$13, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 94, _21$$13, _22$$13, value);
 			zephir_check_temp_parameter(_21$$13);
 			zephir_check_temp_parameter(_22$$13);
 			zephir_check_call_status();
@@ -334,7 +334,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZEPHIR_INIT_VAR(_37$$19);
 			ZVAL_STRING(_37$$19, "$1$1$1", 1);
 			zephir_array_fast_append(_34$$19, _37$$19);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 92, _32$$19, _34$$19, value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 94, _32$$19, _34$$19, value);
 			zephir_check_call_status();
 			RETURN_MM();
 		}

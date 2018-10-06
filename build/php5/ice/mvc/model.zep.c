@@ -1178,13 +1178,13 @@ PHP_METHOD(Ice_Mvc_Model, save) {
  *  $user->delete();
  *
  *  //Remove all unactive users
- *  $status = (new Users())->remove(["status" => 0]);
+ *  $status = (new Users())->delete(["status" => 0]);
  * </code></pre>
  *
  * @param filters
  * @return boolean
  */
-PHP_METHOD(Ice_Mvc_Model, remove) {
+PHP_METHOD(Ice_Mvc_Model, delete) {
 
 	HashTable *_3$$4;
 	HashPosition _2$$4;
@@ -1233,7 +1233,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 	}
 	_10 = zephir_fetch_nproperty_this(this_ptr, SL("db"), PH_NOISY_CC);
 	_11 = zephir_fetch_nproperty_this(this_ptr, SL("from"), PH_NOISY_CC);
-	ZEPHIR_CALL_METHOD(&status, _10, "remove", NULL, 0, _11, filters);
+	ZEPHIR_CALL_METHOD(&status, _10, "delete", NULL, 0, _11, filters);
 	zephir_check_call_status();
 	if (zephir_is_true(status)) {
 		if (0) {

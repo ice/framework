@@ -68,7 +68,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		zephir_read_property(&_3$$3, route, SL("variables"), PH_NOISY_CC);
 		ZEPHIR_INIT_NVAR(numVariables);
 		ZVAL_LONG(numVariables, zephir_fast_count_int(_3$$3 TSRMLS_CC));
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "max", &_5, 50, numGroups, numVariables);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "max", &_5, 52, numGroups, numVariables);
 		zephir_check_call_status();
 		ZEPHIR_CPY_WRT(numGroups, _4$$3);
 		ZEPHIR_INIT_LNVAR(_6$$3);
@@ -78,7 +78,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 		ZVAL_STRING(&_7$$3, "()", 0);
 		ZEPHIR_SINIT_NVAR(_8$$3);
 		ZVAL_LONG(&_8$$3, repeat);
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "str_repeat", &_9, 99, &_7$$3, &_8$$3);
+		ZEPHIR_CALL_FUNCTION(&_4$$3, "str_repeat", &_9, 98, &_7$$3, &_8$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_LNVAR(_10$$3);
 		ZEPHIR_CONCAT_VV(_10$$3, regex, _4$$3);

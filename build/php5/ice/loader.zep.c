@@ -135,7 +135,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 156, baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(_14$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 81, _14$$4, _15$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 83, _14$$4, _15$$4);
 		ZEPHIR_UNREF(_14$$4);
 		zephir_check_call_status();
 	} else {
