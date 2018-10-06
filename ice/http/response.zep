@@ -583,6 +583,120 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Response data to JSON string.
+     *
+     * @param mixed data Can be any type excepta resource
+     * @param int option The options for json_encode
+     * @return object Response
+     */
+    public function toJson(var data, var option = null)
+    {
+        this->headers->set("Content-Type", "application/json;charset=utf-8");
+
+        let this->body = json_encode(data, option);
+
+        return this;
+    }
+
+    /**
+     * Response data to XML string.
+     *
+     * <pre><code>
+     *     $response->toXml(
+     *         [['title' => 'hello world', 'desc' => 'dont panic']],
+     *         ['root' => 'blogs', 'namespace' => 'http://example.com/xml/blog']
+     *     );
+     *
+     *     // This will output the xml
+     *     <?xml version="1.0"?><blogs xmlns="http://example.com/xml/blog">
+     *     <blog><title>hello world</title><desc>dont panic</desc></blog></blogs>
+     * </code></pre>
+     *
+     * @param mixed data Can be any type excepta resource
+     * @param array options The options can be [root|charset|namespace]
+     * @return object Response
+     */
+    public function toXml(var data, var options = null)
+    {
+        var doc, ns, rootName, charset;
+
+        let rootName = isset options["root"] ? options["root"] : "result",
+            charset = isset options["charset"] ? options["charset"] : "utf-8",
+            doc = this->xmlEncode(data, rootName),
+            doc->preserveWhiteSpace = false,
+            doc->formatOutput = true,
+            doc->encoding = charset;
+
+        if fetch ns, options["namespace"] {
+            doc->createAttributeNS(ns, "xmlns");
+        }
+
+        this->headers->set("Content-Type", "application/xml;charset=" . charset);
+
+        let this->body = doc->saveXML();
+
+        return this;
+    }
+
+    /**
+     * Convert data to XML string.
+     *
+     * @param mixed data Can be any type excepta resource
+     * @param string root The root tag name
+     * @param DOMElement domNode null, ONLY FOR INTERNAL USE
+     * @return DOMDocument domDoc object
+     */
+    public function xmlEncode(var data, string root = "root", <\DOMElement> domNode = null)
+    {
+        var domDoc, type, key, val, node;
+
+        if domNode === null {
+            let domDoc = new \DOMDocument,
+                domNode = domDoc->createElement(root);
+
+            domDoc->appendChild(domNode);
+            this->xmlEncode(data, null, domNode);
+
+            return domDoc;
+        }
+
+        let domDoc = domNode->ownerDocument,
+            type = typeof data;
+
+        if type == "array" {
+            for key, val in data {
+                if typeof key == "integer" {
+                    let node = domDoc->createElement(rtrim(domNode->tagName, "s"));
+                    node->setAttribute("i", key);
+                } else {
+                    let node = domDoc->createElement(key);
+                }
+                domNode->appendChild(node);
+
+                this->xmlEncode(val, null, node);
+            }
+        } elseif type == "object" {
+            // set internal attr __is__ eq object
+            domNode->setAttribute("__is__", "obj");
+
+            for key, val in get_object_vars(data) {
+                if typeof val == "array" || typeof val == "object" {
+                    let node = domDoc->createElement(key);
+                    domNode->appendChild(node);
+                    this->xmlEncode(val, null, node);
+                } else {
+                    domNode->setAttribute(key, val);
+                }
+            }
+        } else {
+            if type == "boolean" {
+                let data = data ? "true" : "false";
+            }
+            domNode->appendChild(domDoc->createTextNode(data));
+        }
+    }
+
+    /**
      * Magic toString, convert response to string.
      *
      * @return string
