@@ -25,8 +25,14 @@ class Env extends Ini
     {
         // No support for passing variables by reference yet zephir/issues/203
         //let this->data = &_ENV;
+        var merged;
 
         parent::__construct(data);
+
+        let merged = array_merge(_ENV, this->data),
+            _ENV = merged;
+
+        this->setData(merged);
     }
 
     /**
@@ -76,5 +82,35 @@ class Env extends Ini
         unset _ENV[key];
 
         return this;
+    }
+
+    /**
+     * Fetch all data.
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return _ENV;
+    }
+
+    /**
+     * Fetch environment keys.
+     *
+     * @return array
+     */
+    public function keys() -> array
+    {
+        return array_keys(_ENV);
+    }
+
+    /**
+     * Count environment keys.
+     *
+     * @return integer
+     */
+    public function count() -> int
+    {
+        return count(_ENV);
     }
 }

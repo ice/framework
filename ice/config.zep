@@ -53,14 +53,13 @@ class Config extends Arr
                     }
                 }
                 if hasNumericKey {
-                    this->set(key, value);
+                    let this->data[key] = value;
                 } else {
-                    this->set(key, new Config(value));
+                    let this->data[key] = new Config(value);
                 }
             } else {
-                this->set(key, value);
+                let this->data[key] = value;
             }
         }
     }
-
 }
