@@ -59,8 +59,6 @@ class Env extends Ini
      */
     public function set(string key, var value) -> <self>
     {
-        parent::set(key, value);
-
         let _ENV[key] = value;
 
         return this;
