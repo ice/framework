@@ -608,8 +608,8 @@ class Response implements ResponseInterface
      *     );
      *
      *     // This will output the xml
-     *     <?xml version="1.0"?><root xmlns="http://example.com/xml/blog">
-     *     <blogs><blog><title>hello world</title><desc>dont panic</desc></blog></blogs>
+     *     <?xml version="1.0"?><blogs xmlns="http://example.com/xml/blog">
+     *     <blog><title>hello world</title><desc>dont panic</desc></blog></blogs>
      * </code></pre>
      *
      * @param mixed data Can be any type excepta resource
@@ -644,28 +644,26 @@ class Response implements ResponseInterface
      * @param mixed data Can be any type excepta resource
      * @param string root The root tag name
      * @param DOMElement domNode null, ONLY FOR INTERNAL USE
-     * @param DOMDocument domDoc null, ONLY FOR INTERNAL USE
      * @return DOMDocument domDoc object
      */
-    public function xmlEncode(var data, string root = "root", <\DOMElement> domNode = null, <\DOMDocument> domDoc = null)
+    public function xmlEncode(var data, string root = "root", <\DOMElement> domNode = null)
     {
-        var key, val, node;
+        var domDoc, type, key, val, node;
 
-        if domDoc === null {
+        if domNode === null {
             let domDoc = new \DOMDocument,
                 domNode = domDoc->createElement(root);
 
             domDoc->appendChild(domNode);
-            this->xmlEncode(data, null, domNode, domDoc);
+            this->xmlEncode(data, null, domNode);
 
             return domDoc;
         }
 
-        if typeof data == "object" {
-            let data = get_object_vars(data);
-        }
+        let domDoc = domNode->ownerDocument,
+            type = typeof data;
 
-        if typeof data == "array" {
+        if type == "array" {
             for key, val in data {
                 if typeof key == "integer" {
                     let node = domDoc->createElement(rtrim(domNode->tagName, "s"));
@@ -675,12 +673,21 @@ class Response implements ResponseInterface
                 }
                 domNode->appendChild(node);
 
-                this->xmlEncode(val, null, node, domDoc);
+                this->xmlEncode(val, null, node);
             }
+        } elseif type == "object" {
+            let data = get_object_vars(data),
+                node = domDoc->createElement(rtrim(domNode->tagName, "s"));
+            for key, val in data {
+                let key = domDoc->createAttribute(key),
+                    key->value = val;
+                node->appendChild(key);
+            }
+            domNode->appendChild(node);
         } else {
-            if typeof data == "boolean" {
+            if type == "boolean" {
                 let data = data ? "true" : "false";
-            }
+            }            
             domNode->appendChild(domDoc->createTextNode(data));
         }
     }
