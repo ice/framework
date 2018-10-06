@@ -613,7 +613,7 @@ class Response implements ResponseInterface
      * </code></pre>
      *
      * @param mixed data Can be any type excepta resource
-     * @param array option The options can be [root|charset|namespace]
+     * @param array options The options can be [root|charset|namespace]
      * @return object Response
      */
     public function toXml(var data, var options = null)
@@ -628,7 +628,7 @@ class Response implements ResponseInterface
             doc->encoding = charset;
 
         if fetch ns, options["namespace"] {
-            $doc->createAttributeNS(ns, "xmlns");
+            doc->createAttributeNS(ns, "xmlns");
         }
 
         this->headers->set("Content-Type", "application/xml;charset=" . charset);
