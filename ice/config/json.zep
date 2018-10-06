@@ -19,14 +19,18 @@ class Json extends Config
     /**
      * Config json constructor.
      *
-     * @param string data Path to the json file
+     * @param string data Path to the file or json string
      */
     public function __construct(var data = null)
     {
         if typeof data != "string" {
-            throw new Exception("The file path must be a string");
+            throw new Exception("Data must be a json string or path to the file");
         }
 
-        parent::__construct(json_decode(file_get_contents(data), true));
+        if file_exists(data) {
+            let data = file_get_contents(data);
+        }
+
+        parent::__construct(json_decode(data, true));
     }
 }
