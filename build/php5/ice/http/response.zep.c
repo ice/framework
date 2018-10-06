@@ -1203,6 +1203,268 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
 }
 
 /**
+ * Response data to JSON string.
+ *
+ * @param mixed data Can be any type excepta resource
+ * @param int option The options for json_encode
+ * @return object Response
+ */
+PHP_METHOD(Ice_Http_Response, toJson) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *data, *option = NULL, *_0, *_1 = NULL, *_2;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &data, &option);
+
+	if (!option) {
+		option = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_1);
+	ZVAL_STRING(_1, "Content-Type", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_INIT_VAR(_2);
+	ZVAL_STRING(_2, "application/json;charset=utf-8", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _0, "set", NULL, 0, _1, _2);
+	zephir_check_temp_parameter(_1);
+	zephir_check_temp_parameter(_2);
+	zephir_check_call_status();
+	ZEPHIR_INIT_NVAR(_1);
+	zephir_json_encode(_1, &(_1), data, zephir_get_intval(option)  TSRMLS_CC);
+	zephir_update_property_this(getThis(), SL("body"), _1 TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
+/**
+ * Response data to XML string.
+ *
+ * <pre><code>
+ *     $response->toXml(
+ *         [['title' => 'hello world', 'desc' => 'dont panic']],
+ *         ['root' => 'blogs', 'namespace' => 'http://example.com/xml/blog']
+ *     );
+ *
+ *     // This will output the xml
+ *     <?xml version="1.0"?><blogs xmlns="http://example.com/xml/blog">
+ *     <blog><title>hello world</title><desc>dont panic</desc></blog></blogs>
+ * </code></pre>
+ *
+ * @param mixed data Can be any type excepta resource
+ * @param array options The options can be [root|charset|namespace]
+ * @return object Response
+ */
+PHP_METHOD(Ice_Http_Response, toXml) {
+
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *data, *options = NULL, *doc = NULL, *ns = NULL, *rootName = NULL, *charset = NULL, *_1, *_2, *_3, *_4 = NULL, *_0$$3;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &data, &options);
+
+	if (!options) {
+		options = ZEPHIR_GLOBAL(global_null);
+	}
+
+
+	if (zephir_array_isset_string(options, SS("root"))) {
+		ZEPHIR_OBS_VAR(rootName);
+		zephir_array_fetch_string(&rootName, options, SL("root"), PH_NOISY, "ice/http/response.zep", 623 TSRMLS_CC);
+	} else {
+		ZEPHIR_INIT_NVAR(rootName);
+		ZVAL_STRING(rootName, "result", 1);
+	}
+	if (zephir_array_isset_string(options, SS("charset"))) {
+		ZEPHIR_OBS_VAR(charset);
+		zephir_array_fetch_string(&charset, options, SL("charset"), PH_NOISY, "ice/http/response.zep", 624 TSRMLS_CC);
+	} else {
+		ZEPHIR_INIT_NVAR(charset);
+		ZVAL_STRING(charset, "utf-8", 1);
+	}
+	ZEPHIR_CALL_METHOD(&doc, this_ptr, "xmlencode", NULL, 0, data, rootName);
+	zephir_check_call_status();
+	if (0) {
+		zephir_update_property_zval(doc, SL("preserveWhiteSpace"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+	} else {
+		zephir_update_property_zval(doc, SL("preserveWhiteSpace"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	}
+	if (1) {
+		zephir_update_property_zval(doc, SL("formatOutput"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+	} else {
+		zephir_update_property_zval(doc, SL("formatOutput"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+	}
+	zephir_update_property_zval(doc, SL("encoding"), charset TSRMLS_CC);
+	ZEPHIR_OBS_VAR(ns);
+	if (zephir_array_isset_string_fetch(&ns, options, SS("namespace"), 0 TSRMLS_CC)) {
+		ZEPHIR_INIT_VAR(_0$$3);
+		ZVAL_STRING(_0$$3, "xmlns", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, doc, "createattributens", NULL, 0, ns, _0$$3);
+		zephir_check_temp_parameter(_0$$3);
+		zephir_check_call_status();
+	}
+	_1 = zephir_fetch_nproperty_this(this_ptr, SL("headers"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_2);
+	ZEPHIR_CONCAT_SV(_2, "application/xml;charset=", charset);
+	ZEPHIR_INIT_VAR(_3);
+	ZVAL_STRING(_3, "Content-Type", ZEPHIR_TEMP_PARAM_COPY);
+	ZEPHIR_CALL_METHOD(NULL, _1, "set", NULL, 0, _3, _2);
+	zephir_check_temp_parameter(_3);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&_4, doc, "savexml", NULL, 0);
+	zephir_check_call_status();
+	zephir_update_property_this(getThis(), SL("body"), _4 TSRMLS_CC);
+	RETURN_THIS();
+
+}
+
+/**
+ * Convert data to XML string.
+ *
+ * @param mixed data Can be any type excepta resource
+ * @param string root The root tag name
+ * @param DOMElement domNode null, ONLY FOR INTERNAL USE
+ * @return DOMDocument domDoc object
+ */
+PHP_METHOD(Ice_Http_Response, xmlEncode) {
+
+	zend_bool _18$$9;
+	HashTable *_4$$4, *_16$$8;
+	HashPosition _3$$4, _15$$8;
+	zephir_fcall_cache_entry *_1 = NULL, *_10 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *root = NULL;
+	zval *data = NULL, *root_param = NULL, *domNode = NULL, *domDoc = NULL, *type = NULL, *key = NULL, *val = NULL, *node = NULL, *_2, *_0$$3, **_5$$4, *_6$$6 = NULL, *_7$$6 = NULL, _8$$6 = zval_used_for_init, *_9$$6 = NULL, *_11$$5 = NULL, *_12$$8, *_13$$8, *_14$$8 = NULL, **_17$$8, *_19$$10 = NULL, *_20$$13 = NULL, *_21$$12 = NULL;
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &data, &root_param, &domNode);
+
+	ZEPHIR_SEPARATE_PARAM(data);
+	if (!root_param) {
+		ZEPHIR_INIT_VAR(root);
+		ZVAL_STRING(root, "root", 1);
+	} else {
+		zephir_get_strval(root, root_param);
+	}
+	if (!domNode) {
+		ZEPHIR_CPY_WRT(domNode, ZEPHIR_GLOBAL(global_null));
+	} else {
+		ZEPHIR_SEPARATE_PARAM(domNode);
+	}
+
+
+	if (Z_TYPE_P(domNode) == IS_NULL) {
+		ZEPHIR_INIT_VAR(domDoc);
+		object_init_ex(domDoc, zephir_get_internal_ce(SS("domdocument") TSRMLS_CC));
+		ZEPHIR_CALL_METHOD(NULL, domDoc, "__construct", NULL, 0);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(&domNode, domDoc, "createelement", NULL, 0, root);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(NULL, domDoc, "appendchild", NULL, 0, domNode);
+		zephir_check_call_status();
+		ZEPHIR_INIT_VAR(_0$$3);
+		ZVAL_NULL(_0$$3);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 150, data, _0$$3, domNode);
+		zephir_check_call_status();
+		RETURN_CCTOR(domDoc);
+	}
+	ZEPHIR_OBS_NVAR(domDoc);
+	zephir_read_property(&domDoc, domNode, SL("ownerDocument"), PH_NOISY_CC);
+	ZEPHIR_INIT_VAR(_2);
+	zephir_gettype(_2, data TSRMLS_CC);
+	ZEPHIR_CPY_WRT(type, _2);
+	if (ZEPHIR_IS_STRING(type, "array")) {
+		zephir_is_iterable(data, &_4$$4, &_3$$4, 0, 0, "ice/http/response.zep", 678);
+		for (
+		  ; zend_hash_get_current_data_ex(_4$$4, (void**) &_5$$4, &_3$$4) == SUCCESS
+		  ; zend_hash_move_forward_ex(_4$$4, &_3$$4)
+		) {
+			ZEPHIR_GET_HMKEY(key, _4$$4, _3$$4);
+			ZEPHIR_GET_HVALUE(val, _5$$4);
+			if (Z_TYPE_P(key) == IS_LONG) {
+				ZEPHIR_INIT_NVAR(_6$$6);
+				ZEPHIR_OBS_NVAR(_7$$6);
+				zephir_read_property(&_7$$6, domNode, SL("tagName"), PH_NOISY_CC);
+				ZEPHIR_SINIT_NVAR(_8$$6);
+				ZVAL_STRING(&_8$$6, "s", 0);
+				zephir_fast_trim(_6$$6, _7$$6, &_8$$6, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
+				ZEPHIR_CALL_METHOD(&node, domDoc, "createelement", NULL, 0, _6$$6);
+				zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(_9$$6);
+				ZVAL_STRING(_9$$6, "i", ZEPHIR_TEMP_PARAM_COPY);
+				ZEPHIR_CALL_METHOD(NULL, node, "setattribute", NULL, 0, _9$$6, key);
+				zephir_check_temp_parameter(_9$$6);
+				zephir_check_call_status();
+			} else {
+				ZEPHIR_CALL_METHOD(&node, domDoc, "createelement", NULL, 0, key);
+				zephir_check_call_status();
+			}
+			ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_10, 0, node);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(_11$$5);
+			ZVAL_NULL(_11$$5);
+			ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 150, val, _11$$5, node);
+			zephir_check_call_status();
+		}
+	} else if (ZEPHIR_IS_STRING(type, "object")) {
+		ZEPHIR_INIT_VAR(_12$$8);
+		ZVAL_STRING(_12$$8, "__is__", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_INIT_VAR(_13$$8);
+		ZVAL_STRING(_13$$8, "obj", ZEPHIR_TEMP_PARAM_COPY);
+		ZEPHIR_CALL_METHOD(NULL, domNode, "setattribute", NULL, 0, _12$$8, _13$$8);
+		zephir_check_temp_parameter(_12$$8);
+		zephir_check_temp_parameter(_13$$8);
+		zephir_check_call_status();
+		ZEPHIR_CALL_FUNCTION(&_14$$8, "get_object_vars", NULL, 119, data);
+		zephir_check_call_status();
+		zephir_is_iterable(_14$$8, &_16$$8, &_15$$8, 0, 0, "ice/http/response.zep", 691);
+		for (
+		  ; zend_hash_get_current_data_ex(_16$$8, (void**) &_17$$8, &_15$$8) == SUCCESS
+		  ; zend_hash_move_forward_ex(_16$$8, &_15$$8)
+		) {
+			ZEPHIR_GET_HMKEY(key, _16$$8, _15$$8);
+			ZEPHIR_GET_HVALUE(val, _17$$8);
+			_18$$9 = Z_TYPE_P(val) == IS_ARRAY;
+			if (!(_18$$9)) {
+				_18$$9 = Z_TYPE_P(val) == IS_OBJECT;
+			}
+			if (_18$$9) {
+				ZEPHIR_CALL_METHOD(&node, domDoc, "createelement", NULL, 0, key);
+				zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_10, 0, node);
+				zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(_19$$10);
+				ZVAL_NULL(_19$$10);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 150, val, _19$$10, node);
+				zephir_check_call_status();
+			} else {
+				ZEPHIR_CALL_METHOD(NULL, domNode, "setattribute", NULL, 0, key, val);
+				zephir_check_call_status();
+			}
+		}
+	} else {
+		if (ZEPHIR_IS_STRING(type, "boolean")) {
+			ZEPHIR_INIT_VAR(_20$$13);
+			if (zephir_is_true(data)) {
+				ZEPHIR_INIT_NVAR(_20$$13);
+				ZVAL_STRING(_20$$13, "true", 1);
+			} else {
+				ZEPHIR_INIT_NVAR(_20$$13);
+				ZVAL_STRING(_20$$13, "false", 1);
+			}
+			ZEPHIR_CPY_WRT(data, _20$$13);
+		}
+		ZEPHIR_CALL_METHOD(&_21$$12, domDoc, "createtextnode", NULL, 0, data);
+		zephir_check_call_status();
+		ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_10, 0, _21$$12);
+		zephir_check_call_status();
+	}
+	ZEPHIR_MM_RESTORE();
+
+}
+
+/**
  * Magic toString, convert response to string.
  *
  * @return string
@@ -1255,49 +1517,49 @@ PHP_METHOD(Ice_Http_Response, getByteRange) {
 	ZEPHIR_INIT_VAR(end);
 	ZVAL_LONG(end, (size - 1));
 	if (zephir_array_isset_string(_SERVER, SS("HTTP_RANGE"))) {
-		zephir_array_fetch_string(&_0$$3, _SERVER, SL("HTTP_RANGE"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 619 TSRMLS_CC);
+		zephir_array_fetch_string(&_0$$3, _SERVER, SL("HTTP_RANGE"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 733 TSRMLS_CC);
 		ZEPHIR_INIT_VAR(range);
 		zephir_fast_explode_str(range, SL("="), _0$$3, 2  TSRMLS_CC);
-		zephir_array_fetch_long(&_1$$3, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 621 TSRMLS_CC);
+		zephir_array_fetch_long(&_1$$3, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 735 TSRMLS_CC);
 		if (!ZEPHIR_IS_STRING(_1$$3, "bytes")) {
 			ZEPHIR_INIT_ZVAL_NREF(_2$$4);
 			ZVAL_LONG(_2$$4, 416);
 			zephir_update_property_this(getThis(), SL("status"), _2$$4 TSRMLS_CC);
 		} else {
-			zephir_array_fetch_long(&_3$$5, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 626 TSRMLS_CC);
+			zephir_array_fetch_long(&_3$$5, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 740 TSRMLS_CC);
 			ZEPHIR_INIT_NVAR(range);
 			zephir_fast_explode_str(range, SL(","), _3$$5, 2  TSRMLS_CC);
-			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 626 TSRMLS_CC);
+			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 740 TSRMLS_CC);
 			ZEPHIR_CPY_WRT(range, _4$$5);
-			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 629 TSRMLS_CC);
+			zephir_array_fetch_long(&_4$$5, range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 743 TSRMLS_CC);
 			if (ZEPHIR_IS_STRING(_4$$5, "-")) {
 				ZEPHIR_SINIT_VAR(_5$$6);
 				ZVAL_LONG(&_5$$6, zephir_get_intval(range));
-				ZEPHIR_CALL_FUNCTION(&_6$$6, "abs", &_7, 150, &_5$$6);
+				ZEPHIR_CALL_FUNCTION(&_6$$6, "abs", &_7, 151, &_5$$6);
 				zephir_check_call_status();
 				ZEPHIR_SINIT_NVAR(_5$$6);
 				ZVAL_LONG(&_5$$6, (size - zephir_get_numberval(_6$$6)));
-				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 150, &_5$$6);
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 151, &_5$$6);
 				zephir_check_call_status();
 			} else {
 				ZEPHIR_INIT_VAR(_8$$7);
 				zephir_fast_explode_str(_8$$7, SL("-"), range, LONG_MAX TSRMLS_CC);
 				ZEPHIR_CPY_WRT(range, _8$$7);
 				ZEPHIR_OBS_VAR(_9$$7);
-				zephir_array_fetch_long(&_9$$7, range, 0, PH_NOISY, "ice/http/response.zep", 632 TSRMLS_CC);
+				zephir_array_fetch_long(&_9$$7, range, 0, PH_NOISY, "ice/http/response.zep", 746 TSRMLS_CC);
 				ZEPHIR_SINIT_VAR(_10$$7);
 				ZVAL_LONG(&_10$$7, zephir_get_intval(_9$$7));
-				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 150, &_10$$7);
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 151, &_10$$7);
 				zephir_check_call_status();
-				zephir_array_fetch_long(&_11$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 634 TSRMLS_CC);
+				zephir_array_fetch_long(&_11$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 748 TSRMLS_CC);
 				_12$$7 = zephir_is_true(_11$$7);
 				if (_12$$7) {
-					zephir_array_fetch_long(&_13$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 634 TSRMLS_CC);
+					zephir_array_fetch_long(&_13$$7, range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 748 TSRMLS_CC);
 					_12$$7 = zephir_is_numeric(_13$$7);
 				}
 				if (_12$$7) {
 					ZEPHIR_OBS_VAR(_14$$8);
-					zephir_array_fetch_long(&_14$$8, range, 1, PH_NOISY, "ice/http/response.zep", 635 TSRMLS_CC);
+					zephir_array_fetch_long(&_14$$8, range, 1, PH_NOISY, "ice/http/response.zep", 749 TSRMLS_CC);
 					ZEPHIR_INIT_NVAR(end);
 					ZVAL_LONG(end, zephir_get_intval(_14$$8));
 				}
