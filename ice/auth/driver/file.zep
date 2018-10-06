@@ -87,7 +87,7 @@ class File extends Driver implements DriverInterface
                 return false;
             }
 
-            if user["password"] === this->hash(password) || force {
+            if parent::checkHash(password, user["password"]) || force {
                 // Complete the login
                 this->completeLogin(username, user["roles"]);
 
