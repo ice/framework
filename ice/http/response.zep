@@ -676,18 +676,27 @@ class Response implements ResponseInterface
                 this->xmlEncode(val, null, node);
             }
         } elseif type == "object" {
-            let data = get_object_vars(data),
-                node = domDoc->createElement(rtrim(domNode->tagName, "s"));
-            for key, val in data {
-                let key = domDoc->createAttribute(key),
-                    key->value = val;
-                node->appendChild(key);
-            }
+            // set internal attr __is__ eq object
+            let node = domDoc->createAttribute("__is__"),
+                node->value = "obj";
+
             domNode->appendChild(node);
+
+            for key, val in get_object_vars(data) {
+                if typeof val == "array" || typeof val == "object" {
+                    let node = domDoc->createElement(key);
+                    domNode->appendChild(node);
+                    this->xmlEncode(val, null, node);
+                } else {
+                    let node = domDoc->createAttribute(key),
+                        node->value = val;
+                    domNode->appendChild(node);
+                }
+            }
         } else {
             if type == "boolean" {
                 let data = data ? "true" : "false";
-            }            
+            }
             domNode->appendChild(domDoc->createTextNode(data));
         }
     }
