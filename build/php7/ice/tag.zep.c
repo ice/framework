@@ -2339,19 +2339,19 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "iconv");
-	ZEPHIR_CALL_FUNCTION(&_1, "extension_loaded", &_2, 184, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "extension_loaded", &_2, 183, &_0);
 	zephir_check_call_status();
 	if (zephir_is_true(&_1)) {
 		ZVAL_LONG(&_3$$3, 6);
 		ZEPHIR_INIT_VAR(&_4$$3);
 		ZVAL_STRING(&_4$$3, "en_US.UTF-8");
-		ZEPHIR_CALL_FUNCTION(&locale, "setlocale", &_5, 185, &_3$$3, &_4$$3);
+		ZEPHIR_CALL_FUNCTION(&locale, "setlocale", &_5, 184, &_3$$3, &_4$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_4$$3);
 		ZVAL_STRING(&_4$$3, "UTF-8");
 		ZEPHIR_INIT_VAR(&_6$$3);
 		ZVAL_STRING(&_6$$3, "ASCII//TRANSLIT");
-		ZEPHIR_CALL_FUNCTION(&_7$$3, "iconv", NULL, 186, &_4$$3, &_6$$3, &text);
+		ZEPHIR_CALL_FUNCTION(&_7$$3, "iconv", NULL, 185, &_4$$3, &_6$$3, &text);
 		zephir_check_call_status();
 		zephir_get_strval(&text, &_7$$3);
 	}
@@ -2389,7 +2389,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZVAL_STRING(&_0, "/[^a-zA-Z0-9\\/_|+ -]/");
 	ZEPHIR_INIT_VAR(&_14);
 	ZVAL_STRING(&_14, "");
-	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_15, 81, &_0, &_14, &text);
+	ZEPHIR_CALL_FUNCTION(&friendly, "preg_replace", &_15, 83, &_0, &_14, &text);
 	zephir_check_call_status();
 	if (lowercase) {
 		ZEPHIR_INIT_VAR(&_16$$9);
@@ -2398,7 +2398,7 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	}
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "/[\\/_|+ -]+/");
-	ZEPHIR_CALL_FUNCTION(&_17, "preg_replace", &_15, 81, &_0, &separator, &friendly);
+	ZEPHIR_CALL_FUNCTION(&_17, "preg_replace", &_15, 83, &_0, &separator, &friendly);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&friendly, &_17);
 	ZEPHIR_INIT_NVAR(&_0);
@@ -2406,11 +2406,11 @@ PHP_METHOD(Ice_Tag, friendlyTitle) {
 	ZEPHIR_CPY_WRT(&friendly, &_0);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "iconv");
-	ZEPHIR_CALL_FUNCTION(&_17, "extension_loaded", &_2, 184, &_0);
+	ZEPHIR_CALL_FUNCTION(&_17, "extension_loaded", &_2, 183, &_0);
 	zephir_check_call_status();
 	if (zephir_is_true(&_17)) {
 		ZVAL_LONG(&_18$$10, 6);
-		ZEPHIR_CALL_FUNCTION(NULL, "setlocale", &_5, 185, &_18$$10, &locale);
+		ZEPHIR_CALL_FUNCTION(NULL, "setlocale", &_5, 184, &_18$$10, &locale);
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&friendly);

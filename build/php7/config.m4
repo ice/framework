@@ -9,24 +9,25 @@ if test "$PHP_ICE" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
-	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/validation/validator.zep.c
-	ice/arr.zep.c
+	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/arr.zep.c
+	ice/validation/validator.zep.c
 	ice/i18n/plural/pluralinterface.zep.c
 	ice/di/access.zep.c
 	ice/mvc/model.zep.c
 	ice/auth/social/socialinterface.zep.c
 	ice/auth/social/adapter.zep.c
+	ice/config.zep.c
 	ice/mvc/view/engine/engineinterface.zep.c
 	ice/auth/driver.zep.c
 	ice/auth/driver/driverinterface.zep.c
 	ice/cli/websocket/websocket.zep.c
-	ice/config.zep.c
 	ice/db/dbinterface.zep.c
 	ice/dispatcher.zep.c
 	ice/log/loggerinterface.zep.c
 	ice/mvc/route/datagenerator/datageneratorinterface.zep.c
 	ice/mvc/route/dispatcher/dispatcherinterface.zep.c
 	ice/mvc/view/engine.zep.c
+	ice/config/ini.zep.c
 	ice/http/request/requestinterface.zep.c
 	ice/http/response/headersinterface.zep.c
 	ice/http/response/responseinterface.zep.c
@@ -54,7 +55,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/cli/task.zep.c
 	ice/cli/websocket/client.zep.c
 	ice/cli/websocket/server.zep.c
-	ice/config/ini.zep.c
 	ice/config/json.zep.c
 	ice/cookies.zep.c
 	ice/crypt.zep.c
@@ -63,6 +63,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/db/driver/pdo.zep.c
 	ice/di.zep.c
 	ice/dump.zep.c
+	ice/env.zep.c
 	ice/exception.zep.c
 	ice/filter.zep.c
 	ice/filter/css.zep.c

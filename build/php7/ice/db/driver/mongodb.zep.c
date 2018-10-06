@@ -134,13 +134,13 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "mongodb");
-	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 92, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 91, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "1.2.0alpha1");
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, ">=");
-	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 93, &_1, &_0, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 92, &_1, &_0, &_2);
 	zephir_check_call_status();
 	if (zephir_is_true(&_3)) {
 		ZEPHIR_INIT_VAR(&client);
@@ -255,7 +255,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 				ZVAL_LONG(value, tmp$$4);
 				break;
 			}
-			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 63, value);
+			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 65, value);
 			zephir_check_call_status();
 			tmp$$4 = (zephir_get_numberval(&_3$$7) * 1000);
 			ZEPHIR_INIT_NVAR(value);
@@ -343,7 +343,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_fast_count_int(&result TSRMLS_CC)) {
 		object_init_ex(&_1, ice_arr_ce);
-		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 94, &result);
+		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 93, &result);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 4, &_2);
 		zephir_check_call_status();
@@ -556,7 +556,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	add_assoc_stringl_ex(&_10, SL("array"), SL("array"));
 	ZEPHIR_CALL_METHOD(NULL, &result, "settypemap", NULL, 0, &_10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 95, &result);
+	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 94, &result);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -703,7 +703,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, update) {
  * @param string from Collection name
  * @param mixed filters Criteria
  */
-PHP_METHOD(Ice_Db_Driver_Mongodb, remove) {
+PHP_METHOD(Ice_Db_Driver_Mongodb, delete) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *from_param = NULL, *filters = NULL, filters_sub, collection, result, _0, _1, _2;

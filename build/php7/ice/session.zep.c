@@ -72,10 +72,10 @@ PHP_METHOD(Ice_Session, start) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 124);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 123);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 180);
+		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 179);
 		zephir_check_call_status();
 		if (1) {
 			zephir_update_property_zval(this_ptr, SL("started"), &__$true);
@@ -115,7 +115,7 @@ PHP_METHOD(Ice_Session, getId) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 181);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 180);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -134,7 +134,7 @@ PHP_METHOD(Ice_Session, regenerate) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 182);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 181);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -161,7 +161,7 @@ PHP_METHOD(Ice_Session, destroy) {
 	} else {
 		zephir_update_property_zval(this_ptr, SL("started"), &__$false);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 183);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 182);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -170,6 +170,8 @@ PHP_METHOD(Ice_Session, destroy) {
 /**
  * Check whether session has the key.
  * No support for passing variables by reference yet zephir/issues/203
+ *
+ * @return boolean
  */
 PHP_METHOD(Ice_Session, has) {
 
@@ -192,7 +194,8 @@ PHP_METHOD(Ice_Session, has) {
 
 /**
  * Retrieve a single key from the session.
- * @return mix
+ *
+ * @return mixed
  */
 PHP_METHOD(Ice_Session, get) {
 
@@ -232,6 +235,7 @@ PHP_METHOD(Ice_Session, get) {
 
 /**
  * Assigns a value to the specified session key.
+ *
  * @return object Session
  */
 PHP_METHOD(Ice_Session, set) {
@@ -257,6 +261,7 @@ PHP_METHOD(Ice_Session, set) {
 
 /**
  * Remove session key.
+ *
  * @return object Session
  */
 PHP_METHOD(Ice_Session, remove) {
@@ -276,6 +281,24 @@ PHP_METHOD(Ice_Session, remove) {
 
 	zephir_array_unset(_SESSION, &key, PH_SEPARATE);
 	RETURN_THIS();
+
+}
+
+/**
+ * Fetch all data.
+ *
+ * @return array
+ */
+PHP_METHOD(Ice_Session, getData) {
+
+	zval *_SESSION;
+	zval *this_ptr = getThis();
+
+
+	zephir_get_global(&_SESSION, SL("_SESSION"));
+
+	RETVAL_ZVAL(_SESSION, 1, 0);
+	return;
 
 }
 

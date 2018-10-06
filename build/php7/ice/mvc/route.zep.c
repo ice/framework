@@ -214,7 +214,7 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 		if (Z_TYPE_P(method) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(&_1$$7);
 			ZVAL_STRING(&_1$$7, "strtoupper");
-			ZEPHIR_CALL_FUNCTION(&_2$$7, "array_map", NULL, 47, &_1$$7, method);
+			ZEPHIR_CALL_FUNCTION(&_2$$7, "array_map", NULL, 49, &_1$$7, method);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, SL("method"), &_2$$7);
 		} else {
@@ -228,7 +228,7 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	zephir_read_property(&_5, this_ptr, SL("routeUri"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_6);
 	ZVAL_STRING(&_6, "\\\\$0");
-	ZEPHIR_CALL_FUNCTION(&regex, "preg_replace", NULL, 81, &_4, &_6, &_5);
+	ZEPHIR_CALL_FUNCTION(&regex, "preg_replace", NULL, 83, &_4, &_6, &_5);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_6);
 	ZVAL_STRING(&_6, "[");
@@ -628,7 +628,7 @@ PHP_METHOD(Ice_Mvc_Route, uri) {
 	ZVAL_STRING(&_23, "#//+#");
 	ZEPHIR_INIT_VAR(&_24);
 	ZVAL_STRING(&_24, "/");
-	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", NULL, 81, &_23, &_24, &_21);
+	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", NULL, 83, &_23, &_24, &_21);
 	zephir_check_call_status();
 	RETURN_MM();
 

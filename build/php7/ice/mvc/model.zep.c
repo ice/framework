@@ -1420,13 +1420,13 @@ PHP_METHOD(Ice_Mvc_Model, save) {
  *  $user->delete();
  *
  *  //Remove all unactive users
- *  $status = (new Users())->remove(["status" => 0]);
+ *  $status = (new Users())->delete(["status" => 0]);
  * </code></pre>
  *
  * @param filters
  * @return boolean
  */
-PHP_METHOD(Ice_Mvc_Model, remove) {
+PHP_METHOD(Ice_Mvc_Model, delete) {
 
 	zephir_fcall_cache_entry *_4 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1489,7 +1489,7 @@ PHP_METHOD(Ice_Mvc_Model, remove) {
 	}
 	zephir_read_property(&_8, this_ptr, SL("db"), PH_NOISY_CC | PH_READONLY);
 	zephir_read_property(&_9, this_ptr, SL("from"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&status, &_8, "remove", NULL, 0, &_9, filters);
+	ZEPHIR_CALL_METHOD(&status, &_8, "delete", NULL, 0, &_9, filters);
 	zephir_check_call_status();
 	if (zephir_is_true(&status)) {
 		if (0) {

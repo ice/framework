@@ -31,7 +31,7 @@ PHP_METHOD(Ice_Mvc_Model, fields);
 PHP_METHOD(Ice_Mvc_Model, create);
 PHP_METHOD(Ice_Mvc_Model, update);
 PHP_METHOD(Ice_Mvc_Model, save);
-PHP_METHOD(Ice_Mvc_Model, remove);
+PHP_METHOD(Ice_Mvc_Model, delete);
 PHP_METHOD(Ice_Mvc_Model, exists);
 PHP_METHOD(Ice_Mvc_Model, getError);
 PHP_METHOD(Ice_Mvc_Model, belongsTo);
@@ -135,7 +135,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_save, 0, 0, 0)
 	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_remove, 0, 0, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_delete, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 
@@ -224,7 +224,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, create, arginfo_ice_mvc_model_create, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, update, arginfo_ice_mvc_model_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, save, arginfo_ice_mvc_model_save, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Model, remove, arginfo_ice_mvc_model_remove, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, delete, arginfo_ice_mvc_model_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, exists, arginfo_ice_mvc_model_exists, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, belongsTo, arginfo_ice_mvc_model_belongsto, ZEND_ACC_PUBLIC)

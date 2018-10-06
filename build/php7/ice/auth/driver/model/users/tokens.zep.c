@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 		_8 = ZEPHIR_LT(&expire, &_1);
 	}
 	if (_8) {
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "delete", NULL, 0);
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
@@ -184,7 +184,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	zephir_time(&_2);
 	zephir_array_update_string(&_1, SL("<"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_0, SL("expires"), &_1, PH_COPY | PH_SEPARATE);
-	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "remove", NULL, 0, &_0);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -256,9 +256,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 
 	do {
 		ZVAL_LONG(&_0$$3, 16);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 61, &_0$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 63, &_0$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 62, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 64, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_6);
 		zephir_create_array(&_6, 1, 0 TSRMLS_CC);

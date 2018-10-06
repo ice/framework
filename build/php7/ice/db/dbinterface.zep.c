@@ -39,5 +39,5 @@ ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, insert);
 
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, update);
 
-ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, remove);
+ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, delete);
 

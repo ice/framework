@@ -15,7 +15,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, find);
 PHP_METHOD(Ice_Db_Driver_Mongodb, select);
 PHP_METHOD(Ice_Db_Driver_Mongodb, insert);
 PHP_METHOD(Ice_Db_Driver_Mongodb, update);
-PHP_METHOD(Ice_Db_Driver_Mongodb, remove);
+PHP_METHOD(Ice_Db_Driver_Mongodb, delete);
 PHP_METHOD(Ice_Db_Driver_Mongodb, getError);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb___construct, 0, 0, 1)
@@ -69,7 +69,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_update, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, fields, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_remove, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_mongodb_delete, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
@@ -87,7 +87,7 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_mongodb_method_entry) {
 	PHP_ME(Ice_Db_Driver_Mongodb, select, arginfo_ice_db_driver_mongodb_select, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongodb, insert, arginfo_ice_db_driver_mongodb_insert, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongodb, update, arginfo_ice_db_driver_mongodb_update, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Db_Driver_Mongodb, remove, arginfo_ice_db_driver_mongodb_remove, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Mongodb, delete, arginfo_ice_db_driver_mongodb_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Mongodb, getError, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
