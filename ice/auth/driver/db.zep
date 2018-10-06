@@ -67,7 +67,7 @@ class Db extends Driver implements DriverInterface
                 }
 
                 // Token is invalid
-                token->remove();
+                token->delete();
             }
         }
 
@@ -290,7 +290,7 @@ class Db extends Driver implements DriverInterface
             let token = Tokens::findOne(["token": token]);
 
             if token {
-                token->remove();
+                token->delete();
             }
         }
 
@@ -300,7 +300,7 @@ class Db extends Driver implements DriverInterface
                 user = this->getUser();
 
             if user {
-                tokens->remove(["user_id": user->getId()]);
+                tokens->delete(["user_id": user->getId()]);
             }
         }
 

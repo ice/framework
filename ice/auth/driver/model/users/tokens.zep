@@ -49,7 +49,7 @@ class Tokens extends Model
 
         // This object has expired
         if expire > 0 && expire < time() {
-            this->remove();
+            this->delete();
         }
     }
 
@@ -74,7 +74,7 @@ class Tokens extends Model
      */
     public function deleteExpired()
     {
-        return this->remove([
+        return this->delete([
             "expires": ["<": time()]
         ]);
     }

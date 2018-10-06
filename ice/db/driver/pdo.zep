@@ -37,7 +37,7 @@ class Pdo implements DbInterface
         var driver, pdo;
 
         let driver = explode(":", dsn, 2)[0];
-        
+
         switch driver {
             case "mysql":
                 let this->identifier = "`%s`";
@@ -121,11 +121,11 @@ class Pdo implements DbInterface
      * <pre><code>
      *  //SELECT * FROM users WHERE a=1 and b="q"
      *  $db->find("users", array("a" => 1, "b" => "q"));
-     * 
-     *  //SELECT * FROM users WHERE age>33 
+     *
+     *  //SELECT * FROM users WHERE age>33
      *  $db->find("users", array("age" => array(">" => 33)));
-     * 
-     *  //SELECT * FROM users WHERE a=1 or b=2 
+     *
+     *  //SELECT * FROM users WHERE a=1 or b=2
      *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
      * </code></pre>
      *
@@ -323,7 +323,7 @@ class Pdo implements DbInterface
             query = this->client->prepare(sql),
             status = query->execute(values),
             this->error = query->errorInfo();
-     
+
         return status;
     }
 
@@ -362,7 +362,7 @@ class Pdo implements DbInterface
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
      */
-    public function remove(string! from, var filters = [])
+    public function delete(string! from, var filters = [])
     {
         var filtered, sql, values, query, status;
 
@@ -388,13 +388,13 @@ class Pdo implements DbInterface
     public function query(string! sql, array values = [], var obj = null)
     {
         var query, result;
-        
+
         let query = this->client->prepare(sql);
-   
+
         query->execute(values);
 
         let this->error = query->errorInfo();
-        
+
         if empty this->error && obj {
             if typeof obj == "string" {
                 let obj = new {obj}();

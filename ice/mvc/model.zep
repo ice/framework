@@ -466,13 +466,13 @@ abstract class Model extends Arr implements \Serializable
      *  $user->delete();
      *
      *  //Remove all unactive users
-     *  $status = (new Users())->remove(["status" => 0]);
+     *  $status = (new Users())->delete(["status" => 0]);
      * </code></pre>
      *
      * @param filters
      * @return boolean
      */
-    public function remove(var filters = [])
+    public function delete(var filters = [])
     {
         var key, status;
 
@@ -488,7 +488,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        let status = this->db->remove(this->from, filters);
+        let status = this->db->delete(this->from, filters);
 
         if status {
             // this model doesn't exist in db
