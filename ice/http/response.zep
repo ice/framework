@@ -677,10 +677,7 @@ class Response implements ResponseInterface
             }
         } elseif type == "object" {
             // set internal attr __is__ eq object
-            let node = domDoc->createAttribute("__is__"),
-                node->value = "obj";
-
-            domNode->appendChild(node);
+            domNode->setAttribute("__is__", "obj");
 
             for key, val in get_object_vars(data) {
                 if typeof val == "array" || typeof val == "object" {
@@ -688,9 +685,7 @@ class Response implements ResponseInterface
                     domNode->appendChild(node);
                     this->xmlEncode(val, null, node);
                 } else {
-                    let node = domDoc->createAttribute(key),
-                        node->value = val;
-                    domNode->appendChild(node);
+                    domNode->setAttribute(key, val);
                 }
             }
         } else {
