@@ -315,7 +315,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 154, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 155, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, ".phtml");
@@ -458,7 +458,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	}
 	zephir_read_property(&_3, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 4);
-	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 155, &_3, &_4);
+	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 156, &_3, &_4);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(&ext))) {
 		ZEPHIR_OBS_VAR(&engine);

@@ -36,6 +36,9 @@ PHP_METHOD(Ice_Http_Response, isClientError);
 PHP_METHOD(Ice_Http_Response, isServerError);
 PHP_METHOD(Ice_Http_Response, getMessage);
 PHP_METHOD(Ice_Http_Response, getMessages);
+PHP_METHOD(Ice_Http_Response, toJson);
+PHP_METHOD(Ice_Http_Response, toXml);
+PHP_METHOD(Ice_Http_Response, xmlEncode);
 PHP_METHOD(Ice_Http_Response, __toString);
 PHP_METHOD(Ice_Http_Response, getByteRange);
 
@@ -205,6 +208,22 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessages, 0
 #endif
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_tojson, 0, 0, 1)
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, option)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_toxml, 0, 0, 1)
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_INFO(0, options)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_xmlencode, 0, 0, 1)
+	ZEND_ARG_INFO(0, data)
+	ZEND_ARG_TYPE_INFO(0, root, IS_STRING, 1)
+	ZEND_ARG_OBJ_INFO(0, domNode, DOMElement, 1)
+ZEND_END_ARG_INFO()
+
 #ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response___tostring, 0, 0, IS_STRING, 0)
 #else
@@ -254,6 +273,9 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, isServerError, arginfo_ice_http_response_isservererror, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessage, arginfo_ice_http_response_getmessage, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getMessages, arginfo_ice_http_response_getmessages, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, toJson, arginfo_ice_http_response_tojson, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, toXml, arginfo_ice_http_response_toxml, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Http_Response, xmlEncode, arginfo_ice_http_response_xmlencode, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __toString, arginfo_ice_http_response___tostring, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, getByteRange, arginfo_ice_http_response_getbyterange, ZEND_ACC_PROTECTED)
 	PHP_FE_END
