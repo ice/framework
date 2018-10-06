@@ -172,7 +172,7 @@ class Db extends Driver implements DriverInterface
             }
 
             // Check if password match
-            if user->get("password") == this->hash(password) || force {
+            if parent::checkHash(password, user->get("password")) || force {
                 let userRoles = user->{"getRoles"}(),
                     roles = [];
 
