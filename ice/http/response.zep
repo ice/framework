@@ -586,6 +586,7 @@ class Response implements ResponseInterface
      * Response data to JSON string.
      *
      * @param mixed data Can be any type excepta resource
+     * @param int option The options for json_encode
      * @return object Response
      */
     public function toJson(var data, var option = null)
@@ -600,18 +601,39 @@ class Response implements ResponseInterface
     /**
      * Response data to XML string.
      *
+     * <pre><code>
+     *     $response->toXml(
+     *         [['title' => 'hello world', 'desc' => 'dont panic']],
+     *         ['root' => 'blogs', 'namespace' => 'http://example.com/xml/blog']
+     *     );
+     *
+     *     // This will output the xml
+     *     <?xml version="1.0"?><root xmlns="http://example.com/xml/blog">
+     *     <blogs><blog><title>hello world</title><desc>dont panic</desc></blog></blogs>
+     * </code></pre>
+     *
      * @param mixed data Can be any type excepta resource
-     * @param string rootName The key name of root element
-     * @param string charset
+     * @param array option The options can be [root|charset|namespace]
      * @return object Response
      */
-    public function toXml(var data, string rootName = "result", string charset = "utf-8")
+    public function toXml(var data, var options = null)
     {
-        var doc;
+        var doc, ns, rootName, charset;
+
+        let rootName = isset options["root"] ? options["root"] : "result",
+            charset = isset options["charset"] ? options["charset"] : "utf-8",
+            doc = this->xmlEncode(data, rootName),
+            doc->preserveWhiteSpace = false,
+            doc->formatOutput = true,
+            doc->encoding = charset;
+
+        if fetch ns, options["namespace"] {
+            $doc->createAttributeNS(ns, "xmlns");
+        }
 
         this->headers->set("Content-Type", "application/xml;charset=" . charset);
 
-        let this->body = this->xmlEncode(data, ["root": rootName, "charset": charset]);
+        let this->body = doc->saveXML();
 
         return this;
     }
@@ -620,26 +642,23 @@ class Response implements ResponseInterface
      * Convert data to XML string.
      *
      * @param mixed data Can be any type excepta resource
-     * @param array options Config for the dom document [root|charset|format]
+     * @param string root The root tag name
      * @param DOMElement domNode null, ONLY FOR INTERNAL USE
      * @param DOMDocument domDoc null, ONLY FOR INTERNAL USE
-     * @return string xml string
+     * @return DOMDocument domDoc object
      */
-    public function xmlEncode(var data, array! options = null, <\DOMElement> domNode = null, <\DOMDocument> domDoc = null)
+    public function xmlEncode(var data, string root = "root", <\DOMElement> domNode = null, <\DOMDocument> domDoc = null)
     {
-        var root, charset, key, val, node;
+        var key, val, node;
 
         if domDoc === null {
-            let charset = isset options["charset"] ? options["charset"] : "utf-8",
-                domDoc = new \DOMDocument("1.0", charset),
-                domDoc->formatOutput = isset options["format"] ? options["format"] : true,
-                root = isset options["root"] ? options["root"] : "root",
+            let domDoc = new \DOMDocument,
                 domNode = domDoc->createElement(root);
 
             domDoc->appendChild(domNode);
             this->xmlEncode(data, null, domNode, domDoc);
 
-            return domDoc->saveXML();
+            return domDoc;
         }
 
         if typeof data == "object" {
@@ -649,8 +668,8 @@ class Response implements ResponseInterface
         if typeof data == "array" {
             for key, val in data {
                 if typeof key == "integer" {
-                    let node = domDoc->createElement("_" . key);
-                       node->setAttribute("i", key);
+                    let node = domDoc->createElement(rtrim(domNode->tagName, "s"));
+                    node->setAttribute("i", key);
                 } else {
                     let node = domDoc->createElement(key);
                 }
