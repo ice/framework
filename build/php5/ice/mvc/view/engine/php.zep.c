@@ -86,12 +86,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 171);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 172);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 172);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 173);
 	zephir_check_call_status();
 	RETURN_MM();
 
