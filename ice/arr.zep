@@ -67,7 +67,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     public function set(string key, var value)
     {
         let this->data[key] = value;
-        
+
         return this;
     }
 
@@ -84,7 +84,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         for key, value in data {
             this->set(key, value);
         }
-        
+
         return this;
     }
 
@@ -173,7 +173,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function keys() -> array
     {
-        return array_keys(this->data);
+        return array_keys(this->getData());
     }
 
     /**
@@ -185,7 +185,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     public function erase(string key)
     {
         unset this->data[key];
-        
+
         return this;
     }
 
@@ -197,7 +197,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     public function clear()
     {
         let this->data = [];
-        
+
         return this;
     }
 
@@ -208,7 +208,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function count() -> int
     {
-        return count(this->data);
+        return count(this->getData());
     }
 
     /**
@@ -218,7 +218,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function getIterator() -> <ArrayIterator>
     {
-        return new ArrayIterator(this->data);
+        return new ArrayIterator(this->getData());
     }
 
     /**
@@ -243,7 +243,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
     {
         var data, keys, key;
 
-        let data = this->data;
+        let data = this->getData();
 
         if typeof path == "array" {
             // The path has already been separated into keys
@@ -325,7 +325,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         var key, value, tmp;
 
         let tmp = [];
-        for key, value in this->data {
+        for key, value in this->getData() {
             if typeof value == "object" {
                 if method_exists(value, "toArray") {
                     let tmp[key] = value->toArray();
@@ -426,6 +426,6 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __unset(key) -> void
     {
-        unset this->data[key];
+        this->erase(key);
     }
 }

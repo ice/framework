@@ -112,7 +112,7 @@ class Session extends Arr
     public function set(string key, var value)
     {
         let _SESSION[key] = value;
-        
+
         return this;
     }
 
@@ -123,7 +123,17 @@ class Session extends Arr
     public function remove(string key)
     {
         unset _SESSION[key];
-        
+
         return this;
+    }
+
+    /**
+     * Fetch all data.
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        return _SESSION;
     }
 }
