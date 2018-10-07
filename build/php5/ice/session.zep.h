@@ -15,6 +15,10 @@ PHP_METHOD(Ice_Session, set);
 PHP_METHOD(Ice_Session, remove);
 PHP_METHOD(Ice_Session, getData);
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_session_isstarted, 0, 0, 0)
+	ZEND_ARG_INFO(0, autoStart)
+ZEND_END_ARG_INFO()
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_session_has, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
 ZEND_END_ARG_INFO()
@@ -37,7 +41,7 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_session_method_entry) {
 	PHP_ME(Ice_Session, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Session, start, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Session, isStarted, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Session, isStarted, arginfo_ice_session_isstarted, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Session, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Session, regenerate, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Session, destroy, NULL, ZEND_ACC_PUBLIC)

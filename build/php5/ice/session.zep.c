@@ -60,37 +60,91 @@ PHP_METHOD(Ice_Session, __construct) {
  */
 PHP_METHOD(Ice_Session, start) {
 
-	zval *_0 = NULL;
+	zval *_SESSION, *_0 = NULL, *_1$$3 = NULL, *_3$$3, *_4$$5, *_5$$5 = NULL, *_6$$5;
+	zephir_fcall_cache_entry *_2 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 
 	ZEPHIR_MM_GROW();
+	zephir_get_global(&_SESSION, SS("_SESSION") TSRMLS_CC);
 
 	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 136);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_0))) {
-		ZEPHIR_CALL_FUNCTION(NULL, "session_start", NULL, 196);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_start", &_2, 196);
 		zephir_check_call_status();
-		if (1) {
-			zephir_update_property_this(getThis(), SL("started"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
-		} else {
-			zephir_update_property_this(getThis(), SL("started"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+		zephir_update_property_this(getThis(), SL("started"), _1$$3 TSRMLS_CC);
+		_3$$3 = zephir_fetch_nproperty_this(this_ptr, SL("started"), PH_NOISY_CC);
+		if (zephir_is_true(_3$$3)) {
+			if (!(zephir_array_isset_string(_SESSION, SS("__valid__")))) {
+				ZEPHIR_INIT_VAR(_4$$5);
+				ZVAL_LONG(_4$$5, 1);
+				zephir_array_update_string(&_SESSION, SL("__valid__"), &_4$$5, PH_COPY | PH_SEPARATE);
+				ZEPHIR_CALL_FUNCTION(NULL, "session_write_close", NULL, 197);
+				zephir_check_call_status();
+				ZEPHIR_CALL_FUNCTION(&_5$$5, "session_start", &_2, 196);
+				zephir_check_call_status();
+				zephir_update_property_this(getThis(), SL("started"), _5$$5 TSRMLS_CC);
+				_6$$5 = zephir_fetch_nproperty_this(this_ptr, SL("started"), PH_NOISY_CC);
+				if (zephir_is_true(_6$$5)) {
+					if (!(zephir_array_isset_string(_SESSION, SS("__valid__")))) {
+						if (0) {
+							zephir_update_property_this(getThis(), SL("started"), ZEPHIR_GLOBAL(global_true) TSRMLS_CC);
+						} else {
+							zephir_update_property_this(getThis(), SL("started"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
+						}
+					} else {
+						zephir_array_unset_string(&_SESSION, SS("__valid__"), PH_SEPARATE);
+					}
+				}
+			}
 		}
-		RETURN_MM_BOOL(1);
 	}
-	RETURN_MM_BOOL(0);
+	RETURN_MM_MEMBER(getThis(), "started");
 
 }
 
 /**
  * Check whether the session was started.
  *
+ * @param boolean autoStart If session is not started, try to start it
  * @return boolean
  */
 PHP_METHOD(Ice_Session, isStarted) {
 
-	
+	zephir_fcall_cache_entry *_2 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *autoStart_param = NULL, *_0, *_3 = NULL, *_1$$3 = NULL;
+	zend_bool autoStart;
 
-	RETURN_MEMBER(getThis(), "started");
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &autoStart_param);
+
+	if (!autoStart_param) {
+		autoStart = 1;
+	} else {
+		autoStart = zephir_get_boolval(autoStart_param);
+	}
+
+
+	_0 = zephir_fetch_nproperty_this(this_ptr, SL("started"), PH_NOISY_CC);
+	if (zephir_is_true(_0)) {
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_status", NULL, 198);
+		zephir_check_call_status();
+		if (ZEPHIR_IS_LONG(_1$$3, 1)) {
+			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "start", &_2, 0);
+			zephir_check_call_status();
+			RETURN_MM();
+		}
+		RETURN_MM_BOOL(1);
+	}
+	ZEPHIR_INIT_VAR(_3);
+	if (autoStart) {
+		ZEPHIR_CALL_METHOD(&_3, this_ptr, "start", &_2, 0);
+		zephir_check_call_status();
+	} else {
+		ZVAL_BOOL(_3, 0);
+	}
+	RETURN_CCTOR(_3);
 
 }
 
@@ -105,7 +159,7 @@ PHP_METHOD(Ice_Session, getId) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 197);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 199);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -122,7 +176,7 @@ PHP_METHOD(Ice_Session, regenerate) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 198);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 200);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -144,7 +198,7 @@ PHP_METHOD(Ice_Session, destroy) {
 	} else {
 		zephir_update_property_this(getThis(), SL("started"), ZEPHIR_GLOBAL(global_false) TSRMLS_CC);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 199);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 201);
 	zephir_check_call_status();
 	RETURN_MM();
 
