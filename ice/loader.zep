@@ -124,13 +124,14 @@ class Loader
             return false;
         }
 
+        let relativeClass = str_replace("\\", DIRECTORY_SEPARATOR, relativeClass) . ".php";
+
         // look through base directories for this namespace prefix
         for baseDir in this->prefixes[prefix] {
             // replace the namespace prefix with the base directory,
             // replace namespace separators with directory separators
             // in the relative class name, append with .php
-            let file = baseDir . str_replace("\\", DIRECTORY_SEPARATOR, relativeClass) . ".php",
-                file = baseDir . str_replace("\\", "/", relativeClass) . ".php";
+            let file = baseDir . relativeClass;
 
             // if the mapped file exists, require it
             if this->requireFile(file) {
