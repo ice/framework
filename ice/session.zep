@@ -33,21 +33,46 @@ class Session extends Arr
     public function start() -> boolean
     {
         if !headers_sent() {
-            session_start();
-            let this->started = true;
-            return true;
+            let this->started = session_start();
+            if this->started {
+                // Check if we need to perform the write test.
+                if !isset _SESSION["__valid__"] {
+                    let _SESSION["__valid__"] = 1;
+                    // Attempt to write session to disk
+                    session_write_close();
+                    // Re-start session
+                    let this->started = session_start();
+                    if this->started {
+                        if !isset _SESSION["__valid__"] {
+                            // Session was not written to disk
+                            let this->started = false;
+                        } else {
+                            // Unset the variable from memory
+                            unset _SESSION["__valid__"];
+                        }
+                    }
+                }
+            }
         }
-        return false;
+        return this->started;
     }
 
     /**
      * Check whether the session was started.
      *
+     * @param boolean autoStart If session is not started, try to start it
      * @return boolean
      */
-    public function isStarted() -> boolean
+    public function isStarted(boolean autoStart = true) -> boolean
     {
-        return this->started;
+        if this->started {
+            if session_status() == PHP_SESSION_NONE {
+                // the session had been started but dead now, force to restart it
+                return this->start();
+            }
+            return true;
+        }
+        return autoStart ? this->start() : false;
     }
 
     /**
