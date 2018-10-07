@@ -427,10 +427,10 @@ class Pdo implements DbInterface
      *
      * <pre><code>
      *  //select * from t where id=1
-     *  $m = $this->db->query('select * from t where id=:id', [':id' => 1], new static);
+     *  $m = $this->db->query('select * from t where id=:id', [':id' => 1], new stdClass);
      *
      *  //select * from t where id=1 OR foo='bar'
-     *  $m = $this->db->query('select * from t where id=? OR foo=?', [1, "bar"], new static);
+     *  $m = $this->db->query('select * from t where id=? OR foo=?', [1, "bar"], new stdClass);
      * </code></pre>
      *
      * @param string sql SQL with kinda of placeholders
