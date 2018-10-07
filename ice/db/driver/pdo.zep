@@ -56,7 +56,7 @@ class Pdo implements DbInterface
             break;
         }
 
-        this->client = new \PDO(dsn, user, password, options);
+        let this->client = new \PDO(dsn, user, password, options);
     }
 
     /**
