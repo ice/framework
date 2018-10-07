@@ -6,6 +6,7 @@ ZEPHIR_INIT_CLASS(Ice_Db_Driver_Pdo);
 PHP_METHOD(Ice_Db_Driver_Pdo, getId);
 PHP_METHOD(Ice_Db_Driver_Pdo, getType);
 PHP_METHOD(Ice_Db_Driver_Pdo, getClient);
+PHP_METHOD(Ice_Db_Driver_Pdo, getDriverName);
 PHP_METHOD(Ice_Db_Driver_Pdo, __construct);
 PHP_METHOD(Ice_Db_Driver_Pdo, getIdValue);
 PHP_METHOD(Ice_Db_Driver_Pdo, getDateTime);
@@ -88,6 +89,7 @@ ZEPHIR_INIT_FUNCS(ice_db_driver_pdo_method_entry) {
 	PHP_ME(Ice_Db_Driver_Pdo, getId, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getType, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getClient, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Db_Driver_Pdo, getDriverName, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, __construct, arginfo_ice_db_driver_pdo___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Db_Driver_Pdo, getIdValue, arginfo_ice_db_driver_pdo_getidvalue, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Db_Driver_Pdo, getDateTime, arginfo_ice_db_driver_pdo_getdatetime, ZEND_ACC_PUBLIC)
