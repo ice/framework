@@ -43,13 +43,11 @@ class Url
      */
     public function get(var uri = null, var args = null, boolean local = true) -> string
     {
-        var baseUri, queryString;
+        var queryString;
 
         if !local && !empty uri {
             let local = empty parse_url(uri, PHP_URL_HOST) && empty parse_url(uri, PHP_URL_SCHEME);
         }
-
-        let baseUri = this->getBaseUri();
 
         if local {
             // Get current URL if uri is false
@@ -57,7 +55,7 @@ class Url
                 let uri = _GET["_url"];
             } else {
                 if !starts_with(uri, "#") && !starts_with(uri, "?")  {
-                    let uri = baseUri . uri;
+                    let uri = this->getBaseUri(uri);
                 }
             }
         }
