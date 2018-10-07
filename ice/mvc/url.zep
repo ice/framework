@@ -55,7 +55,7 @@ class Url
                 let uri = _GET["_url"];
             } else {
                 if !starts_with(uri, "#") && !starts_with(uri, "?")  {
-                    let uri = this->getBaseUri(uri);
+                    let uri = this->getBaseUri() . uri;
                 }
             }
         }
