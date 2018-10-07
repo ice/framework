@@ -27,6 +27,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_session_isstarted, 0, 0, _IS
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_session_isstarted, 0, 0, _IS_BOOL, NULL, 0)
 #endif
+	ZEND_ARG_TYPE_INFO(0, autoStart, _IS_BOOL, 1)
 ZEND_END_ARG_INFO()
 
 #ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
