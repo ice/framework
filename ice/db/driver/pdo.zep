@@ -21,6 +21,7 @@ class Pdo implements DbInterface
     protected type = "SQL" { get };
     protected error;
     protected client { get };
+    protected driverName { get };
 
     protected identifier = "\"%s\"";
 
@@ -34,11 +35,9 @@ class Pdo implements DbInterface
      */
     public function __construct(string dsn, string user = NULL, string password = NULL, array options = [])
     {
-        var driver, pdo;
+        let this->driverName = explode(":", dsn, 2)[0];
 
-        let driver = explode(":", dsn, 2)[0];
-
-        switch driver {
+        switch this->driverName {
             case "mysql":
                 let this->identifier = "`%s`";
                 let dsn = dsn . ";charset=utf8";
@@ -57,8 +56,7 @@ class Pdo implements DbInterface
             break;
         }
 
-        let pdo = "Pdo",
-            this->client = new {pdo}(dsn, user, password, options);
+        this->client = new \PDO(dsn, user, password, options);
     }
 
     /**
@@ -99,6 +97,11 @@ class Pdo implements DbInterface
     /**
      * Find one row that match criteria.
      *
+     * <pre><code>
+     *  //SELECT x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc Limit 1
+     *  $db->findOne("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"]], ["x","y"]);
+     * </code></pre>
+     *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
      * @param array options Options to limit/group results
@@ -109,8 +112,15 @@ class Pdo implements DbInterface
     {
         var result;
 
-        let options["limit"] = 1,
-            result = this->select(from, filters, options, fields);
+        if this->driverName == "sqlsrv" {
+            let options["top"] = 1;
+        } elseif this->driverName == "oci" {
+            let filters = empty filters ? "rownum=1" : ["and": [filters, "rownum=1"]];
+        } else {
+            let options["limit"] = 1;
+        }
+
+        let result = this->select(from, filters, options, fields);
 
         return result->rowCount() ? new Arr(result->$fetch(\Pdo::FETCH_ASSOC)) : false;
     }
@@ -120,18 +130,18 @@ class Pdo implements DbInterface
      *
      * <pre><code>
      *  //SELECT * FROM users WHERE a=1 and b="q"
-     *  $db->find("users", array("a" => 1, "b" => "q"));
+     *  $db->find("users", ["a" => 1, "b" => "q"]];
      *
      *  //SELECT * FROM users WHERE age>33
-     *  $db->find("users", array("age" => array(">" => 33)));
+     *  $db->find("users", ["age" => [">" => 33]]];
      *
-     *  //SELECT * FROM users WHERE a=1 or b=2
-     *  $db->find("users", array("OR" => array(array("a" => 1), array("b" => 2))));
+     *  //SELECT x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc
+     *  $db->find("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"]], ["x","y"]);
      * </code></pre>
      *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
-     * @param array options Options to limit/group results
+     * @param array options Options to limit[top]/group results
      * @param array fields Fields to retrieve, if not specified get all
      * @return Arr
      */
@@ -212,7 +222,7 @@ class Pdo implements DbInterface
                                             values[index . j] = id;
                                     }
 
-                                    let value = "(" . join(", ", ids) . ")";
+                                    let value = "(" . implode(", ", ids) . ")";
                                 }
                                 let condition = sprintf(this->identifier, key) . is . " " . value;
                             break;
@@ -238,10 +248,10 @@ class Pdo implements DbInterface
                     }
 
                     if operator == "OR" {
-                        let and[] = "(" . join(" OR ", or) . ")";
+                        let and[] = "(" . implode(" OR ", or) . ")";
                     }
                 }
-                let sql .= join(" AND ", and);
+                let sql .= implode(" AND ", and);
             break;
             case "integer":
                 let sql .= sprintf(this->identifier, this->id) . "=" . filters;
@@ -260,30 +270,51 @@ class Pdo implements DbInterface
     /**
      * SELECT record(s) that match criteria.
      *
+     * <pre><code>
+     *  //SELECT * FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc LIMIT 10
+     *  $db->select("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"], "limit" => 10]);
+     *
+     *  //SELECT top 10 x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc
+     *  $db->select("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"], "top" => 10], ["x","y"]);
+     * </code></pre>
+     *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
-     * @param array options Options to limit/group results
+     * @param array options Options to limit[top]/group results
      * @param array fields Fields to retrieve, if not specified get all
      */
     public function select(string! from, var filters = [], array options = [], array fields = [])
     {
-        var columns, sql, filtered, values, query;
+        var columns, filtered, values, query, sql = "SELECT ";
 
         if count(fields) {
-            let columns = join(", ", fields);
+            let columns = implode(", ", fields);
         } else {
             let columns = "*";
         }
 
+        // ms sql server only
+        if isset options["top"] {
+            let sql .= (int) options["top"] . " ";
+        }
+
         let filtered = this->where(filters),
-            sql = "SELECT " . columns . " FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
+            sql .= columns . " FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
             values = filtered[1];
 
         if isset options["group"] {
-            let sql .= " GROUP BY " . join(", ", options["group"]);
+            if typeof options["group"] == "array" {
+                let sql .= " GROUP BY " . implode(", ", options["group"]);
+            } else {
+                let sql .= " GROUP BY " . options["group"];
+            }
         }
         if isset options["order"] {
-            let sql .= " ORDER BY " . join(", ", options["order"]);
+            if typeof options["order"] == "array" {
+                let sql .= " ORDER BY " . implode(", ", options["order"]);
+            } else {
+                let sql .= " ORDER BY " . options["order"];
+            }
         }
         if isset options["limit"] {
             let sql .= " LIMIT " . options["limit"];
@@ -304,6 +335,11 @@ class Pdo implements DbInterface
     /**
      * INSERT record into table.
      *
+     * <pre><code>
+     *  //INSERT INTO users (a,b) VALUES (1, 2)
+     *  $db->insert("users", [["a" => 1], ["b" => 2]]);
+     * </code></pre>
+     *
      * @param string from Table name
      * @param array fields Fields to insert, keys are the column names
      */
@@ -319,7 +355,7 @@ class Pdo implements DbInterface
                 values[":" . key] = value;
         }
 
-        let sql = "INSERT INTO " . sprintf(this->identifier, from) . " (" . join(", ", columns) . ") VALUES (" . join(", ", array_keys(values)) . ")",
+        let sql = "INSERT INTO " . sprintf(this->identifier, from) . " (" . implode(", ", columns) . ") VALUES (" . implode(", ", array_keys(values)) . ")",
             query = this->client->prepare(sql),
             status = query->execute(values),
             this->error = query->errorInfo();
@@ -329,6 +365,11 @@ class Pdo implements DbInterface
 
     /**
      * UPDATE records in the table.
+     *
+     * <pre><code>
+     *  //UPDATE users SET a=1, b=2 WHERE id=10 OR foo="bar"
+     *  $db->update("users", ["OR" => ["id" => 10, "foo" => "bar"]], [["a" => 1], ["b" => 2]]);
+     * </code></pre>
      *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
@@ -347,7 +388,7 @@ class Pdo implements DbInterface
         }
 
         let filtered = this->where(filters, values),
-            sql = "UPDATE " . sprintf(this->identifier, from) . " SET " . join(", ", columns) . " WHERE " . filtered[0],
+            sql = "UPDATE " . sprintf(this->identifier, from) . " SET " . implode(", ", columns) . " WHERE " . filtered[0],
             values = array_merge(values, filtered[1]),
             query = this->client->prepare(sql),
             status = query->execute(values),
@@ -358,6 +399,11 @@ class Pdo implements DbInterface
 
     /**
      * Remove records from the table.
+     *
+     * <pre><code>
+     *  //DELETE FROM users WHERE id=10 OR foo="bar"
+     *  $db->delete("users", ["OR" => ["id" => 10, "foo" => "bar"]]);
+     * </code></pre>
      *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
@@ -378,7 +424,14 @@ class Pdo implements DbInterface
 
     /**
      * Query sql statement. execute the statement and populate into Model object:
-     * $m = $this->db->query('select*from t where id=:id', [':id' => 1], new static);
+     *
+     * <pre><code>
+     *  //select * from t where id=1
+     *  $m = $this->db->query('select * from t where id=:id', [':id' => 1], new static);
+     *
+     *  //select * from t where id=1 OR foo='bar'
+     *  $m = $this->db->query('select * from t where id=? OR foo=?', [1, "bar"], new static);
+     * </code></pre>
      *
      * @param string sql SQL with kinda of placeholders
      * @param array values Replace placeholders in the sql
