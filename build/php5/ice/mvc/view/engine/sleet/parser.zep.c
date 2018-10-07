@@ -68,7 +68,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, __construct) {
 	object_init_ex(tag, zephir_get_internal_ce(SS("reflectionclass") TSRMLS_CC));
 	ZEPHIR_INIT_VAR(_0);
 	ZVAL_STRING(_0, "Ice\\Tag", ZEPHIR_TEMP_PARAM_COPY);
-	ZEPHIR_CALL_METHOD(NULL, tag, "__construct", NULL, 108, _0);
+	ZEPHIR_CALL_METHOD(NULL, tag, "__construct", NULL, 109, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(_0);

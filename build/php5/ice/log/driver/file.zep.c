@@ -183,7 +183,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 		ZEPHIR_CONCAT_SVS(_3$$3, "{", key, "}");
 		zephir_array_update_zval(&replace, _3$$3, &value, PH_COPY | PH_SEPARATE);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 116, message, replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 117, message, replace);
 	zephir_check_call_status();
 	RETURN_MM();
 

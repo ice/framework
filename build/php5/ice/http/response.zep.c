@@ -1416,7 +1416,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode) {
 		zephir_check_temp_parameter(_12$$8);
 		zephir_check_temp_parameter(_13$$8);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_14$$8, "get_object_vars", NULL, 119, data);
+		ZEPHIR_CALL_FUNCTION(&_14$$8, "get_object_vars", NULL, 120, data);
 		zephir_check_call_status();
 		zephir_is_iterable(_14$$8, &_16$$8, &_15$$8, 0, 0, "ice/http/response.zep", 691);
 		for (

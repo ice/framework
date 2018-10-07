@@ -55,6 +55,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/cli/task.zep.c
 	ice/cli/websocket/client.zep.c
 	ice/cli/websocket/server.zep.c
+	ice/config/env.zep.c
 	ice/config/json.zep.c
 	ice/cookies.zep.c
 	ice/crypt.zep.c
@@ -63,7 +64,6 @@ if test "$PHP_ICE" = "yes"; then
 	ice/db/driver/pdo.zep.c
 	ice/di.zep.c
 	ice/dump.zep.c
-	ice/env.zep.c
 	ice/exception.zep.c
 	ice/filter.zep.c
 	ice/filter/css.zep.c

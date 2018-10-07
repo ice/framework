@@ -1,11 +1,11 @@
 
 #ifdef HAVE_CONFIG_H
-#include "../ext_config.h"
+#include "../../ext_config.h"
 #endif
 
 #include <php.h>
-#include "../php_ext.h"
-#include "../ext.h"
+#include "../../php_ext.h"
+#include "../../ext.h"
 
 #include <Zend/zend_operators.h>
 #include <Zend/zend_exceptions.h>
@@ -28,9 +28,9 @@
  * @copyright   (c) 2014-2018 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Env) {
+ZEPHIR_INIT_CLASS(Ice_Config_Env) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Ice, Env, ice, env, ice_config_ini_ce, ice_env_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Env, ice, config_env, ice_config_ini_ce, ice_config_env_method_entry, 0);
 
 	return SUCCESS;
 
@@ -41,7 +41,7 @@ ZEPHIR_INIT_CLASS(Ice_Env) {
  *
  * @param string data Path to the env file
  */
-PHP_METHOD(Ice_Env, __construct) {
+PHP_METHOD(Ice_Config_Env, __construct) {
 
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Env, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_env_ce, getThis(), "__construct", &_0, 124, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", &_0, 95, data);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);
@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Env, __construct) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Env, has) {
+PHP_METHOD(Ice_Config_Env, has) {
 
 	zval *key_param = NULL, *_ENV;
 	zval *key = NULL;
@@ -92,7 +92,7 @@ PHP_METHOD(Ice_Env, has) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Env, get) {
+PHP_METHOD(Ice_Config_Env, get) {
 
 	zend_bool required;
 	zval *key_param = NULL, *defaultValue = NULL, *required_param = NULL, *_ENV, *value = NULL;
@@ -126,7 +126,7 @@ PHP_METHOD(Ice_Env, get) {
  *
  * @return object
  */
-PHP_METHOD(Ice_Env, set) {
+PHP_METHOD(Ice_Config_Env, set) {
 
 	zval *key_param = NULL, *value, *_ENV;
 	zval *key = NULL;
@@ -148,7 +148,7 @@ PHP_METHOD(Ice_Env, set) {
  *
  * @return object
  */
-PHP_METHOD(Ice_Env, remove) {
+PHP_METHOD(Ice_Config_Env, remove) {
 
 	zval *key_param = NULL, *_ENV;
 	zval *key = NULL;
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Env, remove) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Env, getData) {
+PHP_METHOD(Ice_Config_Env, getData) {
 
 	zval *_ENV;
 

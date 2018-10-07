@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 		ZEPHIR_CALL_FUNCTION(&_8$$6, "array_filter", NULL, 8, _6$$6, &_7$$6);
 		zephir_check_call_status();
 		if (zephir_fast_count_int(_8$$6 TSRMLS_CC)) {
-			ZEPHIR_CALL_FUNCTION(&message, "strtr", NULL, 116, str, values);
+			ZEPHIR_CALL_FUNCTION(&message, "strtr", NULL, 117, str, values);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_INIT_VAR(_9$$8);

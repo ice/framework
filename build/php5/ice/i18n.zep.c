@@ -1134,7 +1134,7 @@ PHP_METHOD(Ice_I18n, translate) {
 		ZEPHIR_CALL_FUNCTION(&_7$$7, "array_filter", NULL, 8, _5$$7, &_6$$7);
 		zephir_check_call_status();
 		if (zephir_fast_count_int(_7$$7 TSRMLS_CC)) {
-			ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 116, str, values);
+			ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 117, str, values);
 			zephir_check_call_status();
 			RETURN_MM();
 		} else {
