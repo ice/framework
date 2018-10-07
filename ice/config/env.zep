@@ -1,7 +1,6 @@
 
-namespace Ice;
+namespace Ice\Config;
 
-use Ice\Config\Ini;
 use Ice\Exception;
 
 /**
