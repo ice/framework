@@ -226,11 +226,11 @@ PHP_METHOD(Ice_Loader, loadClass) {
  */
 PHP_METHOD(Ice_Loader, loadMappedFile) {
 
-	HashTable *_4;
-	HashPosition _3;
-	zephir_fcall_cache_entry *_13 = NULL;
+	HashTable *_8;
+	HashPosition _7;
+	zephir_fcall_cache_entry *_11 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *prefix_param = NULL, *relativeClass_param = NULL, *baseDir = NULL, *file = NULL, *_0, *_1, *_2, **_5, *_6$$4 = NULL, _7$$4 = zval_used_for_init, _8$$4 = zval_used_for_init, *_9$$4 = NULL, _10$$4 = zval_used_for_init, _11$$4 = zval_used_for_init, *_12$$4 = NULL;
+	zval *prefix_param = NULL, *relativeClass_param = NULL, *baseDir = NULL, *file = NULL, *_0, *_1, _2, _3, *_4, *_5, *_6, **_9, *_10$$4 = NULL;
 	zval *prefix = NULL, *relativeClass = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -244,33 +244,28 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	if (!(zephir_array_isset(_0, prefix))) {
 		RETURN_MM_BOOL(0);
 	}
-	_1 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
-	zephir_array_fetch(&_2, _1, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 128 TSRMLS_CC);
-	zephir_is_iterable(_2, &_4, &_3, 0, 0, "ice/loader.zep", 143);
+	ZEPHIR_INIT_VAR(_1);
+	ZEPHIR_SINIT_VAR(_2);
+	ZVAL_STRING(&_2, "\\", 0);
+	ZEPHIR_SINIT_VAR(_3);
+	ZVAL_STRING(&_3, "/", 0);
+	zephir_fast_str_replace(&_1, &_2, &_3, relativeClass TSRMLS_CC);
+	ZEPHIR_INIT_VAR(_4);
+	ZEPHIR_CONCAT_VS(_4, _1, ".php");
+	zephir_get_strval(relativeClass, _4);
+	_5 = zephir_fetch_nproperty_this(this_ptr, SL("prefixes"), PH_NOISY_CC);
+	zephir_array_fetch(&_6, _5, prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 130 TSRMLS_CC);
+	zephir_is_iterable(_6, &_8, &_7, 0, 0, "ice/loader.zep", 144);
 	for (
-	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
-	  ; zend_hash_move_forward_ex(_4, &_3)
+	  ; zend_hash_get_current_data_ex(_8, (void**) &_9, &_7) == SUCCESS
+	  ; zend_hash_move_forward_ex(_8, &_7)
 	) {
-		ZEPHIR_GET_HVALUE(baseDir, _5);
-		ZEPHIR_INIT_NVAR(_6$$4);
-		ZEPHIR_SINIT_NVAR(_7$$4);
-		ZVAL_STRING(&_7$$4, "\\", 0);
-		ZEPHIR_SINIT_NVAR(_8$$4);
-		ZVAL_STRING(&_8$$4, "/", 0);
-		zephir_fast_str_replace(&_6$$4, &_7$$4, &_8$$4, relativeClass TSRMLS_CC);
+		ZEPHIR_GET_HVALUE(baseDir, _9);
 		ZEPHIR_INIT_NVAR(file);
-		ZEPHIR_CONCAT_VVS(file, baseDir, _6$$4, ".php");
-		ZEPHIR_INIT_NVAR(_9$$4);
-		ZEPHIR_SINIT_NVAR(_10$$4);
-		ZVAL_STRING(&_10$$4, "\\", 0);
-		ZEPHIR_SINIT_NVAR(_11$$4);
-		ZVAL_STRING(&_11$$4, "/", 0);
-		zephir_fast_str_replace(&_9$$4, &_10$$4, &_11$$4, relativeClass TSRMLS_CC);
-		ZEPHIR_INIT_NVAR(file);
-		ZEPHIR_CONCAT_VVS(file, baseDir, _9$$4, ".php");
-		ZEPHIR_CALL_METHOD(&_12$$4, this_ptr, "requirefile", &_13, 0, file);
+		ZEPHIR_CONCAT_VV(file, baseDir, relativeClass);
+		ZEPHIR_CALL_METHOD(&_10$$4, this_ptr, "requirefile", &_11, 0, file);
 		zephir_check_call_status();
-		if (zephir_is_true(_12$$4)) {
+		if (zephir_is_true(_10$$4)) {
 			RETURN_CCTOR(file);
 		}
 	}
