@@ -67,28 +67,31 @@ class Assets
      */
     public function add(var parameters, string collection = null, var minify = null)
     {
-        var content, type, link;
+        var type, ext = null;
 
         if typeof parameters == "string" {
-            let link = parameters,
-                parameters = [link];
+            let parameters = [parameters];
+        } else {
+            let ext = isset parameters["content"];
         }
 
-        if !fetch content, parameters["content"] {
-            fetch content, parameters[0];
+        if !ext && isset parameters[0] {
+            let ext = pathinfo(parameters[0], PATHINFO_EXTENSION);
         }
 
         fetch type, parameters["type"];
 
-        if ends_with(content, ".css") || type == "text/css" {
+        if ext == "css" || type == "css" {
             if !collection {
                 let collection = "css";
             }
+            let parameters["type"] = "text/css";
             this->addCss(parameters, collection, minify);
-        } elseif ends_with(content, ".js") || type == "text/javascript" {
+        } elseif ext == "js" || type == "js" {
             if !collection {
                 let collection = "js";
             }
+            let parameters["type"] = "text/javascript";
             this->addJs(parameters, collection, minify);
         }
 
@@ -105,19 +108,9 @@ class Assets
      */
     public function addCss(array! parameters, string collection = "css", var minify = null)
     {
-        var content, tag, local = true;
+        var content, tag;
 
         let tag = this->di->get("tag");
-
-        if !fetch content, parameters["content"] {
-            if fetch content, parameters[0] {
-                // do not support the host of url is the same as _SERVER["HTTP_HOST"] ATM
-                // the url contains any host will not minify the resource
-                let local = empty parse_url(content, PHP_URL_HOST);
-            } else {
-                throw new Exception("There is no css content or uri in the parameters");
-            }
-        }
 
         // If local minify is not set
         if minify === null {
@@ -125,22 +118,26 @@ class Assets
             let minify = this->getOption("minify", false);
         }
 
-        // Do not minify external or minified resources
-        if !local || ends_with(content, ".min.css") {
-            let minify = false;
-        }
-
         // Check if resource is inline or in file
         if isset parameters["content"] {
+            let content = parameters["content"];
             this->addToCollection(collection, tag->style(["content": minify ? this->minify(content, "css") : content]));
-        } else {
-            if isset this->cache[content] {
+        } elseif fetch content, parameters[0] {
+            if isset this->cache[content] && file_exists(this->cache[content]) {
                 let parameters["href"] = this->cache[content];
             } else {
+                // do not support the host of url is the same as _SERVER["HTTP_HOST"] ATM
+                // the url contains any host will not minify the resource
+                if !empty parse_url(content, PHP_URL_HOST) || ends_with(content, ".min.css") {
+                    // Do not minify external or minified resources
+                    let minify = false;
+                }
                 let parameters["href"] = this->prepare(content, minify),
                     this->cache[content] = parameters["href"];
             }
             this->addToCollection(collection, tag->link(parameters));
+        } else {
+            throw new Exception("There is no css content or uri in the parameters");
         }
 
         return this;
@@ -156,19 +153,9 @@ class Assets
      */
     public function addJs(array! parameters, string collection = "js", var minify = null)
     {
-        var content, tag, local = true;
+        var content, tag;
 
         let tag = this->di->get("tag");
-
-        if !fetch content, parameters["content"] {
-             if fetch content, parameters[0] {
-                // do not support the host of url is the same as _SERVER["HTTP_HOST"] ATM
-                // the url contains any host will not minify the resource
-                let local = empty parse_url(content, PHP_URL_HOST);
-            } else {
-                throw new Exception("There is no js content or uri in the parameters");
-            }
-        }
 
         // If local minify is not set
         if minify === null {
@@ -176,22 +163,26 @@ class Assets
             let minify = this->getOption("minify", false);
         }
 
-        // Do not minify external or minified resources
-        if !local || ends_with(content, ".min.js") {
-            let minify = false;
-        }
-
         // Check if resource is inline or in file
         if isset parameters["content"] {
+            let content = parameters["content"];
             this->addToCollection(collection, tag->script(["content": minify ? this->minify(content, "js") : content]));
-        } else {
-            if isset this->cache[content] {
+        } elseif fetch content, parameters[0] {
+            if isset this->cache[content] && file_exists(this->cache[content]) {
                 let parameters["src"] = this->cache[content];
             } else {
+                // do not support the host of url is the same as _SERVER["HTTP_HOST"] ATM
+                // the url contains any host will not minify the resource
+                if !empty parse_url(content, PHP_URL_HOST) || ends_with(content, ".min.js") {
+                    // Do not minify external or minified resources
+                    let minify = false;
+                }
                 let parameters["src"] = this->prepare(content, minify),
                     this->cache[content] = parameters["src"];
             }
             this->addToCollection(collection, tag->script(parameters));
+        } else {
+            throw new Exception("There is no js content or uri in the parameters");
         }
 
         return this;
@@ -264,12 +255,12 @@ class Assets
      */
     protected function prepare(string! uri, var minify)
     {
-        var source, target, file, type, uriMin, destination,
+        var source, target, file, type, ext, uriMin, destination,
             md5file, md5Old, md5New, old, minified;
 
         let source = this->getOption("source"),
             target = this->getOption("target"),
-            file = pathinfo(uri, PATHINFO_FILENAME | PATHINFO_EXTENSION),
+            file = pathinfo(uri),
             type = file["extension"],
             file = file["filename"];
 
@@ -277,7 +268,7 @@ class Assets
         if uri[0] == '/' || empty source {
             let source = _SERVER["DOCUMENT_ROOT"];
         } else {
-            let source = str_replace("\\", "/", source);
+            let source = rtrim(source, "/\\") . "/";
         }
 
         if (source[-1] != '/') {
@@ -297,25 +288,26 @@ class Assets
             let target = "";
         }
 
-        let uriMin = target . "/" . dirname(uri) . "/";
+        let uriMin = target . "/" . dirname(uri) . "/",
+            ext = minify ? "min." . type : type;
 
         // cache min files place to document root always
         let destination = _SERVER["DOCUMENT_ROOT"] . uriMin,
-            md5file = glob(destination . file . ".????????????????????????????????." . type),
+            md5file = glob(destination . file . ".????????????????????????????????." . ext),
             md5New = null;
 
         if !empty md5file {
             let md5file = md5file[0],
-                md5Old = substr(md5file, strlen(md5file) - strlen(type) - 33, 32),
+                md5Old = substr(md5file, strlen(md5file) - strlen(ext) - 33, 32),
                 md5New = md5_file(source);
 
             if md5Old != md5New {
-                // new version found
-                let md5file = null;
                 // delete the old version
                 unlink(md5file);
+                // new version found
+                let md5file = null;
             } else {
-                let uriMin .= file . "." . md5New . "." . type;
+                let uriMin .= file . "." . md5New . "." . ext;
             }
         }
         if empty md5file {
@@ -330,7 +322,7 @@ class Assets
                 umask(old);
             }
 
-            let uriMin .= file . "." . md5New . "." . type,
+            let uriMin .= file . "." . md5New . "." . ext,
                 destination = _SERVER["DOCUMENT_ROOT"] . uriMin;
 
             if minify {
