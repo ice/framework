@@ -325,9 +325,7 @@ class Pdo implements DbInterface
 
         let query = this->client->prepare(sql);
 
-        query->execute(values);
-
-        let this->error = query->errorInfo();
+        let this->error = query->execute(values) ? null : query->errorInfo();
 
         return query;
     }
@@ -358,7 +356,7 @@ class Pdo implements DbInterface
         let sql = "INSERT INTO " . sprintf(this->identifier, from) . " (" . implode(", ", columns) . ") VALUES (" . implode(", ", array_keys(values)) . ")",
             query = this->client->prepare(sql),
             status = query->execute(values),
-            this->error = query->errorInfo();
+            this->error = status ? null : query->errorInfo();
 
         return status;
     }
@@ -392,7 +390,7 @@ class Pdo implements DbInterface
             values = array_merge(values, filtered[1]),
             query = this->client->prepare(sql),
             status = query->execute(values),
-            this->error = query->errorInfo();
+            this->error = status ? null : query->errorInfo();
 
         return status;
     }
@@ -417,7 +415,7 @@ class Pdo implements DbInterface
             values = filtered[1],
             query = this->client->prepare(sql),
             status = query->execute(values),
-            this->error = query->errorInfo();
+            this->error = status ? null : query->errorInfo();
 
         return status;
     }
@@ -430,42 +428,40 @@ class Pdo implements DbInterface
      *  $m = $this->db->query('select * from t where id=:id', [':id' => 1], new stdClass);
      *
      *  //select * from t where id=1 OR foo='bar'
-     *  $m = $this->db->query('select * from t where id=? OR foo=?', [1, "bar"], new stdClass);
+     *  $m = $this->db->query('select * from t where id=? OR foo=?', [1, "bar"], '\Ice\Arr');
      * </code></pre>
      *
      * @param string sql SQL with kinda of placeholders
      * @param array values Replace placeholders in the sql
-     * @param mixed obj The object will be populated from query result
-     * @return PDOStatement|object|null
+     * @param mixed obj The classname or arr object will be populated from query result
+     * @return PDOStatement|object|null If fail return null
      */
     public function query(string! sql, array values = [], var obj = null)
     {
-        var query, result;
+        var query, result, status;
 
-        let query = this->client->prepare(sql);
+        let query = this->client->prepare(sql),
+            status = query->execute(values),
+            this->error = status ? null : query->errorInfo();
 
-        query->execute(values);
-
-        let this->error = query->errorInfo();
-
-        if empty this->error && obj {
+        if status && obj {
             if typeof obj == "string" {
-                let obj = new {obj}();
+                return query->fetchObject(obj);
             }
-            if obj instanceof Arr {
-                let result = query->$fetch(\Pdo::FETCH_ASSOC);
-                if result {
+            let result = query->$fetch(\Pdo::FETCH_ASSOC);
+            if result {
+                if obj instanceof Arr {
                     obj->replace(result);
                 } else {
-                    let obj = null;
+                    let obj = new Arr(result);
                 }
                 return obj;
             } else {
-                throw new Exception(["Only instance of Arr is allowed for populate the result. %s given", get_class(obj)]);
+                return false;
             }
         }
 
-        return query;
+        return status ? query : null;
     }
 
     /**
