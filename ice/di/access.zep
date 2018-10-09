@@ -25,7 +25,7 @@ class Access
     {
         var di, service;
 
-        if !(this->di instanceof Di) {
+        if typeof this->di != "object" || !(this->di instanceof Di) {
             let this->di = Di::$fetch();
         }
 
@@ -43,7 +43,7 @@ class Access
 
     public function __set(string property, var value)
     {
-        if !(this->di instanceof Di) {
+        if typeof this->di != "object" || !(this->di instanceof Di) {
             let this->di = Di::$fetch();
         }
 
