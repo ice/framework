@@ -33,6 +33,7 @@ class Css
         string min = "";
         char c, next;
         int i, tmp, state = 1, inParen = 0;
+        boolean noQuote = true;
 
         for i, c in css {
             let next = css[i + 1];
@@ -51,7 +52,7 @@ class Css
             
             switch state {
                 case self::FREE:
-                    if c == ' ' && c == '\n' {
+                    if c == ' ' || c == '\n' {
                         let c = 0;
                     } elseif c == '@' {
                         let state = self::ATRULE;
@@ -83,7 +84,7 @@ class Css
                     }
                     break;
                 case self::BLOCK:
-                    if c == ' ' || c == '\n' {
+                    if c == ' ' && noQuote || c == '\n' {
                         let c = 0;
                         break;
                     } elseif c == '}' {
@@ -113,7 +114,7 @@ class Css
                             let c = 0;
                         } elseif c == ' ' {
                             //skip multiple spaces after each other
-                            if next == c {
+                            if noQuote {
                                 let c = 0;
                             }
                         }
@@ -131,6 +132,9 @@ class Css
             }
 
             if c != 0 {
+                if c == '"' {
+                    let noQuote = !noQuote;
+                }
                 let min .= c;
             }
 
