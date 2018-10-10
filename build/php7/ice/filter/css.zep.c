@@ -56,8 +56,8 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
 PHP_METHOD(Ice_Filter_Css, sanitize) {
 
 	unsigned char _2$$3;
-	zend_bool _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$33;
 	long _0;
+	zend_bool noQuote, _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$19, _9$$33;
 	zend_long i = 0, tmp = 0, state, inParen;
 	char c = 0, next = 0;
 	zval *css_param = NULL;
@@ -77,6 +77,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	ZVAL_STRING(&min, "");
 	state = 1;
 	inParen = 0;
+	noQuote = 1;
 	for (_0 = 0; _0 < Z_STRLEN_P(&css); _0++) {
 		i = _0; 
 		c = ZEPHIR_STRING_OFFSET(&css, _0);
@@ -103,7 +104,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 		do {
 			if (state == 1) {
 				_4$$7 = c == ' ';
-				if (_4$$7) {
+				if (!(_4$$7)) {
 					_4$$7 = c == '\n';
 				}
 				if (_4$$7) {
@@ -146,10 +147,14 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 			}
 			if (state == 4) {
 				_7$$19 = c == ' ';
-				if (!(_7$$19)) {
-					_7$$19 = c == '\n';
-				}
 				if (_7$$19) {
+					_7$$19 = noQuote;
+				}
+				_8$$19 = _7$$19;
+				if (!(_8$$19)) {
+					_8$$19 = c == '\n';
+				}
+				if (_8$$19) {
 					c = 0;
 					break;
 				} else if (c == '}') {
@@ -174,7 +179,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 					} else if (c == '\n') {
 						c = 0;
 					} else if (c == ' ') {
-						if (next == c) {
+						if (noQuote) {
 							c = 0;
 						}
 					}
@@ -184,11 +189,11 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 				break;
 			}
 			if (state == 6) {
-				_8$$33 = c == '*';
-				if (_8$$33) {
-					_8$$33 = next == '/';
+				_9$$33 = c == '*';
+				if (_9$$33) {
+					_9$$33 = next == '/';
 				}
-				if (_8$$33) {
+				if (_9$$33) {
 					state = tmp;
 				}
 				c = 0;
@@ -197,6 +202,9 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 		} while(0);
 
 		if (c != 0) {
+			if (c == '"') {
+				noQuote = !noQuote;
+			}
 			zephir_concat_self_char(&min, c TSRMLS_CC);
 		}
 	}
