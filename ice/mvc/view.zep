@@ -135,7 +135,7 @@ class View extends Arr implements ViewInterface
      */
     public function setViewsDir(dirs)
     {
-        var k, dir;
+        var k, dir, path;
         
         if (is_string(dirs)) {
             let dirs = [dirs];
@@ -164,7 +164,7 @@ class View extends Arr implements ViewInterface
      */
     public function addViewsDir(dirs, bool prepend = false)
     {
-        var k, dir;
+        var k, dir, path;
         
         if (is_string(dirs)) {
             let dirs = [dirs];
