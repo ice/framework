@@ -201,24 +201,24 @@ class View extends Arr implements ViewInterface
         var ext, engine, engines, path, dir, dirs, exists;
 
         if file !== null {
-            let file = trim(file, "/\\");
+            let this->file = trim(file, "/\\");
         }
 
-        if empty file {
+        if empty this->file {
             throw new Exception("You must set the file to use within your view before rendering");
         }
 
-        let exists = false,
+        let this->content = "",
+            exists = false,
             dirs = this->viewsDir,
             engines = this->getEngines(),
             ext = pathinfo(file, PATHINFO_EXTENSION);
 
         if !empty ext && fetch engine, engines["." . ext] {
             for dir in dirs {
-                let path = dir . file;
+                let path = dir . this->file;
                 if file_exists(path) {
                     let exists = true,
-                        this->file = file,
                         data = this->replace(data)->all(),
                         this->content = engine->render(path, data);
                     break;
@@ -227,10 +227,9 @@ class View extends Arr implements ViewInterface
         } else {
             for ext, engine in engines {
                 for dir in dirs {
-                    let path = dir . file . ext;
+                    let path = dir . this->file . ext;
                     if file_exists(path) {
                         let exists = true,
-                            this->file = file,
                             data = this->replace(data)->all(),
                             this->content = engine->render(path, data);
                         break;
