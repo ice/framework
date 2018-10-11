@@ -218,9 +218,9 @@ class View extends Arr implements ViewInterface
             for dir in dirs {
                 let path = dir . this->file;
                 if file_exists(path) {
-                    let exists = true,
-                        data = this->replace(data)->all(),
-                        this->content = engine->render(path, data);
+                        this->replace(data);
+                        let exists = true,
+                            this->content = engine->render(path, this->all());
                     break;
                 }
             }
@@ -229,9 +229,9 @@ class View extends Arr implements ViewInterface
                 for dir in dirs {
                     let path = dir . this->file . ext;
                     if file_exists(path) {
+                        this->replace(data);
                         let exists = true,
-                            data = this->replace(data)->all(),
-                            this->content = engine->render(path, data);
+                            this->content = engine->render(path, this->all());
                         break;
                     }
                 }
