@@ -11,6 +11,7 @@ use Tests\App\Bootstrap;
 use Tests\App\Models\Users;
 use Tests\App\Models\Posts;
 use Tests\App\Models\Comments;
+use Tests\App\Services\UserService;
 
 class ModelsTest extends PHPUnit
 {
@@ -114,6 +115,18 @@ class ModelsTest extends PHPUnit
 
         $post = Posts::findOne(6);
         $this->assertEquals(new Arr, $post->getComments());
+    }
+
+    /**
+     * Service test
+     */
+    public function testService()
+    {
+        $service = new UserService(new Users());
+
+        $this->assertInstanceOf(\Ice\Di::class, $service->di);
+        $this->assertInstanceOf(\Ice\Config::class, $service->config);
+        $this->assertInstanceOf(\Ice\Db::class, $service->db);
     }
 
     /**
