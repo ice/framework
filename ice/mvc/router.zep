@@ -311,9 +311,9 @@ class Router
      */
     public function uri(array! params, string method = "*")
     {
-        var name, route, uri;
+        var route, uri;
 
-        for name, route in this->routes {
+        for route in this->routes {
             let uri = route->uri(params);
             if uri !== false && route->checkMethod(method) {
                 return uri;
