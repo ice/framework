@@ -118,7 +118,7 @@ class ModelsTest extends PHPUnit
     }
 
     /**
-     * Service test
+     * Service access test
      */
     public function testService()
     {
@@ -127,6 +127,10 @@ class ModelsTest extends PHPUnit
         $this->assertInstanceOf(\Ice\Di::class, $service->di);
         $this->assertInstanceOf(\Ice\Config::class, $service->config);
         $this->assertInstanceOf(\Ice\Db::class, $service->db);
+
+        $service->loadOne(1);
+        $this->assertEquals(1, $service->getId());
+        $this->assertEquals('user@example.com', $service->get('email'));
     }
 
     /**
