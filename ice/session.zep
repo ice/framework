@@ -32,28 +32,37 @@ class Session extends Arr
      */
     public function start() -> boolean
     {
+        var valid;
+
         if !headers_sent() {
             let this->started = session_start();
+
             if this->started {
+                let valid = "__valid__";
+
                 // Check if we need to perform the write test.
-                if !isset _SESSION["__valid__"] {
-                    let _SESSION["__valid__"] = 1;
+                if !this->has(valid) {
+                    this->set(valid, true);
+
                     // Attempt to write session to disk
                     session_write_close();
+
                     // Re-start session
                     let this->started = session_start();
+
                     if this->started {
-                        if !isset _SESSION["__valid__"] {
+                        if !this->has(valid) {
                             // Session was not written to disk
                             let this->started = false;
                         } else {
                             // Unset the variable from memory
-                            unset _SESSION["__valid__"];
+                            this->remove(valid);
                         }
                     }
                 }
             }
         }
+
         return this->started;
     }
 
