@@ -112,15 +112,8 @@ class Pdo implements DbInterface
     {
         var result;
 
-        if this->driverName == "sqlsrv" {
-            let options["top"] = 1;
-        } elseif this->driverName == "oci" {
-            let filters = empty filters ? "rownum=1" : ["and": [filters, "rownum=1"]];
-        } else {
-            let options["limit"] = 1;
-        }
-
-        let result = this->select(from, filters, options, fields);
+        let options["limit"] = 1,
+            result = this->select(from, filters, options, fields);
 
         return result->rowCount() ? new Arr(result->$fetch(\Pdo::FETCH_ASSOC)) : false;
     }
@@ -130,10 +123,10 @@ class Pdo implements DbInterface
      *
      * <pre><code>
      *  //SELECT * FROM users WHERE a=1 and b="q"
-     *  $db->find("users", ["a" => 1, "b" => "q"]];
+     *  $db->find("users", ["a" => 1, "b" => "q"]);
      *
      *  //SELECT * FROM users WHERE age>33
-     *  $db->find("users", ["age" => [">" => 33]]];
+     *  $db->find("users", ["age" => [">" => 33]]);
      *
      *  //SELECT x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc
      *  $db->find("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"]], ["x","y"]);
@@ -271,16 +264,18 @@ class Pdo implements DbInterface
      * SELECT record(s) that match criteria.
      *
      * <pre><code>
-     *  //SELECT * FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc LIMIT 10
+     *  // MySQL: SELECT * FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc LIMIT 10
+     *  // MSSQL: SELECT TOP 10 * FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc
      *  $db->select("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"], "limit" => 10]);
      *
-     *  //SELECT top 10 x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc
-     *  $db->select("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"], "top" => 10], ["x","y"]);
+     *  // MySQL: SELECT x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc LIMIT 10 offset 50
+     *  // MSSQL: SELECT x, y FROM users WHERE a=1 or b=2 ORDER BY a desc,b asc offset 50 ROWS FETCH NEXT 10 ROWS ONLY
+     *  $db->select("users", ["OR" => [["a" => 1], ["b" => 2]]], ["order" => ["a desc", "b asc"], "limit" => 10, "offset" => 50], ["x","y"]);
      * </code></pre>
      *
      * @param string from Table name
      * @param mixed filters Filters to create WHERE conditions
-     * @param array options Options to limit[top]/group results
+     * @param array options Options to limit/offset/group results
      * @param array fields Fields to retrieve, if not specified get all
      */
     public function select(string! from, var filters = [], array options = [], array fields = [])
@@ -293,9 +288,28 @@ class Pdo implements DbInterface
             let columns = "*";
         }
 
-        // ms sql server only
-        if isset options["top"] {
-            let sql .= (int) options["top"] . " ";
+        if isset options["limit"] {
+            // ms sql server only
+            if this->driverName == "sqlsrv" {
+                if isset options["offset"] {
+                    // SQL Server 2012+ ONLY
+                    let options["offset"] .= " ROWS FETCH NEXT ". options["limit"] . " ROWS ONLY";
+                } else {
+                    let sql .= "TOP " . options["limit"] . " ";
+                }
+                unset options["limit"];
+            } elseif this->driverName == "oci" {
+                if isset options["offset"] {
+                    let options["offset"] .= " ROWS FETCH NEXT ". options["limit"] . " ROWS ONLY";
+                } else {
+                    if empty filters {
+                        let filters = "rownum = " . options["limit"];
+                    } else {
+                        let filters = ["AND": [filters, ["rownum", options["limit"]]]];
+                    }
+                }
+                unset options["limit"];
+            }
         }
 
         let filtered = this->where(filters),
