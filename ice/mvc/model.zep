@@ -532,7 +532,7 @@ abstract class Model extends Arr implements \Serializable
             }
         }
 
-        return static::findOne(filters);
+        return this->loadOne(filters);
     }
 
     /**
