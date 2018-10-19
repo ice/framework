@@ -1337,7 +1337,7 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 			}
 		}
 	}
-	ZEPHIR_RETURN_CALL_STATIC("findone", NULL, 0, filters);
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "loadone", NULL, 0, filters);
 	zephir_check_call_status();
 	RETURN_MM();
 
