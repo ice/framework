@@ -38,7 +38,7 @@ class Exception extends \Exception
         // Check if translation module is available.
         if di->has("i18n") {
             let message = di->get("i18n")->translate(str, values);
-        } elseif (typeof values == "array") {
+        } elseif typeof values == "array" {
             // Check if values is associative or sequential
             if count(array_filter(array_keys(values), "is_string")) {
                 let message = strtr(str, values);
@@ -99,7 +99,7 @@ class Exception extends \Exception
 
             let output .= sprintf(
                     "#%s %s: %s(%s)\n",
-                    count, 
+                    count,
                     (isset frame["file"] ? frame["file"] . "(" . frame["line"] . ")" : "[internal function]"),
                     (isset frame["class"] ? frame["class"] . frame["type"] . frame["function"] : frame["function"]),
                     args
@@ -134,8 +134,22 @@ class Exception extends \Exception
      */
     public static function handler(e)
     {
-        // Create new exceptin by this class
-        create_instance_params(get_called_class(), [e->getMessage(), e->getCode(), e]);
+        var di, response;
+
+        let di = Di::$fetch(),
+            response = di->get("response");
+
+        // Clear the previous response body
+        response->setBody("");
+
+        di->applyHook("exception.after.uncaught", [e, di]);
+
+        if response->getBody() {
+            echo response->send();
+        } else {
+            throw e;
+        }
+
         exit(1);
     }
 

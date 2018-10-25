@@ -112,7 +112,9 @@ class Dump
             "obj": "color:purple",
             "other": "color:maroon",
             "res": "color:lime",
-            "str": "color:teal"
+            "str": "color:teal",
+            "line": "highlight-block",
+            "lines": ""
         ];
 
         let this->styles = array_merge(defaultStyles, styles);
@@ -304,5 +306,71 @@ class Dump
         }
 
         return output;
+    }
+
+    /**
+     * Returns an HTML string, highlighting a specific line of a file, with some number of lines padded above and below.
+     *
+     * @param string file File to open
+     * @param integer line Line number to highlight
+     * @param integer padding Number of padding lines
+     * @return string Source of file, false if file is unreadable
+     */
+    public function source(string filename, int line, int padding = 5)
+    {
+        var file, range, format, lines, source, row;
+        int i = 0;
+
+        if empty filename || !is_readable(filename) {
+            // Continuing will cause errors
+            return false;
+        }
+
+        // Open the file and set the line position
+        let file = fopen(filename, "r");
+
+        // Set the reading range
+        let range = [
+            "start": line - padding,
+            "end": line + padding
+        ];
+
+        // Set the zero-padding amount for line numbers
+        let format = "% " . strlen(range["end"]) . "d",
+            source = "",
+            lines = [],
+            row = fgets(file);
+
+        while !feof(file) {
+            if row === false {
+                break;
+            }
+
+            // Increment the line number
+            let i++;
+
+            if i > range["end"] {
+                break;
+            }
+
+            if i >= range["start"] {
+                // Make the row safe for output
+                let row = htmlspecialchars(row, ENT_NOQUOTES, "utf-8");
+
+                if i === line {
+                    // Apply highlighting to this row
+                    let lines[sprintf(format, i)] .= strtr((this->plain ? ":var" : "<div class=':class'>:var</div>"), [":class": this->getStyle("line"), ":var": row]);
+                } else {
+                    let lines[sprintf(format, i)] .= strtr((this->plain ? ":var" : "<div class=':class'>:var</div>"), [":class": this->getStyle("lines"), ":var": row]);
+                }
+            }
+
+            let row = fgets(file);
+        }
+
+        // Close the file
+        fclose(file);
+
+        return lines;
     }
 }
