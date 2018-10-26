@@ -17,6 +17,7 @@ PHP_METHOD(Ice_Dump, one);
 PHP_METHOD(Ice_Dump, output);
 PHP_METHOD(Ice_Dump, variable);
 PHP_METHOD(Ice_Dump, vars);
+PHP_METHOD(Ice_Dump, source);
 zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setdetailed, 0, 0, 1)
@@ -94,6 +95,16 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_vars, 0, 0, IS_STRING, 
 #endif
 ZEND_END_ARG_INFO()
 
+#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_source, 0, 2, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_source, 0, 2, _IS_BOOL, NULL, 0)
+#endif
+	ZEND_ARG_TYPE_INFO(0, filename, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO(0, line, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO(0, padding, IS_LONG, 1)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, getDetailed, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setDetailed, arginfo_ice_dump_setdetailed, ZEND_ACC_PUBLIC)
@@ -109,5 +120,6 @@ ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, output, arginfo_ice_dump_output, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Dump, variable, arginfo_ice_dump_variable, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, vars, arginfo_ice_dump_vars, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, source, arginfo_ice_dump_source, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -271,7 +271,7 @@ PHP_METHOD(Ice_Mvc_Router, addRoute) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_route_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 153, &uri, &regex, method);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 155, &uri, &regex, method);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("routes"), &name, &_0 TSRMLS_CC);
 	zephir_read_property(&_1, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
@@ -351,7 +351,7 @@ PHP_METHOD(Ice_Mvc_Router, getRouteName) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 154, route, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 156, route, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
