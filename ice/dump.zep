@@ -314,9 +314,9 @@ class Dump
      * @param string file File to open
      * @param integer line Line number to highlight
      * @param integer padding Number of padding lines
-     * @return string Source of file, false if file is unreadable
+     * @return array Source of file, false if file is unreadable
      */
-    public function source(string filename, int line, int padding = 5)
+    public function source(string filename, int line, int padding = 5) -> array|boolean
     {
         var file, range, format, lines, source, row;
         int i = 0;
