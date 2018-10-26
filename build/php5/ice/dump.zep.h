@@ -17,6 +17,7 @@ PHP_METHOD(Ice_Dump, one);
 PHP_METHOD(Ice_Dump, output);
 PHP_METHOD(Ice_Dump, variable);
 PHP_METHOD(Ice_Dump, vars);
+PHP_METHOD(Ice_Dump, source);
 zend_object_value zephir_init_properties_Ice_Dump(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_setdetailed, 0, 0, 1)
@@ -60,6 +61,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_variable, 0, 0, 1)
 	ZEND_ARG_INFO(0, name)
 ZEND_END_ARG_INFO()
 
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_source, 0, 0, 2)
+	ZEND_ARG_INFO(0, filename)
+	ZEND_ARG_INFO(0, line)
+	ZEND_ARG_INFO(0, padding)
+ZEND_END_ARG_INFO()
+
 ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, getDetailed, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setDetailed, arginfo_ice_dump_setdetailed, ZEND_ACC_PUBLIC)
@@ -75,5 +82,6 @@ ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
 	PHP_ME(Ice_Dump, output, arginfo_ice_dump_output, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Dump, variable, arginfo_ice_dump_variable, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, vars, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Dump, source, arginfo_ice_dump_source, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -92,7 +92,7 @@ PHP_METHOD(Ice_Validation_Validator_Url, validate) {
 	}
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_LONG(&_1, 273);
-	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 133, value, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 137, value, &_1);
 	zephir_check_call_status();
 	if (!(zephir_is_true(_2))) {
 		ZEPHIR_INIT_VAR(_4$$4);

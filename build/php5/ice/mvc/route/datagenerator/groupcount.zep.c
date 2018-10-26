@@ -101,7 +101,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZEPHIR_INIT_VAR(regex);
 	ZEPHIR_CONCAT_SVS(regex, "~^(?|", _13, ")$~");
 	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
-	ZEPHIR_CALL_FUNCTION(&_14, "utf8_encode", NULL, 157, regex);
+	ZEPHIR_CALL_FUNCTION(&_14, "utf8_encode", NULL, 159, regex);
 	zephir_check_call_status();
 	zephir_array_update_string(&return_value, SL("regex"), &_14, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);
