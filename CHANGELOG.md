@@ -1,5 +1,11 @@
+-------------------------------------------------------------------
+Tue Oct 30 07:19:50 UTC 2018
 
 - Ice 1.4.0
+ * Exception, add a hook for pretty exceptions, fix #234
+ * Session, robust start a session
+ * Pdo, fixed things for different DBMS
+ * Response, add toJson and toXml
  * Db, Model, rename the remove method to delete fix #221
  * Env, add environment helper
  * Auth, token enhancement, rename Model driver to Db
