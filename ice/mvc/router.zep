@@ -72,7 +72,7 @@ class Router
     public function getRoute(string name = null)
     {
         var n = name;
-        
+
         if n === null {
             let n = this->route;
         }
@@ -177,7 +177,7 @@ class Router
         if empty routes {
             // Set default routes
             let routes = [
-                ["*", "[/{controller}[/{action}[/{id}[/{param}]]]]", ["controller":"\w+", "action":"\w+"]]
+                ["*", "[/{controller}[/{action}[/{id}[/{param}]]]]", ["controller":"\\w+", "action":"\\w+"]]
             ];
         }
 
