@@ -521,8 +521,8 @@ PHP_METHOD(Ice_Mvc_Router, setRoutes) {
 		zephir_array_fast_append(&_0$$3, &_1$$3);
 		ZEPHIR_INIT_VAR(&_2$$3);
 		zephir_create_array(&_2$$3, 2, 0 TSRMLS_CC);
-		add_assoc_stringl_ex(&_2$$3, SL("controller"), SL("\w+"));
-		add_assoc_stringl_ex(&_2$$3, SL("action"), SL("\w+"));
+		add_assoc_stringl_ex(&_2$$3, SL("controller"), SL("\\w+"));
+		add_assoc_stringl_ex(&_2$$3, SL("action"), SL("\\w+"));
 		zephir_array_fast_append(&_0$$3, &_2$$3);
 		zephir_array_fast_append(&routes, &_0$$3);
 	}
