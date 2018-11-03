@@ -100,15 +100,14 @@ class App extends Access
                             view->setSilent(true);
                             view->setFile(dispatcher->getHandler() . "/" . dispatcher->getAction());
                         }
-                        if !view->count() {
+                        if dispatcher->getParams() {
                             view->replace(dispatcher->getParams());
                         }
-
-                        view->setContent(view->render());
+                        view->render();
                     }
                     // if there is main layout view, other case e.g. load partial view through ajax
                     if view->getMainView() {
-                        response->setBody(view->layout(view->getMainView()));
+                        response->setBody(view->layout());
                     } else {
                         response->setBody(view->getContent());
                     }

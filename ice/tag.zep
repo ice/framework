@@ -695,14 +695,11 @@ class Tag
             if is_numeric(key) {
                 if fetch value, params[key] {
                     let attributes[param] = value;
+                    unset params[key];
                 }
             } else {
                 let attributes[param] = key;
             }
-        }
-
-        for key in defaultParams {
-            unset params[key];
         }
 
         let attributes = array_merge(attributes, params),
