@@ -134,6 +134,23 @@ class ModelsTest extends PHPUnit
     }
 
     /**
+     * Update test
+     */
+    public function testUpdate()
+    {
+        $user = Users::findOne(1);
+        $this->assertEquals(1, $user->id);
+        $this->assertEquals(0, $user->logins);
+        $user->update(['logins' => 1]);
+        $this->assertEquals(1, $user->id);
+        $this->assertEquals(1, $user->logins);
+        $user->logins++;
+        $user->update(['logins']);
+        $this->assertEquals(1, $user->id);
+        $this->assertEquals(2, $user->logins);
+    }
+
+    /**
      * Users
      *
      * @return array
