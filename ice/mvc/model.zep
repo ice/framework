@@ -421,6 +421,8 @@ abstract class Model extends Arr implements \Serializable
             this->setData(data);
         } else {
             let this->isLoaded = true;
+            // changes and update old data
+            this->setData(array_merge(data, fields));
         }
 
         this->di->applyHook("model.after.update", [this], this);
