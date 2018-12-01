@@ -317,7 +317,7 @@ class Pdo implements DbInterface
             values = filtered[1];
 
         if !empty filtered[0] {
-            sql .= " WHERE " . filtered[0];
+            let sql .= " WHERE " . filtered[0];
         }
 
         if isset options["group"] {
