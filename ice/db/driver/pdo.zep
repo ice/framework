@@ -313,8 +313,12 @@ class Pdo implements DbInterface
         }
 
         let filtered = this->where(filters),
-            sql .= columns . " FROM " . sprintf(this->identifier, from) . " WHERE " . filtered[0],
+            sql .= columns . " FROM " . sprintf(this->identifier, from),
             values = filtered[1];
+
+        if !empty filtered[0] {
+            let sql .= " WHERE " . filtered[0];
+        }
 
         if isset options["group"] {
             if typeof options["group"] == "array" {
