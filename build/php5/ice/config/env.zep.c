@@ -56,7 +56,7 @@ PHP_METHOD(Ice_Config_Env, __construct) {
 	}
 
 
-	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", &_0, 95, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", &_0, 94, data);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(_1);
 	_2 = zephir_fetch_nproperty_this(this_ptr, SL("data"), PH_NOISY_CC);

@@ -57,7 +57,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
@@ -86,12 +86,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 175);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 173);
 	zephir_check_call_status();
 	if (zephir_require_zval(path TSRMLS_CC) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 176);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 174);
 	zephir_check_call_status();
 	RETURN_MM();
 

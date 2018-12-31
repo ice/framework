@@ -187,7 +187,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 					break;
 				}
 				_15$$6 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
-				ZEPHIR_CALL_FUNCTION(&_16$$6, "ord", &_17, 36, _15$$6);
+				ZEPHIR_CALL_FUNCTION(&_16$$6, "ord", &_17, 35, _15$$6);
 				zephir_check_call_status();
 				if (ZEPHIR_LE_LONG(_16$$6, 10)) {
 					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated string literal.", "ice/filter/js.zep", 89);
@@ -303,7 +303,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 				_60$$12 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
 				_61$$12 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
 				_62$$12 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
-				ZEPHIR_CALL_FUNCTION(&_63$$12, "ord", &_17, 36, _62$$12);
+				ZEPHIR_CALL_FUNCTION(&_63$$12, "ord", &_17, 35, _62$$12);
 				zephir_check_call_status();
 				if (ZEPHIR_IS_STRING_IDENTICAL(_59$$12, "[")) {
 					while (1) {
@@ -321,7 +321,7 @@ PHP_METHOD(Ice_Filter_Js, action) {
 						_68$$14 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
 						_69$$14 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
 						_70$$14 = zephir_fetch_nproperty_this(this_ptr, SL("a"), PH_NOISY_CC);
-						ZEPHIR_CALL_FUNCTION(&_71$$14, "ord", &_17, 36, _70$$14);
+						ZEPHIR_CALL_FUNCTION(&_71$$14, "ord", &_17, 35, _70$$14);
 						zephir_check_call_status();
 						if (ZEPHIR_IS_STRING_IDENTICAL(_68$$14, "]")) {
 							break;
@@ -414,7 +414,7 @@ PHP_METHOD(Ice_Filter_Js, get) {
 	}
 	_7 = _6;
 	if (!(_7)) {
-		ZEPHIR_CALL_FUNCTION(&_8, "ord", NULL, 36, c);
+		ZEPHIR_CALL_FUNCTION(&_8, "ord", NULL, 35, c);
 		zephir_check_call_status();
 		_7 = ZEPHIR_GE_LONG(_8, 32);
 	}
@@ -434,14 +434,14 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 
 	zend_bool _1, _2;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *c, *_0 = NULL, *_3, *_4, _5;
+	zval *c, *_0 = NULL, *_3, _4, *_5, _6;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &c);
 
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 36, c);
+	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 35, c);
 	zephir_check_call_status();
 	_1 = ZEPHIR_GT_LONG(_0, 126);
 	if (!(_1)) {
@@ -450,11 +450,13 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 	_2 = _1;
 	if (!(_2)) {
 		ZEPHIR_INIT_VAR(_3);
-		ZEPHIR_INIT_VAR(_4);
-		ZEPHIR_SINIT_VAR(_5);
-		ZVAL_STRING(&_5, "/^[\\w\\$]$/", 0);
-		zephir_preg_match(_4, &_5, c, _3, 0, 0 , 0  TSRMLS_CC);
-		_2 = ZEPHIR_IS_LONG_IDENTICAL(_4, 1);
+		ZEPHIR_SINIT_VAR(_4);
+		ZVAL_STRING(&_4, "/^[\\w\\$]$/", 0);
+		ZEPHIR_INIT_VAR(_5);
+		ZEPHIR_SINIT_VAR(_6);
+		ZVAL_STRING(&_6, "/^[\\w\\$]$/", 0);
+		zephir_preg_match(_5, &_6, c, _3, 0, 0 , 0  TSRMLS_CC);
+		_2 = ZEPHIR_IS_LONG_IDENTICAL(_5, 1);
 	}
 	RETURN_MM_BOOL(_2);
 
@@ -479,7 +481,7 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	ZVAL_STRING(&_1, "\\xef", 0);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_LONG(&_2, 1);
-	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 85, _0, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 84, _0, &_1, &_2);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(_3, 0)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_4, 0);
@@ -644,7 +646,7 @@ PHP_METHOD(Ice_Filter_Js, next) {
 					}
 					ZEPHIR_CALL_METHOD(&c, this_ptr, "get", &_0, 0);
 					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 36, c);
+					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 35, c);
 					zephir_check_call_status();
 					if (ZEPHIR_LE_LONG(_3$$5, 10)) {
 						RETURN_CCTOR(c);

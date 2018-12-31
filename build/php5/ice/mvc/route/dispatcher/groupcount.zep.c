@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 	HashTable *_1, *_10$$3;
 	HashPosition _0, _9$$3;
 	zend_long i = 0, j = 0;
-	zval *routeData, *uri, *data = NULL, *matches = NULL, *handler = NULL, *varName = NULL, *varNames = NULL, *vars = NULL, **_2, *_14, *_3$$3 = NULL, *_4$$3, *_5$$3, *_6$$3, *_7$$3, *_8$$3, **_11$$3, *_13$$3 = NULL, *_12$$5;
+	zval *routeData, *uri, *data = NULL, *matches = NULL, *handler = NULL, *varName = NULL, *varNames = NULL, *vars = NULL, **_2, *_14, *_3$$3, *_4$$3 = NULL, *_5$$3, *_6$$3, *_7$$3, *_8$$3, **_11$$3, *_13$$3 = NULL, *_12$$5;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &routeData, &uri);
@@ -103,10 +103,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 	  ; zend_hash_move_forward_ex(_1, &_0)
 	) {
 		ZEPHIR_GET_HVALUE(data, _2);
-		ZEPHIR_INIT_NVAR(_3$$3);
-		zephir_array_fetch_string(&_4$$3, data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
-		zephir_preg_match(_3$$3, _4$$3, uri, matches, 0, 0 , 0  TSRMLS_CC);
-		if (!(zephir_is_true(_3$$3))) {
+		zephir_array_fetch_string(&_3$$3, data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
+		ZEPHIR_INIT_NVAR(_4$$3);
+		zephir_preg_match(_4$$3, _3$$3, uri, matches, 0, 0 , 0  TSRMLS_CC);
+		if (!(zephir_is_true(_4$$3))) {
 			continue;
 		}
 		j = zephir_fast_count_int(matches TSRMLS_CC);

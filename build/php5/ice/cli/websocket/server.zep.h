@@ -25,7 +25,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, address)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server_connect, 0, 0, 1)

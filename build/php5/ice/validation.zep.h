@@ -54,7 +54,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_sethumanlabels, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_resolve, 0, 0, 2)
@@ -75,7 +75,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rules, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validate, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 	ZEND_ARG_INFO(0, clear)
 ZEND_END_ARG_INFO()
 
@@ -98,7 +98,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getlabel, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_setdefaultmessages, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, messages, 1)
+	ZEND_ARG_ARRAY_INFO(0, messages, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 0, 1)

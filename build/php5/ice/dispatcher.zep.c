@@ -522,7 +522,7 @@ PHP_METHOD(Ice_Dispatcher, getParam) {
 		} else {
 			ZVAL_BOOL(_1$$4, 0);
 		}
-		ZEPHIR_RETURN_CALL_METHOD(params, "getvalue", NULL, 47, key, filters, defaultValue, _1$$4);
+		ZEPHIR_RETURN_CALL_METHOD(params, "getvalue", NULL, 46, key, filters, defaultValue, _1$$4);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -636,7 +636,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_STRING(_14$$4, "Dispatcher has detected a cyclic routing causing stability problems", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_NVAR(_15$$4);
 			ZVAL_LONG(_15$$4, 1);
-			ZEPHIR_CALL_METHOD(NULL, _13$$4, "__construct", &_16, 14, _14$$4, _15$$4);
+			ZEPHIR_CALL_METHOD(NULL, _13$$4, "__construct", &_16, 13, _14$$4, _15$$4);
 			zephir_check_temp_parameter(_14$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_13$$4, "ice/dispatcher.zep", 169 TSRMLS_CC);
@@ -664,7 +664,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				ZEPHIR_OBS_NVAR(_22$$7);
 				zephir_read_property_this(&_22$$7, this_ptr, SL("module"), PH_NOISY_CC);
 				zephir_array_fast_append(_20$$7, _22$$7);
-				ZEPHIR_CALL_METHOD(NULL, _19$$7, "__construct", &_16, 14, _20$$7);
+				ZEPHIR_CALL_METHOD(NULL, _19$$7, "__construct", &_16, 13, _20$$7);
 				zephir_check_call_status();
 				zephir_throw_exception_debug(_19$$7, "ice/dispatcher.zep", 177 TSRMLS_CC);
 				ZEPHIR_MM_RESTORE();
@@ -685,7 +685,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 					ZVAL_STRING(_25$$10, "Module definition path '%s' doesn't exist", 1);
 					zephir_array_fast_append(_24$$10, _25$$10);
 					zephir_array_fast_append(_24$$10, path);
-					ZEPHIR_CALL_METHOD(NULL, _23$$10, "__construct", &_16, 14, _24$$10);
+					ZEPHIR_CALL_METHOD(NULL, _23$$10, "__construct", &_16, 13, _24$$10);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(_23$$10, "ice/dispatcher.zep", 186 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
@@ -774,7 +774,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			zephir_array_fast_append(_47$$14, handlerClass);
 			ZEPHIR_INIT_NVAR(_48$$14);
 			ZVAL_LONG(_48$$14, 2);
-			ZEPHIR_CALL_METHOD(NULL, _46$$14, "__construct", &_16, 14, _47$$14, _48$$14);
+			ZEPHIR_CALL_METHOD(NULL, _46$$14, "__construct", &_16, 13, _47$$14, _48$$14);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_46$$14, "ice/dispatcher.zep", 225 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -827,7 +827,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			zephir_array_fast_append(_59$$20, handlerName);
 			ZEPHIR_INIT_NVAR(_60$$20);
 			ZVAL_LONG(_60$$20, 3);
-			ZEPHIR_CALL_METHOD(NULL, _58$$20, "__construct", &_16, 14, _59$$20, _60$$20);
+			ZEPHIR_CALL_METHOD(NULL, _58$$20, "__construct", &_16, 13, _59$$20, _60$$20);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_58$$20, "ice/dispatcher.zep", 257 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -842,7 +842,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_STRING(_63$$22, "Action parameters must be an array", ZEPHIR_TEMP_PARAM_COPY);
 			ZEPHIR_INIT_NVAR(_64$$22);
 			ZVAL_LONG(_64$$22, 4);
-			ZEPHIR_CALL_METHOD(NULL, _62$$22, "__construct", &_16, 14, _63$$22, _64$$22);
+			ZEPHIR_CALL_METHOD(NULL, _62$$22, "__construct", &_16, 13, _63$$22, _64$$22);
 			zephir_check_temp_parameter(_63$$22);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(_62$$22, "ice/dispatcher.zep", 262 TSRMLS_CC);

@@ -10,7 +10,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine_engineinterface_render, 0, 0, 1)
 	ZEND_ARG_INFO(0, path)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_view_engine_engineinterface_method_entry) {

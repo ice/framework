@@ -13,7 +13,7 @@ PHP_METHOD(Ice_Pagination, basic);
 PHP_METHOD(Ice_Pagination, floating);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination_preparebutton, 0, 0, 1)
@@ -25,17 +25,17 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination_minimal, 0, 0, 0)
 	ZEND_ARG_INFO(0, url)
-	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination_basic, 0, 0, 0)
 	ZEND_ARG_INFO(0, url)
-	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_pagination_floating, 0, 0, 0)
 	ZEND_ARG_INFO(0, url)
-	ZEND_ARG_ARRAY_INFO(0, parameters, 1)
+	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 	ZEND_ARG_INFO(0, countOut)
 	ZEND_ARG_INFO(0, countIn)
 ZEND_END_ARG_INFO()

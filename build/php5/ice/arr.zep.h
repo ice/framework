@@ -31,7 +31,7 @@ PHP_METHOD(Ice_Arr, __unset);
 zend_object_value zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_has, 0, 0, 1)
@@ -65,7 +65,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getvalue, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_setdata, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_remove, 0, 0, 1)

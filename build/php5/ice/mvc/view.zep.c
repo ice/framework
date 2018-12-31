@@ -264,7 +264,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(_0))) {
 		ZEPHIR_INIT_VAR(_1$$3);
 		object_init_ex(_1$$3, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 173, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, _1$$3, "__construct", NULL, 171, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(_2$$3);
 		ZVAL_STRING(_2$$3, ".phtml", 1);
@@ -302,9 +302,9 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 					object_init_ex(_11$$10, ice_exception_ce);
 					ZEPHIR_SINIT_NVAR(_12$$10);
 					ZVAL_STRING(&_12$$10, "Invalid template engine registration for '%s' extension", 0);
-					ZEPHIR_CALL_FUNCTION(&_13$$10, "sprintf", &_14, 13, &_12$$10, ext);
+					ZEPHIR_CALL_FUNCTION(&_13$$10, "sprintf", &_14, 12, &_12$$10, ext);
 					zephir_check_call_status();
-					ZEPHIR_CALL_METHOD(NULL, _11$$10, "__construct", &_15, 14, _13$$10);
+					ZEPHIR_CALL_METHOD(NULL, _11$$10, "__construct", &_15, 13, _13$$10);
 					zephir_check_call_status();
 					zephir_throw_exception_debug(_11$$10, "ice/mvc/view.zep", 63 TSRMLS_CC);
 					ZEPHIR_MM_RESTORE();
@@ -376,7 +376,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	_3 = zephir_fetch_nproperty_this(this_ptr, SL("file"), PH_NOISY_CC);
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 4);
-	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 174, _3, &_4);
+	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 172, _3, &_4);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(ext))) {
 		ZEPHIR_OBS_VAR(engine);
@@ -447,9 +447,9 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		object_init_ex(_25$$16, ice_exception_ce);
 		ZEPHIR_SINIT_VAR(_26$$16);
 		ZVAL_STRING(&_26$$16, "The requested view %s could not be found", 0);
-		ZEPHIR_CALL_FUNCTION(&_27$$16, "sprintf", NULL, 13, &_26$$16, path);
+		ZEPHIR_CALL_FUNCTION(&_27$$16, "sprintf", NULL, 12, &_26$$16, path);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, _25$$16, "__construct", &_28, 14, _27$$16);
+		ZEPHIR_CALL_METHOD(NULL, _25$$16, "__construct", &_28, 13, _27$$16);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_25$$16, "ice/mvc/view.zep", 134 TSRMLS_CC);
 		ZEPHIR_MM_RESTORE();
@@ -477,7 +477,7 @@ PHP_METHOD(Ice_Mvc_View, load) {
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(file_param) == IS_STRING)) {
@@ -518,7 +518,7 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(file_param) == IS_STRING)) {
@@ -603,7 +603,7 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
 	zephir_fetch_params(1, 2, 0, &name_param, &value);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {

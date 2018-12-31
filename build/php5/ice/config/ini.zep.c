@@ -62,15 +62,15 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 29);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 48, data, ZEPHIR_GLOBAL(global_true));
+	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 47, data, ZEPHIR_GLOBAL(global_true));
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_1);
 	ZVAL_LONG(&_1, 1);
-	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 48, data, ZEPHIR_GLOBAL(global_true), &_1);
+	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 47, data, ZEPHIR_GLOBAL(global_true), &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&data, this_ptr, "map", NULL, 0, ini, raw);
 	zephir_check_call_status();
-	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, getThis(), "__construct", &_2, 26, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, getThis(), "__construct", &_2, 25, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -86,7 +86,7 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 PHP_METHOD(Ice_Config_Ini, cast) {
 
 	zend_bool _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
-	zval *ini, *raw, *_7$$7, *_8$$7, _9$$7;
+	zval *ini, *raw, *_7$$7, _8$$7, *_9$$7, _10$$7;
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
@@ -133,11 +133,13 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 		}
 		if (zephir_is_numeric(ini)) {
 			ZEPHIR_INIT_VAR(_7$$7);
-			ZEPHIR_INIT_VAR(_8$$7);
-			ZEPHIR_SINIT_VAR(_9$$7);
-			ZVAL_STRING(&_9$$7, "/[.]+/", 0);
-			zephir_preg_match(_8$$7, &_9$$7, ini, _7$$7, 0, 0 , 0  TSRMLS_CC);
-			if (zephir_is_true(_8$$7)) {
+			ZEPHIR_SINIT_VAR(_8$$7);
+			ZVAL_STRING(&_8$$7, "/[.]+/", 0);
+			ZEPHIR_INIT_VAR(_9$$7);
+			ZEPHIR_SINIT_VAR(_10$$7);
+			ZVAL_STRING(&_10$$7, "/[.]+/", 0);
+			zephir_preg_match(_9$$7, &_10$$7, ini, _7$$7, 0, 0 , 0  TSRMLS_CC);
+			if (zephir_is_true(_9$$7)) {
 				RETURN_MM_DOUBLE(zephir_get_doubleval(ini));
 			} else {
 				RETURN_MM_LONG(zephir_get_intval(ini));
@@ -180,7 +182,7 @@ PHP_METHOD(Ice_Config_Ini, map) {
 		ZEPHIR_GET_HVALUE(value, _2);
 		if (Z_TYPE_P(value) == IS_ARRAY) {
 			zephir_array_fetch(&_4$$4, raw, key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89 TSRMLS_CC);
-			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "map", &_5, 49, value, _4$$4);
+			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "map", &_5, 48, value, _4$$4);
 			zephir_check_call_status();
 			zephir_array_update_zval(&data, key, &_3$$4, PH_COPY | PH_SEPARATE);
 		} else {

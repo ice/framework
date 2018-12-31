@@ -564,7 +564,7 @@ PHP_METHOD(Ice_Assets, minify) {
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
 
 	if (UNEXPECTED(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(content_param) == IS_STRING)) {
@@ -608,7 +608,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
 
 	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(uri_param) == IS_STRING)) {
@@ -631,13 +631,13 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZEPHIR_CALL_METHOD(&target, this_ptr, "getoption", &_1, 0, _0);
 	zephir_check_temp_parameter(_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 55, uri);
+	ZEPHIR_CALL_FUNCTION(&_2, "dirname", &_3, 54, uri);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(dir);
 	ZEPHIR_CONCAT_VS(dir, _2, "/");
 	ZEPHIR_INIT_VAR(_4);
 	ZEPHIR_CONCAT_SV(_4, ".", type);
-	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 56, uri, _4);
+	ZEPHIR_CALL_FUNCTION(&file, "basename", NULL, 55, uri, _4);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(uriMin);
 	ZEPHIR_CONCAT_VVVSV(uriMin, target, dir, file, ".min.", type);
@@ -656,7 +656,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				ZEPHIR_INIT_NVAR(minify);
 				ZVAL_BOOL(minify, 1);
 			} else {
-				ZEPHIR_CALL_FUNCTION(&minify, "md5_file", NULL, 57, destination);
+				ZEPHIR_CALL_FUNCTION(&minify, "md5_file", NULL, 56, destination);
 				zephir_check_call_status();
 			}
 			break;
@@ -704,22 +704,22 @@ PHP_METHOD(Ice_Assets, prepare) {
 			}
 		}
 		if (ZEPHIR_IS_TRUE_IDENTICAL(minify)) {
-			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 55, destination);
+			ZEPHIR_CALL_FUNCTION(&_11$$14, "dirname", &_3, 54, destination);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 58, _11$$14);
+			ZEPHIR_CALL_FUNCTION(&_12$$14, "is_dir", NULL, 57, _11$$14);
 			zephir_check_call_status();
 			if (!(zephir_is_true(_12$$14))) {
 				ZEPHIR_SINIT_VAR(_13$$15);
 				ZVAL_LONG(&_13$$15, 0);
-				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 59, &_13$$15);
+				ZEPHIR_CALL_FUNCTION(&old, "umask", &_14, 58, &_13$$15);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 55, destination);
+				ZEPHIR_CALL_FUNCTION(&_15$$15, "dirname", &_3, 54, destination);
 				zephir_check_call_status();
 				ZEPHIR_SINIT_NVAR(_13$$15);
 				ZVAL_LONG(&_13$$15, 0777);
-				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 60, _15$$15, &_13$$15, ZEPHIR_GLOBAL(global_true));
+				ZEPHIR_CALL_FUNCTION(NULL, "mkdir", NULL, 59, _15$$15, &_13$$15, ZEPHIR_GLOBAL(global_true));
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 59, old);
+				ZEPHIR_CALL_FUNCTION(NULL, "umask", &_14, 58, old);
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(_16$$14);

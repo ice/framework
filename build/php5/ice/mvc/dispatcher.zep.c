@@ -94,7 +94,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	if ((zephir_method_exists(_5, action TSRMLS_CC)  == SUCCESS)) {
 		RETURN_CCTOR(action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 165);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 164);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 166);
+	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 165);
 	zephir_check_call_status();
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("di"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(_2);
@@ -141,7 +141,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		ZVAL_STRING(_9$$3, "This Webpage has a redirect loop", ZEPHIR_TEMP_PARAM_COPY);
 		ZEPHIR_INIT_VAR(_10$$3);
 		ZVAL_LONG(_10$$3, 5);
-		ZEPHIR_CALL_METHOD(NULL, _8$$3, "__construct", NULL, 14, _9$$3, _10$$3);
+		ZEPHIR_CALL_METHOD(NULL, _8$$3, "__construct", NULL, 13, _9$$3, _10$$3);
 		zephir_check_temp_parameter(_9$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(_8$$3, "ice/mvc/dispatcher.zep", 59 TSRMLS_CC);

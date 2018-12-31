@@ -239,7 +239,7 @@ PHP_METHOD(Ice_Mvc_Router, addRoute) {
 
 	ZEPHIR_INIT_VAR(_0);
 	object_init_ex(_0, ice_mvc_route_ce);
-	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 171, uri, regex, method);
+	ZEPHIR_CALL_METHOD(NULL, _0, "__construct", NULL, 169, uri, regex, method);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("routes"), name, _0 TSRMLS_CC);
 	_1 = zephir_fetch_nproperty_this(this_ptr, SL("routes"), PH_NOISY_CC);
@@ -308,7 +308,7 @@ PHP_METHOD(Ice_Mvc_Router, getRouteName) {
 
 
 	_0 = zephir_fetch_nproperty_this(this_ptr, SL("routes"), PH_NOISY_CC);
-	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 172, route, _0);
+	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 170, route, _0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -630,7 +630,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 	}
 	zephir_array_fast_append(_21, _22);
 	zephir_array_fast_append(_21, uri);
-	ZEPHIR_CALL_METHOD(NULL, _20, "__construct", NULL, 14, _21);
+	ZEPHIR_CALL_METHOD(NULL, _20, "__construct", NULL, 13, _21);
 	zephir_check_call_status();
 	zephir_throw_exception_debug(_20, "ice/mvc/router.zep", 270 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -650,7 +650,7 @@ PHP_METHOD(Ice_Mvc_Router, match) {
 	HashTable *_4;
 	HashPosition _3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, *method_param = NULL, *name = NULL, *route = NULL, *params = NULL, *matches = NULL, *_0 = NULL, _1, *_2, **_5;
+	zval *uri_param = NULL, *method_param = NULL, *route = NULL, *params = NULL, *matches = NULL, *_0 = NULL, _1, *_2, **_5;
 	zval *uri = NULL, *method = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -689,7 +689,6 @@ PHP_METHOD(Ice_Mvc_Router, match) {
 	  ; zend_hash_get_current_data_ex(_4, (void**) &_5, &_3) == SUCCESS
 	  ; zend_hash_move_forward_ex(_4, &_3)
 	) {
-		ZEPHIR_GET_HMKEY(name, _4, _3);
 		ZEPHIR_GET_HVALUE(route, _5);
 		ZEPHIR_CALL_METHOD(&params, route, "matches", NULL, 0, uri, method);
 		zephir_check_call_status();
@@ -722,7 +721,7 @@ PHP_METHOD(Ice_Mvc_Router, uri) {
 	HashPosition _1;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method = NULL;
-	zval *params_param = NULL, *method_param = NULL, *name = NULL, *route = NULL, *uri = NULL, *_0, **_3, *_5$$3 = NULL;
+	zval *params_param = NULL, *method_param = NULL, *route = NULL, *uri = NULL, *_0, **_3, *_5$$3 = NULL;
 	zval *params = NULL;
 
 	ZEPHIR_MM_GROW();
@@ -743,7 +742,6 @@ PHP_METHOD(Ice_Mvc_Router, uri) {
 	  ; zend_hash_get_current_data_ex(_2, (void**) &_3, &_1) == SUCCESS
 	  ; zend_hash_move_forward_ex(_2, &_1)
 	) {
-		ZEPHIR_GET_HMKEY(name, _2, _1);
 		ZEPHIR_GET_HVALUE(route, _3);
 		ZEPHIR_CALL_METHOD(&uri, route, "uri", NULL, 0, params);
 		zephir_check_call_status();

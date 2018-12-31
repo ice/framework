@@ -117,13 +117,13 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 
 	ZEPHIR_SINIT_VAR(_0);
 	ZVAL_STRING(&_0, "mongodb", 0);
-	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 103, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 102, &_0);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_0);
 	ZVAL_STRING(&_0, "1.2.0alpha1", 0);
 	ZEPHIR_SINIT_VAR(_2);
 	ZVAL_STRING(&_2, ">=", 0);
-	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 104, _1, &_0, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 103, _1, &_0, &_2);
 	zephir_check_call_status();
 	if (zephir_is_true(_3)) {
 		ZEPHIR_INIT_VAR(client);
@@ -223,7 +223,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 				ZVAL_LONG(value, tmp$$4);
 				break;
 			}
-			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 75, value);
+			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 74, value);
 			zephir_check_call_status();
 			tmp$$4 = (zephir_get_numberval(_3$$7) * 1000);
 			ZEPHIR_INIT_NVAR(value);
@@ -265,7 +265,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -301,7 +301,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	if (zephir_fast_count_int(result TSRMLS_CC)) {
 		object_init_ex(_1, ice_arr_ce);
 		ZEPHIR_MAKE_REF(result);
-		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 105, result);
+		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 104, result);
 		ZEPHIR_UNREF(result);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, _1, "__construct", NULL, 5, _2);
@@ -339,7 +339,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, find) {
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -394,7 +394,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -487,7 +487,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	add_assoc_stringl_ex(_10, SS("array"), SL("array"), 1);
 	ZEPHIR_CALL_METHOD(NULL, result, "settypemap", NULL, 0, _10);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 106, result);
+	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 105, result);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -510,7 +510,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, insert) {
 	zephir_fetch_params(1, 1, 1, &from_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -565,7 +565,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, update) {
 	zephir_fetch_params(1, 1, 2, &from_param, &filters, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -622,7 +622,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, delete) {
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {

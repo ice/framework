@@ -104,7 +104,7 @@ PHP_METHOD(Ice_Http_Request, hasRequest) {
 	zephir_fetch_params(1, 1, 0, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -137,7 +137,7 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
 	zephir_fetch_params(1, 1, 0, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
 	zephir_fetch_params(1, 1, 0, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -205,7 +205,7 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 	zephir_fetch_params(1, 1, 0, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -239,7 +239,7 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 	zephir_fetch_params(1, 1, 0, &name_param);
 
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(name_param) == IS_STRING)) {
@@ -512,11 +512,11 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	zephir_check_call_status();
 	ZEPHIR_SINIT_VAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 137, client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 136, client, &_4);
 	zephir_check_call_status();
 	ZEPHIR_SINIT_NVAR(_4);
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 137, forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 136, forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(_5)) {
 		ZEPHIR_CPY_WRT(ip, client);
