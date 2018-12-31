@@ -318,7 +318,7 @@ class Dump
      */
     public function source(string filename, int line, int padding = 5) -> array|boolean
     {
-        var file, range, format, lines, source, row;
+        var file, range, format, lines, row;
         int i = 0;
 
         if empty filename || !is_readable(filename) {
@@ -337,7 +337,6 @@ class Dump
 
         // Set the zero-padding amount for line numbers
         let format = "% " . strlen(range["end"]) . "d",
-            source = "",
             lines = [],
             row = fgets(file);
 

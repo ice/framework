@@ -263,8 +263,20 @@ abstract class Model extends Arr implements \Serializable
         }
 
         // Remove primary key
-        if typeof this->primary == "string" && !primary {
-            unset fields[this->primary];
+        if !primary {
+            var key, keys = [];
+
+            if typeof this->primary == "array" {
+                for key in this->primary {
+                    let keys[] = key;
+                }
+            } else {
+                let keys[] = this->primary;
+            }
+
+            for key in keys {
+                unset fields[key];
+            }
         }
 
         return fields;
@@ -408,13 +420,7 @@ abstract class Model extends Arr implements \Serializable
 
         this->di->applyHook("model.before.update", [this], this);
 
-        let fields = this->fields(this->getData(), !this->autoincrement);
-
-        if typeof this->primary == "array" {
-            let fields = array_diff_key(fields, primary);
-        }
-
-        let status = this->db->update(this->from, primary, fields);
+        let status = this->db->update(this->from, primary, this->fields(this->getData(), !this->autoincrement));
 
         if !status {
             // Rollback changes and restore old data

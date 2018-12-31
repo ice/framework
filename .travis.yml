@@ -8,11 +8,12 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
   - nightly
 
 matrix:
   allow_failures:
-    - php: 7.3
+    - php: 7.4
     - php: nightly
 
 services:
@@ -33,11 +34,11 @@ before_install:
 #  - git config --global user.signingkey 781C2FB7
   - git submodule --quiet update --init --recursive
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin git@github.com:ice/framework.git; fi
-  - composer install --prefer-source --no-scripts
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-source --no-scripts
 
 before_script:
   - (cd vendor/iceframework/zephir-parser; ./install; phpenv config-add tests/ci/zephir_parser.ini)
-  - php -d memory_limit=512M ./vendor/phalcon/zephir/compiler.php generate --parser-compiled=yes
+  - php -d memory_limit=512M ./vendor/bin/zephir generate
   - (mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
@@ -52,7 +53,7 @@ after_failure:
 after_success:
   - export ZEPHIR_TARGET="legacy"
   - if [[ "$TRAVIS_PHP_VERSION" = "5.6" ]]; then export ZEPHIR_TARGET="php5"; fi
-  - if [[ "$TRAVIS_PHP_VERSION" = "7.2" ]]; then export ZEPHIR_TARGET="php7"; fi
+  - if [[ "$TRAVIS_PHP_VERSION" = "7.3" ]]; then export ZEPHIR_TARGET="php7"; fi
   - git checkout $TRAVIS_BRANCH;
   - (rm -rf build/$ZEPHIR_TARGET/; mkdir -p build/$ZEPHIR_TARGET; cp -a generated/. build/$ZEPHIR_TARGET)
   - 'git add -A build/$ZEPHIR_TARGET; git commit -m "$ZEPHIR_TARGET, $TRAVIS_COMMIT: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'

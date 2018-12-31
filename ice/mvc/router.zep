@@ -279,13 +279,13 @@ class Router
      */
     public function match(string uri = null, string method = null)
     {
-        var name, route, params, matches;
+        var route, params, matches;
 
         // Remove trailing slashes from the URI
         let uri = uri == "/" ? "/" : rtrim(uri, "/"),
             matches = null;
 
-        for name, route in this->routes {
+        for route in this->routes {
             let params = route->matches(uri, method);
             if !empty params {
                 return route;
@@ -311,9 +311,9 @@ class Router
      */
     public function uri(array! params, string method = "*")
     {
-        var name, route, uri;
+        var route, uri;
 
-        for name, route in this->routes {
+        for route in this->routes {
             let uri = route->uri(params);
             if uri !== false && route->checkMethod(method) {
                 return uri;
