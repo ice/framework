@@ -37,7 +37,7 @@ before_install:
 
 before_script:
   - (cd vendor/iceframework/zephir-parser; ./install; phpenv config-add tests/ci/zephir_parser.ini)
-  - php -d memory_limit=512M ./vendor/phalcon/zephir/compiler.php generate --parser-compiled=yes
+  - php -d memory_limit=512M ./vendor/bin/zephir generate --parser-compiled=yes
   - (mkdir generated; cp -a ext/. generated)
   - (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
   - ulimit -c unlimited || true
