@@ -450,7 +450,7 @@ PHP_METHOD(Ice_Mvc_FastRouter, fastRoute) {
 		zephir_array_fetch_string(&_11$$3, &options, SL("dataGenerator"), PH_NOISY | PH_READONLY, "ice/mvc/fastrouter.zep", 99 TSRMLS_CC);
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(&_10$$3, &_11$$3 TSRMLS_CC);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 151, &_8$$3, &_10$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 150, &_8$$3, &_10$$3);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, SL("collector"), &_7$$3);
 	}
@@ -672,7 +672,7 @@ PHP_METHOD(Ice_Mvc_FastRouter, handle) {
 			ZEPHIR_INIT_VAR(&_10$$4);
 			ZVAL_STRING(&_10$$4, "The requested route could not be found");
 			ZVAL_LONG(&_11$$4, 0);
-			ZEPHIR_CALL_METHOD(NULL, &_9$$4, "__construct", &_12, 13, &_10$$4, &_11$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_9$$4, "__construct", &_12, 12, &_10$$4, &_11$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_9$$4, "ice/mvc/fastrouter.zep", 174 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -702,7 +702,7 @@ PHP_METHOD(Ice_Mvc_FastRouter, handle) {
 			ZEPHIR_INIT_VAR(&_19$$6);
 			ZVAL_STRING(&_19$$6, "A request was made of a resource using a request method not supported by that resource");
 			ZVAL_LONG(&_20$$6, 2);
-			ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", &_12, 13, &_19$$6, &_20$$6);
+			ZEPHIR_CALL_METHOD(NULL, &_18$$6, "__construct", &_12, 12, &_19$$6, &_20$$6);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_18$$6, "ice/mvc/fastrouter.zep", 184 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();

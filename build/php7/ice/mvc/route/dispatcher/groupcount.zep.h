@@ -17,7 +17,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_groupcount_setvariablero
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_groupcount___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_groupcount_dispatchvariableroute, 0, 0, 2)

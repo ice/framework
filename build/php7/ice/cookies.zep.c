@@ -530,7 +530,7 @@ PHP_METHOD(Ice_Cookies, salt) {
 	zephir_read_property(&_4, this_ptr, SL("salt"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_CONCAT_VVVV(&_5, &userAgent, name, value, &_4);
-	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 59, &_5);
+	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 58, &_5);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -581,7 +581,7 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 	ZVAL_LONG(&_0, expire);
 	ZVAL_BOOL(&_1, (secure ? 1 : 0));
 	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 84, &name, &value, &_0, &path, &domain, &_1, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 83, &name, &value, &_0, &path, &domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 

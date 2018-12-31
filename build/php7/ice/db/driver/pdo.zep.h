@@ -22,13 +22,25 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId);
 PHP_METHOD(Ice_Db_Driver_Pdo, getError);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo___construct, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, dsn, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, dsn)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, user, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, user)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, password, IS_STRING, 1)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+#else
+	ZEND_ARG_INFO(0, password)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_getidvalue, 0, 1, IS_LONG, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_getidvalue, 0, 1, IS_LONG, NULL, 0)
@@ -42,58 +54,86 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_getdatetime, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_findone, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, from)
+#endif
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
+	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_find, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
-ZEND_END_ARG_INFO()
-
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_where, 0, 0, IS_NULL, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_where, 0, 0, IS_NULL, NULL, 0)
+	ZEND_ARG_INFO(0, from)
 #endif
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, values, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
+	ZEND_ARG_ARRAY_INFO(0, fields, 0)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_where, 0, 0, IS_ARRAY, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_where, 0, 0, IS_ARRAY, NULL, 0)
+#endif
+	ZEND_ARG_INFO(0, filters)
+	ZEND_ARG_ARRAY_INFO(0, values, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_select, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, from)
+#endif
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
+	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_insert, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+#else
+	ZEND_ARG_INFO(0, from)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_update, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, from)
+#endif
 	ZEND_ARG_INFO(0, filters)
-	ZEND_ARG_ARRAY_INFO(0, fields, 1)
+	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_delete, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, from)
+#endif
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_driver_pdo_query, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, sql, IS_STRING, 0)
-	ZEND_ARG_ARRAY_INFO(0, values, 1)
+#else
+	ZEND_ARG_INFO(0, sql)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, values, 0)
 	ZEND_ARG_INFO(0, obj)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_getlastinsertid, 0, 0, IS_LONG, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_driver_pdo_getlastinsertid, 0, 0, IS_LONG, NULL, 0)

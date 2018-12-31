@@ -54,89 +54,141 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_sethumanlabels, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_resolve, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, alias)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rule, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 	ZEND_ARG_INFO(0, validators)
 	ZEND_ARG_INFO(0, options)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rules, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, validators, 0)
-	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, merge)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validate, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validate, 0, 0, _IS_BOOL, NULL, 0)
 #endif
-	ZEND_ARG_ARRAY_INFO(0, data, 1)
-	ZEND_ARG_TYPE_INFO(0, clear, _IS_BOOL, 1)
+	ZEND_ARG_ARRAY_INFO(0, data, 0)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, clear, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, clear)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_valid, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_valid, 0, 0, _IS_BOOL, NULL, 0)
 #endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_hasvalue, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_hasvalue, 0, 1, _IS_BOOL, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalue, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 1)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, filtered)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_getvalues, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, filtered, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, filtered)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getlabel, 0, 1, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getlabel, 0, 1, IS_STRING, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_setdefaultmessages, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, messages, 1)
+	ZEND_ARG_ARRAY_INFO(0, messages, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 1, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 1, IS_STRING, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, type, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, type)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_addmessage, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, message)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_validation_getmessages, 0, 0, Ice\\Arr, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getmessages, 0, 0, NULL, "Ice\\Arr", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getmessages, 0, 0, IS_OBJECT, "Ice\\Arr", 0)
 #endif
 ZEND_END_ARG_INFO()
 

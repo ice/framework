@@ -12,15 +12,19 @@ PHP_METHOD(Ice_Validation_Validator, getOptions);
 zend_object *zephir_init_properties_Ice_Validation_Validator(zend_class_entry *class_type TSRMLS_DC);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validator___construct, 0, 0, 0)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validator_validate, 0, 0, 2)
 	ZEND_ARG_OBJ_INFO(0, validation, Ice\\Validation, 0)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validator_has, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validator_has, 0, 1, _IS_BOOL, NULL, 0)
@@ -40,7 +44,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_validator_getoptions, 0, 0, 0)
 	ZEND_ARG_INFO(0, keys)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_validator_method_entry) {

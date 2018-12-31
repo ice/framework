@@ -380,10 +380,18 @@ static PHP_GSHUTDOWN_FUNCTION(ice)
 
 PHP_FUNCTION(g_ice__t);
 ZEND_BEGIN_ARG_INFO_EX(arginfo_g_ice__t, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, str, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, str)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, values, 1)
 	ZEND_ARG_INFO(0, context)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, lang, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, lang)
+#endif
 ZEND_END_ARG_INFO()
 
 

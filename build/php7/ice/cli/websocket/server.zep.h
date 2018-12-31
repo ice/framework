@@ -24,11 +24,15 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server_setverbose, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server___construct, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, address, IS_STRING, 1)
-	ZEND_ARG_ARRAY_INFO(0, options, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, address, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, address)
+#endif
+	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_connect, 0, 1, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_connect, 0, 1, _IS_BOOL, NULL, 0)
@@ -40,60 +44,64 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server_disconnect, 0, 0, 1)
 	ZEND_ARG_INFO(0, socket)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_onvalidate, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onvalidate, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onvalidate, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_onconnect, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onconnect, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onconnect, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_ondisconnect, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_ondisconnect, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_ondisconnect, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_onmessage, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onmessage, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onmessage, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_ontick, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_ontick, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_ontick, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_onboot, 0, 1, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onboot, 0, 1, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_onboot, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_server_callback, 0, 2, Ice\\Cli\\Websocket\\self, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_callback, 0, 2, NULL, "Ice\\Cli\\Websocket\\self", 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_callback, 0, 2, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, key)
+#endif
 	ZEND_ARG_INFO(0, callback)
 ZEND_END_ARG_INFO()
 

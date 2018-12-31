@@ -19,7 +19,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_addmodule, 0, 0, 2)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, name)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
@@ -28,10 +32,26 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_handle, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_color, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, color, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, decoration, IS_LONG, 1)
+#else
+	ZEND_ARG_INFO(0, color)
+#endif
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, decoration, IS_LONG, 0)
+#else
+	ZEND_ARG_INFO(0, decoration)
+#endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, bgColor, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, bgColor)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_cli_console_method_entry) {

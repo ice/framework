@@ -5,7 +5,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers);
 
 PHP_METHOD(Ice_Http_Response_Headers, send);
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_headers_send, 0, 0, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_headers_send, 0, 0, _IS_BOOL, NULL, 0)

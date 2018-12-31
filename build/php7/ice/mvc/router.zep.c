@@ -271,7 +271,7 @@ PHP_METHOD(Ice_Mvc_Router, addRoute) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_route_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 155, &uri, &regex, method);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 153, &uri, &regex, method);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("routes"), &name, &_0 TSRMLS_CC);
 	zephir_read_property(&_1, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
@@ -351,7 +351,7 @@ PHP_METHOD(Ice_Mvc_Router, getRouteName) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 156, route, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 154, route, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -739,7 +739,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 	}
 	zephir_array_fast_append(&_21, &_22);
 	zephir_array_fast_append(&_21, &uri);
-	ZEPHIR_CALL_METHOD(NULL, &_20, "__construct", NULL, 13, &_21);
+	ZEPHIR_CALL_METHOD(NULL, &_20, "__construct", NULL, 12, &_21);
 	zephir_check_call_status();
 	zephir_throw_exception_debug(&_20, "ice/mvc/router.zep", 270 TSRMLS_CC);
 	ZEPHIR_MM_RESTORE();
@@ -756,16 +756,13 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
  */
 PHP_METHOD(Ice_Mvc_Router, match) {
 
-	zend_string *_5;
-	zend_ulong _4;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, *method_param = NULL, name, route, params, matches, _0, _1, _2, *_3;
+	zval *uri_param = NULL, *method_param = NULL, route, params, matches, _0, _1, _2, *_3;
 	zval uri, method;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&method);
-	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&route);
 	ZVAL_UNDEF(&params);
 	ZVAL_UNDEF(&matches);
@@ -805,14 +802,8 @@ PHP_METHOD(Ice_Mvc_Router, match) {
 	ZVAL_NULL(&matches);
 	zephir_read_property(&_2, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_2, 0, "ice/mvc/router.zep", 298);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_2), _4, _5, _3)
+	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_2), _3)
 	{
-		ZEPHIR_INIT_NVAR(&name);
-		if (_5 != NULL) { 
-			ZVAL_STR_COPY(&name, _5);
-		} else {
-			ZVAL_LONG(&name, _4);
-		}
 		ZEPHIR_INIT_NVAR(&route);
 		ZVAL_COPY(&route, _3);
 		ZEPHIR_CALL_METHOD(&params, &route, "matches", NULL, 0, &uri, &method);
@@ -825,7 +816,6 @@ PHP_METHOD(Ice_Mvc_Router, match) {
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&route);
-	ZEPHIR_INIT_NVAR(&name);
 	RETURN_CCTOR(&matches);
 
 }
@@ -843,21 +833,18 @@ PHP_METHOD(Ice_Mvc_Router, match) {
  */
 PHP_METHOD(Ice_Mvc_Router, uri) {
 
-	zend_bool _4$$3;
-	zend_string *_3;
-	zend_ulong _2;
+	zend_bool _2$$3;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval method;
-	zval *params_param = NULL, *method_param = NULL, name, route, uri, _0, *_1, _5$$3;
+	zval *params_param = NULL, *method_param = NULL, route, uri, _0, *_1, _3$$3;
 	zval params;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
-	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&route);
 	ZVAL_UNDEF(&uri);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&method);
 
 	ZEPHIR_MM_GROW();
@@ -874,30 +861,23 @@ PHP_METHOD(Ice_Mvc_Router, uri) {
 
 	zephir_read_property(&_0, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_0, 0, "ice/mvc/router.zep", 323);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _2, _3, _1)
+	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 	{
-		ZEPHIR_INIT_NVAR(&name);
-		if (_3 != NULL) { 
-			ZVAL_STR_COPY(&name, _3);
-		} else {
-			ZVAL_LONG(&name, _2);
-		}
 		ZEPHIR_INIT_NVAR(&route);
 		ZVAL_COPY(&route, _1);
 		ZEPHIR_CALL_METHOD(&uri, &route, "uri", NULL, 0, &params);
 		zephir_check_call_status();
-		_4$$3 = !ZEPHIR_IS_FALSE_IDENTICAL(&uri);
-		if (_4$$3) {
-			ZEPHIR_CALL_METHOD(&_5$$3, &route, "checkmethod", NULL, 0, &method);
+		_2$$3 = !ZEPHIR_IS_FALSE_IDENTICAL(&uri);
+		if (_2$$3) {
+			ZEPHIR_CALL_METHOD(&_3$$3, &route, "checkmethod", NULL, 0, &method);
 			zephir_check_call_status();
-			_4$$3 = zephir_is_true(&_5$$3);
+			_2$$3 = zephir_is_true(&_3$$3);
 		}
-		if (_4$$3) {
+		if (_2$$3) {
 			RETURN_CCTOR(&uri);
 		}
 	} ZEND_HASH_FOREACH_END();
 	ZEPHIR_INIT_NVAR(&route);
-	ZEPHIR_INIT_NVAR(&name);
 	RETURN_MM_NULL();
 
 }

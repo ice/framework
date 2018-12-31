@@ -130,10 +130,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 	{
 		ZEPHIR_INIT_NVAR(&data);
 		ZVAL_COPY(&data, _0);
-		ZEPHIR_INIT_NVAR(&_1$$3);
-		zephir_array_fetch_string(&_2$$3, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
-		zephir_preg_match(&_1$$3, &_2$$3, uri, &matches, 0, 0 , 0  TSRMLS_CC);
-		if (!(zephir_is_true(&_1$$3))) {
+		zephir_array_fetch_string(&_1$$3, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29 TSRMLS_CC);
+		ZEPHIR_INIT_NVAR(&_2$$3);
+		zephir_preg_match(&_2$$3, &_1$$3, uri, &matches, 0, 0 , 0  TSRMLS_CC);
+		if (!(zephir_is_true(&_2$$3))) {
 			continue;
 		}
 		j = zephir_fast_count_int(&matches TSRMLS_CC);

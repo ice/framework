@@ -33,10 +33,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_router_setdefaults, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, defaults, 0)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_router_handle, 0, 0, IS_NULL, 0)
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_router_handle, 0, 0, IS_ARRAY, 0)
 #else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_router_handle, 0, 0, IS_NULL, NULL, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_router_handle, 0, 0, IS_ARRAY, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, arguments)
 ZEND_END_ARG_INFO()

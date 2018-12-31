@@ -19,7 +19,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_update, 0, 0, 
 	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_generate, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_generate, 0, 0, IS_STRING, NULL, 0)

@@ -144,7 +144,7 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 		zephir_check_call_status();
 		RETURN_MM_BOOL(zephir_hash_equals(&_2$$3, &hash));
 	} else {
-		ZEPHIR_RETURN_CALL_FUNCTION("password_verify", NULL, 26, &password, &hash);
+		ZEPHIR_RETURN_CALL_FUNCTION("password_verify", NULL, 25, &password, &hash);
 		zephir_check_call_status();
 		RETURN_MM();
 	}
@@ -235,7 +235,7 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
 
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(key_param) == IS_STRING)) {
@@ -363,7 +363,7 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 		zephir_array_fetch_string(&_3$$3, &_2$$3, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 143 TSRMLS_CC);
 		zephir_read_property(&_4$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch_string(&_5$$3, &_4$$3, SL("hash_key"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 143 TSRMLS_CC);
-		ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 27, &_3$$3, &password, &_5$$3);
+		ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 26, &_3$$3, &password, &_5$$3);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
@@ -371,7 +371,7 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 		zephir_array_fetch_string(&_7$$4, &_6$$4, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 145 TSRMLS_CC);
 		zephir_read_property(&_8$$4, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch_string(&_9$$4, &_8$$4, SL("hash_option"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 145 TSRMLS_CC);
-		ZEPHIR_RETURN_CALL_FUNCTION("password_hash", NULL, 28, &password, &_7$$4, &_9$$4);
+		ZEPHIR_RETURN_CALL_FUNCTION("password_hash", NULL, 27, &password, &_7$$4, &_9$$4);
 		zephir_check_call_status();
 		RETURN_MM();
 	}

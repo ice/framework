@@ -5,13 +5,17 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_NotIn);
 
 PHP_METHOD(Ice_Validation_Validator_NotIn, validate);
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validator_notin_validate, 0, 2, _IS_BOOL, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validator_notin_validate, 0, 2, _IS_BOOL, NULL, 0)
 #endif
 	ZEND_ARG_OBJ_INFO(0, validation, Ice\\Validation, 0)
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, field)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_validator_notin_method_entry) {

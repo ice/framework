@@ -18,22 +18,30 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_url_setstaticuri, 0, 0, 1)
 	ZEND_ARG_INFO(0, staticUri)
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_url_getstatic, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_url_getstatic, 0, 0, IS_STRING, NULL, 0)
 #endif
+#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 1)
+#else
+	ZEND_ARG_INFO(0, uri)
+#endif
 ZEND_END_ARG_INFO()
 
-#ifdef ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX
+#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_url_get, 0, 0, IS_STRING, 0)
 #else
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_url_get, 0, 0, IS_STRING, NULL, 0)
 #endif
 	ZEND_ARG_INFO(0, uri)
 	ZEND_ARG_INFO(0, args)
-	ZEND_ARG_TYPE_INFO(0, local, _IS_BOOL, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, local, _IS_BOOL, 0)
+#else
+	ZEND_ARG_INFO(0, local)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_url_method_entry) {

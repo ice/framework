@@ -309,9 +309,9 @@ PHP_METHOD(Ice_Validation, resolve) {
 			object_init_ex(&_2$$4, ice_exception_ce);
 			ZEPHIR_INIT_VAR(&_3$$4);
 			ZVAL_STRING(&_3$$4, "Validator %s not found");
-			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 12, &_3$$4, &alias);
+			ZEPHIR_CALL_FUNCTION(&_4$$4, "sprintf", NULL, 11, &_3$$4, &alias);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 13, &_4$$4);
+			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 12, &_4$$4);
 			zephir_check_call_status();
 			zephir_throw_exception_debug(&_2$$4, "ice/validation.zep", 101 TSRMLS_CC);
 			ZEPHIR_MM_RESTORE();
@@ -410,7 +410,7 @@ PHP_METHOD(Ice_Validation, rule) {
 				if (Z_TYPE_P(&validator) == IS_LONG) {
 					ZEPHIR_CPY_WRT(&validator, options);
 				}
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 193, &field, &validator, options);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_4, 191, &field, &validator, options);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 			ZEPHIR_INIT_NVAR(options);
@@ -680,7 +680,7 @@ PHP_METHOD(Ice_Validation, hasValue) {
 	zephir_fetch_params(1, 1, 0, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -722,7 +722,7 @@ PHP_METHOD(Ice_Validation, getValue) {
 	zephir_fetch_params(1, 1, 1, &field_param, &filtered_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -899,7 +899,7 @@ PHP_METHOD(Ice_Validation, getLabel) {
 	zephir_fetch_params(1, 1, 0, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -988,7 +988,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	zephir_fetch_params(1, 1, 0, &type_param);
 
 	if (UNEXPECTED(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(type_param) == IS_STRING)) {
@@ -1030,7 +1030,7 @@ PHP_METHOD(Ice_Validation, addMessage) {
 	zephir_fetch_params(1, 2, 0, &field_param, &message_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {

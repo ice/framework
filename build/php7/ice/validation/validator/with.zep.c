@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Validation_Validator_With, validate) {
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be a string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -238,7 +238,7 @@ PHP_METHOD(Ice_Validation_Validator_With, validate) {
 		ZEPHIR_INIT_NVAR(&_6$$8);
 		zephir_fast_join_str(&_6$$8, SL(", "), &required TSRMLS_CC);
 		zephir_array_update_string(&replace, SL(":fields"), &_6$$8, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_23$$8, "strtr", NULL, 104, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_23$$8, "strtr", NULL, 103, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_23$$8);
 		zephir_check_call_status();
