@@ -34,7 +34,7 @@ before_install:
 #  - git config --global user.signingkey 781C2FB7
   - git submodule --quiet update --init --recursive
   - if [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then git remote set-url origin git@github.com:ice/framework.git; fi
-  - composer install --prefer-source --no-scripts
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-source --no-scripts
 
 before_script:
   - (cd vendor/iceframework/zephir-parser; ./install; phpenv config-add tests/ci/zephir_parser.ini)
