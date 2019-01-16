@@ -4,7 +4,7 @@ Wed Jan 16 13:15:56 UTC 2019
 - Ice 1.4.1
  * Build, add support for php 7.3 fix #251
  * Model, remove primary keys
- * Composer, update zephir to 0.11.8
+ * Composer, update zephir to 0.11.9
  * Pdo, fixed sql error if emtpy filter
  * Model, refresh new data after update
  * Router, default router fix
