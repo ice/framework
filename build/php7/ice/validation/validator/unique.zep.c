@@ -71,6 +71,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 
 	zval _22$$18, _23$$19;
 	zend_bool _0, _31$$20;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
@@ -133,7 +134,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -222,7 +223,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 			ZEPHIR_CALL_METHOD(&_17$$14, &db, "getdriver", NULL, 0);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(&value);
-			if (zephir_instance_of_ev(&_17$$14, ice_db_driver_mongodb_ce TSRMLS_CC)) {
+			if (zephir_instance_of_ev(&_17$$14, ice_db_driver_mongodb_ce)) {
 				object_init_ex(&value, zephir_get_internal_ce(SL("mongodb\\bson\\regex")));
 				ZEPHIR_INIT_VAR(&_18$$15);
 				ZEPHIR_CONCAT_SVS(&_18$$15, "^", &tmp, "$");
@@ -232,7 +233,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 				zephir_check_call_status();
 			} else {
 				object_init_ex(&value, zephir_get_internal_ce(SL("mongoregex")));
-				if (zephir_has_constructor(&value TSRMLS_CC)) {
+				if (zephir_has_constructor(&value)) {
 					ZEPHIR_INIT_VAR(&_20$$16);
 					ZEPHIR_CONCAT_SVS(&_20$$16, "/^", &tmp, "$/i");
 					ZEPHIR_CALL_METHOD(NULL, &value, "__construct", NULL, 0, &_20$$16);
@@ -246,12 +247,12 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 	}
 	if (zephir_is_true(&except)) {
 		ZEPHIR_INIT_VAR(&id);
-		zephir_create_array(&id, 1, 0 TSRMLS_CC);
+		zephir_create_array(&id, 1, 0);
 		ZEPHIR_CALL_METHOD(&_21$$18, &db, "getidvalue", NULL, 0, &except);
 		zephir_check_call_status();
 		zephir_array_update_string(&id, SL("!="), &_21$$18, PH_COPY | PH_SEPARATE);
 		ZEPHIR_INIT_VAR(&_22$$18);
-		zephir_create_array(&_22$$18, 2, 0 TSRMLS_CC);
+		zephir_create_array(&_22$$18, 2, 0);
 		zephir_array_update_zval(&_22$$18, &custom, &value, PH_COPY);
 		ZEPHIR_CALL_METHOD(&_21$$18, &db, "getid", NULL, 0);
 		zephir_check_call_status();
@@ -260,7 +261,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_VAR(&_23$$19);
-		zephir_create_array(&_23$$19, 1, 0 TSRMLS_CC);
+		zephir_create_array(&_23$$19, 1, 0);
 		zephir_array_update_zval(&_23$$19, &custom, &value, PH_COPY);
 		ZEPHIR_CALL_METHOD(&result, &db, "findone", NULL, 0, &from, &_23$$19);
 		zephir_check_call_status();
@@ -321,7 +322,7 @@ PHP_METHOD(Ice_Validation_Validator_Unique, validate) {
 			ZEPHIR_CPY_WRT(&message, &_36$$25);
 		}
 		ZEPHIR_INIT_VAR(&replace);
-		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
+		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_FUNCTION(&_37$$20, "strtr", NULL, 103, &message, &replace);
 		zephir_check_call_status();

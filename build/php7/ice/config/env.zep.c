@@ -43,12 +43,14 @@ ZEPHIR_INIT_CLASS(Ice_Config_Env) {
  */
 PHP_METHOD(Ice_Config_Env, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
-	zval *data = NULL, data_sub, *_ENV = NULL, __$null, _1, _2;
+	zval *data = NULL, data_sub, _ENV, __$null, _1, _2;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data_sub);
+	ZVAL_UNDEF(&_ENV);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
@@ -67,8 +69,8 @@ PHP_METHOD(Ice_Config_Env, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_read_property(&_2, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_1, _ENV, &_2 TSRMLS_CC);
-	ZEPHIR_CPY_WRT(_ENV, &_1);
+	zephir_fast_array_merge(&_1, &_ENV, &_2);
+	ZEPHIR_HASH_COPY(&_ENV, &_1);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -80,11 +82,13 @@ PHP_METHOD(Ice_Config_Env, __construct) {
  */
 PHP_METHOD(Ice_Config_Env, has) {
 
-	zval *key_param = NULL, *_ENV;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, _ENV;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_ENV);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
@@ -93,7 +97,7 @@ PHP_METHOD(Ice_Config_Env, has) {
 	zephir_get_strval(&key, key_param);
 
 
-	RETURN_MM_BOOL(zephir_array_isset(_ENV, &key));
+	RETURN_MM_BOOL(zephir_array_isset(&_ENV, &key));
 
 }
 
@@ -104,13 +108,15 @@ PHP_METHOD(Ice_Config_Env, has) {
  */
 PHP_METHOD(Ice_Config_Env, get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool required;
-	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, *_ENV, __$null, value;
+	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _ENV, __$null, value;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
+	ZVAL_UNDEF(&_ENV);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 
@@ -130,7 +136,7 @@ PHP_METHOD(Ice_Config_Env, get) {
 	}
 
 
-	if (zephir_array_isset_fetch(&value, _ENV, &key, 1 TSRMLS_CC)) {
+	if (zephir_array_isset_fetch(&value, &_ENV, &key, 1)) {
 		RETURN_CTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
@@ -145,12 +151,14 @@ PHP_METHOD(Ice_Config_Env, get) {
  */
 PHP_METHOD(Ice_Config_Env, set) {
 
-	zval *key_param = NULL, *value, value_sub, *_ENV;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, *value, value_sub, _ENV;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
+	ZVAL_UNDEF(&_ENV);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
@@ -159,7 +167,7 @@ PHP_METHOD(Ice_Config_Env, set) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_array_update_zval(_ENV, &key, value, PH_COPY | PH_SEPARATE);
+	zephir_array_update_zval(&_ENV, &key, value, PH_COPY | PH_SEPARATE);
 	RETURN_THIS();
 
 }
@@ -171,11 +179,13 @@ PHP_METHOD(Ice_Config_Env, set) {
  */
 PHP_METHOD(Ice_Config_Env, remove) {
 
-	zval *key_param = NULL, *_ENV;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *key_param = NULL, _ENV;
 	zval key;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&_ENV);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
@@ -184,7 +194,7 @@ PHP_METHOD(Ice_Config_Env, remove) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_array_unset(_ENV, &key, PH_SEPARATE);
+	zephir_array_unset(&_ENV, &key, PH_SEPARATE);
 	RETURN_THIS();
 
 }
@@ -196,13 +206,14 @@ PHP_METHOD(Ice_Config_Env, remove) {
  */
 PHP_METHOD(Ice_Config_Env, getData) {
 
-	zval *_ENV;
+	zval _ENV;
 	zval *this_ptr = getThis();
 
+	ZVAL_UNDEF(&_ENV);
 
 	zephir_get_global(&_ENV, SL("_ENV"));
 
-	RETVAL_ZVAL(_ENV, 1, 0);
+	RETVAL_ZVAL(&_ENV, 1, 0);
 	return;
 
 }

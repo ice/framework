@@ -18,6 +18,7 @@
 #include "kernel/fcall.h"
 #include "kernel/string.h"
 #include "kernel/operators.h"
+#include "kernel/object.h"
 
 
 /**
@@ -44,6 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Config_Json) {
  */
 PHP_METHOD(Ice_Config_Json, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *data = NULL, data_sub, __$true, __$null, _0$$4, _2;
@@ -70,9 +72,9 @@ PHP_METHOD(Ice_Config_Json, __construct) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Data must be a json string or path to the file", "ice/config/json.zep", 27);
 		return;
 	}
-	if ((zephir_file_exists(data TSRMLS_CC) == SUCCESS)) {
+	if ((zephir_file_exists(data) == SUCCESS)) {
 		ZEPHIR_INIT_VAR(&_0$$4);
-		zephir_file_get_contents(&_0$$4, data TSRMLS_CC);
+		zephir_file_get_contents(&_0$$4, data);
 		ZEPHIR_CPY_WRT(data, &_0$$4);
 	}
 	ZEPHIR_INIT_VAR(&_2);

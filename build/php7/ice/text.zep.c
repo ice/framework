@@ -18,6 +18,7 @@
 #include "kernel/string.h"
 #include "kernel/operators.h"
 #include "kernel/math.h"
+#include "kernel/object.h"
 
 
 /**
@@ -56,6 +57,7 @@ ZEPHIR_INIT_CLASS(Ice_Text) {
  */
 PHP_METHOD(Ice_Text, random) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_22 = NULL;
 	long length;
 	zval *type_param = NULL, *length_param = NULL, pool, str, _0$$3, _1$$3, _2$$3, _4$$3, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$4, _11$$5, _12$$5, _13$$6, _14$$6, _15$$7, _16$$7, _17$$7, _18$$7, _19$$7, _20$$7, _21$$7, _23$$8, _24$$8, _25$$8;
@@ -121,7 +123,7 @@ PHP_METHOD(Ice_Text, random) {
 			ZEPHIR_CALL_FUNCTION(&_4$$3, "range", &_3, 189, &_0$$3, &_1$$3);
 			zephir_check_call_status();
 			ZEPHIR_INIT_VAR(&pool);
-			zephir_fast_array_merge(&pool, &_2$$3, &_4$$3 TSRMLS_CC);
+			zephir_fast_array_merge(&pool, &_2$$3, &_4$$3);
 			break;
 		}
 		if (type == 2) {
@@ -136,7 +138,7 @@ PHP_METHOD(Ice_Text, random) {
 			ZEPHIR_CALL_FUNCTION(&_10$$4, "range", &_3, 189, &_8$$4, &_9$$4);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(&pool);
-			zephir_fast_array_merge(&pool, &_7$$4, &_10$$4 TSRMLS_CC);
+			zephir_fast_array_merge(&pool, &_7$$4, &_10$$4);
 			break;
 		}
 		if (type == 3) {
@@ -174,15 +176,15 @@ PHP_METHOD(Ice_Text, random) {
 		break;
 	} while(0);
 
-	end = (zephir_fast_count_int(&pool TSRMLS_CC) - 1);
+	end = (zephir_fast_count_int(&pool) - 1);
 	while (1) {
 		if (!(zephir_fast_strlen_ev(&str) < length)) {
 			break;
 		}
 		ZVAL_LONG(&_24$$8, 0);
 		ZVAL_LONG(&_25$$8, end);
-		zephir_array_fetch_long(&_23$$8, &pool, zephir_mt_rand(zephir_get_intval(&_24$$8), zephir_get_intval(&_25$$8) TSRMLS_CC), PH_NOISY | PH_READONLY, "ice/text.zep", 60 TSRMLS_CC);
-		zephir_concat_self(&str, &_23$$8 TSRMLS_CC);
+		zephir_array_fetch_long(&_23$$8, &pool, zephir_mt_rand(zephir_get_intval(&_24$$8), zephir_get_intval(&_25$$8)), PH_NOISY | PH_READONLY, "ice/text.zep", 60);
+		zephir_concat_self(&str, &_23$$8);
 	}
 	RETURN_CCTOR(&str);
 

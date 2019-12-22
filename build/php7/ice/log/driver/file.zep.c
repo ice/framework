@@ -36,7 +36,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Log\\Driver, File, ice, log_driver_file, ice_log_driver_ce, ice_log_driver_file_method_entry, 0);
 
-	zend_declare_property_null(ice_log_driver_file_ce, SL("file"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_log_driver_file_ce, SL("file"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -50,6 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
  */
 PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *file_param = NULL, _0$$3, _1$$4, _4, _5$$5;
@@ -70,7 +71,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 	zephir_get_strval(&file, file_param);
 
 
-	if (!((zephir_file_exists(&file TSRMLS_CC) == SUCCESS))) {
+	if (!((zephir_file_exists(&file) == SUCCESS))) {
 		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 147, &file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_0$$3))) {
@@ -80,7 +81,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 			ZEPHIR_CONCAT_SVS(&_2$$4, "Log file ", &file, " cannot be created");
 			ZEPHIR_CALL_METHOD(NULL, &_1$$4, "__construct", &_3, 12, &_2$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_1$$4, "ice/log/driver/file.zep", 31 TSRMLS_CC);
+			zephir_throw_exception_debug(&_1$$4, "ice/log/driver/file.zep", 31);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -94,7 +95,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 		ZEPHIR_CONCAT_SVS(&_6$$5, "Log file ", &file, " is not writeable");
 		ZEPHIR_CALL_METHOD(NULL, &_5$$5, "__construct", &_3, 12, &_6$$5);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_5$$5, "ice/log/driver/file.zep", 35 TSRMLS_CC);
+		zephir_throw_exception_debug(&_5$$5, "ice/log/driver/file.zep", 35);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -113,6 +114,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
  */
 PHP_METHOD(Ice_Log_Driver_File, log) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval message;
@@ -171,11 +173,12 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
  */
 PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 
-	zend_string *_2;
-	zend_ulong _1;
+	zend_string *_3;
+	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
-	zval *message_param = NULL, *context_param = NULL, replace, key, value, *_0, _3$$3;
+	zval *message_param = NULL, *context_param = NULL, replace, key, value, *_0, _1, _4$$3, _5$$4;
 	zval message;
 	zval *this_ptr = getThis();
 
@@ -183,7 +186,9 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	ZVAL_UNDEF(&replace);
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
-	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&context);
 
 	ZEPHIR_MM_GROW();
@@ -201,20 +206,41 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	ZEPHIR_INIT_VAR(&replace);
 	array_init(&replace);
 	zephir_is_iterable(&context, 0, "ice/log/driver/file.zep", 77);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&context), _1, _2, _0)
-	{
-		ZEPHIR_INIT_NVAR(&key);
-		if (_2 != NULL) { 
-			ZVAL_STR_COPY(&key, _2);
-		} else {
-			ZVAL_LONG(&key, _1);
+	if (Z_TYPE_P(&context) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&context), _2, _3, _0)
+		{
+			ZEPHIR_INIT_NVAR(&key);
+			if (_3 != NULL) { 
+				ZVAL_STR_COPY(&key, _3);
+			} else {
+				ZVAL_LONG(&key, _2);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _0);
+			ZEPHIR_INIT_NVAR(&_4$$3);
+			ZEPHIR_CONCAT_SVS(&_4$$3, "{", &key, "}");
+			zephir_array_update_zval(&replace, &_4$$3, &value, PH_COPY | PH_SEPARATE);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &context, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_1, &context, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_1)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&key, &context, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, &context, "current", NULL, 0);
+			zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(&_5$$4);
+				ZEPHIR_CONCAT_SVS(&_5$$4, "{", &key, "}");
+				zephir_array_update_zval(&replace, &_5$$4, &value, PH_COPY | PH_SEPARATE);
+			ZEPHIR_CALL_METHOD(NULL, &context, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _0);
-		ZEPHIR_INIT_LNVAR(_3$$3);
-		ZEPHIR_CONCAT_SVS(&_3$$3, "{", &key, "}");
-		zephir_array_update_zval(&replace, &_3$$3, &value, PH_COPY | PH_SEPARATE);
-	} ZEND_HASH_FOREACH_END();
+	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 103, &message, &replace);

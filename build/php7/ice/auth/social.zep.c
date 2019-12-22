@@ -32,7 +32,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth, Social, ice, auth_social, ice_auth_social_method_entry, 0);
 
-	zend_declare_property_null(ice_auth_social_ce, SL("adapter"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_auth_social_ce, SL("adapter"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 
 	ZVAL_UNDEF(&adapter_sub);
 
-	zephir_fetch_params(0, 1, 0, &adapter);
+	zephir_fetch_params_without_memory_grow(1, 0, &adapter);
 
 
 
@@ -75,6 +75,7 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 PHP_METHOD(Ice_Auth_Social, authenticate) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -98,6 +99,7 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
  */
 PHP_METHOD(Ice_Auth_Social, get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, _0;
 	zval key;
@@ -135,6 +137,7 @@ PHP_METHOD(Ice_Auth_Social, get) {
 PHP_METHOD(Ice_Auth_Social, __call) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _1;
 	zval method;
@@ -157,7 +160,7 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 2, 0 TSRMLS_CC);
+	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_property(&_1, this_ptr, SL("adapter"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);

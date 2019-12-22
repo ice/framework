@@ -34,12 +34,12 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Users, Tokens, ice, auth_driver_model_users_tokens, ice_mvc_model_ce, ice_auth_driver_model_users_tokens_method_entry, 0);
 
-	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("from"), "user_tokens", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("from"), "user_tokens", ZEND_ACC_PROTECTED);
 
 	/**
 	 * User class name.
 	 */
-	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -54,6 +54,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 
 	zend_bool _8;
 	zval _5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval __$true, auth, expire, _0, _1, _2, _3, _4, _6, _7;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -85,7 +86,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_5);
-	zephir_create_array(&_5, 2, 0 TSRMLS_CC);
+	zephir_create_array(&_5, 2, 0);
 	add_assoc_stringl_ex(&_5, SL("alias"), SL("User"));
 	zephir_array_update_string(&_5, SL("foreignKey"), &__$true, PH_COPY | PH_SEPARATE);
 	ZEPHIR_INIT_NVAR(&_1);
@@ -94,7 +95,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_6, 1);
 	ZVAL_LONG(&_7, 100);
-	if (zephir_mt_rand(zephir_get_intval(&_6), zephir_get_intval(&_7) TSRMLS_CC) == 1) {
+	if (zephir_mt_rand(zephir_get_intval(&_6), zephir_get_intval(&_7)) == 1) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "deleteexpired", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -125,6 +126,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
@@ -167,6 +169,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 
 	zval _2;
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -177,9 +180,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 1, 0 TSRMLS_CC);
+	zephir_create_array(&_0, 1, 0);
 	ZEPHIR_INIT_VAR(&_1);
-	zephir_create_array(&_1, 1, 0 TSRMLS_CC);
+	zephir_create_array(&_1, 1, 0);
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_time(&_2);
 	zephir_array_update_string(&_1, SL("<"), &_2, PH_COPY | PH_SEPARATE);
@@ -199,6 +202,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
@@ -242,6 +246,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 
 	zval _6;
 	zval token, _4, _0$$3, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL, *_5 = NULL;
 	zval *this_ptr = getThis();
@@ -261,7 +266,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 63, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_6);
-		zephir_create_array(&_6, 1, 0 TSRMLS_CC);
+		zephir_create_array(&_6, 1, 0);
 		zephir_array_update_string(&_6, SL("token"), &token, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_STATIC(&_4, "findone", &_5, 0, &_6);
 		zephir_check_call_status();

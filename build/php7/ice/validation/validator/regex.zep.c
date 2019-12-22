@@ -19,6 +19,7 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/object.h"
 
 
 /**
@@ -67,6 +68,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Regex) {
 PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 
 	zend_bool failed = 0, _0, _14$$8;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, pattern, matches, _1, _2, _5, _3$$4, _4$$5, _6$$6, _7$$8, _8$$8, _10$$8, _13$$8, _15$$8, _16$$8, _20$$8, _9$$9, _11$$11, _12$$12, _17$$13, _18$$13, _19$$13;
@@ -105,7 +107,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -141,9 +143,9 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_INIT_VAR(&_5);
-	zephir_preg_match(&_5, &pattern, &value, &matches, 0, 0 , 0  TSRMLS_CC);
+	zephir_preg_match(&_5, &pattern, &value, &matches, 0, 0 , 0 );
 	if (zephir_is_true(&_5)) {
-		zephir_array_fetch_long(&_6$$6, &matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 63 TSRMLS_CC);
+		zephir_array_fetch_long(&_6$$6, &matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 63);
 		failed = !ZEPHIR_IS_EQUAL(&_6$$6, &value);
 	} else {
 		failed = 1;
@@ -204,7 +206,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 			ZEPHIR_CPY_WRT(&message, &_19$$13);
 		}
 		ZEPHIR_INIT_VAR(&replace);
-		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
+		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_FUNCTION(&_20$$8, "strtr", NULL, 103, &message, &replace);
 		zephir_check_call_status();

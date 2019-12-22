@@ -67,7 +67,7 @@ int zephir_is_instance_of(zval *object, const char *class_name, unsigned int cla
 int zephir_zval_is_traversable(zval *object)
 {
 	zend_class_entry *ce;
-	zend_uint i;
+	uint32_t i;
 	zval *z = Z_ISREF_P(object) ? Z_REFVAL_P(object) : object;
 
 	if (Z_TYPE_P(z) == IS_OBJECT) {
@@ -369,10 +369,32 @@ int zephir_clone(zval *destination, zval *obj)
 int zephir_isset_property(zval *object, const char *property_name, unsigned int property_length)
 {
 	if (Z_TYPE_P(object) == IS_OBJECT) {
+		/*
+		if (Z_OBJ_HANDLER_P(object, has_property)) {
+			zval member;
+			int retval;
+			ZVAL_STRINGL(&member, property_name, property_length);
+			retval = Z_OBJ_HT_P(object)->has_property(object, &member, 2, NULL);
+			zval_ptr_dtor(&member);
+			return retval;
+		}
+		*/
 		if (EXPECTED(zend_hash_str_exists(&Z_OBJCE_P(object)->properties_info, property_name, property_length))) {
 			return 1;
 		}
-		return zend_hash_str_exists(Z_OBJ_HT_P(object)->get_properties(object), property_name, property_length);
+#if PHP_VERSION_ID >= 80000
+		return zend_hash_str_exists(
+			Z_OBJ_HT_P(object)->get_properties(Z_OBJ_P(object)),
+			property_name,
+			property_length
+		);
+#else
+		return zend_hash_str_exists(
+			Z_OBJ_HT_P(object)->get_properties(object),
+			property_name,
+			property_length
+		);
+#endif
 	}
 
 	return 0;
@@ -385,11 +407,28 @@ int zephir_isset_property_zval(zval *object, const zval *property)
 {
 	if (Z_TYPE_P(object) == IS_OBJECT) {
 		if (Z_TYPE_P(property) == IS_STRING) {
-
+			/*
+			if (Z_OBJ_HANDLER_P(object, has_property)) {
+				return Z_OBJ_HT_P(object)->has_property(object, property, 2, NULL);
+			}
+			*/
 			if (EXPECTED(zend_hash_str_exists(&Z_OBJCE_P(object)->properties_info, Z_STRVAL_P(property), Z_STRLEN_P(property)))) {
 				return 1;
 			} else {
-				return zend_hash_str_exists(Z_OBJ_HT_P(object)->get_properties(object), Z_STRVAL_P(property), Z_STRLEN_P(property));
+
+#if PHP_VERSION_ID >= 80000
+				return zend_hash_str_exists(
+					Z_OBJ_HT_P(object)->get_properties(Z_OBJ_P(object)),
+					Z_STRVAL_P(property),
+					Z_STRLEN_P(property)
+				);
+#else
+				return zend_hash_str_exists(
+					Z_OBJ_HT_P(object)->get_properties(object),
+					Z_STRVAL_P(property),
+					Z_STRLEN_P(property)
+				);
+#endif
 			}
 		}
 	}
@@ -403,9 +442,17 @@ static inline zend_class_entry *zephir_lookup_class_ce(zend_class_entry *ce, con
 	zend_property_info *info;
 
 	while (ce) {
-		if ((info = zend_hash_str_find_ptr(&ce->properties_info, property_name, property_length)) != NULL && (info->flags & ZEND_ACC_SHADOW) != ZEND_ACC_SHADOW)  {
+		info = zend_hash_str_find_ptr(&ce->properties_info, property_name, property_length);
+
+#if PHP_VERSION_ID < 70400
+		if (info != NULL && (info->flags & ZEND_ACC_SHADOW) != ZEND_ACC_SHADOW)  {
 			return ce;
 		}
+#else
+		if (info != NULL)  {
+			return ce;
+		}
+#endif
 		ce = ce->parent;
 	}
 	return original_ce;
@@ -415,7 +462,7 @@ static inline zend_class_entry *zephir_lookup_class_ce(zend_class_entry *ce, con
 /**
  * Reads a property from an object
  */
-int zephir_read_property(zval *result, zval *object, const char *property_name, zend_uint property_length, int flags)
+int zephir_read_property(zval *result, zval *object, const char *property_name, uint32_t property_length, int flags)
 {
 	zval property;
 	zend_class_entry *ce, *old_scope;
@@ -436,15 +483,16 @@ int zephir_read_property(zval *result, zval *object, const char *property_name, 
 
 	ce = Z_OBJCE_P(object);
 
+	if (ce->parent) {
+		ce = zephir_lookup_class_ce(ce, property_name, property_length);
+	}
+
 #if PHP_VERSION_ID >= 70100
 	old_scope = EG(fake_scope);
 	EG(fake_scope) = ce;
 #else
 	old_scope = EG(scope);
 	EG(scope) = ce;
-	if (ce->parent) {
-		ce = zephir_lookup_class_ce(ce, property_name, property_length);
-	}
 #endif
 
 	if (!Z_OBJ_HT_P(object)->read_property) {
@@ -476,7 +524,7 @@ int zephir_read_property(zval *result, zval *object, const char *property_name, 
 /**
  * Fetches a property using a const char
  */
-int zephir_fetch_property(zval *result, zval *object, const char *property_name, zend_uint property_length, int silent)
+int zephir_fetch_property(zval *result, zval *object, const char *property_name, uint32_t property_length, int silent)
 {
 	if (zephir_isset_property(object, property_name, property_length)) {
 		zephir_read_property(result, object, property_name, property_length, 0);
@@ -537,7 +585,7 @@ int zephir_read_property_zval(zval *result, zval *object, zval *property, int fl
 int zephir_update_property_zval(zval *object, const char *property_name, unsigned int property_length, zval *value)
 {
 	zend_class_entry *ce, *old_scope;
-	zval property;
+	zval property, sep_value;
 
 #if PHP_VERSION_ID >= 70100
 	old_scope = EG(fake_scope);
@@ -569,9 +617,18 @@ int zephir_update_property_zval(zval *object, const char *property_name, unsigne
 	}
 
 	ZVAL_STRINGL(&property, property_name, property_length);
+	ZVAL_COPY_VALUE(&sep_value, value);
+	if (Z_TYPE(sep_value) == IS_ARRAY) {
+		ZVAL_ARR(&sep_value, zend_array_dup(Z_ARR(sep_value)));
+		if (EXPECTED(!(GC_FLAGS(Z_ARRVAL(sep_value)) & IS_ARRAY_IMMUTABLE))) {
+			if (UNEXPECTED(GC_REFCOUNT(Z_ARR(sep_value)) > 0)) {
+				GC_DELREF(Z_ARR(sep_value));
+			}
+		}
+	}
 
 	/* write_property will add 1 to refcount, so no Z_TRY_ADDREF_P(value); is necessary */
-	Z_OBJ_HT_P(object)->write_property(object, &property, value, 0);
+	Z_OBJ_HT_P(object)->write_property(object, &property, &sep_value, 0);
 	zval_ptr_dtor(&property);
 
 #if PHP_VERSION_ID >= 70100
@@ -598,95 +655,16 @@ int zephir_update_property_zval_zval(zval *object, zval *property, zval *value)
 /**
  * Updates an array property
  */
-int zephir_update_property_array(zval *object, const char *property, zend_uint property_length, const zval *index, zval *value)
+int zephir_update_property_array(zval *object, const char *property, uint32_t property_length, const zval *index, zval *value)
 {
-	zval tmp;
+	zval tmp, sep_value;
 	int separated = 0;
-
-	if (Z_TYPE_P(object) == IS_OBJECT) {
-		zephir_read_property(&tmp, object, property, property_length, PH_NOISY | PH_READONLY);
-
-		/** Separation only when refcount > 1 */
-		if (Z_REFCOUNTED(tmp)) {
-			if (Z_REFCOUNT(tmp) > 1) {
-				if (!Z_ISREF(tmp)) {
-					zval new_zv;
-					ZVAL_DUP(&new_zv, &tmp);
-					ZVAL_COPY_VALUE(&tmp, &new_zv);
-					Z_TRY_DELREF(new_zv);
-					Z_ADDREF(tmp);
-					separated = 1;
-				}
-			}
-		} else {
-			zval new_zv;
-			ZVAL_DUP(&new_zv, &tmp);
-			ZVAL_COPY_VALUE(&tmp, &new_zv);
-			Z_TRY_DELREF(new_zv);
-			separated = 1;
-		}
-
-		/** Convert the value to array if not is an array */
-		if (Z_TYPE(tmp) != IS_ARRAY) {
-			if (separated) {
-				convert_to_array(&tmp);
-			} else {
-				array_init(&tmp);
-				separated = 1;
-			}
-
-			if (Z_REFCOUNTED(tmp)) {
-				if (Z_REFCOUNT(tmp) > 1) {
-					if (!Z_ISREF(tmp)) {
-						Z_DELREF(tmp);
-					}
-				}
-			}
-		}
-		Z_TRY_ADDREF_P(value);
-
-		if (Z_TYPE_P(index) == IS_STRING) {
-			zend_symtable_str_update(Z_ARRVAL(tmp), Z_STRVAL_P(index), Z_STRLEN_P(index), value);
-		} else if (Z_TYPE_P(index) == IS_LONG) {
-			zend_hash_index_update(Z_ARRVAL(tmp), Z_LVAL_P(index), value);
-		} else if (Z_TYPE_P(index) == IS_NULL) {
-			zend_hash_next_index_insert(Z_ARRVAL(tmp), value);
-		}
-
-		if (separated) {
-			zephir_update_property_zval(object, property, property_length, &tmp);
-		}
-
-		if (Z_REFCOUNTED(tmp)) {
-			if (Z_REFCOUNT(tmp) > 1) {
-				if (!Z_ISREF(tmp)) {
-					Z_DELREF(tmp);
-				}
-			}
-		}
-	}
-
-	return SUCCESS;
-}
-
-
-/**
- * Appends a zval value to an array property
- */
-int zephir_update_property_array_append(zval *object, char *property, unsigned int property_length, zval *value)
-{
-	zval tmp;
-	int separated = 0;
-
-	ZVAL_UNDEF(&tmp);
 
 	if (Z_TYPE_P(object) != IS_OBJECT) {
 		return SUCCESS;
 	}
 
-	zephir_read_property(&tmp, object, property, property_length, PH_NOISY_CC);
-
-	Z_TRY_DELREF(tmp);
+	zephir_read_property(&tmp, object, property, property_length, PH_NOISY | PH_READONLY);
 
 	/** Separation only when refcount > 1 */
 	if (Z_REFCOUNTED(tmp)) {
@@ -696,6 +674,7 @@ int zephir_update_property_array_append(zval *object, char *property, unsigned i
 				ZVAL_DUP(&new_zv, &tmp);
 				ZVAL_COPY_VALUE(&tmp, &new_zv);
 				Z_TRY_DELREF(new_zv);
+				Z_ADDREF(tmp);
 				separated = 1;
 			}
 		}
@@ -725,19 +704,112 @@ int zephir_update_property_array_append(zval *object, char *property, unsigned i
 		}
 	}
 
-	Z_TRY_ADDREF_P(value);
-	add_next_index_zval(&tmp, value);
+	if (Z_TYPE_P(value) == IS_ARRAY) {
+		ZVAL_ARR(&sep_value, zend_array_dup(Z_ARR_P(value)));
+	} else {
+		ZVAL_COPY(&sep_value, value);
+	}
+
+	if (Z_TYPE_P(index) == IS_STRING) {
+		zend_symtable_str_update(Z_ARRVAL(tmp), Z_STRVAL_P(index), Z_STRLEN_P(index), &sep_value);
+	} else if (Z_TYPE_P(index) == IS_LONG) {
+		zend_hash_index_update(Z_ARRVAL(tmp), Z_LVAL_P(index), &sep_value);
+	} else if (Z_TYPE_P(index) == IS_NULL) {
+		zend_hash_next_index_insert(Z_ARRVAL(tmp), &sep_value);
+	}
 
 	if (separated) {
 		zephir_update_property_zval(object, property, property_length, &tmp);
+		zephir_ptr_dtor(&tmp);
 	}
 
+	return SUCCESS;
+}
+
+
+/**
+ * Appends a zval value to an array property
+ */
+int zephir_update_property_array_append(zval *object, char *property, unsigned int property_length, zval *value)
+{
+	zval tmp, sep_value;
+	int separated = 0;
+
+	ZVAL_UNDEF(&tmp);
+
+	if (Z_TYPE_P(object) != IS_OBJECT) {
+		return SUCCESS;
+	}
+
+	zephir_read_property(&tmp, object, property, property_length, PH_NOISY | PH_READONLY);
+
+	/** Separation only when refcount > 1 */
 	if (Z_REFCOUNTED(tmp)) {
 		if (Z_REFCOUNT(tmp) > 1) {
 			if (!Z_ISREF(tmp)) {
-				Z_DELREF(tmp);
+				zval new_zv;
+				ZVAL_DUP(&new_zv, &tmp);
+				ZVAL_COPY_VALUE(&tmp, &new_zv);
+				if (Z_REFCOUNT(tmp) > 1) {
+				    Z_TRY_DELREF(new_zv);
+				}
+				separated = 1;
 			}
 		}
+	} else {
+		zval new_zv;
+		ZVAL_DUP(&new_zv, &tmp);
+		ZVAL_COPY_VALUE(&tmp, &new_zv);
+		Z_TRY_DELREF(new_zv);
+		separated = 1;
+
+		/**
+		 * class A {
+		 *     protected foo;
+		 *
+		 *     public function test() {
+		 *         let this->foo[] = 42;
+		 *     }
+		 * }
+		 *
+		 * In this case: Z_REFCOUNT(tmp) == 0
+		 */
+		if (Z_REFCOUNTED(tmp)) {
+			if (EXPECTED(Z_REFCOUNT(tmp) == 0)) {
+				Z_ADDREF(tmp);
+			}
+		}
+	}
+
+	/** Convert the value to array if not is an array */
+	if (Z_TYPE(tmp) != IS_ARRAY) {
+		if (separated) {
+			convert_to_array(&tmp);
+		} else {
+			array_init(&tmp);
+			separated = 1;
+		}
+
+		if (Z_REFCOUNTED(tmp)) {
+			if (Z_REFCOUNT(tmp) > 1) {
+				if (!Z_ISREF(tmp)) {
+					Z_DELREF(tmp);
+				}
+			}
+		}
+	}
+
+	if (Z_TYPE_P(value) == IS_ARRAY) {
+		ZVAL_ARR(&sep_value, zend_array_dup(Z_ARR_P(value)));
+	} else {
+		ZVAL_COPY(&sep_value, value);
+	}
+
+	add_next_index_zval(&tmp, &sep_value);
+
+	if (separated) {
+		zephir_update_property_zval(object, property, property_length, &tmp);
+		zephir_ptr_dtor(&tmp);
 	}
 
 	return SUCCESS;
@@ -746,7 +818,7 @@ int zephir_update_property_array_append(zval *object, char *property, unsigned i
 /**
  * Multiple array-offset update
  */
-int zephir_update_property_array_multi(zval *object, const char *property, zend_uint property_length, zval *value, const char *types, int types_length, int types_count, ...)
+int zephir_update_property_array_multi(zval *object, const char *property, uint32_t property_length, zval *value, const char *types, int types_length, int types_count, ...)
 {
 	va_list ap;
 	zval tmp_arr;
@@ -799,14 +871,7 @@ int zephir_update_property_array_multi(zval *object, const char *property, zend_
 
 		if (separated) {
 			zephir_update_property_zval(object, property, property_length, &tmp_arr);
-		}
-
-		if (Z_REFCOUNTED(tmp_arr)) {
-			if (Z_REFCOUNT(tmp_arr) > 1) {
-				if (!Z_ISREF(tmp_arr)) {
-					Z_DELREF(tmp_arr);
-				}
-			}
+			zephir_ptr_dtor(&tmp_arr);
 		}
 	}
 
@@ -956,10 +1021,35 @@ int zephir_read_static_property_ce(zval *result, zend_class_entry *ce, const cha
 	return FAILURE;
 }
 
+int zephir_update_static_property_ce(zend_class_entry *ce, const char *property_name, uint32_t property_length, zval *value)
+{
+// Disabled due to:
+// https://github.com/phalcon/zephir/issues/1941#issuecomment-538654340
+//
+//#if PHP_VERSION_ID < 70300
+//	zval *property, garbage;
+//	property = zend_read_static_property(ce, property_name, property_length, (zend_bool)ZEND_FETCH_CLASS_SILENT);
+//	if (property) {
+//		if (Z_ISREF_P(property)) {
+//			ZVAL_DEREF(property);
+//		}
+//		if (Z_ISREF_P(value)) {
+//			ZVAL_DEREF(value);
+//		}
+//		ZVAL_COPY_VALUE(&garbage, property);
+//		ZVAL_COPY(property, value);
+//		zval_ptr_dtor(&garbage);
+//		return 1;
+//	}
+//#else
+	return zend_update_static_property(ce, property_name, property_length, value);
+//#endif
+}
+
 /*
  * Multiple array-offset update
  */
-int zephir_update_static_property_array_multi_ce(zend_class_entry *ce, const char *property, zend_uint property_length, zval *value, const char *types, int types_length, int types_count, ...)
+int zephir_update_static_property_array_multi_ce(zend_class_entry *ce, const char *property, uint32_t property_length, zval *value, const char *types, int types_length, int types_count, ...)
 {
 	va_list ap;
 	zval tmp_arr;
@@ -1101,7 +1191,7 @@ typedef struct _zend_closure {
 /**
  * Creates a closure
  */
-int zephir_create_closure_ex(zval *return_value, zval *this_ptr, zend_class_entry *ce, const char *method_name, zend_uint method_length)
+int zephir_create_closure_ex(zval *return_value, zval *this_ptr, zend_class_entry *ce, const char *method_name, uint32_t method_length)
 {
 	zend_function *function_ptr;
 	zend_closure *closure;

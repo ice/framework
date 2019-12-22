@@ -47,12 +47,13 @@ ZEPHIR_INIT_CLASS(Ice_Config) {
 PHP_METHOD(Ice_Config, __construct) {
 
 	zval _3$$5;
-	zend_string *_8, *_11$$11;
-	zend_ulong _7, _10$$11;
+	zend_string *_9, *_13$$11, *_19$$21;
+	zend_ulong _8, _12$$11, _18$$21;
 	zend_bool hasNumericKey = 0, _0;
-	zephir_fcall_cache_entry *_5 = NULL, *_13 = NULL;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_5 = NULL, *_15 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *data = NULL, data_sub, __$null, key, value, subkey, subvalue, *_6, _1$$4, _2$$5, _4$$5, *_9$$11, _12$$15;
+	zval *data = NULL, data_sub, __$null, key, value, subkey, subvalue, *_6, _7, _1$$4, _2$$5, _4$$5, *_10$$11, _11$$11, _14$$17, *_16$$21, _17$$21, _20$$27;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data_sub);
@@ -61,10 +62,14 @@ PHP_METHOD(Ice_Config, __construct) {
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&subkey);
 	ZVAL_UNDEF(&subvalue);
+	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_4$$5);
-	ZVAL_UNDEF(&_12$$15);
+	ZVAL_UNDEF(&_11$$11);
+	ZVAL_UNDEF(&_14$$17);
+	ZVAL_UNDEF(&_17$$21);
+	ZVAL_UNDEF(&_20$$27);
 	ZVAL_UNDEF(&_3$$5);
 
 	ZEPHIR_MM_GROW();
@@ -83,9 +88,9 @@ PHP_METHOD(Ice_Config, __construct) {
 		_0 = !ZEPHIR_IS_STRING(data, "");
 	}
 	if (_0) {
-		if ((zephir_file_exists(data TSRMLS_CC) == SUCCESS)) {
+		if ((zephir_file_exists(data) == SUCCESS)) {
 			ZEPHIR_OBSERVE_OR_NULLIFY_PPZV(&_1$$4);
-			if (zephir_require_zval_ret(&_1$$4, data TSRMLS_CC) == FAILURE) {
+			if (zephir_require_zval_ret(&_1$$4, data) == FAILURE) {
 				RETURN_MM_NULL();
 			}
 			ZEPHIR_CPY_WRT(data, &_1$$4);
@@ -93,14 +98,14 @@ PHP_METHOD(Ice_Config, __construct) {
 			ZEPHIR_INIT_VAR(&_2$$5);
 			object_init_ex(&_2$$5, ice_exception_ce);
 			ZEPHIR_INIT_VAR(&_3$$5);
-			zephir_create_array(&_3$$5, 2, 0 TSRMLS_CC);
+			zephir_create_array(&_3$$5, 2, 0);
 			ZEPHIR_INIT_VAR(&_4$$5);
 			ZVAL_STRING(&_4$$5, "Config file '%s' doesn't exist");
 			zephir_array_fast_append(&_3$$5, &_4$$5);
 			zephir_array_fast_append(&_3$$5, data);
 			ZEPHIR_CALL_METHOD(NULL, &_2$$5, "__construct", &_5, 12, &_3$$5);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_2$$5, "ice/config.zep", 29 TSRMLS_CC);
+			zephir_throw_exception_debug(&_2$$5, "ice/config.zep", 29);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -114,53 +119,151 @@ PHP_METHOD(Ice_Config, __construct) {
 		}
 	}
 	zephir_is_iterable(data, 0, "ice/config.zep", 64);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(data), _7, _8, _6)
-	{
-		ZEPHIR_INIT_NVAR(&key);
-		if (_8 != NULL) { 
-			ZVAL_STR_COPY(&key, _8);
-		} else {
-			ZVAL_LONG(&key, _7);
-		}
-		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _6);
-		if (Z_TYPE_P(&key) != IS_STRING) {
-			ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 43);
-			return;
-		}
-		if (Z_TYPE_P(&value) == IS_ARRAY) {
-			hasNumericKey = 0;
-			zephir_is_iterable(&value, 0, "ice/config.zep", 55);
-			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _10$$11, _11$$11, _9$$11)
-			{
-				ZEPHIR_INIT_NVAR(&subkey);
-				if (_11$$11 != NULL) { 
-					ZVAL_STR_COPY(&subkey, _11$$11);
+	if (Z_TYPE_P(data) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(data), _8, _9, _6)
+		{
+			ZEPHIR_INIT_NVAR(&key);
+			if (_9 != NULL) { 
+				ZVAL_STR_COPY(&key, _9);
+			} else {
+				ZVAL_LONG(&key, _8);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _6);
+			if (Z_TYPE_P(&key) != IS_STRING) {
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 43);
+				return;
+			}
+			if (Z_TYPE_P(&value) == IS_ARRAY) {
+				hasNumericKey = 0;
+				zephir_is_iterable(&value, 0, "ice/config.zep", 55);
+				if (Z_TYPE_P(&value) == IS_ARRAY) {
+					ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _12$$11, _13$$11, _10$$11)
+					{
+						ZEPHIR_INIT_NVAR(&subkey);
+						if (_13$$11 != NULL) { 
+							ZVAL_STR_COPY(&subkey, _13$$11);
+						} else {
+							ZVAL_LONG(&subkey, _12$$11);
+						}
+						ZEPHIR_INIT_NVAR(&subvalue);
+						ZVAL_COPY(&subvalue, _10$$11);
+						if (Z_TYPE_P(&subkey) == IS_LONG) {
+							hasNumericKey = 1;
+							break;
+						}
+					} ZEND_HASH_FOREACH_END();
 				} else {
-					ZVAL_LONG(&subkey, _10$$11);
+					ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+					zephir_check_call_status();
+					while (1) {
+						ZEPHIR_CALL_METHOD(&_11$$11, &value, "valid", NULL, 0);
+						zephir_check_call_status();
+						if (!zend_is_true(&_11$$11)) {
+							break;
+						}
+						ZEPHIR_CALL_METHOD(&subkey, &value, "key", NULL, 0);
+						zephir_check_call_status();
+						ZEPHIR_CALL_METHOD(&subvalue, &value, "current", NULL, 0);
+						zephir_check_call_status();
+							if (Z_TYPE_P(&subkey) == IS_LONG) {
+								hasNumericKey = 1;
+								break;
+							}
+						ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+						zephir_check_call_status();
+					}
 				}
 				ZEPHIR_INIT_NVAR(&subvalue);
-				ZVAL_COPY(&subvalue, _9$$11);
-				if (Z_TYPE_P(&subkey) == IS_LONG) {
-					hasNumericKey = 1;
-					break;
+				ZEPHIR_INIT_NVAR(&subkey);
+				if (hasNumericKey) {
+					zephir_update_property_array(this_ptr, SL("data"), &key, &value);
+				} else {
+					ZEPHIR_INIT_NVAR(&_14$$17);
+					object_init_ex(&_14$$17, ice_config_ce);
+					ZEPHIR_CALL_METHOD(NULL, &_14$$17, "__construct", &_15, 24, &value);
+					zephir_check_call_status();
+					zephir_update_property_array(this_ptr, SL("data"), &key, &_14$$17);
 				}
-			} ZEND_HASH_FOREACH_END();
-			ZEPHIR_INIT_NVAR(&subvalue);
-			ZEPHIR_INIT_NVAR(&subkey);
-			if (hasNumericKey) {
-				zephir_update_property_array(this_ptr, SL("data"), &key, &value TSRMLS_CC);
 			} else {
-				ZEPHIR_INIT_NVAR(&_12$$15);
-				object_init_ex(&_12$$15, ice_config_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_12$$15, "__construct", &_13, 24, &value);
-				zephir_check_call_status();
-				zephir_update_property_array(this_ptr, SL("data"), &key, &_12$$15 TSRMLS_CC);
+				zephir_update_property_array(this_ptr, SL("data"), &key, &value);
 			}
-		} else {
-			zephir_update_property_array(this_ptr, SL("data"), &key, &value TSRMLS_CC);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, data, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_7, data, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_7)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&key, data, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, data, "current", NULL, 0);
+			zephir_check_call_status();
+				if (Z_TYPE_P(&key) != IS_STRING) {
+					ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Only string keys are allowed", "ice/config.zep", 43);
+					return;
+				}
+				if (Z_TYPE_P(&value) == IS_ARRAY) {
+					hasNumericKey = 0;
+					zephir_is_iterable(&value, 0, "ice/config.zep", 55);
+					if (Z_TYPE_P(&value) == IS_ARRAY) {
+						ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _18$$21, _19$$21, _16$$21)
+						{
+							ZEPHIR_INIT_NVAR(&subkey);
+							if (_19$$21 != NULL) { 
+								ZVAL_STR_COPY(&subkey, _19$$21);
+							} else {
+								ZVAL_LONG(&subkey, _18$$21);
+							}
+							ZEPHIR_INIT_NVAR(&subvalue);
+							ZVAL_COPY(&subvalue, _16$$21);
+							if (Z_TYPE_P(&subkey) == IS_LONG) {
+								hasNumericKey = 1;
+								break;
+							}
+						} ZEND_HASH_FOREACH_END();
+					} else {
+						ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+						zephir_check_call_status();
+						while (1) {
+							ZEPHIR_CALL_METHOD(&_17$$21, &value, "valid", NULL, 0);
+							zephir_check_call_status();
+							if (!zend_is_true(&_17$$21)) {
+								break;
+							}
+							ZEPHIR_CALL_METHOD(&subkey, &value, "key", NULL, 0);
+							zephir_check_call_status();
+							ZEPHIR_CALL_METHOD(&subvalue, &value, "current", NULL, 0);
+							zephir_check_call_status();
+								if (Z_TYPE_P(&subkey) == IS_LONG) {
+									hasNumericKey = 1;
+									break;
+								}
+							ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+							zephir_check_call_status();
+						}
+					}
+					ZEPHIR_INIT_NVAR(&subvalue);
+					ZEPHIR_INIT_NVAR(&subkey);
+					if (hasNumericKey) {
+						zephir_update_property_array(this_ptr, SL("data"), &key, &value);
+					} else {
+						ZEPHIR_INIT_NVAR(&_20$$27);
+						object_init_ex(&_20$$27, ice_config_ce);
+						ZEPHIR_CALL_METHOD(NULL, &_20$$27, "__construct", &_15, 24, &value);
+						zephir_check_call_status();
+						zephir_update_property_array(this_ptr, SL("data"), &key, &_20$$27);
+					}
+				} else {
+					zephir_update_property_array(this_ptr, SL("data"), &key, &value);
+				}
+			ZEPHIR_CALL_METHOD(NULL, data, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-	} ZEND_HASH_FOREACH_END();
+	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_MM_RESTORE();

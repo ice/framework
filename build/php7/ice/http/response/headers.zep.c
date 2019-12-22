@@ -17,6 +17,7 @@
 #include "kernel/operators.h"
 #include "kernel/iterator.h"
 #include "kernel/concat.h"
+#include "kernel/object.h"
 
 
 /**
@@ -32,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Http\\Response, Headers, ice, http_response_headers, ice_arr_ce, ice_http_response_headers_method_entry, 0);
 
-	zend_class_implements(ice_http_response_headers_ce TSRMLS_CC, 1, ice_http_response_headersinterface_ce);
+	zend_class_implements(ice_http_response_headers_ce, 1, ice_http_response_headersinterface_ce);
 	return SUCCESS;
 
 }
@@ -45,6 +46,7 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
 PHP_METHOD(Ice_Http_Response_Headers, send) {
 
 	zend_object_iterator *_1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
 	zval __$true, header, value, _0, _2$$5;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -61,15 +63,15 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 125);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
-		_1$$3 = zephir_get_iterator(this_ptr TSRMLS_CC);
-		_1$$3->funcs->rewind(_1$$3 TSRMLS_CC);
-		for (;_1$$3->funcs->valid(_1$$3 TSRMLS_CC) == SUCCESS && !EG(exception); _1$$3->funcs->move_forward(_1$$3 TSRMLS_CC)) {
+		_1$$3 = zephir_get_iterator(this_ptr);
+		_1$$3->funcs->rewind(_1$$3);
+		for (;_1$$3->funcs->valid(_1$$3) == SUCCESS && !EG(exception); _1$$3->funcs->move_forward(_1$$3)) {
 			ZEPHIR_GET_IMKEY(header, _1$$3);
 			{
 				ZEPHIR_ITERATOR_COPY(&value, _1$$3);
 			}
 			if (!(ZEPHIR_IS_EMPTY(&value))) {
-				ZEPHIR_INIT_LNVAR(_2$$5);
+				ZEPHIR_INIT_NVAR(&_2$$5);
 				ZEPHIR_CONCAT_VSV(&_2$$5, &header, ": ", &value);
 				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 126, &_2$$5, &__$true);
 				zephir_check_call_status();

@@ -33,13 +33,13 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_FastRoute) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, FastRoute, ice, mvc_fastroute, ice_mvc_fastroute_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_fastroute_ce, SL("httpMethod"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_fastroute_ce, SL("httpMethod"), ZEND_ACC_PUBLIC);
 
-	zend_declare_property_null(ice_mvc_fastroute_ce, SL("regex"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_fastroute_ce, SL("regex"), ZEND_ACC_PUBLIC);
 
-	zend_declare_property_null(ice_mvc_fastroute_ce, SL("variables"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_fastroute_ce, SL("variables"), ZEND_ACC_PUBLIC);
 
-	zend_declare_property_null(ice_mvc_fastroute_ce, SL("handler"), ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_fastroute_ce, SL("handler"), ZEND_ACC_PUBLIC);
 
 	return SUCCESS;
 
@@ -55,6 +55,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_FastRoute) {
  */
 PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval variables;
 	zval *httpMethod_param = NULL, *handler, handler_sub, *regex_param = NULL, *variables_param = NULL;
 	zval httpMethod, regex;
@@ -89,6 +90,7 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
  */
 PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *str_param = NULL, regex, _0, _1, _2, _3;
 	zval str;
 	zval *this_ptr = getThis();
@@ -112,7 +114,7 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 	ZEPHIR_CPY_WRT(&regex, &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_INIT_VAR(&_3);
-	zephir_preg_match(&_3, &regex, &str, &_2, 0, 0 , 0  TSRMLS_CC);
+	zephir_preg_match(&_3, &regex, &str, &_2, 0, 0 , 0 );
 	RETURN_MM_BOOL(zephir_get_boolval(&_3));
 
 }

@@ -32,13 +32,13 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\View\\Engine\\Sleet, Compiler, ice, mvc_view_engine_sleet_compiler, ice_mvc_view_engine_sleet_compiler_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("view"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("view"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("content"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("content"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("parsed"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("parsed"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("parser"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_compiler_ce, SL("parser"), ZEND_ACC_PROTECTED);
 
 	zephir_declare_class_constant_long(ice_mvc_view_engine_sleet_compiler_ce, SL("NEVER"), 0);
 
@@ -68,6 +68,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *view = NULL, view_sub, __$null, _0;
 	zval *this_ptr = getThis();
@@ -103,6 +104,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, content, _0, _1;
 	zval path;
@@ -120,7 +122,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 
 	ZEPHIR_INIT_VAR(&content);
-	zephir_file_get_contents(&content, &path TSRMLS_CC);
+	zephir_file_get_contents(&content, &path);
 	zephir_update_property_zval(this_ptr, SL("content"), &content);
 	zephir_read_property(&_0, this_ptr, SL("parser"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "text", NULL, 0, &content);

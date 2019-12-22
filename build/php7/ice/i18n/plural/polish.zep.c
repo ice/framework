@@ -15,6 +15,7 @@
 #include "kernel/fcall.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/object.h"
 
 
 /**
@@ -41,7 +42,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Polish) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\I18n\\Plural, Polish, ice, i18n_plural_polish, ice_i18n_plural_polish_method_entry, 0);
 
-	zend_class_implements(ice_i18n_plural_polish_ce TSRMLS_CC, 1, ice_i18n_plural_pluralinterface_ce);
+	zend_class_implements(ice_i18n_plural_polish_ce, 1, ice_i18n_plural_pluralinterface_ce);
 	return SUCCESS;
 
 }
@@ -49,6 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Polish) {
 PHP_METHOD(Ice_I18n_Plural_Polish, getCategory) {
 
 	zend_bool _1, _2, _3, _4, _5, _6;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *count_param = NULL, isInt, _0;
 	zend_long count, ZEPHIR_LAST_CALL_STATUS, i10 = 0, i100 = 0;
 	zval *this_ptr = getThis();
@@ -65,8 +67,8 @@ PHP_METHOD(Ice_I18n_Plural_Polish, getCategory) {
 	ZVAL_LONG(&_0, count);
 	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, 0, &_0);
 	zephir_check_call_status();
-	i10 = (long) (zephir_safe_mod_long_long(count, 10 TSRMLS_CC));
-	i100 = (long) (zephir_safe_mod_long_long(count, 100 TSRMLS_CC));
+	i10 = (long) (zephir_safe_mod_long_long(count, 10));
+	i100 = (long) (zephir_safe_mod_long_long(count, 100));
 	_1 = zephir_is_true(&isInt);
 	if (_1) {
 		_1 = i10 >= 2;
@@ -109,7 +111,7 @@ PHP_METHOD(Ice_I18n_Plural_Polish, isInt) {
 
 	ZVAL_UNDEF(&value_sub);
 
-	zephir_fetch_params(0, 1, 0, &value);
+	zephir_fetch_params_without_memory_grow(1, 0, &value);
 
 
 

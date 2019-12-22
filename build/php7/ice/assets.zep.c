@@ -37,11 +37,11 @@ ZEPHIR_INIT_CLASS(Ice_Assets) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Assets, ice, assets, ice_assets_method_entry, 0);
 
-	zend_declare_property_null(ice_assets_ce, SL("di"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_assets_ce, SL("di"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_assets_ce, SL("collections"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_assets_ce, SL("collections"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_assets_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_assets_ce, SL("options"), ZEND_ACC_PROTECTED);
 
 	ice_assets_ce->create_object = zephir_init_properties_Ice_Assets;
 	zephir_declare_class_constant_long(ice_assets_ce, SL("NEVER"), 0);
@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Assets, setCollections) {
 
 	ZVAL_UNDEF(&collections_sub);
 
-	zephir_fetch_params(0, 1, 0, &collections);
+	zephir_fetch_params_without_memory_grow(1, 0, &collections);
 
 
 
@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Assets, setOptions) {
 
 	ZVAL_UNDEF(&options_sub);
 
-	zephir_fetch_params(0, 1, 0, &options);
+	zephir_fetch_params_without_memory_grow(1, 0, &options);
 
 
 
@@ -103,6 +103,7 @@ PHP_METHOD(Ice_Assets, setOptions) {
 PHP_METHOD(Ice_Assets, __construct) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *this_ptr = getThis();
@@ -136,7 +137,7 @@ PHP_METHOD(Ice_Assets, getOption) {
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
 
-	zephir_fetch_params(0, 1, 1, &key, &defaultValue);
+	zephir_fetch_params_without_memory_grow(1, 1, &key, &defaultValue);
 
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -145,7 +146,7 @@ PHP_METHOD(Ice_Assets, getOption) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
-	if (zephir_array_isset_fetch(&value, &_0, key, 1 TSRMLS_CC)) {
+	if (zephir_array_isset_fetch(&value, &_0, key, 1)) {
 		RETURN_CTORW(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
@@ -165,6 +166,7 @@ PHP_METHOD(Ice_Assets, getOption) {
 PHP_METHOD(Ice_Assets, add) {
 
 	zend_bool _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection;
 	zval *parameters = NULL, parameters_sub, *version_param = NULL, *collection_param = NULL, *minify = NULL, minify_sub, __$null, content, type, link;
@@ -210,7 +212,7 @@ PHP_METHOD(Ice_Assets, add) {
 	ZEPHIR_OBS_VAR(&content);
 	if (!(zephir_array_isset_string_fetch(&content, parameters, SL("content"), 0))) {
 		ZEPHIR_OBS_NVAR(&content);
-		zephir_array_isset_long_fetch(&content, parameters, 0, 0 TSRMLS_CC);
+		zephir_array_isset_long_fetch(&content, parameters, 0, 0);
 	}
 	ZEPHIR_OBS_VAR(&type);
 	zephir_array_isset_string_fetch(&type, parameters, SL("type"), 0);
@@ -253,6 +255,7 @@ PHP_METHOD(Ice_Assets, add) {
 PHP_METHOD(Ice_Assets, addCss) {
 
 	zend_bool _4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection, _13$$8;
@@ -315,7 +318,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 	ZEPHIR_OBS_VAR(&content);
 	if (!(zephir_array_isset_string_fetch(&content, &parameters, SL("content"), 0))) {
 		ZEPHIR_OBS_NVAR(&content);
-		zephir_array_isset_long_fetch(&content, &parameters, 0, 0 TSRMLS_CC);
+		zephir_array_isset_long_fetch(&content, &parameters, 0, 0);
 	}
 	ZEPHIR_OBS_VAR(&local);
 	if (!(zephir_array_isset_string_fetch(&local, &parameters, SL("local"), 0))) {
@@ -339,7 +342,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 	}
 	if (zephir_array_isset_string(&parameters, SL("content"))) {
 		ZEPHIR_INIT_VAR(&_6$$7);
-		zephir_create_array(&_6$$7, 1, 0 TSRMLS_CC);
+		zephir_create_array(&_6$$7, 1, 0);
 		ZEPHIR_INIT_VAR(&_7$$7);
 		if (zephir_is_true(minify)) {
 			ZEPHIR_INIT_VAR(&_8$$7);
@@ -392,6 +395,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 PHP_METHOD(Ice_Assets, addJs) {
 
 	zend_bool _4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval version, collection, _13$$8;
@@ -454,7 +458,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 	ZEPHIR_OBS_VAR(&content);
 	if (!(zephir_array_isset_string_fetch(&content, &parameters, SL("content"), 0))) {
 		ZEPHIR_OBS_NVAR(&content);
-		zephir_array_isset_long_fetch(&content, &parameters, 0, 0 TSRMLS_CC);
+		zephir_array_isset_long_fetch(&content, &parameters, 0, 0);
 	}
 	ZEPHIR_OBS_VAR(&local);
 	if (!(zephir_array_isset_string_fetch(&local, &parameters, SL("local"), 0))) {
@@ -478,7 +482,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 	}
 	if (zephir_array_isset_string(&parameters, SL("content"))) {
 		ZEPHIR_INIT_VAR(&_6$$7);
-		zephir_create_array(&_6$$7, 1, 0 TSRMLS_CC);
+		zephir_create_array(&_6$$7, 1, 0);
 		ZEPHIR_INIT_VAR(&_7$$7);
 		if (zephir_is_true(minify)) {
 			ZEPHIR_INIT_VAR(&_8$$7);
@@ -527,6 +531,7 @@ PHP_METHOD(Ice_Assets, addJs) {
  */
 PHP_METHOD(Ice_Assets, addToCollection) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key, key_sub, *value, value_sub, _0, _1$$3;
 	zval *this_ptr = getThis();
 
@@ -544,9 +549,9 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 	if (!(zephir_array_isset(&_0, key))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		array_init(&_1$$3);
-		zephir_update_property_array(this_ptr, SL("collections"), key, &_1$$3 TSRMLS_CC);
+		zephir_update_property_array(this_ptr, SL("collections"), key, &_1$$3);
 	}
-	zephir_update_property_array_multi(this_ptr, SL("collections"), value TSRMLS_CC, SL("za"), 2, key);
+	zephir_update_property_array_multi(this_ptr, SL("collections"), value, SL("za"), 2, key);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -559,6 +564,7 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 PHP_METHOD(Ice_Assets, getCss) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -582,6 +588,7 @@ PHP_METHOD(Ice_Assets, getCss) {
 PHP_METHOD(Ice_Assets, getJs) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -605,6 +612,7 @@ PHP_METHOD(Ice_Assets, getJs) {
  */
 PHP_METHOD(Ice_Assets, get) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, collection, _0, _1;
 	zval key;
 	zval *this_ptr = getThis();
@@ -621,7 +629,7 @@ PHP_METHOD(Ice_Assets, get) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("collections"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_isset_fetch(&collection, &_0, &key, 1 TSRMLS_CC);
+	zephir_array_isset_fetch(&collection, &_0, &key, 1);
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_is_true(&collection)) {
 		ZEPHIR_CPY_WRT(&_1, &collection);
@@ -641,6 +649,7 @@ PHP_METHOD(Ice_Assets, get) {
  */
 PHP_METHOD(Ice_Assets, minify) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content_param = NULL, *type, type_sub, _0, _1, _2, _3;
 	zval content;
@@ -657,7 +666,7 @@ PHP_METHOD(Ice_Assets, minify) {
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
 
 	if (UNEXPECTED(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(content_param) == IS_STRING)) {
@@ -691,6 +700,7 @@ PHP_METHOD(Ice_Assets, minify) {
  */
 PHP_METHOD(Ice_Assets, prepare) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_14 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL, *type_param = NULL, *minify = NULL, minify_sub, __$true, source, target, dir, file, uriMin, destination, exist, old, minified, _0, _2, _5$$8, _6$$8, _7$$10, _8$$11, _9$$11, _10$$12, _11$$14, _12$$14, _16$$14, _13$$15, _15$$15;
@@ -729,7 +739,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
 
 	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(uri_param) == IS_STRING)) {
@@ -767,11 +777,11 @@ PHP_METHOD(Ice_Assets, prepare) {
 	do {
 		if (ZEPHIR_IS_LONG(minify, 1)) {
 			ZEPHIR_INIT_NVAR(minify);
-			ZVAL_BOOL(minify, !((zephir_file_exists(&destination TSRMLS_CC) == SUCCESS)));
+			ZVAL_BOOL(minify, !((zephir_file_exists(&destination) == SUCCESS)));
 			break;
 		}
 		if (ZEPHIR_IS_LONG(minify, 2)) {
-			if (!((zephir_file_exists(&destination TSRMLS_CC) == SUCCESS))) {
+			if (!((zephir_file_exists(&destination) == SUCCESS))) {
 				ZEPHIR_INIT_NVAR(minify);
 				ZVAL_BOOL(minify, 1);
 			} else {
@@ -793,7 +803,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 		zephir_check_call_status();
 		if (zephir_is_true(&_5$$8)) {
 			ZEPHIR_INIT_NVAR(&exist);
-			ZVAL_BOOL(&exist, (zephir_file_exists(&destination TSRMLS_CC) == SUCCESS));
+			ZVAL_BOOL(&exist, (zephir_file_exists(&destination) == SUCCESS));
 		}
 		break;
 	} while(0);
@@ -810,7 +820,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 		ZEPHIR_INIT_VAR(&_8$$11);
 		ZEPHIR_INIT_VAR(&_9$$11);
 		ZEPHIR_CONCAT_VV(&_9$$11, &source, &uri);
-		zephir_file_get_contents(&_8$$11, &_9$$11 TSRMLS_CC);
+		zephir_file_get_contents(&_8$$11, &_9$$11);
 		ZEPHIR_CALL_METHOD(&minified, this_ptr, "minify", NULL, 0, &_8$$11, &type);
 		zephir_check_call_status();
 		if (Z_TYPE_P(minify) == IS_STRING) {
@@ -839,7 +849,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(&_16$$14);
-			zephir_file_put_contents(&_16$$14, &destination, &minified TSRMLS_CC);
+			zephir_file_put_contents(&_16$$14, &destination, &minified);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(&_16$$14)) {
 				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/assets.zep", 309);
 				return;
@@ -854,6 +864,7 @@ PHP_METHOD(Ice_Assets, prepare) {
 zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _2, _1$$3, _3$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);

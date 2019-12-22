@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/object.h"
 
 
 /**
@@ -60,6 +61,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	long _0;
 	zend_long i = 0, tmp = 0, state, inParen;
 	char c = 0, next = 0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *css_param = NULL;
 	zval css, min;
 	zval *this_ptr = getThis();
@@ -197,7 +199,7 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 		} while(0);
 
 		if (c != 0) {
-			zephir_concat_self_char(&min, c TSRMLS_CC);
+			zephir_concat_self_char(&min, c);
 		}
 	}
 	RETURN_CTOR(&min);

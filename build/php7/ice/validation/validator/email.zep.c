@@ -18,6 +18,7 @@
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
+#include "kernel/object.h"
 
 
 /**
@@ -62,6 +63,7 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Email) {
 PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 
 	zend_bool _0, _10$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval field;
 	zval *validation, validation_sub, *field_param = NULL, value, label, message, i18n, replace, _1, _2, _3$$4, _4$$4, _6$$4, _9$$4, _11$$4, _12$$4, _16$$4, _5$$5, _7$$7, _8$$8, _13$$9, _14$$9, _15$$9;
@@ -94,7 +96,7 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
@@ -173,7 +175,7 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 			ZEPHIR_CPY_WRT(&message, &_15$$9);
 		}
 		ZEPHIR_INIT_VAR(&replace);
-		zephir_create_array(&replace, 1, 0 TSRMLS_CC);
+		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CALL_FUNCTION(&_16$$4, "strtr", NULL, 103, &message, &replace);
 		zephir_check_call_status();

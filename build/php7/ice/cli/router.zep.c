@@ -36,19 +36,19 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Router) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Cli, Router, ice, cli_router, ice_cli_router_method_entry, 0);
 
-	zend_declare_property_string(ice_cli_router_ce, SL("defaultModule"), "shell", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_cli_router_ce, SL("defaultModule"), "shell", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_cli_router_ce, SL("defaultHandler"), "main", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_cli_router_ce, SL("defaultHandler"), "main", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_cli_router_ce, SL("defaultAction"), "main", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_cli_router_ce, SL("defaultAction"), "main", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_cli_router_ce, SL("module"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_router_ce, SL("module"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_cli_router_ce, SL("handler"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_router_ce, SL("handler"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_cli_router_ce, SL("action"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_router_ce, SL("action"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_cli_router_ce, SL("params"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_router_ce, SL("params"), ZEND_ACC_PROTECTED);
 
 	ice_cli_router_ce->create_object = zephir_init_properties_Ice_Cli_Router;
 	return SUCCESS;
@@ -71,7 +71,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaultModule) {
 
 	ZVAL_UNDEF(&defaultModule_sub);
 
-	zephir_fetch_params(0, 1, 0, &defaultModule);
+	zephir_fetch_params_without_memory_grow(1, 0, &defaultModule);
 
 
 
@@ -96,7 +96,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaultHandler) {
 
 	ZVAL_UNDEF(&defaultHandler_sub);
 
-	zephir_fetch_params(0, 1, 0, &defaultHandler);
+	zephir_fetch_params_without_memory_grow(1, 0, &defaultHandler);
 
 
 
@@ -121,7 +121,7 @@ PHP_METHOD(Ice_Cli_Router, setDefaultAction) {
 
 	ZVAL_UNDEF(&defaultAction_sub);
 
-	zephir_fetch_params(0, 1, 0, &defaultAction);
+	zephir_fetch_params_without_memory_grow(1, 0, &defaultAction);
 
 
 
@@ -173,6 +173,7 @@ PHP_METHOD(Ice_Cli_Router, getParams) {
  */
 PHP_METHOD(Ice_Cli_Router, setDefaults) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *defaults_param = NULL, module, handler, action;
 	zval defaults;
 	zval *this_ptr = getThis();
@@ -213,9 +214,10 @@ PHP_METHOD(Ice_Cli_Router, setDefaults) {
  */
 PHP_METHOD(Ice_Cli_Router, handle) {
 
-	zend_bool _13, _16, _19;
+	zend_bool _23, _26, _29;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *arguments = NULL, arguments_sub, __$null, params, argument, _0, _1, _2, *_3, _14, _17, _20, _22, _4$$4, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$6, _11$$6, _12$$6, _15$$8, _18$$9, _21$$10;
+	zval *arguments = NULL, arguments_sub, __$null, params, argument, _0, _1, _2, *_3, _4, _24, _27, _30, _32, _5$$4, _6$$4, _7$$4, _8$$4, _9$$4, _10$$4, _11$$6, _12$$6, _13$$6, _14$$8, _15$$8, _16$$8, _17$$8, _18$$8, _19$$8, _20$$10, _21$$10, _22$$10, _25$$12, _28$$13, _31$$14;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&arguments_sub);
@@ -225,22 +227,32 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_14);
-	ZVAL_UNDEF(&_17);
-	ZVAL_UNDEF(&_20);
-	ZVAL_UNDEF(&_22);
-	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_24);
+	ZVAL_UNDEF(&_27);
+	ZVAL_UNDEF(&_30);
+	ZVAL_UNDEF(&_32);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
-	ZVAL_UNDEF(&_10$$6);
+	ZVAL_UNDEF(&_10$$4);
 	ZVAL_UNDEF(&_11$$6);
 	ZVAL_UNDEF(&_12$$6);
+	ZVAL_UNDEF(&_13$$6);
+	ZVAL_UNDEF(&_14$$8);
 	ZVAL_UNDEF(&_15$$8);
-	ZVAL_UNDEF(&_18$$9);
+	ZVAL_UNDEF(&_16$$8);
+	ZVAL_UNDEF(&_17$$8);
+	ZVAL_UNDEF(&_18$$8);
+	ZVAL_UNDEF(&_19$$8);
+	ZVAL_UNDEF(&_20$$10);
 	ZVAL_UNDEF(&_21$$10);
+	ZVAL_UNDEF(&_22$$10);
+	ZVAL_UNDEF(&_25$$12);
+	ZVAL_UNDEF(&_28$$13);
+	ZVAL_UNDEF(&_31$$14);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &arguments);
@@ -268,85 +280,128 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 	ZEPHIR_UNREF(arguments);
 	zephir_check_call_status();
 	zephir_is_iterable(arguments, 0, "ice/cli/router.zep", 97);
-	ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(arguments), _3)
-	{
-		ZEPHIR_INIT_NVAR(&argument);
-		ZVAL_COPY(&argument, _3);
-		ZVAL_LONG(&_4$$4, 0);
-		ZVAL_LONG(&_5$$4, 2);
-		ZEPHIR_INIT_NVAR(&_6$$4);
-		zephir_substr(&_6$$4, &argument, 0 , 2 , 0);
-		if (!ZEPHIR_IS_STRING_IDENTICAL(&_6$$4, "--")) {
-			zephir_array_append(&params, &argument, PH_SEPARATE, "ice/cli/router.zep", 81);
-			continue;
+	if (Z_TYPE_P(arguments) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(arguments), _3)
+		{
+			ZEPHIR_INIT_NVAR(&argument);
+			ZVAL_COPY(&argument, _3);
+			ZVAL_LONG(&_5$$4, 0);
+			ZVAL_LONG(&_6$$4, 2);
+			ZEPHIR_INIT_NVAR(&_7$$4);
+			zephir_substr(&_7$$4, &argument, 0 , 2 , 0);
+			if (!ZEPHIR_IS_STRING_IDENTICAL(&_7$$4, "--")) {
+				zephir_array_append(&params, &argument, PH_SEPARATE, "ice/cli/router.zep", 81);
+				continue;
+			}
+			ZVAL_LONG(&_8$$4, 2);
+			ZEPHIR_INIT_NVAR(&_9$$4);
+			zephir_substr(&_9$$4, &argument, 2 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+			ZEPHIR_CPY_WRT(&argument, &_9$$4);
+			ZEPHIR_INIT_NVAR(&_9$$4);
+			ZVAL_STRING(&_9$$4, "=");
+			ZEPHIR_INIT_NVAR(&_10$$4);
+			zephir_fast_strpos(&_10$$4, &argument, &_9$$4, 0 );
+			if (zephir_is_true(&_10$$4)) {
+				ZEPHIR_INIT_NVAR(&_11$$6);
+				zephir_fast_explode_str(&_11$$6, SL("="), &argument, 2 );
+				ZEPHIR_CPY_WRT(&argument, &_11$$6);
+				zephir_array_fetch_long(&_12$$6, &argument, 1, PH_NOISY | PH_READONLY, "ice/cli/router.zep", 91);
+				ZEPHIR_OBS_NVAR(&_13$$6);
+				zephir_array_fetch_long(&_13$$6, &argument, 0, PH_NOISY, "ice/cli/router.zep", 91);
+				zephir_array_update_zval(&params, &_13$$6, &_12$$6, PH_COPY | PH_SEPARATE);
+			} else {
+				zephir_array_update_zval(&params, &argument, &__$null, PH_COPY | PH_SEPARATE);
+			}
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, arguments, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_4, arguments, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_4)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&argument, arguments, "current", NULL, 0);
+			zephir_check_call_status();
+				ZVAL_LONG(&_14$$8, 0);
+				ZVAL_LONG(&_15$$8, 2);
+				ZEPHIR_INIT_NVAR(&_16$$8);
+				zephir_substr(&_16$$8, &argument, 0 , 2 , 0);
+				if (!ZEPHIR_IS_STRING_IDENTICAL(&_16$$8, "--")) {
+					zephir_array_append(&params, &argument, PH_SEPARATE, "ice/cli/router.zep", 81);
+					continue;
+				}
+				ZVAL_LONG(&_17$$8, 2);
+				ZEPHIR_INIT_NVAR(&_18$$8);
+				zephir_substr(&_18$$8, &argument, 2 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
+				ZEPHIR_CPY_WRT(&argument, &_18$$8);
+				ZEPHIR_INIT_NVAR(&_18$$8);
+				ZVAL_STRING(&_18$$8, "=");
+				ZEPHIR_INIT_NVAR(&_19$$8);
+				zephir_fast_strpos(&_19$$8, &argument, &_18$$8, 0 );
+				if (zephir_is_true(&_19$$8)) {
+					ZEPHIR_INIT_NVAR(&_20$$10);
+					zephir_fast_explode_str(&_20$$10, SL("="), &argument, 2 );
+					ZEPHIR_CPY_WRT(&argument, &_20$$10);
+					zephir_array_fetch_long(&_21$$10, &argument, 1, PH_NOISY | PH_READONLY, "ice/cli/router.zep", 91);
+					ZEPHIR_OBS_NVAR(&_22$$10);
+					zephir_array_fetch_long(&_22$$10, &argument, 0, PH_NOISY, "ice/cli/router.zep", 91);
+					zephir_array_update_zval(&params, &_22$$10, &_21$$10, PH_COPY | PH_SEPARATE);
+				} else {
+					zephir_array_update_zval(&params, &argument, &__$null, PH_COPY | PH_SEPARATE);
+				}
+			ZEPHIR_CALL_METHOD(NULL, arguments, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-		ZVAL_LONG(&_7$$4, 2);
-		ZEPHIR_INIT_NVAR(&_8$$4);
-		zephir_substr(&_8$$4, &argument, 2 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
-		ZEPHIR_CPY_WRT(&argument, &_8$$4);
-		ZEPHIR_INIT_NVAR(&_8$$4);
-		ZVAL_STRING(&_8$$4, "=");
-		ZEPHIR_INIT_NVAR(&_9$$4);
-		zephir_fast_strpos(&_9$$4, &argument, &_8$$4, 0 );
-		if (zephir_is_true(&_9$$4)) {
-			ZEPHIR_INIT_NVAR(&_10$$6);
-			zephir_fast_explode_str(&_10$$6, SL("="), &argument, 2  TSRMLS_CC);
-			ZEPHIR_CPY_WRT(&argument, &_10$$6);
-			zephir_array_fetch_long(&_11$$6, &argument, 1, PH_NOISY | PH_READONLY, "ice/cli/router.zep", 91 TSRMLS_CC);
-			ZEPHIR_OBS_NVAR(&_12$$6);
-			zephir_array_fetch_long(&_12$$6, &argument, 0, PH_NOISY, "ice/cli/router.zep", 91 TSRMLS_CC);
-			zephir_array_update_zval(&params, &_12$$6, &_11$$6, PH_COPY | PH_SEPARATE);
-		} else {
-			zephir_array_update_zval(&params, &argument, &__$null, PH_COPY | PH_SEPARATE);
-		}
-	} ZEND_HASH_FOREACH_END();
-	ZEPHIR_INIT_NVAR(&argument);
-	_13 = zephir_array_isset_string(&params, SL("module"));
-	if (_13) {
-		zephir_array_fetch_string(&_14, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 97 TSRMLS_CC);
-		_13 = zephir_is_true(&_14);
 	}
-	if (_13) {
-		zephir_array_fetch_string(&_15$$8, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 98 TSRMLS_CC);
-		zephir_update_property_zval(this_ptr, SL("module"), &_15$$8);
+	ZEPHIR_INIT_NVAR(&argument);
+	_23 = zephir_array_isset_string(&params, SL("module"));
+	if (_23) {
+		zephir_array_fetch_string(&_24, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 97);
+		_23 = zephir_is_true(&_24);
+	}
+	if (_23) {
+		zephir_array_fetch_string(&_25$$12, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 98);
+		zephir_update_property_zval(this_ptr, SL("module"), &_25$$12);
 		zephir_array_unset_string(&params, SL("module"), PH_SEPARATE);
 	}
-	_16 = zephir_array_isset_string(&params, SL("handler"));
-	if (_16) {
-		zephir_array_fetch_string(&_17, &params, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 103 TSRMLS_CC);
-		_16 = zephir_is_true(&_17);
+	_26 = zephir_array_isset_string(&params, SL("handler"));
+	if (_26) {
+		zephir_array_fetch_string(&_27, &params, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 103);
+		_26 = zephir_is_true(&_27);
 	}
-	if (_16) {
-		zephir_array_fetch_string(&_18$$9, &params, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 104 TSRMLS_CC);
-		zephir_update_property_zval(this_ptr, SL("handler"), &_18$$9);
+	if (_26) {
+		zephir_array_fetch_string(&_28$$13, &params, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 104);
+		zephir_update_property_zval(this_ptr, SL("handler"), &_28$$13);
 		zephir_array_unset_string(&params, SL("handler"), PH_SEPARATE);
 	}
-	_19 = zephir_array_isset_string(&params, SL("action"));
-	if (_19) {
-		zephir_array_fetch_string(&_20, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 109 TSRMLS_CC);
-		_19 = zephir_is_true(&_20);
+	_29 = zephir_array_isset_string(&params, SL("action"));
+	if (_29) {
+		zephir_array_fetch_string(&_30, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 109);
+		_29 = zephir_is_true(&_30);
 	}
-	if (_19) {
-		zephir_array_fetch_string(&_21$$10, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 110 TSRMLS_CC);
-		zephir_update_property_zval(this_ptr, SL("action"), &_21$$10);
+	if (_29) {
+		zephir_array_fetch_string(&_31$$14, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/router.zep", 110);
+		zephir_update_property_zval(this_ptr, SL("action"), &_31$$14);
 		zephir_array_unset_string(&params, SL("action"), PH_SEPARATE);
 	}
-	if (zephir_fast_count_int(&params TSRMLS_CC)) {
+	if (zephir_fast_count_int(&params)) {
 		zephir_update_property_zval(this_ptr, SL("params"), &params);
 	}
-	zephir_create_array(return_value, 4, 0 TSRMLS_CC);
-	ZEPHIR_OBS_VAR(&_22);
-	zephir_read_property(&_22, this_ptr, SL("module"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("module"), &_22, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_22);
-	zephir_read_property(&_22, this_ptr, SL("handler"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("handler"), &_22, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_22);
-	zephir_read_property(&_22, this_ptr, SL("action"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("action"), &_22, PH_COPY | PH_SEPARATE);
-	ZEPHIR_OBS_NVAR(&_22);
-	zephir_read_property(&_22, this_ptr, SL("params"), PH_NOISY_CC);
-	zephir_array_update_string(return_value, SL("params"), &_22, PH_COPY | PH_SEPARATE);
+	zephir_create_array(return_value, 4, 0);
+	ZEPHIR_OBS_VAR(&_32);
+	zephir_read_property(&_32, this_ptr, SL("module"), PH_NOISY_CC);
+	zephir_array_update_string(return_value, SL("module"), &_32, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_32);
+	zephir_read_property(&_32, this_ptr, SL("handler"), PH_NOISY_CC);
+	zephir_array_update_string(return_value, SL("handler"), &_32, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_32);
+	zephir_read_property(&_32, this_ptr, SL("action"), PH_NOISY_CC);
+	zephir_array_update_string(return_value, SL("action"), &_32, PH_COPY | PH_SEPARATE);
+	ZEPHIR_OBS_NVAR(&_32);
+	zephir_read_property(&_32, this_ptr, SL("params"), PH_NOISY_CC);
+	zephir_array_update_string(return_value, SL("params"), &_32, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 
 }
@@ -354,6 +409,7 @@ PHP_METHOD(Ice_Cli_Router, handle) {
 zend_object *zephir_init_properties_Ice_Cli_Router(zend_class_entry *class_type TSRMLS_DC) {
 
 		zval _0, _1$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 

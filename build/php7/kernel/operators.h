@@ -103,7 +103,7 @@ int zephir_compare_strict_long(zval *op1, long op2);
 int zephir_compare_strict_double(zval *op1, double op2);
 int zephir_compare_strict_bool(zval *op1, zend_bool op2);
 
-void zephir_cast(zval *result, zval *var, zend_uint type);
+void zephir_cast(zval *result, zval *var, uint32_t type);
 void zephir_convert_to_object(zval *op);
 long zephir_get_intval_ex(const zval *op);
 long zephir_get_charval_ex(const zval *op);
@@ -222,9 +222,12 @@ long zephir_safe_mod_double_zval(double op1, zval *op2);
 	{ \
 		if (Z_TYPE_P(passValue) == IS_ARRAY) { \
 			ZEPHIR_CPY_WRT(returnValue, passValue); \
-		} else { \
+		} else if (Z_ISNULL_P(passValue) || Z_ISUNDEF_P(passValue)) { \
 			ZEPHIR_INIT_NVAR(returnValue); \
 			array_init_size(returnValue, 0); \
+		} else { \
+			convert_to_array(passValue); \
+			ZEPHIR_CPY_WRT(returnValue, passValue); \
 		} \
 	}
 

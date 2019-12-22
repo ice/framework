@@ -38,7 +38,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View\\Engine, Sleet, ice, mvc_view_engine_sleet, ice_mvc_view_engine_ce, ice_mvc_view_engine_sleet_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_view_engine_sleet_ce, SL("compiler"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_sleet_ce, SL("compiler"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -61,6 +61,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_15 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *path_param = NULL, __$true, compileDir, compile, trim, dir, file, compiledPath, old, compiled, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10$$9, _11$$9, _12$$10, _13$$12, _16$$12, _14$$13;
@@ -98,7 +99,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	zephir_fetch_params(1, 1, 0, &path_param);
 
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
@@ -121,7 +122,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_INIT_VAR(&_4);
 	ZVAL_STRING(&_4, "/");
-	zephir_fast_trim(&_3, &compileDir, &_4, ZEPHIR_TRIM_RIGHT TSRMLS_CC);
+	zephir_fast_trim(&_3, &compileDir, &_4, ZEPHIR_TRIM_RIGHT);
 	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_CALL_FUNCTION(&_6, "dirname", NULL, 52, &path);
 	zephir_check_call_status();
@@ -129,7 +130,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_8);
 	ZVAL_STRING(&_8, "");
-	zephir_fast_str_replace(&_5, &trim, &_8, &_7 TSRMLS_CC);
+	zephir_fast_str_replace(&_5, &trim, &_8, &_7);
 	ZEPHIR_INIT_VAR(&dir);
 	ZEPHIR_CONCAT_VV(&dir, &_3, &_5);
 	ZEPHIR_INIT_VAR(&_9);
@@ -146,11 +147,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		}
 		if (ZEPHIR_IS_LONG(&compile, 1)) {
 			ZEPHIR_INIT_NVAR(&compile);
-			ZVAL_BOOL(&compile, !((zephir_file_exists(&compiledPath TSRMLS_CC) == SUCCESS)));
+			ZVAL_BOOL(&compile, !((zephir_file_exists(&compiledPath) == SUCCESS)));
 			break;
 		}
 		if (ZEPHIR_IS_LONG(&compile, 2)) {
-			if (!((zephir_file_exists(&compiledPath TSRMLS_CC) == SUCCESS))) {
+			if (!((zephir_file_exists(&compiledPath) == SUCCESS))) {
 				ZEPHIR_INIT_NVAR(&compile);
 				ZVAL_BOOL(&compile, 1);
 			} else {
@@ -195,7 +196,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 				zephir_check_call_status();
 			}
 			ZEPHIR_INIT_VAR(&_16$$12);
-			zephir_file_put_contents(&_16$$12, &compiledPath, &compiled TSRMLS_CC);
+			zephir_file_put_contents(&_16$$12, &compiledPath, &compiled);
 			if (ZEPHIR_IS_FALSE_IDENTICAL(&_16$$12)) {
 				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Directory can't be written", "ice/mvc/view/engine/sleet.zep", 80);
 				return;
@@ -215,11 +216,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 
-	zend_string *_3;
-	zend_ulong _2;
+	zend_string *_4;
+	zend_ulong _3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
-	zval *path_param = NULL, *data_param = NULL, key, value, _0, *_1, _4$$3;
+	zval *path_param = NULL, *data_param = NULL, key, value, _0, *_1, _2, _5$$3, _6$$4;
 	zval path;
 	zval *this_ptr = getThis();
 
@@ -227,14 +229,16 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&data);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
@@ -255,26 +259,48 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	zephir_check_call_status();
 	zephir_get_strval(&path, &_0);
 	zephir_is_iterable(&data, 0, "ice/mvc/view/engine/sleet.zep", 105);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _1)
-	{
-		ZEPHIR_INIT_NVAR(&key);
-		if (_3 != NULL) { 
-			ZVAL_STR_COPY(&key, _3);
-		} else {
-			ZVAL_LONG(&key, _2);
+	if (Z_TYPE_P(&data) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _3, _4, _1)
+		{
+			ZEPHIR_INIT_NVAR(&key);
+			if (_4 != NULL) { 
+				ZVAL_STR_COPY(&key, _4);
+			} else {
+				ZVAL_LONG(&key, _3);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _1);
+			ZEPHIR_CPY_WRT(&_5$$3, &value);
+			if (zephir_set_symbol(&key, &_5$$3) == FAILURE) {
+				return;
+			}
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &data, "rewind", NULL, 0);
+		zephir_check_call_status();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_2, &data, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_2)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&key, &data, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, &data, "current", NULL, 0);
+			zephir_check_call_status();
+				ZEPHIR_CPY_WRT(&_6$$4, &value);
+				if (zephir_set_symbol(&key, &_6$$4) == FAILURE) {
+					return;
+				}
+			ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
+			zephir_check_call_status();
 		}
-		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _1);
-		ZEPHIR_CPY_WRT(&_4$$3, &value);
-		if (zephir_set_symbol(&key, &_4$$3 TSRMLS_CC) == FAILURE) {
-			return;
-		}
-	} ZEND_HASH_FOREACH_END();
+	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 157);
 	zephir_check_call_status();
-	if (zephir_require_zval(&path TSRMLS_CC) == FAILURE) {
+	if (zephir_require_zval(&path) == FAILURE) {
 		RETURN_MM_NULL();
 	}
 	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 158);

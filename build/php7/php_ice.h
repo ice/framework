@@ -11,10 +11,10 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.4.1"
+#define PHP_ICE_VERSION     "1.5.0"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.11.9-$Id$"
+#define PHP_ICE_ZEPVERSION  "0.12.15-$Id$"
 #define PHP_ICE_DESCRIPTION "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2018 Ice Team."
 
 
@@ -22,14 +22,6 @@
 ZEND_BEGIN_MODULE_GLOBALS(ice)
 
 	int initialized;
-
-	/* Memory */
-	zephir_memory_entry *start_memory; /**< The first preallocated frame */
-	zephir_memory_entry *end_memory; /**< The last preallocate frame */
-	zephir_memory_entry *active_memory; /**< The current memory frame */
-
-	/* Virtual Symbol Tables */
-	zephir_symbol_table *active_symbol_table;
 
 	/** Function cache */
 	HashTable *fcache;

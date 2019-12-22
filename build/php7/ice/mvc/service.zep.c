@@ -34,7 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Service) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Service, ice, mvc_service, ice_di_access_ce, ice_mvc_service_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(ice_mvc_service_ce, SL("model"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_service_ce, SL("model"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -47,7 +47,7 @@ PHP_METHOD(Ice_Mvc_Service, setModel) {
 
 	ZVAL_UNDEF(&model_sub);
 
-	zephir_fetch_params(0, 1, 0, &model);
+	zephir_fetch_params_without_memory_grow(1, 0, &model);
 
 
 
@@ -76,6 +76,7 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 
 	zval _3$$3;
 	zend_bool _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _0, _2, _4$$3;
 	zval method;
@@ -93,7 +94,7 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
 
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
@@ -114,11 +115,11 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 	if (_1) {
 		ZEPHIR_OBS_VAR(&_2);
 		zephir_read_property(&_2, this_ptr, SL("model"), PH_NOISY_CC);
-		_1 = zephir_instance_of_ev(&_2, ice_mvc_model_ce TSRMLS_CC);
+		_1 = zephir_instance_of_ev(&_2, ice_mvc_model_ce);
 	}
 	if (_1) {
 		ZEPHIR_INIT_VAR(&_3$$3);
-		zephir_create_array(&_3$$3, 2, 0 TSRMLS_CC);
+		zephir_create_array(&_3$$3, 2, 0);
 		ZEPHIR_OBS_VAR(&_4$$3);
 		zephir_read_property(&_4$$3, this_ptr, SL("model"), PH_NOISY_CC);
 		zephir_array_fast_append(&_3$$3, &_4$$3);

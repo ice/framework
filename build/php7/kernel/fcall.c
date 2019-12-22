@@ -1,22 +1,13 @@
-
 /*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Zephir Team (https://www.zephir-lang.com)      |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  |          Vladimir Kolesnikov <vladimir@extrememember.com>              |
-  +------------------------------------------------------------------------+
-*/
+ * This file is part of the Zephir.
+ *
+ * (c) Zephir Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #include <php.h>
 #include "php_ext.h"
@@ -35,12 +26,14 @@
 
 int zephir_has_constructor_ce(const zend_class_entry *ce)
 {
-	while (ce) {
+	do {
 		if (ce->constructor != NULL) {
 			return 1;
 		}
+
 		ce = ce->parent;
-	}
+	} while (ce);
+
 	return 0;
 }
 
@@ -290,7 +283,7 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
  * Calls a function/method in the PHP userland
  */
 int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_call_type type,
-	zval *function_name, zval *retval_ptr, zephir_fcall_cache_entry **cache_entry, int cache_slot, zend_uint param_count,
+	zval *function_name, zval *retval_ptr, zephir_fcall_cache_entry **cache_entry, int cache_slot, uint32_t param_count,
 	zval *params[])
 {
 	zval local_retval_ptr;
@@ -421,14 +414,16 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 	}
 	else if (FAILURE == status || EG(exception)) {
 		ZVAL_NULL(retval_ptr);
+	} else if (Z_TYPE_P(retval_ptr) == IS_ARRAY) {
+		SEPARATE_ARRAY(retval_ptr);
 	}
 
 	return status;
 }
 
-int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint func_length,
+int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint32_t func_length,
 	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint param_count, zval **params)
+	uint32_t param_count, zval **params)
 {
 	int status;
 	zval rv, *rvp = return_value_ptr ? return_value_ptr : &rv;
@@ -463,7 +458,7 @@ int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint
 
 int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
 	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint param_count, zval **params)
+	uint32_t param_count, zval **params)
 {
 	int status;
 	zval rv, *rvp = return_value_ptr ? return_value_ptr : &rv;
@@ -481,7 +476,7 @@ int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
 	status = zephir_call_user_function(NULL, NULL, zephir_fcall_function, func_name, rvp, cache_entry, cache_slot, param_count, params);
 
 	if (status == FAILURE && !EG(exception)) {
-		zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined function %s()", Z_TYPE_P(func_name) ? Z_STRVAL_P(func_name) : "undefined");
+		zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined function %s()", Z_TYPE_P(func_name) == IS_STRING ? Z_STRVAL_P(func_name) : "undefined");
 	} else if (EG(exception)) {
 		status = FAILURE;
 	}
@@ -494,9 +489,9 @@ int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
 }
 
 int zephir_call_class_method_aparams(zval *return_value, zend_class_entry *ce, zephir_call_type type, zval *object,
-	const char *method_name, uint method_len,
+	const char *method_name, uint32_t method_len,
 	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint param_count, zval **params)
+	uint32_t param_count, zval **params)
 {
 	int status;
 
@@ -537,7 +532,7 @@ int zephir_call_class_method_aparams(zval *return_value, zend_class_entry *ce, z
 
 			case zephir_fcall_ce:
 			case zephir_fcall_method:
-				zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined method %s::%s()", ce->name, method_name);
+				zephir_throw_exception_format(spl_ce_RuntimeException, "Call to undefined method %s::%s()", ZSTR_VAL(ce->name), method_name);
 				break;
 
 			default:

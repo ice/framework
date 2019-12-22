@@ -36,8 +36,9 @@ extern zend_string* i_self;
 #define PH_COPY 1024
 #define PH_CTOR 4096
 
+/* Deprecated */
 #ifndef zend_uint
- #define zend_uint uint
+ #define zend_uint uint32_t
 #endif
 
 #ifndef ZEND_ACC_FINAL_CLASS
@@ -206,7 +207,7 @@ extern zend_string* i_self;
 #define RETURN_MM_NULL()            { RETVAL_NULL(); ZEPHIR_MM_RESTORE(); return; }
 
 /* Globals functions */
-int zephir_get_global(zval **arr, const char *global, unsigned int global_length);
+int zephir_get_global(zval *arr, const char *global, unsigned int global_length);
 
 /* Count */
 void zephir_fast_count(zval *result, zval *array);
@@ -266,6 +267,11 @@ int zephir_fetch_parameters(int num_args, int required_args, int optional_args, 
 		} \
 	}
 
+#define zephir_fetch_params_without_memory_grow(required_params, optional_params, ...) \
+	if (zephir_fetch_parameters(ZEND_NUM_ARGS(), required_params, optional_params, __VA_ARGS__) == FAILURE) { \
+		RETURN_NULL(); \
+	}
+
 #define ZEPHIR_CREATE_OBJECT(obj, class_type) \
 	{ \
 		zend_object *object = zend_objects_new(class_type); \
@@ -280,10 +286,13 @@ int zephir_fetch_parameters(int num_args, int required_args, int optional_args, 
 #define ZEPHIR_GET_CONSTANT(return_value, const_name) do { \
 	zval *_constant_ptr = zend_get_constant_str(SL(const_name)); \
 	if (_constant_ptr == NULL) { \
-		ZEPHIR_MM_RESTORE(); \
-		return; \
+	    zval _null; \
+		ZVAL_NULL(&_null); \
+		ZVAL_COPY(return_value, &_null); \
+		zephir_ptr_dtor(&_null); \
+	} else { \
+	    ZVAL_COPY(return_value, _constant_ptr); \
 	} \
-	ZVAL_COPY(return_value, _constant_ptr); \
 } while(0)
 
 #define ZEPHIR_GET_IMKEY(var, it) it->funcs->get_current_key(it, &var);

@@ -33,11 +33,11 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View, Engine, ice, mvc_view_engine, ice_di_access_ce, ice_mvc_view_engine_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_declare_property_null(ice_mvc_view_engine_ce, SL("view"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_ce, SL("view"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_mvc_view_engine_ce, SL("options"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_view_engine_ce, SL("options"), ZEND_ACC_PROTECTED);
 
-	zend_class_implements(ice_mvc_view_engine_ce TSRMLS_CC, 1, ice_mvc_view_engine_engineinterface_ce);
+	zend_class_implements(ice_mvc_view_engine_ce, 1, ice_mvc_view_engine_engineinterface_ce);
 	return SUCCESS;
 
 }
@@ -49,7 +49,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 
 	ZVAL_UNDEF(&options_sub);
 
-	zephir_fetch_params(0, 1, 0, &options);
+	zephir_fetch_params_without_memory_grow(1, 0, &options);
 
 
 
@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_NULL(&__$null);
 
-	zephir_fetch_params(0, 1, 1, &view, &di);
+	zephir_fetch_params_without_memory_grow(1, 1, &view, &di);
 
 	if (!di) {
 		di = &di_sub;
@@ -91,6 +91,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -113,6 +114,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, load) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, _0;
@@ -127,7 +129,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {
@@ -159,6 +161,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, _0;
@@ -173,7 +176,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(path_param) == IS_STRING)) {

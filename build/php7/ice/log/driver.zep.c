@@ -15,6 +15,7 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/object.h"
 
 
 /**
@@ -32,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Log, Driver, ice, log_driver, ice_log_driver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
-	zend_class_implements(ice_log_driver_ce TSRMLS_CC, 1, ice_log_loggerinterface_ce);
+	zend_class_implements(ice_log_driver_ce, 1, ice_log_loggerinterface_ce);
 	return SUCCESS;
 
 }
@@ -46,6 +47,7 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
  */
 PHP_METHOD(Ice_Log_Driver, emergency) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -87,6 +89,7 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
  */
 PHP_METHOD(Ice_Log_Driver, alert) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -128,6 +131,7 @@ PHP_METHOD(Ice_Log_Driver, alert) {
  */
 PHP_METHOD(Ice_Log_Driver, critical) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -167,6 +171,7 @@ PHP_METHOD(Ice_Log_Driver, critical) {
  */
 PHP_METHOD(Ice_Log_Driver, error) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -208,6 +213,7 @@ PHP_METHOD(Ice_Log_Driver, error) {
  */
 PHP_METHOD(Ice_Log_Driver, warning) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -247,6 +253,7 @@ PHP_METHOD(Ice_Log_Driver, warning) {
  */
 PHP_METHOD(Ice_Log_Driver, notice) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -288,6 +295,7 @@ PHP_METHOD(Ice_Log_Driver, notice) {
  */
 PHP_METHOD(Ice_Log_Driver, info) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;
@@ -327,6 +335,7 @@ PHP_METHOD(Ice_Log_Driver, info) {
  */
 PHP_METHOD(Ice_Log_Driver, debug) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, _0;

@@ -38,19 +38,19 @@ ZEPHIR_INIT_CLASS(Ice_Db_Driver_Pdo) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\Db\\Driver, Pdo, ice, db_driver_pdo, ice_db_driver_pdo_method_entry, 0);
 
-	zend_declare_property_string(ice_db_driver_pdo_ce, SL("id"), "id", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_db_driver_pdo_ce, SL("id"), "id", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_db_driver_pdo_ce, SL("type"), "SQL", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_db_driver_pdo_ce, SL("type"), "SQL", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_db_driver_pdo_ce, SL("error"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_db_driver_pdo_ce, SL("error"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_db_driver_pdo_ce, SL("client"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_db_driver_pdo_ce, SL("client"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_null(ice_db_driver_pdo_ce, SL("driverName"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_db_driver_pdo_ce, SL("driverName"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_db_driver_pdo_ce, SL("identifier"), "\"%s\"", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_db_driver_pdo_ce, SL("identifier"), "\"%s\"", ZEND_ACC_PROTECTED);
 
-	zend_class_implements(ice_db_driver_pdo_ce TSRMLS_CC, 1, ice_db_dbinterface_ce);
+	zend_class_implements(ice_db_driver_pdo_ce, 1, ice_db_dbinterface_ce);
 	return SUCCESS;
 
 }
@@ -101,6 +101,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getDriverName) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options;
 	zval *dsn_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, _0, _1, _2, _9, _3$$3, _5$$4, _6$$5, _7$$6, _8$$7;
@@ -147,8 +148,8 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_fast_explode_str(&_0, SL(":"), &dsn, 2  TSRMLS_CC);
-	zephir_array_fetch_long(&_1, &_0, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 38 TSRMLS_CC);
+	zephir_fast_explode_str(&_0, SL(":"), &dsn, 2 );
+	zephir_array_fetch_long(&_1, &_0, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 38);
 	zephir_update_property_zval(this_ptr, SL("driverName"), &_1);
 	zephir_read_property(&_2, this_ptr, SL("driverName"), PH_NOISY_CC | PH_READONLY);
 	do {
@@ -214,7 +215,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getIdValue) {
 
 	ZVAL_UNDEF(&id_sub);
 
-	zephir_fetch_params(0, 1, 0, &id);
+	zephir_fetch_params_without_memory_grow(1, 0, &id);
 
 
 
@@ -231,6 +232,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getIdValue) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, getDateTime) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *value = NULL, value_sub, *model = NULL, model_sub, __$null, __$false, date, _0$$3, _1$$4;
 	zval *this_ptr = getThis();
@@ -294,6 +296,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getDateTime) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options, fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, result, _0, _1, _2, _3, _4;
@@ -315,7 +318,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -387,6 +390,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options, fields;
 	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, result, _0, _1;
@@ -405,7 +409,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -453,12 +457,13 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 
-	zend_string *_4$$4, *_13$$14;
-	zend_ulong _3$$4, _12$$14;
+	zend_string *_5$$4, *_17$$14, *_35$$26, *_58$$43, *_75$$55;
+	zend_ulong _4$$4, _16$$14, _34$$26, _57$$43, _74$$55;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_10 = NULL, *_11 = NULL, *_25 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, _0$$3;
-	zephir_fcall_cache_entry *_7 = NULL, *_8 = NULL, *_19 = NULL;
-	zval values, _5$$8;
-	zval *filters = NULL, filters_sub, *values_param = NULL, and, data, operator, key, item, value, or, is, index, i, sql, condition, _1, *_2$$4, _26$$4, tmp$$8, *_6$$5, _9$$10, _10$$12, j$$14, id$$14, ids$$14, *_11$$14, _16$$14, _14$$15, _15$$15, _17$$13, _18$$13, _20$$16, _21$$16, _22$$17, _23$$17, _24$$20, _25$$20, _27$$21, _28$$21, _29$$21, _30$$21;
+	zval values, _7$$8, _50$$37;
+	zval *filters = NULL, filters_sub, *values_param = NULL, and, data, operator, key, item, value, or, is, index, i, sql, condition, _1, *_2$$4, _3$$4, _89$$4, tmp$$8, _6$$8, *_8$$5, _9$$5, _12$$10, _13$$12, j$$14, id$$14, ids$$14, *_14$$14, _15$$14, _22$$14, _18$$15, _19$$15, _20$$16, _21$$16, _23$$13, _24$$13, _26$$17, _27$$17, _28$$18, _29$$18, _30$$22, _31$$24, j$$26, id$$26, ids$$26, *_32$$26, _33$$26, _40$$26, _36$$27, _37$$27, _38$$28, _39$$28, _41$$25, _42$$25, _43$$29, _44$$29, _45$$30, _46$$30, _47$$33, _48$$33, tmp$$37, _49$$37, *_51$$34, _52$$34, _53$$39, _54$$41, j$$43, id$$43, ids$$43, *_55$$43, _56$$43, _63$$43, _59$$44, _60$$44, _61$$45, _62$$45, _64$$42, _65$$42, _66$$46, _67$$46, _68$$47, _69$$47, _70$$51, _71$$53, j$$55, id$$55, ids$$55, *_72$$55, _73$$55, _80$$55, _76$$56, _77$$56, _78$$57, _79$$57, _81$$54, _82$$54, _83$$58, _84$$58, _85$$59, _86$$59, _87$$62, _88$$62, _90$$63, _91$$63, _92$$63, _93$$63;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&filters_sub);
@@ -475,30 +480,93 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 	ZVAL_UNDEF(&sql);
 	ZVAL_UNDEF(&condition);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_26$$4);
+	ZVAL_UNDEF(&_3$$4);
+	ZVAL_UNDEF(&_89$$4);
 	ZVAL_UNDEF(&tmp$$8);
-	ZVAL_UNDEF(&_9$$10);
-	ZVAL_UNDEF(&_10$$12);
+	ZVAL_UNDEF(&_6$$8);
+	ZVAL_UNDEF(&_9$$5);
+	ZVAL_UNDEF(&_12$$10);
+	ZVAL_UNDEF(&_13$$12);
 	ZVAL_UNDEF(&j$$14);
 	ZVAL_UNDEF(&id$$14);
 	ZVAL_UNDEF(&ids$$14);
-	ZVAL_UNDEF(&_16$$14);
-	ZVAL_UNDEF(&_14$$15);
-	ZVAL_UNDEF(&_15$$15);
-	ZVAL_UNDEF(&_17$$13);
-	ZVAL_UNDEF(&_18$$13);
+	ZVAL_UNDEF(&_15$$14);
+	ZVAL_UNDEF(&_22$$14);
+	ZVAL_UNDEF(&_18$$15);
+	ZVAL_UNDEF(&_19$$15);
 	ZVAL_UNDEF(&_20$$16);
 	ZVAL_UNDEF(&_21$$16);
-	ZVAL_UNDEF(&_22$$17);
-	ZVAL_UNDEF(&_23$$17);
-	ZVAL_UNDEF(&_24$$20);
-	ZVAL_UNDEF(&_25$$20);
-	ZVAL_UNDEF(&_27$$21);
-	ZVAL_UNDEF(&_28$$21);
-	ZVAL_UNDEF(&_29$$21);
-	ZVAL_UNDEF(&_30$$21);
+	ZVAL_UNDEF(&_23$$13);
+	ZVAL_UNDEF(&_24$$13);
+	ZVAL_UNDEF(&_26$$17);
+	ZVAL_UNDEF(&_27$$17);
+	ZVAL_UNDEF(&_28$$18);
+	ZVAL_UNDEF(&_29$$18);
+	ZVAL_UNDEF(&_30$$22);
+	ZVAL_UNDEF(&_31$$24);
+	ZVAL_UNDEF(&j$$26);
+	ZVAL_UNDEF(&id$$26);
+	ZVAL_UNDEF(&ids$$26);
+	ZVAL_UNDEF(&_33$$26);
+	ZVAL_UNDEF(&_40$$26);
+	ZVAL_UNDEF(&_36$$27);
+	ZVAL_UNDEF(&_37$$27);
+	ZVAL_UNDEF(&_38$$28);
+	ZVAL_UNDEF(&_39$$28);
+	ZVAL_UNDEF(&_41$$25);
+	ZVAL_UNDEF(&_42$$25);
+	ZVAL_UNDEF(&_43$$29);
+	ZVAL_UNDEF(&_44$$29);
+	ZVAL_UNDEF(&_45$$30);
+	ZVAL_UNDEF(&_46$$30);
+	ZVAL_UNDEF(&_47$$33);
+	ZVAL_UNDEF(&_48$$33);
+	ZVAL_UNDEF(&tmp$$37);
+	ZVAL_UNDEF(&_49$$37);
+	ZVAL_UNDEF(&_52$$34);
+	ZVAL_UNDEF(&_53$$39);
+	ZVAL_UNDEF(&_54$$41);
+	ZVAL_UNDEF(&j$$43);
+	ZVAL_UNDEF(&id$$43);
+	ZVAL_UNDEF(&ids$$43);
+	ZVAL_UNDEF(&_56$$43);
+	ZVAL_UNDEF(&_63$$43);
+	ZVAL_UNDEF(&_59$$44);
+	ZVAL_UNDEF(&_60$$44);
+	ZVAL_UNDEF(&_61$$45);
+	ZVAL_UNDEF(&_62$$45);
+	ZVAL_UNDEF(&_64$$42);
+	ZVAL_UNDEF(&_65$$42);
+	ZVAL_UNDEF(&_66$$46);
+	ZVAL_UNDEF(&_67$$46);
+	ZVAL_UNDEF(&_68$$47);
+	ZVAL_UNDEF(&_69$$47);
+	ZVAL_UNDEF(&_70$$51);
+	ZVAL_UNDEF(&_71$$53);
+	ZVAL_UNDEF(&j$$55);
+	ZVAL_UNDEF(&id$$55);
+	ZVAL_UNDEF(&ids$$55);
+	ZVAL_UNDEF(&_73$$55);
+	ZVAL_UNDEF(&_80$$55);
+	ZVAL_UNDEF(&_76$$56);
+	ZVAL_UNDEF(&_77$$56);
+	ZVAL_UNDEF(&_78$$57);
+	ZVAL_UNDEF(&_79$$57);
+	ZVAL_UNDEF(&_81$$54);
+	ZVAL_UNDEF(&_82$$54);
+	ZVAL_UNDEF(&_83$$58);
+	ZVAL_UNDEF(&_84$$58);
+	ZVAL_UNDEF(&_85$$59);
+	ZVAL_UNDEF(&_86$$59);
+	ZVAL_UNDEF(&_87$$62);
+	ZVAL_UNDEF(&_88$$62);
+	ZVAL_UNDEF(&_90$$63);
+	ZVAL_UNDEF(&_91$$63);
+	ZVAL_UNDEF(&_92$$63);
+	ZVAL_UNDEF(&_93$$63);
 	ZVAL_UNDEF(&values);
-	ZVAL_UNDEF(&_5$$8);
+	ZVAL_UNDEF(&_7$$8);
+	ZVAL_UNDEF(&_50$$37);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &values_param);
@@ -530,172 +598,617 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 		ZVAL_LONG(filters, _0$$3);
 	}
 	ZEPHIR_INIT_VAR(&_1);
-	zephir_gettype(&_1, filters TSRMLS_CC);
+	zephir_gettype(&_1, filters);
 	do {
 		if (ZEPHIR_IS_STRING(&_1, "array")) {
 			zephir_is_iterable(filters, 0, "ice/db/driver/pdo.zep", 247);
-			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(filters), _3$$4, _4$$4, _2$$4)
-			{
-				ZEPHIR_INIT_NVAR(&operator);
-				if (_4$$4 != NULL) { 
-					ZVAL_STR_COPY(&operator, _4$$4);
-				} else {
-					ZVAL_LONG(&operator, _3$$4);
-				}
-				ZEPHIR_INIT_NVAR(&data);
-				ZVAL_COPY(&data, _2$$4);
-				do {
-					if (ZEPHIR_IS_STRING(&operator, "OR") || ZEPHIR_IS_STRING(&operator, "or") || ZEPHIR_IS_STRING(&operator, "$or")) {
-						ZEPHIR_INIT_NVAR(&or);
-						array_init(&or);
-						ZEPHIR_INIT_NVAR(&operator);
-						ZVAL_STRING(&operator, "OR");
-						break;
+			if (Z_TYPE_P(filters) == IS_ARRAY) {
+				ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(filters), _4$$4, _5$$4, _2$$4)
+				{
+					ZEPHIR_INIT_NVAR(&operator);
+					if (_5$$4 != NULL) { 
+						ZVAL_STR_COPY(&operator, _5$$4);
+					} else {
+						ZVAL_LONG(&operator, _4$$4);
 					}
-					if (ZEPHIR_IS_STRING(&operator, "AND") || ZEPHIR_IS_STRING(&operator, "and") || ZEPHIR_IS_STRING(&operator, "$and")) {
+					ZEPHIR_INIT_NVAR(&data);
+					ZVAL_COPY(&data, _2$$4);
+					do {
+						if (ZEPHIR_IS_STRING(&operator, "OR") || ZEPHIR_IS_STRING(&operator, "or") || ZEPHIR_IS_STRING(&operator, "$or")) {
+							ZEPHIR_INIT_NVAR(&or);
+							array_init(&or);
+							ZEPHIR_INIT_NVAR(&operator);
+							ZVAL_STRING(&operator, "OR");
+							break;
+						}
+						if (ZEPHIR_IS_STRING(&operator, "AND") || ZEPHIR_IS_STRING(&operator, "and") || ZEPHIR_IS_STRING(&operator, "$and")) {
+							ZEPHIR_INIT_NVAR(&operator);
+							ZVAL_STRING(&operator, "AND");
+							break;
+						}
+						ZEPHIR_CPY_WRT(&tmp$$8, &data);
+						ZEPHIR_INIT_NVAR(&_6$$8);
+						zephir_create_array(&_6$$8, 1, 0);
+						ZEPHIR_INIT_NVAR(&_7$$8);
+						zephir_create_array(&_7$$8, 1, 0);
+						zephir_array_update_zval(&_7$$8, &operator, &tmp$$8, PH_COPY);
+						zephir_array_update_string(&_6$$8, SL("AND"), &_7$$8, PH_COPY | PH_SEPARATE);
+						ZEPHIR_CPY_WRT(&data, &_6$$8);
 						ZEPHIR_INIT_NVAR(&operator);
 						ZVAL_STRING(&operator, "AND");
 						break;
-					}
-					ZEPHIR_CPY_WRT(&tmp$$8, &data);
-					ZEPHIR_INIT_NVAR(&data);
-					zephir_create_array(&data, 1, 0 TSRMLS_CC);
-					ZEPHIR_INIT_NVAR(&_5$$8);
-					zephir_create_array(&_5$$8, 1, 0 TSRMLS_CC);
-					zephir_array_update_zval(&_5$$8, &operator, &tmp$$8, PH_COPY);
-					zephir_array_update_string(&data, SL("AND"), &_5$$8, PH_COPY | PH_SEPARATE);
-					ZEPHIR_INIT_NVAR(&operator);
-					ZVAL_STRING(&operator, "AND");
-					break;
-				} while(0);
-
-				zephir_is_iterable(&data, 0, "ice/db/driver/pdo.zep", 243);
-				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _6$$5)
-				{
-					ZEPHIR_INIT_NVAR(&item);
-					ZVAL_COPY(&item, _6$$5);
-					ZEPHIR_CALL_FUNCTION(&key, "key", &_7, 94, &item);
-					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&value, "current", &_8, 92, &item);
-					zephir_check_call_status();
-					if (Z_TYPE_P(&value) == IS_ARRAY) {
-						ZEPHIR_CALL_FUNCTION(&is, "key", &_7, 94, &value);
-						zephir_check_call_status();
-						ZEPHIR_CALL_FUNCTION(&_9$$10, "current", &_8, 92, &value);
-						zephir_check_call_status();
-						ZEPHIR_CPY_WRT(&value, &_9$$10);
-					} else {
-						ZEPHIR_INIT_NVAR(&is);
-						ZVAL_STRING(&is, "=");
-					}
-					do {
-						ZEPHIR_INIT_NVAR(&index);
-						ZEPHIR_CONCAT_SVV(&index, ":", &key, &i);
-						ZEPHIR_INIT_LNVAR(_10$$12);
-						if (zephir_is_true(&i)) {
-							ZEPHIR_INIT_NVAR(&_10$$12);
-							ZVAL_LONG(&_10$$12, (zephir_get_intval(&i) + 1));
-						} else {
-							ZEPHIR_INIT_NVAR(&_10$$12);
-							ZVAL_LONG(&_10$$12, 1);
-						}
-						ZEPHIR_CPY_WRT(&i, &_10$$12);
-					} while (zephir_array_isset(&values, &index));
-					do {
-						if (ZEPHIR_IS_STRING(&is, "IN") || ZEPHIR_IS_STRING(&is, "in") || ZEPHIR_IS_STRING(&is, "$in")) {
-							if (Z_TYPE_P(&value) == IS_ARRAY) {
-								ZEPHIR_INIT_NVAR(&ids$$14);
-								array_init(&ids$$14);
-								zephir_is_iterable(&value, 0, "ice/db/driver/pdo.zep", 218);
-								ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _12$$14, _13$$14, _11$$14)
-								{
-									ZEPHIR_INIT_NVAR(&j$$14);
-									if (_13$$14 != NULL) { 
-										ZVAL_STR_COPY(&j$$14, _13$$14);
-									} else {
-										ZVAL_LONG(&j$$14, _12$$14);
-									}
-									ZEPHIR_INIT_NVAR(&id$$14);
-									ZVAL_COPY(&id$$14, _11$$14);
-									ZEPHIR_INIT_LNVAR(_14$$15);
-									ZEPHIR_CONCAT_VV(&_14$$15, &index, &j$$14);
-									zephir_array_append(&ids$$14, &_14$$15, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
-									ZEPHIR_INIT_LNVAR(_15$$15);
-									ZEPHIR_CONCAT_VV(&_15$$15, &index, &j$$14);
-									zephir_array_update_zval(&values, &_15$$15, &id$$14, PH_COPY | PH_SEPARATE);
-								} ZEND_HASH_FOREACH_END();
-								ZEPHIR_INIT_NVAR(&id$$14);
-								ZEPHIR_INIT_NVAR(&j$$14);
-								ZEPHIR_INIT_NVAR(&_16$$14);
-								zephir_fast_join_str(&_16$$14, SL(", "), &ids$$14 TSRMLS_CC);
-								ZEPHIR_INIT_NVAR(&value);
-								ZEPHIR_CONCAT_SVS(&value, "(", &_16$$14, ")");
-							}
-							zephir_read_property(&_17$$13, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-							ZEPHIR_CALL_FUNCTION(&_18$$13, "sprintf", &_19, 11, &_17$$13, &key);
-							zephir_check_call_status();
-							ZEPHIR_INIT_NVAR(&condition);
-							ZEPHIR_CONCAT_VVSV(&condition, &_18$$13, &is, " ", &value);
-							break;
-						}
-						if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
-							zephir_read_property(&_20$$16, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-							ZEPHIR_CALL_FUNCTION(&_21$$16, "sprintf", &_19, 11, &_20$$16, &key);
-							zephir_check_call_status();
-							ZEPHIR_INIT_NVAR(&condition);
-							ZEPHIR_CONCAT_VVSV(&condition, &_21$$16, &is, " ", &value);
-							break;
-						}
-						zephir_read_property(&_22$$17, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-						ZEPHIR_CALL_FUNCTION(&_23$$17, "sprintf", &_19, 11, &_22$$17, &key);
-						zephir_check_call_status();
-						ZEPHIR_INIT_NVAR(&condition);
-						ZEPHIR_CONCAT_VVSV(&condition, &_23$$17, &is, " ", &index);
-						zephir_array_update_zval(&values, &index, &value, PH_COPY | PH_SEPARATE);
-						break;
 					} while(0);
 
-					if (ZEPHIR_IS_STRING(&operator, "AND")) {
-						zephir_array_append(&and, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 237);
+					zephir_is_iterable(&data, 0, "ice/db/driver/pdo.zep", 243);
+					if (Z_TYPE_P(&data) == IS_ARRAY) {
+						ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _8$$5)
+						{
+							ZEPHIR_INIT_NVAR(&item);
+							ZVAL_COPY(&item, _8$$5);
+							ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 94, &item);
+							zephir_check_call_status();
+							ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 92, &item);
+							zephir_check_call_status();
+							if (Z_TYPE_P(&value) == IS_ARRAY) {
+								ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 94, &value);
+								zephir_check_call_status();
+								ZEPHIR_CALL_FUNCTION(&_12$$10, "current", &_11, 92, &value);
+								zephir_check_call_status();
+								ZEPHIR_CPY_WRT(&value, &_12$$10);
+							} else {
+								ZEPHIR_INIT_NVAR(&is);
+								ZVAL_STRING(&is, "=");
+							}
+							do {
+								ZEPHIR_INIT_NVAR(&index);
+								ZEPHIR_CONCAT_SVV(&index, ":", &key, &i);
+								ZEPHIR_INIT_NVAR(&_13$$12);
+								if (zephir_is_true(&i)) {
+									ZEPHIR_INIT_NVAR(&_13$$12);
+									ZVAL_LONG(&_13$$12, (zephir_get_intval(&i) + 1));
+								} else {
+									ZEPHIR_INIT_NVAR(&_13$$12);
+									ZVAL_LONG(&_13$$12, 1);
+								}
+								ZEPHIR_CPY_WRT(&i, &_13$$12);
+							} while (zephir_array_isset(&values, &index));
+							do {
+								if (ZEPHIR_IS_STRING(&is, "IN") || ZEPHIR_IS_STRING(&is, "in") || ZEPHIR_IS_STRING(&is, "$in")) {
+									if (Z_TYPE_P(&value) == IS_ARRAY) {
+										ZEPHIR_INIT_NVAR(&ids$$14);
+										array_init(&ids$$14);
+										zephir_is_iterable(&value, 0, "ice/db/driver/pdo.zep", 218);
+										if (Z_TYPE_P(&value) == IS_ARRAY) {
+											ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _16$$14, _17$$14, _14$$14)
+											{
+												ZEPHIR_INIT_NVAR(&j$$14);
+												if (_17$$14 != NULL) { 
+													ZVAL_STR_COPY(&j$$14, _17$$14);
+												} else {
+													ZVAL_LONG(&j$$14, _16$$14);
+												}
+												ZEPHIR_INIT_NVAR(&id$$14);
+												ZVAL_COPY(&id$$14, _14$$14);
+												ZEPHIR_INIT_NVAR(&_18$$15);
+												ZEPHIR_CONCAT_VV(&_18$$15, &index, &j$$14);
+												zephir_array_append(&ids$$14, &_18$$15, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+												ZEPHIR_INIT_NVAR(&_19$$15);
+												ZEPHIR_CONCAT_VV(&_19$$15, &index, &j$$14);
+												zephir_array_update_zval(&values, &_19$$15, &id$$14, PH_COPY | PH_SEPARATE);
+											} ZEND_HASH_FOREACH_END();
+										} else {
+											ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+											zephir_check_call_status();
+											while (1) {
+												ZEPHIR_CALL_METHOD(&_15$$14, &value, "valid", NULL, 0);
+												zephir_check_call_status();
+												if (!zend_is_true(&_15$$14)) {
+													break;
+												}
+												ZEPHIR_CALL_METHOD(&j$$14, &value, "key", NULL, 0);
+												zephir_check_call_status();
+												ZEPHIR_CALL_METHOD(&id$$14, &value, "current", NULL, 0);
+												zephir_check_call_status();
+													ZEPHIR_INIT_NVAR(&_20$$16);
+													ZEPHIR_CONCAT_VV(&_20$$16, &index, &j$$14);
+													zephir_array_append(&ids$$14, &_20$$16, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+													ZEPHIR_INIT_NVAR(&_21$$16);
+													ZEPHIR_CONCAT_VV(&_21$$16, &index, &j$$14);
+													zephir_array_update_zval(&values, &_21$$16, &id$$14, PH_COPY | PH_SEPARATE);
+												ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+												zephir_check_call_status();
+											}
+										}
+										ZEPHIR_INIT_NVAR(&id$$14);
+										ZEPHIR_INIT_NVAR(&j$$14);
+										ZEPHIR_INIT_NVAR(&_22$$14);
+										zephir_fast_join_str(&_22$$14, SL(", "), &ids$$14);
+										ZEPHIR_INIT_NVAR(&value);
+										ZEPHIR_CONCAT_SVS(&value, "(", &_22$$14, ")");
+									}
+									zephir_read_property(&_23$$13, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+									ZEPHIR_CALL_FUNCTION(&_24$$13, "sprintf", &_25, 11, &_23$$13, &key);
+									zephir_check_call_status();
+									ZEPHIR_INIT_NVAR(&condition);
+									ZEPHIR_CONCAT_VVSV(&condition, &_24$$13, &is, " ", &value);
+									break;
+								}
+								if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
+									zephir_read_property(&_26$$17, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+									ZEPHIR_CALL_FUNCTION(&_27$$17, "sprintf", &_25, 11, &_26$$17, &key);
+									zephir_check_call_status();
+									ZEPHIR_INIT_NVAR(&condition);
+									ZEPHIR_CONCAT_VVSV(&condition, &_27$$17, &is, " ", &value);
+									break;
+								}
+								zephir_read_property(&_28$$18, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+								ZEPHIR_CALL_FUNCTION(&_29$$18, "sprintf", &_25, 11, &_28$$18, &key);
+								zephir_check_call_status();
+								ZEPHIR_INIT_NVAR(&condition);
+								ZEPHIR_CONCAT_VVSV(&condition, &_29$$18, &is, " ", &index);
+								zephir_array_update_zval(&values, &index, &value, PH_COPY | PH_SEPARATE);
+								break;
+							} while(0);
+
+							if (ZEPHIR_IS_STRING(&operator, "AND")) {
+								zephir_array_append(&and, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 237);
+							} else {
+								zephir_array_append(&or, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 239);
+							}
+						} ZEND_HASH_FOREACH_END();
 					} else {
-						zephir_array_append(&or, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 239);
+						ZEPHIR_CALL_METHOD(NULL, &data, "rewind", NULL, 0);
+						zephir_check_call_status();
+						while (1) {
+							ZEPHIR_CALL_METHOD(&_9$$5, &data, "valid", NULL, 0);
+							zephir_check_call_status();
+							if (!zend_is_true(&_9$$5)) {
+								break;
+							}
+							ZEPHIR_CALL_METHOD(&item, &data, "current", NULL, 0);
+							zephir_check_call_status();
+								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 94, &item);
+								zephir_check_call_status();
+								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 92, &item);
+								zephir_check_call_status();
+								if (Z_TYPE_P(&value) == IS_ARRAY) {
+									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 94, &value);
+									zephir_check_call_status();
+									ZEPHIR_CALL_FUNCTION(&_30$$22, "current", &_11, 92, &value);
+									zephir_check_call_status();
+									ZEPHIR_CPY_WRT(&value, &_30$$22);
+								} else {
+									ZEPHIR_INIT_NVAR(&is);
+									ZVAL_STRING(&is, "=");
+								}
+								do {
+									ZEPHIR_INIT_NVAR(&index);
+									ZEPHIR_CONCAT_SVV(&index, ":", &key, &i);
+									ZEPHIR_INIT_NVAR(&_31$$24);
+									if (zephir_is_true(&i)) {
+										ZEPHIR_INIT_NVAR(&_31$$24);
+										ZVAL_LONG(&_31$$24, (zephir_get_intval(&i) + 1));
+									} else {
+										ZEPHIR_INIT_NVAR(&_31$$24);
+										ZVAL_LONG(&_31$$24, 1);
+									}
+									ZEPHIR_CPY_WRT(&i, &_31$$24);
+								} while (zephir_array_isset(&values, &index));
+								do {
+									if (ZEPHIR_IS_STRING(&is, "IN") || ZEPHIR_IS_STRING(&is, "in") || ZEPHIR_IS_STRING(&is, "$in")) {
+										if (Z_TYPE_P(&value) == IS_ARRAY) {
+											ZEPHIR_INIT_NVAR(&ids$$26);
+											array_init(&ids$$26);
+											zephir_is_iterable(&value, 0, "ice/db/driver/pdo.zep", 218);
+											if (Z_TYPE_P(&value) == IS_ARRAY) {
+												ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _34$$26, _35$$26, _32$$26)
+												{
+													ZEPHIR_INIT_NVAR(&j$$26);
+													if (_35$$26 != NULL) { 
+														ZVAL_STR_COPY(&j$$26, _35$$26);
+													} else {
+														ZVAL_LONG(&j$$26, _34$$26);
+													}
+													ZEPHIR_INIT_NVAR(&id$$26);
+													ZVAL_COPY(&id$$26, _32$$26);
+													ZEPHIR_INIT_NVAR(&_36$$27);
+													ZEPHIR_CONCAT_VV(&_36$$27, &index, &j$$26);
+													zephir_array_append(&ids$$26, &_36$$27, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+													ZEPHIR_INIT_NVAR(&_37$$27);
+													ZEPHIR_CONCAT_VV(&_37$$27, &index, &j$$26);
+													zephir_array_update_zval(&values, &_37$$27, &id$$26, PH_COPY | PH_SEPARATE);
+												} ZEND_HASH_FOREACH_END();
+											} else {
+												ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+												zephir_check_call_status();
+												while (1) {
+													ZEPHIR_CALL_METHOD(&_33$$26, &value, "valid", NULL, 0);
+													zephir_check_call_status();
+													if (!zend_is_true(&_33$$26)) {
+														break;
+													}
+													ZEPHIR_CALL_METHOD(&j$$26, &value, "key", NULL, 0);
+													zephir_check_call_status();
+													ZEPHIR_CALL_METHOD(&id$$26, &value, "current", NULL, 0);
+													zephir_check_call_status();
+														ZEPHIR_INIT_NVAR(&_38$$28);
+														ZEPHIR_CONCAT_VV(&_38$$28, &index, &j$$26);
+														zephir_array_append(&ids$$26, &_38$$28, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+														ZEPHIR_INIT_NVAR(&_39$$28);
+														ZEPHIR_CONCAT_VV(&_39$$28, &index, &j$$26);
+														zephir_array_update_zval(&values, &_39$$28, &id$$26, PH_COPY | PH_SEPARATE);
+													ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+													zephir_check_call_status();
+												}
+											}
+											ZEPHIR_INIT_NVAR(&id$$26);
+											ZEPHIR_INIT_NVAR(&j$$26);
+											ZEPHIR_INIT_NVAR(&_40$$26);
+											zephir_fast_join_str(&_40$$26, SL(", "), &ids$$26);
+											ZEPHIR_INIT_NVAR(&value);
+											ZEPHIR_CONCAT_SVS(&value, "(", &_40$$26, ")");
+										}
+										zephir_read_property(&_41$$25, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+										ZEPHIR_CALL_FUNCTION(&_42$$25, "sprintf", &_25, 11, &_41$$25, &key);
+										zephir_check_call_status();
+										ZEPHIR_INIT_NVAR(&condition);
+										ZEPHIR_CONCAT_VVSV(&condition, &_42$$25, &is, " ", &value);
+										break;
+									}
+									if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
+										zephir_read_property(&_43$$29, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+										ZEPHIR_CALL_FUNCTION(&_44$$29, "sprintf", &_25, 11, &_43$$29, &key);
+										zephir_check_call_status();
+										ZEPHIR_INIT_NVAR(&condition);
+										ZEPHIR_CONCAT_VVSV(&condition, &_44$$29, &is, " ", &value);
+										break;
+									}
+									zephir_read_property(&_45$$30, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+									ZEPHIR_CALL_FUNCTION(&_46$$30, "sprintf", &_25, 11, &_45$$30, &key);
+									zephir_check_call_status();
+									ZEPHIR_INIT_NVAR(&condition);
+									ZEPHIR_CONCAT_VVSV(&condition, &_46$$30, &is, " ", &index);
+									zephir_array_update_zval(&values, &index, &value, PH_COPY | PH_SEPARATE);
+									break;
+								} while(0);
+
+								if (ZEPHIR_IS_STRING(&operator, "AND")) {
+									zephir_array_append(&and, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 237);
+								} else {
+									zephir_array_append(&or, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 239);
+								}
+							ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
+							zephir_check_call_status();
+						}
+					}
+					ZEPHIR_INIT_NVAR(&item);
+					if (ZEPHIR_IS_STRING(&operator, "OR")) {
+						ZEPHIR_INIT_NVAR(&_47$$33);
+						zephir_fast_join_str(&_47$$33, SL(" OR "), &or);
+						ZEPHIR_INIT_NVAR(&_48$$33);
+						ZEPHIR_CONCAT_SVS(&_48$$33, "(", &_47$$33, ")");
+						zephir_array_append(&and, &_48$$33, PH_SEPARATE, "ice/db/driver/pdo.zep", 244);
 					}
 				} ZEND_HASH_FOREACH_END();
-				ZEPHIR_INIT_NVAR(&item);
-				if (ZEPHIR_IS_STRING(&operator, "OR")) {
-					ZEPHIR_INIT_NVAR(&_24$$20);
-					zephir_fast_join_str(&_24$$20, SL(" OR "), &or TSRMLS_CC);
-					ZEPHIR_INIT_LNVAR(_25$$20);
-					ZEPHIR_CONCAT_SVS(&_25$$20, "(", &_24$$20, ")");
-					zephir_array_append(&and, &_25$$20, PH_SEPARATE, "ice/db/driver/pdo.zep", 244);
+			} else {
+				ZEPHIR_CALL_METHOD(NULL, filters, "rewind", NULL, 0);
+				zephir_check_call_status();
+				while (1) {
+					ZEPHIR_CALL_METHOD(&_3$$4, filters, "valid", NULL, 0);
+					zephir_check_call_status();
+					if (!zend_is_true(&_3$$4)) {
+						break;
+					}
+					ZEPHIR_CALL_METHOD(&operator, filters, "key", NULL, 0);
+					zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(&data, filters, "current", NULL, 0);
+					zephir_check_call_status();
+						do {
+							if (ZEPHIR_IS_STRING(&operator, "OR") || ZEPHIR_IS_STRING(&operator, "or") || ZEPHIR_IS_STRING(&operator, "$or")) {
+								ZEPHIR_INIT_NVAR(&or);
+								array_init(&or);
+								ZEPHIR_INIT_NVAR(&operator);
+								ZVAL_STRING(&operator, "OR");
+								break;
+							}
+							if (ZEPHIR_IS_STRING(&operator, "AND") || ZEPHIR_IS_STRING(&operator, "and") || ZEPHIR_IS_STRING(&operator, "$and")) {
+								ZEPHIR_INIT_NVAR(&operator);
+								ZVAL_STRING(&operator, "AND");
+								break;
+							}
+							ZEPHIR_CPY_WRT(&tmp$$37, &data);
+							ZEPHIR_INIT_NVAR(&_49$$37);
+							zephir_create_array(&_49$$37, 1, 0);
+							ZEPHIR_INIT_NVAR(&_50$$37);
+							zephir_create_array(&_50$$37, 1, 0);
+							zephir_array_update_zval(&_50$$37, &operator, &tmp$$37, PH_COPY);
+							zephir_array_update_string(&_49$$37, SL("AND"), &_50$$37, PH_COPY | PH_SEPARATE);
+							ZEPHIR_CPY_WRT(&data, &_49$$37);
+							ZEPHIR_INIT_NVAR(&operator);
+							ZVAL_STRING(&operator, "AND");
+							break;
+						} while(0);
+
+						zephir_is_iterable(&data, 0, "ice/db/driver/pdo.zep", 243);
+						if (Z_TYPE_P(&data) == IS_ARRAY) {
+							ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _51$$34)
+							{
+								ZEPHIR_INIT_NVAR(&item);
+								ZVAL_COPY(&item, _51$$34);
+								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 94, &item);
+								zephir_check_call_status();
+								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 92, &item);
+								zephir_check_call_status();
+								if (Z_TYPE_P(&value) == IS_ARRAY) {
+									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 94, &value);
+									zephir_check_call_status();
+									ZEPHIR_CALL_FUNCTION(&_53$$39, "current", &_11, 92, &value);
+									zephir_check_call_status();
+									ZEPHIR_CPY_WRT(&value, &_53$$39);
+								} else {
+									ZEPHIR_INIT_NVAR(&is);
+									ZVAL_STRING(&is, "=");
+								}
+								do {
+									ZEPHIR_INIT_NVAR(&index);
+									ZEPHIR_CONCAT_SVV(&index, ":", &key, &i);
+									ZEPHIR_INIT_NVAR(&_54$$41);
+									if (zephir_is_true(&i)) {
+										ZEPHIR_INIT_NVAR(&_54$$41);
+										ZVAL_LONG(&_54$$41, (zephir_get_intval(&i) + 1));
+									} else {
+										ZEPHIR_INIT_NVAR(&_54$$41);
+										ZVAL_LONG(&_54$$41, 1);
+									}
+									ZEPHIR_CPY_WRT(&i, &_54$$41);
+								} while (zephir_array_isset(&values, &index));
+								do {
+									if (ZEPHIR_IS_STRING(&is, "IN") || ZEPHIR_IS_STRING(&is, "in") || ZEPHIR_IS_STRING(&is, "$in")) {
+										if (Z_TYPE_P(&value) == IS_ARRAY) {
+											ZEPHIR_INIT_NVAR(&ids$$43);
+											array_init(&ids$$43);
+											zephir_is_iterable(&value, 0, "ice/db/driver/pdo.zep", 218);
+											if (Z_TYPE_P(&value) == IS_ARRAY) {
+												ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _57$$43, _58$$43, _55$$43)
+												{
+													ZEPHIR_INIT_NVAR(&j$$43);
+													if (_58$$43 != NULL) { 
+														ZVAL_STR_COPY(&j$$43, _58$$43);
+													} else {
+														ZVAL_LONG(&j$$43, _57$$43);
+													}
+													ZEPHIR_INIT_NVAR(&id$$43);
+													ZVAL_COPY(&id$$43, _55$$43);
+													ZEPHIR_INIT_NVAR(&_59$$44);
+													ZEPHIR_CONCAT_VV(&_59$$44, &index, &j$$43);
+													zephir_array_append(&ids$$43, &_59$$44, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+													ZEPHIR_INIT_NVAR(&_60$$44);
+													ZEPHIR_CONCAT_VV(&_60$$44, &index, &j$$43);
+													zephir_array_update_zval(&values, &_60$$44, &id$$43, PH_COPY | PH_SEPARATE);
+												} ZEND_HASH_FOREACH_END();
+											} else {
+												ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+												zephir_check_call_status();
+												while (1) {
+													ZEPHIR_CALL_METHOD(&_56$$43, &value, "valid", NULL, 0);
+													zephir_check_call_status();
+													if (!zend_is_true(&_56$$43)) {
+														break;
+													}
+													ZEPHIR_CALL_METHOD(&j$$43, &value, "key", NULL, 0);
+													zephir_check_call_status();
+													ZEPHIR_CALL_METHOD(&id$$43, &value, "current", NULL, 0);
+													zephir_check_call_status();
+														ZEPHIR_INIT_NVAR(&_61$$45);
+														ZEPHIR_CONCAT_VV(&_61$$45, &index, &j$$43);
+														zephir_array_append(&ids$$43, &_61$$45, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+														ZEPHIR_INIT_NVAR(&_62$$45);
+														ZEPHIR_CONCAT_VV(&_62$$45, &index, &j$$43);
+														zephir_array_update_zval(&values, &_62$$45, &id$$43, PH_COPY | PH_SEPARATE);
+													ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+													zephir_check_call_status();
+												}
+											}
+											ZEPHIR_INIT_NVAR(&id$$43);
+											ZEPHIR_INIT_NVAR(&j$$43);
+											ZEPHIR_INIT_NVAR(&_63$$43);
+											zephir_fast_join_str(&_63$$43, SL(", "), &ids$$43);
+											ZEPHIR_INIT_NVAR(&value);
+											ZEPHIR_CONCAT_SVS(&value, "(", &_63$$43, ")");
+										}
+										zephir_read_property(&_64$$42, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+										ZEPHIR_CALL_FUNCTION(&_65$$42, "sprintf", &_25, 11, &_64$$42, &key);
+										zephir_check_call_status();
+										ZEPHIR_INIT_NVAR(&condition);
+										ZEPHIR_CONCAT_VVSV(&condition, &_65$$42, &is, " ", &value);
+										break;
+									}
+									if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
+										zephir_read_property(&_66$$46, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+										ZEPHIR_CALL_FUNCTION(&_67$$46, "sprintf", &_25, 11, &_66$$46, &key);
+										zephir_check_call_status();
+										ZEPHIR_INIT_NVAR(&condition);
+										ZEPHIR_CONCAT_VVSV(&condition, &_67$$46, &is, " ", &value);
+										break;
+									}
+									zephir_read_property(&_68$$47, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+									ZEPHIR_CALL_FUNCTION(&_69$$47, "sprintf", &_25, 11, &_68$$47, &key);
+									zephir_check_call_status();
+									ZEPHIR_INIT_NVAR(&condition);
+									ZEPHIR_CONCAT_VVSV(&condition, &_69$$47, &is, " ", &index);
+									zephir_array_update_zval(&values, &index, &value, PH_COPY | PH_SEPARATE);
+									break;
+								} while(0);
+
+								if (ZEPHIR_IS_STRING(&operator, "AND")) {
+									zephir_array_append(&and, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 237);
+								} else {
+									zephir_array_append(&or, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 239);
+								}
+							} ZEND_HASH_FOREACH_END();
+						} else {
+							ZEPHIR_CALL_METHOD(NULL, &data, "rewind", NULL, 0);
+							zephir_check_call_status();
+							while (1) {
+								ZEPHIR_CALL_METHOD(&_52$$34, &data, "valid", NULL, 0);
+								zephir_check_call_status();
+								if (!zend_is_true(&_52$$34)) {
+									break;
+								}
+								ZEPHIR_CALL_METHOD(&item, &data, "current", NULL, 0);
+								zephir_check_call_status();
+									ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 94, &item);
+									zephir_check_call_status();
+									ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 92, &item);
+									zephir_check_call_status();
+									if (Z_TYPE_P(&value) == IS_ARRAY) {
+										ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 94, &value);
+										zephir_check_call_status();
+										ZEPHIR_CALL_FUNCTION(&_70$$51, "current", &_11, 92, &value);
+										zephir_check_call_status();
+										ZEPHIR_CPY_WRT(&value, &_70$$51);
+									} else {
+										ZEPHIR_INIT_NVAR(&is);
+										ZVAL_STRING(&is, "=");
+									}
+									do {
+										ZEPHIR_INIT_NVAR(&index);
+										ZEPHIR_CONCAT_SVV(&index, ":", &key, &i);
+										ZEPHIR_INIT_NVAR(&_71$$53);
+										if (zephir_is_true(&i)) {
+											ZEPHIR_INIT_NVAR(&_71$$53);
+											ZVAL_LONG(&_71$$53, (zephir_get_intval(&i) + 1));
+										} else {
+											ZEPHIR_INIT_NVAR(&_71$$53);
+											ZVAL_LONG(&_71$$53, 1);
+										}
+										ZEPHIR_CPY_WRT(&i, &_71$$53);
+									} while (zephir_array_isset(&values, &index));
+									do {
+										if (ZEPHIR_IS_STRING(&is, "IN") || ZEPHIR_IS_STRING(&is, "in") || ZEPHIR_IS_STRING(&is, "$in")) {
+											if (Z_TYPE_P(&value) == IS_ARRAY) {
+												ZEPHIR_INIT_NVAR(&ids$$55);
+												array_init(&ids$$55);
+												zephir_is_iterable(&value, 0, "ice/db/driver/pdo.zep", 218);
+												if (Z_TYPE_P(&value) == IS_ARRAY) {
+													ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&value), _74$$55, _75$$55, _72$$55)
+													{
+														ZEPHIR_INIT_NVAR(&j$$55);
+														if (_75$$55 != NULL) { 
+															ZVAL_STR_COPY(&j$$55, _75$$55);
+														} else {
+															ZVAL_LONG(&j$$55, _74$$55);
+														}
+														ZEPHIR_INIT_NVAR(&id$$55);
+														ZVAL_COPY(&id$$55, _72$$55);
+														ZEPHIR_INIT_NVAR(&_76$$56);
+														ZEPHIR_CONCAT_VV(&_76$$56, &index, &j$$55);
+														zephir_array_append(&ids$$55, &_76$$56, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+														ZEPHIR_INIT_NVAR(&_77$$56);
+														ZEPHIR_CONCAT_VV(&_77$$56, &index, &j$$55);
+														zephir_array_update_zval(&values, &_77$$56, &id$$55, PH_COPY | PH_SEPARATE);
+													} ZEND_HASH_FOREACH_END();
+												} else {
+													ZEPHIR_CALL_METHOD(NULL, &value, "rewind", NULL, 0);
+													zephir_check_call_status();
+													while (1) {
+														ZEPHIR_CALL_METHOD(&_73$$55, &value, "valid", NULL, 0);
+														zephir_check_call_status();
+														if (!zend_is_true(&_73$$55)) {
+															break;
+														}
+														ZEPHIR_CALL_METHOD(&j$$55, &value, "key", NULL, 0);
+														zephir_check_call_status();
+														ZEPHIR_CALL_METHOD(&id$$55, &value, "current", NULL, 0);
+														zephir_check_call_status();
+															ZEPHIR_INIT_NVAR(&_78$$57);
+															ZEPHIR_CONCAT_VV(&_78$$57, &index, &j$$55);
+															zephir_array_append(&ids$$55, &_78$$57, PH_SEPARATE, "ice/db/driver/pdo.zep", 214);
+															ZEPHIR_INIT_NVAR(&_79$$57);
+															ZEPHIR_CONCAT_VV(&_79$$57, &index, &j$$55);
+															zephir_array_update_zval(&values, &_79$$57, &id$$55, PH_COPY | PH_SEPARATE);
+														ZEPHIR_CALL_METHOD(NULL, &value, "next", NULL, 0);
+														zephir_check_call_status();
+													}
+												}
+												ZEPHIR_INIT_NVAR(&id$$55);
+												ZEPHIR_INIT_NVAR(&j$$55);
+												ZEPHIR_INIT_NVAR(&_80$$55);
+												zephir_fast_join_str(&_80$$55, SL(", "), &ids$$55);
+												ZEPHIR_INIT_NVAR(&value);
+												ZEPHIR_CONCAT_SVS(&value, "(", &_80$$55, ")");
+											}
+											zephir_read_property(&_81$$54, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+											ZEPHIR_CALL_FUNCTION(&_82$$54, "sprintf", &_25, 11, &_81$$54, &key);
+											zephir_check_call_status();
+											ZEPHIR_INIT_NVAR(&condition);
+											ZEPHIR_CONCAT_VVSV(&condition, &_82$$54, &is, " ", &value);
+											break;
+										}
+										if (ZEPHIR_IS_STRING(&is, "IS") || ZEPHIR_IS_STRING(&is, "is") || ZEPHIR_IS_STRING(&is, "IS NOT") || ZEPHIR_IS_STRING(&is, "is not")) {
+											zephir_read_property(&_83$$58, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+											ZEPHIR_CALL_FUNCTION(&_84$$58, "sprintf", &_25, 11, &_83$$58, &key);
+											zephir_check_call_status();
+											ZEPHIR_INIT_NVAR(&condition);
+											ZEPHIR_CONCAT_VVSV(&condition, &_84$$58, &is, " ", &value);
+											break;
+										}
+										zephir_read_property(&_85$$59, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+										ZEPHIR_CALL_FUNCTION(&_86$$59, "sprintf", &_25, 11, &_85$$59, &key);
+										zephir_check_call_status();
+										ZEPHIR_INIT_NVAR(&condition);
+										ZEPHIR_CONCAT_VVSV(&condition, &_86$$59, &is, " ", &index);
+										zephir_array_update_zval(&values, &index, &value, PH_COPY | PH_SEPARATE);
+										break;
+									} while(0);
+
+									if (ZEPHIR_IS_STRING(&operator, "AND")) {
+										zephir_array_append(&and, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 237);
+									} else {
+										zephir_array_append(&or, &condition, PH_SEPARATE, "ice/db/driver/pdo.zep", 239);
+									}
+								ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
+								zephir_check_call_status();
+							}
+						}
+						ZEPHIR_INIT_NVAR(&item);
+						if (ZEPHIR_IS_STRING(&operator, "OR")) {
+							ZEPHIR_INIT_NVAR(&_87$$62);
+							zephir_fast_join_str(&_87$$62, SL(" OR "), &or);
+							ZEPHIR_INIT_NVAR(&_88$$62);
+							ZEPHIR_CONCAT_SVS(&_88$$62, "(", &_87$$62, ")");
+							zephir_array_append(&and, &_88$$62, PH_SEPARATE, "ice/db/driver/pdo.zep", 244);
+						}
+					ZEPHIR_CALL_METHOD(NULL, filters, "next", NULL, 0);
+					zephir_check_call_status();
 				}
-			} ZEND_HASH_FOREACH_END();
+			}
 			ZEPHIR_INIT_NVAR(&data);
 			ZEPHIR_INIT_NVAR(&operator);
-			ZEPHIR_INIT_VAR(&_26$$4);
-			zephir_fast_join_str(&_26$$4, SL(" AND "), &and TSRMLS_CC);
-			zephir_concat_self(&sql, &_26$$4 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(&_89$$4);
+			zephir_fast_join_str(&_89$$4, SL(" AND "), &and);
+			zephir_concat_self(&sql, &_89$$4);
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_1, "integer")) {
-			zephir_read_property(&_27$$21, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-			zephir_read_property(&_28$$21, this_ptr, SL("id"), PH_NOISY_CC | PH_READONLY);
-			ZEPHIR_CALL_FUNCTION(&_29$$21, "sprintf", &_19, 11, &_27$$21, &_28$$21);
+			zephir_read_property(&_90$$63, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_91$$63, this_ptr, SL("id"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_FUNCTION(&_92$$63, "sprintf", &_25, 11, &_90$$63, &_91$$63);
 			zephir_check_call_status();
-			ZEPHIR_INIT_VAR(&_30$$21);
-			ZEPHIR_CONCAT_VSV(&_30$$21, &_29$$21, "=", filters);
-			zephir_concat_self(&sql, &_30$$21 TSRMLS_CC);
+			ZEPHIR_INIT_VAR(&_93$$63);
+			ZEPHIR_CONCAT_VSV(&_93$$63, &_92$$63, "=", filters);
+			zephir_concat_self(&sql, &_93$$63);
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_1, "string")) {
-			zephir_concat_self(&sql, filters TSRMLS_CC);
+			zephir_concat_self(&sql, filters);
 			break;
 		}
-		zephir_concat_self_str(&sql, SL("TRUE") TSRMLS_CC);
+		zephir_concat_self_str(&sql, SL("TRUE"));
 		break;
 	} while(0);
 
-	zephir_create_array(return_value, 2, 0 TSRMLS_CC);
+	zephir_create_array(return_value, 2, 0);
 	zephir_array_fast_append(return_value, &sql);
 	zephir_array_fast_append(return_value, &values);
 	RETURN_MM();
@@ -722,9 +1235,10 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval options, fields, _9$$13, _10$$13;
-	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, columns, filtered, values, query, sql, _13, _14, _15, _16, _35, _36, _37, _0$$5, _1$$5, _2$$7, _3$$7, _4$$8, _5$$8, _6$$10, _7$$10, _8$$12, _11$$13, _12$$13, _17$$14, _18$$14, _19$$15, _20$$16, _21$$16, _22$$16, _23$$17, _24$$17, _25$$18, _26$$19, _27$$19, _28$$19, _29$$20, _30$$20, _31$$21, _32$$21, _33$$22, _34$$22;
+	zval options, fields, _10$$13, _11$$13;
+	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, columns, filtered, values, query, sql, _14, _15, _16, _17, _36, _37, _38, _0$$5, _1$$5, _2$$7, _3$$7, _4$$8, _5$$8, _6$$10, _7$$10, _8$$12, _9$$13, _12$$13, _13$$13, _18$$14, _19$$14, _20$$15, _21$$16, _22$$16, _23$$16, _24$$17, _25$$17, _26$$18, _27$$19, _28$$19, _29$$19, _30$$20, _31$$20, _32$$21, _33$$21, _34$$22, _35$$22;
 	zval from;
 	zval *this_ptr = getThis();
 
@@ -735,13 +1249,13 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	ZVAL_UNDEF(&values);
 	ZVAL_UNDEF(&query);
 	ZVAL_UNDEF(&sql);
-	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_14);
 	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_16);
-	ZVAL_UNDEF(&_35);
+	ZVAL_UNDEF(&_17);
 	ZVAL_UNDEF(&_36);
 	ZVAL_UNDEF(&_37);
+	ZVAL_UNDEF(&_38);
 	ZVAL_UNDEF(&_0$$5);
 	ZVAL_UNDEF(&_1$$5);
 	ZVAL_UNDEF(&_2$$7);
@@ -751,36 +1265,37 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	ZVAL_UNDEF(&_6$$10);
 	ZVAL_UNDEF(&_7$$10);
 	ZVAL_UNDEF(&_8$$12);
-	ZVAL_UNDEF(&_11$$13);
+	ZVAL_UNDEF(&_9$$13);
 	ZVAL_UNDEF(&_12$$13);
-	ZVAL_UNDEF(&_17$$14);
+	ZVAL_UNDEF(&_13$$13);
 	ZVAL_UNDEF(&_18$$14);
-	ZVAL_UNDEF(&_19$$15);
-	ZVAL_UNDEF(&_20$$16);
+	ZVAL_UNDEF(&_19$$14);
+	ZVAL_UNDEF(&_20$$15);
 	ZVAL_UNDEF(&_21$$16);
 	ZVAL_UNDEF(&_22$$16);
-	ZVAL_UNDEF(&_23$$17);
+	ZVAL_UNDEF(&_23$$16);
 	ZVAL_UNDEF(&_24$$17);
-	ZVAL_UNDEF(&_25$$18);
-	ZVAL_UNDEF(&_26$$19);
+	ZVAL_UNDEF(&_25$$17);
+	ZVAL_UNDEF(&_26$$18);
 	ZVAL_UNDEF(&_27$$19);
 	ZVAL_UNDEF(&_28$$19);
-	ZVAL_UNDEF(&_29$$20);
+	ZVAL_UNDEF(&_29$$19);
 	ZVAL_UNDEF(&_30$$20);
-	ZVAL_UNDEF(&_31$$21);
+	ZVAL_UNDEF(&_31$$20);
 	ZVAL_UNDEF(&_32$$21);
-	ZVAL_UNDEF(&_33$$22);
+	ZVAL_UNDEF(&_33$$21);
 	ZVAL_UNDEF(&_34$$22);
+	ZVAL_UNDEF(&_35$$22);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
-	ZVAL_UNDEF(&_9$$13);
 	ZVAL_UNDEF(&_10$$13);
+	ZVAL_UNDEF(&_11$$13);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -810,9 +1325,9 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 
 	ZEPHIR_INIT_VAR(&sql);
 	ZVAL_STRING(&sql, "SELECT ");
-	if (zephir_fast_count_int(&fields TSRMLS_CC)) {
+	if (zephir_fast_count_int(&fields)) {
 		ZEPHIR_INIT_VAR(&columns);
-		zephir_fast_join_str(&columns, SL(", "), &fields TSRMLS_CC);
+		zephir_fast_join_str(&columns, SL(", "), &fields);
 	} else {
 		ZEPHIR_INIT_NVAR(&columns);
 		ZVAL_STRING(&columns, "*");
@@ -822,44 +1337,45 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 		zephir_read_property(&_1$$5, this_ptr, SL("driverName"), PH_NOISY_CC | PH_READONLY);
 		if (ZEPHIR_IS_STRING(&_0$$5, "sqlsrv")) {
 			if (zephir_array_isset_string(&options, SL("offset"))) {
-				zephir_array_fetch_string(&_2$$7, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 296 TSRMLS_CC);
+				zephir_array_fetch_string(&_2$$7, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 296);
 				ZEPHIR_INIT_VAR(&_3$$7);
 				ZEPHIR_CONCAT_SVS(&_3$$7, " ROWS FETCH NEXT ", &_2$$7, " ROWS ONLY");
 				zephir_array_update_string(&options, SL("offset"), &_3$$7, PH_COPY | PH_SEPARATE);
 			} else {
-				zephir_array_fetch_string(&_4$$8, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 298 TSRMLS_CC);
+				zephir_array_fetch_string(&_4$$8, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 298);
 				ZEPHIR_INIT_VAR(&_5$$8);
 				ZEPHIR_CONCAT_SVS(&_5$$8, "TOP ", &_4$$8, " ");
-				zephir_concat_self(&sql, &_5$$8 TSRMLS_CC);
+				zephir_concat_self(&sql, &_5$$8);
 			}
 			zephir_array_unset_string(&options, SL("limit"), PH_SEPARATE);
 		} else if (ZEPHIR_IS_STRING(&_1$$5, "oci")) {
 			if (zephir_array_isset_string(&options, SL("offset"))) {
-				zephir_array_fetch_string(&_6$$10, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 303 TSRMLS_CC);
+				zephir_array_fetch_string(&_6$$10, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 303);
 				ZEPHIR_INIT_VAR(&_7$$10);
 				ZEPHIR_CONCAT_SVS(&_7$$10, " ROWS FETCH NEXT ", &_6$$10, " ROWS ONLY");
 				zephir_array_update_string(&options, SL("offset"), &_7$$10, PH_COPY | PH_SEPARATE);
 			} else {
 				if (ZEPHIR_IS_EMPTY(filters)) {
-					zephir_array_fetch_string(&_8$$12, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 306 TSRMLS_CC);
+					zephir_array_fetch_string(&_8$$12, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 306);
 					ZEPHIR_INIT_NVAR(filters);
 					ZEPHIR_CONCAT_SV(filters, "rownum = ", &_8$$12);
 				} else {
-					ZEPHIR_INIT_NVAR(filters);
-					zephir_create_array(filters, 1, 0 TSRMLS_CC);
 					ZEPHIR_INIT_VAR(&_9$$13);
-					zephir_create_array(&_9$$13, 2, 0 TSRMLS_CC);
-					zephir_array_fast_append(&_9$$13, filters);
+					zephir_create_array(&_9$$13, 1, 0);
 					ZEPHIR_INIT_VAR(&_10$$13);
-					zephir_create_array(&_10$$13, 2, 0 TSRMLS_CC);
+					zephir_create_array(&_10$$13, 2, 0);
+					zephir_array_fast_append(&_10$$13, filters);
 					ZEPHIR_INIT_VAR(&_11$$13);
-					ZVAL_STRING(&_11$$13, "rownum");
+					zephir_create_array(&_11$$13, 2, 0);
+					ZEPHIR_INIT_VAR(&_12$$13);
+					ZVAL_STRING(&_12$$13, "rownum");
+					zephir_array_fast_append(&_11$$13, &_12$$13);
+					ZEPHIR_OBS_VAR(&_13$$13);
+					zephir_array_fetch_string(&_13$$13, &options, SL("limit"), PH_NOISY, "ice/db/driver/pdo.zep", 308);
+					zephir_array_fast_append(&_11$$13, &_13$$13);
 					zephir_array_fast_append(&_10$$13, &_11$$13);
-					ZEPHIR_OBS_VAR(&_12$$13);
-					zephir_array_fetch_string(&_12$$13, &options, SL("limit"), PH_NOISY, "ice/db/driver/pdo.zep", 308 TSRMLS_CC);
-					zephir_array_fast_append(&_10$$13, &_12$$13);
-					zephir_array_fast_append(&_9$$13, &_10$$13);
-					zephir_array_update_string(filters, SL("AND"), &_9$$13, PH_COPY | PH_SEPARATE);
+					zephir_array_update_string(&_9$$13, SL("AND"), &_10$$13, PH_COPY | PH_SEPARATE);
+					ZEPHIR_CPY_WRT(filters, &_9$$13);
 				}
 			}
 			zephir_array_unset_string(&options, SL("limit"), PH_SEPARATE);
@@ -867,81 +1383,81 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	}
 	ZEPHIR_CALL_METHOD(&filtered, this_ptr, "where", NULL, 0, filters);
 	zephir_check_call_status();
-	zephir_read_property(&_13, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_14, "sprintf", NULL, 11, &_13, &from);
+	zephir_read_property(&_14, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_15, "sprintf", NULL, 11, &_14, &from);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_15);
-	ZEPHIR_CONCAT_VSV(&_15, &columns, " FROM ", &_14);
-	zephir_concat_self(&sql, &_15 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_16);
+	ZEPHIR_CONCAT_VSV(&_16, &columns, " FROM ", &_15);
+	zephir_concat_self(&sql, &_16);
 	ZEPHIR_OBS_VAR(&values);
-	zephir_array_fetch_long(&values, &filtered, 1, PH_NOISY, "ice/db/driver/pdo.zep", 317 TSRMLS_CC);
-	zephir_array_fetch_long(&_16, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 319 TSRMLS_CC);
-	if (!(ZEPHIR_IS_EMPTY(&_16))) {
-		zephir_array_fetch_long(&_17$$14, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 320 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(&_18$$14);
-		ZEPHIR_CONCAT_SV(&_18$$14, " WHERE ", &_17$$14);
-		zephir_concat_self(&sql, &_18$$14 TSRMLS_CC);
+	zephir_array_fetch_long(&values, &filtered, 1, PH_NOISY, "ice/db/driver/pdo.zep", 317);
+	zephir_array_fetch_long(&_17, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 319);
+	if (!(ZEPHIR_IS_EMPTY(&_17))) {
+		zephir_array_fetch_long(&_18$$14, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 320);
+		ZEPHIR_INIT_VAR(&_19$$14);
+		ZEPHIR_CONCAT_SV(&_19$$14, " WHERE ", &_18$$14);
+		zephir_concat_self(&sql, &_19$$14);
 	}
 	if (zephir_array_isset_string(&options, SL("group"))) {
-		ZEPHIR_OBS_VAR(&_19$$15);
-		zephir_array_fetch_string(&_19$$15, &options, SL("group"), PH_NOISY, "ice/db/driver/pdo.zep", 324 TSRMLS_CC);
-		if (Z_TYPE_P(&_19$$15) == IS_ARRAY) {
-			ZEPHIR_INIT_VAR(&_20$$16);
-			zephir_array_fetch_string(&_21$$16, &options, SL("group"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 325 TSRMLS_CC);
-			zephir_fast_join_str(&_20$$16, SL(", "), &_21$$16 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_22$$16);
-			ZEPHIR_CONCAT_SV(&_22$$16, " GROUP BY ", &_20$$16);
-			zephir_concat_self(&sql, &_22$$16 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(&_20$$15);
+		zephir_array_fetch_string(&_20$$15, &options, SL("group"), PH_NOISY, "ice/db/driver/pdo.zep", 324);
+		if (Z_TYPE_P(&_20$$15) == IS_ARRAY) {
+			ZEPHIR_INIT_VAR(&_21$$16);
+			zephir_array_fetch_string(&_22$$16, &options, SL("group"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 325);
+			zephir_fast_join_str(&_21$$16, SL(", "), &_22$$16);
+			ZEPHIR_INIT_VAR(&_23$$16);
+			ZEPHIR_CONCAT_SV(&_23$$16, " GROUP BY ", &_21$$16);
+			zephir_concat_self(&sql, &_23$$16);
 		} else {
-			zephir_array_fetch_string(&_23$$17, &options, SL("group"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 327 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_24$$17);
-			ZEPHIR_CONCAT_SV(&_24$$17, " GROUP BY ", &_23$$17);
-			zephir_concat_self(&sql, &_24$$17 TSRMLS_CC);
+			zephir_array_fetch_string(&_24$$17, &options, SL("group"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 327);
+			ZEPHIR_INIT_VAR(&_25$$17);
+			ZEPHIR_CONCAT_SV(&_25$$17, " GROUP BY ", &_24$$17);
+			zephir_concat_self(&sql, &_25$$17);
 		}
 	}
 	if (zephir_array_isset_string(&options, SL("order"))) {
-		ZEPHIR_OBS_VAR(&_25$$18);
-		zephir_array_fetch_string(&_25$$18, &options, SL("order"), PH_NOISY, "ice/db/driver/pdo.zep", 331 TSRMLS_CC);
-		if (Z_TYPE_P(&_25$$18) == IS_ARRAY) {
-			ZEPHIR_INIT_VAR(&_26$$19);
-			zephir_array_fetch_string(&_27$$19, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 332 TSRMLS_CC);
-			zephir_fast_join_str(&_26$$19, SL(", "), &_27$$19 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_28$$19);
-			ZEPHIR_CONCAT_SV(&_28$$19, " ORDER BY ", &_26$$19);
-			zephir_concat_self(&sql, &_28$$19 TSRMLS_CC);
+		ZEPHIR_OBS_VAR(&_26$$18);
+		zephir_array_fetch_string(&_26$$18, &options, SL("order"), PH_NOISY, "ice/db/driver/pdo.zep", 331);
+		if (Z_TYPE_P(&_26$$18) == IS_ARRAY) {
+			ZEPHIR_INIT_VAR(&_27$$19);
+			zephir_array_fetch_string(&_28$$19, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 332);
+			zephir_fast_join_str(&_27$$19, SL(", "), &_28$$19);
+			ZEPHIR_INIT_VAR(&_29$$19);
+			ZEPHIR_CONCAT_SV(&_29$$19, " ORDER BY ", &_27$$19);
+			zephir_concat_self(&sql, &_29$$19);
 		} else {
-			zephir_array_fetch_string(&_29$$20, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 334 TSRMLS_CC);
-			ZEPHIR_INIT_VAR(&_30$$20);
-			ZEPHIR_CONCAT_SV(&_30$$20, " ORDER BY ", &_29$$20);
-			zephir_concat_self(&sql, &_30$$20 TSRMLS_CC);
+			zephir_array_fetch_string(&_30$$20, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 334);
+			ZEPHIR_INIT_VAR(&_31$$20);
+			ZEPHIR_CONCAT_SV(&_31$$20, " ORDER BY ", &_30$$20);
+			zephir_concat_self(&sql, &_31$$20);
 		}
 	}
 	if (zephir_array_isset_string(&options, SL("limit"))) {
-		zephir_array_fetch_string(&_31$$21, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 338 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(&_32$$21);
-		ZEPHIR_CONCAT_SV(&_32$$21, " LIMIT ", &_31$$21);
-		zephir_concat_self(&sql, &_32$$21 TSRMLS_CC);
+		zephir_array_fetch_string(&_32$$21, &options, SL("limit"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 338);
+		ZEPHIR_INIT_VAR(&_33$$21);
+		ZEPHIR_CONCAT_SV(&_33$$21, " LIMIT ", &_32$$21);
+		zephir_concat_self(&sql, &_33$$21);
 	}
 	if (zephir_array_isset_string(&options, SL("offset"))) {
-		zephir_array_fetch_string(&_33$$22, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 341 TSRMLS_CC);
-		ZEPHIR_INIT_VAR(&_34$$22);
-		ZEPHIR_CONCAT_SV(&_34$$22, " OFFSET ", &_33$$22);
-		zephir_concat_self(&sql, &_34$$22 TSRMLS_CC);
+		zephir_array_fetch_string(&_34$$22, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 341);
+		ZEPHIR_INIT_VAR(&_35$$22);
+		ZEPHIR_CONCAT_SV(&_35$$22, " OFFSET ", &_34$$22);
+		zephir_concat_self(&sql, &_35$$22);
 	}
-	zephir_read_property(&_35, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&query, &_35, "prepare", NULL, 0, &sql);
+	zephir_read_property(&_36, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&query, &_36, "prepare", NULL, 0, &sql);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_36);
-	ZEPHIR_CALL_METHOD(&_37, &query, "execute", NULL, 0, &values);
+	ZEPHIR_INIT_VAR(&_37);
+	ZEPHIR_CALL_METHOD(&_38, &query, "execute", NULL, 0, &values);
 	zephir_check_call_status();
-	if (zephir_is_true(&_37)) {
-		ZEPHIR_INIT_NVAR(&_36);
-		ZVAL_NULL(&_36);
+	if (zephir_is_true(&_38)) {
+		ZEPHIR_INIT_NVAR(&_37);
+		ZVAL_NULL(&_37);
 	} else {
-		ZEPHIR_CALL_METHOD(&_36, &query, "errorinfo", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_37, &query, "errorinfo", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("error"), &_36);
+	zephir_update_property_zval(this_ptr, SL("error"), &_37);
 	RETURN_CCTOR(&query);
 
 }
@@ -959,12 +1475,13 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 
-	zend_string *_2;
-	zend_ulong _1;
+	zend_string *_3;
+	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_6 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_5 = NULL;
 	zval fields;
-	zval *from_param = NULL, *fields_param = NULL, key, value, columns, values, sql, query, status, *_0, _7, _8, _9, _10, _11, _12, _13, _3$$3, _4$$3, _6$$3;
+	zval *from_param = NULL, *fields_param = NULL, key, value, columns, values, sql, query, status, *_0, _1, _11, _12, _13, _14, _15, _16, _17, _4$$3, _5$$3, _7$$3, _8$$4, _9$$4, _10$$4;
 	zval from;
 	zval *this_ptr = getThis();
 
@@ -976,23 +1493,27 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	ZVAL_UNDEF(&sql);
 	ZVAL_UNDEF(&query);
 	ZVAL_UNDEF(&status);
-	ZVAL_UNDEF(&_7);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
-	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_14);
+	ZVAL_UNDEF(&_15);
+	ZVAL_UNDEF(&_16);
+	ZVAL_UNDEF(&_17);
 	ZVAL_UNDEF(&_4$$3);
-	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_8$$4);
+	ZVAL_UNDEF(&_9$$4);
+	ZVAL_UNDEF(&_10$$4);
 	ZVAL_UNDEF(&fields);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -1014,51 +1535,76 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	ZEPHIR_INIT_VAR(&values);
 	array_init(&values);
 	zephir_is_iterable(&fields, 0, "ice/db/driver/pdo.zep", 374);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&fields), _1, _2, _0)
-	{
-		ZEPHIR_INIT_NVAR(&key);
-		if (_2 != NULL) { 
-			ZVAL_STR_COPY(&key, _2);
-		} else {
-			ZVAL_LONG(&key, _1);
-		}
-		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _0);
-		zephir_read_property(&_3$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_4$$3, "sprintf", &_5, 11, &_3$$3, &key);
+	if (Z_TYPE_P(&fields) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&fields), _2, _3, _0)
+		{
+			ZEPHIR_INIT_NVAR(&key);
+			if (_3 != NULL) { 
+				ZVAL_STR_COPY(&key, _3);
+			} else {
+				ZVAL_LONG(&key, _2);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _0);
+			zephir_read_property(&_4$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "sprintf", &_6, 11, &_4$$3, &key);
+			zephir_check_call_status();
+			zephir_array_append(&columns, &_5$$3, PH_SEPARATE, "ice/db/driver/pdo.zep", 370);
+			ZEPHIR_INIT_NVAR(&_7$$3);
+			ZEPHIR_CONCAT_SV(&_7$$3, ":", &key);
+			zephir_array_update_zval(&values, &_7$$3, &value, PH_COPY | PH_SEPARATE);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &fields, "rewind", NULL, 0);
 		zephir_check_call_status();
-		zephir_array_append(&columns, &_4$$3, PH_SEPARATE, "ice/db/driver/pdo.zep", 370);
-		ZEPHIR_INIT_LNVAR(_6$$3);
-		ZEPHIR_CONCAT_SV(&_6$$3, ":", &key);
-		zephir_array_update_zval(&values, &_6$$3, &value, PH_COPY | PH_SEPARATE);
-	} ZEND_HASH_FOREACH_END();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_1, &fields, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_1)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&key, &fields, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, &fields, "current", NULL, 0);
+			zephir_check_call_status();
+				zephir_read_property(&_8$$4, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_FUNCTION(&_9$$4, "sprintf", &_6, 11, &_8$$4, &key);
+				zephir_check_call_status();
+				zephir_array_append(&columns, &_9$$4, PH_SEPARATE, "ice/db/driver/pdo.zep", 370);
+				ZEPHIR_INIT_NVAR(&_10$$4);
+				ZEPHIR_CONCAT_SV(&_10$$4, ":", &key);
+				zephir_array_update_zval(&values, &_10$$4, &value, PH_COPY | PH_SEPARATE);
+			ZEPHIR_CALL_METHOD(NULL, &fields, "next", NULL, 0);
+			zephir_check_call_status();
+		}
+	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	zephir_read_property(&_7, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_8, "sprintf", &_5, 11, &_7, &from);
+	zephir_read_property(&_11, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_12, "sprintf", &_6, 11, &_11, &from);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_9);
-	zephir_fast_join_str(&_9, SL(", "), &columns TSRMLS_CC);
-	ZEPHIR_INIT_VAR(&_10);
-	ZEPHIR_INIT_VAR(&_11);
-	zephir_array_keys(&_11, &values TSRMLS_CC);
-	zephir_fast_join_str(&_10, SL(", "), &_11 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_13);
+	zephir_fast_join_str(&_13, SL(", "), &columns);
+	ZEPHIR_INIT_VAR(&_14);
+	ZEPHIR_INIT_VAR(&_15);
+	zephir_array_keys(&_15, &values);
+	zephir_fast_join_str(&_14, SL(", "), &_15);
 	ZEPHIR_INIT_VAR(&sql);
-	ZEPHIR_CONCAT_SVSVSVS(&sql, "INSERT INTO ", &_8, " (", &_9, ") VALUES (", &_10, ")");
-	zephir_read_property(&_12, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&query, &_12, "prepare", NULL, 0, &sql);
+	ZEPHIR_CONCAT_SVSVSVS(&sql, "INSERT INTO ", &_12, " (", &_13, ") VALUES (", &_14, ")");
+	zephir_read_property(&_16, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&query, &_16, "prepare", NULL, 0, &sql);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, &query, "execute", NULL, 0, &values);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_13);
+	ZEPHIR_INIT_VAR(&_17);
 	if (zephir_is_true(&status)) {
-		ZEPHIR_INIT_NVAR(&_13);
-		ZVAL_NULL(&_13);
+		ZEPHIR_INIT_NVAR(&_17);
+		ZVAL_NULL(&_17);
 	} else {
-		ZEPHIR_CALL_METHOD(&_13, &query, "errorinfo", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_17, &query, "errorinfo", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("error"), &_13);
+	zephir_update_property_zval(this_ptr, SL("error"), &_17);
 	RETURN_CCTOR(&status);
 
 }
@@ -1077,12 +1623,13 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 
-	zend_string *_2;
-	zend_ulong _1;
+	zend_string *_3;
+	zend_ulong _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_7 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_6 = NULL;
 	zval fields;
-	zval *from_param = NULL, *filters = NULL, filters_sub, *fields_param = NULL, key, value, columns, values, filtered, sql, query, status, *_0, _8, _9, _10, _11, _12, _13, _14, _15, _3$$3, _4$$3, _5$$3, _7$$3;
+	zval *from_param = NULL, *filters = NULL, filters_sub, *fields_param = NULL, key, value, columns, values, filtered, sql, query, status, *_0, _1, _13, _14, _15, _16, _17, _18, _19, _20, _4$$3, _5$$3, _6$$3, _8$$3, _9$$4, _10$$4, _11$$4, _12$$4;
 	zval from;
 	zval *this_ptr = getThis();
 
@@ -1096,25 +1643,30 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	ZVAL_UNDEF(&sql);
 	ZVAL_UNDEF(&query);
 	ZVAL_UNDEF(&status);
-	ZVAL_UNDEF(&_8);
-	ZVAL_UNDEF(&_9);
-	ZVAL_UNDEF(&_10);
-	ZVAL_UNDEF(&_11);
-	ZVAL_UNDEF(&_12);
+	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_14);
 	ZVAL_UNDEF(&_15);
-	ZVAL_UNDEF(&_3$$3);
+	ZVAL_UNDEF(&_16);
+	ZVAL_UNDEF(&_17);
+	ZVAL_UNDEF(&_18);
+	ZVAL_UNDEF(&_19);
+	ZVAL_UNDEF(&_20);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
-	ZVAL_UNDEF(&_7$$3);
+	ZVAL_UNDEF(&_6$$3);
+	ZVAL_UNDEF(&_8$$3);
+	ZVAL_UNDEF(&_9$$4);
+	ZVAL_UNDEF(&_10$$4);
+	ZVAL_UNDEF(&_11$$4);
+	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&fields);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &from_param, &filters, &fields_param);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -1141,56 +1693,83 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	ZEPHIR_INIT_VAR(&values);
 	array_init(&values);
 	zephir_is_iterable(&fields, 0, "ice/db/driver/pdo.zep", 406);
-	ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&fields), _1, _2, _0)
-	{
-		ZEPHIR_INIT_NVAR(&key);
-		if (_2 != NULL) { 
-			ZVAL_STR_COPY(&key, _2);
-		} else {
-			ZVAL_LONG(&key, _1);
-		}
-		ZEPHIR_INIT_NVAR(&value);
-		ZVAL_COPY(&value, _0);
-		ZEPHIR_INIT_LNVAR(_3$$3);
-		ZEPHIR_CONCAT_SV(&_3$$3, ":", &key);
-		zephir_array_update_zval(&values, &_3$$3, &value, PH_COPY | PH_SEPARATE);
-		zephir_read_property(&_4$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-		ZEPHIR_CALL_FUNCTION(&_5$$3, "sprintf", &_6, 11, &_4$$3, &key);
+	if (Z_TYPE_P(&fields) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&fields), _2, _3, _0)
+		{
+			ZEPHIR_INIT_NVAR(&key);
+			if (_3 != NULL) { 
+				ZVAL_STR_COPY(&key, _3);
+			} else {
+				ZVAL_LONG(&key, _2);
+			}
+			ZEPHIR_INIT_NVAR(&value);
+			ZVAL_COPY(&value, _0);
+			ZEPHIR_INIT_NVAR(&_4$$3);
+			ZEPHIR_CONCAT_SV(&_4$$3, ":", &key);
+			zephir_array_update_zval(&values, &_4$$3, &value, PH_COPY | PH_SEPARATE);
+			zephir_read_property(&_5$$3, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+			ZEPHIR_CALL_FUNCTION(&_6$$3, "sprintf", &_7, 11, &_5$$3, &key);
+			zephir_check_call_status();
+			ZEPHIR_INIT_NVAR(&_8$$3);
+			ZEPHIR_CONCAT_VSV(&_8$$3, &_6$$3, " = :", &key);
+			zephir_array_append(&columns, &_8$$3, PH_SEPARATE, "ice/db/driver/pdo.zep", 403);
+		} ZEND_HASH_FOREACH_END();
+	} else {
+		ZEPHIR_CALL_METHOD(NULL, &fields, "rewind", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_INIT_LNVAR(_7$$3);
-		ZEPHIR_CONCAT_VSV(&_7$$3, &_5$$3, " = :", &key);
-		zephir_array_append(&columns, &_7$$3, PH_SEPARATE, "ice/db/driver/pdo.zep", 403);
-	} ZEND_HASH_FOREACH_END();
+		while (1) {
+			ZEPHIR_CALL_METHOD(&_1, &fields, "valid", NULL, 0);
+			zephir_check_call_status();
+			if (!zend_is_true(&_1)) {
+				break;
+			}
+			ZEPHIR_CALL_METHOD(&key, &fields, "key", NULL, 0);
+			zephir_check_call_status();
+			ZEPHIR_CALL_METHOD(&value, &fields, "current", NULL, 0);
+			zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(&_9$$4);
+				ZEPHIR_CONCAT_SV(&_9$$4, ":", &key);
+				zephir_array_update_zval(&values, &_9$$4, &value, PH_COPY | PH_SEPARATE);
+				zephir_read_property(&_10$$4, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+				ZEPHIR_CALL_FUNCTION(&_11$$4, "sprintf", &_7, 11, &_10$$4, &key);
+				zephir_check_call_status();
+				ZEPHIR_INIT_NVAR(&_12$$4);
+				ZEPHIR_CONCAT_VSV(&_12$$4, &_11$$4, " = :", &key);
+				zephir_array_append(&columns, &_12$$4, PH_SEPARATE, "ice/db/driver/pdo.zep", 403);
+			ZEPHIR_CALL_METHOD(NULL, &fields, "next", NULL, 0);
+			zephir_check_call_status();
+		}
+	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_CALL_METHOD(&filtered, this_ptr, "where", NULL, 0, filters, &values);
 	zephir_check_call_status();
-	zephir_read_property(&_8, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_FUNCTION(&_9, "sprintf", &_6, 11, &_8, &from);
+	zephir_read_property(&_13, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_FUNCTION(&_14, "sprintf", &_7, 11, &_13, &from);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_10);
-	zephir_fast_join_str(&_10, SL(", "), &columns TSRMLS_CC);
-	zephir_array_fetch_long(&_11, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 407 TSRMLS_CC);
+	ZEPHIR_INIT_VAR(&_15);
+	zephir_fast_join_str(&_15, SL(", "), &columns);
+	zephir_array_fetch_long(&_16, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 407);
 	ZEPHIR_INIT_VAR(&sql);
-	ZEPHIR_CONCAT_SVSVSV(&sql, "UPDATE ", &_9, " SET ", &_10, " WHERE ", &_11);
-	ZEPHIR_INIT_VAR(&_12);
-	zephir_array_fetch_long(&_13, &filtered, 1, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 408 TSRMLS_CC);
-	zephir_fast_array_merge(&_12, &values, &_13 TSRMLS_CC);
-	ZEPHIR_CPY_WRT(&values, &_12);
-	zephir_read_property(&_14, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&query, &_14, "prepare", NULL, 0, &sql);
+	ZEPHIR_CONCAT_SVSVSV(&sql, "UPDATE ", &_14, " SET ", &_15, " WHERE ", &_16);
+	ZEPHIR_INIT_VAR(&_17);
+	zephir_array_fetch_long(&_18, &filtered, 1, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 408);
+	zephir_fast_array_merge(&_17, &values, &_18);
+	ZEPHIR_CPY_WRT(&values, &_17);
+	zephir_read_property(&_19, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&query, &_19, "prepare", NULL, 0, &sql);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&status, &query, "execute", NULL, 0, &values);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_15);
+	ZEPHIR_INIT_VAR(&_20);
 	if (zephir_is_true(&status)) {
-		ZEPHIR_INIT_NVAR(&_15);
-		ZVAL_NULL(&_15);
+		ZEPHIR_INIT_NVAR(&_20);
+		ZVAL_NULL(&_20);
 	} else {
-		ZEPHIR_CALL_METHOD(&_15, &query, "errorinfo", NULL, 0);
+		ZEPHIR_CALL_METHOD(&_20, &query, "errorinfo", NULL, 0);
 		zephir_check_call_status();
 	}
-	zephir_update_property_zval(this_ptr, SL("error"), &_15);
+	zephir_update_property_zval(this_ptr, SL("error"), &_20);
 	RETURN_CCTOR(&status);
 
 }
@@ -1208,6 +1787,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
  */
 PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *from_param = NULL, *filters = NULL, filters_sub, filtered, sql, values, query, status, _0, _1, _2, _3, _4;
 	zval from;
@@ -1230,7 +1810,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
 
 	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
@@ -1251,11 +1831,11 @@ PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 	zephir_read_property(&_0, this_ptr, SL("identifier"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_FUNCTION(&_1, "sprintf", NULL, 11, &_0, &from);
 	zephir_check_call_status();
-	zephir_array_fetch_long(&_2, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 432 TSRMLS_CC);
+	zephir_array_fetch_long(&_2, &filtered, 0, PH_NOISY | PH_READONLY, "ice/db/driver/pdo.zep", 432);
 	ZEPHIR_INIT_VAR(&sql);
 	ZEPHIR_CONCAT_SVSV(&sql, "DELETE FROM ", &_1, " WHERE ", &_2);
 	ZEPHIR_OBS_VAR(&values);
-	zephir_array_fetch_long(&values, &filtered, 1, PH_NOISY, "ice/db/driver/pdo.zep", 433 TSRMLS_CC);
+	zephir_array_fetch_long(&values, &filtered, 1, PH_NOISY, "ice/db/driver/pdo.zep", 433);
 	zephir_read_property(&_3, this_ptr, SL("client"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&query, &_3, "prepare", NULL, 0, &sql);
 	zephir_check_call_status();
@@ -1293,6 +1873,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 PHP_METHOD(Ice_Db_Driver_Pdo, query) {
 
 	zend_bool _2;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval values;
 	zval *sql_param = NULL, *values_param = NULL, *obj = NULL, obj_sub, __$null, query, result, status, _0, _1, _4, _3$$3;
@@ -1315,7 +1896,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, query) {
 	zephir_fetch_params(1, 1, 2, &sql_param, &values_param, &obj);
 
 	if (UNEXPECTED(Z_TYPE_P(sql_param) != IS_STRING && Z_TYPE_P(sql_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'sql' must be of the type string") TSRMLS_CC);
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'sql' must be of the type string"));
 		RETURN_MM_NULL();
 	}
 	if (EXPECTED(Z_TYPE_P(sql_param) == IS_STRING)) {
@@ -1366,7 +1947,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, query) {
 		ZEPHIR_CALL_METHOD(&result, &query, "fetch", NULL, 0, &_3$$3);
 		zephir_check_call_status();
 		if (zephir_is_true(&result)) {
-			if (zephir_instance_of_ev(obj, ice_arr_ce TSRMLS_CC)) {
+			if (zephir_instance_of_ev(obj, ice_arr_ce)) {
 				ZEPHIR_CALL_METHOD(NULL, obj, "replace", NULL, 0, &result);
 				zephir_check_call_status();
 			} else {
@@ -1399,6 +1980,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, query) {
 PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId) {
 
 	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -1429,7 +2011,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getError) {
 
 
 	zephir_read_property(&_0, this_ptr, SL("error"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_isset_long_fetch(&error, &_0, 0, 1 TSRMLS_CC);
+	zephir_array_isset_long_fetch(&error, &_0, 0, 1);
 	RETURN_CTORW(&error);
 
 }

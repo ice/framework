@@ -103,7 +103,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getvalue, 0, 0, 1)
 #endif
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_setdata, 0, 0, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_setdata, 0, 0, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_setdata, 0, 0, 0)
+#define arginfo_ice_arr_setdata NULL
+#endif
+
 	ZEND_ARG_ARRAY_INFO(0, data, 0)
 ZEND_END_ARG_INFO()
 
@@ -165,12 +175,32 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetget, 0, 0, 1)
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetset, 0, 2, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetset, 0, 2, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetset, 0, 0, 2)
+#define arginfo_ice_arr_offsetset NULL
+#endif
+
 	ZEND_ARG_INFO(0, offset)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetunset, 0, 1, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetunset, 0, 1, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetunset, 0, 0, 1)
+#define arginfo_ice_arr_offsetunset NULL
+#endif
+
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
@@ -190,7 +220,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___get, 0, 0, 1)
 	ZEND_ARG_INFO(0, key)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___set, 0, 2, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___set, 0, 2, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___set, 0, 0, 2)
+#define arginfo_ice_arr___set NULL
+#endif
+
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 #else
@@ -199,7 +239,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___set, 0, 0, 2)
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___unset, 0, 1, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr___unset, 0, 1, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___unset, 0, 0, 1)
+#define arginfo_ice_arr___unset NULL
+#endif
+
 	ZEND_ARG_INFO(0, key)
 ZEND_END_ARG_INFO()
 

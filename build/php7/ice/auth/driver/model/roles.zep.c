@@ -34,7 +34,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles) {
 	/**
 	 * User class name.
 	 */
-	zend_declare_property_string(ice_auth_driver_model_roles_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_auth_driver_model_roles_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -49,6 +49,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 
 	zval _2;
 	zval _0, _1, _3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -63,7 +64,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 	zephir_check_call_status();
 	zephir_read_property(&_1, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
-	zephir_create_array(&_2, 1, 0 TSRMLS_CC);
+	zephir_create_array(&_2, 1, 0);
 	add_assoc_stringl_ex(&_2, SL("alias"), SL("RolesUsers"));
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "role_id");

@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Cli_Console) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Console, ice, cli_console, ice_di_access_ce, ice_cli_console_method_entry, 0);
 
-	zend_declare_property_null(ice_cli_console_ce, SL("modules"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_cli_console_ce, SL("modules"), ZEND_ACC_PROTECTED);
 
 	zephir_declare_class_constant_long(ice_cli_console_ce, SL("NORMAL"), 0);
 
@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
 
 	ZVAL_UNDEF(&modules_sub);
 
-	zephir_fetch_params(0, 1, 0, &modules);
+	zephir_fetch_params_without_memory_grow(1, 0, &modules);
 
 
 
@@ -79,6 +79,7 @@ PHP_METHOD(Ice_Cli_Console, setModules) {
  */
 PHP_METHOD(Ice_Cli_Console, __construct) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, di_sub, __$null, _0, _1;
 	zval *this_ptr = getThis();
@@ -116,6 +117,7 @@ PHP_METHOD(Ice_Cli_Console, __construct) {
  */
 PHP_METHOD(Ice_Cli_Console, addModule) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options;
 	zval *name_param = NULL, *options_param = NULL;
 	zval name;
@@ -131,7 +133,7 @@ PHP_METHOD(Ice_Cli_Console, addModule) {
 	zephir_get_arrval(&options, options_param);
 
 
-	zephir_update_property_array(this_ptr, SL("modules"), &name, &options TSRMLS_CC);
+	zephir_update_property_array(this_ptr, SL("modules"), &name, &options);
 	RETURN_THIS();
 
 }
@@ -144,6 +146,7 @@ PHP_METHOD(Ice_Cli_Console, addModule) {
  */
 PHP_METHOD(Ice_Cli_Console, handle) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *arguments = NULL, arguments_sub, __$null, router, response, dispatcher, _0, _1, _2, _3, _4, _5, _6, _7;
 	zval *this_ptr = getThis();
@@ -186,16 +189,16 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	zephir_read_property(&_3, this_ptr, SL("modules"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "setmodules", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_4, &response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 70 TSRMLS_CC);
+	zephir_array_fetch_string(&_4, &response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 70);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "setmodule", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_5, &response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 71 TSRMLS_CC);
+	zephir_array_fetch_string(&_5, &response, SL("handler"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 71);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "sethandler", NULL, 0, &_5);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_6, &response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 72 TSRMLS_CC);
+	zephir_array_fetch_string(&_6, &response, SL("action"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 72);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "setaction", NULL, 0, &_6);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_7, &response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 73 TSRMLS_CC);
+	zephir_array_fetch_string(&_7, &response, SL("params"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 73);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "setparams", NULL, 0, &_7);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &dispatcher, "dispatch", NULL, 0);
@@ -216,6 +219,7 @@ PHP_METHOD(Ice_Cli_Console, handle) {
  */
 PHP_METHOD(Ice_Cli_Console, color) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long decoration;
 	zval *text_param = NULL, *color_param = NULL, *decoration_param = NULL, *bgColor_param = NULL, colors, bgColors, colored, e, foreground, background, _0, _1, _2$$3;
 	zval text, color, bgColor;
@@ -258,7 +262,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 
 
 	ZEPHIR_INIT_VAR(&colors);
-	zephir_create_array(&colors, 9, 0 TSRMLS_CC);
+	zephir_create_array(&colors, 9, 0);
 	add_assoc_stringl_ex(&colors, SL("black"), SL("30"));
 	add_assoc_stringl_ex(&colors, SL("red"), SL("31"));
 	add_assoc_stringl_ex(&colors, SL("green"), SL("32"));
@@ -269,7 +273,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	add_assoc_stringl_ex(&colors, SL("lightgray"), SL("37"));
 	add_assoc_stringl_ex(&colors, SL("white"), SL("97"));
 	ZEPHIR_INIT_VAR(&bgColors);
-	zephir_create_array(&bgColors, 9, 0 TSRMLS_CC);
+	zephir_create_array(&bgColors, 9, 0);
 	add_assoc_stringl_ex(&bgColors, SL("black"), SL("40"));
 	add_assoc_stringl_ex(&bgColors, SL("red"), SL("41"));
 	add_assoc_stringl_ex(&bgColors, SL("green"), SL("42"));
@@ -279,11 +283,11 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	add_assoc_stringl_ex(&bgColors, SL("cyan"), SL("46"));
 	add_assoc_stringl_ex(&bgColors, SL("lightgray"), SL("47"));
 	add_assoc_stringl_ex(&bgColors, SL("white"), SL("107"));
-	zephir_array_isset_fetch(&foreground, &colors, &color, 1 TSRMLS_CC);
-	zephir_array_isset_fetch(&background, &bgColors, &bgColor, 1 TSRMLS_CC);
+	zephir_array_isset_fetch(&foreground, &colors, &color, 1);
+	zephir_array_isset_fetch(&background, &bgColors, &bgColor, 1);
 	ZEPHIR_INIT_VAR(&e);
-	ZVAL_STRING(&e, "\e");
-	ZEPHIR_SINIT_VAR(_0);
+	ZVAL_STRING(&e, "\\e");
+	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_LONG(&_0, decoration);
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_is_true(&foreground)) {
@@ -298,7 +302,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	if (zephir_is_true(&background)) {
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZEPHIR_CONCAT_VSVS(&_2$$3, &e, "[", &background, "m");
-		zephir_concat_self(&colored, &_2$$3 TSRMLS_CC);
+		zephir_concat_self(&colored, &_2$$3);
 	}
 	ZEPHIR_CONCAT_VVVS(return_value, &colored, &text, &e, "[0m");
 	RETURN_MM();

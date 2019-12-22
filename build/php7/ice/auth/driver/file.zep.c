@@ -33,9 +33,9 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_File) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver, File, ice, auth_driver_file, ice_auth_driver_ce, ice_auth_driver_file_method_entry, 0);
 
-	zend_declare_property_null(ice_auth_driver_file_ce, SL("users"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_auth_driver_file_ce, SL("users"), ZEND_ACC_PROTECTED);
 
-	zend_class_implements(ice_auth_driver_file_ce TSRMLS_CC, 1, ice_auth_driver_driverinterface_ce);
+	zend_class_implements(ice_auth_driver_file_ce, 1, ice_auth_driver_driverinterface_ce);
 	return SUCCESS;
 
 }
@@ -47,7 +47,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
 
 	ZVAL_UNDEF(&users_sub);
 
-	zephir_fetch_params(0, 1, 0, &users);
+	zephir_fetch_params_without_memory_grow(1, 0, &users);
 
 
 
@@ -64,6 +64,7 @@ PHP_METHOD(Ice_Auth_Driver_File, setUsers) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, username, user, _0, _3, _2$$5, _4$$6;
@@ -96,7 +97,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 		} else {
 			ZEPHIR_OBS_VAR(&user);
 			zephir_read_property(&_2$$5, this_ptr, SL("users"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_isset_fetch(&user, &_2$$5, &username, 0 TSRMLS_CC);
+			zephir_array_isset_fetch(&user, &_2$$5, &username, 0);
 			zephir_array_update_string(&user, SL("username"), &username, PH_COPY | PH_SEPARATE);
 			zephir_update_property_zval(this_ptr, SL("user"), &user);
 		}
@@ -122,6 +123,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval role;
 	zval *user, user_sub, *role_param = NULL, _0$$3;
 	zval *this_ptr = getThis();
@@ -142,8 +144,8 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
 
 
 	if (Z_TYPE_P(user) == IS_ARRAY) {
-		zephir_array_fetch_string(&_0$$3, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 62 TSRMLS_CC);
-		RETURN_MM_BOOL(zephir_fast_in_array(&role, &_0$$3 TSRMLS_CC));
+		zephir_array_fetch_string(&_0$$3, user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 62);
+		RETURN_MM_BOOL(zephir_fast_in_array(&role, &_0$$3));
 	} else {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "User must be an array", "ice/auth/driver/file.zep", 64);
 		return;
@@ -162,6 +164,7 @@ PHP_METHOD(Ice_Auth_Driver_File, hasRole) {
  */
 PHP_METHOD(Ice_Auth_Driver_File, login) {
 
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_4 = NULL;
 	zend_bool remember, force, _0, _2$$4, _6$$4;
@@ -201,7 +204,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	if (_0) {
 		ZEPHIR_OBS_VAR(&user);
 		zephir_read_property(&_1, this_ptr, SL("users"), PH_NOISY_CC | PH_READONLY);
-		_0 = zephir_array_isset_fetch(&user, &_1, username, 0 TSRMLS_CC);
+		_0 = zephir_array_isset_fetch(&user, &_1, username, 0);
 	}
 	if (_0) {
 		_2$$4 = ZEPHIR_IS_EMPTY(&password);
@@ -211,7 +214,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 		if (_2$$4) {
 			RETURN_MM_BOOL(0);
 		}
-		zephir_array_fetch_string(&_5$$4, &user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 90 TSRMLS_CC);
+		zephir_array_fetch_string(&_5$$4, &user, SL("password"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 90);
 		ZEPHIR_CALL_PARENT(&_3$$4, ice_auth_driver_file_ce, getThis(), "checkhash", &_4, 0, &password, &_5$$4);
 		zephir_check_call_status();
 		_6$$4 = zephir_is_true(&_3$$4);
@@ -219,7 +222,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 			_6$$4 = force;
 		}
 		if (_6$$4) {
-			zephir_array_fetch_string(&_7$$6, &user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 92 TSRMLS_CC);
+			zephir_array_fetch_string(&_7$$6, &user, SL("roles"), PH_NOISY | PH_READONLY, "ice/auth/driver/file.zep", 92);
 			ZEPHIR_CALL_METHOD(NULL, this_ptr, "completelogin", NULL, 0, username, &_7$$6);
 			zephir_check_call_status();
 			RETURN_MM_BOOL(1);

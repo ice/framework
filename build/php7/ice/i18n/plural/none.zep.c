@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/operators.h"
 #include "kernel/memory.h"
+#include "kernel/object.h"
 
 
 /**
@@ -38,7 +39,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_None) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\I18n\\Plural, None, ice, i18n_plural_none, ice_i18n_plural_none_method_entry, 0);
 
-	zend_class_implements(ice_i18n_plural_none_ce TSRMLS_CC, 1, ice_i18n_plural_pluralinterface_ce);
+	zend_class_implements(ice_i18n_plural_none_ce, 1, ice_i18n_plural_pluralinterface_ce);
 	return SUCCESS;
 
 }
@@ -50,7 +51,7 @@ PHP_METHOD(Ice_I18n_Plural_None, getCategory) {
 	zval *this_ptr = getThis();
 
 
-	zephir_fetch_params(0, 1, 0, &count_param);
+	zephir_fetch_params_without_memory_grow(1, 0, &count_param);
 
 	count = zephir_get_intval(count_param);
 

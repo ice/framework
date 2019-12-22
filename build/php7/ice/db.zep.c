@@ -33,7 +33,7 @@ ZEPHIR_INIT_CLASS(Ice_Db) {
 
 	ZEPHIR_REGISTER_CLASS(Ice, Db, ice, db, ice_db_method_entry, 0);
 
-	zend_declare_property_null(ice_db_ce, SL("driver"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_db_ce, SL("driver"), ZEND_ACC_PROTECTED);
 
 	return SUCCESS;
 
@@ -55,7 +55,7 @@ PHP_METHOD(Ice_Db, setDriver) {
 
 	ZVAL_UNDEF(&driver_sub);
 
-	zephir_fetch_params(0, 1, 0, &driver);
+	zephir_fetch_params_without_memory_grow(1, 0, &driver);
 
 
 
@@ -78,6 +78,7 @@ PHP_METHOD(Ice_Db, setDriver) {
 PHP_METHOD(Ice_Db, __construct) {
 
 	zend_bool _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options;
 	zend_long port, ZEPHIR_LAST_CALL_STATUS;
 	zval host, name, user, password, _2$$5, _6$$6;
@@ -145,14 +146,14 @@ PHP_METHOD(Ice_Db, __construct) {
 
 	_0 = Z_TYPE_P(driver) == IS_OBJECT;
 	if (_0) {
-		_0 = (zephir_instance_of_ev(driver, ice_db_dbinterface_ce TSRMLS_CC));
+		_0 = (zephir_instance_of_ev(driver, ice_db_dbinterface_ce));
 	}
 	if (_0) {
 		zephir_update_property_zval(this_ptr, SL("driver"), driver);
 	} else if (Z_TYPE_P(driver) == IS_STRING) {
 		do {
 			if (ZEPHIR_IS_STRING(driver, "oci")) {
-				ZEPHIR_SINIT_VAR(_1$$5);
+				ZEPHIR_INIT_VAR(&_1$$5);
 				ZVAL_LONG(&_1$$5, port);
 				ZEPHIR_INIT_VAR(&_2$$5);
 				ZEPHIR_CONCAT_SVSVS(&_2$$5, "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=", &host, ")(PORT=", &_1$$5, "))(CONNECT_DATA=(SID=orcl)))");
@@ -167,7 +168,7 @@ PHP_METHOD(Ice_Db, __construct) {
 				break;
 			}
 			if (ZEPHIR_IS_STRING(driver, "mongodb")) {
-				ZEPHIR_SINIT_VAR(_5$$6);
+				ZEPHIR_INIT_VAR(&_5$$6);
 				ZVAL_LONG(&_5$$6, port);
 				ZEPHIR_INIT_VAR(&_6$$6);
 				ZEPHIR_CONCAT_SVSVSVSVSV(&_6$$6, "mongodb://", &user, ":", &password, "@", &host, ":", &_5$$6, "/", &name);
@@ -181,7 +182,7 @@ PHP_METHOD(Ice_Db, __construct) {
 			}
 			ZEPHIR_INIT_VAR(&_8$$7);
 			object_init_ex(&_8$$7, ice_db_driver_pdo_ce);
-			ZEPHIR_SINIT_VAR(_9$$7);
+			ZEPHIR_INIT_VAR(&_9$$7);
 			ZVAL_LONG(&_9$$7, port);
 			ZEPHIR_INIT_VAR(&_10$$7);
 			ZEPHIR_CONCAT_VSVSVSV(&_10$$7, driver, ":host=", &host, ";port=", &_9$$7, ";dbname=", &name);
@@ -202,6 +203,7 @@ PHP_METHOD(Ice_Db, __construct) {
 PHP_METHOD(Ice_Db, __call) {
 
 	zval _0;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _1;
 	zval method;
@@ -224,7 +226,7 @@ PHP_METHOD(Ice_Db, __call) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_create_array(&_0, 2, 0 TSRMLS_CC);
+	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_property(&_1, this_ptr, SL("driver"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);

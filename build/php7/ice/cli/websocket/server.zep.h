@@ -32,6 +32,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_run, 0, 0, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_run, 0, 0, IS_VOID, NULL, 0)
+#endif
+ZEND_END_ARG_INFO()
+#else
+#define arginfo_ice_cli_websocket_server_run NULL
+#endif
+
 #if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_connect, 0, 1, _IS_BOOL, 0)
 #else
@@ -40,7 +51,17 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_connect
 	ZEND_ARG_INFO(0, socket)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 70100
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_disconnect, 0, 1, IS_VOID, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_disconnect, 0, 1, IS_VOID, NULL, 0)
+#endif
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server_disconnect, 0, 0, 1)
+#define arginfo_ice_cli_websocket_server_disconnect NULL
+#endif
+
 	ZEND_ARG_INFO(0, socket)
 ZEND_END_ARG_INFO()
 
@@ -110,7 +131,7 @@ ZEPHIR_INIT_FUNCS(ice_cli_websocket_server_method_entry) {
 	PHP_ME(Ice_Cli_Websocket_Server, getServer, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, getClients, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, __construct, arginfo_ice_cli_websocket_server___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-	PHP_ME(Ice_Cli_Websocket_Server, run, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Websocket_Server, run, arginfo_ice_cli_websocket_server_run, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, connect, arginfo_ice_cli_websocket_server_connect, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Cli_Websocket_Server, disconnect, arginfo_ice_cli_websocket_server_disconnect, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, onValidate, arginfo_ice_cli_websocket_server_onvalidate, ZEND_ACC_PUBLIC)

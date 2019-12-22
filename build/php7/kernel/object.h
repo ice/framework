@@ -1,22 +1,13 @@
-
 /*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Zephir Team (http://www.zephir-lang.com)       |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  |          Vladimir Kolesnikov <vladimir@extrememember.com>              |
-  +------------------------------------------------------------------------+
-*/
+ * This file is part of the Zephir.
+ *
+ * (c) Zephir Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #ifndef ZEPHIR_KERNEL_OBJECT_H
 #define ZEPHIR_KERNEL_OBJECT_H
@@ -51,10 +42,10 @@ int zephir_isset_property(zval *object, const char *property_name, unsigned int 
 int zephir_isset_property_zval(zval *object, const zval *property);
 
 /** Reading properties */
-int zephir_read_property(zval *result, zval *object, const char *property_name, zend_uint property_length, int silent);
+int zephir_read_property(zval *result, zval *object, const char *property_name, uint32_t property_length, int silent);
 int zephir_read_property_zval(zval *result, zval *object, zval *property, int silent);
 int zephir_return_property(zval *return_value, zval *object, char *property_name, unsigned int property_length);
-int zephir_fetch_property(zval *result, zval *object, const char *property_name, zend_uint property_length, int silent);
+int zephir_fetch_property(zval *result, zval *object, const char *property_name, uint32_t property_length, int silent);
 int zephir_fetch_property_zval(zval *result, zval *object, zval *property, int silent);
 
 /** Updating properties */
@@ -62,10 +53,10 @@ int zephir_update_property_zval(zval *obj, const char *property_name, unsigned i
 int zephir_update_property_zval_zval(zval *obj, zval *property, zval *value);
 
 /** Updating array properties */
-int zephir_update_property_array(zval *object, const char *property, zend_uint property_length, const zval *index, zval *value);
+int zephir_update_property_array(zval *object, const char *property, uint32_t property_length, const zval *index, zval *value);
 int zephir_update_property_array_string(zval *object, char *property, unsigned int property_length, char *index, unsigned int index_length, zval *value);
 int zephir_update_property_array_append(zval *object, char *property, unsigned int property_length, zval *value);
-int zephir_update_property_array_multi(zval *object, const char *property, zend_uint property_length, zval *value, const char *types, int types_length, int types_count, ...);
+int zephir_update_property_array_multi(zval *object, const char *property, uint32_t property_length, zval *value, const char *types, int types_length, int types_count, ...);
 
 /** Unset properties */
 int zephir_unset_property(zval* object, const char* name);
@@ -73,10 +64,11 @@ int zephir_unset_property_array(zval *object, char *property, unsigned int prope
 
 /** Static properties */
 int zephir_read_static_property_ce(zval *result, zend_class_entry *ce, const char *property, int len, int flags);
-int zephir_update_static_property_array_multi_ce(zend_class_entry *ce, const char *property, zend_uint property_length, zval *value, const char *types, int types_length, int types_count, ...);
+int zephir_update_static_property_ce(zend_class_entry *ce, const char *property, uint32_t len, zval *value);
+int zephir_update_static_property_array_multi_ce(zend_class_entry *ce, const char *property, uint32_t property_length, zval *value, const char *types, int types_length, int types_count, ...);
 
 /** Create closures */
-int zephir_create_closure_ex(zval *return_value, zval *this_ptr, zend_class_entry *ce, const char *method_name, zend_uint method_length);
+int zephir_create_closure_ex(zval *return_value, zval *this_ptr, zend_class_entry *ce, const char *method_name, uint32_t method_length);
 
 /** Create instances */
 int zephir_create_instance(zval *return_value, const zval *class_name);

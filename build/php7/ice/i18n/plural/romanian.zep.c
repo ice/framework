@@ -15,6 +15,7 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
+#include "kernel/object.h"
 
 
 /**
@@ -41,7 +42,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Romanian) {
 
 	ZEPHIR_REGISTER_CLASS(Ice\\I18n\\Plural, Romanian, ice, i18n_plural_romanian, ice_i18n_plural_romanian_method_entry, 0);
 
-	zend_class_implements(ice_i18n_plural_romanian_ce TSRMLS_CC, 1, ice_i18n_plural_pluralinterface_ce);
+	zend_class_implements(ice_i18n_plural_romanian_ce, 1, ice_i18n_plural_pluralinterface_ce);
 	return SUCCESS;
 
 }
@@ -49,6 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Romanian) {
 PHP_METHOD(Ice_I18n_Plural_Romanian, getCategory) {
 
 	zend_bool _2, _3, _4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *count_param = NULL, _0, _1;
 	zend_long count, ZEPHIR_LAST_CALL_STATUS, i100 = 0;
 	zval *this_ptr = getThis();
@@ -62,7 +64,7 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, getCategory) {
 	count = zephir_get_intval(count_param);
 
 
-	i100 = (long) (zephir_safe_mod_long_long(count, 100 TSRMLS_CC));
+	i100 = (long) (zephir_safe_mod_long_long(count, 100));
 	ZVAL_LONG(&_1, count);
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, &_1);
 	zephir_check_call_status();
@@ -96,7 +98,7 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, isInt) {
 
 	ZVAL_UNDEF(&value_sub);
 
-	zephir_fetch_params(0, 1, 0, &value);
+	zephir_fetch_params_without_memory_grow(1, 0, &value);
 
 
 

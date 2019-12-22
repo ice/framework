@@ -291,12 +291,6 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 {
 	ice_globals->initialized = 0;
 
-	/* Memory options */
-	ice_globals->active_memory = NULL;
-
-	/* Virtual Symbol Tables */
-	ice_globals->active_symbol_table = NULL;
-
 	/* Cache Enabled */
 	ice_globals->cache_enabled = 1;
 
@@ -326,8 +320,8 @@ static PHP_RINIT_FUNCTION(ice)
 #endif
 	ice_globals_ptr = ZEPHIR_VGLOBAL;
 
-	php_zephir_init_globals(ice_globals_ptr TSRMLS_CC);
-	zephir_initialize_memory(ice_globals_ptr TSRMLS_CC);
+	php_zephir_init_globals(ice_globals_ptr);
+	zephir_initialize_memory(ice_globals_ptr);
 
 		zephir_init_static_properties_Ice_Cli_Websocket_Websocket(TSRMLS_C);
 	
@@ -369,8 +363,8 @@ static PHP_MINFO_FUNCTION(ice)
 
 static PHP_GINIT_FUNCTION(ice)
 {
-	php_zephir_init_globals(ice_globals TSRMLS_CC);
-	php_zephir_init_module_globals(ice_globals TSRMLS_CC);
+	php_zephir_init_globals(ice_globals);
+	php_zephir_init_module_globals(ice_globals);
 }
 
 static PHP_GSHUTDOWN_FUNCTION(ice)
@@ -401,10 +395,15 @@ ZEND_FE_END
 
 };
 
+static const zend_module_dep php_ice_deps[] = {
+	
+	ZEND_MOD_END
+};
+
 zend_module_entry ice_module_entry = {
 	STANDARD_MODULE_HEADER_EX,
 	NULL,
-	NULL,
+	php_ice_deps,
 	PHP_ICE_EXTNAME,
 	php_ice_functions,
 	PHP_MINIT(ice),

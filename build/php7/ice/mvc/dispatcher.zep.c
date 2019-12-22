@@ -35,11 +35,11 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
 
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Dispatcher, ice, mvc_dispatcher, ice_dispatcher_ce, ice_mvc_dispatcher_method_entry, 0);
 
-	zend_declare_property_null(ice_mvc_dispatcher_ce, SL("method"), ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_null(ice_mvc_dispatcher_ce, SL("method"), ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlers"), "Controllers", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlers"), "Controllers", ZEND_ACC_PROTECTED);
 
-	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlerSuffix"), "Controller", ZEND_ACC_PROTECTED TSRMLS_CC);
+	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlerSuffix"), "Controller", ZEND_ACC_PROTECTED);
 
 	zephir_declare_class_constant_long(ice_mvc_dispatcher_ce, SL("REDIRECT_CYCLIC"), 5);
 
@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 	ZVAL_UNDEF(&method_sub);
 
-	zephir_fetch_params(0, 1, 0, &method);
+	zephir_fetch_params_without_memory_grow(1, 0, &method);
 
 
 
@@ -80,6 +80,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 
 	zval action, _0, _1, _2, _3, _4, _5;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_6 = NULL;
 	zval *this_ptr = getThis();
@@ -104,7 +105,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	ZEPHIR_INIT_VAR(&action);
 	ZEPHIR_CONCAT_VVV(&action, &_0, &_2, &_4);
 	zephir_read_property(&_5, this_ptr, SL("activeHandler"), PH_NOISY_CC | PH_READONLY);
-	if ((zephir_method_exists(&_5, &action TSRMLS_CC)  == SUCCESS)) {
+	if ((zephir_method_exists(&_5, &action)  == SUCCESS)) {
 		RETURN_CCTOR(&action);
 	}
 	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 0);
@@ -116,6 +117,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	zval parent, response, _1, _2, _3, _4, _5$$3, _8$$3, _9$$3, _10$$3, _6$$4, _7$$4;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zval *this_ptr = getThis();
@@ -166,7 +168,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		ZVAL_LONG(&_10$$3, 5);
 		ZEPHIR_CALL_METHOD(NULL, &_8$$3, "__construct", NULL, 12, &_9$$3, &_10$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_8$$3, "ice/mvc/dispatcher.zep", 59 TSRMLS_CC);
+		zephir_throw_exception_debug(&_8$$3, "ice/mvc/dispatcher.zep", 59);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

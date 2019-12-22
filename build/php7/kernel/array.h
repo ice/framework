@@ -1,22 +1,13 @@
-
 /*
-  +------------------------------------------------------------------------+
-  | Zephir Language                                                        |
-  +------------------------------------------------------------------------+
-  | Copyright (c) 2011-2017 Zephir Team (http://www.zephir-lang.com)       |
-  +------------------------------------------------------------------------+
-  | This source file is subject to the New BSD License that is bundled     |
-  | with this package in the file docs/LICENSE.txt.                        |
-  |                                                                        |
-  | If you did not receive a copy of the license and are unable to         |
-  | obtain it through the world-wide-web, please send an email             |
-  | to license@zephir-lang.com so we can send you a copy immediately.      |
-  +------------------------------------------------------------------------+
-  | Authors: Andres Gutierrez <andres@zephir-lang.com>                     |
-  |          Eduar Carvajal <eduar@zephir-lang.com>                        |
-  |          Vladimir Kolesnikov <vladimir@extrememember.com>              |
-  +------------------------------------------------------------------------+
-*/
+ * This file is part of the Zephir.
+ *
+ * (c) Zephir Team <team@zephir-lang.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code. If you did not receive
+ * a copy of the license it is available through the world-wide-web at the
+ * following url: https://docs.zephir-lang.com/en/latest/license
+ */
 
 #ifndef ZEPHIR_KERNEL_ARRAY_H
 #define ZEPHIR_KERNEL_ARRAY_H
@@ -27,7 +18,7 @@
 #include "kernel/globals.h"
 #include "kernel/main.h"
 
-void ZEPHIR_FASTCALL zephir_create_array(zval *return_value, uint size, int initialize);
+void ZEPHIR_FASTCALL zephir_create_array(zval *return_value, uint32_t size, int initialize);
 
 /**
  * Simple convenience function which ensures that you are dealing with an array and you can
@@ -37,22 +28,22 @@ void ZEPHIR_FASTCALL zephir_ensure_array(zval *probable_array);
 
 /** Combined isset/fetch */
 int zephir_array_isset_fetch(zval *fetched, const zval *arr, zval *index, int readonly);
-int zephir_array_isset_string_fetch(zval *fetched, const zval *arr, char *index, uint index_length, int readonly);
+int zephir_array_isset_string_fetch(zval *fetched, const zval *arr, char *index, uint32_t index_length, int readonly);
 int zephir_array_isset_long_fetch(zval *fetched, const zval *arr, unsigned long index, int readonly);
 
 /** Check for index existence */
 int ZEPHIR_FASTCALL zephir_array_isset(const zval *arr, zval *index);
 int ZEPHIR_FASTCALL zephir_array_isset_long(const zval *arr, unsigned long index);
-int ZEPHIR_FASTCALL zephir_array_isset_string(const zval *arr, const char *index, uint index_length);
+int ZEPHIR_FASTCALL zephir_array_isset_string(const zval *arr, const char *index, uint32_t index_length);
 
 /** Unset existing indexes */
 int ZEPHIR_FASTCALL zephir_array_unset(zval *arr, zval *index, int flags);
 int ZEPHIR_FASTCALL zephir_array_unset_long(zval *arr, unsigned long index, int flags);
-int ZEPHIR_FASTCALL zephir_array_unset_string(zval *arr, const char *index, uint index_length, int flags);
+int ZEPHIR_FASTCALL zephir_array_unset_string(zval *arr, const char *index, uint32_t index_length, int flags);
 
 /** Fetch items from arrays */
 int zephir_array_fetch(zval *return_value, zval *arr, zval *index, int flags ZEPHIR_DEBUG_PARAMS);
-int zephir_array_fetch_string(zval *return_value, zval *arr, const char *index, uint index_length, int flags ZEPHIR_DEBUG_PARAMS);
+int zephir_array_fetch_string(zval *return_value, zval *arr, const char *index, uint32_t index_length, int flags ZEPHIR_DEBUG_PARAMS);
 int zephir_array_fetch_long(zval *return_value, zval *arr, unsigned long index, int flags ZEPHIR_DEBUG_PARAMS);
 
 /** Append elements to arrays */
@@ -61,7 +52,7 @@ void zephir_merge_append(zval *left, zval *values);
 
 /** Modify array */
 int zephir_array_update_zval(zval *arr, zval *index, zval *value, int flags);
-int zephir_array_update_string(zval *arr, const char *index, uint index_length, zval *value, int flags);
+int zephir_array_update_string(zval *arr, const char *index, uint32_t index_length, zval *value, int flags);
 int zephir_array_update_long(zval *arr, unsigned long index, zval *value, int flags ZEPHIR_DEBUG_PARAMS);
 
 void zephir_array_keys(zval *return_value, zval *arr);
