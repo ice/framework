@@ -12,6 +12,7 @@ php:
   - nightly
 
 matrix:
+  fast_finish: true
   allow_failures:
     - php: 7.4
     - php: nightly
