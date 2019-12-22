@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Sun Dec 22 17:58:15 UTC 2019
+
+- Ice 1.5.0
+ * Build, add support for php 7.4
+ * Composer, update zephir to 0.12.15 and zephir-parser to 1.3.3
+ * PHP 5.6, drop support
+
+-------------------------------------------------------------------
 Wed Jan 16 13:15:56 UTC 2019
 
 - Ice 1.4.1
