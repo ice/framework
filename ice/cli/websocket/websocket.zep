@@ -1,6 +1,7 @@
 
 namespace Ice\Cli\Websocket;
 
+use Ice\Di;
 use Ice\Cli\Console;
 
 /**
@@ -115,18 +116,21 @@ class Websocket
      */
     public function receive(resource socket) -> string | boolean
     {
-        var data, fin, opcode, masked, payload, length, tmp, mask, buff;
+        string mask, payload;
+        var read, fin, opcode, masked, length, tmp, buff;
         int i;
 
-        let data = fread(socket, 2);
+        let read = fread(socket, 2);
 
-        if strlen(data) === 1 {
-            let data .= fread(socket, 1);
+        if strlen(read) === 1 {
+            let read .= fread(socket, 1);
         }
 
-        if data === false || strlen(data) < 2 {
+        if read === false || strlen(read) < 2 {
             return false;
         }
+
+        string data = read;
 
         let fin = (bool) (ord(data[0]) & 1 << 7),
             // rsv1 = (bool) (ord(data[0]) & 1 << 6),
@@ -158,15 +162,17 @@ class Websocket
         let mask = "";
 
         if masked {
-            let mask = fread(socket, 4);
+            let tmp = fread(socket, 4);
 
-            if mask === false {
+            if tmp === false {
                 return false;
             }
+
+            let mask = tmp;
         }
 
         if length > 0 {
-            let tmp = "";
+            string tmp = "";
 
             do {
                 let buff = fread(socket, min(length, self::fragmentSize));
@@ -179,7 +185,7 @@ class Websocket
             } while strlen(tmp) < length;
 
             if masked {
-                let i =0;
+                let i = 0;
 
                 while i < length {
                     let payload .= tmp[i] ^ mask[(int) (i % 4)],
@@ -208,7 +214,8 @@ class Websocket
      */
     protected function encode(string data, string opcode = "text", boolean masked = true, boolean fin = true) -> string
     {
-        var length, head, frame, binstr, mask;
+        string mask;
+        var length, head, frame, binstr;
         int i;
 
         let length = strlen(data),
@@ -263,7 +270,7 @@ class Websocket
      * @param array params
      * @return self
      */
-    public function setParams(array params) -> <self>
+    public function setParams(array params)
     {
         let this->params = params;
 
@@ -300,15 +307,15 @@ class Websocket
      * Display text on the console.
      *
      * @param string text Text to display
-     * @param string color The foreground color
+     * @param int color The foreground color
      * @param int decoration Formatting type
-     * @param string bgColor The background color
+     * @param int bgColor The background color
      * @param boolean exit Die if true
      * @return self
      */
-    public function console(string text, string color = null, int decoration = Console::NORMAL, string bgColor = null, boolean exit = false)
+    public function console(string text, int color = null, int decoration = Console::NORMAL, int bgColor = null, boolean exit = false)
     {
-        var text;
+        var di, text;
 
         let text = date(this->getParam("date_format", "[Y-m-d H:i:s]")) . " " . text . "\r\n";
 
@@ -317,10 +324,56 @@ class Websocket
         }
 
         if this->getParam("verbose", false) {
-            echo Console::color(text, color, decoration, bgColor);
+            let di = Di::$fetch();
+
+            echo di->get("console")->color(text, color, decoration, bgColor);
         }
 
         return this;
+    }
+
+    /**
+     * Returns info text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function info(string text)
+    {
+        return this->console(text, Console::CYAN);
+    }
+
+    /**
+     * Returns success text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function success(string text)
+    {
+        return this->console(text, Console::GREEN);
+    }
+
+    /**
+     * Returns warning text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function warning(string text)
+    {
+        return this->console(text, Console::YELLOW);
+    }
+
+    /**
+     * Returns error text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function error(string text)
+    {
+        return this->console(text, Console::RED);
     }
 
     /**

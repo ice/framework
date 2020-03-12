@@ -16,7 +16,7 @@ class Server extends Websocket
 {
 
     protected verbose = false { set };
-    protected address;
+    protected address  { get };
     protected server { get };
     protected sockets = [];
     protected clients = [] { get };
@@ -240,7 +240,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onValidate(callable callback) -> <self>
+    public function onValidate(callable callback)
     {
         return this->callback("validate", callback);
     }
@@ -254,7 +254,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onConnect(callable callback) -> <self>
+    public function onConnect(callable callback)
     {
         return this->callback("connect", callback);
     }
@@ -268,7 +268,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onDisconnect(callable callback) -> <self>
+    public function onDisconnect(callable callback)
     {
         return this->callback("disconnect", callback);
     }
@@ -283,7 +283,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onMessage(callable callback) -> <self>
+    public function onMessage(callable callback)
     {
         return this->callback("message", callback);
     }
@@ -295,7 +295,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onTick(callable callback) -> <self>
+    public function onTick(callable callback)
     {
         return this->callback("tick", callback);
     }
@@ -307,7 +307,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onBoot(callable callback) -> <self>
+    public function onBoot(callable callback)
     {
         return this->callback("boot", callback);
     }
@@ -319,7 +319,7 @@ class Server extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function callback(string key, callable callback) -> <self>
+    public function callback(string key, callable callback)
     {
         let this->callbacks[key] = callback;
 
