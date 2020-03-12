@@ -3,7 +3,7 @@
     "name": "ice",
     "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2018 Ice Team.",
     "author": "Ice Team",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "verbose": false,
     "info": [
         {
@@ -28,6 +28,12 @@
                 "github":"https://github.com/ice/framework",
                 "analytics":null
             }
+        }
+    },
+    "globals": {
+        "cli_colors": {
+            "type": "bool",
+            "default": true
         }
     },
     "warnings": {
