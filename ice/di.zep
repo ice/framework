@@ -143,7 +143,7 @@ class Di extends Arr
 
     /**
      * Build an instance of the given class.
-     * 
+     *
      * @param string service
      * @return mixed
      */
@@ -162,9 +162,9 @@ class Di extends Arr
         if !reflector->isInstantiable() {
             throw new Exception(["Service '%s' is not instantiable", service]);
         }
-        
+
         let constructor = reflector->getConstructor();
-        
+
         if is_null(constructor) {
             return create_instance(service);
         }
@@ -175,7 +175,7 @@ class Di extends Arr
 
         return reflector->newInstanceArgs(dependencies);
     }
-    
+
     /**
      * If extra parameters are passed by numeric ID, rekey them by argument name.
      *
@@ -210,10 +210,10 @@ class Di extends Arr
         var dependencies, parameter, dependency;
 
         let dependencies = [];
-        
+
         for parameter in parameters {
             let dependency = parameter->getClass();
-            
+
             if array_key_exists(parameter->name, primitives) {
                 let dependencies[] = primitives[parameter->name];
             } elseif is_null(dependency) {
@@ -224,10 +224,10 @@ class Di extends Arr
                 let dependencies[] = this->build(dependency->name);
             }
         }
-        
+
         return dependencies;
     }
-    
+
     /**
      * Determine what to do with a non-class value.
      *
@@ -241,7 +241,7 @@ class Di extends Arr
         if parameter->isDefaultValueAvailable() {
             return parameter->getDefaultValue();
         }
-        
+
         throw new Exception(["Unresolvable dependency resolving '%s' in class '%s'", parameter, parameter->getDeclaringClass()->getName()]);
     }
 
@@ -359,7 +359,7 @@ class Di extends Arr
      */
     public function clearHooks(string name = null, var context = null)
     {
-        if name {            
+        if name {
             if context != null && is_object(context) {
                 let name .= spl_object_hash(context);
             }
