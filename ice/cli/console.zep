@@ -23,6 +23,26 @@ class Console extends Access
     const UNDERLINE = 4;
     const INVERSE = 7;
 
+    const BLACK = 30;
+    const RED = 31;
+    const GREEN = 32;
+    const YELLOW = 33;
+    const BLUE = 34;
+    const MAGENTA = 35;
+    const CYAN = 36;
+    const LIGHTGRAY = 37;
+    const WHITE = 97;
+
+    const BG_BLACK = 40;
+    const BG_RED = 41;
+    const BG_GREEN = 42;
+    const BG_YELLOW = 43;
+    const BG_BLUE = 44;
+    const BG_MAGENTA = 45;
+    const BG_CYAN = 46;
+    const BG_LIGHTGRAY = 47;
+    const BG_WHITE = 107;
+
     /**
      * Console constructor
      *
@@ -79,52 +99,75 @@ class Console extends Access
 
     /**
      * Returns the given text with the correct color codes for a foreground and optionally a background color.
-     * Colors: black, red, green, yellow, blue, magenta, cyan, lightgray, white*
      *
      * @param string text The text to color
-     * @param string color The foreground color
+     * @param int color The foreground color
      * @param int decoration Formatting type
-     * @param string bgColor The background color
+     * @param int bgColor The background color
      * @return string Coded string
      */
-    public static function color(string text, string color = null, int decoration = 0, string bgColor = null)
+    public function color(string text, int color = null, int decoration = 0, int bgColor = null)
     {
-        var colors, bgColors, colored, e, foreground, background;
+        var colored, e;
 
-        let colors = [
-            "black": "30",
-            "red": "31",
-            "green": "32",
-            "yellow": "33",
-            "blue": "34",
-            "magenta": "35",
-            "cyan": "36",
-            "lightgray": "37",
-            "white": "97"
-        ];
+        boolean colors = globals_get("cli_colors");
 
-        let bgColors = [
-            "black": "40",
-            "red": "41",
-            "green": "42",
-            "yellow": "43",
-            "blue": "44",
-            "magenta": "45",
-            "cyan": "46",
-            "lightgray": "47",
-            "white": "107"
-        ];
+        if colors {
+            // let e = "\e",
+            let e = chr(27),
+                colored = e . "[" . decoration . (color ? ";" . color : "") . "m";
 
-        fetch foreground, colors[color];
-        fetch background, bgColors[bgColor];
+            if bgColor {
+                let colored .= e . "[" . bgColor . "m";
+            }
 
-        let e = "\e",
-            colored = e . "[" . decoration . (foreground ? ";" . foreground : "") . "m";
-
-        if background {
-            let colored .= e . "[" . background . "m";
+            return colored . text . e . "[0m";
+        } else {
+            return text;
         }
+    }
 
-        return colored . text . e . "[0m";
+    /**
+     * Returns info text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function info(string text)
+    {
+        return this->color(text, self::CYAN);
+    }
+
+    /**
+     * Returns success text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function success(string text)
+    {
+        return this->color(text, self::GREEN);
+    }
+
+    /**
+     * Returns warning text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function warning(string text)
+    {
+        return this->color(text, self::YELLOW);
+    }
+
+    /**
+     * Returns error text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function error(string text)
+    {
+        return this->color(text, self::RED);
     }
 }
