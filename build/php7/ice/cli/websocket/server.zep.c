@@ -68,6 +68,15 @@ PHP_METHOD(Ice_Cli_Websocket_Server, setVerbose) {
 
 }
 
+PHP_METHOD(Ice_Cli_Websocket_Server, getAddress) {
+
+	zval *this_ptr = getThis();
+
+
+	RETURN_MEMBER(getThis(), "address");
+
+}
+
 PHP_METHOD(Ice_Cli_Websocket_Server, getServer) {
 
 	zval *this_ptr = getThis();

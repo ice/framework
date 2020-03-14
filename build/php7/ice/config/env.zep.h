@@ -40,11 +40,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_env_get, 0, 0, 1)
 #endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_config_env_set, 0, 2, Ice\\Config\\self, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_config_env_set, 0, 2, IS_OBJECT, "Ice\\Config\\self", 0)
-#endif
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_env_set, 0, 0, 2)
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 #else
@@ -53,11 +49,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_config_env_set, 0, 2, IS_OBJ
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_config_env_remove, 0, 1, Ice\\Config\\self, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_config_env_remove, 0, 1, IS_OBJECT, "Ice\\Config\\self", 0)
-#endif
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_config_env_remove, 0, 0, 1)
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
 #else

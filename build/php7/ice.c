@@ -145,7 +145,7 @@ zend_class_entry *ice_version_ce;
 ZEND_DECLARE_MODULE_GLOBALS(ice)
 
 PHP_INI_BEGIN()
-	
+	STD_PHP_INI_BOOLEAN("ice.cli_colors", "1", PHP_INI_ALL, OnUpdateBool, cli_colors, zend_ice_globals, ice_globals)
 PHP_INI_END()
 
 static PHP_MINIT_FUNCTION(ice)
@@ -300,7 +300,8 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals TSRMLS_DC)
 	/* Static cache */
 	memset(ice_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
-	
+		ice_globals->cli_colors = 1;
+
 	
 }
 

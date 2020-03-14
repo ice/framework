@@ -783,6 +783,8 @@ PHP_METHOD(Ice_Auth_Driver_Db, refreshUser) {
 	ZEPHIR_CALL_METHOD(&user, this_ptr, "getuser", NULL, 0);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&user))) {
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "logout", NULL, 0);
+		zephir_check_call_status();
 		RETURN_MM_NULL();
 	} else {
 		_0$$4 = Z_TYPE_P(&user) == IS_OBJECT;
@@ -822,7 +824,7 @@ PHP_METHOD(Ice_Auth_Driver_Db, refreshUser) {
 				ZVAL_STRING(&_8$$6, "name");
 				ZEPHIR_CALL_METHOD(&_7$$6, &role, "get", &_9, 0, &_8$$6);
 				zephir_check_call_status();
-				zephir_array_append(&roles, &_7$$6, PH_SEPARATE, "ice/auth/driver/db.zep", 334);
+				zephir_array_append(&roles, &_7$$6, PH_SEPARATE, "ice/auth/driver/db.zep", 336);
 			}
 			zend_iterator_dtor(_6$$5);
 			ZEPHIR_CALL_FUNCTION(&_11$$5, "serialize", NULL, 13, &user);

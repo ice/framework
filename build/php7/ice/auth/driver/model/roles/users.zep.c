@@ -16,6 +16,7 @@
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/array.h"
+#include "kernel/operators.h"
 
 
 /**
@@ -33,6 +34,10 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
 
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("from"), "roles_users", ZEND_ACC_PROTECTED);
 
+	zend_declare_property_bool(ice_auth_driver_model_roles_users_ce, SL("autoincrement"), 0, ZEND_ACC_PROTECTED);
+
+	zend_declare_property_null(ice_auth_driver_model_roles_users_ce, SL("primary"), ZEND_ACC_PROTECTED);
+
 	/**
 	 * User class name.
 	 */
@@ -43,6 +48,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
 	 */
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("roleClass"), "Ice\\Auth\\Driver\\Model\\Roles", ZEND_ACC_PROTECTED);
 
+	ice_auth_driver_model_roles_users_ce->create_object = zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users;
 	return SUCCESS;
 
 }
@@ -104,6 +110,94 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_6, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
+
+}
+
+zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class_entry *class_type TSRMLS_DC) {
+
+		zval _15$$10;
+	zval _0, _2, _4, _6, _8, _10, _12, _14, _1$$3, _3$$4, _5$$5, _7$$6, _9$$7, _11$$8, _13$$9, _16$$10;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+		ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_4);
+	ZVAL_UNDEF(&_6);
+	ZVAL_UNDEF(&_8);
+	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_12);
+	ZVAL_UNDEF(&_14);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_3$$4);
+	ZVAL_UNDEF(&_5$$5);
+	ZVAL_UNDEF(&_7$$6);
+	ZVAL_UNDEF(&_9$$7);
+	ZVAL_UNDEF(&_11$$8);
+	ZVAL_UNDEF(&_13$$9);
+	ZVAL_UNDEF(&_16$$10);
+	ZVAL_UNDEF(&_15$$10);
+
+		ZEPHIR_MM_GROW();
+	
+	{
+		zval local_this_ptr, *this_ptr = &local_this_ptr;
+		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
+		zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_0) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_1$$3);
+			array_init(&_1$$3);
+			zephir_update_property_zval(this_ptr, SL("messages"), &_1$$3);
+		}
+		zephir_read_property(&_2, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_2) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_3$$4);
+			array_init(&_3$$4);
+			zephir_update_property_zval(this_ptr, SL("rules"), &_3$$4);
+		}
+		zephir_read_property(&_4, this_ptr, SL("labels"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_4) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_5$$5);
+			array_init(&_5$$5);
+			zephir_update_property_zval(this_ptr, SL("labels"), &_5$$5);
+		}
+		zephir_read_property(&_6, this_ptr, SL("relations"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_6) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_7$$6);
+			array_init(&_7$$6);
+			zephir_update_property_zval(this_ptr, SL("relations"), &_7$$6);
+		}
+		zephir_read_property(&_8, this_ptr, SL("fields"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_8) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_9$$7);
+			array_init(&_9$$7);
+			zephir_update_property_zval(this_ptr, SL("fields"), &_9$$7);
+		}
+		zephir_read_property(&_10, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_10) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_11$$8);
+			array_init(&_11$$8);
+			zephir_update_property_zval(this_ptr, SL("data"), &_11$$8);
+		}
+		zephir_read_property(&_12, this_ptr, SL("filters"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_12) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_13$$9);
+			array_init(&_13$$9);
+			zephir_update_property_zval(this_ptr, SL("filters"), &_13$$9);
+		}
+		zephir_read_property(&_14, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
+		if (Z_TYPE_P(&_14) == IS_NULL) {
+			ZEPHIR_INIT_VAR(&_15$$10);
+			zephir_create_array(&_15$$10, 2, 0);
+			ZEPHIR_INIT_VAR(&_16$$10);
+			ZVAL_STRING(&_16$$10, "user_id");
+			zephir_array_fast_append(&_15$$10, &_16$$10);
+			ZEPHIR_INIT_NVAR(&_16$$10);
+			ZVAL_STRING(&_16$$10, "role_id");
+			zephir_array_fast_append(&_15$$10, &_16$$10);
+			zephir_update_property_zval(this_ptr, SL("primary"), &_15$$10);
+		}
+		ZEPHIR_MM_RESTORE();
+		return Z_OBJ_P(this_ptr);
+	}
 
 }
 

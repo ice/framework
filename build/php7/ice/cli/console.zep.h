@@ -9,6 +9,10 @@ PHP_METHOD(Ice_Cli_Console, __construct);
 PHP_METHOD(Ice_Cli_Console, addModule);
 PHP_METHOD(Ice_Cli_Console, handle);
 PHP_METHOD(Ice_Cli_Console, color);
+PHP_METHOD(Ice_Cli_Console, info);
+PHP_METHOD(Ice_Cli_Console, success);
+PHP_METHOD(Ice_Cli_Console, warning);
+PHP_METHOD(Ice_Cli_Console, error);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_setmodules, 0, 0, 1)
 	ZEND_ARG_INFO(0, modules)
@@ -38,7 +42,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_color, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
 #endif
 #if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, color, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, color, IS_LONG, 1)
 #else
 	ZEND_ARG_INFO(0, color)
 #endif
@@ -48,9 +52,41 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_color, 0, 0, 1)
 	ZEND_ARG_INFO(0, decoration)
 #endif
 #if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, bgColor, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, bgColor, IS_LONG, 1)
 #else
 	ZEND_ARG_INFO(0, bgColor)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_info, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_success, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_warning, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_error, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -60,6 +96,10 @@ ZEPHIR_INIT_FUNCS(ice_cli_console_method_entry) {
 	PHP_ME(Ice_Cli_Console, __construct, arginfo_ice_cli_console___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Cli_Console, addModule, arginfo_ice_cli_console_addmodule, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Console, handle, arginfo_ice_cli_console_handle, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Cli_Console, color, arginfo_ice_cli_console_color, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+	PHP_ME(Ice_Cli_Console, color, arginfo_ice_cli_console_color, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Console, info, arginfo_ice_cli_console_info, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Console, success, arginfo_ice_cli_console_success, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Console, warning, arginfo_ice_cli_console_warning, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Console, error, arginfo_ice_cli_console_error, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

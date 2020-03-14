@@ -12,6 +12,10 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, setParams);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getParams);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getParam);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, console);
+PHP_METHOD(Ice_Cli_Websocket_Websocket, info);
+PHP_METHOD(Ice_Cli_Websocket_Websocket, success);
+PHP_METHOD(Ice_Cli_Websocket_Websocket, warning);
+PHP_METHOD(Ice_Cli_Websocket_Websocket, error);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getUptime);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getMemoryUsage);
 void zephir_init_static_properties_Ice_Cli_Websocket_Websocket(TSRMLS_D);
@@ -91,11 +95,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_enco
 #endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_cli_websocket_websocket_setparams, 0, 1, Ice\\Cli\\Websocket\\self, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_setparams, 0, 1, IS_OBJECT, "Ice\\Cli\\Websocket\\self", 0)
-#endif
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_setparams, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
 ZEND_END_ARG_INFO()
 
@@ -122,7 +122,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_console, 0, 0, 1)
 	ZEND_ARG_INFO(0, text)
 #endif
 #if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, color, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, color, IS_LONG, 1)
 #else
 	ZEND_ARG_INFO(0, color)
 #endif
@@ -132,7 +132,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_console, 0, 0, 1)
 	ZEND_ARG_INFO(0, decoration)
 #endif
 #if PHP_VERSION_ID >= 70200
-	ZEND_ARG_TYPE_INFO(0, bgColor, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO(0, bgColor, IS_LONG, 1)
 #else
 	ZEND_ARG_INFO(0, bgColor)
 #endif
@@ -140,6 +140,38 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_console, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, exit, _IS_BOOL, 0)
 #else
 	ZEND_ARG_INFO(0, exit)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_info, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_success, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_warning, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
+#endif
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_error, 0, 0, 1)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, text)
 #endif
 ZEND_END_ARG_INFO()
 
@@ -169,6 +201,10 @@ ZEPHIR_INIT_FUNCS(ice_cli_websocket_websocket_method_entry) {
 	PHP_ME(Ice_Cli_Websocket_Websocket, getParams, arginfo_ice_cli_websocket_websocket_getparams, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Websocket, getParam, arginfo_ice_cli_websocket_websocket_getparam, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Websocket, console, arginfo_ice_cli_websocket_websocket_console, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Websocket_Websocket, info, arginfo_ice_cli_websocket_websocket_info, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Websocket_Websocket, success, arginfo_ice_cli_websocket_websocket_success, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Websocket_Websocket, warning, arginfo_ice_cli_websocket_websocket_warning, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Cli_Websocket_Websocket, error, arginfo_ice_cli_websocket_websocket_error, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Websocket, getUptime, arginfo_ice_cli_websocket_websocket_getuptime, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Websocket, getMemoryUsage, arginfo_ice_cli_websocket_websocket_getmemoryusage, ZEND_ACC_PUBLIC)
 	PHP_FE_END

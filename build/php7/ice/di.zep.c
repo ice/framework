@@ -332,7 +332,7 @@ PHP_METHOD(Ice_Di, resolve) {
 
 /**
  * Build an instance of the given class.
- * 
+ *
  * @param string service
  * @return mixed
  */

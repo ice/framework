@@ -11,10 +11,10 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.5.0"
+#define PHP_ICE_VERSION     "1.5.1"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.12.15-$Id$"
+#define PHP_ICE_ZEPVERSION  "0.12.17-$Id$"
 #define PHP_ICE_DESCRIPTION "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2018 Ice Team."
 
 
@@ -35,6 +35,9 @@ ZEND_BEGIN_MODULE_GLOBALS(ice)
 	unsigned int recursive_lock;
 
 	
+	zend_bool cli_colors;
+
+
 ZEND_END_MODULE_GLOBALS(ice)
 
 #ifdef ZTS
