@@ -87,7 +87,11 @@ abstract class Model extends Arr implements \Serializable
      */
     public function getId()
     {
-        return this->get(this->getIdKey());
+        if typeof this->primary == "array" {
+            return this->only(this->primary);
+        } else {
+            return this->get(this->primary);
+        }
     }
 
     /**

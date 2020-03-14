@@ -147,7 +147,7 @@ class Session extends Arr
      *
      * @return object Session
      */
-    public function set(string key, var value) -> <self>
+    public function set(string key, var value)
     {
         let _SESSION[key] = value;
 
@@ -159,7 +159,7 @@ class Session extends Arr
      *
      * @return object Session
      */
-    public function remove(string key) -> <self>
+    public function remove(string key)
     {
         unset _SESSION[key];
 

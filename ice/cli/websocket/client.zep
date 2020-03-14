@@ -26,7 +26,7 @@ class Client extends Websocket
      * @param array headers Optional array of headers to pass when connecting
      * @return self
      */
-    public function connect(string address = "ws://127.0.0.1:8080", var headers = []) -> <self>
+    public function connect(string address = "ws://127.0.0.1:8080", var headers = [])
     {
         var addr, key, name, value, res, data, matches;
 
@@ -63,7 +63,7 @@ class Client extends Websocket
             let headers[name] = name . ": " . value;
         }
 
-        if !empty addr["path"] {
+        if isset addr["path"] && strlen(addr["path"]) {
             let res = addr["path"] . (empty addr["query"] ? "" : "?" . addr["query"]);
         } else {
             let res = "/";
@@ -92,7 +92,8 @@ class Client extends Websocket
      */
     protected function generateKey() -> string
     {
-        var chars, key, length;
+        string chars, key;
+        var length;
         int i = 0;
 
         let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"$&/()=[]{}0123456789",
@@ -126,9 +127,9 @@ class Client extends Websocket
 
             if name !== false {
                 let name = ucwords(str_replace(
-                     ["_", "-", " "],
-                     [" ", " ", "-"],
-                     strtolower(name)
+                    ["_", "-", " "],
+                    [" ", " ", "-"],
+                    strtolower(name)
                  ),  "-"),
                     cleaned[name] = value;
             }
@@ -189,7 +190,7 @@ class Client extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onMessage(callable callback) -> <self>
+    public function onMessage(callable callback)
     {
         let this->message = callback;
 
@@ -203,7 +204,7 @@ class Client extends Websocket
      * @param callable callback The callback
      * @return self
      */
-    public function onTick(callable callback) -> <self>
+    public function onTick(callable callback)
     {
         let this->tick = callback;
 

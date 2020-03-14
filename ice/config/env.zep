@@ -60,7 +60,7 @@ class Env extends Ini
      *
      * @return object
      */
-    public function set(string key, var value) -> <self>
+    public function set(string key, var value)
     {
         let _ENV[key] = value;
 
@@ -72,7 +72,7 @@ class Env extends Ini
      *
      * @return object
      */
-    public function remove(string key) -> <self>
+    public function remove(string key)
     {
         unset _ENV[key];
 

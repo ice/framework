@@ -320,6 +320,8 @@ class Db extends Driver implements DriverInterface
         let user = this->getUser();
 
         if !user {
+            this->logout();
+
             return null;
         } else {
             if typeof user == "object" && (user instanceof Users) && this->getOption("session_roles") {

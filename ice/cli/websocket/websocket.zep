@@ -1,6 +1,7 @@
 
 namespace Ice\Cli\Websocket;
 
+use Ice\Di;
 use Ice\Cli\Console;
 
 /**
@@ -115,25 +116,29 @@ class Websocket
      */
     public function receive(resource socket) -> string | boolean
     {
-        var data, fin, opcode, masked, payload, length, tmp, mask, buff;
+        var opcode, length, tmp, buff;
+        boolean fin, masked;
+        string data, payload, mask;
         int i;
 
-        let data = fread(socket, 2);
+        let tmp = fread(socket, 2);
 
-        if strlen(data) === 1 {
-            let data .= fread(socket, 1);
-        }
-
-        if data === false || strlen(data) < 2 {
+        if tmp === false {
             return false;
         }
 
-        let fin = (bool) (ord(data[0]) & 1 << 7),
-            // rsv1 = (bool) (ord(data[0]) & 1 << 6),
-            // rsv2 = (bool) (ord(data[0]) & 1 << 5),
-            // rsv3 = (bool) (ord(data[0]) & 1 << 4),
+        if strlen(tmp) === 1 {
+            let tmp .= fread(socket, 1);
+        }
+
+        if tmp === false || strlen(tmp) < 2 {
+            return false;
+        }
+
+        let data = (string) tmp,
+            fin = (boolean) (ord(data[0]) & 1 << 7),
             opcode = ord(data[0]) & 31,
-            masked = (bool) (ord(data[1]) >> 7),
+            masked = (boolean) (ord(data[1]) >> 7),
             payload = "",
             length = (int) (ord(data[1]) & 127); // Bits 1-7 in byte 1
 
@@ -158,11 +163,13 @@ class Websocket
         let mask = "";
 
         if masked {
-            let mask = fread(socket, 4);
+            let tmp = fread(socket, 4);
 
-            if mask === false {
+            if tmp === false {
                 return false;
             }
+
+            let mask = (string) tmp;
         }
 
         if length > 0 {
@@ -178,15 +185,22 @@ class Websocket
                 let tmp .= buff;
             } while strlen(tmp) < length;
 
-            if masked {
-                let i =0;
+            let data = (string) tmp;
 
-                while i < length {
-                    let payload .= tmp[i] ^ mask[(int) (i % 4)],
-                        i++;
+            if masked {
+                int j;
+                char c, d;
+                var s, t;
+
+                for i, c in data {
+                    let j = (int) (i % 4),
+                        d = mask[j],
+                        s = (string) c,
+                        t = (string) d,
+                        payload .= s ^ t;
                 }
             } else {
-                let payload = tmp;
+                let payload = data;
             }
         }
 
@@ -208,13 +222,14 @@ class Websocket
      */
     protected function encode(string data, string opcode = "text", boolean masked = true, boolean fin = true) -> string
     {
-        var length, head, frame, binstr, mask;
+        var length, binstr;
+        string head;
         int i;
 
         let length = strlen(data),
             head = "",
             head .= fin ? "1" : "0",
-            head .= "0" . "0" . "0",
+            head .= "000",
             head .= sprintf("%04b", self::opcodes[opcode]),
             head .= masked ? "1" : "0";
 
@@ -228,13 +243,13 @@ class Websocket
             let head .= sprintf("%07b", length);
         }
 
-        let frame = "";
+        string frame = "";
 
         for binstr in str_split(head, 8) {
             let frame .= chr((int) bindec(binstr));
         }
 
-        let mask = "";
+        string mask = "";
 
         if masked {
             let i = 0;
@@ -247,11 +262,21 @@ class Websocket
             let frame .= mask;
         }
 
-        let i = 0;
 
-        while i < length {
-            let frame .= (masked === true) ? data[i] ^ mask[(int) (i % 4)] : data[i],
-                i++;
+        if masked {
+            int j;
+            char c, d;
+            var s, t;
+
+            for i, c in data {
+                let j = (int) (i % 4),
+                    d = mask[j],
+                    s = (string) c,
+                    t = (string) d,
+                    frame .= s ^ t;
+            }
+        } else {
+            let frame .= data;
         }
 
         return frame;
@@ -263,7 +288,7 @@ class Websocket
      * @param array params
      * @return self
      */
-    public function setParams(array params) -> <self>
+    public function setParams(array params)
     {
         let this->params = params;
 
@@ -300,15 +325,15 @@ class Websocket
      * Display text on the console.
      *
      * @param string text Text to display
-     * @param string color The foreground color
+     * @param int color The foreground color
      * @param int decoration Formatting type
-     * @param string bgColor The background color
+     * @param int bgColor The background color
      * @param boolean exit Die if true
      * @return self
      */
-    public function console(string text, string color = null, int decoration = Console::NORMAL, string bgColor = null, boolean exit = false)
+    public function console(string text, int color = null, int decoration = Console::NORMAL, int bgColor = null, boolean exit = false)
     {
-        var text;
+        var di, text;
 
         let text = date(this->getParam("date_format", "[Y-m-d H:i:s]")) . " " . text . "\r\n";
 
@@ -317,10 +342,56 @@ class Websocket
         }
 
         if this->getParam("verbose", false) {
-            echo Console::color(text, color, decoration, bgColor);
+            let di = Di::$fetch();
+
+            echo di->get("console")->color(text, color, decoration, bgColor);
         }
 
         return this;
+    }
+
+    /**
+     * Returns info text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function info(string text)
+    {
+        return this->console(text, Console::CYAN);
+    }
+
+    /**
+     * Returns success text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function success(string text)
+    {
+        return this->console(text, Console::GREEN);
+    }
+
+    /**
+     * Returns warning text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function warning(string text)
+    {
+        return this->console(text, Console::YELLOW);
+    }
+
+    /**
+     * Returns error text.
+     *
+     * @param string text
+     * @return string
+     */
+    public function error(string text)
+    {
+        return this->console(text, Console::RED);
     }
 
     /**
