@@ -1,4 +1,17 @@
 -------------------------------------------------------------------
+Sat Mar 14 12:50:17 UTC 2020
+
+- Ice 1.5.1
+ * Composer, update zephir to 0.12.17
+ * Auth, logout if no user fix #245
+ * Model, get id fix #240
+ * Auth, primary key fix #254
+ * Websocket, encoding fix #260
+ * Websocket, client connect fix #256
+ * Self type hint fix #257
+ * Console, color fix #258
+
+-------------------------------------------------------------------
 Sun Dec 22 17:58:15 UTC 2019
 
 - Ice 1.5.0
