@@ -113,8 +113,7 @@ class Console extends Access
         boolean colors = globals_get("cli_colors");
 
         if colors {
-            // let e = "\e",
-            let e = chr(27),
+            let e = "\e", // escape (hex 1B) chr(27)
                 colored = e . "[" . decoration . (color ? ";" . color : "") . "m";
 
             if bgColor {
