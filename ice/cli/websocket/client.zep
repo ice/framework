@@ -127,9 +127,9 @@ class Client extends Websocket
 
             if name !== false {
                 let name = ucwords(str_replace(
-                     ["_", "-", " "],
-                     [" ", " ", "-"],
-                     strtolower(name)
+                    ["_", "-", " "],
+                    [" ", " ", "-"],
+                    strtolower(name)
                  ),  "-"),
                     cleaned[name] = value;
             }

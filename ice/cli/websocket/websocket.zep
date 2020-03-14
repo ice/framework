@@ -116,28 +116,29 @@ class Websocket
      */
     public function receive(resource socket) -> string | boolean
     {
-        string mask, payload;
-        var read, fin, opcode, masked, length, tmp, buff;
+        var opcode, length, tmp, buff;
+        boolean fin, masked;
+        string data, payload, mask;
         int i;
 
-        let read = fread(socket, 2);
+        let tmp = fread(socket, 2);
 
-        if strlen(read) === 1 {
-            let read .= fread(socket, 1);
-        }
-
-        if read === false || strlen(read) < 2 {
+        if tmp === false {
             return false;
         }
 
-        string data = read;
+        if strlen(tmp) === 1 {
+            let tmp .= fread(socket, 1);
+        }
 
-        let fin = (bool) (ord(data[0]) & 1 << 7),
-            // rsv1 = (bool) (ord(data[0]) & 1 << 6),
-            // rsv2 = (bool) (ord(data[0]) & 1 << 5),
-            // rsv3 = (bool) (ord(data[0]) & 1 << 4),
+        if tmp === false || strlen(tmp) < 2 {
+            return false;
+        }
+
+        let data = (string) tmp,
+            fin = (boolean) (ord(data[0]) & 1 << 7),
             opcode = ord(data[0]) & 31,
-            masked = (bool) (ord(data[1]) >> 7),
+            masked = (boolean) (ord(data[1]) >> 7),
             payload = "",
             length = (int) (ord(data[1]) & 127); // Bits 1-7 in byte 1
 
@@ -168,11 +169,11 @@ class Websocket
                 return false;
             }
 
-            let mask = tmp;
+            let mask = (string) tmp;
         }
 
         if length > 0 {
-            string tmp = "";
+            let tmp = "";
 
             do {
                 let buff = fread(socket, min(length, self::fragmentSize));
@@ -184,15 +185,22 @@ class Websocket
                 let tmp .= buff;
             } while strlen(tmp) < length;
 
-            if masked {
-                let i = 0;
+            let data = (string) tmp;
 
-                while i < length {
-                    let payload .= tmp[i] ^ mask[(int) (i % 4)],
-                        i++;
+            if masked {
+                int j;
+                char c, d;
+                var s, t;
+
+                for i, c in data {
+                    let j = (int) (i % 4),
+                        d = mask[j],
+                        s = (string) c,
+                        t = (string) d,
+                        payload .= s ^ t;
                 }
             } else {
-                let payload = tmp;
+                let payload = data;
             }
         }
 
@@ -214,14 +222,14 @@ class Websocket
      */
     protected function encode(string data, string opcode = "text", boolean masked = true, boolean fin = true) -> string
     {
-        string mask;
-        var length, head, frame, binstr;
+        var length, binstr;
+        string head;
         int i;
 
         let length = strlen(data),
             head = "",
             head .= fin ? "1" : "0",
-            head .= "0" . "0" . "0",
+            head .= "000",
             head .= sprintf("%04b", self::opcodes[opcode]),
             head .= masked ? "1" : "0";
 
@@ -235,13 +243,13 @@ class Websocket
             let head .= sprintf("%07b", length);
         }
 
-        let frame = "";
+        string frame = "";
 
         for binstr in str_split(head, 8) {
             let frame .= chr((int) bindec(binstr));
         }
 
-        let mask = "";
+        string mask = "";
 
         if masked {
             let i = 0;
@@ -254,11 +262,21 @@ class Websocket
             let frame .= mask;
         }
 
-        let i = 0;
 
-        while i < length {
-            let frame .= (masked === true) ? data[i] ^ mask[(int) (i % 4)] : data[i],
-                i++;
+        if masked {
+            int j;
+            char c, d;
+            var s, t;
+
+            for i, c in data {
+                let j = (int) (i % 4),
+                    d = mask[j],
+                    s = (string) c,
+                    t = (string) d,
+                    frame .= s ^ t;
+            }
+        } else {
+            let frame .= data;
         }
 
         return frame;
