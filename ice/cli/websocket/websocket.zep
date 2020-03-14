@@ -150,10 +150,11 @@ class Websocket
             }
 
             let length = "",
-                i = 0;
+                i = 0,
+                data = (string) tmp;
 
             while i < strlen(tmp) {
-                let length .= sprintf("%08b", ord(tmp[i])),
+                let length .= sprintf("%08b", ord(data[i])),
                     i++;
             }
 
