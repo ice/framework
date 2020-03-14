@@ -18,8 +18,6 @@ class Users extends Model
 
     protected from = "roles_users";
 
-    protected primary = ["user_id", "role_id"];
-
     /**
      * User class name.
      */
@@ -48,5 +46,15 @@ class Users extends Model
         this->belongsTo("role_id", this->roleClass, this->getIdKey(), [
             "alias": "Role"
         ]);
+    }
+
+    /**
+     * Set PRIMARY key.
+     *
+     * @return void
+     */
+    public function onConstruct()
+    {
+        this->setPrimary(["user_id", "role_id"]);
     }
 }
