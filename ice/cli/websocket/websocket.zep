@@ -116,8 +116,8 @@ class Websocket
      */
     public function receive(resource socket) -> string | boolean
     {
-        var opcode, length, tmp, buff;
-        boolean fin, masked;
+        var opcode, length, tmp, buff, fin;
+        boolean masked;
         string data, payload, mask;
         int i;
 
@@ -135,12 +135,18 @@ class Websocket
             return false;
         }
 
-        let data = (string) tmp,
-            fin = (boolean) (ord(data[0]) & 1 << 7),
-            opcode = ord(data[0]) & 31,
-            masked = (boolean) (ord(data[1]) >> 7),
+        char d, f;
+        var e;
+
+        let data = tmp,
+            f = data[0],
+            e = ord(f),
+            fin = (boolean) (e & 1 << 7),
+            opcode = ord(f) & 31,
+            d = data[1],
+            masked = (boolean) (ord(d) >> 7),
             payload = "",
-            length = (int) (ord(data[1]) & 127); // Bits 1-7 in byte 1
+            length = (int) (ord(d) & 127); // Bits 1-7 in byte 1
 
         if length > 125 {
             let tmp = length === 126 ? fread(socket, 2) : fread(socket, 8);
