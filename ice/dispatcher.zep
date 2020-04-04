@@ -231,7 +231,13 @@ abstract class Dispatcher
                 actionMethod = this->getActiveMethod();
 
             if method_exists(handler, "before") {
-                handler->before();
+                var before = handler->before();
+
+                if before !== null {
+                    let this->returnedValue = before;
+
+                    continue;
+                }
 
                 if this->finished === false {
                     continue;
