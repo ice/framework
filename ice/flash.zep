@@ -17,10 +17,11 @@ class Flash
     protected tag;
     protected options = [
         "session_key": "_flash",
-        "success": ["class": "alert alert-success"],
-        "info": ["class": "alert alert-info"],
-        "warning": ["class": "alert alert-warning"],
-        "danger": ["class": "alert alert-danger"],
+        "success": ["class": "alert alert-success alert-dismissible fade show"],
+        "info": ["class": "alert alert-info alert-dismissible fade show"],
+        "warning": ["class": "alert alert-warning alert-dismissible fade show"],
+        "danger": ["class": "alert alert-danger alert-dismissible fade show"],
+        "close": ["close", "×", "type": "button", "class": "close", "data-dismiss": "alert"],
         "html": true
     ] { set };
 
@@ -98,7 +99,7 @@ class Flash
         var params, body, close, message;
 
         let params = this->getOption(type, []),
-            close = this->tag->a(["#", "×", "class": "close"]),
+            close = this->tag->button(this->getOption("close", [])),
             body = "";
 
         if typeof messages != "array" {
@@ -137,7 +138,7 @@ class Flash
         let messages[type][] = message;
 
         this->session->set(key, messages);
-        
+
         return this;
     }
 
@@ -150,7 +151,7 @@ class Flash
     public function success(string message)
     {
         this->message("success", message);
-        
+
         return this;
     }
 
