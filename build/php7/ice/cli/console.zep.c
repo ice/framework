@@ -295,7 +295,7 @@ PHP_METHOD(Ice_Cli_Console, color) {
 	colors = ZEPHIR_GLOBAL(cli_colors);
 	if (colors) {
 		ZEPHIR_INIT_VAR(&e);
-		ZVAL_STRING(&e, "\\e");
+		ZVAL_STRING(&e, "\e");
 		ZEPHIR_INIT_VAR(&_0$$3);
 		ZVAL_LONG(&_0$$3, decoration);
 		ZEPHIR_INIT_VAR(&_1$$3);
