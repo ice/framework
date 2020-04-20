@@ -10,7 +10,7 @@ use Ice\Exception;
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Route
@@ -41,7 +41,7 @@ class Route
     const REGEX_ESCAPE = "[.\\+*?^$=!|]";
 
     /**
-     * Constructs a route. Each {key} will be translated to a regular expression 
+     * Constructs a route. Each {key} will be translated to a regular expression
      * using a default regular expression pattern. You can override the default pattern
      * by providing a pattern for the key:
      *

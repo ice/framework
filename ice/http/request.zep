@@ -11,7 +11,7 @@ use Ice\Http\Request\RequestInterface;
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Request extends Arr implements RequestInterface
