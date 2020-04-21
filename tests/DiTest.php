@@ -7,7 +7,7 @@ use Ice\Arr;
 use Ice\Config;
 use Tests\App\Bootstrap;
 
-class DbTest extends PHPUnit
+class DiTest extends PHPUnit
 {
     private static $di;
 
