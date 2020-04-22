@@ -101,7 +101,7 @@ class View extends Arr implements ViewInterface
         let ext = pathinfo(this->file, PATHINFO_EXTENSION);
 
         if !empty ext {
-            if fetch engine, engines["." . ext] {            
+            if fetch engine, engines["." . ext] {
                 for dir in dirs {
                     let path = dir . this->file;
                     if file_exists(path) {
@@ -185,7 +185,7 @@ class View extends Arr implements ViewInterface
     public function setVar(string! name, value)
     {
         this->set(name, value);
-        
+
         return this;
     }
 
@@ -198,7 +198,7 @@ class View extends Arr implements ViewInterface
     public function setVars(array! vars)
     {
         this->replace(vars);
-        
+
         return this;
     }
 
@@ -211,7 +211,7 @@ class View extends Arr implements ViewInterface
     public function setLayout(string layout)
     {
         this->setMainView(layout);
-        
+
         return this;
     }
 

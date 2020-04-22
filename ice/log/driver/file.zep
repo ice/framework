@@ -34,7 +34,7 @@ class File extends Driver
         if !is_writable(file) {
             throw new Exception("Log file " . file . " is not writeable");
         }
-        
+
         let this->file = file;
     }
 

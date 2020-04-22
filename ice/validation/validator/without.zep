@@ -16,7 +16,7 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'password' => [
  *          'without' => [
@@ -24,9 +24,9 @@ use Ice\Validation\Validator;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -52,7 +52,7 @@ class Without extends Validator
         if value === "" || value === null {
             return true;
         }
-        
+
         let fields = this->getOptions(Validator::NUMERIC),
             except = [];
 

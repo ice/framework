@@ -14,7 +14,7 @@ use Ice\Validation;
  */
 abstract class Validator
 {
-    
+
     protected options = [];
 
     const ALL = 0;
@@ -78,7 +78,7 @@ abstract class Validator
     public function set(var key, var value)
     {
         let this->options[key] = value;
-        
+
         return this;
     }
 
@@ -94,12 +94,12 @@ abstract class Validator
 
         for key, value in this->options {
             switch keys {
-                case self::NUMERIC: 
+                case self::NUMERIC:
                     if typeof key == "integer" {
                         let options[key] = value;
                     }
                 break;
-                case self::STRINGS: 
+                case self::STRINGS:
                     if typeof key == "string" {
                         let options[key] = value;
                     }

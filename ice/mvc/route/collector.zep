@@ -27,7 +27,7 @@ class Collector
         if !dataGenerator {
             let dataGenerator = new Generator();
         }
-            
+
         let this->routeParser = routeParser,
             this->dataGenerator = dataGenerator;
     }
@@ -58,7 +58,7 @@ class Collector
                 this->dataGenerator->addRoute(method, routeData, handler);
             }
         }
-        
+
         return this;
     }
 

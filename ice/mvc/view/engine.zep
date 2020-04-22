@@ -17,7 +17,7 @@ use Ice\Mvc\View\Engine\EngineInterface;
  */
 abstract class Engine extends Access implements EngineInterface
 {
-    
+
     protected view;
     protected options { set };
 

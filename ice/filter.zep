@@ -29,7 +29,7 @@ class Filter
         }
 
         let this->filters[name] = body;
-        
+
         return this;
     }
 
@@ -53,7 +53,7 @@ class Filter
                 let value = this->doSanitize(value, filter);
             }
         }
-        
+
         return value;
     }
 

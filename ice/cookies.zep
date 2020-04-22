@@ -42,7 +42,7 @@ class Cookies
     }
 
     /**
-     * Gets the value of a signed cookie. 
+     * Gets the value of a signed cookie.
      * Cookies without signatures will not be returned. If the cookie signature is present, but invalid, the cookie
      * will be deleted.
      *
@@ -82,7 +82,7 @@ class Cookies
     }
 
     /**
-     * Sets a signed cookie. 
+     * Sets a signed cookie.
      * Note that all cookie values must be strings and no automatic serialization will be performed!
      *
      * @param string key Name of cookie

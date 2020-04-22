@@ -83,7 +83,7 @@ class Response implements ResponseInterface
     public function setHeader(string name, string value)
     {
         this->headers->set(name, value);
-        
+
         return this;
     }
 
@@ -96,7 +96,7 @@ class Response implements ResponseInterface
     public function setHeaders(array headers)
     {
         this->headers->replace(headers);
-        
+
         return this;
     }
 
@@ -104,12 +104,12 @@ class Response implements ResponseInterface
      * Remove header by index name.
      *
      * @param string name
-     * @return object Response     
+     * @return object Response
      */
     public function removeHeader(string name)
     {
         this->headers->remove(name);
-        
+
         return this;
     }
 
@@ -264,7 +264,7 @@ class Response implements ResponseInterface
                 end = range[1];
 
             // HTTP/1.1 416 Requested Range Not Satisfiable
-            if this->status == 416 {                
+            if this->status == 416 {
                 header(sprintf("%s %d %s", this->getProtocolVersion(), this->status, this->getMessage(this->status)));
                 exit();
             }

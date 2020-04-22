@@ -36,7 +36,7 @@ class Sleet extends Engine
         let dir = rtrim(compileDir, DIRECTORY_SEPARATOR) . str_replace(trim, "", realpath(dirname(path))),
             file = basename(path, ".sleet"),
             compiledPath = dir . DIRECTORY_SEPARATOR . file . ".phtml";
-        
+
 
         switch compile {
             case Compiler::NEVER:

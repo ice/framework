@@ -136,7 +136,7 @@ class FastRouter
         this->dispatcher->setData(data);
 
         let this->ready = true;
-        
+
         return this;
     }
 
@@ -150,7 +150,7 @@ class FastRouter
     {
         var module, handler, action, params, holders, data, route, response;
 
-        let 
+        let
             handler = this->defaultHandler,
             action = this->defaultAction,
             params = [];

@@ -16,16 +16,16 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'fullName' => 'required',
  *      'email' => 'required|email',
  *      'repeatEmail' => 'same:email',
  *      'about' => 'required|length:10,5000',
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -103,7 +103,7 @@ class Validation
         }
 
         let this->rules[field][] = <Validator> create_instance_params(rule, [options]);
-        
+
         return this;
     }
 
@@ -112,7 +112,7 @@ class Validation
      *
      * <pre><code>
      *  $validation = new Ice\Validation();
-     *  
+     *
      *  $validation->rule('email', 'required|email');
      *  $validation->rule('content', [
      *      'length' => [
@@ -173,7 +173,7 @@ class Validation
      *
      * <pre><code>
      *  $validation = new Ice\Validation();
-     *  
+     *
      *  $validation->rules([
      *      'username' => 'required|length:4,24|notIn:admin,user,root|unique:users',
      *      'password'  => 'required|length:5,32',
@@ -201,7 +201,7 @@ class Validation
         for field, rules in validators {
             this->rule(field, rules);
         }
-        
+
         return this;
     }
 
@@ -288,14 +288,14 @@ class Validation
     /**
      * Get the values by fields.
      * Values are automatically filtered out if filters have been setted.
-     * 
+     *
      * <pre><code>
      *  // Get value for one field
      *  $validation->getValues('password');
-     *  
+     *
      *  // Get values for multiple fields
      *  $validation->getValues(['fullName', 'about']);
-     *  
+     *
      *  // Get all values
      *  $validation->getValues();
      * </code></pre>
@@ -328,7 +328,7 @@ class Validation
                 break;
             }
         }
-            
+
         return data;
     }
 
@@ -364,7 +364,7 @@ class Validation
     public function setDefaultMessages(array messages = [])
     {
         let this->defaultMessages = array_merge(this->defaultMessages, messages);
-        
+
         return this;
     }
 
@@ -395,7 +395,7 @@ class Validation
     public function addMessage(string! field, string message)
     {
         let this->messages[field][] = message;
-        
+
         return this;
     }
 

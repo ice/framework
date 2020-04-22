@@ -17,7 +17,7 @@ use Ice\Db\Driver\Mongodb;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'userName' => [
  *          'unique' => [
@@ -26,9 +26,9 @@ use Ice\Db\Driver\Mongodb;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }

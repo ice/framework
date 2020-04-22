@@ -94,7 +94,7 @@ class Twitter extends Adapter
                         "oauth_token_secret": tokenInfo["oauth_token_secret"],
                         "screen_name":        tokenInfo["screen_name"]
                     ];
-                } 
+                }
             }
 
             if this->accessToken {
@@ -142,7 +142,7 @@ class Twitter extends Adapter
      *
      * @return array
      */
-    private function prepareUrlParams(string url, params = [], string oauthToken = "", string type = "GET") 
+    private function prepareUrlParams(string url, params = [], string oauthToken = "", string type = "GET")
     {
         var sigBaseStr, key;
 

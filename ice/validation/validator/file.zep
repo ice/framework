@@ -16,7 +16,7 @@ use Ice\Validation\Validator;
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'picture' => [
  *          'file' => [
@@ -27,9 +27,9 @@ use Ice\Validation\Validator;
  *          ]
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_FILES);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -117,7 +117,7 @@ class File extends Validator
                     label = i18n->translate(label),
                     message = i18n->translate(message);
             }
-            
+
             let replace = [":field": label];
 
             validation->addMessage(field, strtr(message, replace));

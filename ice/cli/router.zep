@@ -102,13 +102,13 @@ class Router
 
         if isset params["handler"] && params["handler"] {
             let this->handler = params["handler"];
-            
+
             unset params["handler"];
         }
 
         if isset params["action"] && params["action"] {
             let this->action = params["action"];
-            
+
             unset params["action"];
         }
 

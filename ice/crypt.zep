@@ -143,7 +143,7 @@ class Crypt
      * Create a MAC for the given value.
      *
      * @param string value
-     * @return string  
+     * @return string
      */
     protected function hash(string value) -> string
     {

@@ -237,7 +237,7 @@ class Js
                             }
                     }
                 break;
-                default:       
+                default:
                     switch this->b {
                         case " ":
                             if this->isAlphaNum(this->a) {
@@ -270,8 +270,8 @@ class Js
                         break;
                     }
             }
-        }        
-        
+        }
+
         return this->output;
     }
 
