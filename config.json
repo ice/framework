@@ -1,7 +1,7 @@
 {
     "namespace": "ice",
     "name": "ice",
-    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2018 Ice Team.",
+    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2020 Ice Team.",
     "author": "Ice Team",
     "version": "1.5.2",
     "verbose": false,
