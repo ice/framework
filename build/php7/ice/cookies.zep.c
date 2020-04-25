@@ -28,7 +28,7 @@
  * @package     Ice/Cookies
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Cookies) {
@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Cookies, setSalt) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("salt"), salt);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("salt"), salt);
 	RETURN_THISW();
 
 }
@@ -100,7 +100,7 @@ PHP_METHOD(Ice_Cookies, setExpiration) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("expiration"), expiration);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("expiration"), expiration);
 	RETURN_THISW();
 
 }
@@ -125,7 +125,7 @@ PHP_METHOD(Ice_Cookies, setPath) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("path"), path);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("path"), path);
 	RETURN_THISW();
 
 }
@@ -150,7 +150,7 @@ PHP_METHOD(Ice_Cookies, setDomain) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("domain"), domain);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("domain"), domain);
 	RETURN_THISW();
 
 }
@@ -175,7 +175,7 @@ PHP_METHOD(Ice_Cookies, setSecure) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("secure"), secure);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("secure"), secure);
 	RETURN_THISW();
 
 }
@@ -200,7 +200,7 @@ PHP_METHOD(Ice_Cookies, setHttpOnly) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("httpOnly"), httpOnly);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("httpOnly"), httpOnly);
 	RETURN_THISW();
 
 }
@@ -225,7 +225,7 @@ PHP_METHOD(Ice_Cookies, setEncrypt) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("encrypt"), encrypt);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("encrypt"), encrypt);
 	RETURN_THISW();
 
 }
@@ -255,8 +255,8 @@ PHP_METHOD(Ice_Cookies, __construct) {
 
 	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("di"), &_0);
-	zephir_update_property_zval(this_ptr, SL("salt"), &salt);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("salt"), &salt);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -289,7 +289,7 @@ PHP_METHOD(Ice_Cookies, has) {
 }
 
 /**
- * Gets the value of a signed cookie. 
+ * Gets the value of a signed cookie.
  * Cookies without signatures will not be returned. If the cookie signature is present, but invalid, the cookie
  * will be deleted.
  *
@@ -345,9 +345,9 @@ PHP_METHOD(Ice_Cookies, get) {
 		ZEPHIR_INIT_VAR(&tmp);
 		zephir_fast_explode_str(&tmp, SL("~"), &cookie, 2 );
 		ZEPHIR_OBS_VAR(&hash);
-		zephir_array_fetch_long(&hash, &tmp, 0, PH_NOISY, "ice/cookies.zep", 65);
+		zephir_array_fetch_long(&hash, &tmp, 0, PH_NOISY, "ice/cookies.zep", 64);
 		ZEPHIR_OBS_VAR(&value);
-		zephir_array_fetch_long(&value, &tmp, 1, PH_NOISY, "ice/cookies.zep", 66);
+		zephir_array_fetch_long(&value, &tmp, 1, PH_NOISY, "ice/cookies.zep", 65);
 		ZEPHIR_CALL_METHOD(&_2$$4, this_ptr, "salt", NULL, 0, &key, &value);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_EQUAL(&_2$$4, &hash)) {
@@ -373,7 +373,7 @@ PHP_METHOD(Ice_Cookies, get) {
 }
 
 /**
- * Sets a signed cookie. 
+ * Sets a signed cookie.
  * Note that all cookie values must be strings and no automatic serialization will be performed!
  *
  * @param string key Name of cookie
@@ -526,7 +526,7 @@ PHP_METHOD(Ice_Cookies, salt) {
 
 	zephir_read_property(&_0, this_ptr, SL("salt"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "A valid cookie salt is required.", "ice/cookies.zep", 141);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "A valid cookie salt is required.", "ice/cookies.zep", 140);
 		return;
 	}
 	zephir_read_property(&_1, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
@@ -539,7 +539,7 @@ PHP_METHOD(Ice_Cookies, salt) {
 	zephir_read_property(&_4, this_ptr, SL("salt"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_5);
 	ZEPHIR_CONCAT_VVVV(&_5, &userAgent, name, value, &_4);
-	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 58, &_5);
+	ZEPHIR_RETURN_CALL_FUNCTION("sha1", NULL, 66, &_5);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -591,7 +591,7 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 	ZVAL_LONG(&_0, expire);
 	ZVAL_BOOL(&_1, (secure ? 1 : 0));
 	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 83, &name, &value, &_0, &path, &domain, &_1, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 90, &name, &value, &_0, &path, &domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 

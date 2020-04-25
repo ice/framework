@@ -28,7 +28,7 @@
  * @package     Ice/Crypt
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        openSSL
  */
@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Crypt, setKey) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("key"), key);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("key"), key);
 	RETURN_THISW();
 
 }
@@ -75,7 +75,7 @@ PHP_METHOD(Ice_Crypt, setCipher) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("cipher"), cipher);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("cipher"), cipher);
 	RETURN_THISW();
 
 }
@@ -91,7 +91,7 @@ PHP_METHOD(Ice_Crypt, setMode) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("mode"), mode);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("mode"), mode);
 	RETURN_THISW();
 
 }
@@ -107,7 +107,7 @@ PHP_METHOD(Ice_Crypt, setBlock) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("block"), block);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("block"), block);
 	RETURN_THISW();
 
 }
@@ -138,7 +138,7 @@ PHP_METHOD(Ice_Crypt, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("key"), &key);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("key"), &key);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -221,7 +221,7 @@ PHP_METHOD(Ice_Crypt, generateInputVector) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getivsize", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 62, &_0);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_random_pseudo_bytes", NULL, 70, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -263,7 +263,7 @@ PHP_METHOD(Ice_Crypt, doEncrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 84, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_encrypt", NULL, 91, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -301,10 +301,10 @@ PHP_METHOD(Ice_Crypt, decrypt) {
 
 	ZEPHIR_CALL_METHOD(&payload, this_ptr, "getjsonpayload", NULL, 0, &text);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_0, &payload, SL("value"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 97);
+	zephir_array_fetch_string(&_0, &payload, SL("value"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 96);
 	ZEPHIR_CALL_FUNCTION(&value, "base64_decode", &_1, 15, &_0);
 	zephir_check_call_status();
-	zephir_array_fetch_string(&_2, &payload, SL("iv"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 98);
+	zephir_array_fetch_string(&_2, &payload, SL("iv"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 97);
 	ZEPHIR_CALL_FUNCTION(&iv, "base64_decode", &_1, 15, &_2);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "dodecrypt", NULL, 0, &value, &iv);
@@ -353,7 +353,7 @@ PHP_METHOD(Ice_Crypt, doDecrypt) {
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
 	zephir_read_property(&_3, this_ptr, SL("key"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_4, 1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 85, &value, &_2, &_3, &_4, &iv);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_decrypt", NULL, 92, &value, &_2, &_3, &_4, &iv);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -402,15 +402,15 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
 		_1 = zephir_is_true(&_2);
 	}
 	if (_1) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data passed to encrypter.", "ice/crypt.zep", 132);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data passed to encrypter.", "ice/crypt.zep", 131);
 		return;
 	}
-	zephir_array_fetch_string(&_3, &payload, SL("mac"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 135);
-	zephir_array_fetch_string(&_5, &payload, SL("value"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 135);
+	zephir_array_fetch_string(&_3, &payload, SL("mac"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 134);
+	zephir_array_fetch_string(&_5, &payload, SL("value"), PH_NOISY | PH_READONLY, "ice/crypt.zep", 134);
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "hash", NULL, 0, &_5);
 	zephir_check_call_status();
 	if (!ZEPHIR_IS_EQUAL(&_3, &_4)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "MAC for payload is invalid.", "ice/crypt.zep", 136);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "MAC for payload is invalid.", "ice/crypt.zep", 135);
 		return;
 	}
 	RETURN_CCTOR(&payload);
@@ -421,7 +421,7 @@ PHP_METHOD(Ice_Crypt, getJsonPayload) {
  * Create a MAC for the given value.
  *
  * @param string value
- * @return string  
+ * @return string
  */
 PHP_METHOD(Ice_Crypt, hash) {
 
@@ -489,7 +489,7 @@ PHP_METHOD(Ice_Crypt, addPadding) {
 	zephir_sub_function(&pad, &_0, &_2);
 	ZEPHIR_CALL_FUNCTION(&_3, "chr", NULL, 39, &pad);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 86, &_3, &pad);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 93, &_3, &pad);
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VV(return_value, &value, &_4);
 	RETURN_MM();
@@ -584,7 +584,7 @@ PHP_METHOD(Ice_Crypt, paddingIsValid) {
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_substr(&_2, &value, -1 , 0, ZEPHIR_SUBSTR_NO_LENGTH);
 	ZVAL_LONG(&_3, pad);
-	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 86, &_2, &_3);
+	ZEPHIR_CALL_FUNCTION(&_4, "str_repeat", NULL, 93, &_2, &_3);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(ZEPHIR_IS_EQUAL(&_0, &_4));
 
@@ -646,7 +646,7 @@ PHP_METHOD(Ice_Crypt, getIvSize) {
 	zephir_read_property(&_1, this_ptr, SL("mode"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CONCAT_VSV(&_2, &_0, "-", &_1);
-	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 87, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("openssl_cipher_iv_length", NULL, 94, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 

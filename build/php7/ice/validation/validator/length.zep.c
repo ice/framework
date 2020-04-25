@@ -28,12 +28,12 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'title' => 'length:10,100',
  *      'content' => [
@@ -44,9 +44,9 @@
  *          ]
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -173,7 +173,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_check_call_status();
 	}
 	if ((zephir_function_exists_ex(ZEND_STRL("mb_strlen")) == SUCCESS)) {
-		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 200, &value);
+		ZEPHIR_CALL_FUNCTION(&length, "mb_strlen", NULL, 223, &value);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_INIT_NVAR(&length);
@@ -242,7 +242,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_create_array(&replace, 2, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":min"), &min, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_23$$12, "strtr", &_24, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_23$$12, "strtr", &_24, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_23$$12);
 		zephir_check_call_status();
@@ -299,7 +299,7 @@ PHP_METHOD(Ice_Validation_Validator_Length, validate) {
 		zephir_array_update_string(&_37$$16, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&_37$$16, SL(":max"), &max, PH_COPY | PH_SEPARATE);
 		ZEPHIR_CPY_WRT(&replace, &_37$$16);
-		ZEPHIR_CALL_FUNCTION(&_38$$16, "strtr", &_24, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_38$$16, "strtr", &_24, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_38$$16);
 		zephir_check_call_status();

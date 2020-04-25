@@ -27,7 +27,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php) {
@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	}
 
 
-	zephir_is_iterable(&data, 0, "ice/mvc/view/engine/php.zep", 33);
+	zephir_is_iterable(&data, 0, "ice/mvc/view/engine/php.zep", 32);
 	if (Z_TYPE_P(&data) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _0)
 		{
@@ -125,12 +125,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render) {
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 157);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 168);
 	zephir_check_call_status();
 	if (zephir_require_zval(&path) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 158);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 169);
 	zephir_check_call_status();
 	RETURN_MM();
 

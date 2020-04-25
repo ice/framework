@@ -26,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users) {
@@ -135,10 +135,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_LONG(&_1, (zephir_get_numberval(&_0) + 1));
-	zephir_update_property_zval(this_ptr, SL("logins"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("logins"), &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_time(&_2);
-	zephir_update_property_zval(this_ptr, SL("lastlogin"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("lastlogin"), &_2);
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL, 0);
 	zephir_check_call_status();
 	RETURN_THIS();

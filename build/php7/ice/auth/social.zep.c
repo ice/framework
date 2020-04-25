@@ -25,7 +25,7 @@
  * @package     Ice/Auth
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Social) {
@@ -63,7 +63,7 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("adapter"), adapter);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("adapter"), adapter);
 
 }
 

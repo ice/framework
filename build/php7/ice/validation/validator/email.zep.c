@@ -27,18 +27,18 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'e_mail' => 'email'
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -117,7 +117,7 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 		RETURN_MM_BOOL(1);
 	}
 	ZVAL_LONG(&_1, 274);
-	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 123, &value, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "filter_var", NULL, 132, &value, &_1);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_2))) {
 		ZEPHIR_INIT_VAR(&_4$$4);
@@ -177,7 +177,7 @@ PHP_METHOD(Ice_Validation_Validator_Email, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_16$$4, "strtr", NULL, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_16$$4, "strtr", NULL, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_16$$4);
 		zephir_check_call_status();

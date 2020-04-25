@@ -27,7 +27,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
@@ -70,7 +70,7 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 
 
 	if (Z_TYPE_P(data) != IS_STRING) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 29);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 28);
 		return;
 	}
 	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 45, data, &__$true);
@@ -209,7 +209,7 @@ PHP_METHOD(Ice_Config_Ini, map) {
 
 	ZEPHIR_INIT_VAR(&data);
 	array_init(&data);
-	zephir_is_iterable(ini, 0, "ice/config/ini.zep", 94);
+	zephir_is_iterable(ini, 0, "ice/config/ini.zep", 93);
 	if (Z_TYPE_P(ini) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(ini), _2, _3, _0)
 		{
@@ -222,12 +222,12 @@ PHP_METHOD(Ice_Config_Ini, map) {
 			ZEPHIR_INIT_NVAR(&value);
 			ZVAL_COPY(&value, _0);
 			if (Z_TYPE_P(&value) == IS_ARRAY) {
-				zephir_array_fetch(&_5$$4, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89);
+				zephir_array_fetch(&_5$$4, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 88);
 				ZEPHIR_CALL_METHOD(&_4$$4, this_ptr, "map", &_6, 46, &value, &_5$$4);
 				zephir_check_call_status();
 				zephir_array_update_zval(&data, &key, &_4$$4, PH_COPY | PH_SEPARATE);
 			} else {
-				zephir_array_fetch(&_8$$5, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91);
+				zephir_array_fetch(&_8$$5, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 90);
 				ZEPHIR_CALL_METHOD(&_7$$5, this_ptr, "cast", &_9, 0, &value, &_8$$5);
 				zephir_check_call_status();
 				zephir_array_update_zval(&data, &key, &_7$$5, PH_COPY | PH_SEPARATE);
@@ -247,12 +247,12 @@ PHP_METHOD(Ice_Config_Ini, map) {
 			ZEPHIR_CALL_METHOD(&value, ini, "current", NULL, 0);
 			zephir_check_call_status();
 				if (Z_TYPE_P(&value) == IS_ARRAY) {
-					zephir_array_fetch(&_11$$7, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 89);
+					zephir_array_fetch(&_11$$7, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 88);
 					ZEPHIR_CALL_METHOD(&_10$$7, this_ptr, "map", &_6, 46, &value, &_11$$7);
 					zephir_check_call_status();
 					zephir_array_update_zval(&data, &key, &_10$$7, PH_COPY | PH_SEPARATE);
 				} else {
-					zephir_array_fetch(&_13$$8, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 91);
+					zephir_array_fetch(&_13$$8, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 90);
 					ZEPHIR_CALL_METHOD(&_12$$8, this_ptr, "cast", &_9, 0, &value, &_13$$8);
 					zephir_check_call_status();
 					zephir_array_update_zval(&data, &key, &_12$$8, PH_COPY | PH_SEPARATE);

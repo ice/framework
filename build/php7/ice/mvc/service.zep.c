@@ -27,7 +27,7 @@
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Service) {
@@ -51,7 +51,7 @@ PHP_METHOD(Ice_Mvc_Service, setModel) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("model"), model);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
 	RETURN_THISW();
 
 }
@@ -128,7 +128,7 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The `model` property must be instance of Model", "ice/mvc/service.zep", 33);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The `model` property must be instance of Model", "ice/mvc/service.zep", 32);
 		return;
 	}
 

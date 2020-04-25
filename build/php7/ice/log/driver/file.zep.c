@@ -29,7 +29,7 @@
  * @package     Ice/Log
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Log_Driver_File) {
@@ -72,7 +72,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 
 
 	if (!((zephir_file_exists(&file) == SUCCESS))) {
-		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 147, &file);
+		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 175, &file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_0$$3))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
@@ -81,12 +81,12 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 			ZEPHIR_CONCAT_SVS(&_2$$4, "Log file ", &file, " cannot be created");
 			ZEPHIR_CALL_METHOD(NULL, &_1$$4, "__construct", &_3, 12, &_2$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_1$$4, "ice/log/driver/file.zep", 31);
+			zephir_throw_exception_debug(&_1$$4, "ice/log/driver/file.zep", 30);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_4, "is_writable", NULL, 148, &file);
+	ZEPHIR_CALL_FUNCTION(&_4, "is_writable", NULL, 54, &file);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_4))) {
 		ZEPHIR_INIT_VAR(&_5$$5);
@@ -95,11 +95,11 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 		ZEPHIR_CONCAT_SVS(&_6$$5, "Log file ", &file, " is not writeable");
 		ZEPHIR_CALL_METHOD(NULL, &_5$$5, "__construct", &_3, 12, &_6$$5);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_5$$5, "ice/log/driver/file.zep", 35);
+		zephir_throw_exception_debug(&_5$$5, "ice/log/driver/file.zep", 34);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	zephir_update_property_zval(this_ptr, SL("file"), &file);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("file"), &file);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -158,7 +158,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	ZEPHIR_CONCAT_SVSVSVV(&line, "[", &_1, "] ", &_0, ": ", &_2, &_3);
 	zephir_read_property(&_4, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 8);
-	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 149, &_4, &line, &_5);
+	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 176, &_4, &line, &_5);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -205,7 +205,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 
 	ZEPHIR_INIT_VAR(&replace);
 	array_init(&replace);
-	zephir_is_iterable(&context, 0, "ice/log/driver/file.zep", 77);
+	zephir_is_iterable(&context, 0, "ice/log/driver/file.zep", 76);
 	if (Z_TYPE_P(&context) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&context), _2, _3, _0)
 		{
@@ -243,7 +243,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 103, &message, &replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 110, &message, &replace);
 	zephir_check_call_status();
 	RETURN_MM();
 

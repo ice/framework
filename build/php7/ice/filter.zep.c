@@ -30,7 +30,7 @@
  * @package     Ice/Filter
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Filter) {
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Filter, add) {
 
 
 	if (Z_TYPE_P(body) != IS_OBJECT) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 28);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Filter must be an object", "ice/filter.zep", 27);
 		return;
 	}
 	zephir_update_property_array(this_ptr, SL("filters"), &name, body);
@@ -120,7 +120,7 @@ PHP_METHOD(Ice_Filter, sanitize) {
 		ZEPHIR_CPY_WRT(filters, &_0$$3);
 	}
 	if (Z_TYPE_P(filters) == IS_ARRAY) {
-		zephir_is_iterable(filters, 0, "ice/filter.zep", 55);
+		zephir_is_iterable(filters, 0, "ice/filter.zep", 54);
 		if (Z_TYPE_P(filters) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(filters), _1$$4)
 			{
@@ -292,7 +292,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(&_11$$9, "/(?<=\\w)(?=[A-Z])/");
 			ZEPHIR_INIT_VAR(&_12$$9);
 			ZVAL_STRING(&_12$$9, " $1");
-			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 82, &_11$$9, &_12$$9, &value);
+			ZEPHIR_CALL_FUNCTION(&_13$$9, "preg_replace", &_14, 51, &_11$$9, &_12$$9, &value);
 			zephir_check_call_status();
 			zephir_fast_strtolower(&_10$$9, &_13$$9);
 			ZEPHIR_INIT_NVAR(&_11$$9);
@@ -307,7 +307,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(&filter, "lower")) {
 			ZEPHIR_INIT_VAR(&_15$$10);
 			if ((zephir_function_exists_ex(ZEND_STRL("mb_strtolower")) == SUCCESS)) {
-				ZEPHIR_CALL_FUNCTION(&_15$$10, "mb_strtolower", NULL, 121, &value);
+				ZEPHIR_CALL_FUNCTION(&_15$$10, "mb_strtolower", NULL, 130, &value);
 				zephir_check_call_status();
 			} else {
 				zephir_fast_strtolower(&_15$$10, &value);
@@ -317,7 +317,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		if (ZEPHIR_IS_STRING(&filter, "upper")) {
 			ZEPHIR_INIT_VAR(&_16$$11);
 			if ((zephir_function_exists_ex(ZEND_STRL("mb_strtoupper")) == SUCCESS)) {
-				ZEPHIR_CALL_FUNCTION(&_16$$11, "mb_strtoupper", NULL, 122, &value);
+				ZEPHIR_CALL_FUNCTION(&_16$$11, "mb_strtoupper", NULL, 131, &value);
 				zephir_check_call_status();
 			} else {
 				zephir_fast_strtoupper(&_16$$11, &value);
@@ -329,7 +329,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(&_17$$12, "/[^a-z0-9]/i");
 			ZEPHIR_INIT_VAR(&_18$$12);
 			ZVAL_STRING(&_18$$12, "");
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 82, &_17$$12, &_18$$12, &value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 51, &_17$$12, &_18$$12, &value);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -338,38 +338,38 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZVAL_STRING(&_19$$13, "/[^a-z]/i");
 			ZEPHIR_INIT_VAR(&_20$$13);
 			ZVAL_STRING(&_20$$13, "");
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 82, &_19$$13, &_20$$13, &value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 51, &_19$$13, &_20$$13, &value);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "email")) {
 			ZVAL_LONG(&_21$$14, 517);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 123, &value, &_21$$14);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 132, &value, &_21$$14);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "bool") || ZEPHIR_IS_STRING(&filter, "boolean")) {
 			ZVAL_LONG(&_23$$15, 258);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 123, &value, &_23$$15);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 132, &value, &_23$$15);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "float")) {
 			ZVAL_LONG(&_24$$16, 520);
 			ZVAL_LONG(&_25$$16, 4096);
-			ZEPHIR_CALL_FUNCTION(&_26$$16, "filter_var", &_22, 123, &value, &_24$$16, &_25$$16);
+			ZEPHIR_CALL_FUNCTION(&_26$$16, "filter_var", &_22, 132, &value, &_24$$16, &_25$$16);
 			zephir_check_call_status();
 			RETURN_MM_DOUBLE(zephir_get_doubleval(&_26$$16));
 		}
 		if (ZEPHIR_IS_STRING(&filter, "int") || ZEPHIR_IS_STRING(&filter, "integer")) {
 			ZVAL_LONG(&_27$$17, 519);
-			ZEPHIR_CALL_FUNCTION(&_28$$17, "filter_var", &_22, 123, &value, &_27$$17);
+			ZEPHIR_CALL_FUNCTION(&_28$$17, "filter_var", &_22, 132, &value, &_27$$17);
 			zephir_check_call_status();
 			RETURN_MM_LONG(zephir_get_intval(&_28$$17));
 		}
 		if (ZEPHIR_IS_STRING(&filter, "string")) {
 			ZVAL_LONG(&_29$$18, 513);
-			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 123, &value, &_29$$18);
+			ZEPHIR_RETURN_CALL_FUNCTION("filter_var", &_22, 132, &value, &_29$$18);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -400,20 +400,20 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			ZEPHIR_INIT_VAR(&_35$$19);
 			ZVAL_STRING(&_35$$19, "$1$1$1");
 			zephir_array_fast_append(&_32$$19, &_35$$19);
-			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 82, &_30$$19, &_32$$19, &value);
+			ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", &_14, 51, &_30$$19, &_32$$19, &value);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "e") || ZEPHIR_IS_STRING(&filter, "escape") || ZEPHIR_IS_STRING(&filter, "strip_special")) {
 			zephir_get_strval(&_36$$20, &value);
 			ZVAL_LONG(&_37$$20, (3 | 48));
-			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars", NULL, 114, &_36$$20, &_37$$20);
+			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars", NULL, 123, &_36$$20, &_37$$20);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "unescape") || ZEPHIR_IS_STRING(&filter, "unstrip_special")) {
 			ZVAL_LONG(&_38$$21, (3 | 48));
-			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars_decode", NULL, 124, &value, &_38$$21);
+			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars_decode", NULL, 133, &value, &_38$$21);
 			zephir_check_call_status();
 			RETURN_MM();
 		}
@@ -425,7 +425,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_39$$22, "__construct", NULL, 12, &_41$$22);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_39$$22, "ice/filter.zep", 134);
+		zephir_throw_exception_debug(&_39$$22, "ice/filter.zep", 133);
 		ZEPHIR_MM_RESTORE();
 		return;
 	} while(0);

@@ -26,7 +26,7 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Request) {
@@ -78,22 +78,22 @@ PHP_METHOD(Ice_Http_Request, __construct) {
 	object_init_ex(&_0, ice_arr_ce);
 	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", &_1, 4, &_FILES);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("files"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("files"), &_0);
 	ZEPHIR_INIT_VAR(&_2);
 	object_init_ex(&_2, ice_arr_ce);
 	ZEPHIR_CALL_METHOD(NULL, &_2, "__construct", &_1, 4, &_GET);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("get"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("get"), &_2);
 	ZEPHIR_INIT_VAR(&_3);
 	object_init_ex(&_3, ice_arr_ce);
 	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", &_1, 4, &_POST);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("post"), &_3);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("post"), &_3);
 	ZEPHIR_INIT_VAR(&_4);
 	object_init_ex(&_4, ice_arr_ce);
 	ZEPHIR_CALL_METHOD(NULL, &_4, "__construct", &_1, 4, &_SERVER);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("server"), &_4);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("server"), &_4);
 	ZEPHIR_CALL_PARENT(NULL, ice_http_request_ce, getThis(), "__construct", &_5, 0, &_REQUEST);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
@@ -603,10 +603,10 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 	ZEPHIR_CALL_METHOD(&remote, &_3, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 123, &client, &_4);
+	ZEPHIR_CALL_FUNCTION(&_5, "filter_var", NULL, 132, &client, &_4);
 	zephir_check_call_status();
 	ZVAL_LONG(&_4, 275);
-	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 123, &forward, &_4);
+	ZEPHIR_CALL_FUNCTION(&_6, "filter_var", NULL, 132, &forward, &_4);
 	zephir_check_call_status();
 	if (zephir_is_true(&_5)) {
 		ZEPHIR_CPY_WRT(&ip, &client);

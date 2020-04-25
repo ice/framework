@@ -25,7 +25,7 @@
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        FastRoute https://github.com/nikic/FastRoute/commit/30470b69c785f7c28a0203be86692f4780a43bdf
  */
@@ -74,10 +74,10 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
 	zephir_get_arrval(&variables, variables_param);
 
 
-	zephir_update_property_zval(this_ptr, SL("httpMethod"), &httpMethod);
-	zephir_update_property_zval(this_ptr, SL("handler"), handler);
-	zephir_update_property_zval(this_ptr, SL("regex"), &regex);
-	zephir_update_property_zval(this_ptr, SL("variables"), &variables);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("httpMethod"), &httpMethod);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("regex"), &regex);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("variables"), &variables);
 	ZEPHIR_MM_RESTORE();
 
 }

@@ -27,7 +27,7 @@
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("baseUri"), baseUri);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("baseUri"), baseUri);
 	RETURN_THISW();
 
 }
@@ -87,7 +87,7 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("staticUri"), staticUri);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("staticUri"), staticUri);
 	RETURN_THISW();
 
 }
@@ -183,9 +183,9 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	if (!(local)) {
 		_0$$3 = Z_TYPE_P(uri) == IS_STRING;
 		if (_0$$3) {
-			_1$$3 = zephir_memnstr_str(uri, SL("//"), "ice/mvc/url.zep", 45);
+			_1$$3 = zephir_memnstr_str(uri, SL("//"), "ice/mvc/url.zep", 44);
 			if (!(_1$$3)) {
-				_1$$3 = zephir_memnstr_str(uri, SL(":"), "ice/mvc/url.zep", 45);
+				_1$$3 = zephir_memnstr_str(uri, SL(":"), "ice/mvc/url.zep", 44);
 			}
 			_0$$3 = _1$$3;
 		}
@@ -215,7 +215,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 		}
 		if (_6$$8) {
 			ZEPHIR_OBS_NVAR(uri);
-			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 61);
+			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 60);
 		} else {
 			_7$$10 = !(zephir_start_with_str(uri, SL("#")));
 			if (_7$$10) {

@@ -43,7 +43,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("staticRouteMap"), staticRouteMap);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("staticRouteMap"), staticRouteMap);
 	RETURN_THISW();
 
 }
@@ -59,7 +59,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("variableRouteData"), variableRouteData);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("variableRouteData"), variableRouteData);
 	RETURN_THISW();
 
 }
@@ -87,10 +87,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct) {
 
 
 	if (zephir_fast_count_int(&data)) {
-		zephir_array_fetch_long(&_0$$3, &data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 16);
-		zephir_update_property_zval(this_ptr, SL("staticRouteMap"), &_0$$3);
-		zephir_array_fetch_long(&_1$$3, &data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 17);
-		zephir_update_property_zval(this_ptr, SL("variableRouteData"), &_1$$3);
+		zephir_array_fetch_long(&_0$$3, &data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 15);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("staticRouteMap"), &_0$$3);
+		zephir_array_fetch_long(&_1$$3, &data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 16);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("variableRouteData"), &_1$$3);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -141,36 +141,36 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 
 	ZEPHIR_INIT_VAR(&matches);
 	ZVAL_NULL(&matches);
-	zephir_is_iterable(routeData, 0, "ice/mvc/route/dispatcher/groupcount.zep", 48);
+	zephir_is_iterable(routeData, 0, "ice/mvc/route/dispatcher/groupcount.zep", 47);
 	if (Z_TYPE_P(routeData) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(routeData), _0)
 		{
 			ZEPHIR_INIT_NVAR(&data);
 			ZVAL_COPY(&data, _0);
-			zephir_array_fetch_string(&_2$$3, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29);
+			zephir_array_fetch_string(&_2$$3, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 28);
 			ZEPHIR_INIT_NVAR(&_3$$3);
 			zephir_preg_match(&_3$$3, &_2$$3, uri, &matches, 0, 0 , 0 );
 			if (!(zephir_is_true(&_3$$3))) {
 				continue;
 			}
 			j = zephir_fast_count_int(&matches);
-			zephir_array_fetch_string(&_4$$3, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
-			zephir_array_fetch_long(&_5$$3, &_4$$3, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
-			zephir_array_fetch_long(&handler, &_5$$3, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
-			zephir_array_fetch_string(&_6$$3, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
-			zephir_array_fetch_long(&_7$$3, &_6$$3, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
-			zephir_array_fetch_long(&varNames, &_7$$3, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
+			zephir_array_fetch_string(&_4$$3, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
+			zephir_array_fetch_long(&_5$$3, &_4$$3, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
+			zephir_array_fetch_long(&handler, &_5$$3, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
+			zephir_array_fetch_string(&_6$$3, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
+			zephir_array_fetch_long(&_7$$3, &_6$$3, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
+			zephir_array_fetch_long(&varNames, &_7$$3, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
 			ZEPHIR_INIT_NVAR(&vars);
 			array_init(&vars);
 			i = 0;
-			zephir_is_iterable(&varNames, 0, "ice/mvc/route/dispatcher/groupcount.zep", 45);
+			zephir_is_iterable(&varNames, 0, "ice/mvc/route/dispatcher/groupcount.zep", 44);
 			if (Z_TYPE_P(&varNames) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&varNames), _8$$3)
 				{
 					ZEPHIR_INIT_NVAR(&varName);
 					ZVAL_COPY(&varName, _8$$3);
 					i++;
-					zephir_array_fetch_long(&_10$$5, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42);
+					zephir_array_fetch_long(&_10$$5, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 41);
 					zephir_array_update_zval(&vars, &varName, &_10$$5, PH_COPY | PH_SEPARATE);
 				} ZEND_HASH_FOREACH_END();
 			} else {
@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 					ZEPHIR_CALL_METHOD(&varName, &varNames, "current", NULL, 0);
 					zephir_check_call_status();
 						i++;
-						zephir_array_fetch_long(&_11$$6, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42);
+						zephir_array_fetch_long(&_11$$6, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 41);
 						zephir_array_update_zval(&vars, &varName, &_11$$6, PH_COPY | PH_SEPARATE);
 					ZEPHIR_CALL_METHOD(NULL, &varNames, "next", NULL, 0);
 					zephir_check_call_status();
@@ -211,32 +211,32 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 			}
 			ZEPHIR_CALL_METHOD(&data, routeData, "current", NULL, 0);
 			zephir_check_call_status();
-				zephir_array_fetch_string(&_13$$7, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 29);
+				zephir_array_fetch_string(&_13$$7, &data, SL("regex"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 28);
 				ZEPHIR_INIT_NVAR(&_14$$7);
 				zephir_preg_match(&_14$$7, &_13$$7, uri, &matches, 0, 0 , 0 );
 				if (!(zephir_is_true(&_14$$7))) {
 					continue;
 				}
 				j = zephir_fast_count_int(&matches);
-				zephir_array_fetch_string(&_15$$7, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
-				zephir_array_fetch_long(&_16$$7, &_15$$7, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
+				zephir_array_fetch_string(&_15$$7, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
+				zephir_array_fetch_long(&_16$$7, &_15$$7, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
 				ZEPHIR_OBS_NVAR(&handler);
-				zephir_array_fetch_long(&handler, &_16$$7, 0, PH_NOISY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
-				zephir_array_fetch_string(&_17$$7, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
-				zephir_array_fetch_long(&_18$$7, &_17$$7, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
+				zephir_array_fetch_long(&handler, &_16$$7, 0, PH_NOISY, "ice/mvc/route/dispatcher/groupcount.zep", 33);
+				zephir_array_fetch_string(&_17$$7, &data, SL("routeMap"), PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
+				zephir_array_fetch_long(&_18$$7, &_17$$7, j, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
 				ZEPHIR_OBS_NVAR(&varNames);
-				zephir_array_fetch_long(&varNames, &_18$$7, 1, PH_NOISY, "ice/mvc/route/dispatcher/groupcount.zep", 35);
+				zephir_array_fetch_long(&varNames, &_18$$7, 1, PH_NOISY, "ice/mvc/route/dispatcher/groupcount.zep", 34);
 				ZEPHIR_INIT_NVAR(&vars);
 				array_init(&vars);
 				i = 0;
-				zephir_is_iterable(&varNames, 0, "ice/mvc/route/dispatcher/groupcount.zep", 45);
+				zephir_is_iterable(&varNames, 0, "ice/mvc/route/dispatcher/groupcount.zep", 44);
 				if (Z_TYPE_P(&varNames) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&varNames), _19$$7)
 					{
 						ZEPHIR_INIT_NVAR(&varName);
 						ZVAL_COPY(&varName, _19$$7);
 						i++;
-						zephir_array_fetch_long(&_21$$9, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42);
+						zephir_array_fetch_long(&_21$$9, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 41);
 						zephir_array_update_zval(&vars, &varName, &_21$$9, PH_COPY | PH_SEPARATE);
 					} ZEND_HASH_FOREACH_END();
 				} else {
@@ -251,7 +251,7 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute) {
 						ZEPHIR_CALL_METHOD(&varName, &varNames, "current", NULL, 0);
 						zephir_check_call_status();
 							i++;
-							zephir_array_fetch_long(&_22$$10, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 42);
+							zephir_array_fetch_long(&_22$$10, &matches, i, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 41);
 							zephir_array_update_zval(&vars, &varName, &_22$$10, PH_COPY | PH_SEPARATE);
 						ZEPHIR_CALL_METHOD(NULL, &varNames, "next", NULL, 0);
 						zephir_check_call_status();

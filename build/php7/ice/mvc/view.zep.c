@@ -30,7 +30,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View) {
@@ -69,7 +69,7 @@ PHP_METHOD(Ice_Mvc_View, setEngines) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("engines"), engines);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("engines"), engines);
 	RETURN_THISW();
 
 }
@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Mvc_View, setContent) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("content"), content);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), content);
 	RETURN_THISW();
 
 }
@@ -110,7 +110,7 @@ PHP_METHOD(Ice_Mvc_View, setMainView) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("mainView"), mainView);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("mainView"), mainView);
 	RETURN_THISW();
 
 }
@@ -135,7 +135,7 @@ PHP_METHOD(Ice_Mvc_View, setLayoutsDir) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("layoutsDir"), layoutsDir);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("layoutsDir"), layoutsDir);
 	RETURN_THISW();
 
 }
@@ -160,7 +160,7 @@ PHP_METHOD(Ice_Mvc_View, setPartialsDir) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("partialsDir"), partialsDir);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("partialsDir"), partialsDir);
 	RETURN_THISW();
 
 }
@@ -185,7 +185,7 @@ PHP_METHOD(Ice_Mvc_View, setViewsDir) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("viewsDir"), viewsDir);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("viewsDir"), viewsDir);
 	RETURN_THISW();
 
 }
@@ -210,7 +210,7 @@ PHP_METHOD(Ice_Mvc_View, setFile) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("file"), file);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("file"), file);
 	RETURN_THISW();
 
 }
@@ -235,7 +235,7 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("silent"), silent);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("silent"), silent);
 	RETURN_THISW();
 
 }
@@ -275,7 +275,7 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 
 
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_zval(this_ptr, SL("file"), file);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("file"), file);
 	}
 	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, getThis(), "__construct", &_0, 0, &data);
 	zephir_check_call_status();
@@ -325,14 +325,14 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, ice_mvc_view_engine_php_ce);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 155, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 182, this_ptr);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, ".phtml");
 		zephir_update_property_array(this_ptr, SL("engines"), &_2$$3, &_1$$3);
 	} else {
 		zephir_read_property(&_3$$4, this_ptr, SL("engines"), PH_NOISY_CC | PH_READONLY);
-		zephir_is_iterable(&_3$$4, 0, "ice/mvc/view.zep", 67);
+		zephir_is_iterable(&_3$$4, 0, "ice/mvc/view.zep", 66);
 		if (Z_TYPE_P(&_3$$4) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_3$$4), _6$$4, _7$$4, _4$$4)
 			{
@@ -372,7 +372,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 						zephir_check_call_status();
 						ZEPHIR_CALL_METHOD(NULL, &_12$$10, "__construct", &_16, 12, &_14$$10);
 						zephir_check_call_status();
-						zephir_throw_exception_debug(&_12$$10, "ice/mvc/view.zep", 63);
+						zephir_throw_exception_debug(&_12$$10, "ice/mvc/view.zep", 62);
 						ZEPHIR_MM_RESTORE();
 						return;
 					}
@@ -419,7 +419,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 							zephir_check_call_status();
 							ZEPHIR_CALL_METHOD(NULL, &_21$$16, "__construct", &_16, 12, &_23$$16);
 							zephir_check_call_status();
-							zephir_throw_exception_debug(&_21$$16, "ice/mvc/view.zep", 63);
+							zephir_throw_exception_debug(&_21$$16, "ice/mvc/view.zep", 62);
 							ZEPHIR_MM_RESTORE();
 							return;
 						}
@@ -510,11 +510,11 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	ZEPHIR_INIT_VAR(&content);
 	ZVAL_NULL(&content);
 	if (Z_TYPE_P(file) != IS_NULL) {
-		zephir_update_property_zval(this_ptr, SL("file"), file);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("file"), file);
 	}
 	zephir_read_property(&_0, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EMPTY(&_0)) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 90);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 89);
 		return;
 	}
 	ZEPHIR_CALL_METHOD(&engines, this_ptr, "getengines", NULL, 0);
@@ -534,14 +534,14 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	}
 	zephir_read_property(&_4, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 4);
-	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 156, &_4, &_5);
+	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 55, &_4, &_5);
 	zephir_check_call_status();
 	if (!(ZEPHIR_IS_EMPTY(&ext))) {
 		ZEPHIR_OBS_VAR(&engine);
 		ZEPHIR_INIT_VAR(&_6$$7);
 		ZEPHIR_CONCAT_SV(&_6$$7, ".", &ext);
 		if (zephir_array_isset_fetch(&engine, &engines, &_6$$7, 0)) {
-			zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 114);
+			zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 113);
 			if (Z_TYPE_P(&dirs) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&dirs), _7$$8)
 				{
@@ -592,7 +592,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 			ZEPHIR_INIT_NVAR(&dir);
 		}
 	} else {
-		zephir_is_iterable(&engines, 0, "ice/mvc/view.zep", 131);
+		zephir_is_iterable(&engines, 0, "ice/mvc/view.zep", 130);
 		if (Z_TYPE_P(&engines) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&engines), _19$$13, _20$$13, _17$$13)
 			{
@@ -604,7 +604,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 				}
 				ZEPHIR_INIT_NVAR(&engine);
 				ZVAL_COPY(&engine, _17$$13);
-				zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 127);
+				zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 126);
 				if (Z_TYPE_P(&dirs) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&dirs), _21$$14)
 					{
@@ -670,7 +670,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&engine, &engines, "current", NULL, 0);
 				zephir_check_call_status();
-					zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 127);
+					zephir_is_iterable(&dirs, 0, "ice/mvc/view.zep", 126);
 					if (Z_TYPE_P(&dirs) == IS_ARRAY) {
 						ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&dirs), _29$$20)
 						{
@@ -743,7 +743,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_38$$26, "__construct", &_41, 12, &_40$$26);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_38$$26, "ice/mvc/view.zep", 134);
+		zephir_throw_exception_debug(&_38$$26, "ice/mvc/view.zep", 133);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

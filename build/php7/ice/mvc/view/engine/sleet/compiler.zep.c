@@ -25,7 +25,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler) {
@@ -86,12 +86,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("view"), view);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("view"), view);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_view_engine_sleet_parser_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 160);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 184);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("parser"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("parser"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -123,11 +123,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 
 	ZEPHIR_INIT_VAR(&content);
 	zephir_file_get_contents(&content, &path);
-	zephir_update_property_zval(this_ptr, SL("content"), &content);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), &content);
 	zephir_read_property(&_0, this_ptr, SL("parser"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "text", NULL, 0, &content);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("parsed"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("parsed"), &_1);
 	RETURN_MM_MEMBER(getThis(), "parsed");
 
 }

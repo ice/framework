@@ -87,7 +87,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	array_init(&regexes);
 	ZEPHIR_INIT_VAR(&numGroups);
 	ZVAL_LONG(&numGroups, 0);
-	zephir_is_iterable(regexToRoutesMap, 0, "ice/mvc/route/datagenerator/groupcount.zep", 33);
+	zephir_is_iterable(regexToRoutesMap, 0, "ice/mvc/route/datagenerator/groupcount.zep", 32);
 	if (Z_TYPE_P(regexToRoutesMap) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(regexToRoutesMap), _2, _3, _0)
 		{
@@ -102,7 +102,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 			zephir_read_property(&_4$$3, &route, SL("variables"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_INIT_NVAR(&numVariables);
 			ZVAL_LONG(&numVariables, zephir_fast_count_int(&_4$$3));
-			ZEPHIR_CALL_FUNCTION(&_5$$3, "max", &_6, 49, &numGroups, &numVariables);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "max", &_6, 50, &numGroups, &numVariables);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&numGroups, &_5$$3);
 			ZEPHIR_INIT_NVAR(&_7$$3);
@@ -111,11 +111,11 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 			ZEPHIR_INIT_NVAR(&_8$$3);
 			ZVAL_STRING(&_8$$3, "()");
 			ZVAL_LONG(&_9$$3, repeat);
-			ZEPHIR_CALL_FUNCTION(&_5$$3, "str_repeat", &_10, 86, &_8$$3, &_9$$3);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "str_repeat", &_10, 93, &_8$$3, &_9$$3);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(&_11$$3);
 			ZEPHIR_CONCAT_VV(&_11$$3, &regex, &_5$$3);
-			zephir_array_append(&regexes, &_11$$3, PH_SEPARATE, "ice/mvc/route/datagenerator/groupcount.zep", 27);
+			zephir_array_append(&regexes, &_11$$3, PH_SEPARATE, "ice/mvc/route/datagenerator/groupcount.zep", 26);
 			i = (zephir_get_numberval(&numGroups) + 1);
 			ZEPHIR_INIT_NVAR(&_12$$3);
 			zephir_create_array(&_12$$3, 2, 0);
@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 				zephir_read_property(&_14$$4, &route, SL("variables"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_INIT_NVAR(&numVariables);
 				ZVAL_LONG(&numVariables, zephir_fast_count_int(&_14$$4));
-				ZEPHIR_CALL_FUNCTION(&_15$$4, "max", &_6, 49, &numGroups, &numVariables);
+				ZEPHIR_CALL_FUNCTION(&_15$$4, "max", &_6, 50, &numGroups, &numVariables);
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(&numGroups, &_15$$4);
 				ZEPHIR_INIT_NVAR(&_16$$4);
@@ -154,11 +154,11 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 				ZEPHIR_INIT_NVAR(&_17$$4);
 				ZVAL_STRING(&_17$$4, "()");
 				ZVAL_LONG(&_18$$4, repeat);
-				ZEPHIR_CALL_FUNCTION(&_15$$4, "str_repeat", &_10, 86, &_17$$4, &_18$$4);
+				ZEPHIR_CALL_FUNCTION(&_15$$4, "str_repeat", &_10, 93, &_17$$4, &_18$$4);
 				zephir_check_call_status();
 				ZEPHIR_INIT_NVAR(&_19$$4);
 				ZEPHIR_CONCAT_VV(&_19$$4, &regex, &_15$$4);
-				zephir_array_append(&regexes, &_19$$4, PH_SEPARATE, "ice/mvc/route/datagenerator/groupcount.zep", 27);
+				zephir_array_append(&regexes, &_19$$4, PH_SEPARATE, "ice/mvc/route/datagenerator/groupcount.zep", 26);
 				i = (zephir_get_numberval(&numGroups) + 1);
 				ZEPHIR_INIT_NVAR(&_20$$4);
 				zephir_create_array(&_20$$4, 2, 0);
@@ -182,7 +182,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZEPHIR_INIT_NVAR(&regex);
 	ZEPHIR_CONCAT_SVS(&regex, "~^(?|", &_22, ")$~");
 	zephir_create_array(return_value, 2, 0);
-	ZEPHIR_CALL_FUNCTION(&_23, "utf8_encode", NULL, 144, &regex);
+	ZEPHIR_CALL_FUNCTION(&_23, "utf8_encode", NULL, 172, &regex);
 	zephir_check_call_status();
 	zephir_array_update_string(return_value, SL("regex"), &_23, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);

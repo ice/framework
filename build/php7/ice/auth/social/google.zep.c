@@ -26,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Adapter
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google) {
@@ -68,7 +68,7 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	ZEPHIR_INIT_VAR(&_0);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "google");
-	zephir_update_property_zval(this_ptr, SL("provider"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("provider"), &_0);
 	ZEPHIR_CALL_PARENT(NULL, ice_auth_social_google_ce, getThis(), "__construct", &_1, 0, config);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
@@ -79,7 +79,7 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	add_assoc_stringl_ex(&_2, SL("sex"), SL("gender"));
 	add_assoc_stringl_ex(&_2, SL("socialPage"), SL("link"));
 	add_assoc_stringl_ex(&_2, SL("image"), SL("picture"));
-	zephir_update_property_zval(this_ptr, SL("socialFieldsMap"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("socialFieldsMap"), &_2);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -122,7 +122,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		ZEPHIR_CALL_FUNCTION(&_4$$3, "date", &_5, 41, &_3$$3);
 		zephir_check_call_status();
 		zephir_read_property(&_6$$3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_7$$3, &_6$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 45);
+		zephir_array_fetch_string(&_7$$3, &_6$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 44);
 		ZEPHIR_INIT_NVAR(&_3$$3);
 		ZVAL_STRING(&_3$$3, "0000");
 		zephir_fast_str_replace(&_2$$3, &_3$$3, &_4$$3, &_7$$3);
@@ -130,8 +130,8 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		ZVAL_STRING(&_8$$3, "birthday");
 		zephir_update_property_array(this_ptr, SL("userInfo"), &_8$$3, &_2$$3);
 		zephir_read_property(&_9$$3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 47);
-		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 64, &_10$$3);
+		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 46);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 72, &_10$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "d.m.Y");
@@ -189,7 +189,7 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 		zephir_array_update_string(&params, SL("redirect_uri"), &_0$$3, PH_COPY | PH_SEPARATE);
 		add_assoc_stringl_ex(&params, SL("grant_type"), SL("authorization_code"));
 		ZEPHIR_OBS_NVAR(&_0$$3);
-		zephir_array_fetch_string(&_0$$3, &_GET, SL("code"), PH_NOISY, "ice/auth/social/google.zep", 71);
+		zephir_array_fetch_string(&_0$$3, &_GET, SL("code"), PH_NOISY, "ice/auth/social/google.zep", 70);
 		zephir_array_update_string(&params, SL("code"), &_0$$3, PH_COPY | PH_SEPARATE);
 		zephir_read_property(&_1$$3, this_ptr, SL("accessToken"), PH_NOISY_CC | PH_READONLY);
 		if (!(zephir_is_true(&_1$$3))) {
@@ -199,8 +199,8 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 			ZEPHIR_CALL_METHOD(&tokenInfo, this_ptr, "call", NULL, 0, &_2$$4, &_3$$4, &params);
 			zephir_check_call_status();
 			if (zephir_array_isset_string(&tokenInfo, SL("access_token"))) {
-				zephir_array_fetch_string(&_4$$5, &tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 78);
-				zephir_update_property_zval(this_ptr, SL("accessToken"), &_4$$5);
+				zephir_array_fetch_string(&_4$$5, &tokenInfo, SL("access_token"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 77);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("accessToken"), &_4$$5);
 			}
 		}
 		zephir_read_property(&_5$$3, this_ptr, SL("accessToken"), PH_NOISY_CC | PH_READONLY);
@@ -213,9 +213,9 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, &_7$$6, &_8$$6, &params);
 			zephir_check_call_status();
 			zephir_read_property(&_7$$6, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_fetch_string(&_9$$6, &_7$$6, SL("socialId"), PH_READONLY, "ice/auth/social/google.zep", 86);
+			zephir_array_fetch_string(&_9$$6, &_7$$6, SL("socialId"), PH_READONLY, "ice/auth/social/google.zep", 85);
 			if (zephir_array_isset(&userInfo, &_9$$6)) {
-				zephir_update_property_zval(this_ptr, SL("userInfo"), &userInfo);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("userInfo"), &userInfo);
 				result = 1;
 			}
 		}

@@ -28,7 +28,7 @@
  * @package     Ice/Flash
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Flash) {
@@ -57,7 +57,7 @@ PHP_METHOD(Ice_Flash, setOptions) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("options"), options);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), options);
 	RETURN_THISW();
 
 }
@@ -99,14 +99,14 @@ PHP_METHOD(Ice_Flash, __construct) {
 	ZVAL_STRING(&_2, "session");
 	ZEPHIR_CALL_METHOD(&_1, &di, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("session"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("session"), &_1);
 	ZEPHIR_INIT_NVAR(&_2);
 	ZVAL_STRING(&_2, "tag");
 	ZEPHIR_CALL_METHOD(&_3, &di, "get", NULL, 0, &_2);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("tag"), &_3);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("tag"), &_3);
 	if (zephir_fast_count_int(&options)) {
-		zephir_update_property_zval(this_ptr, SL("options"), &options);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &options);
 	}
 	ZEPHIR_MM_RESTORE();
 
@@ -209,7 +209,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	ZEPHIR_INIT_VAR(&body);
 	ZVAL_STRING(&body, "");
 	if (Z_TYPE_P(&messages) == IS_ARRAY) {
-		zephir_is_iterable(&messages, 0, "ice/flash.zep", 81);
+		zephir_is_iterable(&messages, 0, "ice/flash.zep", 80);
 		if (Z_TYPE_P(&messages) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&messages), _4$$3, _5$$3, _2$$3)
 			{
@@ -342,7 +342,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		zephir_array_fast_append(&_6$$3, messages);
 		ZEPHIR_CPY_WRT(messages, &_6$$3);
 	}
-	zephir_is_iterable(messages, 0, "ice/flash.zep", 117);
+	zephir_is_iterable(messages, 0, "ice/flash.zep", 116);
 	if (Z_TYPE_P(messages) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(messages), _7)
 		{
@@ -776,7 +776,7 @@ zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRML
 			add_assoc_stringl_ex(&_2$$3, SL("data-dismiss"), SL("alert"));
 			zephir_array_update_string(&_1$$3, SL("close"), &_2$$3, PH_COPY | PH_SEPARATE);
 			zephir_array_update_string(&_1$$3, SL("html"), &__$true, PH_COPY | PH_SEPARATE);
-			zephir_update_property_zval(this_ptr, SL("options"), &_1$$3);
+			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("options"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

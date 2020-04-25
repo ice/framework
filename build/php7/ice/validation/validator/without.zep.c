@@ -28,12 +28,12 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'password' => [
  *          'without' => [
@@ -41,9 +41,9 @@
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -146,10 +146,10 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		zephir_check_call_status();
 	}
 	if (Z_TYPE_P(&fields) != IS_ARRAY) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Fields must be an array", "ice/validation/validator/without.zep", 64);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Fields must be an array", "ice/validation/validator/without.zep", 63);
 		return;
 	}
-	zephir_is_iterable(&fields, 0, "ice/validation/validator/without.zep", 75);
+	zephir_is_iterable(&fields, 0, "ice/validation/validator/without.zep", 74);
 	if (Z_TYPE_P(&fields) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&fields), _3)
 		{
@@ -162,7 +162,7 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 				_5$$6 = Z_TYPE_P(&tmp) != IS_NULL;
 			}
 			if (_5$$6) {
-				zephir_array_append(&except, &without, PH_SEPARATE, "ice/validation/validator/without.zep", 71);
+				zephir_array_append(&except, &without, PH_SEPARATE, "ice/validation/validator/without.zep", 70);
 			}
 		} ZEND_HASH_FOREACH_END();
 	} else {
@@ -183,7 +183,7 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 					_6$$8 = Z_TYPE_P(&tmp) != IS_NULL;
 				}
 				if (_6$$8) {
-					zephir_array_append(&except, &without, PH_SEPARATE, "ice/validation/validator/without.zep", 71);
+					zephir_array_append(&except, &without, PH_SEPARATE, "ice/validation/validator/without.zep", 70);
 				}
 			ZEPHIR_CALL_METHOD(NULL, &fields, "next", NULL, 0);
 			zephir_check_call_status();
@@ -244,7 +244,7 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 			ZEPHIR_CALL_METHOD(&_19$$15, &i18n, "translate", NULL, 0, &message);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&message, &_19$$15);
-			zephir_is_iterable(&except, 1, "ice/validation/validator/without.zep", 97);
+			zephir_is_iterable(&except, 1, "ice/validation/validator/without.zep", 96);
 			if (Z_TYPE_P(&except) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&except), _22$$15, _23$$15, _20$$15)
 				{
@@ -289,7 +289,7 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		ZEPHIR_INIT_NVAR(&_8$$10);
 		zephir_fast_join_str(&_8$$10, SL(", "), &except);
 		zephir_array_update_string(&replace, SL(":fields"), &_8$$10, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_28$$10, "strtr", NULL, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_28$$10, "strtr", NULL, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_28$$10);
 		zephir_check_call_status();

@@ -25,7 +25,7 @@
  * @package     Ice/Di
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Di_Access) {
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	if (_1) {
 		ZEPHIR_CALL_CE_STATIC(&_3$$3, ice_di_ce, "fetch", &_4, 0);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("di"), &_3$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
 	}
 	zephir_read_property(&_5, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&di, &_5);
@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Di_Access, __set) {
 	if (_1) {
 		ZEPHIR_CALL_CE_STATIC(&_3$$3, ice_di_ce, "fetch", &_4, 0);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("di"), &_3$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
 	}
 	zephir_read_property(&_5, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_5, "set", NULL, 0, &property, value);

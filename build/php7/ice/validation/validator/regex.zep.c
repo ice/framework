@@ -28,12 +28,12 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'username' => [
  *          'regex' => [
@@ -41,9 +41,9 @@
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 	ZEPHIR_INIT_VAR(&_5);
 	zephir_preg_match(&_5, &pattern, &value, &matches, 0, 0 , 0 );
 	if (zephir_is_true(&_5)) {
-		zephir_array_fetch_long(&_6$$6, &matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 63);
+		zephir_array_fetch_long(&_6$$6, &matches, 0, PH_NOISY | PH_READONLY, "ice/validation/validator/regex.zep", 62);
 		failed = !ZEPHIR_IS_EQUAL(&_6$$6, &value);
 	} else {
 		failed = 1;
@@ -208,7 +208,7 @@ PHP_METHOD(Ice_Validation_Validator_Regex, validate) {
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_20$$8, "strtr", NULL, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_20$$8, "strtr", NULL, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_20$$8);
 		zephir_check_call_status();

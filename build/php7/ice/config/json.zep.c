@@ -27,7 +27,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config_Json) {
@@ -69,7 +69,7 @@ PHP_METHOD(Ice_Config_Json, __construct) {
 
 
 	if (Z_TYPE_P(data) != IS_STRING) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Data must be a json string or path to the file", "ice/config/json.zep", 27);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Data must be a json string or path to the file", "ice/config/json.zep", 26);
 		return;
 	}
 	if ((zephir_file_exists(data) == SUCCESS)) {

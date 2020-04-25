@@ -29,7 +29,7 @@
  * @package     Ice/Exception
  * @category    Error
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Exception) {
@@ -102,10 +102,10 @@ PHP_METHOD(Ice_Exception, __construct) {
 	zephir_check_call_status();
 	if (Z_TYPE_P(message) == IS_ARRAY) {
 		ZVAL_LONG(&_1$$3, 1);
-		ZEPHIR_CALL_FUNCTION(&values, "array_slice", NULL, 115, message, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&values, "array_slice", NULL, 124, message, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_OBS_VAR(&str);
-		zephir_array_fetch_long(&str, message, 0, PH_NOISY, "ice/exception.zep", 32);
+		zephir_array_fetch_long(&str, message, 0, PH_NOISY, "ice/exception.zep", 31);
 	} else {
 		ZEPHIR_INIT_NVAR(&values);
 		ZVAL_NULL(&values);
@@ -130,7 +130,7 @@ PHP_METHOD(Ice_Exception, __construct) {
 		ZEPHIR_CALL_FUNCTION(&_8$$6, "array_filter", NULL, 7, &_6$$6, &_7$$6);
 		zephir_check_call_status();
 		if (zephir_fast_count_int(&_8$$6)) {
-			ZEPHIR_CALL_FUNCTION(message, "strtr", NULL, 103, &str, &values);
+			ZEPHIR_CALL_FUNCTION(message, "strtr", NULL, 110, &str, &values);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_INIT_VAR(&_9$$8);
@@ -234,7 +234,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 	ZVAL_STRING(&output, "");
 	ZEPHIR_CALL_METHOD(&_0, e, "gettrace", NULL, 0);
 	zephir_check_call_status();
-	zephir_is_iterable(&_0, 0, "ice/exception.zep", 109);
+	zephir_is_iterable(&_0, 0, "ice/exception.zep", 108);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
 		{
@@ -245,8 +245,8 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 			if (zephir_array_isset_string(&frame, SL("args"))) {
 				ZEPHIR_INIT_NVAR(&node);
 				array_init(&node);
-				zephir_array_fetch_string(&_3$$4, &frame, SL("args"), PH_NOISY | PH_READONLY, "ice/exception.zep", 72);
-				zephir_is_iterable(&_3$$4, 0, "ice/exception.zep", 97);
+				zephir_array_fetch_string(&_3$$4, &frame, SL("args"), PH_NOISY | PH_READONLY, "ice/exception.zep", 71);
+				zephir_is_iterable(&_3$$4, 0, "ice/exception.zep", 96);
 				if (Z_TYPE_P(&_3$$4) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_3$$4), _4$$4)
 					{
@@ -258,19 +258,19 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 							if (ZEPHIR_IS_STRING(&_6$$5, "string")) {
 								ZEPHIR_INIT_NVAR(&_7$$6);
 								ZEPHIR_CONCAT_SVS(&_7$$6, "'", &arg, "'");
-								zephir_array_append(&node, &_7$$6, PH_SEPARATE, "ice/exception.zep", 75);
+								zephir_array_append(&node, &_7$$6, PH_SEPARATE, "ice/exception.zep", 74);
 								break;
 							}
 							if (ZEPHIR_IS_STRING(&_6$$5, "array")) {
 								ZEPHIR_INIT_NVAR(&_8$$7);
 								ZVAL_STRING(&_8$$7, "Array");
-								zephir_array_append(&node, &_8$$7, PH_SEPARATE, "ice/exception.zep", 78);
+								zephir_array_append(&node, &_8$$7, PH_SEPARATE, "ice/exception.zep", 77);
 								break;
 							}
 							if (ZEPHIR_IS_STRING(&_6$$5, "NULL")) {
 								ZEPHIR_INIT_NVAR(&_9$$8);
 								ZVAL_STRING(&_9$$8, "NULL");
-								zephir_array_append(&node, &_9$$8, PH_SEPARATE, "ice/exception.zep", 81);
+								zephir_array_append(&node, &_9$$8, PH_SEPARATE, "ice/exception.zep", 80);
 								break;
 							}
 							if (ZEPHIR_IS_STRING(&_6$$5, "boolean")) {
@@ -282,7 +282,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 									ZEPHIR_INIT_NVAR(&_10$$9);
 									ZVAL_STRING(&_10$$9, "false");
 								}
-								zephir_array_append(&node, &_10$$9, PH_SEPARATE, "ice/exception.zep", 84);
+								zephir_array_append(&node, &_10$$9, PH_SEPARATE, "ice/exception.zep", 83);
 								break;
 							}
 							if (ZEPHIR_IS_STRING(&_6$$5, "object")) {
@@ -290,14 +290,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 								zephir_get_class(&_11$$10, &arg, 0);
 								ZEPHIR_INIT_NVAR(&_12$$10);
 								ZEPHIR_CONCAT_SVS(&_12$$10, "Object(", &_11$$10, ")");
-								zephir_array_append(&node, &_12$$10, PH_SEPARATE, "ice/exception.zep", 87);
+								zephir_array_append(&node, &_12$$10, PH_SEPARATE, "ice/exception.zep", 86);
 								break;
 							}
 							if (ZEPHIR_IS_STRING(&_6$$5, "resource")) {
-								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 90);
+								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 89);
 								break;
 							}
-							zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 93);
+							zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 92);
 							break;
 						} while(0);
 
@@ -319,19 +319,19 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 								if (ZEPHIR_IS_STRING(&_13$$13, "string")) {
 									ZEPHIR_INIT_NVAR(&_14$$14);
 									ZEPHIR_CONCAT_SVS(&_14$$14, "'", &arg, "'");
-									zephir_array_append(&node, &_14$$14, PH_SEPARATE, "ice/exception.zep", 75);
+									zephir_array_append(&node, &_14$$14, PH_SEPARATE, "ice/exception.zep", 74);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_13$$13, "array")) {
 									ZEPHIR_INIT_NVAR(&_15$$15);
 									ZVAL_STRING(&_15$$15, "Array");
-									zephir_array_append(&node, &_15$$15, PH_SEPARATE, "ice/exception.zep", 78);
+									zephir_array_append(&node, &_15$$15, PH_SEPARATE, "ice/exception.zep", 77);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_13$$13, "NULL")) {
 									ZEPHIR_INIT_NVAR(&_16$$16);
 									ZVAL_STRING(&_16$$16, "NULL");
-									zephir_array_append(&node, &_16$$16, PH_SEPARATE, "ice/exception.zep", 81);
+									zephir_array_append(&node, &_16$$16, PH_SEPARATE, "ice/exception.zep", 80);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_13$$13, "boolean")) {
@@ -343,7 +343,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 										ZEPHIR_INIT_NVAR(&_17$$17);
 										ZVAL_STRING(&_17$$17, "false");
 									}
-									zephir_array_append(&node, &_17$$17, PH_SEPARATE, "ice/exception.zep", 84);
+									zephir_array_append(&node, &_17$$17, PH_SEPARATE, "ice/exception.zep", 83);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_13$$13, "object")) {
@@ -351,14 +351,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 									zephir_get_class(&_18$$18, &arg, 0);
 									ZEPHIR_INIT_NVAR(&_19$$18);
 									ZEPHIR_CONCAT_SVS(&_19$$18, "Object(", &_18$$18, ")");
-									zephir_array_append(&node, &_19$$18, PH_SEPARATE, "ice/exception.zep", 87);
+									zephir_array_append(&node, &_19$$18, PH_SEPARATE, "ice/exception.zep", 86);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_13$$13, "resource")) {
-									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 90);
+									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 89);
 									break;
 								}
-								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 93);
+								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 92);
 								break;
 							} while(0);
 
@@ -372,8 +372,8 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 			}
 			ZEPHIR_INIT_NVAR(&_20$$3);
 			if (zephir_array_isset_string(&frame, SL("file"))) {
-				zephir_array_fetch_string(&_21$$3, &frame, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
-				zephir_array_fetch_string(&_22$$3, &frame, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+				zephir_array_fetch_string(&_21$$3, &frame, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 102);
+				zephir_array_fetch_string(&_22$$3, &frame, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 102);
 				ZEPHIR_INIT_NVAR(&_20$$3);
 				ZEPHIR_CONCAT_VSVS(&_20$$3, &_21$$3, "(", &_22$$3, ")");
 			} else {
@@ -382,14 +382,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 			}
 			ZEPHIR_INIT_NVAR(&_23$$3);
 			if (zephir_array_isset_string(&frame, SL("class"))) {
-				zephir_array_fetch_string(&_24$$3, &frame, SL("class"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
-				zephir_array_fetch_string(&_25$$3, &frame, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
-				zephir_array_fetch_string(&_26$$3, &frame, SL("function"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
+				zephir_array_fetch_string(&_24$$3, &frame, SL("class"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+				zephir_array_fetch_string(&_25$$3, &frame, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+				zephir_array_fetch_string(&_26$$3, &frame, SL("function"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
 				ZEPHIR_INIT_NVAR(&_23$$3);
 				ZEPHIR_CONCAT_VVV(&_23$$3, &_24$$3, &_25$$3, &_26$$3);
 			} else {
 				ZEPHIR_OBS_NVAR(&_23$$3);
-				zephir_array_fetch_string(&_23$$3, &frame, SL("function"), PH_NOISY, "ice/exception.zep", 104);
+				zephir_array_fetch_string(&_23$$3, &frame, SL("function"), PH_NOISY, "ice/exception.zep", 103);
 			}
 			ZEPHIR_INIT_NVAR(&_27$$3);
 			ZVAL_STRING(&_27$$3, "#%s %s: %s(%s)\n");
@@ -415,8 +415,8 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 				if (zephir_array_isset_string(&frame, SL("args"))) {
 					ZEPHIR_INIT_NVAR(&node);
 					array_init(&node);
-					zephir_array_fetch_string(&_31$$22, &frame, SL("args"), PH_NOISY | PH_READONLY, "ice/exception.zep", 72);
-					zephir_is_iterable(&_31$$22, 0, "ice/exception.zep", 97);
+					zephir_array_fetch_string(&_31$$22, &frame, SL("args"), PH_NOISY | PH_READONLY, "ice/exception.zep", 71);
+					zephir_is_iterable(&_31$$22, 0, "ice/exception.zep", 96);
 					if (Z_TYPE_P(&_31$$22) == IS_ARRAY) {
 						ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_31$$22), _32$$22)
 						{
@@ -428,19 +428,19 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 								if (ZEPHIR_IS_STRING(&_34$$23, "string")) {
 									ZEPHIR_INIT_NVAR(&_35$$24);
 									ZEPHIR_CONCAT_SVS(&_35$$24, "'", &arg, "'");
-									zephir_array_append(&node, &_35$$24, PH_SEPARATE, "ice/exception.zep", 75);
+									zephir_array_append(&node, &_35$$24, PH_SEPARATE, "ice/exception.zep", 74);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_34$$23, "array")) {
 									ZEPHIR_INIT_NVAR(&_36$$25);
 									ZVAL_STRING(&_36$$25, "Array");
-									zephir_array_append(&node, &_36$$25, PH_SEPARATE, "ice/exception.zep", 78);
+									zephir_array_append(&node, &_36$$25, PH_SEPARATE, "ice/exception.zep", 77);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_34$$23, "NULL")) {
 									ZEPHIR_INIT_NVAR(&_37$$26);
 									ZVAL_STRING(&_37$$26, "NULL");
-									zephir_array_append(&node, &_37$$26, PH_SEPARATE, "ice/exception.zep", 81);
+									zephir_array_append(&node, &_37$$26, PH_SEPARATE, "ice/exception.zep", 80);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_34$$23, "boolean")) {
@@ -452,7 +452,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 										ZEPHIR_INIT_NVAR(&_38$$27);
 										ZVAL_STRING(&_38$$27, "false");
 									}
-									zephir_array_append(&node, &_38$$27, PH_SEPARATE, "ice/exception.zep", 84);
+									zephir_array_append(&node, &_38$$27, PH_SEPARATE, "ice/exception.zep", 83);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_34$$23, "object")) {
@@ -460,14 +460,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 									zephir_get_class(&_39$$28, &arg, 0);
 									ZEPHIR_INIT_NVAR(&_40$$28);
 									ZEPHIR_CONCAT_SVS(&_40$$28, "Object(", &_39$$28, ")");
-									zephir_array_append(&node, &_40$$28, PH_SEPARATE, "ice/exception.zep", 87);
+									zephir_array_append(&node, &_40$$28, PH_SEPARATE, "ice/exception.zep", 86);
 									break;
 								}
 								if (ZEPHIR_IS_STRING(&_34$$23, "resource")) {
-									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 90);
+									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 89);
 									break;
 								}
-								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 93);
+								zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 92);
 								break;
 							} while(0);
 
@@ -489,19 +489,19 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 									if (ZEPHIR_IS_STRING(&_41$$31, "string")) {
 										ZEPHIR_INIT_NVAR(&_42$$32);
 										ZEPHIR_CONCAT_SVS(&_42$$32, "'", &arg, "'");
-										zephir_array_append(&node, &_42$$32, PH_SEPARATE, "ice/exception.zep", 75);
+										zephir_array_append(&node, &_42$$32, PH_SEPARATE, "ice/exception.zep", 74);
 										break;
 									}
 									if (ZEPHIR_IS_STRING(&_41$$31, "array")) {
 										ZEPHIR_INIT_NVAR(&_43$$33);
 										ZVAL_STRING(&_43$$33, "Array");
-										zephir_array_append(&node, &_43$$33, PH_SEPARATE, "ice/exception.zep", 78);
+										zephir_array_append(&node, &_43$$33, PH_SEPARATE, "ice/exception.zep", 77);
 										break;
 									}
 									if (ZEPHIR_IS_STRING(&_41$$31, "NULL")) {
 										ZEPHIR_INIT_NVAR(&_44$$34);
 										ZVAL_STRING(&_44$$34, "NULL");
-										zephir_array_append(&node, &_44$$34, PH_SEPARATE, "ice/exception.zep", 81);
+										zephir_array_append(&node, &_44$$34, PH_SEPARATE, "ice/exception.zep", 80);
 										break;
 									}
 									if (ZEPHIR_IS_STRING(&_41$$31, "boolean")) {
@@ -513,7 +513,7 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 											ZEPHIR_INIT_NVAR(&_45$$35);
 											ZVAL_STRING(&_45$$35, "false");
 										}
-										zephir_array_append(&node, &_45$$35, PH_SEPARATE, "ice/exception.zep", 84);
+										zephir_array_append(&node, &_45$$35, PH_SEPARATE, "ice/exception.zep", 83);
 										break;
 									}
 									if (ZEPHIR_IS_STRING(&_41$$31, "object")) {
@@ -521,14 +521,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 										zephir_get_class(&_46$$36, &arg, 0);
 										ZEPHIR_INIT_NVAR(&_47$$36);
 										ZEPHIR_CONCAT_SVS(&_47$$36, "Object(", &_46$$36, ")");
-										zephir_array_append(&node, &_47$$36, PH_SEPARATE, "ice/exception.zep", 87);
+										zephir_array_append(&node, &_47$$36, PH_SEPARATE, "ice/exception.zep", 86);
 										break;
 									}
 									if (ZEPHIR_IS_STRING(&_41$$31, "resource")) {
-										zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 90);
+										zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 89);
 										break;
 									}
-									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 93);
+									zephir_array_append(&node, &arg, PH_SEPARATE, "ice/exception.zep", 92);
 									break;
 								} while(0);
 
@@ -542,8 +542,8 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 				}
 				ZEPHIR_INIT_NVAR(&_48$$21);
 				if (zephir_array_isset_string(&frame, SL("file"))) {
-					zephir_array_fetch_string(&_49$$21, &frame, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
-					zephir_array_fetch_string(&_50$$21, &frame, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+					zephir_array_fetch_string(&_49$$21, &frame, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 102);
+					zephir_array_fetch_string(&_50$$21, &frame, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 102);
 					ZEPHIR_INIT_NVAR(&_48$$21);
 					ZEPHIR_CONCAT_VSVS(&_48$$21, &_49$$21, "(", &_50$$21, ")");
 				} else {
@@ -552,14 +552,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 				}
 				ZEPHIR_INIT_NVAR(&_51$$21);
 				if (zephir_array_isset_string(&frame, SL("class"))) {
-					zephir_array_fetch_string(&_52$$21, &frame, SL("class"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
-					zephir_array_fetch_string(&_53$$21, &frame, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
-					zephir_array_fetch_string(&_54$$21, &frame, SL("function"), PH_NOISY | PH_READONLY, "ice/exception.zep", 104);
+					zephir_array_fetch_string(&_52$$21, &frame, SL("class"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+					zephir_array_fetch_string(&_53$$21, &frame, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
+					zephir_array_fetch_string(&_54$$21, &frame, SL("function"), PH_NOISY | PH_READONLY, "ice/exception.zep", 103);
 					ZEPHIR_INIT_NVAR(&_51$$21);
 					ZEPHIR_CONCAT_VVV(&_51$$21, &_52$$21, &_53$$21, &_54$$21);
 				} else {
 					ZEPHIR_OBS_NVAR(&_51$$21);
-					zephir_array_fetch_string(&_51$$21, &frame, SL("function"), PH_NOISY, "ice/exception.zep", 104);
+					zephir_array_fetch_string(&_51$$21, &frame, SL("function"), PH_NOISY, "ice/exception.zep", 103);
 				}
 				ZEPHIR_INIT_NVAR(&_55$$21);
 				ZVAL_STRING(&_55$$21, "#%s %s: %s(%s)\n");
@@ -625,7 +625,7 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 	}
 
 
-	ZEPHIR_CALL_FUNCTION(&_0, "error_reporting", NULL, 116);
+	ZEPHIR_CALL_FUNCTION(&_0, "error_reporting", NULL, 125);
 	zephir_check_call_status();
 	if (((int) (zephir_get_numberval(&_0)) & code)) {
 		ZEPHIR_INIT_VAR(&_1$$3);
@@ -633,9 +633,9 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 		ZVAL_LONG(&_2$$3, code);
 		ZVAL_LONG(&_3$$3, 0);
 		ZVAL_LONG(&_4$$3, line);
-		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 117, &message, &_2$$3, &_3$$3, &file, &_4$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 126, &message, &_2$$3, &_3$$3, &file, &_4$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "ice/exception.zep", 123);
+		zephir_throw_exception_debug(&_1$$3, "ice/exception.zep", 122);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -697,7 +697,7 @@ PHP_METHOD(Ice_Exception, handler) {
 		zephir_check_call_status();
 		zend_print_zval(&_4$$3, 0);
 	} else {
-		zephir_throw_exception_debug(e, "ice/exception.zep", 150);
+		zephir_throw_exception_debug(e, "ice/exception.zep", 149);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -736,11 +736,11 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&e, "error_get_last", NULL, 118);
+	ZEPHIR_CALL_FUNCTION(&e, "error_get_last", NULL, 127);
 	zephir_check_call_status();
 	_0 = Z_TYPE_P(&e) == IS_ARRAY;
 	if (_0) {
-		zephir_array_fetch_string(&_1, &e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 167);
+		zephir_array_fetch_string(&_1, &e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 166);
 		ZEPHIR_INIT_VAR(&_2);
 		zephir_create_array(&_2, 4, 0);
 		ZEPHIR_INIT_VAR(&_3);
@@ -758,18 +758,18 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		_0 = zephir_fast_in_array(&_1, &_2);
 	}
 	if (_0) {
-		ZEPHIR_CALL_FUNCTION(NULL, "ob_get_level", NULL, 119);
+		ZEPHIR_CALL_FUNCTION(NULL, "ob_get_level", NULL, 128);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(NULL, "ob_clean", NULL, 120);
+		ZEPHIR_CALL_FUNCTION(NULL, "ob_clean", NULL, 129);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_4$$3);
 		object_init_ex(&_4$$3, zephir_get_internal_ce(SL("errorexception")));
-		zephir_array_fetch_string(&_5$$3, &e, SL("message"), PH_NOISY | PH_READONLY, "ice/exception.zep", 172);
-		zephir_array_fetch_string(&_6$$3, &e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 172);
-		zephir_array_fetch_string(&_7$$3, &e, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 172);
-		zephir_array_fetch_string(&_8$$3, &e, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 172);
+		zephir_array_fetch_string(&_5$$3, &e, SL("message"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
+		zephir_array_fetch_string(&_6$$3, &e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
+		zephir_array_fetch_string(&_7$$3, &e, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
+		zephir_array_fetch_string(&_8$$3, &e, SL("line"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
 		ZVAL_LONG(&_9$$3, 0);
-		ZEPHIR_CALL_METHOD(NULL, &_4$$3, "__construct", NULL, 117, &_5$$3, &_6$$3, &_9$$3, &_7$$3, &_8$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_4$$3, "__construct", NULL, 126, &_5$$3, &_6$$3, &_9$$3, &_7$$3, &_8$$3);
 		zephir_check_call_status();
 		ZEPHIR_CALL_SELF(NULL, "handler", NULL, 0, &_4$$3);
 		zephir_check_call_status();

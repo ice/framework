@@ -26,7 +26,7 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
@@ -60,7 +60,7 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 125);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 134);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		_1$$3 = zephir_get_iterator(this_ptr);
@@ -73,10 +73,10 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 			if (!(ZEPHIR_IS_EMPTY(&value))) {
 				ZEPHIR_INIT_NVAR(&_2$$5);
 				ZEPHIR_CONCAT_VSV(&_2$$5, &header, ": ", &value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 126, &_2$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 135, &_2$$5, &__$true);
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 126, &header, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 135, &header, &__$true);
 				zephir_check_call_status();
 			}
 		}

@@ -29,7 +29,7 @@
  * @package     Ice/Loader
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Loader) {
@@ -45,7 +45,7 @@ ZEPHIR_INIT_CLASS(Ice_Loader) {
 
 /**
  * Register loader with SPL autoloader stack.
- * 
+ *
  * @return void
  */
 PHP_METHOD(Ice_Loader, register) {
@@ -67,7 +67,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "loadClass");
 	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 143, &_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 171, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 
@@ -151,7 +151,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	if (!(zephir_array_isset(&_9, &prefix))) {
 		ZEPHIR_INIT_VAR(&_10$$3);
 		zephir_create_array(&_10$$3, 1, 0);
-		ZEPHIR_CALL_FUNCTION(&_11$$3, "utf8_encode", &_12, 144, &baseDir);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
 		zephir_array_fast_append(&_10$$3, &_11$$3);
 		zephir_update_property_array(this_ptr, SL("prefixes"), &prefix, &_10$$3);
@@ -159,20 +159,20 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	}
 	if (prepend) {
 		zephir_read_property(&_13$$4, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_14$$4, &_13$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 55);
-		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 144, &baseDir);
+		zephir_array_fetch(&_14$$4, &_13$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 54);
+		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_14$$4);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 72, &_14$$4, &_15$$4);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_unshift", NULL, 80, &_14$$4, &_15$$4);
 		ZEPHIR_UNREF(&_14$$4);
 		zephir_check_call_status();
 	} else {
 		zephir_read_property(&_16$$5, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_17$$5, &_16$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 57);
-		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 144, &baseDir);
+		zephir_array_fetch(&_17$$5, &_16$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 56);
+		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_17$$5);
-		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 145, &_17$$5, &_18$$5);
+		ZEPHIR_CALL_FUNCTION(NULL, "array_push", NULL, 173, &_17$$5, &_18$$5);
 		ZEPHIR_UNREF(&_17$$5);
 		zephir_check_call_status();
 	}
@@ -217,7 +217,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEPHIR_CPY_WRT(&prefix, &className);
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "\\");
-	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 146, &prefix, &_0);
+	ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 174, &prefix, &_0);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_FALSE_IDENTICAL(&pos)) {
 		ZEPHIR_INIT_VAR(&_2$$3);
@@ -248,7 +248,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 			ZEPHIR_CPY_WRT(&prefix, &_7$$6);
 			ZEPHIR_INIT_NVAR(&_7$$6);
 			ZVAL_STRING(&_7$$6, "\\");
-			ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 146, &prefix, &_7$$6);
+			ZEPHIR_CALL_FUNCTION(&pos, "strrpos", &_1, 174, &prefix, &_7$$6);
 			zephir_check_call_status();
 		} while (!ZEPHIR_IS_FALSE_IDENTICAL(&pos));
 	}
@@ -258,7 +258,7 @@ PHP_METHOD(Ice_Loader, loadClass) {
 
 /**
  * Load the mapped file for a namespace prefix and relative class.
- * 
+ *
  * @param string $prefix The namespace prefix
  * @param string $relative_class The relative class name
  * @return mixed Boolean false if no mapped file can be loaded, or the name of the mapped file that was loaded
@@ -308,8 +308,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	ZEPHIR_CONCAT_VS(&_4, &_1, ".php");
 	zephir_get_strval(&relativeClass, &_4);
 	zephir_read_property(&_5, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch(&_6, &_5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 130);
-	zephir_is_iterable(&_6, 0, "ice/loader.zep", 144);
+	zephir_array_fetch(&_6, &_5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 129);
+	zephir_is_iterable(&_6, 0, "ice/loader.zep", 143);
 	if (Z_TYPE_P(&_6) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_6), _7)
 		{
@@ -352,7 +352,7 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 
 /**
  * If a file exists, require it from the file system.
- * 
+ *
  * @param string $file The file to require
  * @return bool True if the file exists, false if not
  */
@@ -397,7 +397,7 @@ zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type TSRM
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("prefixes"), &_1$$3);
+			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("prefixes"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

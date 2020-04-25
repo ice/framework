@@ -27,19 +27,19 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'email' => 'required|email',
  *      'repeatEmail' => 'same:email'
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -242,7 +242,7 @@ PHP_METHOD(Ice_Validation_Validator_Same, validate) {
 		zephir_create_array(&replace, 2, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
 		zephir_array_update_string(&replace, SL(":other"), &labelOther, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_25$$10, "strtr", NULL, 103, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_25$$10, "strtr", NULL, 110, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_25$$10);
 		zephir_check_call_status();

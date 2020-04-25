@@ -28,7 +28,7 @@
  * @package     Ice/Dispatcher
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
@@ -67,7 +67,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("method"), method);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("method"), method);
 	RETURN_THISW();
 
 }
@@ -168,7 +168,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		ZVAL_LONG(&_10$$3, 5);
 		ZEPHIR_CALL_METHOD(NULL, &_8$$3, "__construct", NULL, 12, &_9$$3, &_10$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_8$$3, "ice/mvc/dispatcher.zep", 59);
+		zephir_throw_exception_debug(&_8$$3, "ice/mvc/dispatcher.zep", 58);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

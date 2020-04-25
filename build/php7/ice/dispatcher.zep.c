@@ -31,7 +31,7 @@
  * @package     Ice/Dispatcher
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Dispatcher) {
@@ -115,7 +115,7 @@ PHP_METHOD(Ice_Dispatcher, setDefaultNamespace) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("defaultNamespace"), defaultNamespace);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultNamespace"), defaultNamespace);
 	RETURN_THISW();
 
 }
@@ -158,7 +158,7 @@ PHP_METHOD(Ice_Dispatcher, setLoops) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("loops"), loops);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("loops"), loops);
 	RETURN_THISW();
 
 }
@@ -201,7 +201,7 @@ PHP_METHOD(Ice_Dispatcher, setSilent) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("silent"), silent);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("silent"), silent);
 	RETURN_THISW();
 
 }
@@ -226,7 +226,7 @@ PHP_METHOD(Ice_Dispatcher, setModules) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("modules"), modules);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("modules"), modules);
 	RETURN_THISW();
 
 }
@@ -251,7 +251,7 @@ PHP_METHOD(Ice_Dispatcher, setModule) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("module"), module);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("module"), module);
 	RETURN_THISW();
 
 }
@@ -276,7 +276,7 @@ PHP_METHOD(Ice_Dispatcher, setNamespace) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("namespace"), namespace);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("namespace"), namespace);
 	RETURN_THISW();
 
 }
@@ -301,7 +301,7 @@ PHP_METHOD(Ice_Dispatcher, setHandler) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("handler"), handler);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	RETURN_THISW();
 
 }
@@ -326,7 +326,7 @@ PHP_METHOD(Ice_Dispatcher, setAction) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("action"), action);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("action"), action);
 	RETURN_THISW();
 
 }
@@ -351,7 +351,7 @@ PHP_METHOD(Ice_Dispatcher, setParams) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("params"), params);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("params"), params);
 	RETURN_THISW();
 
 }
@@ -376,7 +376,7 @@ PHP_METHOD(Ice_Dispatcher, setReturnedValue) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("returnedValue"), returnedValue);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("returnedValue"), returnedValue);
 	RETURN_THISW();
 
 }
@@ -401,7 +401,7 @@ PHP_METHOD(Ice_Dispatcher, setHandlers) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("handlers"), handlers);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("handlers"), handlers);
 	RETURN_THISW();
 
 }
@@ -426,7 +426,7 @@ PHP_METHOD(Ice_Dispatcher, setHandlerSuffix) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("handlerSuffix"), handlerSuffix);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("handlerSuffix"), handlerSuffix);
 	RETURN_THISW();
 
 }
@@ -451,7 +451,7 @@ PHP_METHOD(Ice_Dispatcher, setActionSuffix) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("actionSuffix"), actionSuffix);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("actionSuffix"), actionSuffix);
 	RETURN_THISW();
 
 }
@@ -473,7 +473,7 @@ PHP_METHOD(Ice_Dispatcher, __construct) {
 
 	ZEPHIR_CALL_CE_STATIC(&_0, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("di"), &_0);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_0);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -763,9 +763,9 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 	zephir_read_property(&_2, this_ptr, SL("handlerSuffix"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&handlerSuffix, &_2);
 	if (0) {
-		zephir_update_property_zval(this_ptr, SL("finished"), &__$true);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$true);
 	} else {
-		zephir_update_property_zval(this_ptr, SL("finished"), &__$false);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$false);
 	}
 	while (1) {
 		zephir_read_property(&_2, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);
@@ -800,14 +800,14 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_15$$4, 1);
 			ZEPHIR_CALL_METHOD(NULL, &_13$$4, "__construct", &_16, 12, &_14$$4, &_15$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_13$$4, "ice/dispatcher.zep", 169);
+			zephir_throw_exception_debug(&_13$$4, "ice/dispatcher.zep", 168);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
 		if (1) {
-			zephir_update_property_zval(this_ptr, SL("finished"), &__$true);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$true);
 		} else {
-			zephir_update_property_zval(this_ptr, SL("finished"), &__$false);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$false);
 		}
 		zephir_read_property(&_17$$3, this_ptr, SL("modules"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CPY_WRT(&modules, &_17$$3);
@@ -827,12 +827,12 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 				zephir_array_fast_append(&_20$$7, &_22$$7);
 				ZEPHIR_CALL_METHOD(NULL, &_19$$7, "__construct", &_16, 12, &_20$$7);
 				zephir_check_call_status();
-				zephir_throw_exception_debug(&_19$$7, "ice/dispatcher.zep", 177);
+				zephir_throw_exception_debug(&_19$$7, "ice/dispatcher.zep", 176);
 				ZEPHIR_MM_RESTORE();
 				return;
 			}
 			if (Z_TYPE_P(&module) != IS_ARRAY) {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 181);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Module definition must be an array", "ice/dispatcher.zep", 180);
 				return;
 			}
 			ZEPHIR_OBS_NVAR(&path);
@@ -848,7 +848,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 					zephir_array_fast_append(&_24$$10, &path);
 					ZEPHIR_CALL_METHOD(NULL, &_23$$10, "__construct", &_16, 12, &_24$$10);
 					zephir_check_call_status();
-					zephir_throw_exception_debug(&_23$$10, "ice/dispatcher.zep", 186);
+					zephir_throw_exception_debug(&_23$$10, "ice/dispatcher.zep", 185);
 					ZEPHIR_MM_RESTORE();
 					return;
 				}
@@ -867,7 +867,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_STRING(&_27$$6, "loader");
 			ZEPHIR_CALL_METHOD(&loader, &_26$$6, "get", NULL, 0, &_27$$6);
 			zephir_check_call_status();
-			zephir_update_property_zval(this_ptr, SL("namespace"), &moduleNamespace);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("namespace"), &moduleNamespace);
 			ZEPHIR_CALL_METHOD(&_28$$6, &loader, "addnamespace", NULL, 0, &moduleNamespace, &path);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &_28$$6, "register", NULL, 0);
@@ -933,22 +933,22 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_49$$14, 2);
 			ZEPHIR_CALL_METHOD(NULL, &_46$$14, "__construct", &_16, 12, &_47$$14, &_49$$14);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_46$$14, "ice/dispatcher.zep", 225);
+			zephir_throw_exception_debug(&_46$$14, "ice/dispatcher.zep", 224);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
-		zephir_update_property_zval(this_ptr, SL("lastHandler"), &handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("lastHandler"), &handler);
 		zephir_read_property(&_50$$3, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&handler, &_50$$3, "build", NULL, 0, &handlerClass);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("activeHandler"), &handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("activeHandler"), &handler);
 		ZEPHIR_CALL_METHOD(&actionMethod, this_ptr, "getactivemethod", &_51, 0);
 		zephir_check_call_status();
 		if ((zephir_method_exists_ex(&handler, ZEND_STRL("before")) == SUCCESS)) {
 			ZEPHIR_CALL_METHOD(&before$$16, &handler, "before", NULL, 0);
 			zephir_check_call_status();
 			if (Z_TYPE_P(&before$$16) != IS_NULL) {
-				zephir_update_property_zval(this_ptr, SL("returnedValue"), &before$$16);
+				zephir_update_property_zval(this_ptr, ZEND_STRL("returnedValue"), &before$$16);
 				continue;
 			}
 			zephir_read_property(&_52$$16, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);
@@ -987,7 +987,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_62$$21, 3);
 			ZEPHIR_CALL_METHOD(NULL, &_59$$21, "__construct", &_16, 12, &_60$$21, &_62$$21);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_59$$21, "ice/dispatcher.zep", 263);
+			zephir_throw_exception_debug(&_59$$21, "ice/dispatcher.zep", 262);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -1001,7 +1001,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 			ZVAL_LONG(&_66$$23, 4);
 			ZEPHIR_CALL_METHOD(NULL, &_64$$23, "__construct", &_16, 12, &_65$$23, &_66$$23);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_64$$23, "ice/dispatcher.zep", 268);
+			zephir_throw_exception_debug(&_64$$23, "ice/dispatcher.zep", 267);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -1012,7 +1012,7 @@ PHP_METHOD(Ice_Dispatcher, dispatch) {
 		zephir_array_fast_append(&_68$$3, &actionMethod);
 		ZEPHIR_CALL_USER_FUNC_ARRAY(&_67$$3, &_68$$3, &params);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("returnedValue"), &_67$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("returnedValue"), &_67$$3);
 		zephir_read_property(&_63$$3, this_ptr, SL("finished"), PH_NOISY_CC | PH_READONLY);
 		if (ZEPHIR_IS_FALSE_IDENTICAL(&_63$$3)) {
 			continue;
@@ -1072,34 +1072,34 @@ PHP_METHOD(Ice_Dispatcher, forward) {
 	ZEPHIR_OBS_VAR(&module);
 	if (zephir_array_isset_string_fetch(&module, &forward, SL("module"), 0)) {
 		zephir_read_property(&_0$$3, this_ptr, SL("module"), PH_NOISY_CC | PH_READONLY);
-		zephir_update_property_zval(this_ptr, SL("previousModule"), &_0$$3);
-		zephir_update_property_zval(this_ptr, SL("module"), &module);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("previousModule"), &_0$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("module"), &module);
 	}
 	ZEPHIR_OBS_VAR(&handler);
 	if (zephir_array_isset_string_fetch(&handler, &forward, SL("handler"), 0)) {
 		zephir_read_property(&_1$$4, this_ptr, SL("handler"), PH_NOISY_CC | PH_READONLY);
-		zephir_update_property_zval(this_ptr, SL("previousHandler"), &_1$$4);
-		zephir_update_property_zval(this_ptr, SL("handler"), &handler);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("previousHandler"), &_1$$4);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &handler);
 	}
 	ZEPHIR_OBS_VAR(&action);
 	if (zephir_array_isset_string_fetch(&action, &forward, SL("action"), 0)) {
 		zephir_read_property(&_2$$5, this_ptr, SL("action"), PH_NOISY_CC | PH_READONLY);
-		zephir_update_property_zval(this_ptr, SL("previousAction"), &_2$$5);
-		zephir_update_property_zval(this_ptr, SL("action"), &action);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("previousAction"), &_2$$5);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("action"), &action);
 	}
 	ZEPHIR_OBS_VAR(&params);
 	if (zephir_array_isset_string_fetch(&params, &forward, SL("params"), 0)) {
-		zephir_update_property_zval(this_ptr, SL("params"), &params);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("params"), &params);
 	}
 	if (0) {
-		zephir_update_property_zval(this_ptr, SL("finished"), &__$true);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$true);
 	} else {
-		zephir_update_property_zval(this_ptr, SL("finished"), &__$false);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("finished"), &__$false);
 	}
 	if (1) {
-		zephir_update_property_zval(this_ptr, SL("forwarded"), &__$true);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("forwarded"), &__$true);
 	} else {
-		zephir_update_property_zval(this_ptr, SL("forwarded"), &__$false);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("forwarded"), &__$false);
 	}
 	if (force) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "dispatch", NULL, 0);
@@ -1175,13 +1175,13 @@ zend_object *zephir_init_properties_Ice_Dispatcher(zend_class_entry *class_type 
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zephir_update_property_zval(this_ptr, SL("params"), &_1$$3);
+			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("params"), &_1$$3);
 		}
 		zephir_read_property(&_2, this_ptr, SL("modules"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			array_init(&_3$$4);
-			zephir_update_property_zval(this_ptr, SL("modules"), &_3$$4);
+			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("modules"), &_3$$4);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

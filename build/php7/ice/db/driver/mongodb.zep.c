@@ -28,7 +28,7 @@
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Db_Driver_Mongodb) {
@@ -135,13 +135,13 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "mongodb");
-	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 90, &_0);
+	ZEPHIR_CALL_FUNCTION(&_1, "phpversion", NULL, 97, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "1.2.0alpha1");
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, ">=");
-	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 91, &_1, &_0, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "version_compare", NULL, 98, &_1, &_0, &_2);
 	zephir_check_call_status();
 	if (zephir_is_true(&_3)) {
 		ZEPHIR_INIT_VAR(&client);
@@ -159,9 +159,9 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 		}
 		ZEPHIR_CALL_METHOD(&_7$$3, &_4$$3, "selectdatabase", NULL, 0, &dbname);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, SL("client"), &_7$$3);
+		zephir_update_property_zval(this_ptr, ZEND_STRL("client"), &_7$$3);
 	} else {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Version of `mongodb` extension must be 1.2.0alpha1 or higher", "ice/db/driver/mongodb.zep", 41);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Version of `mongodb` extension must be 1.2.0alpha1 or higher", "ice/db/driver/mongodb.zep", 40);
 		return;
 	}
 	ZEPHIR_MM_RESTORE();
@@ -261,7 +261,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 				ZVAL_LONG(value, tmp$$4);
 				break;
 			}
-			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 64, value);
+			ZEPHIR_CALL_FUNCTION(&_3$$7, "strtotime", NULL, 72, value);
 			zephir_check_call_status();
 			tmp$$4 = (zephir_get_numberval(&_3$$7) * 1000);
 			ZEPHIR_INIT_NVAR(value);
@@ -350,7 +350,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	ZEPHIR_INIT_VAR(&_1);
 	if (zephir_fast_count_int(&result)) {
 		object_init_ex(&_1, ice_arr_ce);
-		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 92, &result);
+		ZEPHIR_CALL_FUNCTION(&_2, "current", NULL, 99, &result);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_1, "__construct", NULL, 4, &_2);
 		zephir_check_call_status();
@@ -512,7 +512,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 				zephir_read_property(&_1$$4, this_ptr, SL("id"), PH_NOISY_CC);
 				zephir_array_update_zval(&filtered, &_1$$4, filters, PH_COPY);
 			} else {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 158);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 157);
 				return;
 			}
 			break;
@@ -538,12 +538,12 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	} while(0);
 
 	if (zephir_array_isset_string(&options, SL("order"))) {
-		zephir_array_fetch_string(&_5$$9, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 177);
+		zephir_array_fetch_string(&_5$$9, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 176);
 		zephir_array_update_string(&options, SL("sort"), &_5$$9, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SL("order"), PH_SEPARATE);
 	}
 	if (zephir_array_isset_string(&options, SL("offset"))) {
-		zephir_array_fetch_string(&_6$$10, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 182);
+		zephir_array_fetch_string(&_6$$10, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 181);
 		zephir_array_update_string(&options, SL("skip"), &_6$$10, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SL("offset"), PH_SEPARATE);
 	}
@@ -567,7 +567,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	add_assoc_stringl_ex(&_11, SL("array"), SL("array"));
 	ZEPHIR_CALL_METHOD(NULL, &result, "settypemap", NULL, 0, &_11);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 93, &result);
+	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 100, &result);
 	zephir_check_call_status();
 	RETURN_MM();
 
@@ -625,7 +625,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, insert) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&_1, &result, "getinsertedid", NULL, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("lastInsertId"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("lastInsertId"), &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_CALL_METHOD(&_3, &result, "getinsertedcount", NULL, 0);
 	zephir_check_call_status();

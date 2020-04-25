@@ -28,7 +28,7 @@
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -96,12 +96,12 @@ PHP_METHOD(Ice_Pagination, __construct) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 0);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("di"), &di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &di);
 	ZEPHIR_INIT_VAR(&_3);
 	ZVAL_STRING(&_3, "tag");
 	ZEPHIR_CALL_METHOD(&_2, &di, "get", NULL, 0, &_3);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("tag"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("tag"), &_2);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -146,7 +146,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 		_2 = !((zephir_instance_of_ev(&items, ice_arr_ce)));
 	}
 	if (_2) {
-		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data for pagination", "ice/pagination.zep", 49);
+		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Invalid data for pagination", "ice/pagination.zep", 48);
 		return;
 	}
 	if (zephir_instance_of_ev(&items, ice_arr_ce)) {
@@ -183,7 +183,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	}
 	ZVAL_LONG(&_7, (limit * ((page - 1))));
 	ZVAL_LONG(&_8, limit);
-	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 115, &data, &_7, &_8);
+	ZEPHIR_CALL_FUNCTION(&_9, "array_slice", NULL, 124, &data, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "items");
@@ -914,7 +914,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 1);
 	ZVAL_LONG(&_6, ((zephir_get_numberval(&_5) - countOut) + 1));
-	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 49, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 50, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "pages");
@@ -926,7 +926,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, (zephir_get_numberval(&n2) + 1));
 	ZVAL_LONG(&_6, (zephir_get_numberval(&_8) - countIn));
-	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 49, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 50, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "current");
@@ -1064,7 +1064,7 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZEPHIR_CALL_METHOD(&_35, this_ptr, "preparebutton", &_34, 0, &_1, url, &_6);
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_35);
-	zephir_is_iterable(&links, 0, "ice/pagination.zep", 321);
+	zephir_is_iterable(&links, 0, "ice/pagination.zep", 320);
 	if (Z_TYPE_P(&links) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&links), _40, _41, _38)
 		{

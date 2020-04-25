@@ -26,7 +26,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine) {
@@ -53,7 +53,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("options"), options);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), options);
 	RETURN_THISW();
 
 }
@@ -78,8 +78,8 @@ PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 	}
 
 
-	zephir_update_property_zval(this_ptr, SL("view"), view);
-	zephir_update_property_zval(this_ptr, SL("di"), di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("view"), view);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
 
 }
 

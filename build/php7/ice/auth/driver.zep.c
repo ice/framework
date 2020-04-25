@@ -28,7 +28,7 @@
  * @package     Ice/Auth
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
@@ -90,22 +90,22 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_read_property(&_2, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(&_1, &_2, &options);
-	zephir_update_property_zval(this_ptr, SL("options"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &_1);
 	ZEPHIR_INIT_VAR(&_4);
 	ZVAL_STRING(&_4, "session");
 	ZEPHIR_CALL_METHOD(&_3, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("session"), &_3);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("session"), &_3);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, "cookies");
 	ZEPHIR_CALL_METHOD(&_5, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("cookies"), &_5);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("cookies"), &_5);
 	ZEPHIR_INIT_NVAR(&_4);
 	ZVAL_STRING(&_4, "request");
 	ZEPHIR_CALL_METHOD(&_6, &di, "get", NULL, 0, &_4);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, SL("request"), &_6);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("request"), &_6);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -140,7 +140,7 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_array_fetch_string(&_1, &_0, SL("hash_method"), PH_NOISY, "ice/auth/driver.zep", 59);
+	zephir_array_fetch_string(&_1, &_0, SL("hash_method"), PH_NOISY, "ice/auth/driver.zep", 58);
 	if (Z_TYPE_P(&_1) == IS_STRING) {
 		ZEPHIR_CALL_METHOD(&_2$$3, this_ptr, "hash", NULL, 0, &password);
 		zephir_check_call_status();
@@ -364,20 +364,20 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 
 	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_array_fetch_string(&_1, &_0, SL("hash_method"), PH_NOISY, "ice/auth/driver.zep", 142);
+	zephir_array_fetch_string(&_1, &_0, SL("hash_method"), PH_NOISY, "ice/auth/driver.zep", 141);
 	if (Z_TYPE_P(&_1) == IS_STRING) {
 		zephir_read_property(&_2$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_3$$3, &_2$$3, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 143);
+		zephir_array_fetch_string(&_3$$3, &_2$$3, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 142);
 		zephir_read_property(&_4$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_5$$3, &_4$$3, SL("hash_key"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 143);
+		zephir_array_fetch_string(&_5$$3, &_4$$3, SL("hash_key"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 142);
 		ZEPHIR_RETURN_CALL_FUNCTION("hash_hmac", NULL, 26, &_3$$3, &password, &_5$$3);
 		zephir_check_call_status();
 		RETURN_MM();
 	} else {
 		zephir_read_property(&_6$$4, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_7$$4, &_6$$4, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 145);
+		zephir_array_fetch_string(&_7$$4, &_6$$4, SL("hash_method"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 144);
 		zephir_read_property(&_8$$4, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch_string(&_9$$4, &_8$$4, SL("hash_option"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 145);
+		zephir_array_fetch_string(&_9$$4, &_8$$4, SL("hash_option"), PH_NOISY | PH_READONLY, "ice/auth/driver.zep", 144);
 		ZEPHIR_RETURN_CALL_FUNCTION("password_hash", NULL, 27, &password, &_7$$4, &_9$$4);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -541,7 +541,7 @@ zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type
 			add_assoc_stringl_ex(&_1$$3, SL("session_key"), SL("auth_user"));
 			add_assoc_stringl_ex(&_1$$3, SL("session_roles"), SL("auth_user_roles"));
 			add_assoc_long_ex(&_1$$3, SL("lifetime"), 1209600);
-			zephir_update_property_zval(this_ptr, SL("options"), &_1$$3);
+			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("options"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

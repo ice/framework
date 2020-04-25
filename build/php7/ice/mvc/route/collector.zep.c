@@ -42,7 +42,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("routeParser"), routeParser);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("routeParser"), routeParser);
 	RETURN_THISW();
 
 }
@@ -58,7 +58,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 
 
 
-	zephir_update_property_zval(this_ptr, SL("dataGenerator"), dataGenerator);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("dataGenerator"), dataGenerator);
 	RETURN_THISW();
 
 }
@@ -113,8 +113,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 			zephir_check_call_status();
 		}
 	}
-	zephir_update_property_zval(this_ptr, SL("routeParser"), routeParser);
-	zephir_update_property_zval(this_ptr, SL("dataGenerator"), dataGenerator);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("routeParser"), routeParser);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("dataGenerator"), dataGenerator);
 	ZEPHIR_MM_RESTORE();
 
 }
@@ -175,13 +175,13 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 		zephir_array_fast_append(&_1$$3, &method);
 		ZEPHIR_CPY_WRT(httpMethod, &_1$$3);
 	}
-	zephir_is_iterable(httpMethod, 0, "ice/mvc/route/collector.zep", 62);
+	zephir_is_iterable(httpMethod, 0, "ice/mvc/route/collector.zep", 61);
 	if (Z_TYPE_P(httpMethod) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(httpMethod), _2)
 		{
 			ZEPHIR_INIT_NVAR(&method);
 			ZVAL_COPY(&method, _2);
-			zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 60);
+			zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 59);
 			if (Z_TYPE_P(&routeDatas) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&routeDatas), _4$$4)
 				{
@@ -222,7 +222,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 			}
 			ZEPHIR_CALL_METHOD(&method, httpMethod, "current", NULL, 0);
 			zephir_check_call_status();
-				zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 60);
+				zephir_is_iterable(&routeDatas, 0, "ice/mvc/route/collector.zep", 59);
 				if (Z_TYPE_P(&routeDatas) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&routeDatas), _8$$7)
 					{

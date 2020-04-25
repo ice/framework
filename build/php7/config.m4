@@ -31,6 +31,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/http/request/requestinterface.zep.c
 	ice/http/response/headersinterface.zep.c
 	ice/http/response/responseinterface.zep.c
+	ice/image.zep.c
 	ice/log/driver.zep.c
 	ice/mvc/route/datagenerator/regex.zep.c
 	ice/mvc/route/dispatcher/regex.zep.c
@@ -83,6 +84,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/i18n/plural/romanian.zep.c
 	ice/i18n/plural/two.zep.c
 	ice/i18n/plural/zero.zep.c
+	ice/image/gd.zep.c
 	ice/loader.zep.c
 	ice/log.zep.c
 	ice/log/driver/file.zep.c
