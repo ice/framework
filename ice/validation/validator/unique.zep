@@ -12,12 +12,12 @@ use Ice\Db\Driver\Mongodb;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'userName' => [
  *          'unique' => [
@@ -26,9 +26,9 @@ use Ice\Db\Driver\Mongodb;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -36,7 +36,6 @@ use Ice\Db\Driver\Mongodb;
  */
 class Unique extends Validator
 {
-
     /**
      * Validate the validator
      * Options: from (0), custom (1), except (2), caseInsensitive (3), label, message

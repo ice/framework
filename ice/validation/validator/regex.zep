@@ -10,12 +10,12 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'username' => [
  *          'regex' => [
@@ -23,9 +23,9 @@ use Ice\Validation\Validator;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -33,7 +33,6 @@ use Ice\Validation\Validator;
  */
 class Regex extends Validator
 {
-
     /**
      * Validate the validator
      * Options: pattern (0), label, message

@@ -7,12 +7,11 @@ namespace Ice;
  * @package     Ice/Text
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Text
 {
-
     const ALNUM = 0;
     const ALPHA = 1;
     const HEXDEC = 2;

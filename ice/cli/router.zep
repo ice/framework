@@ -10,12 +10,11 @@ use Ice\Exception;
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Router
 {
-
     protected defaultModule = "shell" { get, set };
     protected defaultHandler = "main" { get, set };
     protected defaultAction = "main" { get, set };
@@ -102,13 +101,13 @@ class Router
 
         if isset params["handler"] && params["handler"] {
             let this->handler = params["handler"];
-            
+
             unset params["handler"];
         }
 
         if isset params["action"] && params["action"] {
             let this->action = params["action"];
-            
+
             unset params["action"];
         }
 

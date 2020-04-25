@@ -7,12 +7,11 @@ namespace Ice\Auth\Driver;
  * @package     Ice/Auth
  * @category    Interface
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 interface DriverInterface
 {
-    
     public function getUser(var defaultValue = null);
     public function hasRole(var user, string role = "login");
     public function login(var username, string password, boolean remember = false, boolean force = false);

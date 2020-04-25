@@ -9,12 +9,11 @@ use Ice\Exception;
  * @package     Ice/Cli
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Server extends Websocket
 {
-
     protected verbose = false { set };
     protected address  { get };
     protected server { get };

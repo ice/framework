@@ -7,12 +7,11 @@ namespace Ice\Auth\Social;
  * @package     Ice/Auth
  * @category    Adapter
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Twitter extends Adapter
 {
-
     /**
      * Twitter adapter constructor.
      *
@@ -94,7 +93,7 @@ class Twitter extends Adapter
                         "oauth_token_secret": tokenInfo["oauth_token_secret"],
                         "screen_name":        tokenInfo["screen_name"]
                     ];
-                } 
+                }
             }
 
             if this->accessToken {
@@ -142,7 +141,7 @@ class Twitter extends Adapter
      *
      * @return array
      */
-    private function prepareUrlParams(string url, params = [], string oauthToken = "", string type = "GET") 
+    private function prepareUrlParams(string url, params = [], string oauthToken = "", string type = "GET")
     {
         var sigBaseStr, key;
 

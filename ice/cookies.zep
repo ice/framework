@@ -7,12 +7,11 @@ namespace Ice;
  * @package     Ice/Cookies
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Cookies
 {
-
     protected di;
     protected salt { get, set };
     protected expiration = 0 { get, set };
@@ -42,7 +41,7 @@ class Cookies
     }
 
     /**
-     * Gets the value of a signed cookie. 
+     * Gets the value of a signed cookie.
      * Cookies without signatures will not be returned. If the cookie signature is present, but invalid, the cookie
      * will be deleted.
      *
@@ -82,7 +81,7 @@ class Cookies
     }
 
     /**
-     * Sets a signed cookie. 
+     * Sets a signed cookie.
      * Note that all cookie values must be strings and no automatic serialization will be performed!
      *
      * @param string key Name of cookie

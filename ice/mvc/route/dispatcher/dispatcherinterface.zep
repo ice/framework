@@ -3,7 +3,6 @@ namespace Ice\Mvc\Route\Dispatcher;
 
 interface DispatcherInterface
 {
-
     /**
      * Dispatches against the provided HTTP method verb and URI.
      *

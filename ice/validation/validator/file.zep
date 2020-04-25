@@ -11,12 +11,12 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'picture' => [
  *          'file' => [
@@ -27,9 +27,9 @@ use Ice\Validation\Validator;
  *          ]
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_FILES);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -37,7 +37,6 @@ use Ice\Validation\Validator;
  */
 class File extends Validator
 {
-
     /**
      * Validate the validator
      * Options: label, messageIniSize, allowEmpty, messageEmpty, messageValid, maxSize, messageSize, allowedTypes, messageType
@@ -117,7 +116,7 @@ class File extends Validator
                     label = i18n->translate(label),
                     message = i18n->translate(message);
             }
-            
+
             let replace = [":field": label];
 
             validation->addMessage(field, strtr(message, replace));

@@ -9,12 +9,11 @@ use Ice\Exception;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Parser
 {
-
     protected functions = [
         "content": "$this->getContent",
         "partial": "$this->partial",
@@ -95,7 +94,7 @@ class Parser
                     // append string before tokens, search close-symbol of the tag
                     let parsedText .= substr(text, pos, (int) (start - pos)),
                         end = strpos(text, "%}", start + 2);
-                   
+
                     if end === false {
                         // If unexpected end of template
                         throw new Exception(sprintf("Unclosed tag on the line %d", substr_count(substr(text, 0, start), PHP_EOL) + 1));
@@ -108,7 +107,7 @@ class Parser
                     // append string before comment, search close-symbol of the comment
                     let parsedText .= substr(text, pos, (int) (start - pos)),
                         end = strpos(text, "#}", start + 2);
-                   
+
                     if end === false {
                         // If unexpected end of template
                         throw new Exception(sprintf("Unclosed comment block on the line %d", substr_count(substr(text, 0, start), PHP_EOL) + 1));
@@ -217,7 +216,7 @@ class Parser
     {
         return "<?php " . control . "(" . this->doParse(expression) . "): ?>";
     }
-    
+
     /**
      * Parse echo expression.
      *
@@ -280,7 +279,7 @@ class Parser
                 } else {
                     let parsed .= filter . "(" . this->token(token, prev, next);
                 }
-                
+
                 let next = i->offsetExists(seek + 1) ? i->offsetGet(seek + 1) : null;
 
                 if next == "(" {
@@ -294,7 +293,7 @@ class Parser
                 i->next();
                 continue;
             }
-            
+
             let parsed .= this->token(token, prev, next),
                 prev = token;
 
@@ -364,13 +363,13 @@ class Parser
         } else {
             switch token {
                 case "-":
-                case "+": 
-                case "*": 
-                case "/": 
-                case "%": 
-                case "=": 
-                case ">": 
-                case "<": 
+                case "+":
+                case "*":
+                case "/":
+                case "%":
+                case "=":
+                case ">":
+                case "<":
                     return " " . token . " ";
                 case "~":
                     return " . ";

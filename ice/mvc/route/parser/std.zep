@@ -20,7 +20,7 @@ class Std implements ParserInterface
 
         let routeWithoutClosingOptionals = rtrim(route, "]"),
             numOptionals = strlen(route) - strlen(routeWithoutClosingOptionals);
-        
+
         // Split on [ while skipping placeholders
         let segments = preg_split("~" . self::VARIABLE_REGEX . "(*SKIP)(*F) | \\[~x", routeWithoutClosingOptionals);
 

@@ -7,12 +7,11 @@ namespace Ice\Mvc\View;
  * @package     Ice/View
  * @category    Interface
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 interface ViewInterface
 {
-
     public function getEngines();
 
     public function render(file = null, array data = []);

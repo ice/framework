@@ -7,12 +7,11 @@ namespace Ice;
  * @package     Ice/Filter
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Filter
 {
-
     protected filters;
 
     /**
@@ -29,7 +28,7 @@ class Filter
         }
 
         let this->filters[name] = body;
-        
+
         return this;
     }
 
@@ -53,7 +52,7 @@ class Filter
                 let value = this->doSanitize(value, filter);
             }
         }
-        
+
         return value;
     }
 

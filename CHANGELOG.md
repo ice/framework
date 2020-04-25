@@ -1,4 +1,19 @@
 -------------------------------------------------------------------
+Sat Apr 25 13:08:46 UTC 2020
+
+- Ice 1.6.0
+ * Composer, update zephir to 0.12.18
+ * Add the image component
+ * Dump, recursion fix #265
+ * PHP 7.0, drop support
+ * Code cleanup
+ * Update prototypes
+ * Flash, add dismissible class
+ * Dispatcher, continue if before returns a value
+ * Update zephir parser to 1.3.4
+ * Websocket, long message fix #262
+
+-------------------------------------------------------------------
 Sat Mar 14 12:50:17 UTC 2020
 
 - Ice 1.5.1

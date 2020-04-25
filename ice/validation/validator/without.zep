@@ -11,12 +11,12 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'password' => [
  *          'without' => [
@@ -24,9 +24,9 @@ use Ice\Validation\Validator;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -34,7 +34,6 @@ use Ice\Validation\Validator;
  */
 class Without extends Validator
 {
-
     /**
      * Validate the validator
      * Options: fields (0,1,2..), label, message
@@ -52,7 +51,7 @@ class Without extends Validator
         if value === "" || value === null {
             return true;
         }
-        
+
         let fields = this->getOptions(Validator::NUMERIC),
             except = [];
 

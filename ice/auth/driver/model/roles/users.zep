@@ -10,12 +10,11 @@ use Ice\Mvc\Model;
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Users extends Model
 {
-
     protected from = "roles_users";
     protected autoincrement = false;
     protected primary = ["user_id", "role_id"];

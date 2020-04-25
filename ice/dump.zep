@@ -1,13 +1,17 @@
 
 namespace Ice;
 
+use ReflectionClass;
+use ReflectionObject;
+use stdClass;
+
 /**
  * Dumps information about a variable(s)
  *
  * @package     Ice/Dump
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -29,11 +33,11 @@ namespace Ice;
  */
 class Dump
 {
-
     protected detailed = false { get, set };
     protected plain = false { get, set };
     protected skip = ["Ice\\Di"] { get, set };
     protected methods = [];
+    protected objects = [];
     protected styles = [];
 
     /**
@@ -172,9 +176,10 @@ class Dump
         }
 
         if typeof variable == "object" {
-            var className;
+            var className, hash;
 
             let className = get_class(variable),
+                hash = spl_object_hash(variable),
                 output .= strtr((this->plain ? "object :class" : "<b style=':style'>object</b> :class"), [":style": this->getStyle("obj"), ":class": className]);
 
             if get_parent_class(variable) {
@@ -185,17 +190,23 @@ class Dump
             if in_array(className, this->skip) {
                 // Skip debuging
                 let output .= str_repeat(space, tab) . "[skipped]" . PHP_EOL;
+            } elseif in_array(hash, this->objects) {
+                // Recursion
+                let output .= str_repeat(space, tab) . "[already listed]" . PHP_EOL;
             } elseif !this->detailed {
                 // Debug only public properties
                 for key, value in get_object_vars(variable) {
-                    let output .= str_repeat(space, tab) . strtr((this->plain ? "->:key (:type) = " :  "-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = "), [":style": this->getStyle("obj"), ":key": key, ":type": "public"]);
-                    let output .= this->output(value, "", tab + 1) . PHP_EOL;
+                    let this->objects[] = hash,
+                        output .= str_repeat(space, tab) . strtr((this->plain ? "->:key (:type) = " :  "-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = "), [":style": this->getStyle("obj"), ":key": key, ":type": "public"]),
+                        output .= this->output(value, "", tab + 1) . PHP_EOL;
                 }
             } else {
                 // Debug all properties
-                var reflect = "ReflectionClass";
+                var reflect;
 
-                for attr in (new {reflect}(variable))->getProperties() {
+                let reflect = variable instanceof stdClass ? new ReflectionObject(variable) : new ReflectionClass(variable);
+
+                for attr in reflect->getProperties() {
                     let key = attr->getName(),
                         type = "public";
 
@@ -209,9 +220,14 @@ class Dump
                         let type = "private";
                     }
 
+                    if attr->isStatic() {
+                        let type .= " static";
+                    }
+
                     let value = attr->getValue(variable);
 
-                    let output .= str_repeat(space, tab) . strtr((this->plain ? "->:key (:type) = " : "-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = "), [":style": this->getStyle("obj"), ":key": key, ":type": type]),
+                    let this->objects[] = hash,
+                        output .= str_repeat(space, tab) . strtr((this->plain ? "->:key (:type) = " : "-><span style=':style'>:key</span> (<span style=':style'>:type</span>) = "), [":style": this->getStyle("obj"), ":key": key, ":type": type]),
                         output .= this->output(value, "", tab + 1) . PHP_EOL;
                 }
             }

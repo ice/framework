@@ -7,12 +7,11 @@ namespace Ice;
  * @package     Ice/Exception
  * @category    Error
  * @author      Ice Team
- * @copyright   (c) 2014-2015 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Exception extends \Exception
 {
-
     /**
      * Creates a new exception.
      * Translate exception's message using the [I18n] class.

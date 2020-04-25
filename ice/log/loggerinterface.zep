@@ -19,12 +19,11 @@ namespace Ice\Log;
  * @package     Ice/Log
  * @category    Interface
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 interface LoggerInterface
 {
-
     public function emergency(string message, array context = []);
 
     public function alert(string message, array context = []);

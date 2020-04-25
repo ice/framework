@@ -8,7 +8,6 @@ use Ice\Mvc\Route\DataGenerator\GroupCount as Generator;
 
 class Collector
 {
-
     private routeParser { set };
     private dataGenerator { set };
 
@@ -27,7 +26,7 @@ class Collector
         if !dataGenerator {
             let dataGenerator = new Generator();
         }
-            
+
         let this->routeParser = routeParser,
             this->dataGenerator = dataGenerator;
     }
@@ -58,7 +57,7 @@ class Collector
                 this->dataGenerator->addRoute(method, routeData, handler);
             }
         }
-        
+
         return this;
     }
 

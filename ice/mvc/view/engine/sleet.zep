@@ -12,7 +12,7 @@ use Ice\Mvc\View\Engine\Sleet\Compiler;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Sleet extends Engine
@@ -36,7 +36,7 @@ class Sleet extends Engine
         let dir = rtrim(compileDir, DIRECTORY_SEPARATOR) . str_replace(trim, "", realpath(dirname(path))),
             file = basename(path, ".sleet"),
             compiledPath = dir . DIRECTORY_SEPARATOR . file . ".phtml";
-        
+
 
         switch compile {
             case Compiler::NEVER:

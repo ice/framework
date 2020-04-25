@@ -11,12 +11,11 @@ use Ice\Db\DbInterface;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Mongodb implements DbInterface
 {
-
     protected id = "_id" { get };
     protected type = "NOSQL" { get };
     protected error;

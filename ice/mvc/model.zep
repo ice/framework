@@ -13,12 +13,11 @@ use Ice\Validation;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Model extends Arr implements \Serializable
 {
-
     protected di { get };
     protected db { get };
     protected service = "db";

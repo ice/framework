@@ -6,7 +6,6 @@ use Ice\Mvc\FastRouter;
 
 abstract class Regex implements DispatcherInterface
 {
-
     protected staticRouteMap { set };
     protected variableRouteData { set };
 

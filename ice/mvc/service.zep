@@ -10,12 +10,11 @@ use Ice\Exception;
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Service extends Access
 {
-
     protected model { set, get };
 
     /**

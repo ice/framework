@@ -7,13 +7,12 @@ namespace Ice;
  * @package     Ice/Crypt
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        openSSL
  */
 class Crypt
 {
-
     protected key { set };
     protected cipher = "aes-256" { set };
     protected mode = "cbc" { set };
@@ -143,7 +142,7 @@ class Crypt
      * Create a MAC for the given value.
      *
      * @param string value
-     * @return string  
+     * @return string
      */
     protected function hash(string value) -> string
     {

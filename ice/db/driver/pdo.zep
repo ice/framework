@@ -11,12 +11,11 @@ use Ice\Db\DbInterface;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Pdo implements DbInterface
 {
-
     protected id = "id" { get };
     protected type = "SQL" { get };
     protected error;

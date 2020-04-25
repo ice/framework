@@ -22,12 +22,11 @@ use Ice\I18n\Plural;
  * @package     Ice/I18n
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class I18n
 {
-    
     protected static i18n;
     protected cache = [];
     protected rules = [];
@@ -98,7 +97,7 @@ class I18n
 
     /**
      * Returns specified form of a string translation. No parameters are replaced.
-     * If no translation exists, the original string will be returned. 
+     * If no translation exists, the original string will be returned.
      *
      * @param string str Text to translate
      * @param mixed form If NULL, looking for `other` form, else the very first form
@@ -187,7 +186,7 @@ class I18n
     /**
      * Returns translation of a string with right plural form.
      * If no translation exists, the original string will be returned.
-     * 
+     *
      * @param string string
      * @param int count
      * @param string lang
@@ -214,7 +213,7 @@ class I18n
 
     /**
      * Plural rules lazy initialization.
-     * 
+     *
      * @param string code Language code
      * @return object
      */

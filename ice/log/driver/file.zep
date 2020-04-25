@@ -10,12 +10,11 @@ use Ice\Exception;
  * @package     Ice/Log
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class File extends Driver
 {
-
     protected file;
 
     /**
@@ -34,7 +33,7 @@ class File extends Driver
         if !is_writable(file) {
             throw new Exception("Log file " . file . " is not writeable");
         }
-        
+
         let this->file = file;
     }
 

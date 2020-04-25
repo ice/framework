@@ -13,13 +13,12 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
 class FastRouter
 {
-
     protected defaultModule = "default" { get, set };
     protected defaultHandler = "index" { get, set };
     protected defaultAction = "index" { get, set };
@@ -136,7 +135,7 @@ class FastRouter
         this->dispatcher->setData(data);
 
         let this->ready = true;
-        
+
         return this;
     }
 
@@ -150,7 +149,7 @@ class FastRouter
     {
         var module, handler, action, params, holders, data, route, response;
 
-        let 
+        let
             handler = this->defaultHandler,
             action = this->defaultAction,
             params = [];

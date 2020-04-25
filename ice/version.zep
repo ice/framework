@@ -7,13 +7,12 @@ namespace Ice;
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
 class Version
 {
-
     const DEV = 0;
     const ALPHA = 1;
     const BETA = 2;
@@ -21,8 +20,8 @@ class Version
     const STABLE = 4;
     // Don't forget to update config.json and run zephir fullclean
     const MAJOR = 1;
-    const MINOR = 5;
-    const PATCH = 1;
+    const MINOR = 6;
+    const PATCH = 0;
     const STAGE = self::STABLE;
     const BUILD = 0;
 

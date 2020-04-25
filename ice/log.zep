@@ -7,12 +7,11 @@ namespace Ice;
  * @package     Ice/Log
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Log
 {
-
     const EMERGENCY = "emergency";
     const ALERT = "alert";
     const CRITICAL = "critical";

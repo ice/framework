@@ -11,12 +11,12 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'status' => 'notIn:unactive,removed',
  *      'username' => [
@@ -27,9 +27,9 @@ use Ice\Validation\Validator;
  *          ],
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -37,7 +37,6 @@ use Ice\Validation\Validator;
  */
 class NotIn extends Validator
 {
-
     /**
      * Validate the validator
      * Options: values (0,1,2..), label, message

@@ -9,13 +9,12 @@ use Ice\Exception;
  * @package     Ice/Filter
  * @category    Minification
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  * @uses        jsmin.c www.crockford.com
  */
 class Js
 {
-
     const ORD_LF = 10;
     const ORD_SPACE = 32;
     const ACTION_KEEP_A = 1;
@@ -237,7 +236,7 @@ class Js
                             }
                     }
                 break;
-                default:       
+                default:
                     switch this->b {
                         case " ":
                             if this->isAlphaNum(this->a) {
@@ -270,8 +269,8 @@ class Js
                         break;
                     }
             }
-        }        
-        
+        }
+
         return this->output;
     }
 

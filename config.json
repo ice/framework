@@ -1,9 +1,9 @@
 {
     "namespace": "ice",
     "name": "ice",
-    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2018 Ice Team.",
+    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2020 Ice Team.",
     "author": "Ice Team",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "verbose": false,
     "info": [
         {
@@ -72,6 +72,7 @@
         "check-invalid-reads": false
     },
     "prototype-dir": {
-        "mongodb": "prototypes/mongodb"
+        "mongodb": "prototypes/mongodb",
+        "pdo": "prototypes/pdo"
     }
 }

@@ -3,7 +3,6 @@ namespace Ice\Mvc\Route\Parser;
 
 interface ParserInterface
 {
-
     /**
      * Parses a route string into multiple route data arrays.
      *

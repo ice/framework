@@ -10,12 +10,12 @@ use Ice\Validation\Validator;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
  *  $validation = new Ice\Validation();
- *  
+ *
  *  $validation->rules([
  *      'title' => 'length:10,100',
  *      'content' => [
@@ -26,9 +26,9 @@ use Ice\Validation\Validator;
  *          ]
  *      ]
  *  ]);
- *  
+ *
  *  $valid = $validation->validate($_POST);
- *  
+ *
  *  if (!$valid) {
  *      $messages = $validation->getMessages();
  *  }
@@ -36,7 +36,6 @@ use Ice\Validation\Validator;
  */
 class Length extends Validator
 {
-
     /**
      * Validate the validator
      * Options: min (0), max (1), label, messageMin, messageMax

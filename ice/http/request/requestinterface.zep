@@ -7,12 +7,11 @@ namespace Ice\Http\Request;
  * @package     Ice/Http
  * @category    Interface
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 interface RequestInterface
 {
-
     public function hasRequest(string! name) -> boolean;
 
     public function hasPost(string! name) -> boolean;

@@ -9,12 +9,11 @@ use Ice\Mvc\View\Engine;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Php extends Engine
 {
-
     /**
      * Render the PHP file.
      *

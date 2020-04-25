@@ -7,17 +7,16 @@ namespace Ice;
  * @package     Ice/Loader
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class Loader
 {
-
     protected prefixes = [];
 
     /**
      * Register loader with SPL autoloader stack.
-     * 
+     *
      * @return void
      */
     public function register()
@@ -76,13 +75,13 @@ class Loader
         // class name to find a mapped file name
         let pos = strrpos(prefix, "\\");
 
-        if pos === false {        
+        if pos === false {
             // try to load a mapped file for the prefix and relative class
             let mappedFile = this->loadMappedFile("\\", className);
             if mappedFile {
                 return mappedFile;
             }
-        } else {        
+        } else {
             do {
                 // retain the trailing namespace separator in the prefix
                 let prefix = substr(className, 0, pos + 1);
@@ -100,7 +99,7 @@ class Loader
                 // of strrpos()
                 let prefix = rtrim(prefix, "\\");
                 let pos = strrpos(prefix, "\\");
-            } 
+            }
             while pos !== false;
         }
 
@@ -110,7 +109,7 @@ class Loader
 
     /**
      * Load the mapped file for a namespace prefix and relative class.
-     * 
+     *
      * @param string $prefix The namespace prefix
      * @param string $relative_class The relative class name
      * @return mixed Boolean false if no mapped file can be loaded, or the name of the mapped file that was loaded
@@ -146,7 +145,7 @@ class Loader
 
     /**
      * If a file exists, require it from the file system.
-     * 
+     *
      * @param string $file The file to require
      * @return bool True if the file exists, false if not
      */

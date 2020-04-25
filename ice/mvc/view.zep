@@ -12,12 +12,11 @@ use Ice\Mvc\View\ViewInterface;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2018 Ice Team
+ * @copyright   (c) 2014-2020 Ice Team
  * @license     http://iceframework.org/license
  */
 class View extends Arr implements ViewInterface
 {
-
     protected engines { set };
     protected content { set, get };
     protected mainView = "index" { set, get };
@@ -101,7 +100,7 @@ class View extends Arr implements ViewInterface
         let ext = pathinfo(this->file, PATHINFO_EXTENSION);
 
         if !empty ext {
-            if fetch engine, engines["." . ext] {            
+            if fetch engine, engines["." . ext] {
                 for dir in dirs {
                     let path = dir . this->file;
                     if file_exists(path) {
@@ -185,7 +184,7 @@ class View extends Arr implements ViewInterface
     public function setVar(string! name, value)
     {
         this->set(name, value);
-        
+
         return this;
     }
 
@@ -198,7 +197,7 @@ class View extends Arr implements ViewInterface
     public function setVars(array! vars)
     {
         this->replace(vars);
-        
+
         return this;
     }
 
@@ -211,7 +210,7 @@ class View extends Arr implements ViewInterface
     public function setLayout(string layout)
     {
         this->setMainView(layout);
-        
+
         return this;
     }
 
