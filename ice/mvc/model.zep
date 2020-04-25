@@ -18,7 +18,6 @@ use Ice\Validation;
  */
 abstract class Model extends Arr implements \Serializable
 {
-
     protected di { get };
     protected db { get };
     protected service = "db";

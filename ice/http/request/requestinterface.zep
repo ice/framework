@@ -12,7 +12,6 @@ namespace Ice\Http\Request;
  */
 interface RequestInterface
 {
-
     public function hasRequest(string! name) -> boolean;
 
     public function hasPost(string! name) -> boolean;

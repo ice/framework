@@ -13,7 +13,6 @@ namespace Ice;
  */
 class Tag
 {
-
     const HTML32 = 1;
     const HTML401_STRICT = 2;
     const HTML401_TRANSITIONAL = 3;

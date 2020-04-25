@@ -16,7 +16,6 @@ use Ice\Validation;
  */
 class Tokens extends Model
 {
-
     protected from = "user_tokens";
 
     /**

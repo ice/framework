@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class Ini extends Config
 {
-
     /**
      * Config ini constructor.
      *

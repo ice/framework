@@ -14,7 +14,6 @@ use Ice\Mvc\View\Engine;
  */
 class Php extends Engine
 {
-
     /**
      * Render the PHP file.
      *

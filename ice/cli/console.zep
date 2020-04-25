@@ -15,7 +15,6 @@ use Ice\Di\Access;
  */
 class Console extends Access
 {
-
     protected modules { get, set };
 
     const NORMAL = 0;

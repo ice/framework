@@ -18,7 +18,6 @@ use Ice\Http\Response\ResponseInterface;
  */
 class Response implements ResponseInterface
 {
-
     protected protocolVersion = "HTTP/1.1" { get, set };
     protected status = 200 { get, set };
     protected headers;

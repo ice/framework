@@ -7,7 +7,6 @@ use Ice\Mvc\FastRoute;
 
 abstract class Regex implements DataGeneratorInterface
 {
-
     protected staticRoutes = [];
     protected methodToRegexToRoutesMap = [];
 

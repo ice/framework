@@ -29,7 +29,6 @@ use Ice\Validation\Validator;
  */
 class Digit extends Validator
 {
-
     /**
      * Validate the validator
      * Options: label, message

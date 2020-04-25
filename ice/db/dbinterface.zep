@@ -12,7 +12,6 @@ namespace Ice\Db;
  */
 interface DbInterface
 {
-
     public function findOne(string! from, var filters = [], array fields = [], array options = []);
 
     public function find(string! from, var filters = [], array fields = [], array options = []);

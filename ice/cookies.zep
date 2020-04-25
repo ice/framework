@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Cookies
 {
-
     protected di;
     protected salt { get, set };
     protected expiration = 0 { get, set };

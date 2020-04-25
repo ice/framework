@@ -3,7 +3,6 @@ namespace Ice\Mvc\Route\DataGenerator;
 
 interface DataGeneratorInterface
 {
-
     /**
      * Adds a route to the data generator. The route data uses the
      * same format that is returned by RouterParser::parser().

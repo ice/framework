@@ -13,7 +13,6 @@ namespace Ice;
  */
 class Crypt
 {
-
     protected key { set };
     protected cipher = "aes-256" { set };
     protected mode = "cbc" { set };

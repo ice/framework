@@ -13,7 +13,6 @@ namespace Ice\Mvc;
  */
 class FastRoute
 {
-
     public httpMethod;
     public regex;
     public variables;

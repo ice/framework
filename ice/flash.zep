@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Flash
 {
-
     protected session;
     protected tag;
     protected options = [

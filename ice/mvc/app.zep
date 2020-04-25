@@ -16,7 +16,6 @@ use Ice\Http\Response\ResponseInterface;
  */
 class App extends Access
 {
-
     protected autoRender = true { get, set };
     protected modules { get, set };
 

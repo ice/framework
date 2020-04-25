@@ -15,7 +15,6 @@ use Ice\Mvc\Model;
  */
 class Users extends Model
 {
-
     protected from = "roles_users";
     protected autoincrement = false;
     protected primary = ["user_id", "role_id"];

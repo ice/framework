@@ -12,7 +12,6 @@ namespace Ice\Auth\Social;
  */
 class Google extends Adapter
 {
-
     /**
      * Google adapter constructor.
      *

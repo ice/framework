@@ -15,7 +15,6 @@ use ReflectionParameter;
  */
 class Di extends Arr
 {
-
     protected static di;
     protected hooks = [];
     protected defaults = [] { set };

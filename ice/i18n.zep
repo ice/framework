@@ -27,7 +27,6 @@ use Ice\I18n\Plural;
  */
 class I18n
 {
-
     protected static i18n;
     protected cache = [];
     protected rules = [];

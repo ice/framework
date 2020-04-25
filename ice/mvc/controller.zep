@@ -15,5 +15,4 @@ use Ice\Di\Access;
  */
 abstract class Controller extends Access
 {
-
 }

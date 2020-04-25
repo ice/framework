@@ -30,7 +30,6 @@ use Ice\Validation\Validator;
  */
 class Same extends Validator
 {
-
     /**
      * Validate the validator
      * Options: other (0), allowEmpty (1), label, labelOther, message

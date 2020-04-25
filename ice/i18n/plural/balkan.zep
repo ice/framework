@@ -24,7 +24,6 @@ namespace Ice\I18n\Plural;
  */
 class Balkan implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         var isInt;

@@ -13,7 +13,6 @@ namespace Ice;
  */
 class Pagination extends Arr
 {
-
     protected di { get };
     protected tag { get };
 

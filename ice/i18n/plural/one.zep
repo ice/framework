@@ -25,7 +25,6 @@ namespace Ice\I18n\Plural;
  */
 class One implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         return count == 1 ? "one" : "other";

@@ -12,6 +12,5 @@ namespace Ice\I18n\Plural;
  */
 interface PluralInterface
 {
-
     public function getCategory(int count) -> string;
 }

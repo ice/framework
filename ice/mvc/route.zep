@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class Route
 {
-
     // Route URI string
     protected routeUri = "";
 

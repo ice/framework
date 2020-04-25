@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class Router
 {
-
     protected defaultModule = "shell" { get, set };
     protected defaultHandler = "main" { get, set };
     protected defaultAction = "main" { get, set };

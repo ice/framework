@@ -36,7 +36,6 @@ use Ice\Db\Driver\Mongodb;
  */
 class Unique extends Validator
 {
-
     /**
      * Validate the validator
      * Options: from (0), custom (1), except (2), caseInsensitive (3), label, message

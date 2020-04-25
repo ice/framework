@@ -14,7 +14,6 @@ use Ice\Exception;
  */
 class Parser
 {
-
     protected functions = [
         "content": "$this->getContent",
         "partial": "$this->partial",

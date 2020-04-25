@@ -14,7 +14,6 @@ use Ice\Exception;
  */
 class Env extends Ini
 {
-
     /**
      * Env constructor.
      *

@@ -14,7 +14,6 @@ use Ice\Di;
  */
 abstract class Driver
 {
-
     protected session;
     protected cookies;
     protected request;

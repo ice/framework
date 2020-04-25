@@ -12,7 +12,6 @@ namespace Ice\Auth\Social;
  */
 class Twitter extends Adapter
 {
-
     /**
      * Twitter adapter constructor.
      *

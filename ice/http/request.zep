@@ -16,7 +16,6 @@ use Ice\Http\Request\RequestInterface;
  */
 class Request extends Arr implements RequestInterface
 {
-
     protected files;
     protected get;
     protected post;

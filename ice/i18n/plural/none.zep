@@ -21,7 +21,6 @@ namespace Ice\I18n\Plural;
  */
 class None implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         return "other";

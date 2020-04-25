@@ -13,7 +13,6 @@ namespace Ice\Filter;
  */
 class Css
 {
-
     const FREE = 1;
     const ATRULE = 2;
     const SELECTOR = 3;

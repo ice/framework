@@ -14,7 +14,6 @@ use Ice\Mvc\Model;
  */
 class Social extends Model
 {
-
     protected from = "user_social";
 
     /**

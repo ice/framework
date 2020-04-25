@@ -19,7 +19,6 @@ use Ice\Mvc\Route\Dispatcher\DispatcherInterface;
  */
 class FastRouter
 {
-
     protected defaultModule = "default" { get, set };
     protected defaultHandler = "index" { get, set };
     protected defaultAction = "index" { get, set };

@@ -14,7 +14,6 @@ use Ice\Exception;
  */
 class Server extends Websocket
 {
-
     protected verbose = false { set };
     protected address  { get };
     protected server { get };

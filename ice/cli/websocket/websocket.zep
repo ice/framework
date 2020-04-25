@@ -16,7 +16,6 @@ use Ice\Cli\Console;
  */
 class Websocket
 {
-
     protected static opcodes = [
         "continuation": 0,
         "text": 1,

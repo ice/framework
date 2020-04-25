@@ -8,7 +8,6 @@ use Ice\Mvc\Route\DataGenerator\GroupCount as Generator;
 
 class Collector
 {
-
     private routeParser { set };
     private dataGenerator { set };
 

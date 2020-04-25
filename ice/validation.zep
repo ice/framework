@@ -33,7 +33,6 @@ use Ice\Validation\Validator;
  */
 class Validation
 {
-
     protected di { get };
     protected data { get };
     protected rules = [] { set, get };

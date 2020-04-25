@@ -5,7 +5,6 @@ use Ice\Mvc\Route\DataGenerator\Regex;
 
 class GroupCount extends Regex
 {
-
     protected function getApproxChunkSize()
     {
         return 10;

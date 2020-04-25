@@ -29,7 +29,6 @@ use Ice\Validation\Validator;
  */
 class Url extends Validator
 {
-
     /**
      * Validate the validator
      * Options: label, message

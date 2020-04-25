@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 abstract class Service extends Access
 {
-
     protected model { set, get };
 
     /**

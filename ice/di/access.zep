@@ -15,7 +15,6 @@ use Ice\Di;
  */
 class Access
 {
-
     protected di;
 
     /**

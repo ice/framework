@@ -23,7 +23,6 @@ namespace Ice\I18n\Plural;
  */
 class Romanian implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         int i100;

@@ -6,7 +6,6 @@ use Ice\Mvc\FastRouter;
 
 class GroupCount extends Regex
 {
-
     protected staticRouteMap { set };
     protected variableRouteData { set };
 

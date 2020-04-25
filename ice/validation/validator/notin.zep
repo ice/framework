@@ -37,7 +37,6 @@ use Ice\Validation\Validator;
  */
 class NotIn extends Validator
 {
-
     /**
      * Validate the validator
      * Options: values (0,1,2..), label, message

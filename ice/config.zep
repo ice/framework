@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Config extends Arr
 {
-
     /**
      * Config constructor.
      *

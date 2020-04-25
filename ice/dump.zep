@@ -33,7 +33,6 @@ use stdClass;
  */
 class Dump
 {
-
     protected detailed = false { get, set };
     protected plain = false { get, set };
     protected skip = ["Ice\\Di"] { get, set };

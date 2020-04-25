@@ -15,7 +15,6 @@ use Ice\Http\Response\HeadersInterface;
  */
 class Headers extends Arr implements HeadersInterface
 {
-
     /**
      * Sends the headers to the client.
      *

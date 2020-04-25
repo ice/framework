@@ -23,7 +23,6 @@ namespace Ice\I18n\Plural;
  */
 class Polish implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         var isInt;

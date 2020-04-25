@@ -14,7 +14,6 @@ use ArrayIterator;
  */
 class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
 {
-
     protected data = [] { get };
 
     /**

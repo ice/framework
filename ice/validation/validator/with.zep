@@ -34,7 +34,6 @@ use Ice\Validation\Validator;
  */
 class With extends Validator
 {
-
     /**
      * Validate the validator
      * Options: fields (0,1,2..), label, message

@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class Gd extends Image
 {
-
     protected static bundled;
 
     protected image;

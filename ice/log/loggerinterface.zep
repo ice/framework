@@ -24,7 +24,6 @@ namespace Ice\Log;
  */
 interface LoggerInterface
 {
-
     public function emergency(string message, array context = []);
 
     public function alert(string message, array context = []);

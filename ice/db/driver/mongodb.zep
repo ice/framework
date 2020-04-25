@@ -16,7 +16,6 @@ use Ice\Db\DbInterface;
  */
 class Mongodb implements DbInterface
 {
-
     protected id = "_id" { get };
     protected type = "NOSQL" { get };
     protected error;

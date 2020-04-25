@@ -14,7 +14,6 @@ use Ice\Di;
  */
 class Url
 {
-
     protected baseUri = "/" { get, set };
     protected staticUri = "/" { get, set };
 

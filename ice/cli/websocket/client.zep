@@ -14,7 +14,6 @@ use Ice\Exception;
  */
 class Client extends Websocket
 {
-
     protected socket = null;
     protected message = null;
     protected tick = null;

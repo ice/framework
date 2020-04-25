@@ -13,7 +13,6 @@ namespace Ice;
  */
 class Version
 {
-
     const DEV = 0;
     const ALPHA = 1;
     const BETA = 2;

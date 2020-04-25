@@ -17,7 +17,6 @@ use Ice\Auth\Driver\DriverInterface;
  */
 class File extends Driver implements DriverInterface
 {
-
     protected users { set };
 
     /**

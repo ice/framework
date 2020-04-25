@@ -30,7 +30,6 @@ use Ice\Validation\Validator;
  */
 class $In extends Validator
 {
-
     /**
      * Validate the validator
      * Options: values (0,1,2..), label, message

@@ -15,7 +15,6 @@ use Ice\Mvc\ModuleInterface;
  */
 abstract class Dispatcher
 {
-
     protected di;
     protected defaultNamespace { get, set };
     protected activeHandler { get };

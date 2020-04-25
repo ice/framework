@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Exception extends \Exception
 {
-
     /**
      * Creates a new exception.
      * Translate exception's message using the [I18n] class.

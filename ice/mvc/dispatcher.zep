@@ -16,7 +16,6 @@ use Ice\Mvc\Route\Collector;
  */
 class Dispatcher extends \Ice\Dispatcher
 {
-
     protected method { get, set };
     protected handlers = "Controllers";
     protected handlerSuffix = "Controller";

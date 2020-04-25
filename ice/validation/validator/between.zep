@@ -35,7 +35,6 @@ use Ice\Validation\Validator;
  */
 class Between extends Validator
 {
-
     /**
      * Validate the validator
      * Options: min (0), max (1), label, message

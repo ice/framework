@@ -54,5 +54,4 @@ namespace Ice;
  */
 class Auth
 {
-
 }

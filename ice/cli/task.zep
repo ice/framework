@@ -16,5 +16,4 @@ use Ice\Di\Access;
  */
 class Task extends Access
 {
-
 }

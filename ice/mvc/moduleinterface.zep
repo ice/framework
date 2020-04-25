@@ -15,7 +15,6 @@ use Ice\Loader;
  */
 interface ModuleInterface
 {
-
     public function registerAutoloaders(<Loader> loader = null);
 
     public function registerServices(<Di> di);

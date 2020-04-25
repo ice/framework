@@ -16,7 +16,6 @@ use Ice\Db\DbInterface;
  */
 class Pdo implements DbInterface
 {
-
     protected id = "id" { get };
     protected type = "SQL" { get };
     protected error;

@@ -37,7 +37,6 @@ use Ice\Validation\Validator;
  */
 class File extends Validator
 {
-
     /**
      * Validate the validator
      * Options: label, messageIniSize, allowEmpty, messageEmpty, messageValid, maxSize, messageSize, allowedTypes, messageType

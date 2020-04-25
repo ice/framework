@@ -33,7 +33,6 @@ use Ice\Validation\Validator;
  */
 class Regex extends Validator
 {
-
     /**
      * Validate the validator
      * Options: pattern (0), label, message

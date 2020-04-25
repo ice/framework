@@ -21,7 +21,6 @@ use Ice\Auth\Driver\Model\Users\Social as UserSocial;
  */
 class Db extends Driver implements DriverInterface
 {
-
     /**
      * Logs a user in, based on the autologin cookie.
      *

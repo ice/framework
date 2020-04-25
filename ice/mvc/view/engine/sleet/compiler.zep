@@ -12,7 +12,6 @@ namespace Ice\Mvc\View\Engine\Sleet;
  */
 class Compiler
 {
-
     protected view;
     protected content;
     protected parsed;

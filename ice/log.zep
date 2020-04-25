@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Log
 {
-
     const EMERGENCY = "emergency";
     const ALERT = "alert";
     const CRITICAL = "critical";

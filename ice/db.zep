@@ -16,7 +16,6 @@ use Ice\Db\DbInterface;
  */
 class Db
 {
-
     protected driver { get, set };
 
     /**

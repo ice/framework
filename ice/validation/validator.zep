@@ -14,7 +14,6 @@ use Ice\Validation;
  */
 abstract class Validator
 {
-
     protected options = [];
 
     const ALL = 0;

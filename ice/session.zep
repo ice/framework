@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Session extends Arr
 {
-
     protected started = false;
 
     /**

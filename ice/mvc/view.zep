@@ -17,7 +17,6 @@ use Ice\Mvc\View\ViewInterface;
  */
 class View extends Arr implements ViewInterface
 {
-
     protected engines { set };
     protected content { set, get };
     protected mainView = "index" { set, get };

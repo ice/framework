@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 abstract class Adapter implements SocialInterface
 {
-
     protected options;
     protected accessToken { set, get };
     protected clientId;

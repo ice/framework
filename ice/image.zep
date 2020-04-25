@@ -14,7 +14,6 @@ use Ice\Exception;
  */
 abstract class Image
 {
-
     // Resizing constraints
     const NONE = 1;
     const WIDTH = 2;

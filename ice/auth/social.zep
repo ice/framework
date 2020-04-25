@@ -14,7 +14,6 @@ use Ice\Auth\Social\SocialInterface;
  */
 class Social
 {
-
     protected adapter { get };
 
     /**

@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class File extends Driver
 {
-
     protected file;
 
     /**

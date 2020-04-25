@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Assets
 {
-
     protected di;
     protected collections = [] { set, get };
     protected options = [] { set };

@@ -22,7 +22,6 @@ namespace Ice\I18n\Plural;
  */
 class French implements PluralInterface
 {
-
     public function getCategory(int count) -> string
     {
         if count >= 0 && count < 2 {

@@ -15,7 +15,6 @@ use Ice\Exception;
  */
 class Json extends Config
 {
-
     /**
      * Config json constructor.
      *

@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Loader
 {
-
     protected prefixes = [];
 
     /**

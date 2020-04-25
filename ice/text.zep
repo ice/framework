@@ -12,7 +12,6 @@ namespace Ice;
  */
 class Text
 {
-
     const ALNUM = 0;
     const ALPHA = 1;
     const HEXDEC = 2;

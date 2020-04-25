@@ -12,7 +12,6 @@ namespace Ice\Auth\Social;
  */
 class Facebook extends Adapter
 {
-
     /**
      * Facebook adapter constructor.
      *
