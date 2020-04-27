@@ -144,6 +144,10 @@ zend_class_entry *ice_validation_validator_with_ce;
 zend_class_entry *ice_validation_validator_without_ce;
 zend_class_entry *ice_version_ce;
 
+#ifdef ZTS
+ZEND_TSRMLS_CACHE_DEFINE()
+#endif
+
 ZEND_DECLARE_MODULE_GLOBALS(ice)
 
 PHP_INI_BEGIN()
@@ -320,9 +324,6 @@ static void php_zephir_init_module_globals(zend_ice_globals *ice_globals TSRMLS_
 static PHP_RINIT_FUNCTION(ice)
 {
 	zend_ice_globals *ice_globals_ptr;
-#ifdef ZTS
-	tsrm_ls = ts_resource(0);
-#endif
 	ice_globals_ptr = ZEPHIR_VGLOBAL;
 
 	php_zephir_init_globals(ice_globals_ptr);
@@ -368,6 +369,10 @@ static PHP_MINFO_FUNCTION(ice)
 
 static PHP_GINIT_FUNCTION(ice)
 {
+#ifdef ZTS
+	ZEND_TSRMLS_CACHE_UPDATE();
+#endif
+
 	php_zephir_init_globals(ice_globals);
 	php_zephir_init_module_globals(ice_globals);
 }
