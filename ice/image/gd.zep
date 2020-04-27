@@ -232,10 +232,6 @@ class Gd extends Image
     {
         var transparent, image, width, height;
 
-        if !self::bundled {
-            throw new Exception(["This method requires %s, which is only available in the bundled version of GD", "imagerotate"]);
-        }
-
         // Loads image if not yet loaded
         this->loadImage();
 
@@ -322,10 +318,6 @@ class Gd extends Image
     {
         var tmp, matrix;
 
-        if !self::bundled {
-            throw new Exception(["This method requires %s, which is only available in the bundled version of GD", "imageconvolution"]);
-        }
-
         // Loads image if not yet loaded
         this->loadImage();
 
@@ -360,10 +352,6 @@ class Gd extends Image
     protected function doReflection(int height, int opacity, boolean fadeIn) -> void
     {
         var tmp, srcY, dstY, dstOpacity, stepping, reflection, line;
-
-        if !self::bundled {
-            throw new Exception(["This method requires %s, which is only available in the bundled version of GD", "imagefilter"]);
-        }
 
         // Loads image if not yet loaded
         this->loadImage();
@@ -441,10 +429,6 @@ class Gd extends Image
     protected function doWatermark(<Image> watermark, int offsetX, int offsetY, int opacity) -> void
     {
         var tmp, overlay, width, height, color;
-
-        if !self::bundled {
-            throw new Exception(["This method requires %s, which is only available in the bundled version of GD", "imagelayereffect"]);
-        }
 
         // Loads image if not yet loaded
         this->loadImage();
@@ -570,7 +554,7 @@ class Gd extends Image
      */
     protected function doRender(string type, quality) -> string
     {
-        var tmp, save, type, status;
+        var tmp, save, status;
 
         // Loads image if not yet loaded
         this->loadImage();
@@ -578,7 +562,7 @@ class Gd extends Image
         // Get the save function and IMAGETYPE
         let tmp = this->saveFunction(type, quality),
             save = tmp[0],
-            type = tmp[1],
+            type = (string) tmp[1],
             quality = tmp[2];
 
         // Capture the output
