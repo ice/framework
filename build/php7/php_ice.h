@@ -53,7 +53,7 @@ ZEND_EXTERN_MODULE_GLOBALS(ice)
 #endif
 
 #ifdef ZTS
-	void ***tsrm_ls;
+	ZEND_TSRMLS_CACHE_EXTERN()
 	#define ZEPHIR_VGLOBAL ((zend_ice_globals *) (*((void ***) tsrm_get_ls_cache()))[TSRM_UNSHUFFLE_RSRC_ID(ice_globals_id)])
 #else
 	#define ZEPHIR_VGLOBAL &(ice_globals)
