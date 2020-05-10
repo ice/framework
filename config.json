@@ -3,7 +3,7 @@
     "name": "ice",
     "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2020 Ice Team.",
     "author": "Ice Team",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "verbose": false,
     "info": [
         {
@@ -22,8 +22,11 @@
     },
     "api": {
         "path"  : "../doc/latest/",
+        "theme-directories": [
+            "../doc/themes"
+        ],
         "theme" : {
-            "name":"ice",
+            "name":"zephir-ice",
             "options" :{
                 "github":"https://github.com/ice/framework",
                 "analytics":null
