@@ -85,7 +85,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "users");
 	ZEPHIR_CALL_METHOD(&_2, &auth, "getoption", NULL, 0, &_1, &_3);
@@ -99,7 +99,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZVAL_STRING(&_1, "user_id");
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_2, &_4, &_5);
 	zephir_check_call_status();
-	zephir_read_property(&_6, this_ptr, SL("roleClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_6, this_ptr, ZEND_STRL("roleClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_7, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_8);
@@ -141,49 +141,49 @@ zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("messages"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("messages"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("messages"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("messages"), &_1$$3);
 		}
-		zephir_read_property(&_2, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_2, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			array_init(&_3$$4);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("rules"), &_3$$4);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("rules"), &_3$$4);
 		}
-		zephir_read_property(&_4, this_ptr, SL("labels"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_4, this_ptr, ZEND_STRL("labels"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_4) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_5$$5);
 			array_init(&_5$$5);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("labels"), &_5$$5);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("labels"), &_5$$5);
 		}
-		zephir_read_property(&_6, this_ptr, SL("relations"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_6, this_ptr, ZEND_STRL("relations"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_6) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_7$$6);
 			array_init(&_7$$6);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("relations"), &_7$$6);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("relations"), &_7$$6);
 		}
-		zephir_read_property(&_8, this_ptr, SL("fields"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_8, this_ptr, ZEND_STRL("fields"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_8) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_9$$7);
 			array_init(&_9$$7);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("fields"), &_9$$7);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("fields"), &_9$$7);
 		}
-		zephir_read_property(&_10, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_10, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_10) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_11$$8);
 			array_init(&_11$$8);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("data"), &_11$$8);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("data"), &_11$$8);
 		}
-		zephir_read_property(&_12, this_ptr, SL("filters"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_12, this_ptr, ZEND_STRL("filters"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_12) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_13$$9);
 			array_init(&_13$$9);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("filters"), &_13$$9);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("filters"), &_13$$9);
 		}
-		zephir_read_property(&_14, this_ptr, SL("primary"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_14, this_ptr, ZEND_STRL("primary"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_14) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_15$$10);
 			zephir_create_array(&_15$$10, 2, 0);
@@ -193,7 +193,7 @@ zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class
 			ZEPHIR_INIT_NVAR(&_16$$10);
 			ZVAL_STRING(&_16$$10, "role_id");
 			zephir_array_fast_append(&_15$$10, &_16$$10);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("primary"), &_15$$10);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("primary"), &_15$$10);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

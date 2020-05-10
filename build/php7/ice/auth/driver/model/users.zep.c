@@ -83,7 +83,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 
 	ZEPHIR_CALL_METHOD(&idKey, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_0, this_ptr, SL("tokenClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("tokenClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_create_array(&_1, 1, 0);
 	add_assoc_stringl_ex(&_1, SL("alias"), SL("Tokens"));
@@ -91,7 +91,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_STRING(&_2, "user_id");
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, &idKey, &_0, &_2, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_4);
 	zephir_create_array(&_4, 1, 0);
 	add_assoc_stringl_ex(&_4, SL("alias"), SL("Roles"));
@@ -99,7 +99,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_STRING(&_2, "user_id");
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, &idKey, &_3, &_2, &_4);
 	zephir_check_call_status();
-	zephir_read_property(&_5, this_ptr, SL("socialClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("socialClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_6);
 	zephir_create_array(&_6, 1, 0);
 	add_assoc_stringl_ex(&_6, SL("alias"), SL("Social"));
@@ -182,7 +182,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 
 
 	ZEPHIR_OBS_VAR(&roles);
-	zephir_read_property(&roles, this_ptr, SL("roleClass"), PH_NOISY_CC);
+	zephir_read_property(&roles, this_ptr, ZEND_STRL("roleClass"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 1, 0);
 	zephir_array_update_string(&_0, SL("name"), &name, PH_COPY | PH_SEPARATE);

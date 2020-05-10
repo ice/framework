@@ -228,7 +228,7 @@ PHP_METHOD(Ice_Db, __call) {
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("driver"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("driver"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	zephir_array_fast_append(&_0, &method);
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, arguments);

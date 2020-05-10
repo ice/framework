@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Session, start) {
 		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_start", &_2, 204);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &_1$$3);
-		zephir_read_property(&_3$$3, this_ptr, SL("started"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_3$$3, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_3$$3)) {
 			ZEPHIR_INIT_VAR(&valid);
 			ZVAL_STRING(&valid, "__valid__");
@@ -103,7 +103,7 @@ PHP_METHOD(Ice_Session, start) {
 				ZEPHIR_CALL_FUNCTION(&_7$$5, "session_start", &_2, 204);
 				zephir_check_call_status();
 				zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &_7$$5);
-				zephir_read_property(&_6$$5, this_ptr, SL("started"), PH_NOISY_CC | PH_READONLY);
+				zephir_read_property(&_6$$5, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
 				if (zephir_is_true(&_6$$5)) {
 					ZEPHIR_CALL_METHOD(&_8$$6, this_ptr, "has", &_5, 0, &valid);
 					zephir_check_call_status();
@@ -154,7 +154,7 @@ PHP_METHOD(Ice_Session, isStarted) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("started"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_is_true(&_0)) {
 		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_status", NULL, 206);
 		zephir_check_call_status();

@@ -73,12 +73,12 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "auth");
 	ZEPHIR_CALL_METHOD(&auth, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "users");
 	ZEPHIR_CALL_METHOD(&_2, &auth, "getoption", NULL, 0, &_1, &_3);

@@ -156,7 +156,7 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	ZEPHIR_GET_CONSTANT(&_3, "PHP_EOL");
 	ZEPHIR_INIT_VAR(&line);
 	ZEPHIR_CONCAT_SVSVSVV(&line, "[", &_1, "] ", &_0, ": ", &_2, &_3);
-	zephir_read_property(&_4, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_4, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 8);
 	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 176, &_4, &line, &_5);
 	zephir_check_call_status();

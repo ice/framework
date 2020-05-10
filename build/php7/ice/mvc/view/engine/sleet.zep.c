@@ -111,13 +111,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 
 
 	ZEPHIR_OBS_VAR(&trim);
-	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_isset_string_fetch(&trim, &_0, SL("trimPath"), 0);
 	ZEPHIR_OBS_VAR(&compileDir);
-	zephir_read_property(&_1, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_isset_string_fetch(&compileDir, &_1, SL("compileDir"), 0);
 	ZEPHIR_OBS_VAR(&compile);
-	zephir_read_property(&_2, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_isset_string_fetch(&compile, &_2, SL("compile"), 0);
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_INIT_VAR(&_4);
@@ -171,7 +171,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		ZEPHIR_CALL_METHOD(NULL, &_10$$9, "__construct", NULL, 183, this_ptr);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("compiler"), &_10$$9);
-		zephir_read_property(&_11$$9, this_ptr, SL("compiler"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_11$$9, this_ptr, ZEND_STRL("compiler"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&compiled, &_11$$9, "compile", NULL, 0, &path);
 		zephir_check_call_status();
 		if (Z_TYPE_P(&compile) == IS_STRING) {

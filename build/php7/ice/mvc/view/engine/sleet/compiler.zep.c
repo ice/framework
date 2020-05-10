@@ -124,7 +124,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile) {
 	ZEPHIR_INIT_VAR(&content);
 	zephir_file_get_contents(&content, &path);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), &content);
-	zephir_read_property(&_0, this_ptr, SL("parser"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("parser"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "text", NULL, 0, &content);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("parsed"), &_1);

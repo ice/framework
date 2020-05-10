@@ -171,13 +171,13 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		zephir_check_call_status();
 		_3$$3 = zephir_is_true(&auth);
 		if (_3$$3) {
-			zephir_read_property(&_5$$3, this_ptr, SL("provider"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_5$$3, this_ptr, ZEND_STRL("provider"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(&_4$$3, &auth, "has", NULL, 0, &_5$$3);
 			zephir_check_call_status();
 			_3$$3 = zephir_is_true(&_4$$3);
 		}
 		if (_3$$3) {
-			zephir_read_property(&_7$$4, this_ptr, SL("provider"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_7$$4, this_ptr, ZEND_STRL("provider"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_CALL_METHOD(&_6$$4, &auth, "get", NULL, 0, &_7$$4);
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(config, &_6$$4, "toarray", NULL, 0);
@@ -211,15 +211,15 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 		}
 		zephir_update_property_zval(this_ptr, ZEND_STRL("redirectUri"), &_8$$7);
 	}
-	zephir_read_property(&_12, this_ptr, SL("clientId"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_12, this_ptr, ZEND_STRL("clientId"), PH_NOISY_CC | PH_READONLY);
 	_13 = !zephir_is_true(&_12);
 	if (!(_13)) {
-		zephir_read_property(&_14, this_ptr, SL("clientSecret"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_14, this_ptr, ZEND_STRL("clientSecret"), PH_NOISY_CC | PH_READONLY);
 		_13 = !zephir_is_true(&_14);
 	}
 	_15 = _13;
 	if (!(_15)) {
-		zephir_read_property(&_16, this_ptr, SL("redirectUri"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_16, this_ptr, ZEND_STRL("redirectUri"), PH_NOISY_CC | PH_READONLY);
 		_15 = !zephir_is_true(&_16);
 	}
 	if (_15) {
@@ -340,13 +340,13 @@ PHP_METHOD(Ice_Auth_Social_Adapter, has) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_0, &key)) {
-		zephir_read_property(&_1$$3, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_2$$3, &_1$$3, &key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 101);
 		zephir_get_strval(&key, &_2$$3);
 	}
-	zephir_read_property(&_3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("userInfo"), PH_NOISY_CC | PH_READONLY);
 	RETURN_MM_BOOL(zephir_array_isset(&_3, &key));
 
 }
@@ -385,13 +385,13 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_0, &key)) {
-		zephir_read_property(&_1$$3, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_2$$3, &_1$$3, &key, PH_NOISY | PH_READONLY, "ice/auth/social/adapter.zep", 121);
 		zephir_get_strval(&key, &_2$$3);
 	}
-	zephir_read_property(&_3, this_ptr, SL("userInfo"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("userInfo"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_3, &key, 1)) {
 		RETURN_CTOR(&value);
 	}
@@ -472,7 +472,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getOption) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1)) {
 		RETURN_CTOR(&value);
 	}
@@ -594,11 +594,11 @@ zend_object *zephir_init_properties_Ice_Auth_Social_Adapter(zend_class_entry *cl
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("socialFieldsMap"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("socialFieldsMap"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

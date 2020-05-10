@@ -109,7 +109,7 @@ PHP_METHOD(Ice_Arr, has) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	RETURN_MM_BOOL(zephir_array_isset(&_0, &key));
 
 }
@@ -145,7 +145,7 @@ PHP_METHOD(Ice_Arr, get) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1)) {
 		RETURN_CTOR(&value);
 	}
@@ -530,7 +530,7 @@ PHP_METHOD(Ice_Arr, remove) {
 	zephir_get_strval(&key, key_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_unset(&_0, &key, PH_SEPARATE);
 	RETURN_THIS();
 
@@ -1097,11 +1097,11 @@ zend_object *zephir_init_properties_Ice_Arr(zend_class_entry *class_type TSRMLS_
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("data"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("data"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

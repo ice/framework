@@ -321,7 +321,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("engines"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("engines"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
 		object_init_ex(&_1$$3, ice_mvc_view_engine_php_ce);
@@ -331,7 +331,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 		ZVAL_STRING(&_2$$3, ".phtml");
 		zephir_update_property_array(this_ptr, SL("engines"), &_2$$3, &_1$$3);
 	} else {
-		zephir_read_property(&_3$$4, this_ptr, SL("engines"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_3$$4, this_ptr, ZEND_STRL("engines"), PH_NOISY_CC | PH_READONLY);
 		zephir_is_iterable(&_3$$4, 0, "ice/mvc/view.zep", 66);
 		if (Z_TYPE_P(&_3$$4) == IS_ARRAY) {
 			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_3$$4), _6$$4, _7$$4, _4$$4)
@@ -512,7 +512,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	if (Z_TYPE_P(file) != IS_NULL) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("file"), file);
 	}
-	zephir_read_property(&_0, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	if (ZEPHIR_IS_EMPTY(&_0)) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "You must set the file to use within your view before rendering", "ice/mvc/view.zep", 89);
 		return;
@@ -520,19 +520,19 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	ZEPHIR_CALL_METHOD(&engines, this_ptr, "getengines", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("viewsDir"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("viewsDir"), PH_NOISY_CC);
 	if (Z_TYPE_P(&_1) == IS_ARRAY) {
 		ZEPHIR_OBS_VAR(&dirs);
-		zephir_read_property(&dirs, this_ptr, SL("viewsDir"), PH_NOISY_CC);
+		zephir_read_property(&dirs, this_ptr, ZEND_STRL("viewsDir"), PH_NOISY_CC);
 	} else {
 		ZEPHIR_INIT_VAR(&_2$$6);
 		zephir_create_array(&_2$$6, 1, 0);
 		ZEPHIR_OBS_VAR(&_3$$6);
-		zephir_read_property(&_3$$6, this_ptr, SL("viewsDir"), PH_NOISY_CC);
+		zephir_read_property(&_3$$6, this_ptr, ZEND_STRL("viewsDir"), PH_NOISY_CC);
 		zephir_array_fast_append(&_2$$6, &_3$$6);
 		ZEPHIR_CPY_WRT(&dirs, &_2$$6);
 	}
-	zephir_read_property(&_4, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_4, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 4);
 	ZEPHIR_CALL_FUNCTION(&ext, "pathinfo", NULL, 55, &_4, &_5);
 	zephir_check_call_status();
@@ -547,7 +547,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 				{
 					ZEPHIR_INIT_NVAR(&dir);
 					ZVAL_COPY(&dir, _7$$8);
-					zephir_read_property(&_9$$9, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_9$$9, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_INIT_NVAR(&path);
 					ZEPHIR_CONCAT_VV(&path, &dir, &_9$$9);
 					if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -572,7 +572,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 					}
 					ZEPHIR_CALL_METHOD(&dir, &dirs, "current", NULL, 0);
 					zephir_check_call_status();
-						zephir_read_property(&_14$$11, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_14$$11, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_INIT_NVAR(&path);
 						ZEPHIR_CONCAT_VV(&path, &dir, &_14$$11);
 						if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -610,7 +610,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 					{
 						ZEPHIR_INIT_NVAR(&dir);
 						ZVAL_COPY(&dir, _21$$14);
-						zephir_read_property(&_23$$15, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_23$$15, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_INIT_NVAR(&path);
 						ZEPHIR_CONCAT_VVV(&path, &dir, &_23$$15, &ext);
 						if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -635,7 +635,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 						}
 						ZEPHIR_CALL_METHOD(&dir, &dirs, "current", NULL, 0);
 						zephir_check_call_status();
-							zephir_read_property(&_26$$17, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+							zephir_read_property(&_26$$17, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_INIT_NVAR(&path);
 							ZEPHIR_CONCAT_VVV(&path, &dir, &_26$$17, &ext);
 							if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -676,7 +676,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 						{
 							ZEPHIR_INIT_NVAR(&dir);
 							ZVAL_COPY(&dir, _29$$20);
-							zephir_read_property(&_31$$21, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+							zephir_read_property(&_31$$21, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_INIT_NVAR(&path);
 							ZEPHIR_CONCAT_VVV(&path, &dir, &_31$$21, &ext);
 							if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -701,7 +701,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 							}
 							ZEPHIR_CALL_METHOD(&dir, &dirs, "current", NULL, 0);
 							zephir_check_call_status();
-								zephir_read_property(&_34$$23, this_ptr, SL("file"), PH_NOISY_CC | PH_READONLY);
+								zephir_read_property(&_34$$23, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 								ZEPHIR_INIT_NVAR(&path);
 								ZEPHIR_CONCAT_VVV(&path, &dir, &_34$$23, &ext);
 								if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -729,7 +729,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		ZEPHIR_INIT_NVAR(&engine);
 		ZEPHIR_INIT_NVAR(&ext);
 	}
-	zephir_read_property(&_5, this_ptr, SL("silent"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
 	_37 = !zephir_is_true(&_5);
 	if (_37) {
 		_37 = !exists;
@@ -839,7 +839,7 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("partialsDir"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("partialsDir"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_VV(&_1, &_0, &file);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, &_1, &data);
@@ -888,9 +888,9 @@ PHP_METHOD(Ice_Mvc_View, layout) {
 
 	if (!(zephir_is_true(file))) {
 		ZEPHIR_OBS_NVAR(file);
-		zephir_read_property(file, this_ptr, SL("mainView"), PH_NOISY_CC);
+		zephir_read_property(file, this_ptr, ZEND_STRL("mainView"), PH_NOISY_CC);
 	}
-	zephir_read_property(&_0, this_ptr, SL("layoutsDir"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("layoutsDir"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_VV(&_1, &_0, file);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, &_1, &data);

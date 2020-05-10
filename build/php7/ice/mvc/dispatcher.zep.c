@@ -96,15 +96,15 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("method"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("method"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_strtolower(&_0, &_1);
 	ZEPHIR_INIT_VAR(&_2);
-	zephir_read_property(&_3, this_ptr, SL("action"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("action"), PH_NOISY_CC | PH_READONLY);
 	zephir_ucfirst(&_2, &_3);
-	zephir_read_property(&_4, this_ptr, SL("actionSuffix"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_4, this_ptr, ZEND_STRL("actionSuffix"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&action);
 	ZEPHIR_CONCAT_VVV(&action, &_0, &_2, &_4);
-	zephir_read_property(&_5, this_ptr, SL("activeHandler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("activeHandler"), PH_NOISY_CC | PH_READONLY);
 	if ((zephir_method_exists(&_5, &action)  == SUCCESS)) {
 		RETURN_CCTOR(&action);
 	}
@@ -139,7 +139,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 
 	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "response");
 	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
@@ -149,7 +149,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 	ZEPHIR_CALL_METHOD(&_4, &response, "getloops", NULL, 0);
 	zephir_check_call_status();
 	if (ZEPHIR_GT(&_3, &_4)) {
-		zephir_read_property(&_5$$3, this_ptr, SL("silent"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_5$$3, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_5$$3)) {
 			ZVAL_LONG(&_6$$4, 310);
 			ZEPHIR_CALL_METHOD(NULL, &response, "setstatus", NULL, 0, &_6$$4);

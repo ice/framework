@@ -62,7 +62,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, SL("userClass"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("userClass"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 1, 0);
 	add_assoc_stringl_ex(&_2, SL("alias"), SL("RolesUsers"));

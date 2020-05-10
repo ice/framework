@@ -165,7 +165,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("routeParser"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("routeParser"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&routeDatas, &_0, "parse", NULL, 0, &route);
 	zephir_check_call_status();
 	if (Z_TYPE_P(httpMethod) == IS_STRING) {
@@ -187,7 +187,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 				{
 					ZEPHIR_INIT_NVAR(&routeData);
 					ZVAL_COPY(&routeData, _4$$4);
-					zephir_read_property(&_6$$5, this_ptr, SL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_6$$5, this_ptr, ZEND_STRL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_CALL_METHOD(NULL, &_6$$5, "addroute", NULL, 0, &method, &routeData, handler);
 					zephir_check_call_status();
 				} ZEND_HASH_FOREACH_END();
@@ -202,7 +202,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 					}
 					ZEPHIR_CALL_METHOD(&routeData, &routeDatas, "current", NULL, 0);
 					zephir_check_call_status();
-						zephir_read_property(&_7$$6, this_ptr, SL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_7$$6, this_ptr, ZEND_STRL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_CALL_METHOD(NULL, &_7$$6, "addroute", NULL, 0, &method, &routeData, handler);
 						zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(NULL, &routeDatas, "next", NULL, 0);
@@ -228,7 +228,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 					{
 						ZEPHIR_INIT_NVAR(&routeData);
 						ZVAL_COPY(&routeData, _8$$7);
-						zephir_read_property(&_10$$8, this_ptr, SL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_10$$8, this_ptr, ZEND_STRL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_CALL_METHOD(NULL, &_10$$8, "addroute", NULL, 0, &method, &routeData, handler);
 						zephir_check_call_status();
 					} ZEND_HASH_FOREACH_END();
@@ -243,7 +243,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 						}
 						ZEPHIR_CALL_METHOD(&routeData, &routeDatas, "current", NULL, 0);
 						zephir_check_call_status();
-							zephir_read_property(&_11$$9, this_ptr, SL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
+							zephir_read_property(&_11$$9, this_ptr, ZEND_STRL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_CALL_METHOD(NULL, &_11$$9, "addroute", NULL, 0, &method, &routeData, handler);
 							zephir_check_call_status();
 						ZEPHIR_CALL_METHOD(NULL, &routeDatas, "next", NULL, 0);
@@ -276,7 +276,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("dataGenerator"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getdata", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();

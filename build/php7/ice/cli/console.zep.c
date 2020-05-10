@@ -135,7 +135,7 @@ PHP_METHOD(Ice_Cli_Console, __construct) {
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "console");
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &_1, this_ptr);
@@ -210,19 +210,19 @@ PHP_METHOD(Ice_Cli_Console, handle) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "router");
 	ZEPHIR_CALL_METHOD(&router, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&response, &router, "handle", NULL, 0, arguments);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "dispatcher");
 	ZEPHIR_CALL_METHOD(&dispatcher, &_2, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("modules"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("modules"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &dispatcher, "setmodules", NULL, 0, &_3);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_4, &response, SL("module"), PH_NOISY | PH_READONLY, "ice/cli/console.zep", 89);

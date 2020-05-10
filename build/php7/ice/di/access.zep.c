@@ -66,11 +66,11 @@ PHP_METHOD(Ice_Di_Access, __get) {
 
 
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
 	if (!(_1)) {
 		ZEPHIR_OBS_VAR(&_2);
-		zephir_read_property(&_2, this_ptr, SL("di"), PH_NOISY_CC);
+		zephir_read_property(&_2, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
 		_1 = !(zephir_instance_of_ev(&_2, ice_di_ce));
 	}
 	if (_1) {
@@ -78,7 +78,7 @@ PHP_METHOD(Ice_Di_Access, __get) {
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
 	}
-	zephir_read_property(&_5, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&di, &_5);
 	if (ZEPHIR_IS_STRING(&property, "di")) {
 		RETURN_CCTOR(&di);
@@ -114,11 +114,11 @@ PHP_METHOD(Ice_Di_Access, __set) {
 
 
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("di"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
 	if (!(_1)) {
 		ZEPHIR_OBS_VAR(&_2);
-		zephir_read_property(&_2, this_ptr, SL("di"), PH_NOISY_CC);
+		zephir_read_property(&_2, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
 		_1 = !(zephir_instance_of_ev(&_2, ice_di_ce));
 	}
 	if (_1) {
@@ -126,7 +126,7 @@ PHP_METHOD(Ice_Di_Access, __set) {
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
 	}
-	zephir_read_property(&_5, this_ptr, SL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_5, "set", NULL, 0, &property, value);
 	zephir_check_call_status();
 	RETURN_MM();

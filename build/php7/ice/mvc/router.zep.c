@@ -275,7 +275,7 @@ PHP_METHOD(Ice_Mvc_Router, addRoute) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 180, &uri, &regex, method);
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("routes"), &name, &_0);
-	zephir_read_property(&_1, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_2, &_1, &name, PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 59);
 	RETURN_CTOR(&_2);
 
@@ -318,12 +318,12 @@ PHP_METHOD(Ice_Mvc_Router, getRoute) {
 	ZEPHIR_CPY_WRT(&n, &name);
 	if (Z_TYPE_P(&n) == IS_NULL) {
 		ZEPHIR_OBS_NVAR(&n);
-		zephir_read_property(&n, this_ptr, SL("route"), PH_NOISY_CC);
+		zephir_read_property(&n, this_ptr, ZEND_STRL("route"), PH_NOISY_CC);
 	}
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_1, &n)) {
-		zephir_read_property(&_2, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_0, &_2, &n, PH_NOISY, "ice/mvc/router.zep", 80);
 	} else {
 		ZVAL_NULL(&_0);
@@ -353,7 +353,7 @@ PHP_METHOD(Ice_Mvc_Router, getRouteName) {
 
 
 
-	zephir_read_property(&_0, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_FUNCTION("array_search", NULL, 181, route, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -401,7 +401,7 @@ PHP_METHOD(Ice_Mvc_Router, cache) {
 
 	if (!(Z_TYPE_P(&file) == IS_UNDEF) && Z_STRLEN_P(&file)) {
 		ZEPHIR_INIT_VAR(&_0$$3);
-		zephir_read_property(&_1$$3, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&_0$$3);
 		zephir_var_export_ex(&_0$$3, &_1$$3);
 		ZEPHIR_INIT_VAR(&_2$$3);
@@ -693,7 +693,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 	zephir_get_strval(&uri, &_0);
 	ZEPHIR_INIT_VAR(&matches);
 	ZVAL_NULL(&matches);
-	zephir_read_property(&_2, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_2, 0, "ice/mvc/router.zep", 256);
 	if (Z_TYPE_P(&_2) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_2), _5, _6, _3)
@@ -715,21 +715,21 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 					zephir_array_fetch_string(&_7$$5, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 219);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("module"), &_7$$5);
 				} else {
-					zephir_read_property(&_8$$6, this_ptr, SL("defaultModule"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("defaultModule"), PH_NOISY_CC | PH_READONLY);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("module"), &_8$$6);
 				}
 				if (zephir_array_isset_string(&params, SL("controller"))) {
 					zephir_array_fetch_string(&_9$$7, &params, SL("controller"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 225);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_9$$7);
 				} else {
-					zephir_read_property(&_10$$8, this_ptr, SL("defaultHandler"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_10$$8, this_ptr, ZEND_STRL("defaultHandler"), PH_NOISY_CC | PH_READONLY);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_10$$8);
 				}
 				if (zephir_array_isset_string(&params, SL("action"))) {
 					zephir_array_fetch_string(&_11$$9, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 231);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("action"), &_11$$9);
 				} else {
-					zephir_read_property(&_12$$10, this_ptr, SL("defaultAction"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_12$$10, this_ptr, ZEND_STRL("defaultAction"), PH_NOISY_CC | PH_READONLY);
 					zephir_update_property_zval(this_ptr, ZEND_STRL("action"), &_12$$10);
 				}
 				zephir_array_unset_string(&params, SL("controller"), PH_SEPARATE);
@@ -738,16 +738,16 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 				zephir_update_property_zval(this_ptr, ZEND_STRL("params"), &params);
 				zephir_create_array(return_value, 4, 0);
 				ZEPHIR_OBS_NVAR(&_13$$4);
-				zephir_read_property(&_13$$4, this_ptr, SL("module"), PH_NOISY_CC);
+				zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("module"), PH_NOISY_CC);
 				zephir_array_update_string(return_value, SL("module"), &_13$$4, PH_COPY | PH_SEPARATE);
 				ZEPHIR_OBS_NVAR(&_13$$4);
-				zephir_read_property(&_13$$4, this_ptr, SL("handler"), PH_NOISY_CC);
+				zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 				zephir_array_update_string(return_value, SL("handler"), &_13$$4, PH_COPY | PH_SEPARATE);
 				ZEPHIR_OBS_NVAR(&_13$$4);
-				zephir_read_property(&_13$$4, this_ptr, SL("action"), PH_NOISY_CC);
+				zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("action"), PH_NOISY_CC);
 				zephir_array_update_string(return_value, SL("action"), &_13$$4, PH_COPY | PH_SEPARATE);
 				ZEPHIR_OBS_NVAR(&_13$$4);
-				zephir_read_property(&_13$$4, this_ptr, SL("params"), PH_NOISY_CC);
+				zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("params"), PH_NOISY_CC);
 				zephir_array_update_string(return_value, SL("params"), &_13$$4, PH_COPY | PH_SEPARATE);
 				RETURN_MM();
 			} else if (ZEPHIR_IS_FALSE_IDENTICAL(&params)) {
@@ -777,21 +777,21 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 						zephir_array_fetch_string(&_14$$14, &params, SL("module"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 219);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("module"), &_14$$14);
 					} else {
-						zephir_read_property(&_15$$15, this_ptr, SL("defaultModule"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_15$$15, this_ptr, ZEND_STRL("defaultModule"), PH_NOISY_CC | PH_READONLY);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("module"), &_15$$15);
 					}
 					if (zephir_array_isset_string(&params, SL("controller"))) {
 						zephir_array_fetch_string(&_16$$16, &params, SL("controller"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 225);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_16$$16);
 					} else {
-						zephir_read_property(&_17$$17, this_ptr, SL("defaultHandler"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_17$$17, this_ptr, ZEND_STRL("defaultHandler"), PH_NOISY_CC | PH_READONLY);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), &_17$$17);
 					}
 					if (zephir_array_isset_string(&params, SL("action"))) {
 						zephir_array_fetch_string(&_18$$18, &params, SL("action"), PH_NOISY | PH_READONLY, "ice/mvc/router.zep", 231);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("action"), &_18$$18);
 					} else {
-						zephir_read_property(&_19$$19, this_ptr, SL("defaultAction"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_19$$19, this_ptr, ZEND_STRL("defaultAction"), PH_NOISY_CC | PH_READONLY);
 						zephir_update_property_zval(this_ptr, ZEND_STRL("action"), &_19$$19);
 					}
 					zephir_array_unset_string(&params, SL("controller"), PH_SEPARATE);
@@ -800,16 +800,16 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 					zephir_update_property_zval(this_ptr, ZEND_STRL("params"), &params);
 					zephir_create_array(return_value, 4, 0);
 					ZEPHIR_OBS_NVAR(&_20$$13);
-					zephir_read_property(&_20$$13, this_ptr, SL("module"), PH_NOISY_CC);
+					zephir_read_property(&_20$$13, this_ptr, ZEND_STRL("module"), PH_NOISY_CC);
 					zephir_array_update_string(return_value, SL("module"), &_20$$13, PH_COPY | PH_SEPARATE);
 					ZEPHIR_OBS_NVAR(&_20$$13);
-					zephir_read_property(&_20$$13, this_ptr, SL("handler"), PH_NOISY_CC);
+					zephir_read_property(&_20$$13, this_ptr, ZEND_STRL("handler"), PH_NOISY_CC);
 					zephir_array_update_string(return_value, SL("handler"), &_20$$13, PH_COPY | PH_SEPARATE);
 					ZEPHIR_OBS_NVAR(&_20$$13);
-					zephir_read_property(&_20$$13, this_ptr, SL("action"), PH_NOISY_CC);
+					zephir_read_property(&_20$$13, this_ptr, ZEND_STRL("action"), PH_NOISY_CC);
 					zephir_array_update_string(return_value, SL("action"), &_20$$13, PH_COPY | PH_SEPARATE);
 					ZEPHIR_OBS_NVAR(&_20$$13);
-					zephir_read_property(&_20$$13, this_ptr, SL("params"), PH_NOISY_CC);
+					zephir_read_property(&_20$$13, this_ptr, ZEND_STRL("params"), PH_NOISY_CC);
 					zephir_array_update_string(return_value, SL("params"), &_20$$13, PH_COPY | PH_SEPARATE);
 					RETURN_MM();
 				} else if (ZEPHIR_IS_FALSE_IDENTICAL(&params)) {
@@ -822,7 +822,7 @@ PHP_METHOD(Ice_Mvc_Router, handle) {
 	}
 	ZEPHIR_INIT_NVAR(&route);
 	ZEPHIR_INIT_NVAR(&name);
-	zephir_read_property(&_21, this_ptr, SL("silent"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_21, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_is_true(&_21)) {
 		ZEPHIR_CALL_CE_STATIC(&_22$$21, ice_di_ce, "fetch", &_23, 0);
 		zephir_check_call_status();
@@ -924,7 +924,7 @@ PHP_METHOD(Ice_Mvc_Router, match) {
 	zephir_get_strval(&uri, &_0);
 	ZEPHIR_INIT_VAR(&matches);
 	ZVAL_NULL(&matches);
-	zephir_read_property(&_2, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_2, 0, "ice/mvc/router.zep", 298);
 	if (Z_TYPE_P(&_2) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_2), _3)
@@ -1010,7 +1010,7 @@ PHP_METHOD(Ice_Mvc_Router, uri) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 	zephir_is_iterable(&_0, 0, "ice/mvc/router.zep", 323);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_0), _1)
@@ -1074,17 +1074,17 @@ zend_object *zephir_init_properties_Ice_Mvc_Router(zend_class_entry *class_type 
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("params"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("params"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("params"), &_1$$3);
 		}
-		zephir_read_property(&_2, this_ptr, SL("routes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_2, this_ptr, ZEND_STRL("routes"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			array_init(&_3$$4);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("routes"), &_3$$4);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("routes"), &_3$$4);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

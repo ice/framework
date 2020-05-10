@@ -110,18 +110,18 @@ PHP_METHOD(Ice_Mvc_Service, __call) {
 
 
 	ZEPHIR_OBS_VAR(&_0);
-	zephir_read_property(&_0, this_ptr, SL("model"), PH_NOISY_CC);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) == IS_OBJECT;
 	if (_1) {
 		ZEPHIR_OBS_VAR(&_2);
-		zephir_read_property(&_2, this_ptr, SL("model"), PH_NOISY_CC);
+		zephir_read_property(&_2, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 		_1 = zephir_instance_of_ev(&_2, ice_mvc_model_ce);
 	}
 	if (_1) {
 		ZEPHIR_INIT_VAR(&_3$$3);
 		zephir_create_array(&_3$$3, 2, 0);
 		ZEPHIR_OBS_VAR(&_4$$3);
-		zephir_read_property(&_4$$3, this_ptr, SL("model"), PH_NOISY_CC);
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 		zephir_array_fast_append(&_3$$3, &_4$$3);
 		zephir_array_fast_append(&_3$$3, &method);
 		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_3$$3, arguments);

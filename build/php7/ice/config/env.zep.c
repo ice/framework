@@ -68,7 +68,7 @@ PHP_METHOD(Ice_Config_Env, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", &_0, 0, data);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
-	zephir_read_property(&_2, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(&_1, &_ENV, &_2);
 	ZEPHIR_HASH_COPY(&_ENV, &_1);
 	ZEPHIR_MM_RESTORE();

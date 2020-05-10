@@ -83,7 +83,7 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("adapter"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("adapter"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "authenticate", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -120,7 +120,7 @@ PHP_METHOD(Ice_Auth_Social, get) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("adapter"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("adapter"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &key, defaultValue);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -162,7 +162,7 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 2, 0);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("adapter"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("adapter"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	zephir_array_fast_append(&_0, &method);
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, arguments);

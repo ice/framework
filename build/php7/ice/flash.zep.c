@@ -151,7 +151,7 @@ PHP_METHOD(Ice_Flash, getOption) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, &key, 1)) {
 		RETURN_CTOR(&value);
 	}
@@ -203,7 +203,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 	ZVAL_STRING(&_0, "session_key");
 	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, 0, &_0);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, SL("session"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("session"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&messages, &_1, "get", NULL, 0, &key);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&body);
@@ -249,7 +249,7 @@ PHP_METHOD(Ice_Flash, getMessages) {
 		ZEPHIR_INIT_NVAR(&type);
 	}
 	if (remove) {
-		zephir_read_property(&_9$$6, this_ptr, SL("session"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_9$$6, this_ptr, ZEND_STRL("session"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, &_9$$6, "remove", NULL, 0, &key);
 		zephir_check_call_status();
 	}
@@ -325,7 +325,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	array_init(&_0);
 	ZEPHIR_CALL_METHOD(&params, this_ptr, "getoption", &_1, 0, &type, &_0);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("tag"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_4);
 	array_init(&_4);
 	ZEPHIR_INIT_VAR(&_5);
@@ -353,7 +353,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 			ZEPHIR_CALL_METHOD(&_9$$4, this_ptr, "getoption", &_1, 0, &_10$$4);
 			zephir_check_call_status();
 			if (zephir_is_true(&_9$$4)) {
-				zephir_read_property(&_11$$5, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
+				zephir_read_property(&_11$$5, this_ptr, ZEND_STRL("tag"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_INIT_NVAR(&_13$$5);
 				zephir_create_array(&_13$$5, 1, 0);
 				ZEPHIR_INIT_NVAR(&_14$$5);
@@ -397,7 +397,7 @@ PHP_METHOD(Ice_Flash, getMessage) {
 				ZEPHIR_CALL_METHOD(&_22$$7, this_ptr, "getoption", &_1, 0, &_23$$7);
 				zephir_check_call_status();
 				if (zephir_is_true(&_22$$7)) {
-					zephir_read_property(&_24$$8, this_ptr, SL("tag"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_24$$8, this_ptr, ZEND_STRL("tag"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_INIT_NVAR(&_26$$8);
 					zephir_create_array(&_26$$8, 1, 0);
 					ZEPHIR_INIT_NVAR(&_27$$8);
@@ -468,7 +468,7 @@ PHP_METHOD(Ice_Flash, message) {
 	ZVAL_STRING(&_0, "session_key");
 	ZEPHIR_CALL_METHOD(&key, this_ptr, "getoption", NULL, 0, &_0);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, SL("session"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("session"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_0);
 	array_init(&_0);
 	ZEPHIR_CALL_METHOD(&messages, &_1, "get", NULL, 0, &key, &_0);
@@ -479,7 +479,7 @@ PHP_METHOD(Ice_Flash, message) {
 		zephir_array_update_zval(&messages, &type, &_2$$3, PH_COPY | PH_SEPARATE);
 	}
 	zephir_array_update_multi(&messages, &message, SL("za"), 2, &type);
-	zephir_read_property(&_3, this_ptr, SL("session"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("session"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(NULL, &_3, "set", NULL, 0, &key, &messages);
 	zephir_check_call_status();
 	RETURN_THIS();
@@ -742,7 +742,7 @@ zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRML
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			zephir_create_array(&_1$$3, 7, 0);
@@ -776,7 +776,7 @@ zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type TSRML
 			add_assoc_stringl_ex(&_2$$3, SL("data-dismiss"), SL("alert"));
 			zephir_array_update_string(&_1$$3, SL("close"), &_2$$3, PH_COPY | PH_SEPARATE);
 			zephir_array_update_string(&_1$$3, SL("html"), &__$true, PH_COPY | PH_SEPARATE);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("options"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("options"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

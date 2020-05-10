@@ -240,7 +240,7 @@ PHP_METHOD(Ice_Di, getDefaults) {
 	add_assoc_stringl_ex(&_0, SL("text"), SL("Ice\\Text"));
 	add_assoc_stringl_ex(&_0, SL("url"), SL("Ice\\Mvc\\Url"));
 	add_assoc_stringl_ex(&_0, SL("view"), SL("Ice\\Mvc\\View"));
-	zephir_read_property(&_1, this_ptr, SL("defaults"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("defaults"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(return_value, &_0, &_1);
 	RETURN_MM();
 
@@ -465,7 +465,7 @@ PHP_METHOD(Ice_Di, getParameters) {
 				zephir_array_unset(&parameters, &key, PH_SEPARATE);
 				zephir_array_fetch(&dependency, &dependencies, &key, PH_NOISY | PH_READONLY, "ice/di.zep", 193);
 				ZEPHIR_OBS_NVAR(&_4$$4);
-				zephir_read_property(&_4$$4, &dependency, SL("name"), PH_NOISY_CC);
+				zephir_read_property(&_4$$4, &dependency, ZEND_STRL("name"), PH_NOISY_CC);
 				zephir_array_update_zval(&parameters, &_4$$4, &value, PH_COPY | PH_SEPARATE);
 			}
 		} ZEND_HASH_FOREACH_END();
@@ -487,7 +487,7 @@ PHP_METHOD(Ice_Di, getParameters) {
 					ZEPHIR_OBS_NVAR(&dependency);
 					zephir_array_fetch(&dependency, &dependencies, &key, PH_NOISY, "ice/di.zep", 193);
 					ZEPHIR_OBS_NVAR(&_5$$6);
-					zephir_read_property(&_5$$6, &dependency, SL("name"), PH_NOISY_CC);
+					zephir_read_property(&_5$$6, &dependency, ZEND_STRL("name"), PH_NOISY_CC);
 					zephir_array_update_zval(&parameters, &_5$$6, &value, PH_COPY | PH_SEPARATE);
 				}
 			ZEPHIR_CALL_METHOD(NULL, &parameters, "next", NULL, 0);
@@ -558,10 +558,10 @@ PHP_METHOD(Ice_Di, getDependencies) {
 			ZVAL_COPY(&parameter, _0);
 			ZEPHIR_CALL_METHOD(&dependency, &parameter, "getclass", NULL, 0);
 			zephir_check_call_status();
-			zephir_read_property(&_2$$3, &parameter, SL("name"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_2$$3, &parameter, ZEND_STRL("name"), PH_NOISY_CC | PH_READONLY);
 			if (zephir_array_key_exists(&primitives, &_2$$3)) {
 				ZEPHIR_OBS_NVAR(&_4$$4);
-				zephir_read_property(&_4$$4, &parameter, SL("name"), PH_NOISY_CC);
+				zephir_read_property(&_4$$4, &parameter, ZEND_STRL("name"), PH_NOISY_CC);
 				zephir_array_fetch(&_3$$4, &primitives, &_4$$4, PH_NOISY | PH_READONLY, "ice/di.zep", 217);
 				zephir_array_append(&dependencies, &_3$$4, PH_SEPARATE, "ice/di.zep", 217);
 			} else if (Z_TYPE_P(&dependency) == IS_NULL) {
@@ -573,7 +573,7 @@ PHP_METHOD(Ice_Di, getDependencies) {
 					zephir_array_append(&dependencies, &_6$$6, PH_SEPARATE, "ice/di.zep", 220);
 				}
 			} else {
-				zephir_read_property(&_9$$7, &dependency, SL("name"), PH_NOISY_CC | PH_READONLY);
+				zephir_read_property(&_9$$7, &dependency, ZEND_STRL("name"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_CALL_METHOD(&_8$$7, this_ptr, "build", &_10, 0, &_9$$7);
 				zephir_check_call_status();
 				zephir_array_append(&dependencies, &_8$$7, PH_SEPARATE, "ice/di.zep", 223);
@@ -592,10 +592,10 @@ PHP_METHOD(Ice_Di, getDependencies) {
 			zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&dependency, &parameter, "getclass", NULL, 0);
 				zephir_check_call_status();
-				zephir_read_property(&_11$$8, &parameter, SL("name"), PH_NOISY_CC | PH_READONLY);
+				zephir_read_property(&_11$$8, &parameter, ZEND_STRL("name"), PH_NOISY_CC | PH_READONLY);
 				if (zephir_array_key_exists(&primitives, &_11$$8)) {
 					ZEPHIR_OBS_NVAR(&_13$$9);
-					zephir_read_property(&_13$$9, &parameter, SL("name"), PH_NOISY_CC);
+					zephir_read_property(&_13$$9, &parameter, ZEND_STRL("name"), PH_NOISY_CC);
 					zephir_array_fetch(&_12$$9, &primitives, &_13$$9, PH_NOISY | PH_READONLY, "ice/di.zep", 217);
 					zephir_array_append(&dependencies, &_12$$9, PH_SEPARATE, "ice/di.zep", 217);
 				} else if (Z_TYPE_P(&dependency) == IS_NULL) {
@@ -607,7 +607,7 @@ PHP_METHOD(Ice_Di, getDependencies) {
 						zephir_array_append(&dependencies, &_15$$11, PH_SEPARATE, "ice/di.zep", 220);
 					}
 				} else {
-					zephir_read_property(&_17$$12, &dependency, SL("name"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_17$$12, &dependency, ZEND_STRL("name"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_CALL_METHOD(&_16$$12, this_ptr, "build", &_10, 0, &_17$$12);
 					zephir_check_call_status();
 					zephir_array_append(&dependencies, &_16$$12, PH_SEPARATE, "ice/di.zep", 223);
@@ -792,7 +792,7 @@ PHP_METHOD(Ice_Di, hook) {
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}
-		zephir_read_property(&_2$$3, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		if (!(zephir_array_isset(&_2$$3, &name))) {
 			ZEPHIR_INIT_VAR(&_3$$5);
 			zephir_create_array(&_3$$5, 1, 0);
@@ -872,7 +872,7 @@ PHP_METHOD(Ice_Di, applyHook) {
 		zephir_check_call_status();
 		zephir_concat_self(&name, &_1$$3);
 	}
-	zephir_read_property(&_2, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset(&_2, &name))) {
 		ZEPHIR_INIT_VAR(&_3$$4);
 		zephir_create_array(&_3$$4, 1, 0);
@@ -881,10 +881,10 @@ PHP_METHOD(Ice_Di, applyHook) {
 		zephir_array_fast_append(&_3$$4, &_4$$4);
 		zephir_update_property_array(this_ptr, SL("hooks"), &name, &_3$$4);
 	}
-	zephir_read_property(&_5, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_6, &_5, &name, PH_NOISY | PH_READONLY, "ice/di.zep", 311);
 	if (!(ZEPHIR_IS_EMPTY(&_6))) {
-		zephir_read_property(&_7$$5, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_7$$5, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_8$$5, &_7$$5, &name, PH_NOISY | PH_READONLY, "ice/di.zep", 317);
 		zephir_is_iterable(&_8$$5, 0, "ice/di.zep", 324);
 		if (Z_TYPE_P(&_8$$5) == IS_ARRAY) {
@@ -1029,9 +1029,9 @@ PHP_METHOD(Ice_Di, getHooks) {
 			zephir_concat_self(&name, &_1$$4);
 		}
 		ZEPHIR_INIT_VAR(&_2$$3);
-		zephir_read_property(&_3$$3, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_3$$3, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_array_isset(&_3$$3, &name)) {
-			zephir_read_property(&_4$$3, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 			zephir_array_fetch(&_2$$3, &_4$$3, &name, PH_NOISY, "ice/di.zep", 344);
 		} else {
 			ZVAL_NULL(&_2$$3);
@@ -1093,7 +1093,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}
-		zephir_read_property(&_2$$3, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_unset(&_2$$3, &name, PH_SEPARATE);
 	} else {
 		ZEPHIR_INIT_VAR(&_3$$5);
@@ -1204,23 +1204,23 @@ zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type TSRMLS_D
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("defaults"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("defaults"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("defaults"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("defaults"), &_1$$3);
 		}
-		zephir_read_property(&_2, this_ptr, SL("data"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_2, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			array_init(&_3$$4);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("data"), &_3$$4);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("data"), &_3$$4);
 		}
-		zephir_read_property(&_4, this_ptr, SL("hooks"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_4, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_4) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_5$$5);
 			array_init(&_5$$5);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("hooks"), &_5$$5);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("hooks"), &_5$$5);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

@@ -768,9 +768,9 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, getParam) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("params"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset(&_0, &key)) {
-		zephir_read_property(&_1$$3, this_ptr, SL("params"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("params"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_2$$3, &_1$$3, &key, PH_NOISY | PH_READONLY, "ice/cli/websocket/websocket.zep", 324);
 		RETURN_CTOR(&_2$$3);
 	}

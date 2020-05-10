@@ -147,7 +147,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	ZEPHIR_INIT_VAR(&_8);
 	ZEPHIR_CONCAT_VS(&_8, &_6, "/");
 	zephir_get_strval(&baseDir, &_8);
-	zephir_read_property(&_9, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_9, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset(&_9, &prefix))) {
 		ZEPHIR_INIT_VAR(&_10$$3);
 		zephir_create_array(&_10$$3, 1, 0);
@@ -158,7 +158,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		RETURN_THIS();
 	}
 	if (prepend) {
-		zephir_read_property(&_13$$4, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_14$$4, &_13$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 54);
 		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
@@ -167,7 +167,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		ZEPHIR_UNREF(&_14$$4);
 		zephir_check_call_status();
 	} else {
-		zephir_read_property(&_16$$5, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_16$$5, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_17$$5, &_16$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 56);
 		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
@@ -294,7 +294,7 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	zephir_get_strval(&relativeClass, relativeClass_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset(&_0, &prefix))) {
 		RETURN_MM_BOOL(0);
 	}
@@ -307,7 +307,7 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	ZEPHIR_INIT_VAR(&_4);
 	ZEPHIR_CONCAT_VS(&_4, &_1, ".php");
 	zephir_get_strval(&relativeClass, &_4);
-	zephir_read_property(&_5, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_6, &_5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 129);
 	zephir_is_iterable(&_6, 0, "ice/loader.zep", 143);
 	if (Z_TYPE_P(&_6) == IS_ARRAY) {
@@ -393,11 +393,11 @@ zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type TSRM
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("prefixes"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			array_init(&_1$$3);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("prefixes"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("prefixes"), &_1$$3);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

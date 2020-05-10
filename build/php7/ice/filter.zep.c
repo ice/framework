@@ -233,7 +233,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 
 
 	ZEPHIR_OBS_VAR(&custom);
-	zephir_read_property(&_0, this_ptr, SL("filters"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("filters"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&custom, &_0, &filter, 0)) {
 		if (zephir_instance_of_ev(&custom, zend_ce_closure)) {
 			ZEPHIR_INIT_VAR(&_1$$4);

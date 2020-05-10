@@ -158,18 +158,18 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 		ZEPHIR_INIT_VAR(&params);
 		zephir_create_array(&params, 4, 0);
 		ZEPHIR_OBS_VAR(&_0$$3);
-		zephir_read_property(&_0$$3, this_ptr, SL("clientId"), PH_NOISY_CC);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("clientId"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("client_id"), &_0$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(&_0$$3);
-		zephir_read_property(&_0$$3, this_ptr, SL("redirectUri"), PH_NOISY_CC);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("redirectUri"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("redirect_uri"), &_0$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(&_0$$3);
-		zephir_read_property(&_0$$3, this_ptr, SL("clientSecret"), PH_NOISY_CC);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("clientSecret"), PH_NOISY_CC);
 		zephir_array_update_string(&params, SL("client_secret"), &_0$$3, PH_COPY | PH_SEPARATE);
 		ZEPHIR_OBS_NVAR(&_0$$3);
 		zephir_array_fetch_string(&_0$$3, &_GET, SL("code"), PH_NOISY, "ice/auth/social/facebook.zep", 67);
 		zephir_array_update_string(&params, SL("code"), &_0$$3, PH_COPY | PH_SEPARATE);
-		zephir_read_property(&_1$$3, this_ptr, SL("accessToken"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("accessToken"), PH_NOISY_CC | PH_READONLY);
 		if (!(zephir_is_true(&_1$$3))) {
 			ZVAL_LONG(&_2$$4, 0);
 			ZEPHIR_INIT_VAR(&_3$$4);
@@ -181,12 +181,12 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 				zephir_update_property_zval(this_ptr, ZEND_STRL("accessToken"), &_4$$5);
 			}
 		}
-		zephir_read_property(&_5$$3, this_ptr, SL("accessToken"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_5$$3, this_ptr, ZEND_STRL("accessToken"), PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_5$$3)) {
 			ZEPHIR_INIT_VAR(&_6$$6);
 			zephir_create_array(&_6$$6, 2, 0);
 			ZEPHIR_OBS_VAR(&_7$$6);
-			zephir_read_property(&_7$$6, this_ptr, SL("accessToken"), PH_NOISY_CC);
+			zephir_read_property(&_7$$6, this_ptr, ZEND_STRL("accessToken"), PH_NOISY_CC);
 			zephir_array_update_string(&_6$$6, SL("access_token"), &_7$$6, PH_COPY | PH_SEPARATE);
 			ZEPHIR_INIT_VAR(&_9$$6);
 			ZVAL_STRING(&_9$$6, "fields");
@@ -201,7 +201,7 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 			ZVAL_STRING(&_9$$6, "https://graph.facebook.com/me");
 			ZEPHIR_CALL_METHOD(&userInfo, this_ptr, "call", NULL, 0, &_11$$6, &_9$$6, &params);
 			zephir_check_call_status();
-			zephir_read_property(&_11$$6, this_ptr, SL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_11$$6, this_ptr, ZEND_STRL("socialFieldsMap"), PH_NOISY_CC | PH_READONLY);
 			zephir_array_fetch_string(&_12$$6, &_11$$6, SL("socialId"), PH_READONLY, "ice/auth/social/facebook.zep", 85);
 			if (zephir_array_isset(&userInfo, &_12$$6)) {
 				zephir_update_property_zval(this_ptr, ZEND_STRL("userInfo"), &userInfo);
@@ -239,10 +239,10 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 4, 0);
 	ZEPHIR_OBS_VAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("clientId"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("clientId"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("client_id"), &_1, PH_COPY | PH_SEPARATE);
 	ZEPHIR_OBS_NVAR(&_1);
-	zephir_read_property(&_1, this_ptr, SL("redirectUri"), PH_NOISY_CC);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("redirect_uri"), &_1, PH_COPY | PH_SEPARATE);
 	add_assoc_stringl_ex(&_0, SL("response_type"), SL("code"));
 	ZEPHIR_INIT_VAR(&_3);

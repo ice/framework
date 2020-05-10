@@ -169,7 +169,7 @@ PHP_METHOD(Ice_Http_Request, hasPost) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("post"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -208,7 +208,7 @@ PHP_METHOD(Ice_Http_Request, hasGet) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("get"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -247,7 +247,7 @@ PHP_METHOD(Ice_Http_Request, hasServer) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -286,7 +286,7 @@ PHP_METHOD(Ice_Http_Request, hasFile) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("files"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("files"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -465,7 +465,7 @@ PHP_METHOD(Ice_Http_Request, isAjax) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_2);
 	ZVAL_STRING(&_2, "HTTP_X_REQUESTED_WITH");
 	ZEPHIR_CALL_METHOD(&_1, &_0, "get", NULL, 0, &_2);
@@ -492,7 +492,7 @@ PHP_METHOD(Ice_Http_Request, getMethod) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "REQUEST_METHOD");
 	ZEPHIR_INIT_VAR(&_2);
@@ -521,7 +521,7 @@ PHP_METHOD(Ice_Http_Request, getUserAgent) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "HTTP_USER_AGENT");
 	ZEPHIR_INIT_VAR(&_2);
@@ -550,7 +550,7 @@ PHP_METHOD(Ice_Http_Request, getHTTPReferer) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "HTTP_REFERER");
 	ZEPHIR_INIT_VAR(&_2);
@@ -587,17 +587,17 @@ PHP_METHOD(Ice_Http_Request, getClientAddress) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "HTTP_CLIENT_IP");
 	ZEPHIR_CALL_METHOD(&client, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_2, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_2, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "HTTP_X_FORWARDED_FOR");
 	ZEPHIR_CALL_METHOD(&forward, &_2, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_read_property(&_3, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "REMOTE_ADDR");
 	ZEPHIR_CALL_METHOD(&remote, &_3, "get", NULL, 0, &_1);
@@ -684,20 +684,20 @@ PHP_METHOD(Ice_Http_Request, getQuery) {
 
 
 	if (!(!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key))) {
-		zephir_read_property(&_0$$3, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("get"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZVAL_STRING(&_1$$3, "_url");
 		ZVAL_NULL(&_2$$3);
 		ZEPHIR_CALL_METHOD(NULL, &_0$$3, "set", NULL, 0, &_1$$3, &_2$$3);
 		zephir_check_call_status();
-		zephir_read_property(&_2$$3, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("get"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_INIT_NVAR(&_1$$3);
 		ZVAL_STRING(&_1$$3, "_url");
 		ZEPHIR_CALL_METHOD(NULL, &_2$$3, "remove", NULL, 0, &_1$$3);
 		zephir_check_call_status();
 		RETURN_MM_MEMBER(getThis(), "get");
 	} else {
-		zephir_read_property(&_3$$4, this_ptr, SL("get"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_3$$4, this_ptr, ZEND_STRL("get"), PH_NOISY_CC | PH_READONLY);
 		if (allowEmpty) {
 			ZVAL_BOOL(&_4$$4, 1);
 		} else {
@@ -774,7 +774,7 @@ PHP_METHOD(Ice_Http_Request, getPost) {
 	if (!(!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key))) {
 		RETURN_MM_MEMBER(getThis(), "post");
 	} else {
-		zephir_read_property(&_0$$4, this_ptr, SL("post"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$4, this_ptr, ZEND_STRL("post"), PH_NOISY_CC | PH_READONLY);
 		if (allowEmpty) {
 			ZVAL_BOOL(&_1$$4, 1);
 		} else {
@@ -825,11 +825,11 @@ PHP_METHOD(Ice_Http_Request, getServer) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	if (!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key)) {
-		zephir_read_property(&_1, this_ptr, SL("server"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("server"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_0, &_1, "get", NULL, 0, &key, defaultValue);
 		zephir_check_call_status();
 	} else {
-		zephir_read_property(&_0, this_ptr, SL("server"), PH_NOISY_CC);
+		zephir_read_property(&_0, this_ptr, ZEND_STRL("server"), PH_NOISY_CC);
 	}
 	RETURN_CCTOR(&_0);
 
@@ -873,11 +873,11 @@ PHP_METHOD(Ice_Http_Request, getFiles) {
 
 	ZEPHIR_INIT_VAR(&_0);
 	if (!(Z_TYPE_P(&key) == IS_UNDEF) && Z_STRLEN_P(&key)) {
-		zephir_read_property(&_1, this_ptr, SL("files"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("files"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_0, &_1, "get", NULL, 0, &key, defaultValue);
 		zephir_check_call_status();
 	} else {
-		zephir_read_property(&_0, this_ptr, SL("files"), PH_NOISY_CC);
+		zephir_read_property(&_0, this_ptr, ZEND_STRL("files"), PH_NOISY_CC);
 	}
 	RETURN_CCTOR(&_0);
 

@@ -108,7 +108,7 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 	zephir_get_strval(&str, str_param);
 
 
-	zephir_read_property(&_0, this_ptr, SL("regex"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("regex"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_SVS(&_1, "~^", &_0, "$~");
 	ZEPHIR_CPY_WRT(&regex, &_1);

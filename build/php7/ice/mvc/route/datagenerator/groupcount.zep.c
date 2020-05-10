@@ -99,7 +99,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 			}
 			ZEPHIR_INIT_NVAR(&route);
 			ZVAL_COPY(&route, _0);
-			zephir_read_property(&_4$$3, &route, SL("variables"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_4$$3, &route, ZEND_STRL("variables"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_INIT_NVAR(&numVariables);
 			ZVAL_LONG(&numVariables, zephir_fast_count_int(&_4$$3));
 			ZEPHIR_CALL_FUNCTION(&_5$$3, "max", &_6, 50, &numGroups, &numVariables);
@@ -120,10 +120,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 			ZEPHIR_INIT_NVAR(&_12$$3);
 			zephir_create_array(&_12$$3, 2, 0);
 			ZEPHIR_OBS_NVAR(&_13$$3);
-			zephir_read_property(&_13$$3, &route, SL("handler"), PH_NOISY_CC);
+			zephir_read_property(&_13$$3, &route, ZEND_STRL("handler"), PH_NOISY_CC);
 			zephir_array_fast_append(&_12$$3, &_13$$3);
 			ZEPHIR_OBS_NVAR(&_13$$3);
-			zephir_read_property(&_13$$3, &route, SL("variables"), PH_NOISY_CC);
+			zephir_read_property(&_13$$3, &route, ZEND_STRL("variables"), PH_NOISY_CC);
 			zephir_array_fast_append(&_12$$3, &_13$$3);
 			zephir_array_update_long(&routeMap, i, &_12$$3, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 			ZEPHIR_SEPARATE(&numGroups);
@@ -142,7 +142,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&route, regexToRoutesMap, "current", NULL, 0);
 			zephir_check_call_status();
-				zephir_read_property(&_14$$4, &route, SL("variables"), PH_NOISY_CC | PH_READONLY);
+				zephir_read_property(&_14$$4, &route, ZEND_STRL("variables"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_INIT_NVAR(&numVariables);
 				ZVAL_LONG(&numVariables, zephir_fast_count_int(&_14$$4));
 				ZEPHIR_CALL_FUNCTION(&_15$$4, "max", &_6, 50, &numGroups, &numVariables);
@@ -163,10 +163,10 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 				ZEPHIR_INIT_NVAR(&_20$$4);
 				zephir_create_array(&_20$$4, 2, 0);
 				ZEPHIR_OBS_NVAR(&_21$$4);
-				zephir_read_property(&_21$$4, &route, SL("handler"), PH_NOISY_CC);
+				zephir_read_property(&_21$$4, &route, ZEND_STRL("handler"), PH_NOISY_CC);
 				zephir_array_fast_append(&_20$$4, &_21$$4);
 				ZEPHIR_OBS_NVAR(&_21$$4);
-				zephir_read_property(&_21$$4, &route, SL("variables"), PH_NOISY_CC);
+				zephir_read_property(&_21$$4, &route, ZEND_STRL("variables"), PH_NOISY_CC);
 				zephir_array_fast_append(&_20$$4, &_21$$4);
 				zephir_array_update_long(&routeMap, i, &_20$$4, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
 				ZEPHIR_SEPARATE(&numGroups);

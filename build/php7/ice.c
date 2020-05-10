@@ -144,10 +144,6 @@ zend_class_entry *ice_validation_validator_with_ce;
 zend_class_entry *ice_validation_validator_without_ce;
 zend_class_entry *ice_version_ce;
 
-#ifdef ZTS
-ZEND_TSRMLS_CACHE_DEFINE()
-#endif
-
 ZEND_DECLARE_MODULE_GLOBALS(ice)
 
 PHP_INI_BEGIN()
@@ -369,7 +365,7 @@ static PHP_MINFO_FUNCTION(ice)
 
 static PHP_GINIT_FUNCTION(ice)
 {
-#ifdef ZTS
+#if defined(COMPILE_DL_ICE) && defined(ZTS)
 	ZEND_TSRMLS_CACHE_UPDATE();
 #endif
 
@@ -437,6 +433,10 @@ zend_module_entry ice_module_entry = {
 	STANDARD_MODULE_PROPERTIES_EX
 };
 
+/* implement standard "stub" routine to introduce ourselves to Zend */
 #ifdef COMPILE_DL_ICE
+# ifdef ZTS
+ZEND_TSRMLS_CACHE_DEFINE()
+# endif
 ZEND_GET_MODULE(ice)
 #endif

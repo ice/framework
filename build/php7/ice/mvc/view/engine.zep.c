@@ -99,7 +99,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, getContent) {
 
 	ZEPHIR_MM_GROW();
 
-	zephir_read_property(&_0, this_ptr, SL("view"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("view"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getcontent", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -146,7 +146,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, load) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("view"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("view"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "load", NULL, 0, &path, &data);
 	zephir_check_call_status();
 	RETURN_MM();
@@ -193,7 +193,7 @@ PHP_METHOD(Ice_Mvc_View_Engine, partial) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("view"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("view"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "partial", NULL, 0, &path, &data);
 	zephir_check_call_status();
 	RETURN_MM();

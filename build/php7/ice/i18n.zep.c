@@ -82,7 +82,7 @@ PHP_METHOD(Ice_I18n, __construct) {
 
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(&_0, &_1, &options);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &_0);
 	zephir_update_static_property_ce(ice_i18n_ce, ZEND_STRL("i18n"), this_ptr);
@@ -154,7 +154,7 @@ PHP_METHOD(Ice_I18n, lang) {
 		ZVAL_STRING(&_4$$3, "lang");
 		zephir_update_property_array(this_ptr, SL("options"), &_4$$3, &_0$$3);
 	}
-	zephir_read_property(&_5, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_string(&_6, &_5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 73);
 	RETURN_CTOR(&_6);
 
@@ -201,7 +201,7 @@ PHP_METHOD(Ice_I18n, iso) {
 
 
 	if (!(zephir_is_true(lang))) {
-		zephir_read_property(&_0$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_NVAR(lang);
 		zephir_array_fetch_string(lang, &_0$$3, SL("lang"), PH_NOISY, "ice/i18n.zep", 88);
 	}
@@ -278,7 +278,7 @@ PHP_METHOD(Ice_I18n, get) {
 	ZEPHIR_INIT_VAR(&messages);
 	array_init(&messages);
 	if (!(!(Z_TYPE_P(&lang) == IS_UNDEF) && Z_STRLEN_P(&lang))) {
-		zephir_read_property(&_0$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_array_fetch_string(&_1$$3, &_0$$3, SL("lang"), PH_NOISY, "ice/i18n.zep", 115);
 		zephir_get_strval(&_2$$3, &_1$$3);
@@ -369,7 +369,7 @@ PHP_METHOD(Ice_I18n, load) {
 
 
 	ZEPHIR_OBS_VAR(&cache);
-	zephir_read_property(&_0, this_ptr, SL("cache"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("cache"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&cache, &_0, &lang, 0)) {
 		RETURN_CCTOR(&cache);
 	}
@@ -405,7 +405,7 @@ PHP_METHOD(Ice_I18n, load) {
 				{
 					ZEPHIR_INIT_NVAR(&found);
 					ZVAL_COPY(&found, _6$$4);
-					zephir_read_property(&_8$$6, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+					zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_OBS_NVAR(&_9$$6);
 					zephir_array_fetch_string(&_9$$6, &_8$$6, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
 					zephir_get_strval(&_10$$6, &_9$$6);
@@ -431,7 +431,7 @@ PHP_METHOD(Ice_I18n, load) {
 					}
 					ZEPHIR_CALL_METHOD(&found, &tail, "current", NULL, 0);
 					zephir_check_call_status();
-						zephir_read_property(&_12$$8, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_12$$8, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_OBS_NVAR(&_13$$8);
 						zephir_array_fetch_string(&_13$$8, &_12$$8, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
 						zephir_get_strval(&_14$$8, &_13$$8);
@@ -475,7 +475,7 @@ PHP_METHOD(Ice_I18n, load) {
 					{
 						ZEPHIR_INIT_NVAR(&found);
 						ZVAL_COPY(&found, _17$$10);
-						zephir_read_property(&_19$$12, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+						zephir_read_property(&_19$$12, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_OBS_NVAR(&_20$$12);
 						zephir_array_fetch_string(&_20$$12, &_19$$12, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
 						zephir_get_strval(&_21$$12, &_20$$12);
@@ -501,7 +501,7 @@ PHP_METHOD(Ice_I18n, load) {
 						}
 						ZEPHIR_CALL_METHOD(&found, &tail, "current", NULL, 0);
 						zephir_check_call_status();
-							zephir_read_property(&_23$$14, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+							zephir_read_property(&_23$$14, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_OBS_NVAR(&_24$$14);
 							zephir_array_fetch_string(&_24$$14, &_23$$14, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
 							zephir_get_strval(&_25$$14, &_24$$14);
@@ -526,7 +526,7 @@ PHP_METHOD(Ice_I18n, load) {
 	}
 	ZEPHIR_INIT_NVAR(&tail);
 	zephir_update_property_array(this_ptr, SL("cache"), &lang, &messages);
-	zephir_read_property(&_27, this_ptr, SL("cache"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_27, this_ptr, ZEND_STRL("cache"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_28, &_27, &lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 183);
 	RETURN_CTOR(&_28);
 
@@ -589,12 +589,12 @@ PHP_METHOD(Ice_I18n, plural) {
 	ZEPHIR_CALL_METHOD(&code, this_ptr, "iso", NULL, 0, &lang);
 	zephir_check_call_status();
 	ZEPHIR_OBS_VAR(&rules);
-	zephir_read_property(&_0, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_array_isset_fetch(&rules, &_0, &code, 0))) {
 		ZEPHIR_CALL_METHOD(&_1$$3, this_ptr, "pluralrules", NULL, 0, &code);
 		zephir_check_call_status();
 		zephir_update_property_array(this_ptr, SL("rules"), &code, &_1$$3);
-		zephir_read_property(&_2$$3, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch(&_3$$3, &_2$$3, &code, PH_NOISY | PH_READONLY, "ice/i18n.zep", 204);
 		ZEPHIR_CPY_WRT(&rules, &_3$$3);
 	}
@@ -1365,7 +1365,7 @@ PHP_METHOD(Ice_I18n, translate) {
 
 
 	if (!(!(Z_TYPE_P(&lang) == IS_UNDEF) && Z_STRLEN_P(&lang))) {
-		zephir_read_property(&_0$$3, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_array_fetch_string(&_1$$3, &_0$$3, SL("lang"), PH_NOISY, "ice/i18n.zep", 276);
 		zephir_get_strval(&_2$$3, &_1$$3);
@@ -1426,26 +1426,26 @@ zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type TSRMLS
 	{
 		zval local_this_ptr, *this_ptr = &local_this_ptr;
 		ZEPHIR_CREATE_OBJECT(this_ptr, class_type);
-		zephir_read_property(&_0, this_ptr, SL("options"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
 			zephir_create_array(&_1$$3, 3, 0);
 			add_assoc_stringl_ex(&_1$$3, SL("source"), SL("en-gb"));
 			add_assoc_stringl_ex(&_1$$3, SL("lang"), SL("en-gb"));
 			add_assoc_stringl_ex(&_1$$3, SL("dir"), SL(""));
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("options"), &_1$$3);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("options"), &_1$$3);
 		}
-		zephir_read_property(&_2, this_ptr, SL("rules"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_2, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_2) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_3$$4);
 			array_init(&_3$$4);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("rules"), &_3$$4);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("rules"), &_3$$4);
 		}
-		zephir_read_property(&_4, this_ptr, SL("cache"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_ex(&_4, this_ptr, ZEND_STRL("cache"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_4) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_5$$5);
 			array_init(&_5$$5);
-			zend_update_property(Z_OBJCE_P(this_ptr), this_ptr, ZEND_STRL("cache"), &_5$$5);
+			zephir_update_property_zval_ex(this_ptr, ZEND_STRL("cache"), &_5$$5);
 		}
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);

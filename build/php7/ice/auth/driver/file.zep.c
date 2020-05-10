@@ -88,7 +88,7 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 	}
 
 
-	zephir_read_property(&_0, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_CALL_PARENT(&username, ice_auth_driver_file_ce, getThis(), "getuser", &_1, 0, defaultValue);
 		zephir_check_call_status();
@@ -96,16 +96,16 @@ PHP_METHOD(Ice_Auth_Driver_File, getUser) {
 			zephir_update_property_zval(this_ptr, ZEND_STRL("user"), defaultValue);
 		} else {
 			ZEPHIR_OBS_VAR(&user);
-			zephir_read_property(&_2$$5, this_ptr, SL("users"), PH_NOISY_CC | PH_READONLY);
+			zephir_read_property(&_2$$5, this_ptr, ZEND_STRL("users"), PH_NOISY_CC | PH_READONLY);
 			zephir_array_isset_fetch(&user, &_2$$5, &username, 0);
 			zephir_array_update_string(&user, SL("username"), &username, PH_COPY | PH_SEPARATE);
 			zephir_update_property_zval(this_ptr, ZEND_STRL("user"), &user);
 		}
 	}
-	zephir_read_property(&_3, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property(&_3, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_is_true(&_3)) {
 		object_init_ex(return_value, ice_arr_ce);
-		zephir_read_property(&_4$$6, this_ptr, SL("user"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_4$$6, this_ptr, ZEND_STRL("user"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &_4$$6);
 		zephir_check_call_status();
 		RETURN_MM();
@@ -203,7 +203,7 @@ PHP_METHOD(Ice_Auth_Driver_File, login) {
 	_0 = zephir_is_true(username);
 	if (_0) {
 		ZEPHIR_OBS_VAR(&user);
-		zephir_read_property(&_1, this_ptr, SL("users"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property(&_1, this_ptr, ZEND_STRL("users"), PH_NOISY_CC | PH_READONLY);
 		_0 = zephir_array_isset_fetch(&user, &_1, username, 0);
 	}
 	if (_0) {
