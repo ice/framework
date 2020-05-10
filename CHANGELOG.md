@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Sun May 10 14:32:39 UTC 2020
+
+- Ice 1.6.1
+ * Update zephir, Model dafault rules fix #270
+ * Build with recent GCC fix #266
+ * Image, gd watermark fix #268
+
+-------------------------------------------------------------------
 Sat Apr 25 13:08:46 UTC 2020
 
 - Ice 1.6.0
