@@ -25,7 +25,12 @@ class Url
      */
     public function getStatic(string uri = null) -> string
     {
-        return this->getStaticUri() . uri;
+        var staticUri;
+        let staticUri = rtrim(this->staticUri, "/");
+        if uri[0] != '/' {
+            let staticUri .= "/";
+        }
+        return staticUri . uri;
     }
 
     /**
@@ -38,21 +43,11 @@ class Url
      */
     public function get(var uri = null, var args = null, boolean local = true) -> string
     {
-        var baseUri, queryString;
+        var queryString;
 
-        if !local {
-            if typeof uri == "string" && (memstr(uri, "//") || memstr(uri, ":")) {
-                if preg_match("#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i", uri) {
-                    let local = false;
-                } else {
-                    let local = true;
-                }
-            } else {
-                let local = true;
-            }
+        if !local && !empty uri {
+            let local = empty parse_url(uri, PHP_URL_HOST) && empty parse_url(uri, PHP_URL_SCHEME);
         }
-
-        let baseUri = this->getBaseUri();
 
         if local {
             // Get current URL if uri is false
@@ -60,15 +55,15 @@ class Url
                 let uri = _GET["_url"];
             } else {
                 if !starts_with(uri, "#") && !starts_with(uri, "?")  {
-                    let uri = baseUri . uri;
+                    let uri = this->getBaseUri() . uri;
                 }
             }
         }
 
         if args {
             let queryString = http_build_query(args);
-            if typeof queryString == "string" && strlen(queryString) {
-                if strpos(queryString, "?") !== false {
+            if queryString {
+                if strpos(uri, "?") !== false {
                     let uri .= "&" . queryString;
                 } else {
                     let uri .= "?" . queryString;
