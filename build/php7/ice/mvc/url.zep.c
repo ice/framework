@@ -14,10 +14,10 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "kernel/string.h"
+#include "kernel/operators.h"
 #include "kernel/concat.h"
 #include "kernel/fcall.h"
-#include "kernel/operators.h"
-#include "kernel/string.h"
 #include "kernel/array.h"
 
 
@@ -100,14 +100,16 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
  */
 PHP_METHOD(Ice_Mvc_Url, getStatic) {
 
+	unsigned char _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *uri_param = NULL, _0;
+	zval *uri_param = NULL, staticUri, _0, _1;
 	zval uri;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
+	ZVAL_UNDEF(&staticUri);
 	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
@@ -120,9 +122,16 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 	}
 
 
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getstaticuri", NULL, 0);
-	zephir_check_call_status();
-	ZEPHIR_CONCAT_VV(return_value, &_0, &uri);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("staticUri"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_1);
+	ZVAL_STRING(&_1, "/");
+	ZEPHIR_INIT_VAR(&staticUri);
+	zephir_fast_trim(&staticUri, &_0, &_1, ZEPHIR_TRIM_RIGHT);
+	_2 = ZEPHIR_STRING_OFFSET(&uri, 0);
+	if (_2 != '/') {
+		zephir_concat_self_str(&staticUri, SL("/"));
+	}
+	ZEPHIR_CONCAT_VV(return_value, &staticUri, &uri);
 	RETURN_MM();
 
 }
@@ -139,25 +148,25 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zend_bool local, _0$$3, _1$$3, _6$$8, _7$$10, _9$$12;
-	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, baseUri, queryString, _2$$4, _3$$4, _4$$4, _5$$4, _8$$11, _10$$13, _11$$13, _12$$14, _13$$15;
+	zephir_fcall_cache_entry *_3 = NULL;
+	zend_bool local, _0, _4$$3, _6$$4, _7$$6;
+	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, _GET, __$null, queryString, _1$$3, _2$$3, _5$$3, _8$$7, _9$$7, _10$$9, _11$$9, _12$$10, _13$$11;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri_sub);
 	ZVAL_UNDEF(&args_sub);
 	ZVAL_UNDEF(&_GET);
 	ZVAL_NULL(&__$null);
-	ZVAL_UNDEF(&baseUri);
 	ZVAL_UNDEF(&queryString);
-	ZVAL_UNDEF(&_2$$4);
-	ZVAL_UNDEF(&_3$$4);
-	ZVAL_UNDEF(&_4$$4);
-	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_8$$11);
-	ZVAL_UNDEF(&_10$$13);
-	ZVAL_UNDEF(&_11$$13);
-	ZVAL_UNDEF(&_12$$14);
-	ZVAL_UNDEF(&_13$$15);
+	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_2$$3);
+	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_8$$7);
+	ZVAL_UNDEF(&_9$$7);
+	ZVAL_UNDEF(&_10$$9);
+	ZVAL_UNDEF(&_11$$9);
+	ZVAL_UNDEF(&_12$$10);
+	ZVAL_UNDEF(&_13$$11);
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -180,74 +189,61 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	}
 
 
-	if (!(local)) {
-		_0$$3 = Z_TYPE_P(uri) == IS_STRING;
-		if (_0$$3) {
-			_1$$3 = zephir_memnstr_str(uri, SL("//"), "ice/mvc/url.zep", 44);
-			if (!(_1$$3)) {
-				_1$$3 = zephir_memnstr_str(uri, SL(":"), "ice/mvc/url.zep", 44);
-			}
-			_0$$3 = _1$$3;
-		}
-		if (_0$$3) {
-			ZEPHIR_INIT_VAR(&_2$$4);
-			ZEPHIR_INIT_VAR(&_3$$4);
-			ZVAL_STRING(&_3$$4, "#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i");
-			ZEPHIR_INIT_VAR(&_4$$4);
-			ZEPHIR_INIT_VAR(&_5$$4);
-			ZVAL_STRING(&_5$$4, "#^((//)|([a-z0-9]+://)|([a-z0-9]+:))#i");
-			zephir_preg_match(&_4$$4, &_5$$4, uri, &_2$$4, 0, 0 , 0 );
-			if (zephir_is_true(&_4$$4)) {
-				local = 0;
-			} else {
-				local = 1;
-			}
-		} else {
-			local = 1;
-		}
+	_0 = !local;
+	if (_0) {
+		_0 = !(ZEPHIR_IS_EMPTY(uri));
 	}
-	ZEPHIR_CALL_METHOD(&baseUri, this_ptr, "getbaseuri", NULL, 0);
-	zephir_check_call_status();
-	if (local) {
-		_6$$8 = ZEPHIR_IS_FALSE_IDENTICAL(uri);
-		if (_6$$8) {
-			_6$$8 = zephir_array_isset_string(&_GET, SL("_url"));
+	if (_0) {
+		ZVAL_LONG(&_1$$3, 1);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "parse_url", &_3, 78, uri, &_1$$3);
+		zephir_check_call_status();
+		_4$$3 = ZEPHIR_IS_EMPTY(&_2$$3);
+		if (_4$$3) {
+			ZVAL_LONG(&_1$$3, 0);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "parse_url", &_3, 78, uri, &_1$$3);
+			zephir_check_call_status();
+			_4$$3 = ZEPHIR_IS_EMPTY(&_5$$3);
 		}
-		if (_6$$8) {
+		local = _4$$3;
+	}
+	if (local) {
+		_6$$4 = ZEPHIR_IS_FALSE_IDENTICAL(uri);
+		if (_6$$4) {
+			_6$$4 = zephir_array_isset_string(&_GET, SL("_url"));
+		}
+		if (_6$$4) {
 			ZEPHIR_OBS_NVAR(uri);
-			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 60);
+			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 55);
 		} else {
-			_7$$10 = !(zephir_start_with_str(uri, SL("#")));
-			if (_7$$10) {
-				_7$$10 = !(zephir_start_with_str(uri, SL("?")));
+			_7$$6 = !(zephir_start_with_str(uri, SL("#")));
+			if (_7$$6) {
+				_7$$6 = !(zephir_start_with_str(uri, SL("?")));
 			}
-			if (_7$$10) {
-				ZEPHIR_INIT_VAR(&_8$$11);
-				ZEPHIR_CONCAT_VV(&_8$$11, &baseUri, uri);
-				ZEPHIR_CPY_WRT(uri, &_8$$11);
+			if (_7$$6) {
+				ZEPHIR_CALL_METHOD(&_8$$7, this_ptr, "getbaseuri", NULL, 0);
+				zephir_check_call_status();
+				ZEPHIR_INIT_VAR(&_9$$7);
+				ZEPHIR_CONCAT_VV(&_9$$7, &_8$$7, uri);
+				ZEPHIR_CPY_WRT(uri, &_9$$7);
 			}
 		}
 	}
 	if (zephir_is_true(args)) {
 		ZEPHIR_CALL_FUNCTION(&queryString, "http_build_query", NULL, 18, args);
 		zephir_check_call_status();
-		_9$$12 = Z_TYPE_P(&queryString) == IS_STRING;
-		if (_9$$12) {
-			_9$$12 = ((zephir_fast_strlen_ev(&queryString)) ? 1 : 0);
-		}
-		if (_9$$12) {
-			ZEPHIR_INIT_VAR(&_10$$13);
-			ZVAL_STRING(&_10$$13, "?");
-			ZEPHIR_INIT_VAR(&_11$$13);
-			zephir_fast_strpos(&_11$$13, &queryString, &_10$$13, 0 );
-			if (!ZEPHIR_IS_FALSE_IDENTICAL(&_11$$13)) {
-				ZEPHIR_INIT_VAR(&_12$$14);
-				ZEPHIR_CONCAT_SV(&_12$$14, "&", &queryString);
-				zephir_concat_self(uri, &_12$$14);
+		if (zephir_is_true(&queryString)) {
+			ZEPHIR_INIT_VAR(&_10$$9);
+			ZVAL_STRING(&_10$$9, "?");
+			ZEPHIR_INIT_VAR(&_11$$9);
+			zephir_fast_strpos(&_11$$9, uri, &_10$$9, 0 );
+			if (!ZEPHIR_IS_FALSE_IDENTICAL(&_11$$9)) {
+				ZEPHIR_INIT_VAR(&_12$$10);
+				ZEPHIR_CONCAT_SV(&_12$$10, "&", &queryString);
+				zephir_concat_self(uri, &_12$$10);
 			} else {
-				ZEPHIR_INIT_VAR(&_13$$15);
-				ZEPHIR_CONCAT_SV(&_13$$15, "?", &queryString);
-				zephir_concat_self(uri, &_13$$15);
+				ZEPHIR_INIT_VAR(&_13$$11);
+				ZEPHIR_CONCAT_SV(&_13$$11, "?", &queryString);
+				zephir_concat_self(uri, &_13$$11);
 			}
 		}
 	}
