@@ -39,24 +39,30 @@ class Pagination extends Arr
      */
     public function calculate() -> <Pagination>
     {
-        var items, data;
-        int limit, page, pages, total, previous, next;
+        var items, data, total;
+        int limit, page, pages, previous, next;
 
-        let items  = this->get("data", []);
+        let total = this->get("total");
 
-        if typeof items != "array" && !(items instanceof Arr) {
-            throw new Exception("Invalid data for pagination");
-        }
+        if typeof total == "null" {
+            // No total number specified, we need to count items in data
+            let data  = this->get("data", []);
 
-        if items instanceof Arr {
-            let data = items->all();
-        } else {
-            let data = items;
+            // Check if we can paginate the data
+            if typeof data == "object" && (data instanceof Arr) {
+                // Convert to array
+                let items = data->all();
+            } elseif typeof data == "array" {
+                let items = data;
+            } else {
+                throw new Exception("Invalid data for pagination");
+            }
+
+            let total = count(items);
         }
 
         let limit  = (int) this->get("limit", 10),
             page = (int) this->get("page", 1),
-            total = count(items),
             pages = (int) ceil(total / intval(limit ? limit : 1));
 
         // Make sure page is >= 1
@@ -64,7 +70,10 @@ class Pagination extends Arr
             let page = 1;
         }
 
-        this->set("items", array_slice(data, limit * (page - 1), limit));
+        if !this->has("items") && items {
+            // Set items on the current page only
+            this->set("items", array_slice(items, limit * (page - 1), limit));
+        }
 
         if page < pages {
             let next = page + 1;
