@@ -547,6 +547,16 @@ abstract class Model extends Arr implements \Serializable
     }
 
     /**
+     * Check whether model is loaded.
+     *
+     * @return boolean
+     */
+    public function loaded() -> boolean
+    {
+        return this->isLoaded ? true : false;
+    }
+
+    /**
      * Get the last Db error.
      *
      * @return mixed
@@ -707,7 +717,7 @@ abstract class Model extends Arr implements \Serializable
                 let filters[referencedField] = this->{field},
                     result = create_instance_params(referenceModel, [filters, null, options]);
 
-                if !result->count() {
+                if !result->loaded() {
                     return false;
                 }
 
