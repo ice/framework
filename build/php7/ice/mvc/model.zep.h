@@ -33,6 +33,7 @@ PHP_METHOD(Ice_Mvc_Model, update);
 PHP_METHOD(Ice_Mvc_Model, save);
 PHP_METHOD(Ice_Mvc_Model, delete);
 PHP_METHOD(Ice_Mvc_Model, exists);
+PHP_METHOD(Ice_Mvc_Model, loaded);
 PHP_METHOD(Ice_Mvc_Model, getError);
 PHP_METHOD(Ice_Mvc_Model, belongsTo);
 PHP_METHOD(Ice_Mvc_Model, hasOne);
@@ -145,6 +146,13 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_exists, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
+ZEND_END_ARG_INFO()
+
+#if PHP_VERSION_ID >= 70200
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_loaded, 0, 0, _IS_BOOL, 0)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_loaded, 0, 0, _IS_BOOL, NULL, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_belongsto, 0, 0, 3)
@@ -278,6 +286,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, save, arginfo_ice_mvc_model_save, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, delete, arginfo_ice_mvc_model_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, exists, arginfo_ice_mvc_model_exists, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, loaded, arginfo_ice_mvc_model_loaded, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getError, NULL, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, belongsTo, arginfo_ice_mvc_model_belongsto, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, hasOne, arginfo_ice_mvc_model_hasone, ZEND_ACC_PUBLIC)

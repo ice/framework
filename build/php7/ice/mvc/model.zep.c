@@ -1777,6 +1777,33 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 }
 
 /**
+ * Check whether model is loaded.
+ *
+ * @return boolean
+ */
+PHP_METHOD(Ice_Mvc_Model, loaded) {
+
+	zval _0, _1;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
+
+	ZEPHIR_MM_GROW();
+
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("isLoaded"), PH_NOISY_CC | PH_READONLY);
+	if (zephir_is_true(&_1)) {
+		ZVAL_BOOL(&_0, 1);
+	} else {
+		ZVAL_BOOL(&_0, 0);
+	}
+	RETURN_CCTOR(&_0);
+
+}
+
+/**
  * Get the last Db error.
  *
  * @return mixed
@@ -2068,7 +2095,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, &_1$$3, "__construct", NULL, 12, &_3$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_1$$3, "ice/mvc/model.zep", 697);
+		zephir_throw_exception_debug(&_1$$3, "ice/mvc/model.zep", 707);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
@@ -2078,7 +2105,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	zephir_array_isset_string_fetch(&referenceModel, &relation, SL("referenceModel"), 0);
 	ZEPHIR_OBS_VAR(&referencedField);
 	zephir_array_isset_string_fetch(&referencedField, &relation, SL("referencedField"), 0);
-	zephir_array_fetch_string(&_4, &relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 704);
+	zephir_array_fetch_string(&_4, &relation, SL("type"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 714);
 	do {
 		if (ZEPHIR_IS_LONG(&_4, 1) || ZEPHIR_IS_LONG(&_4, 2)) {
 			ZEPHIR_OBS_VAR(&_5$$4);
@@ -2092,7 +2119,7 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 			ZEPHIR_INIT_VAR(&result);
 			ZEPHIR_LAST_CALL_STATUS = zephir_create_instance_params(&result, &referenceModel, &_6$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_7$$4, &result, "count", NULL, 0);
+			ZEPHIR_CALL_METHOD(&_7$$4, &result, "loaded", NULL, 0);
 			zephir_check_call_status();
 			if (!(zephir_is_true(&_7$$4))) {
 				RETURN_MM_BOOL(0);
@@ -2172,7 +2199,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		if (Z_TYPE_P(fields) == IS_ARRAY) {
 			ZEPHIR_INIT_VAR(&rules);
 			array_init(&rules);
-			zephir_is_iterable(fields, 0, "ice/mvc/model.zep", 755);
+			zephir_is_iterable(fields, 0, "ice/mvc/model.zep", 765);
 			if (Z_TYPE_P(fields) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(fields), _2$$4)
 				{
@@ -2181,7 +2208,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 					zephir_read_property(&_4$$5, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 					if (zephir_array_isset(&_4$$5, &field)) {
 						zephir_read_property(&_5$$6, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
-						zephir_array_fetch(&_6$$6, &_5$$6, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 751);
+						zephir_array_fetch(&_6$$6, &_5$$6, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 761);
 						zephir_array_update_zval(&rules, &field, &_6$$6, PH_COPY | PH_SEPARATE);
 					}
 				} ZEND_HASH_FOREACH_END();
@@ -2199,7 +2226,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 						zephir_read_property(&_7$$7, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
 						if (zephir_array_isset(&_7$$7, &field)) {
 							zephir_read_property(&_8$$8, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
-							zephir_array_fetch(&_9$$8, &_8$$8, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 751);
+							zephir_array_fetch(&_9$$8, &_8$$8, &field, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 761);
 							zephir_array_update_zval(&rules, &field, &_9$$8, PH_COPY | PH_SEPARATE);
 						}
 					ZEPHIR_CALL_METHOD(NULL, fields, "next", NULL, 0);
@@ -2210,7 +2237,7 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 			RETURN_CCTOR(&rules);
 		} else if (_0$$3) {
 			zephir_read_property(&_10$$9, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
-			zephir_array_fetch(&_11$$9, &_10$$9, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 757);
+			zephir_array_fetch(&_11$$9, &_10$$9, fields, PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 767);
 			RETURN_CTOR(&_11$$9);
 		}
 		RETURN_MM_NULL();
@@ -2378,7 +2405,7 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 12, &_5);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 818);
+	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 828);
 	ZEPHIR_MM_RESTORE();
 	return;
 
