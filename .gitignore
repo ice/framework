@@ -1,6 +1,7 @@
 .*
 *~
 !.gitignore
+!.github
 !.travis.yml
 !.deps
 /nbproject/
