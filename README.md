@@ -30,13 +30,13 @@ Ice is a C-extension, so you need to download a binary for your platform or comp
 * source code of [stable releases](https://github.com/ice/framework/releases)
 
 ## Donation
-Support us with a donation and help us continue our activities. [Become a contributor](https://opencollective.com/ice#section-contribute)
+Support us with a donation and help us continue our activities. [Become a contributor](https://opencollective.com/ice)
 
 ### Sponsors
-[![Sponsors](https://opencollective.com/ice/tiers/sponsors.svg?avatarHeight=48&width=800)](https://opencollective.com/ice/#section-contributors)
+[![Sponsors](https://opencollective.com/ice/tiers/sponsors.svg?avatarHeight=48&width=800)](https://opencollective.com/ice)
 
 ### Backers
-[![Backers](https://opencollective.com/ice/tiers/backers.svg?avatarHeight=36&width=800)](https://opencollective.com/ice/#contributors)
+[![Backers](https://opencollective.com/ice/tiers/backers.svg?avatarHeight=36&width=800)](https://opencollective.com/ice)
 
 ## License
 Ice is open-sourced software licensed under the New BSD License. See the [LICENSE](http://www.iceframework.org/license) file for more information.
