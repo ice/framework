@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Sat Sep 12 06:11:32 UTC 2020
+
+- Ice 1.6.2
+ * Model, get related record if field is null fix #275
+ * Pagination, calculate if data is array or total is specified #273
+ * Url, fixed getStatic() #193
+
+-------------------------------------------------------------------
 Sun May 10 14:32:39 UTC 2020
 
 - Ice 1.6.1
