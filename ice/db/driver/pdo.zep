@@ -109,12 +109,13 @@ class Pdo implements DbInterface
      */
     public function findOne(string! from, var filters = [], array options = [], array fields = [])
     {
-        var result;
+        var result, fetched;
 
         let options["limit"] = 1,
-            result = this->select(from, filters, options, fields);
+            result = this->select(from, filters, options, fields),
+            fetched = result->$fetch(\Pdo::FETCH_ASSOC);
 
-        return result->rowCount() ? new Arr(result->$fetch(\Pdo::FETCH_ASSOC)) : false;
+        return fetched ? new Arr(fetched) : false;
     }
 
     /**
