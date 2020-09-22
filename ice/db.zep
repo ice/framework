@@ -21,7 +21,7 @@ class Db
     /**
      * Db constructor.
      *
-     * @param mixed driver
+     * @param mixed dsn
      * @param string host
      * @param int port
      * @param string name
@@ -29,12 +29,12 @@ class Db
      * @param string password
      * @param array options
      */
-    public function __construct(var driver, string host = null, int port = null, string name = null, string user = null, string password = null, array options = [])
+    public function __construct(var dsn, string host = null, int port = null, string name = null, string user = null, string password = null, array options = [])
     {
-        if typeof driver == "object" && (driver instanceof DbInterface) {
-            let this->driver = driver;
-        } elseif typeof driver == "string" {
-            switch driver {
+        if typeof dsn == "object" && (dsn instanceof DbInterface) {
+            let this->driver = dsn;
+        } elseif typeof dsn == "string" {
+            switch dsn {
                 case "oci":
                     var tns = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=" . host . ")(PORT=" . port . "))(CONNECT_DATA=(SID=orcl)))";
                     let this->driver = new Pdo("oci:dbname=" . tns, user, password, options);
@@ -44,7 +44,25 @@ class Db
                     let this->driver = new Mongodb(dsn, name, options);
                     break;
                 default:
-                    let this->driver = new Pdo(driver . ":host=" . host . ";port=" . port . ";dbname=" . name, user, password, options);
+                    var settings = [];
+
+                    if host {
+                        let settings[] = "host=" . host;
+                    }
+
+                    if port {
+                        let settings[] = "port=" . port;
+                    }
+
+                    if name {
+                        let settings[] = "dbname=" . name;
+                    }
+
+                    if count(settings) {
+                        let dsn .= ":" . join(";", settings);
+                    }
+
+                    let this->driver = new Pdo(dsn, user, password, options);
                     break;
             }
         }
