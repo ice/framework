@@ -209,6 +209,11 @@ class Router
         let uri = uri == "/" ? "/" : rtrim(uri, "/"),
             matches = null;
 
+        if !this->routes {
+            // Set default routes
+            this->setRoutes();
+        }
+
         for name, route in this->routes {
             let params = route->matches(uri, method);
             if !empty params {
