@@ -23,4 +23,6 @@ interface DbInterface
     public function update(string! from, var filters = [], array fields = []);
 
     public function delete(string! from, var filters = []);
+
+    public function count(string! from, var filters = []) -> int;
 }

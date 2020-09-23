@@ -148,6 +148,27 @@ class Pdo implements DbInterface
     }
 
     /**
+     * Count rows that match criteria.
+     *
+     * <pre><code>
+     *  //SELECT count(*) as total FROM users WHERE a=1
+     *  $db->count("users", ["a" => 1]);
+     * </code></pre>
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @return int
+     */
+    public function count(string! from, var filters = []) -> int
+    {
+        var result;
+
+        let result = this->findOne(from, filters, [], ["count(*) AS total"]);
+
+        return result ? (int) result->total : 0;
+    }
+
+    /**
      * Prepare SQL WHERE condition.
      *
      * @params mixed filters

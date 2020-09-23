@@ -137,6 +137,51 @@ class Mongodb implements DbInterface
     }
 
     /**
+     * Count rows that match criteria.
+     *
+     * <pre><code>
+     *  $db->count("users", ["a" => 1]);
+     * </code></pre>
+     *
+     * @param string from Collection name
+     * @param mixed filters Criteria
+     * @return int
+     */
+    public function count(string! from, var filters = []) -> int
+    {
+        var filtered, collection, result;
+
+        switch typeof filters {
+            case "object":
+                // Find by ObjectId
+                if filters instanceof \MongoDB\BSON\ObjectID {
+                    let filtered = [this->id: filters];
+                } else {
+                    throw new Exception("Object must be an ObjectID instance");
+                }
+            break;
+            case "array":
+                // Find by filters
+                let filtered = filters;
+            break;
+            case "integer":
+            case "string":
+                // Find by id
+                let filtered = [this->id: this->getIdValue(filters)];
+            break;
+            default:
+                // Find all
+                let filtered = [];
+            break;
+        }
+
+        let collection = this->client->selectCollection(from),
+            result = collection->count(filtered);
+
+        return result;
+    }
+
+    /**
      * SELECT document(s) that match criteria.
      *
      * @param string from Collection name
