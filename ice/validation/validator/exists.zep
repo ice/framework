@@ -7,7 +7,7 @@ use Ice\Validation\Validator;
 use Ice\Db\Driver\Mongodb;
 
 /**
- * Unique validator.
+ * Exists validator.
  *
  * @package     Ice/Validation
  * @category    Security
@@ -20,7 +20,7 @@ use Ice\Db\Driver\Mongodb;
  *
  *  $validation->rules([
  *      'userName' => [
- *          'unique' => [
+ *          'exists' => [
  *              'from' => 'users',
  *              'custom' => 'username'
  *          ],
@@ -34,11 +34,11 @@ use Ice\Db\Driver\Mongodb;
  *  }
  * </code></pre>
  */
-class Unique extends Validator
+class Exists extends Validator
 {
     /**
      * Validate the validator
-     * Options: from (0), custom (1), except (2), insensitive (3), label, message
+     * Options: from (0), custom (1), insensitive (2), label, message
      *
      * @param Validation validation
      * @param string field
@@ -46,7 +46,7 @@ class Unique extends Validator
      */
     public function validate(<Validation> validation, string! field) -> boolean
     {
-        var value, label, message, i18n, replace, di, db, from, custom, except, insensitive, options, result, id;
+        var value, label, message, i18n, replace, di, db, from, custom, insensitive, options, result;
 
         let value = validation->getValue(field);
 
@@ -74,30 +74,17 @@ class Unique extends Validator
             let custom = field;
         }
 
-        // Forcing a unique rule to ignore a given value
-        if this->has(2) {
-            let except = this->get(2);
-        } else {
-            let except = this->get("except");
-        }
-
         // Case insensitive
-        if this->has(3) {
-            let insensitive = this->get(3);
+        if this->has(2) {
+            let insensitive = this->get(2);
         } else {
             let insensitive = this->get("insensitive");
         }
 
-        let options = insensitive ? ["insensitive": true] : [];
+        let options = insensitive ? ["insensitive": true] : [],
+            result = db->findOne(from, [custom: value], options);
 
-        if except {
-            let id = ["!=": db->getIdValue(except)],
-                result = db->findOne(from, [custom: value, db->getId(): id], options);
-        } else {
-            let result = db->findOne(from, [custom: value], options);
-        }
-
-        if result {
+        if !result {
             if this->has("label") {
                 let label = this->get("label");
             } else {
@@ -107,7 +94,7 @@ class Unique extends Validator
             if this->has("message") {
                 let message = this->get("message");
             } else {
-                let message = validation->getDefaultMessage("unique");
+                let message = validation->getDefaultMessage("exists");
             }
 
             // Translate strings

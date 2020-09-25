@@ -205,6 +205,17 @@ class Mongodb implements DbInterface
             case "array":
                 // Find by filters
                 let filtered = filters;
+
+                // @TODO Support multiple filters
+                if count(filtered) == 1 {
+                    var key = key(filtered);
+                    var value = current(filtered);
+
+                    // Case insensitive
+                    if typeof value == "string" && isset options["insensitive"] {
+                        let filtered[key] = new \MongoDB\BSON\Regex("^" . value . "$", "i");
+                    }
+                }
             break;
             case "integer":
             case "string":

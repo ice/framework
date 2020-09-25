@@ -173,10 +173,11 @@ class Pdo implements DbInterface
      *
      * @params mixed filters
      * @params array values
+     * @param array options
      */
-    protected function where(var filters = [], array values = []) -> array
+    protected function where(var filters = [], array values = [], array options = []) -> array
     {
-        var and, data, operator, key, item, value, or, is, index, i, sql, condition;
+        var and, data, operator, key, item, value, or, is, index, i, sql, condition, column;
 
         let and = [],
             sql = "",
@@ -210,7 +211,8 @@ class Pdo implements DbInterface
 
                     for item in data {
                         let key = key(item),
-                            value = current(item);
+                            value = current(item),
+                            column = sprintf(this->identifier, key);
 
                         if typeof value == "array" {
                             let is = key(value),
@@ -238,19 +240,24 @@ class Pdo implements DbInterface
 
                                     let value = "(" . implode(", ", ids) . ")";
                                 }
-                                let condition = sprintf(this->identifier, key) . is . " " . value;
+                                let condition = column . " " . is . " " . value;
                             break;
                             case "IS":
                             case "is":
                             case "IS NOT":
                             case "is not":
                                 // Don't bind value
-                                let condition = sprintf(this->identifier, key) . is . " " . value;
+                                let condition = column . " " . is . " " . value;
                             break;
                             default:
+                                if isset options["insensitive"] {
+                                    let condition = sprintf("LOWER(%s) %s LOWER(%s)", column, is, index);
+                                } else {
+                                    let condition = column . " " . is . " " . index;
+                                }
+
                                 // Bind value
-                                let condition = sprintf(this->identifier, key) . is . " " . index,
-                                    values[index] = value;
+                                let values[index] = value;
                             break;
                         }
 
@@ -333,7 +340,7 @@ class Pdo implements DbInterface
             }
         }
 
-        let filtered = this->where(filters),
+        let filtered = this->where(filters, [], options),
             sql .= columns . " FROM " . sprintf(this->identifier, from),
             values = filtered[1];
 
