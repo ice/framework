@@ -301,7 +301,7 @@ class Tag
 
             // Send to current URL if action is false
             if action !== false {
-                let parameters["action"] = this->di->get("url")->get(action);
+                let parameters["action"] = this->di->get("url")->rel(action);
             }
         }
 
@@ -385,7 +385,7 @@ class Tag
                 fetch src, parameters[defaultParams["src"]];
             }
 
-            let parameters["src"] = this->di->get("url")->getStatic(src);
+            let parameters["src"] = this->di->get("url")->href(src);
         }
 
         return this->tagHtml("img", parameters, defaultParams, ["local"], null, false, false, true);
@@ -433,7 +433,7 @@ class Tag
 
         fetch query, parameters["query"];
 
-        let parameters["href"] = this->di->get("url")->get(href, query, local);
+        let parameters["href"] = this->di->get("url")->rel(href, query, local);
 
         return this->tagHtml("a", parameters, defaultParams, ["text", "local", "query"], "text", true);
     }
@@ -471,7 +471,7 @@ class Tag
                 fetch href, parameters[defaultParams["href"]];
             }
 
-            let parameters["href"] = this->di->get("url")->getStatic(href);
+            let parameters["href"] = this->di->get("url")->href(href);
         }
 
         return this->tagHtml("link", parameters, defaultParams, ["local"], null, false, true, true);
@@ -510,7 +510,7 @@ class Tag
             }
 
             if src {
-                let parameters["src"] = this->di->get("url")->getStatic(src);
+                let parameters["src"] = this->di->get("url")->href(src);
             }
         }
 

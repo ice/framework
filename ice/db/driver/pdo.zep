@@ -148,14 +148,36 @@ class Pdo implements DbInterface
     }
 
     /**
+     * Count rows that match criteria.
+     *
+     * <pre><code>
+     *  //SELECT count(*) as total FROM users WHERE a=1
+     *  $db->count("users", ["a" => 1]);
+     * </code></pre>
+     *
+     * @param string from Table name
+     * @param mixed filters Filters to create WHERE conditions
+     * @return int
+     */
+    public function count(string! from, var filters = []) -> int
+    {
+        var result;
+
+        let result = this->findOne(from, filters, [], ["count(*) AS total"]);
+
+        return result ? (int) result->total : 0;
+    }
+
+    /**
      * Prepare SQL WHERE condition.
      *
      * @params mixed filters
      * @params array values
+     * @param array options
      */
-    protected function where(var filters = [], array values = []) -> array
+    protected function where(var filters = [], array values = [], array options = []) -> array
     {
-        var and, data, operator, key, item, value, or, is, index, i, sql, condition;
+        var and, data, operator, key, item, value, or, is, index, i, sql, condition, column;
 
         let and = [],
             sql = "",
@@ -189,7 +211,8 @@ class Pdo implements DbInterface
 
                     for item in data {
                         let key = key(item),
-                            value = current(item);
+                            value = current(item),
+                            column = sprintf(this->identifier, key);
 
                         if typeof value == "array" {
                             let is = key(value),
@@ -217,19 +240,24 @@ class Pdo implements DbInterface
 
                                     let value = "(" . implode(", ", ids) . ")";
                                 }
-                                let condition = sprintf(this->identifier, key) . is . " " . value;
+                                let condition = column . " " . is . " " . value;
                             break;
                             case "IS":
                             case "is":
                             case "IS NOT":
                             case "is not":
                                 // Don't bind value
-                                let condition = sprintf(this->identifier, key) . is . " " . value;
+                                let condition = column . " " . is . " " . value;
                             break;
                             default:
+                                if isset options["insensitive"] {
+                                    let condition = sprintf("LOWER(%s) %s LOWER(%s)", column, is, index);
+                                } else {
+                                    let condition = column . " " . is . " " . index;
+                                }
+
                                 // Bind value
-                                let condition = sprintf(this->identifier, key) . is . " " . index,
-                                    values[index] = value;
+                                let values[index] = value;
                             break;
                         }
 
@@ -312,7 +340,7 @@ class Pdo implements DbInterface
             }
         }
 
-        let filtered = this->where(filters),
+        let filtered = this->where(filters, [], options),
             sql .= columns . " FROM " . sprintf(this->identifier, from),
             values = filtered[1];
 
@@ -469,7 +497,7 @@ class Pdo implements DbInterface
             let result = query->$fetch(\Pdo::FETCH_ASSOC);
             if result {
                 if obj instanceof Arr {
-                    obj->replace(result);
+                    obj->merge(result);
                 } else {
                     let obj = new Arr(result);
                 }

@@ -51,6 +51,7 @@ class Validation
         "digit": "Field :field must be numeric",
         "default": "Field :field is not valid",
         "email": "Field :field must be an email address",
+        "exists": "Field :field must exist",
         "fileEmpty": "Field :field must not be empty",
         "fileIniSize": "File :field exceeds the maximum file size",
         "fileMaxResolution": "File :field must not exceed :max resolution",

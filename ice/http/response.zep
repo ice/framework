@@ -94,7 +94,7 @@ class Response implements ResponseInterface
      */
     public function setHeaders(array headers)
     {
-        this->headers->replace(headers);
+        this->headers->merge(headers);
 
         return this;
     }
@@ -369,7 +369,7 @@ class Response implements ResponseInterface
 
         if !external {
             let url = di->get("url"),
-                location = url->get(location);
+                location = url->rel(location);
         }
 
         if di->has("session") && this->loops {

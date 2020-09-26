@@ -55,7 +55,7 @@ abstract class Adapter implements SocialInterface
             let this->clientSecret = clientSecret;
         }
         if fetch redirectUri, config["redirect_uri"] {
-            let this->redirectUri = di->has("url") ? di->get("url")->getStatic(redirectUri) : redirectUri;
+            let this->redirectUri = di->has("url") ? di->get("url")->href(redirectUri) : redirectUri;
         }
 
         if !this->clientId || !this->clientSecret || !this->redirectUri {

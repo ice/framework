@@ -83,6 +83,21 @@ class DbTest extends PHPUnit
         $this->assertEquals($expected, $return);
     }
 
+    public function testRolesCount()
+    {
+        $return = $this->db->count('roles');
+        $this->assertEquals(2, $return);
+
+        $return = $this->db->count('roles', ['name' => 'admin']);
+        $this->assertEquals(1, $return);
+
+        $return = $this->mongo->count('roles');
+        $this->assertEquals(2, $return);
+
+        $return = $this->mongo->count('roles', ['name' => 'admin']);
+        $this->assertEquals(1, $return);
+    }
+
     /**
      * Roles
      *

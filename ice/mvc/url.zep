@@ -23,7 +23,7 @@ class Url
      * @param string uri
      * @return string
      */
-    public function getStatic(string uri = null) -> string
+    public function href(string uri = null) -> string
     {
         var staticUri;
         let staticUri = rtrim(this->staticUri, "/");
@@ -31,6 +31,27 @@ class Url
             let staticUri .= "/";
         }
         return staticUri . uri;
+    }
+
+    /**
+     * Alias of the `href` method.
+     *
+     * @deprecated
+     * @see self::href()
+     */
+    public function getStatic(string uri = null) -> string
+    {
+        return this->href(uri);
+    }
+
+    /**
+     * Alias of the `get` method.
+     *
+     * @see self::get()
+     */
+    public function rel(var uri = null, var args = null, boolean local = true) -> string
+    {
+        return this->get(uri, args, local);
     }
 
     /**

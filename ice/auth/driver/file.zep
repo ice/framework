@@ -20,6 +20,25 @@ class File extends Driver implements DriverInterface
     protected users { set };
 
     /**
+     * Set configuration options and users.
+     *
+     * @param array options Config options
+     * @return void
+     */
+    public function __construct(array options = [])
+    {
+        var users;
+
+        if fetch users, options["users"] {
+            unset options["users"];
+        }
+
+        parent::__construct(options);
+
+        let this->users = users ? users : [];
+    }
+
+    /**
      * Gets the currently logged in user from the session. Returns NULL if no user is currently logged in.
      *
      * @param mixed defaultValue Default value to return if the user is currently not logged in

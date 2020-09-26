@@ -105,7 +105,7 @@ class View extends Arr implements ViewInterface
                     let path = dir . this->file;
                     if file_exists(path) {
                         let exists = true;
-                        this->replace(data);
+                        this->merge(data);
                         let content = engine->render(path, this->all());
                         break;
                     }
@@ -117,7 +117,7 @@ class View extends Arr implements ViewInterface
                     let path = dir . this->file . ext;
                     if file_exists(path) {
                         let exists = true;
-                        this->replace(data);
+                        this->merge(data);
                         let content = engine->render(path, this->all());
                         break;
                     }
@@ -196,7 +196,7 @@ class View extends Arr implements ViewInterface
      */
     public function setVars(array! vars)
     {
-        this->replace(vars);
+        this->merge(vars);
 
         return this;
     }

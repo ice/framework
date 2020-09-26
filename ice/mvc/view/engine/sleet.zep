@@ -37,22 +37,22 @@ class Sleet extends Engine
             file = basename(path, ".sleet"),
             compiledPath = dir . DIRECTORY_SEPARATOR . file . ".phtml";
 
-
-        switch compile {
-            case Compiler::NEVER:
+        switch true {
+            case compile === Compiler::NEVER:
                 let compile = false;
             break;
-            case Compiler::NOT_EXIST:
+            case compile == Compiler::NOT_EXIST:
                 let compile = !file_exists(compiledPath);
             break;
-            case Compiler::IF_CHANGE:
+            case compile == Compiler::IF_CHANGE:
                 if !file_exists(compiledPath) {
                     let compile = true;
                 } else {
                     let compile = md5_file(compiledPath);
                 }
             break;
-            default: // Compiler::ALWAYS:
+            case compile == Compiler::ALWAYS:
+            default:
                 let compile = true;
             break;
         }
