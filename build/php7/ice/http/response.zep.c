@@ -357,7 +357,7 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("headers"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "replace", NULL, 0, &headers);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "merge", NULL, 0, &headers);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -990,7 +990,7 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 		ZVAL_STRING(&_2$$3, "url");
 		ZEPHIR_CALL_METHOD(&url, &di, "get", NULL, 0, &_2$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_3$$3, &url, "get", NULL, 0, &location);
+		ZEPHIR_CALL_METHOD(&_3$$3, &url, "rel", NULL, 0, &location);
 		zephir_check_call_status();
 		zephir_get_strval(&location, &_3$$3);
 	}

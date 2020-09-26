@@ -14,10 +14,10 @@
 #include "kernel/main.h"
 #include "kernel/object.h"
 #include "kernel/memory.h"
+#include "kernel/operators.h"
 #include "kernel/fcall.h"
 #include "ext/spl/spl_exceptions.h"
 #include "kernel/exception.h"
-#include "kernel/operators.h"
 
 
 /**
@@ -63,23 +63,35 @@ PHP_METHOD(Ice_Mvc_View_Engine, setOptions) {
  */
 PHP_METHOD(Ice_Mvc_View_Engine, __construct) {
 
-	zval *view, view_sub, *di = NULL, di_sub, __$null;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zval options;
+	zval *view, view_sub, *di = NULL, di_sub, *options_param = NULL, __$null;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_UNDEF(&di_sub);
 	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&options);
 
-	zephir_fetch_params_without_memory_grow(1, 1, &view, &di);
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 2, &view, &di, &options_param);
 
 	if (!di) {
 		di = &di_sub;
 		di = &__$null;
 	}
+	if (!options_param) {
+		ZEPHIR_INIT_VAR(&options);
+		array_init(&options);
+	} else {
+		zephir_get_arrval(&options, options_param);
+	}
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("view"), view);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), di);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &options);
+	ZEPHIR_MM_RESTORE();
 
 }
 

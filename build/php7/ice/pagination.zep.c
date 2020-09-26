@@ -241,7 +241,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	ZVAL_LONG(&_0, pages);
 	zephir_array_update_string(&_15, SL("pages"), &_0, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(&_15, SL("total"), &total, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &_15);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &_15);
 	zephir_check_call_status();
 	RETURN_THIS();
 
@@ -457,7 +457,7 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 			ZEPHIR_CALL_METHOD(&_15$$12, &_14$$12, "get", NULL, 0, &_16$$12);
 			zephir_check_call_status();
 			ZVAL_BOOL(&_17$$12, 0);
-			ZEPHIR_CALL_METHOD(url, &_15$$12, "get", NULL, 0, &_17$$12);
+			ZEPHIR_CALL_METHOD(url, &_15$$12, "rel", NULL, 0, &_17$$12);
 			zephir_check_call_status();
 		}
 		ZEPHIR_INIT_VAR(&_18$$11);

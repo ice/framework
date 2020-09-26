@@ -524,7 +524,7 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 	if (zephir_is_true(&result)) {
 		ZEPHIR_CALL_METHOD(&_2$$4, &result, "all", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &_2$$4);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &_2$$4);
 		zephir_check_call_status();
 		if (1) {
 			zephir_update_property_zval(this_ptr, ZEND_STRL("isLoaded"), &__$true);
@@ -1119,7 +1119,7 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 		zephir_read_property(&_27$$5, this_ptr, ZEND_STRL("validation"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_28$$5, &_27$$5, "getvalues", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &_28$$5);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &_28$$5);
 		zephir_check_call_status();
 		zephir_read_property(&_29$$5, this_ptr, ZEND_STRL("validation"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_30$$5, &_29$$5, "valid", NULL, 0);
@@ -1372,7 +1372,7 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 		zephir_read_property(&_24$$9, this_ptr, ZEND_STRL("validation"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_25$$9, &_24$$9, "getvalues", NULL, 0);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &_25$$9);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &_25$$9);
 		zephir_check_call_status();
 		zephir_read_property(&_26$$9, this_ptr, ZEND_STRL("validation"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_METHOD(&_27$$9, &_26$$9, "valid", NULL, 0);

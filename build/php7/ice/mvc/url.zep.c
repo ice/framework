@@ -98,7 +98,7 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
  * @param string uri
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Url, getStatic) {
+PHP_METHOD(Ice_Mvc_Url, href) {
 
 	unsigned char _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -132,6 +132,86 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 		zephir_concat_self_str(&staticUri, SL("/"));
 	}
 	ZEPHIR_CONCAT_VV(return_value, &staticUri, &uri);
+	RETURN_MM();
+
+}
+
+/**
+ * Alias of the `href` method.
+ *
+ * @deprecated
+ * @see self::href()
+ */
+PHP_METHOD(Ice_Mvc_Url, getStatic) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *uri_param = NULL;
+	zval uri;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&uri);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &uri_param);
+
+	if (!uri_param) {
+		ZEPHIR_INIT_VAR(&uri);
+		ZVAL_STRING(&uri, "");
+	} else {
+		zephir_get_strval(&uri, uri_param);
+	}
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "href", NULL, 0, &uri);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
+ * Alias of the `get` method.
+ *
+ * @see self::get()
+ */
+PHP_METHOD(Ice_Mvc_Url, rel) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zend_bool local;
+	zval *uri = NULL, uri_sub, *args = NULL, args_sub, *local_param = NULL, __$null, _0;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&uri_sub);
+	ZVAL_UNDEF(&args_sub);
+	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 3, &uri, &args, &local_param);
+
+	if (!uri) {
+		uri = &uri_sub;
+		uri = &__$null;
+	}
+	if (!args) {
+		args = &args_sub;
+		args = &__$null;
+	}
+	if (!local_param) {
+		local = 1;
+	} else {
+		local = zephir_get_boolval(local_param);
+	}
+
+
+	if (local) {
+		ZVAL_BOOL(&_0, 1);
+	} else {
+		ZVAL_BOOL(&_0, 0);
+	}
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, uri, args, &_0);
+	zephir_check_call_status();
 	RETURN_MM();
 
 }
@@ -213,7 +293,7 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 		}
 		if (_6$$4) {
 			ZEPHIR_OBS_NVAR(uri);
-			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 55);
+			zephir_array_fetch_string(uri, &_GET, SL("_url"), PH_NOISY, "ice/mvc/url.zep", 76);
 		} else {
 			_7$$6 = !(zephir_start_with_str(uri, SL("#")));
 			if (_7$$6) {

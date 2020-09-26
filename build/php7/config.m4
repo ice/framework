@@ -9,8 +9,8 @@ if test "$PHP_ICE" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
-	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/arr.zep.c
-	ice/validation/validator.zep.c
+	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/validation/validator.zep.c
+	ice/arr.zep.c
 	ice/i18n/plural/pluralinterface.zep.c
 	ice/di/access.zep.c
 	ice/mvc/model.zep.c
@@ -117,6 +117,7 @@ if test "$PHP_ICE" = "yes"; then
 	ice/validation/validator/between.zep.c
 	ice/validation/validator/digit.zep.c
 	ice/validation/validator/email.zep.c
+	ice/validation/validator/exists.zep.c
 	ice/validation/validator/file.zep.c
 	ice/validation/validator/in.zep.c
 	ice/validation/validator/length.zep.c

@@ -18,6 +18,7 @@
 #include "kernel/concat.h"
 #include "kernel/fcall.h"
 #include "kernel/array.h"
+#include "kernel/string.h"
 
 
 /**
@@ -67,7 +68,7 @@ PHP_METHOD(Ice_Db, setDriver) {
 /**
  * Db constructor.
  *
- * @param mixed driver
+ * @param mixed dsn
  * @param string host
  * @param int port
  * @param string name
@@ -81,11 +82,11 @@ PHP_METHOD(Ice_Db, __construct) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options;
 	zend_long port, ZEPHIR_LAST_CALL_STATUS;
-	zval host, name, user, password, _2$$5, _6$$6;
-	zval *driver, driver_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, tns$$5, _1$$5, _3$$5, _4$$5, dsn$$6, _5$$6, _7$$6, _8$$7, _9$$7, _10$$7;
+	zval host, name, user, password, _2$$5, _6$$6, _8$$8, _10$$9, _11$$10;
+	zval *dsn, dsn_sub, *host_param = NULL, *port_param = NULL, *name_param = NULL, *user_param = NULL, *password_param = NULL, *options_param = NULL, tns$$5, _1$$5, _3$$5, _4$$5, dsn$$6, _5$$6, _7$$6, settings$$7, _14$$7, _9$$9, _12$$11, _13$$11;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&driver_sub);
+	ZVAL_UNDEF(&dsn_sub);
 	ZVAL_UNDEF(&tns$$5);
 	ZVAL_UNDEF(&_1$$5);
 	ZVAL_UNDEF(&_3$$5);
@@ -93,19 +94,24 @@ PHP_METHOD(Ice_Db, __construct) {
 	ZVAL_UNDEF(&dsn$$6);
 	ZVAL_UNDEF(&_5$$6);
 	ZVAL_UNDEF(&_7$$6);
-	ZVAL_UNDEF(&_8$$7);
-	ZVAL_UNDEF(&_9$$7);
-	ZVAL_UNDEF(&_10$$7);
+	ZVAL_UNDEF(&settings$$7);
+	ZVAL_UNDEF(&_14$$7);
+	ZVAL_UNDEF(&_9$$9);
+	ZVAL_UNDEF(&_12$$11);
+	ZVAL_UNDEF(&_13$$11);
 	ZVAL_UNDEF(&host);
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&user);
 	ZVAL_UNDEF(&password);
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_6$$6);
+	ZVAL_UNDEF(&_8$$8);
+	ZVAL_UNDEF(&_10$$9);
+	ZVAL_UNDEF(&_11$$10);
 	ZVAL_UNDEF(&options);
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 6, &driver, &host_param, &port_param, &name_param, &user_param, &password_param, &options_param);
+	zephir_fetch_params(1, 1, 6, &dsn, &host_param, &port_param, &name_param, &user_param, &password_param, &options_param);
 
 	if (!host_param) {
 		ZEPHIR_INIT_VAR(&host);
@@ -144,15 +150,15 @@ PHP_METHOD(Ice_Db, __construct) {
 	}
 
 
-	_0 = Z_TYPE_P(driver) == IS_OBJECT;
+	_0 = Z_TYPE_P(dsn) == IS_OBJECT;
 	if (_0) {
-		_0 = (zephir_instance_of_ev(driver, ice_db_dbinterface_ce));
+		_0 = (zephir_instance_of_ev(dsn, ice_db_dbinterface_ce));
 	}
 	if (_0) {
-		zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), driver);
-	} else if (Z_TYPE_P(driver) == IS_STRING) {
+		zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), dsn);
+	} else if (Z_TYPE_P(dsn) == IS_STRING) {
 		do {
-			if (ZEPHIR_IS_STRING(driver, "oci")) {
+			if (ZEPHIR_IS_STRING(dsn, "oci")) {
 				ZEPHIR_INIT_VAR(&_1$$5);
 				ZVAL_LONG(&_1$$5, port);
 				ZEPHIR_INIT_VAR(&_2$$5);
@@ -167,7 +173,7 @@ PHP_METHOD(Ice_Db, __construct) {
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_3$$5);
 				break;
 			}
-			if (ZEPHIR_IS_STRING(driver, "mongodb")) {
+			if (ZEPHIR_IS_STRING(dsn, "mongodb")) {
 				ZEPHIR_INIT_VAR(&_5$$6);
 				ZVAL_LONG(&_5$$6, port);
 				ZEPHIR_INIT_VAR(&_6$$6);
@@ -180,15 +186,37 @@ PHP_METHOD(Ice_Db, __construct) {
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_7$$6);
 				break;
 			}
-			ZEPHIR_INIT_VAR(&_8$$7);
-			object_init_ex(&_8$$7, ice_db_driver_pdo_ce);
-			ZEPHIR_INIT_VAR(&_9$$7);
-			ZVAL_LONG(&_9$$7, port);
-			ZEPHIR_INIT_VAR(&_10$$7);
-			ZEPHIR_CONCAT_VSVSVSV(&_10$$7, driver, ":host=", &host, ";port=", &_9$$7, ";dbname=", &name);
-			ZEPHIR_CALL_METHOD(NULL, &_8$$7, "__construct", NULL, 95, &_10$$7, &user, &password, &options);
+			ZEPHIR_INIT_VAR(&settings$$7);
+			array_init(&settings$$7);
+			if (!(Z_TYPE_P(&host) == IS_UNDEF) && Z_STRLEN_P(&host)) {
+				ZEPHIR_INIT_VAR(&_8$$8);
+				ZEPHIR_CONCAT_SV(&_8$$8, "host=", &host);
+				zephir_array_append(&settings$$7, &_8$$8, PH_SEPARATE, "ice/db.zep", 50);
+			}
+			if (port) {
+				ZEPHIR_INIT_VAR(&_9$$9);
+				ZVAL_LONG(&_9$$9, port);
+				ZEPHIR_INIT_VAR(&_10$$9);
+				ZEPHIR_CONCAT_SV(&_10$$9, "port=", &_9$$9);
+				zephir_array_append(&settings$$7, &_10$$9, PH_SEPARATE, "ice/db.zep", 54);
+			}
+			if (!(Z_TYPE_P(&name) == IS_UNDEF) && Z_STRLEN_P(&name)) {
+				ZEPHIR_INIT_VAR(&_11$$10);
+				ZEPHIR_CONCAT_SV(&_11$$10, "dbname=", &name);
+				zephir_array_append(&settings$$7, &_11$$10, PH_SEPARATE, "ice/db.zep", 58);
+			}
+			if (zephir_fast_count_int(&settings$$7)) {
+				ZEPHIR_INIT_VAR(&_12$$11);
+				zephir_fast_join_str(&_12$$11, SL(";"), &settings$$7);
+				ZEPHIR_INIT_VAR(&_13$$11);
+				ZEPHIR_CONCAT_SV(&_13$$11, ":", &_12$$11);
+				zephir_concat_self(dsn, &_13$$11);
+			}
+			ZEPHIR_INIT_VAR(&_14$$7);
+			object_init_ex(&_14$$7, ice_db_driver_pdo_ce);
+			ZEPHIR_CALL_METHOD(NULL, &_14$$7, "__construct", NULL, 95, dsn, &user, &password, &options);
 			zephir_check_call_status();
-			zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_8$$7);
+			zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_14$$7);
 			break;
 		} while(0);
 

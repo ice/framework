@@ -4,8 +4,8 @@
 #ifndef ZEPHIR_CLASS_ENTRIES_H
 #define ZEPHIR_CLASS_ENTRIES_H
 
-#include "ice/arr.zep.h"
 #include "ice/validation/validator.zep.h"
+#include "ice/arr.zep.h"
 #include "ice/i18n/plural/pluralinterface.zep.h"
 #include "ice/di/access.zep.h"
 #include "ice/mvc/model.zep.h"
@@ -112,6 +112,7 @@
 #include "ice/validation/validator/between.zep.h"
 #include "ice/validation/validator/digit.zep.h"
 #include "ice/validation/validator/email.zep.h"
+#include "ice/validation/validator/exists.zep.h"
 #include "ice/validation/validator/file.zep.h"
 #include "ice/validation/validator/in.zep.h"
 #include "ice/validation/validator/length.zep.h"

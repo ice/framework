@@ -296,7 +296,7 @@ PHP_METHOD(Ice_Di, resolve) {
 			if (Z_TYPE_P(service) == IS_ARRAY) {
 				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 99, service);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_2$$10, "key", NULL, 101, service);
+				ZEPHIR_CALL_FUNCTION(&_2$$10, "key", NULL, 100, service);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(&_3$$10);
 				if (Z_TYPE_P(&params) == IS_ARRAY) {

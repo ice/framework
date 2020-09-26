@@ -797,7 +797,7 @@ PHP_METHOD(Ice_Tag, form) {
 			ZVAL_STRING(&_3$$6, "url");
 			ZEPHIR_CALL_METHOD(&_2$$6, &_1$$6, "get", NULL, 0, &_3$$6);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_4$$6, &_2$$6, "get", NULL, 0, &action);
+			ZEPHIR_CALL_METHOD(&_4$$6, &_2$$6, "rel", NULL, 0, &action);
 			zephir_check_call_status();
 			zephir_array_update_string(&parameters, SL("action"), &_4$$6, PH_COPY | PH_SEPARATE);
 		}
@@ -988,7 +988,7 @@ PHP_METHOD(Ice_Tag, img) {
 		ZVAL_STRING(&_3$$4, "url");
 		ZEPHIR_CALL_METHOD(&_2$$4, &_1$$4, "get", NULL, 0, &_3$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_4$$4, &_2$$4, "getstatic", NULL, 0, &src);
+		ZEPHIR_CALL_METHOD(&_4$$4, &_2$$4, "href", NULL, 0, &src);
 		zephir_check_call_status();
 		zephir_array_update_string(&parameters, SL("src"), &_4$$4, PH_COPY | PH_SEPARATE);
 	}
@@ -1099,7 +1099,7 @@ PHP_METHOD(Ice_Tag, a) {
 	ZVAL_STRING(&_3, "url");
 	ZEPHIR_CALL_METHOD(&_2, &_1, "get", NULL, 0, &_3);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, &_2, "get", NULL, 0, &href, &query, &local);
+	ZEPHIR_CALL_METHOD(&_4, &_2, "rel", NULL, 0, &href, &query, &local);
 	zephir_check_call_status();
 	zephir_array_update_string(&parameters, SL("href"), &_4, PH_COPY | PH_SEPARATE);
 	ZEPHIR_INIT_VAR(&_5);
@@ -1190,7 +1190,7 @@ PHP_METHOD(Ice_Tag, link) {
 		ZVAL_STRING(&_3$$4, "url");
 		ZEPHIR_CALL_METHOD(&_2$$4, &_1$$4, "get", NULL, 0, &_3$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(&_4$$4, &_2$$4, "getstatic", NULL, 0, &href);
+		ZEPHIR_CALL_METHOD(&_4$$4, &_2$$4, "href", NULL, 0, &href);
 		zephir_check_call_status();
 		zephir_array_update_string(&parameters, SL("href"), &_4$$4, PH_COPY | PH_SEPARATE);
 	}
@@ -1276,7 +1276,7 @@ PHP_METHOD(Ice_Tag, script) {
 			ZVAL_STRING(&_3$$6, "url");
 			ZEPHIR_CALL_METHOD(&_2$$6, &_1$$6, "get", NULL, 0, &_3$$6);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_4$$6, &_2$$6, "getstatic", NULL, 0, &src);
+			ZEPHIR_CALL_METHOD(&_4$$6, &_2$$6, "href", NULL, 0, &src);
 			zephir_check_call_status();
 			zephir_array_update_string(&parameters, SL("src"), &_4$$6, PH_COPY | PH_SEPARATE);
 		}

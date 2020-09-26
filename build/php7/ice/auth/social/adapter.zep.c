@@ -204,7 +204,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 			ZVAL_STRING(&_10$$7, "url");
 			ZEPHIR_CALL_METHOD(&_11$$7, &di, "get", NULL, 0, &_10$$7);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&_8$$7, &_11$$7, "getstatic", NULL, 0, &redirectUri);
+			ZEPHIR_CALL_METHOD(&_8$$7, &_11$$7, "href", NULL, 0, &redirectUri);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_CPY_WRT(&_8$$7, &redirectUri);

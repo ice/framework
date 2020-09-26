@@ -315,7 +315,7 @@ PHP_METHOD(Ice_Validation, resolve) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &_2$$4, "__construct", NULL, 12, &_4$$4);
 			zephir_check_call_status();
-			zephir_throw_exception_debug(&_2$$4, "ice/validation.zep", 100);
+			zephir_throw_exception_debug(&_2$$4, "ice/validation.zep", 101);
 			ZEPHIR_MM_RESTORE();
 			return;
 		}
@@ -401,7 +401,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_0, "array")) {
-			zephir_is_iterable(validators, 0, "ice/validation.zep", 145);
+			zephir_is_iterable(validators, 0, "ice/validation.zep", 146);
 			if (Z_TYPE_P(validators) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(validators), _3$$4, _4$$4, _1$$4)
 				{
@@ -464,7 +464,7 @@ PHP_METHOD(Ice_Validation, rule) {
 			} else {
 				ZEPHIR_INIT_VAR(&rules);
 				zephir_fast_explode_str(&rules, SL("|"), validators, LONG_MAX);
-				zephir_is_iterable(&rules, 0, "ice/validation.zep", 164);
+				zephir_is_iterable(&rules, 0, "ice/validation.zep", 165);
 				if (Z_TYPE_P(&rules) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&rules), _12$$11)
 					{
@@ -582,7 +582,7 @@ PHP_METHOD(Ice_Validation, rules) {
 		array_init(&_0$$3);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("rules"), &_0$$3);
 	}
-	zephir_is_iterable(&validators, 0, "ice/validation.zep", 204);
+	zephir_is_iterable(&validators, 0, "ice/validation.zep", 205);
 	if (Z_TYPE_P(&validators) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&validators), _3, _4, _1)
 		{
@@ -692,7 +692,7 @@ PHP_METHOD(Ice_Validation, validate) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("messages"), &_0$$4);
 	}
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("rules"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_1, 0, "ice/validation.zep", 241);
+	zephir_is_iterable(&_1, 0, "ice/validation.zep", 242);
 	if (Z_TYPE_P(&_1) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_1), _4, _5, _2)
 		{
@@ -704,7 +704,7 @@ PHP_METHOD(Ice_Validation, validate) {
 			}
 			ZEPHIR_INIT_NVAR(&rules);
 			ZVAL_COPY(&rules, _2);
-			zephir_is_iterable(&rules, 0, "ice/validation.zep", 238);
+			zephir_is_iterable(&rules, 0, "ice/validation.zep", 239);
 			if (Z_TYPE_P(&rules) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&rules), _6$$5)
 				{
@@ -759,7 +759,7 @@ PHP_METHOD(Ice_Validation, validate) {
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&rules, &_1, "current", NULL, 0);
 			zephir_check_call_status();
-				zephir_is_iterable(&rules, 0, "ice/validation.zep", 238);
+				zephir_is_iterable(&rules, 0, "ice/validation.zep", 239);
 				if (Z_TYPE_P(&rules) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&rules), _10$$10)
 					{
@@ -1015,7 +1015,7 @@ PHP_METHOD(Ice_Validation, getValues) {
 		zephir_gettype(&_6$$5, fields);
 		do {
 			if (ZEPHIR_IS_STRING(&_6$$5, "array")) {
-				zephir_is_iterable(fields, 0, "ice/validation.zep", 324);
+				zephir_is_iterable(fields, 0, "ice/validation.zep", 325);
 				if (Z_TYPE_P(fields) == IS_ARRAY) {
 					ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(fields), _7$$6)
 					{
@@ -1213,7 +1213,7 @@ PHP_METHOD(Ice_Validation, getDefaultMessage) {
 	if (!(zephir_array_isset_fetch(&message, &_0, &type, 0))) {
 		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("defaultMessages"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_NVAR(&message);
-		zephir_array_fetch_string(&message, &_1$$3, SL("default"), PH_NOISY, "ice/validation.zep", 381);
+		zephir_array_fetch_string(&message, &_1$$3, SL("default"), PH_NOISY, "ice/validation.zep", 382);
 	}
 	RETURN_CCTOR(&message);
 
@@ -1309,13 +1309,14 @@ zend_object *zephir_init_properties_Ice_Validation(zend_class_entry *class_type 
 		zephir_read_property_ex(&_0, this_ptr, ZEND_STRL("defaultMessages"), PH_NOISY_CC | PH_READONLY);
 		if (Z_TYPE_P(&_0) == IS_NULL) {
 			ZEPHIR_INIT_VAR(&_1$$3);
-			zephir_create_array(&_1$$3, 23, 0);
+			zephir_create_array(&_1$$3, 24, 0);
 			add_assoc_stringl_ex(&_1$$3, SL("alnum"), SL("Field :field must contain only letters and numbers"));
 			add_assoc_stringl_ex(&_1$$3, SL("alpha"), SL("Field :field must contain only letters"));
 			add_assoc_stringl_ex(&_1$$3, SL("between"), SL("Field :field must be within the range of :min to :max"));
 			add_assoc_stringl_ex(&_1$$3, SL("digit"), SL("Field :field must be numeric"));
 			add_assoc_stringl_ex(&_1$$3, SL("default"), SL("Field :field is not valid"));
 			add_assoc_stringl_ex(&_1$$3, SL("email"), SL("Field :field must be an email address"));
+			add_assoc_stringl_ex(&_1$$3, SL("exists"), SL("Field :field must exist"));
 			add_assoc_stringl_ex(&_1$$3, SL("fileEmpty"), SL("Field :field must not be empty"));
 			add_assoc_stringl_ex(&_1$$3, SL("fileIniSize"), SL("File :field exceeds the maximum file size"));
 			add_assoc_stringl_ex(&_1$$3, SL("fileMaxResolution"), SL("File :field must not exceed :max resolution"));

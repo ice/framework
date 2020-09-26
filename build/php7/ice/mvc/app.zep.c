@@ -349,7 +349,7 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 					if (!(zephir_is_true(&_32$$11))) {
 						ZEPHIR_CALL_METHOD(&_33$$13, &dispatcher, "getparams", NULL, 0);
 						zephir_check_call_status();
-						ZEPHIR_CALL_METHOD(NULL, &view, "replace", NULL, 0, &_33$$13);
+						ZEPHIR_CALL_METHOD(NULL, &view, "merge", NULL, 0, &_33$$13);
 						zephir_check_call_status();
 					}
 					ZEPHIR_CALL_METHOD(&_34$$11, &view, "render", NULL, 0);

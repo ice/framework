@@ -41,3 +41,5 @@ ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, update);
 
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, delete);
 
+ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, count);
+

@@ -188,7 +188,7 @@ PHP_METHOD(Ice_Arr, set) {
  * @param array data
  * @return Arr
  */
-PHP_METHOD(Ice_Arr, replace) {
+PHP_METHOD(Ice_Arr, merge) {
 
 	zend_string *_3;
 	zend_ulong _2;
@@ -251,6 +251,34 @@ PHP_METHOD(Ice_Arr, replace) {
 }
 
 /**
+ * Alias of the `merge` method.
+ *
+ * @deprecated
+ * @see self::merge()
+ */
+PHP_METHOD(Ice_Arr, replace) {
+
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *data_param = NULL;
+	zval data;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&data);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 0, &data_param);
+
+	ZEPHIR_OBS_COPY_OR_DUP(&data, data_param);
+
+
+	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "merge", NULL, 0, &data);
+	zephir_check_call_status();
+	RETURN_MM();
+
+}
+
+/**
  * Fetch all data.
  *
  * @return array
@@ -309,7 +337,7 @@ PHP_METHOD(Ice_Arr, only) {
 
 	ZEPHIR_INIT_VAR(&only);
 	array_init(&only);
-	zephir_is_iterable(&keys, 0, "ice/arr.zep", 116);
+	zephir_is_iterable(&keys, 0, "ice/arr.zep", 127);
 	if (Z_TYPE_P(&keys) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&keys), _0)
 		{
@@ -676,7 +704,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 		ZEPHIR_CPY_WRT(&keys, path);
 	} else {
 		if (zephir_array_key_exists(&data, path)) {
-			zephir_array_fetch(&_0$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 253);
+			zephir_array_fetch(&_0$$5, &data, path, PH_NOISY | PH_READONLY, "ice/arr.zep", 264);
 			RETURN_CTOR(&_0$$5);
 		}
 		ZEPHIR_INIT_VAR(&_1$$4);
@@ -707,21 +735,21 @@ PHP_METHOD(Ice_Arr, getPath) {
 		if (zephir_array_isset(&data, &key)) {
 			if (zephir_is_true(&keys)) {
 				ZEPHIR_OBS_NVAR(&_8$$9);
-				zephir_array_fetch(&_8$$9, &data, &key, PH_NOISY, "ice/arr.zep", 274);
+				zephir_array_fetch(&_8$$9, &data, &key, PH_NOISY, "ice/arr.zep", 285);
 				if (Z_TYPE_P(&_8$$9) == IS_ARRAY) {
-					zephir_array_fetch(&_9$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 276);
+					zephir_array_fetch(&_9$$10, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 287);
 					ZEPHIR_CPY_WRT(&data, &_9$$10);
 				} else {
 					break;
 				}
 			} else {
-				zephir_array_fetch(&_10$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 283);
+				zephir_array_fetch(&_10$$12, &data, &key, PH_NOISY | PH_READONLY, "ice/arr.zep", 294);
 				RETURN_CTOR(&_10$$12);
 			}
 		} else if (ZEPHIR_IS_STRING_IDENTICAL(&key, "*")) {
 			ZEPHIR_INIT_NVAR(&values$$13);
 			array_init(&values$$13);
-			zephir_is_iterable(&data, 0, "ice/arr.zep", 300);
+			zephir_is_iterable(&data, 0, "ice/arr.zep", 311);
 			if (Z_TYPE_P(&data) == IS_ARRAY) {
 				ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&data), _11$$13)
 				{
@@ -735,7 +763,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 						ZEPHIR_CALL_METHOD(&value$$13, &_13$$15, "getpath", &_15, 5, &keys);
 						zephir_check_call_status();
 						if (zephir_is_true(&value$$13)) {
-							zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 296);
+							zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 307);
 						}
 					}
 				} ZEND_HASH_FOREACH_END();
@@ -758,7 +786,7 @@ PHP_METHOD(Ice_Arr, getPath) {
 							ZEPHIR_CALL_METHOD(&value$$13, &_16$$18, "getpath", &_15, 5, &keys);
 							zephir_check_call_status();
 							if (zephir_is_true(&value$$13)) {
-								zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 296);
+								zephir_array_append(&values$$13, &value$$13, PH_SEPARATE, "ice/arr.zep", 307);
 							}
 						}
 					ZEPHIR_CALL_METHOD(NULL, &data, "next", NULL, 0);
@@ -808,7 +836,7 @@ PHP_METHOD(Ice_Arr, toArray) {
 	array_init(&tmp);
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdata", NULL, 0);
 	zephir_check_call_status();
-	zephir_is_iterable(&_0, 0, "ice/arr.zep", 338);
+	zephir_is_iterable(&_0, 0, "ice/arr.zep", 349);
 	if (Z_TYPE_P(&_0) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
 		{

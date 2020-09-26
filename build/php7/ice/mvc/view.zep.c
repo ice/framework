@@ -552,7 +552,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 					ZEPHIR_CONCAT_VV(&path, &dir, &_9$$9);
 					if ((zephir_file_exists(&path) == SUCCESS)) {
 						exists = 1;
-						ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+						ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 						zephir_check_call_status();
 						ZEPHIR_CALL_METHOD(&_11$$10, this_ptr, "all", &_12, 0);
 						zephir_check_call_status();
@@ -577,7 +577,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 						ZEPHIR_CONCAT_VV(&path, &dir, &_14$$11);
 						if ((zephir_file_exists(&path) == SUCCESS)) {
 							exists = 1;
-							ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+							ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 							zephir_check_call_status();
 							ZEPHIR_CALL_METHOD(&_15$$12, this_ptr, "all", &_12, 0);
 							zephir_check_call_status();
@@ -615,7 +615,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 						ZEPHIR_CONCAT_VVV(&path, &dir, &_23$$15, &ext);
 						if ((zephir_file_exists(&path) == SUCCESS)) {
 							exists = 1;
-							ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+							ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 							zephir_check_call_status();
 							ZEPHIR_CALL_METHOD(&_24$$16, this_ptr, "all", &_12, 0);
 							zephir_check_call_status();
@@ -640,7 +640,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 							ZEPHIR_CONCAT_VVV(&path, &dir, &_26$$17, &ext);
 							if ((zephir_file_exists(&path) == SUCCESS)) {
 								exists = 1;
-								ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+								ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 								zephir_check_call_status();
 								ZEPHIR_CALL_METHOD(&_27$$18, this_ptr, "all", &_12, 0);
 								zephir_check_call_status();
@@ -681,7 +681,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 							ZEPHIR_CONCAT_VVV(&path, &dir, &_31$$21, &ext);
 							if ((zephir_file_exists(&path) == SUCCESS)) {
 								exists = 1;
-								ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+								ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 								zephir_check_call_status();
 								ZEPHIR_CALL_METHOD(&_32$$22, this_ptr, "all", &_12, 0);
 								zephir_check_call_status();
@@ -706,7 +706,7 @@ PHP_METHOD(Ice_Mvc_View, render) {
 								ZEPHIR_CONCAT_VVV(&path, &dir, &_34$$23, &ext);
 								if ((zephir_file_exists(&path) == SUCCESS)) {
 									exists = 1;
-									ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", &_10, 0, &data);
+									ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", &_10, 0, &data);
 									zephir_check_call_status();
 									ZEPHIR_CALL_METHOD(&_35$$24, this_ptr, "all", &_12, 0);
 									zephir_check_call_status();
@@ -960,7 +960,7 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 	ZEPHIR_OBS_COPY_OR_DUP(&vars, vars_param);
 
 
-	ZEPHIR_CALL_METHOD(NULL, this_ptr, "replace", NULL, 0, &vars);
+	ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &vars);
 	zephir_check_call_status();
 	RETURN_THIS();
 

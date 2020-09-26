@@ -13,7 +13,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_setdriver, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db___construct, 0, 0, 1)
-	ZEND_ARG_INFO(0, driver)
+	ZEND_ARG_INFO(0, dsn)
 #if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, host, IS_STRING, 1)
 #else

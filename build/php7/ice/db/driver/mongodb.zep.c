@@ -20,6 +20,7 @@
 #include "kernel/time.h"
 #include "kernel/array.h"
 #include "ext/spl/spl_exceptions.h"
+#include "kernel/concat.h"
 
 
 /**
@@ -433,19 +434,21 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, find) {
 }
 
 /**
- * SELECT document(s) that match criteria.
+ * Count rows that match criteria.
+ *
+ * <pre><code>
+ *  $db->count("users", ["a" => 1]);
+ * </code></pre>
  *
  * @param string from Collection name
  * @param mixed filters Criteria
- * @param array options Options to limit/group results
- * @param array fields Fields to retrieve, if not specified get all
+ * @return int
  */
-PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
+PHP_METHOD(Ice_Db_Driver_Mongodb, count) {
 
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval options, fields, _11;
-	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, filtered, collection, result, _0, _10, _1$$4, _2$$7, _3$$7, _4$$7, _5$$9, _6$$10, _7$$11, _8$$11, _9$$11;
+	zval *from_param = NULL, *filters = NULL, filters_sub, filtered, collection, result, _0, _5, _1$$4, _2$$7, _3$$7, _4$$7;
 	zval from;
 	zval *this_ptr = getThis();
 
@@ -455,19 +458,119 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&result);
 	ZVAL_UNDEF(&_0);
-	ZVAL_UNDEF(&_10);
+	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$7);
 	ZVAL_UNDEF(&_3$$7);
 	ZVAL_UNDEF(&_4$$7);
-	ZVAL_UNDEF(&_5$$9);
-	ZVAL_UNDEF(&_6$$10);
-	ZVAL_UNDEF(&_7$$11);
-	ZVAL_UNDEF(&_8$$11);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 1, 1, &from_param, &filters);
+
+	if (UNEXPECTED(Z_TYPE_P(from_param) != IS_STRING && Z_TYPE_P(from_param) != IS_NULL)) {
+		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'from' must be of the type string"));
+		RETURN_MM_NULL();
+	}
+	if (EXPECTED(Z_TYPE_P(from_param) == IS_STRING)) {
+		zephir_get_strval(&from, from_param);
+	} else {
+		ZEPHIR_INIT_VAR(&from);
+		ZVAL_EMPTY_STRING(&from);
+	}
+	if (!filters) {
+		filters = &filters_sub;
+		ZEPHIR_INIT_VAR(filters);
+		array_init(filters);
+	}
+
+
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_gettype(&_0, filters);
+	do {
+		if (ZEPHIR_IS_STRING(&_0, "object")) {
+			if (zephir_instance_of_ev(filters, zephir_get_internal_ce(SL("mongodb\\bson\\objectid")))) {
+				ZEPHIR_INIT_VAR(&filtered);
+				zephir_create_array(&filtered, 1, 0);
+				ZEPHIR_OBS_VAR(&_1$$4);
+				zephir_read_property(&_1$$4, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
+				zephir_array_update_zval(&filtered, &_1$$4, filters, PH_COPY);
+			} else {
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 160);
+				return;
+			}
+			break;
+		}
+		if (ZEPHIR_IS_STRING(&_0, "array")) {
+			ZEPHIR_CPY_WRT(&filtered, filters);
+			break;
+		}
+		if (ZEPHIR_IS_STRING(&_0, "integer") || ZEPHIR_IS_STRING(&_0, "string")) {
+			ZEPHIR_INIT_VAR(&_2$$7);
+			zephir_create_array(&_2$$7, 1, 0);
+			ZEPHIR_OBS_VAR(&_3$$7);
+			zephir_read_property(&_3$$7, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_4$$7, this_ptr, "getidvalue", NULL, 0, filters);
+			zephir_check_call_status();
+			zephir_array_update_zval(&_2$$7, &_3$$7, &_4$$7, PH_COPY);
+			ZEPHIR_CPY_WRT(&filtered, &_2$$7);
+			break;
+		}
+		ZEPHIR_INIT_NVAR(&filtered);
+		array_init(&filtered);
+		break;
+	} while(0);
+
+	zephir_read_property(&_5, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&collection, &_5, "selectcollection", NULL, 0, &from);
+	zephir_check_call_status();
+	ZEPHIR_CALL_METHOD(&result, &collection, "count", NULL, 0, &filtered);
+	zephir_check_call_status();
+	RETURN_CCTOR(&result);
+
+}
+
+/**
+ * SELECT document(s) that match criteria.
+ *
+ * @param string from Collection name
+ * @param mixed filters Criteria
+ * @param array options Options to limit/group results
+ * @param array fields Fields to retrieve, if not specified get all
+ */
+PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
+
+	zend_bool _2$$7;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval options, fields, _15;
+	zval *from_param = NULL, *filters = NULL, filters_sub, *options_param = NULL, *fields_param = NULL, filtered, collection, result, _0, _14, _1$$4, key$$7, value$$7, _3$$8, _4$$8, _5$$8, _6$$9, _7$$9, _8$$9, _9$$11, _10$$12, _11$$13, _12$$13, _13$$13;
+	zval from;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&from);
+	ZVAL_UNDEF(&filters_sub);
+	ZVAL_UNDEF(&filtered);
+	ZVAL_UNDEF(&collection);
+	ZVAL_UNDEF(&result);
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_14);
+	ZVAL_UNDEF(&_1$$4);
+	ZVAL_UNDEF(&key$$7);
+	ZVAL_UNDEF(&value$$7);
+	ZVAL_UNDEF(&_3$$8);
+	ZVAL_UNDEF(&_4$$8);
+	ZVAL_UNDEF(&_5$$8);
+	ZVAL_UNDEF(&_6$$9);
+	ZVAL_UNDEF(&_7$$9);
+	ZVAL_UNDEF(&_8$$9);
 	ZVAL_UNDEF(&_9$$11);
+	ZVAL_UNDEF(&_10$$12);
+	ZVAL_UNDEF(&_11$$13);
+	ZVAL_UNDEF(&_12$$13);
+	ZVAL_UNDEF(&_13$$13);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
-	ZVAL_UNDEF(&_11);
+	ZVAL_UNDEF(&_15);
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -512,24 +615,45 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 				zephir_read_property(&_1$$4, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
 				zephir_array_update_zval(&filtered, &_1$$4, filters, PH_COPY);
 			} else {
-				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 157);
+				ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Object must be an ObjectID instance", "ice/db/driver/mongodb.zep", 202);
 				return;
 			}
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_0, "array")) {
 			ZEPHIR_CPY_WRT(&filtered, filters);
+			if (zephir_fast_count_int(&filtered) == 1) {
+				ZEPHIR_CALL_FUNCTION(&key$$7, "key", NULL, 100, &filtered);
+				zephir_check_call_status();
+				ZEPHIR_CALL_FUNCTION(&value$$7, "current", NULL, 99, &filtered);
+				zephir_check_call_status();
+				_2$$7 = Z_TYPE_P(&value$$7) == IS_STRING;
+				if (_2$$7) {
+					_2$$7 = zephir_array_isset_string(&options, SL("insensitive"));
+				}
+				if (_2$$7) {
+					ZEPHIR_INIT_VAR(&_3$$8);
+					object_init_ex(&_3$$8, zephir_get_internal_ce(SL("mongodb\\bson\\regex")));
+					ZEPHIR_INIT_VAR(&_4$$8);
+					ZEPHIR_CONCAT_SVS(&_4$$8, "^", &value$$7, "$");
+					ZEPHIR_INIT_VAR(&_5$$8);
+					ZVAL_STRING(&_5$$8, "i");
+					ZEPHIR_CALL_METHOD(NULL, &_3$$8, "__construct", NULL, 0, &_4$$8, &_5$$8);
+					zephir_check_call_status();
+					zephir_array_update_zval(&filtered, &key$$7, &_3$$8, PH_COPY | PH_SEPARATE);
+				}
+			}
 			break;
 		}
 		if (ZEPHIR_IS_STRING(&_0, "integer") || ZEPHIR_IS_STRING(&_0, "string")) {
-			ZEPHIR_INIT_VAR(&_2$$7);
-			zephir_create_array(&_2$$7, 1, 0);
-			ZEPHIR_OBS_VAR(&_3$$7);
-			zephir_read_property(&_3$$7, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
-			ZEPHIR_CALL_METHOD(&_4$$7, this_ptr, "getidvalue", NULL, 0, filters);
+			ZEPHIR_INIT_VAR(&_6$$9);
+			zephir_create_array(&_6$$9, 1, 0);
+			ZEPHIR_OBS_VAR(&_7$$9);
+			zephir_read_property(&_7$$9, this_ptr, ZEND_STRL("id"), PH_NOISY_CC);
+			ZEPHIR_CALL_METHOD(&_8$$9, this_ptr, "getidvalue", NULL, 0, filters);
 			zephir_check_call_status();
-			zephir_array_update_zval(&_2$$7, &_3$$7, &_4$$7, PH_COPY);
-			ZEPHIR_CPY_WRT(&filtered, &_2$$7);
+			zephir_array_update_zval(&_6$$9, &_7$$9, &_8$$9, PH_COPY);
+			ZEPHIR_CPY_WRT(&filtered, &_6$$9);
 			break;
 		}
 		ZEPHIR_INIT_NVAR(&filtered);
@@ -538,36 +662,36 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	} while(0);
 
 	if (zephir_array_isset_string(&options, SL("order"))) {
-		zephir_array_fetch_string(&_5$$9, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 176);
-		zephir_array_update_string(&options, SL("sort"), &_5$$9, PH_COPY | PH_SEPARATE);
+		zephir_array_fetch_string(&_9$$11, &options, SL("order"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 232);
+		zephir_array_update_string(&options, SL("sort"), &_9$$11, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SL("order"), PH_SEPARATE);
 	}
 	if (zephir_array_isset_string(&options, SL("offset"))) {
-		zephir_array_fetch_string(&_6$$10, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 181);
-		zephir_array_update_string(&options, SL("skip"), &_6$$10, PH_COPY | PH_SEPARATE);
+		zephir_array_fetch_string(&_10$$12, &options, SL("offset"), PH_NOISY | PH_READONLY, "ice/db/driver/mongodb.zep", 237);
+		zephir_array_update_string(&options, SL("skip"), &_10$$12, PH_COPY | PH_SEPARATE);
 		zephir_array_unset_string(&options, SL("offset"), PH_SEPARATE);
 	}
 	if (zephir_fast_count_int(&fields)) {
-		ZEPHIR_CALL_FUNCTION(&_7$$11, "array_flip", NULL, 8, &fields);
+		ZEPHIR_CALL_FUNCTION(&_11$$13, "array_flip", NULL, 8, &fields);
 		zephir_check_call_status();
-		ZVAL_LONG(&_8$$11, 1);
-		ZEPHIR_CALL_FUNCTION(&_9$$11, "array_fill_keys", NULL, 6, &_7$$11, &_8$$11);
+		ZVAL_LONG(&_12$$13, 1);
+		ZEPHIR_CALL_FUNCTION(&_13$$13, "array_fill_keys", NULL, 6, &_11$$13, &_12$$13);
 		zephir_check_call_status();
-		zephir_array_update_string(&options, SL("projection"), &_9$$11, PH_COPY | PH_SEPARATE);
+		zephir_array_update_string(&options, SL("projection"), &_13$$13, PH_COPY | PH_SEPARATE);
 	}
-	zephir_read_property(&_10, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_CALL_METHOD(&collection, &_10, "selectcollection", NULL, 0, &from);
+	zephir_read_property(&_14, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_CALL_METHOD(&collection, &_14, "selectcollection", NULL, 0, &from);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(&result, &collection, "find", NULL, 0, &filtered, &options);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_11);
-	zephir_create_array(&_11, 3, 0);
-	add_assoc_stringl_ex(&_11, SL("root"), SL("array"));
-	add_assoc_stringl_ex(&_11, SL("document"), SL("array"));
-	add_assoc_stringl_ex(&_11, SL("array"), SL("array"));
-	ZEPHIR_CALL_METHOD(NULL, &result, "settypemap", NULL, 0, &_11);
+	ZEPHIR_INIT_VAR(&_15);
+	zephir_create_array(&_15, 3, 0);
+	add_assoc_stringl_ex(&_15, SL("root"), SL("array"));
+	add_assoc_stringl_ex(&_15, SL("document"), SL("array"));
+	add_assoc_stringl_ex(&_15, SL("array"), SL("array"));
+	ZEPHIR_CALL_METHOD(NULL, &result, "settypemap", NULL, 0, &_15);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 100, &result);
+	ZEPHIR_RETURN_CALL_FUNCTION("iterator_to_array", NULL, 101, &result);
 	zephir_check_call_status();
 	RETURN_MM();
 
