@@ -89,7 +89,7 @@ class Pagination extends Arr
             let previous = 1;
         }
 
-        this->replace([
+        this->merge([
             "first": 1,
             "previous": previous,
             "current": page,

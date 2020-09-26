@@ -100,7 +100,7 @@ class App extends Access
                             view->setFile(dispatcher->getHandler() . "/" . dispatcher->getAction());
                         }
                         if !view->count() {
-                            view->replace(dispatcher->getParams());
+                            view->merge(dispatcher->getParams());
                         }
 
                         view->setContent(view->render());

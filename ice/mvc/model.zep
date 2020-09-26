@@ -140,7 +140,7 @@ abstract class Model extends Arr implements \Serializable
         let result = this->db->findOne(this->from, filters, options);
 
         if result {
-            this->replace(result->all());
+            this->merge(result->all());
             let this->isLoaded = true;
             return this;
         } else {
@@ -332,7 +332,7 @@ abstract class Model extends Arr implements \Serializable
             this->validation->validate(this->getData());
 
             // Replace values by validation values (with applied filters)
-            this->replace(this->validation->getValues());
+            this->merge(this->validation->getValues());
 
             if !this->validation->valid() {
                 let this->messages = array_merge(this->messages, this->validation->getMessages()->all());
@@ -406,7 +406,7 @@ abstract class Model extends Arr implements \Serializable
             this->validation->validate(this->getData());
 
             // Replace values by validation values (with applied filters)
-            this->replace(this->validation->getValues());
+            this->merge(this->validation->getValues());
 
             if !this->validation->valid() {
                 let this->messages = array_merge(this->messages, this->validation->getMessages()->all());

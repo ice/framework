@@ -94,7 +94,7 @@ class Response implements ResponseInterface
      */
     public function setHeaders(array headers)
     {
-        this->headers->replace(headers);
+        this->headers->merge(headers);
 
         return this;
     }
