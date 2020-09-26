@@ -1,4 +1,18 @@
 -------------------------------------------------------------------
+Sat Sep 26 15:22:12 UTC 2020
+
+- Ice 1.7.0
+ * Url, add href and rel, deprecate getStatic, fix #231
+ * Arr, add merge, deprecate replace, fix #228
+ * View, set engine options, sleet compile fix #288
+ * Validation, add exists validator #274
+ * Db, count elements #277
+ * Router, set routes must be explicitly called #282
+ * Db, skip settings if not provided, fix #286
+ * Auth file, fetch users from the options, fix #285
+ * Sqlite, row count returns zero all the time, fix #283
+
+-------------------------------------------------------------------
 Sat Sep 12 06:11:32 UTC 2020
 
 - Ice 1.6.2
