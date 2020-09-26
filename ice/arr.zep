@@ -91,7 +91,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * Alias of the `merge` method.
      *
      * @deprecated
-     * @see self::merge
+     * @see self::merge()
      */
     public function replace(array! data)
     {

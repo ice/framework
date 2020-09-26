@@ -369,7 +369,7 @@ class Response implements ResponseInterface
 
         if !external {
             let url = di->get("url"),
-                location = url->get(location);
+                location = url->rel(location);
         }
 
         if di->has("session") && this->loops {
