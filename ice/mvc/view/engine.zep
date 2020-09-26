@@ -23,10 +23,11 @@ abstract class Engine extends Access implements EngineInterface
     /**
      * Engine constructor. Set the view and di object.
      */
-    public function __construct(<ViewInterface> view, <Di> di = null)
+    public function __construct(<ViewInterface> view, <Di> di = null, array options = [])
     {
         let this->view = view,
-            this->di = di;
+            this->di = di,
+            this->options = options;
     }
 
     /**
