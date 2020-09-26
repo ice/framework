@@ -76,7 +76,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * @param array data
      * @return Arr
      */
-    public function replace(array! data)
+    public function merge(array! data)
     {
         var key, value;
 
@@ -85,6 +85,17 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
         }
 
         return this;
+    }
+
+    /**
+     * Alias of the `merge` method.
+     *
+     * @deprecated
+     * @see self::merge
+     */
+    public function replace(array! data)
+    {
+        return this->merge(data);
     }
 
     /**
