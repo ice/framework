@@ -2,20 +2,20 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Arr;
 use Tests\App\Bootstrap;
 
-class DbTest extends PHPUnit
+class DbTest extends TestCase
 {
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$di = (new Bootstrap(['config', 'db', 'mongo']))->getDi();
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$di = null;
     }

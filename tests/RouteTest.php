@@ -2,16 +2,16 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Di;
 use Ice\Mvc\Router;
 
-class RouteTest extends PHPUnit
+class RouteTest extends TestCase
 {
 
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $di = new Di();
         $di->router = new Router();
@@ -21,7 +21,7 @@ class RouteTest extends PHPUnit
         self::$di = $di;
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$di = null;
     }

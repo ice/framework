@@ -2,21 +2,21 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Arr;
 use Ice\Config;
 use Tests\App\Bootstrap;
 
-class DiTest extends PHPUnit
+class DiTest extends TestCase
 {
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$di = (new Bootstrap(['config']))->getDi();
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$di = null;
     }

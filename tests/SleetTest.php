@@ -2,20 +2,20 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Mvc\View\Engine\Sleet\Parser;
 
-class SleetTest extends PHPUnit
+class SleetTest extends TestCase
 {
 
     private static $parser;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$parser = $parser = new Parser();
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$parser = null;
     }

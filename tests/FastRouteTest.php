@@ -2,16 +2,16 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Di;
 use Ice\Mvc\FastRouter;
 
-class FastRouteTest extends PHPUnit
+class FastRouteTest extends TestCase
 {
 
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $di = new Di();
         $di->router = new FastRouter();
@@ -21,7 +21,7 @@ class FastRouteTest extends PHPUnit
         self::$di = $di;
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$di = null;
     }

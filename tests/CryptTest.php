@@ -2,15 +2,15 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Crypt;
 
-class CryptTest extends PHPUnit
+class CryptTest extends TestCase
 {
 
     private static $crypt;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$crypt = new Crypt('0123456789ABCDEF');
     }

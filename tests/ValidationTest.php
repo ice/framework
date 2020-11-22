@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Di;
 use Ice\I18n;
 use Ice\Validation;
@@ -10,12 +10,12 @@ use Ice\Validation\Validator\Email;
 use Ice\Validation\Validator\Required;
 use Ice\Validation\Validator\Same;
 
-class ValidationTest extends PHPUnit
+class ValidationTest extends TestCase
 {
 
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         $di = new Di();
     }
