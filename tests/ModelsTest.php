@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Exception;
 use Ice\Arr;
 use Ice\Auth\Driver\Model\Roles;
@@ -13,16 +13,16 @@ use Tests\App\Models\Posts;
 use Tests\App\Models\Comments;
 use Tests\App\Services\UserService;
 
-class ModelsTest extends PHPUnit
+class ModelsTest extends TestCase
 {
     private static $di;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$di = (new Bootstrap(['config', 'db', 'auth']))->getDi();
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$di = null;
     }

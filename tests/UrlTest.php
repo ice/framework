@@ -2,19 +2,19 @@
 
 namespace Tests;
 
-use PHPUnit_Framework_TestCase as PHPUnit;
+use PHPUnit\Framework\TestCase;
 use Ice\Mvc\Url;
 
-class UrlTest extends PHPUnit
+class UrlTest extends TestCase
 {
     private static $url;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$url = new Url();
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$url = null;
     }
