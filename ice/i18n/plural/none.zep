@@ -16,7 +16,7 @@ namespace Ice\I18n\Plural;
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2020 Ice Team
+ * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
 class None implements PluralInterface

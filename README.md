@@ -42,4 +42,4 @@ Support us with a donation and help us continue our activities. [Become a contri
 Ice is open-sourced software licensed under the New BSD License. See the [LICENSE](http://www.iceframework.org/license) file for more information.
 
 ***
-Copyright (c) 2014-2020 Ice Team.
+Copyright (c) 2014-2021 Ice Team.
