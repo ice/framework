@@ -211,7 +211,7 @@ class Di extends Arr
         let dependencies = [];
 
         for parameter in parameters {
-            let dependency = parameter->getClass();
+            let dependency = parameter->getType() && !parameter->getType()->isBuiltin() ? new ReflectionClass(parameter->getType()->getName()) : null;
 
             if array_key_exists(parameter->name, primitives) {
                 let dependencies[] = primitives[parameter->name];
