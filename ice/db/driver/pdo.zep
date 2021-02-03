@@ -357,7 +357,18 @@ class Pdo implements DbInterface
         }
         if isset options["order"] {
             if typeof options["order"] == "array" {
-                let sql .= " ORDER BY " . implode(", ", options["order"]);
+                // Check if order is associative or sequential
+                if count(array_filter(array_keys(options["order"]), "is_string")) {
+                    var key, value, tmp = [];
+
+                    for key, value in options["order"] {
+                        let tmp[] = sprintf(this->identifier, key) . " " . value;
+                    }
+
+                    let sql .= " ORDER BY " . implode(", ", tmp);
+                } else {
+                    let sql .= " ORDER BY " . implode(", ", options["order"]);
+                }
             } else {
                 let sql .= " ORDER BY " . options["order"];
             }
