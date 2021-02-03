@@ -94,8 +94,8 @@ class ModelsTest extends TestCase
             if (!$key) {
                 $this->assertEquals(6, $comment->getId());
                 $this->assertEquals(2, $comment->getUser()->getId());
-                $this->assertEquals(2, $comment->getUser()->getPosts());
-                $this->assertEquals(4, $comment->getUser()->getComments(['status', 1]));
+                $this->assertEquals(2, count($comment->getUser()->getPosts()));
+                $this->assertEquals(4, count($comment->getUser()->getComments(['status', 1])));
             }
 
             $this->assertInstanceOf(Comments::class, $comment);
