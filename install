@@ -1,8 +1,8 @@
 #!/bin/bash
 
-PHP7=`php -r "echo version_compare(PHP_VERSION, '7.0.0', '>=');"`
-
-if [[ "$PHP7" ]]; then
+if [[ `php -r "echo version_compare(PHP_VERSION, '7.4.0', '>=');"` ]]; then
+    cd build/php8
+elif [[ `php -r "echo version_compare(PHP_VERSION, '7.0.0', '>=');"` ]]; then
     cd build/php7
 else
     cd build/php5

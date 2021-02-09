@@ -10,7 +10,7 @@ use ReflectionParameter;
  * @package     Ice/Di
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2020 Ice Team
+ * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
 class Di extends Arr
@@ -211,7 +211,7 @@ class Di extends Arr
         let dependencies = [];
 
         for parameter in parameters {
-            let dependency = parameter->getClass();
+            let dependency = parameter->getType() && !parameter->getType()->isBuiltin() ? new ReflectionClass(parameter->getType()->getName()) : null;
 
             if array_key_exists(parameter->name, primitives) {
                 let dependencies[] = primitives[parameter->name];

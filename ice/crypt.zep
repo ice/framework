@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Crypt
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2020 Ice Team
+ * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  * @uses        openSSL
  */
