@@ -22,8 +22,8 @@ class Version
     const MAJOR = 1;
     const MINOR = 8;
     const PATCH = 0;
-    const STAGE = self::STABLE;
-    const BUILD = 0;
+    const STAGE = self::ALPHA;
+    const BUILD = 1;
 
     /**
      * Get version array.
