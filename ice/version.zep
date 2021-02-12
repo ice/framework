@@ -23,7 +23,7 @@ class Version
     const MINOR = 8;
     const PATCH = 0;
     const STAGE = self::ALPHA;
-    const BUILD = 1;
+    const BUILD = 2;
 
     /**
      * Get version array.
@@ -50,6 +50,7 @@ class Version
      * 1.0.0-rc.5
      * 1.0.0
      *
+     * @see https://semver.org/spec/v2.0.0.html
      * @return string
      */
     public static function get() -> string
