@@ -70,7 +70,7 @@ class Di extends Arr
     {
         var service;
 
-        let service = this->resolve(value),
+        let service = this->resolve(value, key),
             this->data[key] = service;
 
         return service;
@@ -83,8 +83,9 @@ class Di extends Arr
      */
     public function getDefaults()
     {
-        return array_merge([
+        var defaults = [
             "assets": "Ice\\Assets",
+            "config": "Ice\\Config",
             "cookies": "Ice\\Cookies",
             "crypt": "Ice\\Crypt",
             "dispatcher": "Ice\\Mvc\\Dispatcher",
@@ -100,16 +101,26 @@ class Di extends Arr
             "text": "Ice\\Text",
             "url": "Ice\\Mvc\\Url",
             "view": "Ice\\Mvc\\View"
-        ], this->defaults);
+        ];
+
+        if PHP_SAPI === "cli" {
+            let defaults = array_merge(defaults, [
+                "dispatcher": "Ice\\Cli\\Dispatcher",
+                "router": "Ice\\Cli\\Router"
+            ]);
+        }
+
+        return array_merge(defaults, this->defaults);
     }
 
     /**
      * Resolve service.
      *
      * @param mixed service Definition
-     * @return object Service
+     * @return object service
+     * @return string key
      */
-    public function resolve(var service)
+    public function resolve(var service, string key)
     {
         var params;
 
@@ -125,10 +136,19 @@ class Di extends Arr
                     let service = call_user_func(service);
                 }
             } else {
-                // Array definitions store class name at first parameter
+                // Array definitions class name as a key
                 if typeof service == "array" {
+                    var name;
+
+                    let name = key(service);
+
+                    // Check the defaults
+                    if is_numeric(name) {
+                        fetch name, this->getDefaults()[key];
+                    }
+
                     let params = current(service),
-                        service = this->build(key(service), typeof params == "array" ? params : [params]);
+                        service = this->build(name, [params]);
                 }
             }
         }
