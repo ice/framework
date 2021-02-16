@@ -1,4 +1,24 @@
 -------------------------------------------------------------------
+Tue Feb 16 08:22:34 UTC 2021
+
+- Ice 1.8.0alpha3
+ * Pecl, add build directories fix #271
+ * Di, resolve default services in cli fix #295
+ * Loader, register namespaces in the constructor fix #294
+
+-------------------------------------------------------------------
+Tue Feb 12 08:10:52 UTC 2021
+
+- Ice 1.8.0alpha2
+ * Version, remove hyphen fix #292
+ * Tests, fix get related count and filter
+ * PHP 7.2 and 7.3, drop support
+ * Pdo, fix associative array in order by
+ * Zephir, use zephir-php8 branch
+ * Update zephir parser to 1.3.5
+ * PHP 7.1, drop support, update phpunit to v8
+
+-------------------------------------------------------------------
 Sat Sep 26 15:22:12 UTC 2020
 
 - Ice 1.7.0

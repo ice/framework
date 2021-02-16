@@ -15,6 +15,24 @@ class Loader
     protected prefixes = [];
 
     /**
+     * Loader constructor.
+     *
+     * @param array prefixes
+     */
+    public function __construct(array prefixes = [])
+    {
+        if !empty prefixes {
+            var prefix, dir;
+
+            for prefix, dir in prefixes {
+                this->addNamespace(prefix, dir);
+            }
+
+            this->register();
+        }
+    }
+
+    /**
      * Register loader with SPL autoloader stack.
      *
      * @return void
