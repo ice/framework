@@ -132,7 +132,9 @@ if test "$PHP_ICE" = "yes"; then
 	ice/version.zep.c "
 	PHP_NEW_EXTENSION(ice, $ice_sources, $ext_shared,, )
 	PHP_ADD_BUILD_DIR([$ext_builddir/kernel/])
-	PHP_ADD_BUILD_DIR([$ext_builddir/ice/])
+	for dir in "ice ice/auth ice/auth/driver ice/auth/driver/model ice/auth/driver/model/roles ice/auth/driver/model/users ice/auth/social ice/cli ice/cli/websocket ice/config ice/db ice/db/driver ice/di ice/filter ice/http ice/http/request ice/http/response ice/i18n/plural ice/image ice/log ice/log/driver ice/mvc ice/mvc/route ice/mvc/route/datagenerator ice/mvc/route/dispatcher ice/mvc/route/parser ice/mvc/view ice/mvc/view/engine ice/mvc/view/engine/sleet ice/validation ice/validation/validator"; do
+		PHP_ADD_BUILD_DIR([$ext_builddir/$dir])
+	done
 	PHP_SUBST(ICE_SHARED_LIBADD)
 
 	old_CPPFLAGS=$CPPFLAGS

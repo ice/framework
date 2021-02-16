@@ -12,13 +12,13 @@
 #include <Zend/zend_interfaces.h>
 
 #include "kernel/main.h"
-#include "kernel/memory.h"
-#include "kernel/array.h"
+#include "kernel/operators.h"
 #include "kernel/fcall.h"
+#include "kernel/memory.h"
 #include "kernel/object.h"
+#include "kernel/array.h"
 #include "kernel/concat.h"
 #include "kernel/string.h"
-#include "kernel/operators.h"
 #include "kernel/file.h"
 #include "kernel/require.h"
 
@@ -40,6 +40,82 @@ ZEPHIR_INIT_CLASS(Ice_Loader) {
 
 	ice_loader_ce->create_object = zephir_init_properties_Ice_Loader;
 	return SUCCESS;
+
+}
+
+/**
+ * Loader constructor.
+ *
+ * @param array prefixes
+ */
+PHP_METHOD(Ice_Loader, __construct) {
+
+	zend_string *_3$$3;
+	zend_ulong _2$$3;
+	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
+	zephir_fcall_cache_entry *_4 = NULL;
+	zend_long ZEPHIR_LAST_CALL_STATUS;
+	zval *prefixes_param = NULL, prefix$$3, dir$$3, *_0$$3, _1$$3;
+	zval prefixes;
+	zval *this_ptr = getThis();
+
+	ZVAL_UNDEF(&prefixes);
+	ZVAL_UNDEF(&prefix$$3);
+	ZVAL_UNDEF(&dir$$3);
+	ZVAL_UNDEF(&_1$$3);
+
+	ZEPHIR_MM_GROW();
+	zephir_fetch_params(1, 0, 1, &prefixes_param);
+
+	if (!prefixes_param) {
+		ZEPHIR_INIT_VAR(&prefixes);
+		array_init(&prefixes);
+	} else {
+		zephir_get_arrval(&prefixes, prefixes_param);
+	}
+
+
+	if (!(ZEPHIR_IS_EMPTY(&prefixes))) {
+		zephir_is_iterable(&prefixes, 0, "ice/loader.zep", 31);
+		if (Z_TYPE_P(&prefixes) == IS_ARRAY) {
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&prefixes), _2$$3, _3$$3, _0$$3)
+			{
+				ZEPHIR_INIT_NVAR(&prefix$$3);
+				if (_3$$3 != NULL) { 
+					ZVAL_STR_COPY(&prefix$$3, _3$$3);
+				} else {
+					ZVAL_LONG(&prefix$$3, _2$$3);
+				}
+				ZEPHIR_INIT_NVAR(&dir$$3);
+				ZVAL_COPY(&dir$$3, _0$$3);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "addnamespace", &_4, 0, &prefix$$3, &dir$$3);
+				zephir_check_call_status();
+			} ZEND_HASH_FOREACH_END();
+		} else {
+			ZEPHIR_CALL_METHOD(NULL, &prefixes, "rewind", NULL, 0);
+			zephir_check_call_status();
+			while (1) {
+				ZEPHIR_CALL_METHOD(&_1$$3, &prefixes, "valid", NULL, 0);
+				zephir_check_call_status();
+				if (!zend_is_true(&_1$$3)) {
+					break;
+				}
+				ZEPHIR_CALL_METHOD(&prefix$$3, &prefixes, "key", NULL, 0);
+				zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(&dir$$3, &prefixes, "current", NULL, 0);
+				zephir_check_call_status();
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "addnamespace", &_4, 0, &prefix$$3, &dir$$3);
+					zephir_check_call_status();
+				ZEPHIR_CALL_METHOD(NULL, &prefixes, "next", NULL, 0);
+				zephir_check_call_status();
+			}
+		}
+		ZEPHIR_INIT_NVAR(&dir$$3);
+		ZEPHIR_INIT_NVAR(&prefix$$3);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "register", NULL, 0);
+		zephir_check_call_status();
+	}
+	ZEPHIR_MM_RESTORE();
 
 }
 
@@ -159,7 +235,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	}
 	if (prepend) {
 		zephir_read_property(&_13$$4, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_14$$4, &_13$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 54);
+		zephir_array_fetch(&_14$$4, &_13$$4, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 72);
 		ZEPHIR_CALL_FUNCTION(&_15$$4, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_14$$4);
@@ -168,7 +244,7 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		zephir_check_call_status();
 	} else {
 		zephir_read_property(&_16$$5, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
-		zephir_array_fetch(&_17$$5, &_16$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 56);
+		zephir_array_fetch(&_17$$5, &_16$$5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 74);
 		ZEPHIR_CALL_FUNCTION(&_18$$5, "utf8_encode", &_12, 172, &baseDir);
 		zephir_check_call_status();
 		ZEPHIR_MAKE_REF(&_17$$5);
@@ -308,8 +384,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	ZEPHIR_CONCAT_VS(&_4, &_1, ".php");
 	zephir_get_strval(&relativeClass, &_4);
 	zephir_read_property(&_5, this_ptr, ZEND_STRL("prefixes"), PH_NOISY_CC | PH_READONLY);
-	zephir_array_fetch(&_6, &_5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 129);
-	zephir_is_iterable(&_6, 0, "ice/loader.zep", 143);
+	zephir_array_fetch(&_6, &_5, &prefix, PH_NOISY | PH_READONLY, "ice/loader.zep", 147);
+	zephir_is_iterable(&_6, 0, "ice/loader.zep", 161);
 	if (Z_TYPE_P(&_6) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_VAL(Z_ARRVAL_P(&_6), _7)
 		{

@@ -58,8 +58,13 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_getdefaults, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_resolve, 0, 0, 1)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_resolve, 0, 0, 2)
 	ZEND_ARG_INFO(0, service)
+#if PHP_VERSION_ID >= 70200
+	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
+#else
+	ZEND_ARG_INFO(0, key)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_di_build, 0, 0, 1)
