@@ -1,8 +1,8 @@
 {
     "name": "iceframework/framework",
-    "description": "Simple and fast PHP framework delivered as C-extension",
+    "description": "Simple and fast PHP framework frozen in C extension.",
     "keywords": ["extension", "php", "framework", "ice"],
-    "homepage": "http://www.iceframework.org",
+    "homepage": "https://www.iceframework.org",
     "license": "BSD-3-Clause",
     "authors": [
         {

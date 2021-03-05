@@ -1,17 +1,18 @@
 {
     "namespace": "ice",
     "name": "ice",
-    "description": "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2021 Ice Team.",
+    "description": "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2021 Ice Team.",
     "author": "Ice Team",
-    "version": "1.8.0alpha3",
+    "version": "1.8.0alpha4",
     "verbose": false,
     "info": [
         {
             "rows": [
-                ["Website", "http://www.iceframework.org"],
+                ["Website", "https://www.iceframework.org"],
                 ["Email", "info@iceframework.org"],
                 ["FreeNode", "#iceframework"],
-                ["Twitter, Packagist", "iceframework"],
+                ["Twitter", "iceframework"],
+                ["Packagist", "iceframework"],
                 ["GitHub", "ice"]
             ]
         }
@@ -75,7 +76,6 @@
         "check-invalid-reads": false
     },
     "prototype-dir": {
-        "mongodb": "prototypes/mongodb",
-        "pdo": "prototypes/pdo"
+        "db": "prototypes/db"
     }
 }
