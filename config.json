@@ -8,12 +8,12 @@
     "info": [
         {
             "rows": [
-                ["Website", "https://www.iceframework.org"],
-                ["Email", "info@iceframework.org"],
-                ["FreeNode", "#iceframework"],
-                ["Twitter", "iceframework"],
-                ["Packagist", "iceframework"],
-                ["GitHub", "ice"]
+                ["homepage", "https://www.iceframework.org"],
+                ["email", "info@iceframework.org"],
+                ["freenode", "#iceframework"],
+                ["twitter", "iceframework"],
+                ["packagist", "iceframework"],
+                ["github", "ice"]
             ]
         }
     ],

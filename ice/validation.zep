@@ -87,10 +87,10 @@ class Validation
      *
      * @param string alias
      * @param string field
-     * @param mixed options
+     * @param array options
      * @return object Validation
      */
-    public function resolve(string alias, string field, var options = null)
+    public function resolve(string alias, string field, array options = [])
     {
         var rule;
 
@@ -139,13 +139,18 @@ class Validation
             case "array":
                 for validator, options in validators {
                     if typeof validator == "integer" {
-                        let validator = options;
+                        let validator = options,
+                            options = [];
                     }
                     this->rule(field, validator, options);
                 }
             break;
             case "string":
                 if strpos(validators, "|") === false && strpos(validators, ":") === false {
+                    if typeof options == "null" {
+                        let options = [];
+                    }
+
                     this->resolve(validators, field, options);
                 } else {
                     let rules = explode("|", validators);
