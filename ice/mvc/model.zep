@@ -819,14 +819,11 @@ abstract class Model extends Arr implements \Serializable
         var filters, options;
 
         if starts_with(method, "get") {
-            fetch filters, arguments[0];
-            fetch options, arguments[1];
-
-            if typeof filters == "null" {
+            if !fetch filters, arguments[0] {
                 let filters = [];
             }
 
-            if typeof options == "null" {
+            if !fetch options, arguments[1] {
                 let options = [];
             }
 
