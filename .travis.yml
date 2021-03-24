@@ -17,6 +17,7 @@ services:
   - mysql
 
 before_install:
+  - if [[ "$TRAVIS_PHP_VERSION" == "nightly" ]]; then pecl install mongodb; fi
   - mysql -e 'CREATE DATABASE ice_test;'
   - echo "source tests/ci/ice_test.sql;" | mysql -u root ice_test
   - mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
