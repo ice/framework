@@ -1,8 +1,8 @@
 {
     "name": "iceframework/framework",
-    "description": "Simple and fast PHP framework delivered as C-extension",
+    "description": "Simple and fast PHP framework frozen in C extension.",
     "keywords": ["extension", "php", "framework", "ice"],
-    "homepage": "http://www.iceframework.org",
+    "homepage": "https://www.iceframework.org",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -16,7 +16,7 @@
     "require-dev": {
         "phpunit/phpunit": ">=8.0.0",
         "iceframework/zephir-parser": "1.3.5",
-        "phalcon/zephir": "dev-zephir-php8",
+        "phalcon/zephir": "0.13.0",
         "mongodb/mongodb": "^1.2.0"
     },
     "scripts": {

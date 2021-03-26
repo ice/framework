@@ -193,7 +193,7 @@ abstract class Model extends Arr implements \Serializable
     {
         var model;
 
-        let model = create_instance_params(get_called_class(), [filters, null, options]);
+        let model = create_instance_params(get_called_class(), [filters, [], options]);
 
         return model->isLoaded ? model : false;
     }
@@ -715,7 +715,7 @@ abstract class Model extends Arr implements \Serializable
             case self::BELONGS_TO:
             case self::HAS_ONE:
                 let filters[referencedField] = this->{field},
-                    result = create_instance_params(referenceModel, [filters, null, options]);
+                    result = create_instance_params(referenceModel, [filters, [], options]);
 
                 if !result->loaded() {
                     return false;
@@ -819,8 +819,14 @@ abstract class Model extends Arr implements \Serializable
         var filters, options;
 
         if starts_with(method, "get") {
-            fetch filters, arguments[0];
-            fetch options, arguments[1];
+            if !fetch filters, arguments[0] {
+                let filters = [];
+            }
+
+            if !fetch options, arguments[1] {
+                let options = [];
+            }
+
             return this->getRelated(ucfirst(substr(method, 3)), filters, options);
         }
 

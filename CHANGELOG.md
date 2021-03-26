@@ -1,4 +1,15 @@
 -------------------------------------------------------------------
+Fri Mar 26 07:28:51 UTC 2021
+
+- Ice 1.8.0
+ * Build, add support for php 8.0
+ * Composer, update zephir to 0.13.0
+ * Travis, no mongodb extension on nightly build
+ * Tests, fix get related
+ * Validation, fix type error in options
+ * Model, fix type errors
+
+-------------------------------------------------------------------
 Tue Feb 16 08:22:34 UTC 2021
 
 - Ice 1.8.0alpha3

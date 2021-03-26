@@ -90,7 +90,7 @@ class ModelsTest extends TestCase
         $this->assertEquals(6, count($post->getComments()));
         $this->assertEquals(5, count($post->getComments(['status' => 1])));
 
-        foreach ($post->getComments(null, ['order' => ['id' => 'DESC']]) as $key => $comment) {
+        foreach ($post->getComments([], ['order' => ['id' => 'DESC']]) as $key => $comment) {
             if (!$key) {
                 $this->assertEquals(6, $comment->getId());
                 $this->assertEquals(2, $comment->getUser()->getId());
@@ -110,7 +110,7 @@ class ModelsTest extends TestCase
         $this->assertEquals(3, count(Comments::find(['status' => 0])));
 
         $post = Posts::findOne(2);
-        $this->assertEquals(2, count($post->getComments(null, ['limit' => 2])));
+        $this->assertEquals(2, count($post->getComments([], ['limit' => 2])));
         $this->assertEquals(new Arr, $post->getComments(['status' => 0]));
 
         $post = Posts::findOne(6);
