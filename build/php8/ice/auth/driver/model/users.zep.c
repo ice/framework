@@ -79,6 +79,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&idKey, this_ptr, "getidkey", NULL, 0);
@@ -127,6 +128,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_1);
@@ -169,6 +171,15 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &name_param);

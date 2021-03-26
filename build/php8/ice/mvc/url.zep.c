@@ -47,6 +47,7 @@ PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "baseUri");
 
 }
@@ -57,6 +58,14 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&baseUri_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(baseUri)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &baseUri);
 
@@ -72,6 +81,7 @@ PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "staticUri");
 
 }
@@ -82,6 +92,14 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&staticUri_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(staticUri)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &staticUri);
 
@@ -110,6 +128,15 @@ PHP_METHOD(Ice_Mvc_Url, href) {
 	ZVAL_UNDEF(&staticUri);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(uri)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
@@ -151,6 +178,15 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&uri);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(uri)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
@@ -186,6 +222,17 @@ PHP_METHOD(Ice_Mvc_Url, rel) {
 	ZVAL_UNDEF(&args_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL(args)
+		Z_PARAM_BOOL(local)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &uri, &args, &local_param);
@@ -247,6 +294,17 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	ZVAL_UNDEF(&_11$$9);
 	ZVAL_UNDEF(&_12$$10);
 	ZVAL_UNDEF(&_13$$11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL(args)
+		Z_PARAM_BOOL(local)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));

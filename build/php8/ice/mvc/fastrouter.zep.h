@@ -112,28 +112,80 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_fastrouter_zephir_init_properties_ice_mvc
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_fastrouter_method_entry) {
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getDefaultModule, arginfo_ice_mvc_fastrouter_getdefaultmodule, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getDefaultModule, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setDefaultModule, arginfo_ice_mvc_fastrouter_setdefaultmodule, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getDefaultHandler, arginfo_ice_mvc_fastrouter_getdefaulthandler, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getDefaultHandler, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setDefaultHandler, arginfo_ice_mvc_fastrouter_setdefaulthandler, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getDefaultAction, arginfo_ice_mvc_fastrouter_getdefaultaction, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getDefaultAction, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setDefaultAction, arginfo_ice_mvc_fastrouter_setdefaultaction, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getMethod, arginfo_ice_mvc_fastrouter_getmethod, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getMethod, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getModule, arginfo_ice_mvc_fastrouter_getmodule, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getModule, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getHandler, arginfo_ice_mvc_fastrouter_gethandler, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getHandler, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getAction, arginfo_ice_mvc_fastrouter_getaction, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getAction, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getParams, arginfo_ice_mvc_fastrouter_getparams, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getParams, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setSilent, arginfo_ice_mvc_fastrouter_setsilent, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getOptions, arginfo_ice_mvc_fastrouter_getoptions, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getOptions, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getRoutes, arginfo_ice_mvc_fastrouter_getroutes, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getRoutes, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setRoutes, arginfo_ice_mvc_fastrouter_setroutes, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getCollector, arginfo_ice_mvc_fastrouter_getcollector, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getCollector, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setCollector, arginfo_ice_mvc_fastrouter_setcollector, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, getDispatcher, arginfo_ice_mvc_fastrouter_getdispatcher, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, getDispatcher, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, setDispatcher, arginfo_ice_mvc_fastrouter_setdispatcher, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_FastRouter, setDefaults, arginfo_ice_mvc_fastrouter_setdefaults, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_FastRouter, setOptions, arginfo_ice_mvc_fastrouter_setoptions, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_FastRouter, fastRoute, arginfo_ice_mvc_fastrouter_fastroute, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_FastRouter, fastRoute, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_FastRouter, handle, arginfo_ice_mvc_fastrouter_handle, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

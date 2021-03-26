@@ -63,6 +63,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getdi", NULL, 0);
@@ -104,6 +105,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 

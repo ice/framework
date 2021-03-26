@@ -64,6 +64,14 @@ PHP_METHOD(Ice_Log_Driver_File, __construct) {
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(file)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &file_param);
@@ -131,6 +139,17 @@ PHP_METHOD(Ice_Log_Driver_File, log) {
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&context);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ZVAL(level)
+		Z_PARAM_STR(message)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(context)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &level, &message_param, &context_param);
@@ -190,6 +209,16 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&context);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(message)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(context)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);

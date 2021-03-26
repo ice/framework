@@ -54,6 +54,15 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	ZVAL_UNDEF(&config_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(config)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
@@ -108,6 +117,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_11$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -170,6 +180,7 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_8$$6);
 	ZVAL_UNDEF(&_9$$6);
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -242,6 +253,7 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+
 
 	ZEPHIR_MM_GROW();
 

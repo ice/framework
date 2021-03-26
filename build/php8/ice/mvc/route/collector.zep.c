@@ -37,6 +37,14 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeParser_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(routeParser)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &routeParser);
 
@@ -53,6 +61,14 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&dataGenerator_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(dataGenerator)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &dataGenerator);
 
@@ -79,6 +95,16 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 	ZVAL_UNDEF(&routeParser_sub);
 	ZVAL_UNDEF(&dataGenerator_sub);
 	ZVAL_NULL(&__$null);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(routeParser, ice_mvc_route_parser_parserinterface_ce)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(dataGenerator, ice_mvc_route_datagenerator_datageneratorinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &routeParser, &dataGenerator);
@@ -153,6 +179,17 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	ZVAL_UNDEF(&_10$$8);
 	ZVAL_UNDEF(&_11$$9);
 	ZVAL_UNDEF(&route);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_ZVAL(httpMethod)
+		Z_PARAM_STR(route)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(handler)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &httpMethod, &route_param, &handler);
@@ -273,6 +310,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 

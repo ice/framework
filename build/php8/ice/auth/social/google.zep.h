@@ -23,8 +23,20 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_social_google_method_entry) {
 	PHP_ME(Ice_Auth_Social_Google, __construct, arginfo_ice_auth_social_google___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Google, getBirthday, arginfo_ice_auth_social_google_getbirthday, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Google, getBirthday, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Google, authenticate, arginfo_ice_auth_social_google_authenticate, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Google, authenticate, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Google, prepareAuthParams, arginfo_ice_auth_social_google_prepareauthparams, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Google, prepareAuthParams, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

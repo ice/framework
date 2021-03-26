@@ -34,6 +34,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_LONG(10);
 
 }
@@ -75,6 +76,14 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZVAL_UNDEF(&_21$$4);
 	ZVAL_UNDEF(&_12$$3);
 	ZVAL_UNDEF(&_20$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(regexToRoutesMap)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &regexToRoutesMap);

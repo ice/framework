@@ -18,21 +18,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver___construct, 0, 0, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_checkhash, 0, 2, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_checkhash, 0, 2, _IS_BOOL, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, password, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, password)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, hash, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, hash)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_completelogin, 0, 0, 1)
@@ -41,20 +29,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_completelogin, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_getoption, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, key)
-#endif
 	ZEND_ARG_INFO(0, defaultValue)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_setoption, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, key, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, key)
-#endif
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
@@ -63,36 +43,16 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_getuser, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_hash, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, password, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, password)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_loggedin, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, role, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, role)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_logout, 0, 0, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_logout, 0, 0, _IS_BOOL, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, destroy, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, destroy)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, logoutAll, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, logoutAll)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_zephir_init_properties_ice_auth_driver, 0, 0, 0)

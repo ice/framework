@@ -56,6 +56,15 @@ PHP_METHOD(Ice_Auth_Social_Twitter, __construct) {
 	ZVAL_UNDEF(&config_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(config)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
@@ -105,6 +114,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, getSocialPage) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_1);
@@ -140,6 +150,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, getImage) {
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -198,6 +209,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate) {
 	ZVAL_UNDEF(&_19$$6);
 	ZVAL_UNDEF(&_20$$6);
 	ZVAL_UNDEF(&_10$$5);
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
@@ -317,6 +329,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_4);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&requestTokenUrl);
@@ -389,6 +402,18 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams) {
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(url)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(params)
+		Z_PARAM_STR(oauthToken)
+		Z_PARAM_STR(type)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &url_param, &params, &oauthToken_param, &type_param);

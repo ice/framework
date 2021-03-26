@@ -35,4 +35,3 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_DispatcherInterface) {
  * @return array
  */
 ZEPHIR_DOC_METHOD(Ice_Mvc_Route_Dispatcher_DispatcherInterface, dispatch);
-

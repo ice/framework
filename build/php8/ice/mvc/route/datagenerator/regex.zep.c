@@ -56,6 +56,16 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addRoute) {
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&handler_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_ZVAL(httpMethod)
+		Z_PARAM_ZVAL(routeData)
+		Z_PARAM_ZVAL(handler)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &httpMethod, &routeData, &handler);
@@ -87,6 +97,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, getData) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -139,6 +150,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData) {
 	ZVAL_UNDEF(&_15$$4);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_13$$4);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -225,6 +237,14 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(count)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count);
@@ -258,6 +278,14 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute) {
 
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(routeData)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &routeData);
 
@@ -306,6 +334,16 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute) {
 	ZVAL_UNDEF(&_21$$8);
 	ZVAL_UNDEF(&_22$$8);
 	ZVAL_UNDEF(&_23$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_ZVAL(httpMethod)
+		Z_PARAM_ZVAL(routeData)
+		Z_PARAM_ZVAL(handler)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &httpMethod, &routeData, &handler);
@@ -422,6 +460,16 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, addVariableRoute) {
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_9$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_ZVAL(httpMethod)
+		Z_PARAM_ZVAL(routeData)
+		Z_PARAM_ZVAL(handler)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &httpMethod, &routeData, &handler);
@@ -492,6 +540,14 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_Regex, buildRegexForRoute) {
 	ZVAL_UNDEF(&_14$$8);
 	ZVAL_UNDEF(&_15$$8);
 	ZVAL_UNDEF(&_16$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(routeData)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &routeData);
@@ -598,6 +654,7 @@ zend_object *zephir_init_properties_Ice_Mvc_Route_DataGenerator_Regex(zend_class
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	

@@ -30,38 +30,20 @@ ZEPHIR_INIT_CLASS(Ice_Http_Request_RequestInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, hasRequest);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, hasPost);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, hasGet);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, hasServer);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isPost);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isGet);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isPut);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isPatch);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isHead);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isDelete);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, isOptions);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getMethod);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getUserAgent);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getHTTPReferer);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getQuery);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getFiles);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getPost);
-
 ZEPHIR_DOC_METHOD(Ice_Http_Request_RequestInterface, getServer);
-

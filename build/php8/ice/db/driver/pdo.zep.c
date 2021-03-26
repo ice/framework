@@ -60,6 +60,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getId) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "id");
 
 }
@@ -67,6 +68,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getId) {
 PHP_METHOD(Ice_Db_Driver_Pdo, getType) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "type");
@@ -78,6 +80,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getClient) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "client");
 
 }
@@ -85,6 +88,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getClient) {
 PHP_METHOD(Ice_Db_Driver_Pdo, getDriverName) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "driverName");
@@ -122,6 +126,18 @@ PHP_METHOD(Ice_Db_Driver_Pdo, __construct) {
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(dsn)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(user)
+		Z_PARAM_STR_OR_NULL(password)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &dsn_param, &user_param, &password_param, &options_param);
@@ -214,6 +230,14 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getIdValue) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&id_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(id)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &id);
 
@@ -244,6 +268,16 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getDateTime) {
 	ZVAL_UNDEF(&date);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(model)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &value, &model);
@@ -312,6 +346,18 @@ PHP_METHOD(Ice_Db_Driver_Pdo, findOne) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -401,6 +447,18 @@ PHP_METHOD(Ice_Db_Driver_Pdo, find) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -474,6 +532,16 @@ PHP_METHOD(Ice_Db_Driver_Pdo, count) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
@@ -621,6 +689,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where) {
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_7$$8);
 	ZVAL_UNDEF(&_42$$41);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(values)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &filters, &values_param, &options_param);
@@ -1375,6 +1454,18 @@ PHP_METHOD(Ice_Db_Driver_Pdo, select) {
 	ZVAL_UNDEF(&fields);
 	ZVAL_UNDEF(&_10$$13);
 	ZVAL_UNDEF(&_11$$13);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -1657,6 +1748,16 @@ PHP_METHOD(Ice_Db_Driver_Pdo, insert) {
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_10$$4);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &fields_param);
@@ -1810,6 +1911,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, update) {
 	ZVAL_UNDEF(&_11$$4);
 	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &from_param, &filters, &fields_param);
@@ -1954,6 +2066,16 @@ PHP_METHOD(Ice_Db_Driver_Pdo, delete) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
@@ -2040,6 +2162,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, query) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&values);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(sql)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(values)
+		Z_PARAM_ZVAL(obj)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &sql_param, &values_param, &obj);
@@ -2136,6 +2269,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getLastInsertId) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("client"), PH_NOISY_CC | PH_READONLY);
@@ -2157,6 +2291,7 @@ PHP_METHOD(Ice_Db_Driver_Pdo, getError) {
 
 	ZVAL_UNDEF(&error);
 	ZVAL_UNDEF(&_0);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("error"), PH_NOISY_CC | PH_READONLY);

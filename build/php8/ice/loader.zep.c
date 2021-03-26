@@ -39,6 +39,7 @@ ZEPHIR_INIT_CLASS(Ice_Loader) {
 	zend_declare_property_null(ice_loader_ce, SL("prefixes"), ZEND_ACC_PROTECTED);
 
 	ice_loader_ce->create_object = zephir_init_properties_Ice_Loader;
+
 	return SUCCESS;
 
 }
@@ -63,6 +64,15 @@ PHP_METHOD(Ice_Loader, __construct) {
 	ZVAL_UNDEF(&prefix$$3);
 	ZVAL_UNDEF(&dir$$3);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(prefixes)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &prefixes_param);
@@ -135,6 +145,7 @@ PHP_METHOD(Ice_Loader, register) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -189,6 +200,17 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 	ZVAL_UNDEF(&_17$$5);
 	ZVAL_UNDEF(&_18$$5);
 	ZVAL_UNDEF(&_10$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(prefix)
+		Z_PARAM_STR(baseDir)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(prepend)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &prefix_param, &baseDir_param, &prepend_param);
@@ -283,6 +305,14 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_8$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(className)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &className_param);
@@ -362,6 +392,15 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_11$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(prefix)
+		Z_PARAM_STR(relativeClass)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &prefix_param, &relativeClass_param);
@@ -440,6 +479,14 @@ PHP_METHOD(Ice_Loader, requireFile) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&file);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(file)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &file_param);
@@ -463,6 +510,7 @@ zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type) {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	

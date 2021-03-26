@@ -355,11 +355,12 @@ static PHP_MINFO_FUNCTION(ice)
 	php_info_print_table_row(2, "Powered by Zephir", "Version " PHP_ICE_ZEPVERSION);
 	php_info_print_table_end();
 		php_info_print_table_start();
-	php_info_print_table_row(2, "Website", "http://www.iceframework.org");
-	php_info_print_table_row(2, "Email", "info@iceframework.org");
-	php_info_print_table_row(2, "FreeNode", "#iceframework");
-	php_info_print_table_row(2, "Twitter, Packagist", "iceframework");
-	php_info_print_table_row(2, "GitHub", "ice");
+	php_info_print_table_row(2, "homepage", "https://www.iceframework.org");
+	php_info_print_table_row(2, "email", "info@iceframework.org");
+	php_info_print_table_row(2, "freenode", "#iceframework");
+	php_info_print_table_row(2, "twitter", "iceframework");
+	php_info_print_table_row(2, "packagist", "iceframework");
+	php_info_print_table_row(2, "github", "ice");
 	php_info_print_table_end();
 
 	DISPLAY_INI_ENTRIES();
@@ -382,18 +383,10 @@ static PHP_GSHUTDOWN_FUNCTION(ice)
 
 PHP_FUNCTION(g_ice__t);
 ZEND_BEGIN_ARG_INFO_EX(arginfo_g_ice__t, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, str, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, str)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, values, 1)
 	ZEND_ARG_INFO(0, context)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, lang, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, lang)
-#endif
 ZEND_END_ARG_INFO()
 
 

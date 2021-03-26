@@ -43,6 +43,7 @@ PHP_METHOD(Ice_Auth_Social, getAdapter) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "adapter");
 
 }
@@ -58,6 +59,14 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&adapter_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(adapter, ice_auth_social_socialinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &adapter);
 
@@ -80,6 +89,7 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -109,6 +119,16 @@ PHP_METHOD(Ice_Auth_Social, get) {
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
@@ -148,6 +168,16 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(method)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(arguments)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);

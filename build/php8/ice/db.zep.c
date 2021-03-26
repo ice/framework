@@ -45,6 +45,7 @@ PHP_METHOD(Ice_Db, getDriver) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "driver");
 
 }
@@ -55,6 +56,14 @@ PHP_METHOD(Ice_Db, setDriver) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&driver_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(driver)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &driver);
 
@@ -109,6 +118,21 @@ PHP_METHOD(Ice_Db, __construct) {
 	ZVAL_UNDEF(&_10$$9);
 	ZVAL_UNDEF(&_11$$10);
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 7)
+		Z_PARAM_ZVAL(dsn)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(host)
+		Z_PARAM_LONG_OR_NULL(port, is_null_true)
+		Z_PARAM_STR_OR_NULL(name)
+		Z_PARAM_STR_OR_NULL(user)
+		Z_PARAM_STR_OR_NULL(password)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 6, &dsn, &host_param, &port_param, &name_param, &user_param, &password_param, &options_param);
@@ -242,6 +266,16 @@ PHP_METHOD(Ice_Db, __call) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(method)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(arguments)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);

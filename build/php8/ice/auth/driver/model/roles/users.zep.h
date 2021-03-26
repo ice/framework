@@ -13,6 +13,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_roles_users_zephir_init_pro
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_roles_users_method_entry) {
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Driver_Model_Roles_Users, initialize, arginfo_ice_auth_driver_model_roles_users_initialize, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Driver_Model_Roles_Users, initialize, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

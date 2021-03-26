@@ -75,6 +75,14 @@ PHP_METHOD(Ice_Image_Gd, __construct) {
 	ZVAL_UNDEF(&_7$$7);
 	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&_5$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(file)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &file_param);
@@ -110,7 +118,7 @@ PHP_METHOD(Ice_Image_Gd, __construct) {
 
 	_3 = !zephir_is_true(&create);
 	if (!(_3)) {
-		_3 = !((zephir_function_exists(&create)  == SUCCESS));
+		_3 = !((zephir_function_exists(&create) == SUCCESS));
 	}
 	if (_3) {
 		ZEPHIR_INIT_VAR(&_4$$7);
@@ -164,6 +172,7 @@ PHP_METHOD(Ice_Image_Gd, check) {
 	ZVAL_UNDEF(&_7$$6);
 	ZVAL_UNDEF(&_9$$6);
 	ZVAL_UNDEF(&_8$$6);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -233,6 +242,7 @@ PHP_METHOD(Ice_Image_Gd, __destruct) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("image"), PH_NOISY_CC | PH_READONLY);
@@ -263,6 +273,7 @@ PHP_METHOD(Ice_Image_Gd, loadImage) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -328,6 +339,15 @@ PHP_METHOD(Ice_Image_Gd, doResize) {
 	ZVAL_UNDEF(&_25$$6);
 	ZVAL_UNDEF(&_26$$6);
 	ZVAL_UNDEF(&_27$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(width)
+		Z_PARAM_LONG(height)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &width_param, &height_param);
@@ -446,6 +466,17 @@ PHP_METHOD(Ice_Image_Gd, doCrop) {
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_11$$3);
 	ZVAL_UNDEF(&_12$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_LONG(width)
+		Z_PARAM_LONG(height)
+		Z_PARAM_LONG(offsetX)
+		Z_PARAM_LONG(offsetY)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &width_param, &height_param, &offsetX_param, &offsetY_param);
@@ -518,6 +549,14 @@ PHP_METHOD(Ice_Image_Gd, doRotate) {
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_9$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(degrees)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &degrees_param);
@@ -604,6 +643,14 @@ PHP_METHOD(Ice_Image_Gd, doFlip) {
 	ZVAL_UNDEF(&_18$$6);
 	ZVAL_UNDEF(&_19$$6);
 	ZVAL_UNDEF(&_20$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(direction)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &direction_param);
@@ -699,6 +746,14 @@ PHP_METHOD(Ice_Image_Gd, doSharpen) {
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_11$$3);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(amount)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &amount_param);
@@ -821,6 +876,16 @@ PHP_METHOD(Ice_Image_Gd, doReflection) {
 	ZVAL_UNDEF(&_24$$5);
 	ZVAL_UNDEF(&_14$$6);
 	ZVAL_UNDEF(&_15$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_LONG(height)
+		Z_PARAM_LONG(opacity)
+		Z_PARAM_BOOL(fadeIn)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &height_param, &opacity_param, &fadeIn_param);
@@ -955,6 +1020,17 @@ PHP_METHOD(Ice_Image_Gd, doWatermark) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_OBJECT_OF_CLASS(watermark, ice_image_ce)
+		Z_PARAM_LONG(offsetX)
+		Z_PARAM_LONG(offsetY)
+		Z_PARAM_LONG(opacity)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &watermark, &offsetX_param, &offsetY_param, &opacity_param);
@@ -1050,6 +1126,17 @@ PHP_METHOD(Ice_Image_Gd, doBackground) {
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_LONG(r)
+		Z_PARAM_LONG(g)
+		Z_PARAM_LONG(b)
+		Z_PARAM_LONG(opacity)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &r_param, &g_param, &b_param, &opacity_param);
@@ -1134,6 +1221,16 @@ PHP_METHOD(Ice_Image_Gd, doSave) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(file)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(quality)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &quality);
@@ -1212,6 +1309,15 @@ PHP_METHOD(Ice_Image_Gd, doRender) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(type)
+		Z_PARAM_ZVAL(quality)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &type_param, &quality);
@@ -1293,6 +1399,15 @@ PHP_METHOD(Ice_Image_Gd, saveFunction) {
 	ZVAL_UNDEF(&_3$$7);
 	ZVAL_UNDEF(&_5$$7);
 	ZVAL_UNDEF(&_4$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(extension)
+		Z_PARAM_LONG(quality)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &extension_param, &quality_param);
@@ -1379,6 +1494,15 @@ PHP_METHOD(Ice_Image_Gd, create) {
 	ZVAL_UNDEF(&image);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_LONG(width)
+		Z_PARAM_LONG(height)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &width_param, &height_param);

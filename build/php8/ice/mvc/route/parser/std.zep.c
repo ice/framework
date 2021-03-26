@@ -68,6 +68,14 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	ZVAL_UNDEF(&_13$$7);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_3$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(route)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
@@ -216,6 +224,14 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&_28$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(route)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);

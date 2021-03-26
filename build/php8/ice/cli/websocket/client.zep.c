@@ -122,6 +122,16 @@ PHP_METHOD(Ice_Cli_Websocket_Client, connect) {
 	ZVAL_UNDEF(&_57$$10);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_13);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(address)
+		Z_PARAM_ZVAL(headers)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &address_param, &headers);
@@ -364,6 +374,7 @@ PHP_METHOD(Ice_Cli_Websocket_Client, generateKey) {
 	ZVAL_UNDEF(&length);
 	ZVAL_UNDEF(&_1$$3);
 
+
 	ZEPHIR_MM_GROW();
 
 	i = 0;
@@ -430,6 +441,14 @@ PHP_METHOD(Ice_Cli_Websocket_Client, normalizeHeaders) {
 	ZVAL_UNDEF(&_21$$8);
 	ZVAL_UNDEF(&_23$$8);
 	ZVAL_UNDEF(&_25$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(headers)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &headers_param);
@@ -583,6 +602,16 @@ PHP_METHOD(Ice_Cli_Websocket_Client, send) {
 	ZVAL_UNDEF(&opcode);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(opcode)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &data_param, &opcode_param);
@@ -635,6 +664,7 @@ PHP_METHOD(Ice_Cli_Websocket_Client, run) {
 	ZVAL_UNDEF(&_10$$6);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_15$$10);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -749,6 +779,14 @@ PHP_METHOD(Ice_Cli_Websocket_Client, onMessage) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&callback_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(callback)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &callback);
 
@@ -772,6 +810,14 @@ PHP_METHOD(Ice_Cli_Websocket_Client, onTick) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&callback_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(callback)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &callback);
 

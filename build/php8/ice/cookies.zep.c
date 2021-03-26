@@ -60,6 +60,7 @@ PHP_METHOD(Ice_Cookies, getSalt) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "salt");
 
 }
@@ -70,6 +71,14 @@ PHP_METHOD(Ice_Cookies, setSalt) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&salt_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(salt)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &salt);
 
@@ -85,6 +94,7 @@ PHP_METHOD(Ice_Cookies, getExpiration) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "expiration");
 
 }
@@ -95,6 +105,14 @@ PHP_METHOD(Ice_Cookies, setExpiration) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&expiration_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(expiration)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &expiration);
 
@@ -110,6 +128,7 @@ PHP_METHOD(Ice_Cookies, getPath) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "path");
 
 }
@@ -120,6 +139,14 @@ PHP_METHOD(Ice_Cookies, setPath) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(path)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &path);
 
@@ -135,6 +162,7 @@ PHP_METHOD(Ice_Cookies, getDomain) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "domain");
 
 }
@@ -145,6 +173,14 @@ PHP_METHOD(Ice_Cookies, setDomain) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&domain_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(domain)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &domain);
 
@@ -160,6 +196,7 @@ PHP_METHOD(Ice_Cookies, getSecure) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "secure");
 
 }
@@ -170,6 +207,14 @@ PHP_METHOD(Ice_Cookies, setSecure) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&secure_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(secure)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &secure);
 
@@ -185,6 +230,7 @@ PHP_METHOD(Ice_Cookies, getHttpOnly) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "httpOnly");
 
 }
@@ -195,6 +241,14 @@ PHP_METHOD(Ice_Cookies, setHttpOnly) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&httpOnly_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(httpOnly)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &httpOnly);
 
@@ -210,6 +264,7 @@ PHP_METHOD(Ice_Cookies, getEncrypt) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "encrypt");
 
 }
@@ -220,6 +275,14 @@ PHP_METHOD(Ice_Cookies, setEncrypt) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&encrypt_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(encrypt)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &encrypt);
 
@@ -241,6 +304,15 @@ PHP_METHOD(Ice_Cookies, __construct) {
 
 	ZVAL_UNDEF(&salt);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(salt)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &salt_param);
@@ -276,6 +348,14 @@ PHP_METHOD(Ice_Cookies, has) {
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_COOKIE);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_COOKIE, SL("_COOKIE"));
@@ -320,6 +400,16 @@ PHP_METHOD(Ice_Cookies, get) {
 	ZVAL_UNDEF(&_5$$6);
 	ZVAL_UNDEF(&_6$$6);
 	ZVAL_UNDEF(&_7$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_COOKIE, SL("_COOKIE"));
@@ -404,6 +494,17 @@ PHP_METHOD(Ice_Cookies, set) {
 	ZVAL_UNDEF(&_3$$5);
 	ZVAL_UNDEF(&_4$$5);
 	ZVAL_UNDEF(&_5$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(key)
+		Z_PARAM_STR(value)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(lifetime)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &key_param, &value_param, &lifetime_param);
@@ -473,6 +574,14 @@ PHP_METHOD(Ice_Cookies, remove) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_COOKIE, SL("_COOKIE"));
@@ -518,6 +627,15 @@ PHP_METHOD(Ice_Cookies, salt) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(name)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name, &value);
@@ -575,6 +693,20 @@ PHP_METHOD(Ice_Cookies, setcookie) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(7, 7)
+		Z_PARAM_STR(name)
+		Z_PARAM_STR(value)
+		Z_PARAM_LONG(expire)
+		Z_PARAM_STR(path)
+		Z_PARAM_STR(domain)
+		Z_PARAM_BOOL(secure)
+		Z_PARAM_BOOL(httpOnly)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 7, 0, &name_param, &value_param, &expire_param, &path_param, &domain_param, &secure_param, &httpOnly_param);

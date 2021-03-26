@@ -62,6 +62,14 @@ PHP_METHOD(Ice_Assets, setCollections) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&collections_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(collections)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &collections);
 
@@ -77,6 +85,7 @@ PHP_METHOD(Ice_Assets, getCollections) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "collections");
 
 }
@@ -87,6 +96,14 @@ PHP_METHOD(Ice_Assets, setOptions) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &options);
 
@@ -109,6 +126,7 @@ PHP_METHOD(Ice_Assets, __construct) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -136,6 +154,16 @@ PHP_METHOD(Ice_Assets, getOption) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 1, &key, &defaultValue);
 
@@ -180,6 +208,18 @@ PHP_METHOD(Ice_Assets, add) {
 	ZVAL_UNDEF(&link);
 	ZVAL_UNDEF(&version);
 	ZVAL_UNDEF(&collection);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_ZVAL(parameters)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(version)
+		Z_PARAM_STR_OR_NULL(collection)
+		Z_PARAM_ZVAL(minify)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters, &version_param, &collection_param, &minify);
@@ -285,6 +325,18 @@ PHP_METHOD(Ice_Assets, addCss) {
 	ZVAL_UNDEF(&version);
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_13$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_ARRAY(parameters)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(version)
+		Z_PARAM_STR(collection)
+		Z_PARAM_ZVAL(minify)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
@@ -425,6 +477,18 @@ PHP_METHOD(Ice_Assets, addJs) {
 	ZVAL_UNDEF(&version);
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_13$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_ARRAY(parameters)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(version)
+		Z_PARAM_STR(collection)
+		Z_PARAM_ZVAL(minify)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
@@ -539,6 +603,15 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(key)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &key, &value);
@@ -570,6 +643,7 @@ PHP_METHOD(Ice_Assets, getCss) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -593,6 +667,7 @@ PHP_METHOD(Ice_Assets, getJs) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -621,6 +696,14 @@ PHP_METHOD(Ice_Assets, get) {
 	ZVAL_UNDEF(&collection);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
@@ -661,6 +744,15 @@ PHP_METHOD(Ice_Assets, minify) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(content)
+		Z_PARAM_ZVAL(type)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
@@ -734,6 +826,16 @@ PHP_METHOD(Ice_Assets, prepare) {
 	ZVAL_UNDEF(&_16$$14);
 	ZVAL_UNDEF(&_13$$15);
 	ZVAL_UNDEF(&_15$$15);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(3, 3)
+		Z_PARAM_STR(uri)
+		Z_PARAM_STR(type)
+		Z_PARAM_ZVAL(minify)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
@@ -869,6 +971,7 @@ zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
+	
 
 		ZEPHIR_MM_GROW();
 	

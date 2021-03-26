@@ -30,6 +30,4 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_ModuleInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Mvc_ModuleInterface, registerAutoloaders);
-
 ZEPHIR_DOC_METHOD(Ice_Mvc_ModuleInterface, registerServices);
-

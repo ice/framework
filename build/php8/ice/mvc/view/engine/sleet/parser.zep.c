@@ -87,6 +87,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, __construct) {
 	ZVAL_UNDEF(&_18$$8);
 	ZVAL_UNDEF(&_19$$8);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&tag);
@@ -249,6 +250,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, text) {
 	ZVAL_UNDEF(&_56$$10);
 	ZVAL_UNDEF(&_57$$10);
 	ZVAL_UNDEF(&_58$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
@@ -464,6 +473,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parse) {
 	ZVAL_UNDEF(&_16$$13);
 	ZVAL_UNDEF(&_17$$14);
 	ZVAL_UNDEF(&_19$$17);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(expression)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &expression_param);
@@ -616,6 +633,15 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseControl) {
 	ZVAL_UNDEF(&control_sub);
 	ZVAL_UNDEF(&expression_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(control)
+		Z_PARAM_ZVAL(expression)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &control, &expression);
@@ -644,6 +670,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseEcho) {
 
 	ZVAL_UNDEF(&expression_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(expression)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &expression);
@@ -672,6 +706,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseSet) {
 
 	ZVAL_UNDEF(&expression_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(expression)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &expression);
@@ -700,6 +742,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, parseUse) {
 
 	ZVAL_UNDEF(&expression_sub);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(expression)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &expression);
@@ -755,6 +805,14 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, doParse) {
 	ZVAL_UNDEF(&_19$$5);
 	ZVAL_UNDEF(&_20$$6);
 	ZVAL_UNDEF(&_21$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(tokens)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &tokens);
@@ -958,6 +1016,17 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Parser, token) {
 	ZVAL_UNDEF(&_28$$29);
 	ZVAL_UNDEF(&str);
 	ZVAL_UNDEF(&_3$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(token)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(prev)
+		Z_PARAM_ZVAL(next)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &token, &prev, &next);
@@ -1152,6 +1221,7 @@ zend_object *zephir_init_properties_Ice_Mvc_View_Engine_Sleet_Parser(zend_class_
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$5);
+	
 
 		ZEPHIR_MM_GROW();
 	

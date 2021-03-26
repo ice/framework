@@ -75,26 +75,14 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_setdefaultaction, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_addroute, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, uri)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, regex, 1)
 	ZEND_ARG_INFO(0, method)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroute, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroutename, 0, 0, 1)
@@ -102,11 +90,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroutename, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_cache, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, file)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_defaults, 0, 0, 1)
@@ -118,57 +102,77 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_setroutes, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_handle, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, method)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, uri)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_match, 0, 0, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, uri)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, method)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_uri, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, method)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_zephir_init_properties_ice_mvc_router, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_router_method_entry) {
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getRoutes, arginfo_ice_mvc_router_getroutes, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getRoutes, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getMethod, arginfo_ice_mvc_router_getmethod, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getMethod, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getModule, arginfo_ice_mvc_router_getmodule, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getModule, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getHandler, arginfo_ice_mvc_router_gethandler, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getHandler, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getAction, arginfo_ice_mvc_router_getaction, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getAction, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getParams, arginfo_ice_mvc_router_getparams, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getParams, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getSilent, arginfo_ice_mvc_router_getsilent, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getSilent, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_Router, setSilent, arginfo_ice_mvc_router_setsilent, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getDefaultModule, arginfo_ice_mvc_router_getdefaultmodule, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getDefaultModule, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_Router, setDefaultModule, arginfo_ice_mvc_router_setdefaultmodule, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getDefaultHandler, arginfo_ice_mvc_router_getdefaulthandler, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getDefaultHandler, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_Router, setDefaultHandler, arginfo_ice_mvc_router_setdefaulthandler, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Router, getDefaultAction, arginfo_ice_mvc_router_getdefaultaction, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Router, getDefaultAction, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Mvc_Router, setDefaultAction, arginfo_ice_mvc_router_setdefaultaction, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, addRoute, arginfo_ice_mvc_router_addroute, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Router, getRoute, arginfo_ice_mvc_router_getroute, ZEND_ACC_PUBLIC)

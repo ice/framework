@@ -30,16 +30,9 @@ ZEPHIR_INIT_CLASS(Ice_Db_DbInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, findOne);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, find);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, select);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, insert);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, update);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, delete);
-
 ZEPHIR_DOC_METHOD(Ice_Db_DbInterface, count);
-

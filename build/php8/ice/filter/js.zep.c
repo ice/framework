@@ -68,6 +68,7 @@ PHP_METHOD(Ice_Filter_Js, getOutput) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "output");
 
 }
@@ -94,6 +95,14 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(js)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &js_param);
@@ -222,6 +231,14 @@ PHP_METHOD(Ice_Filter_Js, action) {
 	ZVAL_UNDEF(&_77$$19);
 	ZVAL_UNDEF(&_78$$19);
 	ZVAL_UNDEF(&_79$$19);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(command)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &command_param);
@@ -474,6 +491,7 @@ PHP_METHOD(Ice_Filter_Js, get) {
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_5$$4);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&c);
@@ -537,6 +555,14 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(c)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &c);
@@ -605,6 +631,7 @@ PHP_METHOD(Ice_Filter_Js, min) {
 	ZVAL_UNDEF(&_28$$20);
 	ZVAL_UNDEF(&_29$$21);
 	ZVAL_UNDEF(&_30$$22);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -758,6 +785,7 @@ PHP_METHOD(Ice_Filter_Js, next) {
 	ZVAL_UNDEF(&_5$$8);
 	ZVAL_UNDEF(&_6$$9);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&c, this_ptr, "get", &_0, 0);
@@ -829,6 +857,7 @@ PHP_METHOD(Ice_Filter_Js, peek) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 

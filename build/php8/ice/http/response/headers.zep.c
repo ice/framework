@@ -58,6 +58,7 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$5);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 134);

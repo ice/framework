@@ -24,11 +24,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_collector_addroute, 0, 0, 2)
 	ZEND_ARG_INFO(0, httpMethod)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, route, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, route)
-#endif
 	ZEND_ARG_INFO(0, handler)
 ZEND_END_ARG_INFO()
 
@@ -40,6 +36,10 @@ ZEPHIR_INIT_FUNCS(ice_mvc_route_collector_method_entry) {
 	PHP_ME(Ice_Mvc_Route_Collector, setDataGenerator, arginfo_ice_mvc_route_collector_setdatagenerator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Route_Collector, __construct, arginfo_ice_mvc_route_collector___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_Route_Collector, addRoute, arginfo_ice_mvc_route_collector_addroute, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Route_Collector, getData, arginfo_ice_mvc_route_collector_getdata, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Route_Collector, getData, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

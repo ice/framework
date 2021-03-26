@@ -46,6 +46,7 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
 	zend_declare_property_null(ice_auth_driver_ce, SL("options"), ZEND_ACC_PROTECTED);
 
 	ice_auth_driver_ce->create_object = zephir_init_properties_Ice_Auth_Driver;
+
 	return SUCCESS;
 
 }
@@ -73,6 +74,15 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
@@ -130,6 +140,15 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(password)
+		Z_PARAM_STR(hash)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &password_param, &hash_param);
@@ -178,6 +197,16 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6$$3);
 	ZVAL_UNDEF(&roles);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(user)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(roles)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &user, &roles_param);
@@ -234,6 +263,16 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
@@ -279,6 +318,15 @@ PHP_METHOD(Ice_Auth_Driver, setOption) {
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_ZVAL(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &key_param, &value);
@@ -309,6 +357,15 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &defaultValue);
@@ -355,6 +412,14 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 	ZVAL_UNDEF(&_7$$4);
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(password)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &password_param);
@@ -405,6 +470,15 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 	ZVAL_UNDEF(&roles);
 	ZVAL_UNDEF(&_0$$4);
 	ZVAL_UNDEF(&_1$$6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(role)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &role_param);
@@ -468,6 +542,16 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_5$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(destroy)
+		Z_PARAM_BOOL(logoutAll)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &destroy_param, &logoutAll_param);
@@ -523,6 +607,7 @@ zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	

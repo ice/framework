@@ -71,6 +71,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_5);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
@@ -136,6 +137,16 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	ZVAL_UNDEF(&extra_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(fields)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -177,6 +188,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -212,6 +224,16 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	ZVAL_UNDEF(&extra_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(fields)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
@@ -256,6 +278,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_6);
+
 
 	ZEPHIR_MM_GROW();
 

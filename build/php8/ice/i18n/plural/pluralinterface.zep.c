@@ -30,4 +30,3 @@ ZEPHIR_INIT_CLASS(Ice_I18n_Plural_PluralInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_I18n_Plural_PluralInterface, getCategory);
-

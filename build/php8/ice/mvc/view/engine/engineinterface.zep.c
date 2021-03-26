@@ -30,6 +30,4 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_EngineInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Mvc_View_Engine_EngineInterface, __construct);
-
 ZEPHIR_DOC_METHOD(Ice_Mvc_View_Engine_EngineInterface, render);
-

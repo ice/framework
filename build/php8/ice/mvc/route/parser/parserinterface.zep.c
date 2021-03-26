@@ -49,4 +49,3 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_ParserInterface) {
  * @return mixed[][] Array of route data arrays
  */
 ZEPHIR_DOC_METHOD(Ice_Mvc_Route_Parser_ParserInterface, parse);
-

@@ -68,6 +68,15 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, sendClear) {
 	ZVAL_UNDEF(&socket_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&data);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_RESOURCE(socket)
+		Z_PARAM_STR(data)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &socket, &data_param);
@@ -115,6 +124,18 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, sendData) {
 	ZVAL_UNDEF(&_16$$4);
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&opcode);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_RESOURCE(socket)
+		Z_PARAM_STR(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(opcode)
+		Z_PARAM_BOOL(masked)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &socket, &data_param, &opcode_param, &masked_param);
@@ -219,6 +240,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, receiveClear) {
 	ZVAL_UNDEF(&_3$$3);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_9$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_RESOURCE(socket)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &socket);
@@ -315,6 +344,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, receive) {
 	ZVAL_UNDEF(&_19$$9);
 	ZVAL_UNDEF(&_23$$11);
 	ZVAL_UNDEF(&_25$$15);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_RESOURCE(socket)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &socket);
@@ -534,6 +571,18 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, encode) {
 	ZVAL_UNDEF(&s$$10);
 	ZVAL_UNDEF(&t$$10);
 	ZVAL_UNDEF(&_36$$11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(opcode)
+		Z_PARAM_BOOL(masked)
+		Z_PARAM_BOOL(fin)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &data_param, &opcode_param, &masked_param, &fin_param);
@@ -711,6 +760,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, setParams) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&params);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(params)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &params_param);
@@ -731,6 +788,7 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, setParams) {
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getParams) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "params");
@@ -757,6 +815,16 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, getParam) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
@@ -813,6 +881,19 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, console) {
 	ZVAL_UNDEF(&_12$$4);
 	ZVAL_UNDEF(&_13$$4);
 	ZVAL_UNDEF(&_14$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 5)
+		Z_PARAM_STR(text)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG_OR_NULL(color, is_null_true)
+		Z_PARAM_LONG(decoration)
+		Z_PARAM_LONG_OR_NULL(bgColor, is_null_true)
+		Z_PARAM_BOOL(exit)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 4, &text_param, &color_param, &decoration_param, &bgColor_param, &exit_param);
@@ -894,6 +975,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, info) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
@@ -924,6 +1013,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, success) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
@@ -954,6 +1051,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, warning) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
@@ -984,6 +1089,14 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, error) {
 
 	ZVAL_UNDEF(&text);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(text)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &text_param);
@@ -1036,6 +1149,15 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, getUptime) {
 	ZVAL_UNDEF(&_12);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_14);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(human)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
@@ -1152,6 +1274,15 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, getMemoryUsage) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_BOOL(human)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &human_param);
@@ -1212,6 +1343,7 @@ void zephir_init_static_properties_Ice_Cli_Websocket_Websocket() {
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
+
 
 	ZEPHIR_MM_GROW();
 

@@ -30,4 +30,3 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_HeadersInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Http_Response_HeadersInterface, send);
-

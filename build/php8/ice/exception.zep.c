@@ -34,7 +34,7 @@
  */
 ZEPHIR_INIT_CLASS(Ice_Exception) {
 
-	ZEPHIR_REGISTER_CLASS_EX(Ice, Exception, ice, exception, zend_exception_get_default(), ice_exception_method_entry, 0);
+	ZEPHIR_REGISTER_CLASS_EX(Ice, Exception, ice, exception, zend_ce_exception, ice_exception_method_entry, 0);
 
 	return SUCCESS;
 
@@ -76,6 +76,17 @@ PHP_METHOD(Ice_Exception, __construct) {
 	ZVAL_UNDEF(&_9$$8);
 	ZVAL_UNDEF(&_10$$8);
 	ZVAL_UNDEF(&_11);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(message)
+		Z_PARAM_ZVAL(code)
+		Z_PARAM_ZVAL(previous)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &message, &code, &previous);
@@ -223,6 +234,14 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 	ZVAL_UNDEF(&_55$$21);
 	ZVAL_UNDEF(&_56$$21);
 	ZVAL_UNDEF(&_57$$21);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(e)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
@@ -600,6 +619,19 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&file);
 	ZVAL_UNDEF(&context);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 5)
+		Z_PARAM_LONG(code)
+		Z_PARAM_STR(message)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(file)
+		Z_PARAM_LONG(line)
+		Z_PARAM_ARRAY(context)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &code_param, &message_param, &file_param, &line_param, &context_param);
@@ -629,7 +661,7 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 	zephir_check_call_status();
 	if (((int) (zephir_get_numberval(&_0)) & code)) {
 		ZEPHIR_INIT_VAR(&_1$$3);
-		object_init_ex(&_1$$3, zephir_get_internal_ce(SL("errorexception")));
+		object_init_ex(&_1$$3, zend_ce_error_exception);
 		ZVAL_LONG(&_2$$3, code);
 		ZVAL_LONG(&_3$$3, 0);
 		ZVAL_LONG(&_4$$3, line);
@@ -666,6 +698,14 @@ PHP_METHOD(Ice_Exception, handler) {
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(e)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
@@ -734,6 +774,7 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_FUNCTION(&e, "error_get_last", NULL, 127);
@@ -763,7 +804,7 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		ZEPHIR_CALL_FUNCTION(NULL, "ob_clean", NULL, 129);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_4$$3);
-		object_init_ex(&_4$$3, zephir_get_internal_ce(SL("errorexception")));
+		object_init_ex(&_4$$3, zend_ce_error_exception);
 		zephir_array_fetch_string(&_5$$3, &e, SL("message"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
 		zephir_array_fetch_string(&_6$$3, &e, SL("type"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);
 		zephir_array_fetch_string(&_7$$3, &e, SL("file"), PH_NOISY | PH_READONLY, "ice/exception.zep", 171);

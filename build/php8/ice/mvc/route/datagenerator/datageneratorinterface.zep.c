@@ -33,10 +33,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface) {
  * @param mixed $handler
  */
 ZEPHIR_DOC_METHOD(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface, addRoute);
-
 /**
  * Returns dispatcher data in some unspecified format, which
  * depends on the used method of dispatch.
  */
 ZEPHIR_DOC_METHOD(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface, getData);
-

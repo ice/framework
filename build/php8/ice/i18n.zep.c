@@ -50,6 +50,7 @@ ZEPHIR_INIT_CLASS(Ice_I18n) {
 	zend_declare_property_null(ice_i18n_ce, SL("options"), ZEND_ACC_PROTECTED);
 
 	ice_i18n_ce->create_object = zephir_init_properties_Ice_I18n;
+
 	return SUCCESS;
 
 }
@@ -69,6 +70,15 @@ PHP_METHOD(Ice_I18n, __construct) {
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
@@ -103,6 +113,7 @@ PHP_METHOD(Ice_I18n, fetch) {
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_static_property_ce(&_0, ice_i18n_ce, SL("i18n"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
 
@@ -129,6 +140,15 @@ PHP_METHOD(Ice_I18n, lang) {
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &lang_param);
@@ -183,6 +203,16 @@ PHP_METHOD(Ice_I18n, iso) {
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_0$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(lang)
+		Z_PARAM_BOOL(country)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &lang, &country_param);
@@ -258,6 +288,17 @@ PHP_METHOD(Ice_I18n, get) {
 	ZVAL_UNDEF(&_3$$5);
 	ZVAL_UNDEF(&_4$$6);
 	ZVAL_UNDEF(&_5$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(str)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(form)
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &form, &lang_param);
@@ -361,6 +402,14 @@ PHP_METHOD(Ice_I18n, load) {
 	ZVAL_UNDEF(&_24$$14);
 	ZVAL_UNDEF(&_26$$15);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &lang_param);
@@ -559,6 +608,17 @@ PHP_METHOD(Ice_I18n, plural) {
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
 	ZVAL_UNDEF(&_3$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(str)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(count)
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &count_param, &lang_param);
@@ -643,6 +703,14 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_13);
 	ZVAL_UNDEF(&_15);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(code)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &code_param);
@@ -1260,6 +1328,18 @@ PHP_METHOD(Ice_I18n, _) {
 	ZVAL_UNDEF(&context_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&values);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(str)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(values)
+		Z_PARAM_ZVAL(context)
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
@@ -1332,6 +1412,18 @@ PHP_METHOD(Ice_I18n, translate) {
 	ZVAL_UNDEF(&_10$$9);
 	ZVAL_UNDEF(&values);
 	ZVAL_UNDEF(&_9$$9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(str)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(values)
+		Z_PARAM_ZVAL(context)
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
@@ -1420,6 +1512,7 @@ zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type) {
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_5$$5);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	
@@ -1466,6 +1559,18 @@ PHP_FUNCTION(g_ice__t) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&i18n);
 	ZVAL_UNDEF(&values);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(str)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(values)
+		Z_PARAM_ZVAL(context)
+		Z_PARAM_STR_OR_NULL(lang)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);

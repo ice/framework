@@ -52,6 +52,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "method");
 
 }
@@ -62,6 +63,14 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &method);
 
@@ -92,6 +101,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -134,6 +144,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 	ZVAL_UNDEF(&_10$$3);
 	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_7$$4);
+
 
 	ZEPHIR_MM_GROW();
 

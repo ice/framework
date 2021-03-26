@@ -23,8 +23,20 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_social_facebook_method_entry) {
 	PHP_ME(Ice_Auth_Social_Facebook, __construct, arginfo_ice_auth_social_facebook___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Facebook, getImage, arginfo_ice_auth_social_facebook_getimage, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Facebook, getImage, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Facebook, authenticate, arginfo_ice_auth_social_facebook_authenticate, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Facebook, authenticate, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Auth_Social_Facebook, prepareAuthParams, arginfo_ice_auth_social_facebook_prepareauthparams, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Auth_Social_Facebook, prepareAuthParams, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_FE_END
 };

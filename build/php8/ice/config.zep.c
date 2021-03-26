@@ -71,6 +71,15 @@ PHP_METHOD(Ice_Config, __construct) {
 	ZVAL_UNDEF(&_17$$21);
 	ZVAL_UNDEF(&_20$$27);
 	ZVAL_UNDEF(&_3$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);

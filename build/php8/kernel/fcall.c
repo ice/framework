@@ -1,4 +1,4 @@
-/*
+/**
  * This file is part of the Zephir.
  *
  * (c) Phalcon Team <team@zephir-lang.com>
@@ -45,11 +45,7 @@ static int zephir_make_fcall_key(zend_string* s, zephir_call_type type, zend_cla
 	const zend_class_entry *calling_scope;
 	unsigned char t;
 
-#if PHP_VERSION_ID >= 70100
 	calling_scope = zend_get_executed_scope();
-#else
-	calling_scope = EG(scope);
-#endif
 
 	switch (type) {
 		case zephir_fcall_parent:
@@ -205,15 +201,9 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 {
 	zend_class_entry* calling_scope;
 
-#if PHP_VERSION_ID < 70300
-	fcic->initialized      = 0;
-#endif
 	fcic->function_handler = NULL;
 
 	if (type == zephir_fcall_function && Z_TYPE_P(func) == IS_STRING) {
-#if PHP_VERSION_ID < 70300
-		fcic->initialized   = 1;
-#endif
 		fcic->called_scope  = NULL;
 		fcic->calling_scope = NULL;
 		fcic->object        = NULL;
@@ -222,10 +212,10 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 
 	fcic->called_scope = called_scope;
 
-#if PHP_VERSION_ID >= 70100
-	calling_scope = zend_get_executed_scope();
+#if PHP_VERSION_ID >= 80000
+	calling_scope = zend_get_called_scope(EG(current_execute_data));
 #else
-	calling_scope = EG(scope);
+	calling_scope = zend_get_executed_scope();
 #endif
 
 	fcic->object = this_ptr ? Z_OBJ_P(this_ptr) : NULL;
@@ -275,10 +265,12 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 #if PHP_VERSION_ID >= 80000
 			if (ce && Z_TYPE_P(func) == IS_STRING) {
 				fcic->function_handler = zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
-
 				fcic->calling_scope = ce;
 			} else if (calling_scope && Z_TYPE_P(func) == IS_STRING) {
 				fcic->function_handler = zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
+				// TODO: Review when error will be enabled in zend_is_callable_ex() calls
+				//fcic->object = zend_get_this_object(EG(current_execute_data));
+				//fcic->called_scope = zend_get_called_scope(EG(current_execute_data));
 				fcic->calling_scope = calling_scope;
 			}
 #else
@@ -297,6 +289,7 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 				fcic->calling_scope = calling_scope;
 			}
 #endif
+			// TODO: Check for PHP 7.4 and PHP 8.0, as it rewrite from above
 			fcic->calling_scope = ce;
 			fcic->called_scope  = ce;
 			break;
@@ -328,19 +321,22 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 		default:
 			return;
 	}
-
-#if PHP_VERSION_ID < 70300
-	fcic->initialized = 1;
-#endif
 }
 
 /**
  * Calls a function/method in the PHP userland
  */
-int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_call_type type,
-	zval *function_name, zval *retval_ptr, zephir_fcall_cache_entry **cache_entry, int cache_slot, uint32_t param_count,
-	zval *params[])
-{
+int zephir_call_user_function(
+    zval *object_pp,
+    zend_class_entry *obj_ce,
+    zephir_call_type type,
+	zval *function_name,
+	zval *retval_ptr,
+	zephir_fcall_cache_entry **cache_entry,
+	int cache_slot,
+	uint32_t param_count,
+	zval *params[]
+) {
 	zval local_retval_ptr;
 	int status;
 	zend_fcall_info fci;
@@ -407,7 +403,16 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 		resolve_callable(&callable, type, (object_pp && type != zephir_fcall_ce ? Z_OBJCE_P(object_pp) : obj_ce), object_pp, function_name);
 
 #if PHP_VERSION_ID >= 80000
-		if (obj_ce || !zend_is_callable_ex(&callable, fci.object, IS_CALLABLE_CHECK_SILENT, NULL, &fcic, NULL)) {
+        char *is_callable_error = NULL;
+        zend_execute_data *frame = EG(current_execute_data);
+		if (obj_ce || !zend_is_callable_at_frame(&callable, fci.object, frame, 0, &fcic, &is_callable_error)) {
+            if (is_callable_error) {
+                zend_error(E_WARNING, "%s", is_callable_error);
+                efree(is_callable_error);
+
+                return FAILURE;
+            }
+
 			populate_fcic(&fcic, type, obj_ce, object_pp, function_name, called_scope);
 		}
 #else
@@ -420,6 +425,7 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 #else
 	zval p[fci.param_count];
 #endif
+
 	uint32_t i;
 	for (i = 0; i < fci.param_count; ++i) {
 		ZVAL_COPY_VALUE(&p[i], params[i]);
@@ -434,6 +440,7 @@ int zephir_call_user_function(zval *object_pp, zend_class_entry *obj_ce, zephir_
 #endif
 
 	status = zend_call_function(&fci, &fcic);
+
 #ifdef _MSC_VER
 	efree(p);
 #endif
@@ -542,11 +549,18 @@ int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
 	return status;
 }
 
-int zephir_call_class_method_aparams(zval *return_value, zend_class_entry *ce, zephir_call_type type, zval *object,
-	const char *method_name, uint32_t method_len,
-	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint32_t param_count, zval **params)
-{
+int zephir_call_class_method_aparams(
+    zval *return_value,
+    zend_class_entry *ce,
+    zephir_call_type type,
+    zval *object,
+	const char *method_name,
+	uint32_t method_len,
+	zephir_fcall_cache_entry **cache_entry,
+	int cache_slot,
+	uint32_t param_count,
+	zval **params
+) {
 	int status;
 
 #ifndef ZEPHIR_RELEASE
@@ -616,6 +630,7 @@ int zephir_call_user_func_array_noex(zval *return_value, zval *handler, zval *pa
 		return FAILURE;
 	}
 
+#if PHP_VERSION_ID < 80000
 	zend_fcall_info_init(handler, 0, &fci, &fci_cache, NULL, &is_callable_error);
 
 	if (is_callable_error) {
@@ -637,6 +652,29 @@ int zephir_call_user_func_array_noex(zval *return_value, zval *handler, zval *pa
 	if (EG(exception)) {
 		status = SUCCESS;
 	}
+#else
+	zend_execute_data *frame = EG(current_execute_data);
+	if (!zend_is_callable_at_frame(handler, NULL, frame, 0, &fci_cache, &is_callable_error)) {
+		if (is_callable_error) {
+			zend_error(E_WARNING, "%s", is_callable_error);
+			efree(is_callable_error);
+		}
+
+		return FAILURE;
+	}
+
+	fci.size = sizeof(fci);
+	fci.object = fci_cache.object;
+	ZVAL_COPY_VALUE(&fci.function_name, handler);
+	fci.param_count = 0;
+	fci.params = NULL;
+	fci.retval = return_value;
+	fci.named_params = NULL;
+
+	zend_fcall_info_args(&fci, params);
+	status = zend_call_function(&fci, &fci_cache);
+	zend_fcall_info_args_clear(&fci, 1);
+#endif
 
 	return status;
 }

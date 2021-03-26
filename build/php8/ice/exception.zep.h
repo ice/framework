@@ -20,26 +20,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_getfulltraceasstring, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_errorhandler, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, code, IS_LONG, 0)
-#else
-	ZEND_ARG_INFO(0, code)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, file)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, line, IS_LONG, 0)
-#else
-	ZEND_ARG_INFO(0, line)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
@@ -55,6 +39,10 @@ ZEPHIR_INIT_FUNCS(ice_exception_method_entry) {
 	PHP_ME(Ice_Exception, getFullTraceAsString, arginfo_ice_exception_getfulltraceasstring, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Exception, errorHandler, arginfo_ice_exception_errorhandler, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_Exception, handler, arginfo_ice_exception_handler, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Exception, shutdownHandler, arginfo_ice_exception_shutdownhandler, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+#else
+	PHP_ME(Ice_Exception, shutdownHandler, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
+#endif
 	PHP_FE_END
 };

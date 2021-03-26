@@ -46,6 +46,7 @@ PHP_METHOD(Ice_Mvc_App, getAutoRender) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "autoRender");
 
 }
@@ -56,6 +57,14 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&autoRender_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(autoRender)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &autoRender);
 
@@ -71,6 +80,7 @@ PHP_METHOD(Ice_Mvc_App, getModules) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "modules");
 
 }
@@ -81,6 +91,14 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&modules_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(modules)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &modules);
 
@@ -107,6 +125,15 @@ PHP_METHOD(Ice_Mvc_App, __construct) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(di, ice_di_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &di);
@@ -190,6 +217,16 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	ZVAL_UNDEF(&_9);
 	ZVAL_UNDEF(&_40);
 	ZVAL_UNDEF(&_18$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(method)
+		Z_PARAM_ZVAL(uri)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
@@ -406,6 +443,15 @@ PHP_METHOD(Ice_Mvc_App, addModule) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &options_param);

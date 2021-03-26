@@ -4,76 +4,44 @@ extern zend_class_entry *ice_db_dbinterface_ce;
 ZEPHIR_INIT_CLASS(Ice_Db_DbInterface);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_findone, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_find, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_select, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_insert, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_update, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 	ZEND_ARG_ARRAY_INFO(0, fields, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_db_dbinterface_delete, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_dbinterface_count, 0, 1, IS_LONG, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_db_dbinterface_count, 0, 1, IS_LONG, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, from, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, from)
-#endif
 	ZEND_ARG_INFO(0, filters)
 ZEND_END_ARG_INFO()
 

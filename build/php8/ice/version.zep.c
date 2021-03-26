@@ -50,9 +50,9 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("PATCH"), 0);
 
-	zephir_declare_class_constant_long(ice_version_ce, SL("STAGE"), 1);
+	zephir_declare_class_constant_long(ice_version_ce, SL("STAGE"), 4);
 
-	zephir_declare_class_constant_long(ice_version_ce, SL("BUILD"), 3);
+	zephir_declare_class_constant_long(ice_version_ce, SL("BUILD"), 0);
 
 	return SUCCESS;
 
@@ -68,12 +68,13 @@ PHP_METHOD(Ice_Version, current) {
 	zval *this_ptr = getThis();
 
 
+
 	zephir_create_array(return_value, 5, 0);
 	add_assoc_long_ex(return_value, SL("major"), 1);
 	add_assoc_long_ex(return_value, SL("minor"), 8);
 	add_assoc_long_ex(return_value, SL("patch"), 0);
-	add_assoc_long_ex(return_value, SL("stage"), 1);
-	add_assoc_long_ex(return_value, SL("build"), 3);
+	add_assoc_long_ex(return_value, SL("stage"), 4);
+	add_assoc_long_ex(return_value, SL("build"), 0);
 	return;
 
 }
@@ -109,10 +110,11 @@ PHP_METHOD(Ice_Version, get) {
 	ZVAL_UNDEF(&_4$$5);
 	ZVAL_UNDEF(&_6$$6);
 
+
 	ZEPHIR_MM_GROW();
 
 	do {
-		_0 = 1;
+		_0 = 4;
 		if (_0 == 0) {
 			ZEPHIR_INIT_VAR(&suffix);
 			ZVAL_STRING(&suffix, "-dev");
@@ -120,7 +122,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 1) {
 			ZEPHIR_INIT_VAR(&_1$$4);
-			ZVAL_LONG(&_1$$4, 3);
+			ZVAL_LONG(&_1$$4, 0);
 			ZEPHIR_INIT_VAR(&_2$$4);
 			ZEPHIR_CONCAT_SV(&_2$$4, "-alpha.", &_1$$4);
 			ZEPHIR_CPY_WRT(&suffix, &_2$$4);
@@ -128,7 +130,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 2) {
 			ZEPHIR_INIT_VAR(&_3$$5);
-			ZVAL_LONG(&_3$$5, 3);
+			ZVAL_LONG(&_3$$5, 0);
 			ZEPHIR_INIT_VAR(&_4$$5);
 			ZEPHIR_CONCAT_SV(&_4$$5, "-beta.", &_3$$5);
 			ZEPHIR_CPY_WRT(&suffix, &_4$$5);
@@ -136,7 +138,7 @@ PHP_METHOD(Ice_Version, get) {
 		}
 		if (_0 == 3) {
 			ZEPHIR_INIT_VAR(&_5$$6);
-			ZVAL_LONG(&_5$$6, 3);
+			ZVAL_LONG(&_5$$6, 0);
 			ZEPHIR_INIT_VAR(&_6$$6);
 			ZEPHIR_CONCAT_SV(&_6$$6, "-rc.", &_5$$6);
 			ZEPHIR_CPY_WRT(&suffix, &_6$$6);
@@ -185,6 +187,7 @@ PHP_METHOD(Ice_Version, id) {
 	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&_7);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -200,9 +203,9 @@ PHP_METHOD(Ice_Version, id) {
 	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 11, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_6);
-	ZVAL_LONG(&_6, 1);
+	ZVAL_LONG(&_6, 4);
 	ZEPHIR_INIT_VAR(&_7);
-	ZVAL_LONG(&_7, 3);
+	ZVAL_LONG(&_7, 0);
 	ZEPHIR_INIT_VAR(&id);
 	ZEPHIR_CONCAT_VVVVV(&id, &_0, &_3, &_5, &_6, &_7);
 	RETURN_MM_LONG(zephir_get_intval(&id));

@@ -226,6 +226,15 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	ZVAL_UNDEF(&_141$$43);
 	ZVAL_UNDEF(&_142$$43);
 	ZVAL_UNDEF(&field);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_OBJECT_OF_CLASS(validation, ice_validation_ce)
+		Z_PARAM_STR(field)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_FILES, SL("_FILES"));

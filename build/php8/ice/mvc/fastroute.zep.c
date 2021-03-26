@@ -65,6 +65,17 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&handler_sub);
 	ZVAL_UNDEF(&variables);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(4, 4)
+		Z_PARAM_STR(httpMethod)
+		Z_PARAM_ZVAL(handler)
+		Z_PARAM_STR(regex)
+		Z_PARAM_ARRAY(variables)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &httpMethod_param, &handler, &regex_param, &variables_param);
@@ -101,6 +112,14 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(str)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &str_param);

@@ -30,4 +30,3 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_SocialInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Auth_Social_SocialInterface, authenticate);
-

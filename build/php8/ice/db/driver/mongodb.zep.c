@@ -56,6 +56,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getId) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "id");
 
 }
@@ -63,6 +64,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getId) {
 PHP_METHOD(Ice_Db_Driver_Mongodb, getType) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "type");
@@ -74,6 +76,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getClient) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "client");
 
 }
@@ -81,6 +84,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getClient) {
 PHP_METHOD(Ice_Db_Driver_Mongodb, getLastInsertId) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "lastInsertId");
@@ -115,6 +119,17 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, __construct) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&options);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(dsn)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(dbname)
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &dsn_param, &dbname_param, &options_param);
@@ -184,6 +199,14 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getIdValue) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&id);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(id)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &id_param);
@@ -222,6 +245,16 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getDateTime) {
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_2$$5);
 	ZVAL_UNDEF(&_3$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(value)
+		Z_PARAM_ZVAL(model)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &value, &model);
@@ -310,6 +343,18 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, findOne) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -391,6 +436,18 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, find) {
 	ZVAL_UNDEF(&result);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -463,6 +520,16 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, count) {
 	ZVAL_UNDEF(&_2$$7);
 	ZVAL_UNDEF(&_3$$7);
 	ZVAL_UNDEF(&_4$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
@@ -571,6 +638,18 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, select) {
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&fields);
 	ZVAL_UNDEF(&_15);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(options)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &from_param, &filters, &options_param, &fields_param);
@@ -720,6 +799,16 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, insert) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&fields);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &fields_param);
@@ -787,6 +876,17 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, update) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&fields);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ARRAY(fields)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &from_param, &filters, &fields_param);
@@ -855,6 +955,16 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, delete) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(from)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(filters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &from_param, &filters);
@@ -905,6 +1015,7 @@ PHP_METHOD(Ice_Db_Driver_Mongodb, getError) {
 
 	ZVAL_UNDEF(&error);
 	ZVAL_UNDEF(&_0);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("error"), PH_NOISY_CC | PH_READONLY);

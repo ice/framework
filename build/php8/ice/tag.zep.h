@@ -88,200 +88,96 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag___construct, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_appendtitle, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, title, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, title)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, separator, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, separator)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_prependtitle, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, title, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, title)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, separator, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, separator)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_tag_addmeta, 0, 1, NULL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_addmeta, 0, 1, IS_OBJECT, "NULL", 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_textfield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_textfield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_passwordfield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_passwordfield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_hiddenfield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_hiddenfield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_filefield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_filefield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_submitbutton, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_submitbutton, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_button, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_button, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_checkfield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_checkfield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_radiofield, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_radiofield, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_input, 0, 2, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_input, 0, 2, IS_STRING, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, type, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, type)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_form, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_form, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_endform, 0, 0, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_endform, 0, 0, IS_STRING, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_textarea, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_textarea, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_image, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_image, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_img, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_img, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_linkto, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_linkto, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_a, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_a, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_link, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_link, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_script, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_script, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_style, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_style, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_meta, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_meta, 0, 1, IS_STRING, NULL, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
@@ -289,160 +185,96 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_select, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_taghtml, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_taghtml, 0, 1, IS_STRING, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 	ZEND_ARG_ARRAY_INFO(0, defaultParams, 0)
 	ZEND_ARG_ARRAY_INFO(0, skip, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, content, IS_STRING, 1)
-#else
-	ZEND_ARG_INFO(0, content)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, close, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, close)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, eol, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, eol)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, single, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, single)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_endtag, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_endtag, 0, 1, IS_STRING, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, eol, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, eol)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_preparetag, 0, 2, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_preparetag, 0, 2, IS_STRING, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, attributes, 0)
 	ZEND_ARG_ARRAY_INFO(0, skip, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, single, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, single)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_hasvalue, 0, 1, _IS_BOOL, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_hasvalue, 0, 1, _IS_BOOL, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setvalue, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, id, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, id)
-#endif
 	ZEND_ARG_INFO(0, value)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_setvalues, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, values, 0)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, merge)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_getvalue, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, name)
-#endif
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_friendlytitle, 0, 1, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_friendlytitle, 0, 1, IS_STRING, NULL, 0)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, text)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, separator, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, separator)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, lowercase, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, lowercase)
-#endif
 	ZEND_ARG_INFO(0, replace)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_getdoctype, 0, 0, IS_STRING, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_getdoctype, 0, 0, IS_STRING, NULL, 0)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_zephir_init_properties_ice_tag, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, getDi, arginfo_ice_tag_getdi, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Tag, getDi, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, getValues, arginfo_ice_tag_getvalues, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Tag, getValues, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Tag, setDocType, arginfo_ice_tag_setdoctype, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitle, arginfo_ice_tag_settitle, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, getTitle, arginfo_ice_tag_gettitle, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Tag, setTitleSeparator, arginfo_ice_tag_settitleseparator, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, getTitleSeparator, arginfo_ice_tag_gettitleseparator, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Tag, getTitleSeparator, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Tag, setMeta, arginfo_ice_tag_setmeta, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, getMeta, arginfo_ice_tag_getmeta, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Tag, getMeta, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Tag, setEscape, arginfo_ice_tag_setescape, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Tag, __construct, arginfo_ice_tag___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+#else
+	PHP_ME(Ice_Tag, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+#endif
 	PHP_ME(Ice_Tag, appendTitle, arginfo_ice_tag_appendtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, prependTitle, arginfo_ice_tag_prependtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, addMeta, arginfo_ice_tag_addmeta, ZEND_ACC_PUBLIC)

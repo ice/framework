@@ -19,50 +19,22 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_register, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_addnamespace, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, prefix)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, baseDir, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, baseDir)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, prepend, _IS_BOOL, 0)
-#else
-	ZEND_ARG_INFO(0, prepend)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_loadclass, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, className, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, className)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_loadmappedfile, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, prefix)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, relativeClass, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, relativeClass)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_requirefile, 0, 0, 1)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, file)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_zephir_init_properties_ice_loader, 0, 0, 0)
@@ -70,7 +42,11 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_loader_method_entry) {
 	PHP_ME(Ice_Loader, __construct, arginfo_ice_loader___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Loader, register, arginfo_ice_loader_register, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Loader, register, NULL, ZEND_ACC_PUBLIC)
+#endif
 	PHP_ME(Ice_Loader, addNamespace, arginfo_ice_loader_addnamespace, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Loader, loadClass, arginfo_ice_loader_loadclass, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Loader, loadMappedFile, arginfo_ice_loader_loadmappedfile, ZEND_ACC_PROTECTED)

@@ -49,6 +49,7 @@ PHP_METHOD(Ice_Pagination, getDi) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "di");
 
 }
@@ -56,6 +57,7 @@ PHP_METHOD(Ice_Pagination, getDi) {
 PHP_METHOD(Ice_Pagination, getTag) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "tag");
@@ -80,6 +82,15 @@ PHP_METHOD(Ice_Pagination, __construct) {
 	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
@@ -137,6 +148,7 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	ZVAL_UNDEF(&_12$$8);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_15);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -303,6 +315,18 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 	ZVAL_UNDEF(&_23$$15);
 	ZVAL_UNDEF(&_27);
 	ZVAL_UNDEF(&_8$$9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 4)
+		Z_PARAM_ZVAL(page)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(url)
+		Z_PARAM_BOOL(active)
+		Z_PARAM_ZVAL(symbol)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &page, &url, &active_param, &symbol);
@@ -552,6 +576,16 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	ZVAL_UNDEF(&_16$$3);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(url)
+		Z_PARAM_ARRAY(parameters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
@@ -688,6 +722,16 @@ PHP_METHOD(Ice_Pagination, basic) {
 	ZVAL_UNDEF(&_19$$3);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(url)
+		Z_PARAM_ARRAY(parameters)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
@@ -886,6 +930,18 @@ PHP_METHOD(Ice_Pagination, floating) {
 	ZVAL_UNDEF(&_49$$10);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_30);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 4)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(url)
+		Z_PARAM_ARRAY(parameters)
+		Z_PARAM_LONG(countOut)
+		Z_PARAM_LONG(countIn)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 4, &url, &parameters_param, &countOut_param, &countIn_param);

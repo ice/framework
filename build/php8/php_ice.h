@@ -11,11 +11,11 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.8.0alpha3"
+#define PHP_ICE_VERSION     "1.8.0"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.12.20-$Id$"
-#define PHP_ICE_DESCRIPTION "Simple and fast PHP framework delivered as C-extension.<br>Copyright (c) 2014-2021 Ice Team."
+#define PHP_ICE_ZEPVERSION  "0.13.0-$Id$"
+#define PHP_ICE_DESCRIPTION "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2021 Ice Team."
 
 
 

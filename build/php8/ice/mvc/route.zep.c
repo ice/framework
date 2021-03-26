@@ -64,6 +64,7 @@ PHP_METHOD(Ice_Mvc_Route, getDefaults) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "defaults");
 
 }
@@ -74,6 +75,14 @@ PHP_METHOD(Ice_Mvc_Route, setDefaults) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&defaults_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(defaults)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaults);
 
@@ -89,6 +98,7 @@ PHP_METHOD(Ice_Mvc_Route, getMethod) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "method");
 
 }
@@ -96,6 +106,7 @@ PHP_METHOD(Ice_Mvc_Route, getMethod) {
 PHP_METHOD(Ice_Mvc_Route, getError) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "error");
@@ -179,6 +190,17 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	ZVAL_UNDEF(&_15);
 	ZVAL_UNDEF(&_9$$9);
 	ZVAL_UNDEF(&_11$$9);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(uri)
+		Z_PARAM_ARRAY_OR_NULL(regexMap)
+		Z_PARAM_ZVAL(method)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &uri_param, &regexMap_param, &method);
@@ -373,6 +395,16 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(uri)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(method)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &uri_param, &method_param);
@@ -474,6 +506,14 @@ PHP_METHOD(Ice_Mvc_Route, checkMethod) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_9$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(method)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &method_param);
@@ -577,6 +617,15 @@ PHP_METHOD(Ice_Mvc_Route, uri) {
 	ZVAL_UNDEF(&_21$$9);
 	ZVAL_UNDEF(&_17);
 	ZVAL_UNDEF(&_12$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY_OR_NULL(params)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &params_param);
@@ -704,6 +753,7 @@ zend_object *zephir_init_properties_Ice_Mvc_Route(zend_class_entry *class_type) 
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	

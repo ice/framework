@@ -59,6 +59,7 @@ PHP_METHOD(Ice_Http_Response, getProtocolVersion) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "protocolVersion");
 
 }
@@ -69,6 +70,14 @@ PHP_METHOD(Ice_Http_Response, setProtocolVersion) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&protocolVersion_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(protocolVersion)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &protocolVersion);
 
@@ -84,6 +93,7 @@ PHP_METHOD(Ice_Http_Response, getStatus) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "status");
 
 }
@@ -94,6 +104,14 @@ PHP_METHOD(Ice_Http_Response, setStatus) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&status_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(status)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &status);
 
@@ -109,6 +127,7 @@ PHP_METHOD(Ice_Http_Response, getLoops) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "loops");
 
 }
@@ -119,6 +138,14 @@ PHP_METHOD(Ice_Http_Response, setLoops) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&loops_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(loops)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &loops);
 
@@ -134,6 +161,7 @@ PHP_METHOD(Ice_Http_Response, getRedirects) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "redirects");
 
 }
@@ -141,6 +169,7 @@ PHP_METHOD(Ice_Http_Response, getRedirects) {
 PHP_METHOD(Ice_Http_Response, getBody) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "body");
@@ -153,6 +182,14 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&body_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(body)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &body);
 
@@ -182,6 +219,16 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 2)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(body)
+		Z_PARAM_LONG(status)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &body, &status_param);
@@ -231,6 +278,7 @@ PHP_METHOD(Ice_Http_Response, getHeaders) {
 
 	ZVAL_UNDEF(&_0);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("headers"), PH_NOISY_CC | PH_READONLY);
@@ -256,6 +304,14 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -286,6 +342,14 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -318,6 +382,15 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_STR(value)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value_param);
@@ -349,6 +422,14 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 
 	ZVAL_UNDEF(&headers);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ARRAY(headers)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &headers_param);
@@ -379,6 +460,14 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 
 	ZVAL_UNDEF(&name);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(name)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
@@ -407,6 +496,14 @@ PHP_METHOD(Ice_Http_Response, setContent) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&contet);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(contet)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &contet_param);
@@ -444,6 +541,14 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$5);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_OBJECT_OF_CLASS(request, ice_http_request_requestinterface_ce)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &request);
@@ -524,6 +629,7 @@ PHP_METHOD(Ice_Http_Response, send) {
 	ZVAL_UNDEF(&_17$$5);
 	ZVAL_UNDEF(&_23$$6);
 	ZVAL_UNDEF(&_24$$6);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -693,6 +799,17 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 	ZVAL_UNDEF(&_56$$21);
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&_6$$5);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 3)
+		Z_PARAM_STR(filename)
+		Z_PARAM_STR(mime)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ARRAY(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &filename_param, &mime_param, &options_param);
@@ -914,7 +1031,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 			ZVAL_OBJ(&_55$$21, EG(exception));
 			Z_ADDREF_P(&_55$$21);
 			ZEPHIR_INIT_VAR(&_56$$21);
-			if (zephir_instance_of_ev(&_55$$21, zend_exception_get_default())) {
+			if (zephir_instance_of_ev(&_55$$21, zend_ce_exception)) {
 				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&_56$$21, &_55$$21);
 			}
@@ -958,6 +1075,17 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	ZVAL_UNDEF(&_8$$4);
 	ZVAL_UNDEF(&_9$$4);
 	ZVAL_UNDEF(&_10$$4);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 3)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR_OR_NULL(location)
+		Z_PARAM_LONG(status)
+		Z_PARAM_BOOL(external)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &location_param, &status_param, &external_param);
@@ -1053,6 +1181,7 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
@@ -1086,6 +1215,7 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
 	ZVAL_UNDEF(&_2);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	_1 = ZEPHIR_GE_LONG(&_0, 100);
 	if (_1) {
@@ -1109,6 +1239,7 @@ PHP_METHOD(Ice_Http_Response, isOk) {
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_LONG_IDENTICAL(&_0, 200));
 
@@ -1127,6 +1258,7 @@ PHP_METHOD(Ice_Http_Response, isSuccessful) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
@@ -1154,6 +1286,7 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_1);
+
 
 	ZEPHIR_MM_GROW();
 
@@ -1191,6 +1324,7 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
 	ZVAL_UNDEF(&_2);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	_1 = ZEPHIR_GE_LONG(&_0, 300);
 	if (_1) {
@@ -1214,6 +1348,7 @@ PHP_METHOD(Ice_Http_Response, isForbidden) {
 	ZVAL_UNDEF(&_0);
 
 
+
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_LONG_IDENTICAL(&_0, 403));
 
@@ -1230,6 +1365,7 @@ PHP_METHOD(Ice_Http_Response, isNotFound) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
@@ -1250,6 +1386,7 @@ PHP_METHOD(Ice_Http_Response, isClientError) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
@@ -1275,6 +1412,7 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
@@ -1303,6 +1441,15 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(code)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &code_param);
@@ -1336,6 +1483,7 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 PHP_METHOD(Ice_Http_Response, getMessages) {
 
 	zval *this_ptr = getThis();
+
 
 
 	zephir_create_array(return_value, 61, 0);
@@ -1423,6 +1571,16 @@ PHP_METHOD(Ice_Http_Response, toJson) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(option)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &data, &option);
@@ -1486,6 +1644,16 @@ PHP_METHOD(Ice_Http_Response, toXml) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_0$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_ZVAL(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(options)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &data, &options);
@@ -1594,6 +1762,17 @@ PHP_METHOD(Ice_Http_Response, xmlEncode) {
 	ZVAL_UNDEF(&_29$$19);
 	ZVAL_UNDEF(&_30$$18);
 	ZVAL_UNDEF(&root);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 3)
+		Z_PARAM_ZVAL(data)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_STR(root)
+		Z_PARAM_ZVAL(domNode)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &data, &root_param, &domNode);
@@ -1816,6 +1995,7 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_OBS_VAR(&_0);
@@ -1867,6 +2047,14 @@ PHP_METHOD(Ice_Http_Response, getByteRange) {
 	ZVAL_UNDEF(&_13$$7);
 	ZVAL_UNDEF(&_14$$8);
 	ZVAL_UNDEF(&_17$$10);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_LONG(size)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));

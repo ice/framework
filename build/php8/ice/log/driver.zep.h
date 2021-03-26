@@ -13,175 +13,58 @@ PHP_METHOD(Ice_Log_Driver, info);
 PHP_METHOD(Ice_Log_Driver, debug);
 PHP_METHOD(Ice_Log_Driver, log);
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_emergency, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_emergency, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_emergency, 0, 0, 1)
-#define arginfo_ice_log_driver_emergency NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_alert, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_alert, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_alert, 0, 0, 1)
-#define arginfo_ice_log_driver_alert NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_critical, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_critical, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_critical, 0, 0, 1)
-#define arginfo_ice_log_driver_critical NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_error, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_error, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_error, 0, 0, 1)
-#define arginfo_ice_log_driver_error NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_warning, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_warning, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_warning, 0, 0, 1)
-#define arginfo_ice_log_driver_warning NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_notice, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_notice, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_notice, 0, 0, 1)
-#define arginfo_ice_log_driver_notice NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_info, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_info, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_info, 0, 0, 1)
-#define arginfo_ice_log_driver_info NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_debug, 0, 1, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_debug, 0, 1, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_debug, 0, 0, 1)
-#define arginfo_ice_log_driver_debug NULL
-#endif
 
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 70100
-#if PHP_VERSION_ID >= 70200
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_log, 0, 2, IS_VOID, 0)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_log_driver_log, 0, 2, IS_VOID, NULL, 0)
-#endif
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_log_driver_log, 0, 0, 2)
-#define arginfo_ice_log_driver_log NULL
-#endif
 
 	ZEND_ARG_INFO(0, level)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, message)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
 ZEND_END_ARG_INFO()
 

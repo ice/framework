@@ -57,6 +57,15 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	ZVAL_UNDEF(&ini);
 	ZVAL_UNDEF(&raw);
 	ZVAL_UNDEF(&_1);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(data)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
@@ -106,6 +115,15 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 	ZVAL_UNDEF(&_8$$7);
 	ZVAL_UNDEF(&_9$$7);
 	ZVAL_UNDEF(&_10$$7);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(ini)
+		Z_PARAM_ZVAL(raw)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
@@ -201,6 +219,15 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	ZVAL_UNDEF(&_11$$7);
 	ZVAL_UNDEF(&_12$$8);
 	ZVAL_UNDEF(&_13$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 2)
+		Z_PARAM_ZVAL(ini)
+		Z_PARAM_ZVAL(raw)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);

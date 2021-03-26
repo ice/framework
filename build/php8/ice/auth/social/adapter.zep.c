@@ -70,6 +70,14 @@ PHP_METHOD(Ice_Auth_Social_Adapter, setAccessToken) {
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&accessToken_sub);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_ZVAL(accessToken)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	zephir_fetch_params_without_memory_grow(1, 0, &accessToken);
 
@@ -85,6 +93,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getAccessToken) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "accessToken");
 
 }
@@ -94,6 +103,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getProvider) {
 	zval *this_ptr = getThis();
 
 
+
 	RETURN_MEMBER(getThis(), "provider");
 
 }
@@ -101,6 +111,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getProvider) {
 PHP_METHOD(Ice_Auth_Social_Adapter, getResponseType) {
 
 	zval *this_ptr = getThis();
+
 
 
 	RETURN_MEMBER(getThis(), "responseType");
@@ -145,6 +156,15 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __construct) {
 	ZVAL_UNDEF(&_17$$8);
 	ZVAL_UNDEF(&_19$$8);
 	ZVAL_UNDEF(&_18$$8);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(0, 1)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(config)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
@@ -273,6 +293,16 @@ PHP_METHOD(Ice_Auth_Social_Adapter, __call) {
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(name)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(arguments)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &name_param, &arguments);
@@ -333,6 +363,14 @@ PHP_METHOD(Ice_Auth_Social_Adapter, has) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 1)
+		Z_PARAM_STR(key)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
@@ -374,6 +412,16 @@ PHP_METHOD(Ice_Auth_Social_Adapter, get) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_2$$3);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
@@ -418,6 +466,7 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getAuthUrl) {
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&config, this_ptr, "prepareauthparams", NULL, 0);
@@ -452,6 +501,16 @@ PHP_METHOD(Ice_Auth_Social_Adapter, getOption) {
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(1, 2)
+		Z_PARAM_STR(key)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_ZVAL(defaultValue)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
@@ -517,6 +576,18 @@ PHP_METHOD(Ice_Auth_Social_Adapter, call) {
 	ZVAL_UNDEF(&_12$$5);
 	ZVAL_UNDEF(&url);
 	ZVAL_UNDEF(&params);
+#if PHP_VERSION_ID >= 80000
+	bool is_null_true = 1;
+	ZEND_PARSE_PARAMETERS_START(2, 4)
+		Z_PARAM_STR(url)
+		Z_PARAM_ARRAY(params)
+		Z_PARAM_OPTIONAL
+		Z_PARAM_LONG(method)
+		Z_PARAM_BOOL(parse)
+	ZEND_PARSE_PARAMETERS_END();
+
+#endif
+
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &method_param, &url_param, &params_param, &parse_param);
@@ -588,6 +659,7 @@ zend_object *zephir_init_properties_Ice_Auth_Social_Adapter(zend_class_entry *cl
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1$$3);
+	
 
 		ZEPHIR_MM_GROW();
 	

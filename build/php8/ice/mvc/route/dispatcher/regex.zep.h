@@ -27,16 +27,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_regex_dispatchvariablero
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_dispatcher_regex_dispatch, 0, 0, 2)
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, httpMethod, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, httpMethod)
-#endif
-#if PHP_VERSION_ID >= 70200
 	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 0)
-#else
-	ZEND_ARG_INFO(0, uri)
-#endif
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_route_dispatcher_regex_method_entry) {

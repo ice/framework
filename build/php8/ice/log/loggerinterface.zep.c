@@ -42,20 +42,11 @@ ZEPHIR_INIT_CLASS(Ice_Log_LoggerInterface) {
 }
 
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, emergency);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, alert);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, critical);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, error);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, warning);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, notice);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, info);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, debug);
-
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, log);
-

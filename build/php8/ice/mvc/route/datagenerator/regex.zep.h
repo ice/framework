@@ -62,11 +62,23 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_datagenerator_regex_zephir_init_pro
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_route_datagenerator_regex_method_entry) {
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, getApproxChunkSize, arginfo_ice_mvc_route_datagenerator_regex_getapproxchunksize, ZEND_ACC_PROTECTED|ZEND_ACC_ABSTRACT)
+#else
+	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, getApproxChunkSize, NULL, ZEND_ACC_PROTECTED|ZEND_ACC_ABSTRACT)
+#endif
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, processChunk, arginfo_ice_mvc_route_datagenerator_regex_processchunk, ZEND_ACC_PROTECTED|ZEND_ACC_ABSTRACT)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, addRoute, arginfo_ice_mvc_route_datagenerator_regex_addroute, ZEND_ACC_PUBLIC)
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, getData, arginfo_ice_mvc_route_datagenerator_regex_getdata, ZEND_ACC_PUBLIC)
+#else
+	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, getData, NULL, ZEND_ACC_PUBLIC)
+#endif
+#if PHP_VERSION_ID >= 80000
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData, arginfo_ice_mvc_route_datagenerator_regex_generatevariableroutedata, ZEND_ACC_PROTECTED)
+#else
+	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, generateVariableRouteData, NULL, ZEND_ACC_PROTECTED)
+#endif
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, computeChunkSize, arginfo_ice_mvc_route_datagenerator_regex_computechunksize, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, isStaticRoute, arginfo_ice_mvc_route_datagenerator_regex_isstaticroute, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Mvc_Route_DataGenerator_Regex, addStaticRoute, arginfo_ice_mvc_route_datagenerator_regex_addstaticroute, ZEND_ACC_PROTECTED)

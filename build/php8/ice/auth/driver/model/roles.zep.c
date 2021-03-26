@@ -58,6 +58,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_2);
 
+
 	ZEPHIR_MM_GROW();
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "getidkey", NULL, 0);
