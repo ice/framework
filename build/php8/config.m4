@@ -175,6 +175,9 @@ if test "$PHP_ICE" = "yes"; then
 	)
 
 	CPPFLAGS=$old_CPPFLAGS
+	if test -f "/etc/alpine-release" ; then
+		LDFLAGS="$LDFLAGS -lexecinfo"
+	fi
 
 	PHP_INSTALL_HEADERS([ext/ice], [php_ICE.h])
 
