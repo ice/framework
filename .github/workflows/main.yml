@@ -16,6 +16,14 @@ jobs:
         include:
           - name: focal
             os: ubuntu-20.04
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: ice_test
 
     steps:
       - uses: actions/checkout@v2
@@ -49,4 +57,6 @@ jobs:
 
       - name: Test Ice
         shell: bash
-        run: ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
+        run: |
+          echo "source tests/ci/ice_test.sql;" | mysql -u root ice_test
+          ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
