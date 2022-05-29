@@ -11,7 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0', '8.1']
+        # php: ['7.4', '8.0', '8.1']
+        php: ['8.0']
         include:
           - name: focal
             os: ubuntu-20.04
@@ -34,7 +35,7 @@ jobs:
       - name: Compile
         shell: bash
         run: |
-          (cd vendor/iceframework/zephir-parser; ./install; phpenv config-add tests/ci/zephir_parser.ini)
+          (cd vendor/iceframework/zephir-parser; ./install; cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
           php -d memory_limit=512M ./vendor/bin/zephir generate
           (mkdir generated; cp -a ext/. generated)
           (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
