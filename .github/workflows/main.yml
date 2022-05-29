@@ -1,3 +1,5 @@
+name: Ice Framework CI
+
 on:
   push:
   pull_request:
