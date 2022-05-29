@@ -35,7 +35,7 @@ jobs:
       - name: Compile
         shell: bash
         run: |
-          (cd vendor/iceframework/zephir-parser; ./install; cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
+          (cd vendor/iceframework/zephir-parser; ./install; sudo cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
           php -d memory_limit=512M ./vendor/bin/zephir generate
           (mkdir generated; cp -a ext/. generated)
-          (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && phpenv config-add ../tests/ci/ice.ini)
+          (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && make install && sudo cp ../tests/ci/ice.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
