@@ -29,14 +29,24 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: composer install --prefer-source --no-scripts
-      - run: sudo apt-get install -y gdb re2c
+      - name: Apt install
+        run: sudo apt-get install -y gdb re2c
 
-      - name: Compile
+      - name: Composer install
+        run: composer install --prefer-source --no-scripts
+
+      - name: Compile Zephir Parser
         shell: bash
-        run: |
-          (cd vendor/iceframework/zephir-parser; ./install; sudo cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
-          php -d memory_limit=512M ./vendor/bin/zephir generate
-          (mkdir generated; cp -a ext/. generated)
-          (cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && sudo make install && sudo cp ../tests/ci/ice.ini /etc/php/${{ matrix.php }}/cli/conf.d/)
-          ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
+        run: cd vendor/iceframework/zephir-parser; ./install; sudo cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/
+
+      - name: Generate Ice
+        shell: bash
+        run: php -d memory_limit=512M ./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated
+
+      - name: Compile Ice
+        shell: bash
+        run: cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && sudo make install && sudo cp ../tests/ci/ice.ini /etc/php/${{ matrix.php }}/cli/conf.d/
+
+      - name: Test Ice
+        shell: bash
+        run: ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
