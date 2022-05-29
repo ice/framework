@@ -29,6 +29,7 @@ jobs:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: composer install --prefer-source --no-scripts
+      - run: sudo apt-get install -y gdb re2c
 
       - name: Compile
         shell: bash
