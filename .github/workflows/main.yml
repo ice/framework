@@ -24,6 +24,14 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: ice_test
+      mongodb:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: password
+          MONGO_INITDB_DATABASE: ice_test
+        ports:
+          - 27017:27017
 
     steps:
       - uses: actions/checkout@v2
@@ -32,7 +40,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: gettext, gd, intl, json, mbstring
+          extensions: gettext, gd, intl, json, mbstring, pdo, mysql, mongodb
           tools: pecl, phpize, php-config
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,8 +63,12 @@ jobs:
         shell: bash
         run: cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && sudo make install && sudo cp ../tests/ci/ice.ini /etc/php/${{ matrix.php }}/cli/conf.d/
 
-      - name: Test Ice
+      - name: Create test databases
         shell: bash
         run: |
           echo "source tests/ci/ice_test.sql;" | mysql -h 127.0.0.1 -u root ice_test
-          ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
+          mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
+
+      - name: Test Ice
+        shell: bash
+        run: ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
