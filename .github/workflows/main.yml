@@ -67,7 +67,6 @@ jobs:
         shell: bash
         run: |
           echo "source tests/ci/ice_test.sql;" | mysql -h 127.0.0.1 -u root ice_test
-          mongo ice_test --eval 'db.createUser({user:"root",pwd:"password",roles:["readWrite"]});'
 
       - name: Test Ice
         shell: bash
