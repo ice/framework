@@ -1,7 +1,7 @@
 <?php return [
     'mysql' => [
         'type'     => 'mysql',
-        'host'     => 'localhost',
+        'host'     => '127.0.0.1',
         'port'     => 3306,
         'user'     => 'root',
         'password' => '',
@@ -12,13 +12,14 @@
     ],
     'mongodb' => [
         'type'     => 'mongodb',
-        'host'     => 'localhost',
+        'host'     => '127.0.0.1',
         'port'     => 27017,
         'user'     => 'root',
         'password' => 'password',
         'name'     => 'ice_test',
         'options' => [
-            'authMechanism' => 'SCRAM-SHA-1',
+            'authMechanism' => 'SCRAM-SHA-256',
+            'authSource'    => 'admin'
         ],
     ],
     'auth' => [

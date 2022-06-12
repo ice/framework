@@ -1,0 +1,94 @@
+name: Ice Framework CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build PHP ${{ matrix.php }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.0', '8.1']
+        include:
+          - name: focal
+            os: ubuntu-20.04
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: ice_test
+      mongodb:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: password
+          MONGO_INITDB_DATABASE: ice_test
+        ports:
+          - 27017:27017
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: gettext, gd, intl, json, mbstring, pdo, mysql, mongodb
+          tools: pecl, phpize, php-config
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Apt install
+        run: sudo apt-get install -y gdb re2c
+
+      - name: Composer install
+        run: composer install --prefer-source --no-scripts
+
+      - name: Compile Zephir Parser
+        shell: bash
+        run: cd vendor/iceframework/zephir-parser; ./install; sudo cp tests/ci/zephir_parser.ini /etc/php/${{ matrix.php }}/cli/conf.d/
+
+      - name: Generate Ice
+        shell: bash
+        run: php -d memory_limit=512M ./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated
+
+      - name: Compile Ice
+        shell: bash
+        run: cd ext; export CFLAGS="-g3 -O1 -fno-delete-null-pointer-checks -Wall -fvisibility=hidden -DZEPHIR_RELEASE=1"; phpize && ./configure --enable-ice && make -j2 && sudo make install && sudo cp ../tests/ci/ice.ini /etc/php/${{ matrix.php }}/cli/conf.d/
+
+      - name: Create test databases
+        shell: bash
+        run: |
+          echo "source tests/ci/ice_test.sql;" | mysql -h 127.0.0.1 -u root ice_test
+
+      - name: Test Ice
+        shell: bash
+        run: ./vendor/bin/phpunit --configuration tests/phpunit.xml --testsuite=all
+
+      - name: Create artifacts
+        if: steps.build.outcome == 'success' && github.repository_owner == 'ice' && github.ref == 'refs/heads/dev'
+        run: |
+          if [[ "${{ matrix.php }}" = "8.1" ]]; then
+            openssl enc -d -aes-256-cbc -in id_rsa.enc -out ~/.ssh/id_rsa -pbkdf2 -k "$SECRET_KEY"; chmod 600 ~/.ssh/id_rsa
+            openssl enc -d -aes-256-cbc -in id_pgp.enc -out ~/.gnupg/id_pgp -pbkdf2 -k "$SECRET_KEY"; chmod 600 ~/.gnupg/id_pgp; gpg --allow-secret-key-import --import ~/.gnupg/id_pgp
+
+            git config push.default simple
+            git config commit.gpgsign true
+            git config --global user.email "info@iceframework.org"
+            git config --global user.name "Ice Framework"
+            git config --global user.signingkey 781C2FB7
+            git remote set-url origin git@github.com:ice/framework.git
+
+            export ZEPHIR_TARGET="php8"
+            export SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`
+            git checkout dev
+            rm -rf build/$ZEPHIR_TARGET/; mkdir -p build/$ZEPHIR_TARGET; cp -a generated/. build/$ZEPHIR_TARGET
+            git add -A build/$ZEPHIR_TARGET; git commit -m "$ZEPHIR_TARGET, $SHORT_SHA: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET'
+            git fetch && git rebase --autostash FETCH_HEAD && git push
+          fi
