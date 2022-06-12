@@ -30,12 +30,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
-
+ZEPHIR_INIT_CLASS(Ice_Config_Ini)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Ini, ice, config_ini, ice_config_ce, ice_config_ini_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -43,8 +42,8 @@ ZEPHIR_INIT_CLASS(Ice_Config_Ini) {
  *
  * @param string file Path to the ini file
  */
-PHP_METHOD(Ice_Config_Ini, __construct) {
-
+PHP_METHOD(Ice_Config_Ini, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL;
@@ -61,15 +60,13 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(data)
+		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
-
 	if (!data) {
 		data = &data_sub;
 		ZEPHIR_CPY_WRT(data, &__$null);
@@ -92,7 +89,6 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_config_ini_ce, getThis(), "__construct", &_2, 0, data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -102,8 +98,8 @@ PHP_METHOD(Ice_Config_Ini, __construct) {
  * @param mixed raw The same array but with raw strings
  * @return mixed
  */
-PHP_METHOD(Ice_Config_Ini, cast) {
-
+PHP_METHOD(Ice_Config_Ini, cast)
+{
 	zend_bool _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *ini, ini_sub, *raw, raw_sub, _7$$7, _8$$7, _9$$7, _10$$7;
@@ -121,13 +117,11 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 		Z_PARAM_ZVAL(ini)
 		Z_PARAM_ZVAL(raw)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
-
 
 
 	if (Z_TYPE_P(ini) == IS_STRING) {
@@ -185,7 +179,6 @@ PHP_METHOD(Ice_Config_Ini, cast) {
 	}
 	RETVAL_ZVAL(ini, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -195,8 +188,8 @@ PHP_METHOD(Ice_Config_Ini, cast) {
  * @param array raw
  * @return array
  */
-PHP_METHOD(Ice_Config_Ini, map) {
-
+PHP_METHOD(Ice_Config_Ini, map)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -225,13 +218,11 @@ PHP_METHOD(Ice_Config_Ini, map) {
 		Z_PARAM_ZVAL(ini)
 		Z_PARAM_ZVAL(raw)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
-
 
 
 	ZEPHIR_INIT_VAR(&data);
@@ -291,6 +282,5 @@ PHP_METHOD(Ice_Config_Ini, map) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CCTOR(&data);
-
 }
 

@@ -24,7 +24,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_errorhandler, 0, 0, 2)
 	ZEND_ARG_TYPE_INFO(0, message, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 1)
 	ZEND_ARG_TYPE_INFO(0, line, IS_LONG, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, context, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, context, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_exception_handler, 0, 0, 1)

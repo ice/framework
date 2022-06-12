@@ -31,24 +31,20 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Flash) {
-
+ZEPHIR_INIT_CLASS(Ice_Flash)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Flash, ice, flash, ice_flash_method_entry, 0);
 
 	zend_declare_property_null(ice_flash_ce, SL("session"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_flash_ce, SL("tag"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_flash_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	ice_flash_ce->create_object = zephir_init_properties_Ice_Flash;
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Flash, setOptions) {
-
+PHP_METHOD(Ice_Flash, setOptions)
+{
 	zval *options, options_sub;
 	zval *this_ptr = getThis();
 
@@ -58,17 +54,14 @@ PHP_METHOD(Ice_Flash, setOptions) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &options);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), options);
 	RETURN_THISW();
-
 }
 
 /**
@@ -76,8 +69,8 @@ PHP_METHOD(Ice_Flash, setOptions) {
  *
  * @param array options
  */
-PHP_METHOD(Ice_Flash, __construct) {
-
+PHP_METHOD(Ice_Flash, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -96,13 +89,11 @@ PHP_METHOD(Ice_Flash, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -127,7 +118,6 @@ PHP_METHOD(Ice_Flash, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &options);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -137,8 +127,8 @@ PHP_METHOD(Ice_Flash, __construct) {
  * @param mixed defaultValue The value to return if option key does not exist
  * @return mixed
  */
-PHP_METHOD(Ice_Flash, getOption) {
-
+PHP_METHOD(Ice_Flash, getOption)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
@@ -154,15 +144,13 @@ PHP_METHOD(Ice_Flash, getOption) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
-
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
@@ -171,7 +159,6 @@ PHP_METHOD(Ice_Flash, getOption) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -185,7 +172,6 @@ PHP_METHOD(Ice_Flash, getOption) {
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -194,8 +180,8 @@ PHP_METHOD(Ice_Flash, getOption) {
  * @param boolean remove
  * @return string
  */
-PHP_METHOD(Ice_Flash, getMessages) {
-
+PHP_METHOD(Ice_Flash, getMessages)
+{
 	zend_string *_5$$3;
 	zend_ulong _4$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -222,13 +208,11 @@ PHP_METHOD(Ice_Flash, getMessages) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_BOOL(remove)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &remove_param);
-
 	if (!remove_param) {
 		remove = 1;
 	} else {
@@ -291,7 +275,6 @@ PHP_METHOD(Ice_Flash, getMessages) {
 		zephir_check_call_status();
 	}
 	RETURN_CCTOR(&body);
-
 }
 
 /**
@@ -301,8 +284,8 @@ PHP_METHOD(Ice_Flash, getMessages) {
  * @param mixed message
  * @return string
  */
-PHP_METHOD(Ice_Flash, getMessage) {
-
+PHP_METHOD(Ice_Flash, getMessage)
+{
 	zval _13$$5, _15$$5, _26$$8, _28$$8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -356,13 +339,11 @@ PHP_METHOD(Ice_Flash, getMessage) {
 		Z_PARAM_STR(type)
 		Z_PARAM_ZVAL(messages)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &type_param, &messages);
-
 	zephir_get_strval(&type, type_param);
 	ZEPHIR_SEPARATE_PARAM(messages);
 
@@ -476,7 +457,6 @@ PHP_METHOD(Ice_Flash, getMessage) {
 	}
 	ZEPHIR_INIT_NVAR(&message);
 	RETURN_CCTOR(&body);
-
 }
 
 /**
@@ -486,8 +466,8 @@ PHP_METHOD(Ice_Flash, getMessage) {
  * @param string message
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, message) {
-
+PHP_METHOD(Ice_Flash, message)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *message_param = NULL, key, messages, _0, _1, _3, _2$$3;
@@ -508,13 +488,11 @@ PHP_METHOD(Ice_Flash, message) {
 		Z_PARAM_STR(type)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &type_param, &message_param);
-
 	zephir_get_strval(&type, type_param);
 	zephir_get_strval(&message, message_param);
 
@@ -538,7 +516,6 @@ PHP_METHOD(Ice_Flash, message) {
 	ZEPHIR_CALL_METHOD(NULL, &_3, "set", NULL, 0, &key, &messages);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -547,8 +524,8 @@ PHP_METHOD(Ice_Flash, message) {
  * @param string message
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, success) {
-
+PHP_METHOD(Ice_Flash, success)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -562,13 +539,11 @@ PHP_METHOD(Ice_Flash, success) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -577,15 +552,14 @@ PHP_METHOD(Ice_Flash, success) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
  * Alias of success message.
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, ok) {
-
+PHP_METHOD(Ice_Flash, ok)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -599,13 +573,11 @@ PHP_METHOD(Ice_Flash, ok) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -614,7 +586,6 @@ PHP_METHOD(Ice_Flash, ok) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -623,8 +594,8 @@ PHP_METHOD(Ice_Flash, ok) {
  * @param string message
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, info) {
-
+PHP_METHOD(Ice_Flash, info)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -638,13 +609,11 @@ PHP_METHOD(Ice_Flash, info) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -653,15 +622,14 @@ PHP_METHOD(Ice_Flash, info) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Alias of info message.
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, notice) {
-
+PHP_METHOD(Ice_Flash, notice)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -675,13 +643,11 @@ PHP_METHOD(Ice_Flash, notice) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -690,7 +656,6 @@ PHP_METHOD(Ice_Flash, notice) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -699,8 +664,8 @@ PHP_METHOD(Ice_Flash, notice) {
  * @param string message
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, warning) {
-
+PHP_METHOD(Ice_Flash, warning)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -714,13 +679,11 @@ PHP_METHOD(Ice_Flash, warning) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -729,15 +692,14 @@ PHP_METHOD(Ice_Flash, warning) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Alias of warning message.
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, alert) {
-
+PHP_METHOD(Ice_Flash, alert)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -751,13 +713,11 @@ PHP_METHOD(Ice_Flash, alert) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -766,7 +726,6 @@ PHP_METHOD(Ice_Flash, alert) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -775,8 +734,8 @@ PHP_METHOD(Ice_Flash, alert) {
  * @param string message
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, danger) {
-
+PHP_METHOD(Ice_Flash, danger)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -790,13 +749,11 @@ PHP_METHOD(Ice_Flash, danger) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -805,15 +762,14 @@ PHP_METHOD(Ice_Flash, danger) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Alias of danger message.
  * @return object Flash
  */
-PHP_METHOD(Ice_Flash, error) {
-
+PHP_METHOD(Ice_Flash, error)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *message_param = NULL, _0;
@@ -827,13 +783,11 @@ PHP_METHOD(Ice_Flash, error) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(message)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &message_param);
-
 	zephir_get_strval(&message, message_param);
 
 
@@ -842,11 +796,10 @@ PHP_METHOD(Ice_Flash, error) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "message", NULL, 0, &_0, &message);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type)
+{
 		zval _1$$3, _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval __$true, _0, _3$$3;
@@ -901,6 +854,5 @@ zend_object *zephir_init_properties_Ice_Flash(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

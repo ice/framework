@@ -33,39 +33,31 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Http_Response) {
-
+ZEPHIR_INIT_CLASS(Ice_Http_Response)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Http, Response, ice, http_response, ice_http_response_method_entry, 0);
 
 	zend_declare_property_string(ice_http_response_ce, SL("protocolVersion"), "HTTP/1.1", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(ice_http_response_ce, SL("status"), 200, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_http_response_ce, SL("headers"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(ice_http_response_ce, SL("loops"), 16, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(ice_http_response_ce, SL("redirects"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_http_response_ce, SL("body"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(ice_http_response_ce, 1, ice_http_response_responseinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Http_Response, getProtocolVersion) {
-
+PHP_METHOD(Ice_Http_Response, getProtocolVersion)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "protocolVersion");
-
 }
 
-PHP_METHOD(Ice_Http_Response, setProtocolVersion) {
-
+PHP_METHOD(Ice_Http_Response, setProtocolVersion)
+{
 	zval *protocolVersion, protocolVersion_sub;
 	zval *this_ptr = getThis();
 
@@ -75,31 +67,27 @@ PHP_METHOD(Ice_Http_Response, setProtocolVersion) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(protocolVersion)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &protocolVersion);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("protocolVersion"), protocolVersion);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Http_Response, getStatus) {
-
+PHP_METHOD(Ice_Http_Response, getStatus)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "status");
-
 }
 
-PHP_METHOD(Ice_Http_Response, setStatus) {
-
+PHP_METHOD(Ice_Http_Response, setStatus)
+{
 	zval *status, status_sub;
 	zval *this_ptr = getThis();
 
@@ -109,31 +97,27 @@ PHP_METHOD(Ice_Http_Response, setStatus) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(status)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &status);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("status"), status);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Http_Response, getLoops) {
-
+PHP_METHOD(Ice_Http_Response, getLoops)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "loops");
-
 }
 
-PHP_METHOD(Ice_Http_Response, setLoops) {
-
+PHP_METHOD(Ice_Http_Response, setLoops)
+{
 	zval *loops, loops_sub;
 	zval *this_ptr = getThis();
 
@@ -143,41 +127,36 @@ PHP_METHOD(Ice_Http_Response, setLoops) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(loops)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &loops);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("loops"), loops);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Http_Response, getRedirects) {
-
+PHP_METHOD(Ice_Http_Response, getRedirects)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "redirects");
-
 }
 
-PHP_METHOD(Ice_Http_Response, getBody) {
-
+PHP_METHOD(Ice_Http_Response, getBody)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "body");
-
 }
 
-PHP_METHOD(Ice_Http_Response, setBody) {
-
+PHP_METHOD(Ice_Http_Response, setBody)
+{
 	zval *body, body_sub;
 	zval *this_ptr = getThis();
 
@@ -187,17 +166,14 @@ PHP_METHOD(Ice_Http_Response, setBody) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(body)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &body);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("body"), body);
 	RETURN_THISW();
-
 }
 
 /**
@@ -206,8 +182,8 @@ PHP_METHOD(Ice_Http_Response, setBody) {
  * @param string|null body The HTTP response body
  * @param int status The HTTP response status
  */
-PHP_METHOD(Ice_Http_Response, __construct) {
-
+PHP_METHOD(Ice_Http_Response, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long status, ZEPHIR_LAST_CALL_STATUS;
 	zval *body = NULL, body_sub, *status_param = NULL, __$null, _0, _1, _2, _3;
@@ -223,16 +199,14 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(body)
+		Z_PARAM_ZVAL_OR_NULL(body)
 		Z_PARAM_LONG(status)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &body, &status_param);
-
 	if (!body) {
 		body = &body_sub;
 		body = &__$null;
@@ -261,7 +235,6 @@ PHP_METHOD(Ice_Http_Response, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_1, "set", NULL, 0, &_2, &_3);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -269,8 +242,8 @@ PHP_METHOD(Ice_Http_Response, __construct) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Http_Response, getHeaders) {
-
+PHP_METHOD(Ice_Http_Response, getHeaders)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -285,7 +258,6 @@ PHP_METHOD(Ice_Http_Response, getHeaders) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "all", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -294,8 +266,8 @@ PHP_METHOD(Ice_Http_Response, getHeaders) {
  * @param string name
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, hasHeader) {
-
+PHP_METHOD(Ice_Http_Response, hasHeader)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
@@ -309,13 +281,11 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
@@ -323,7 +293,6 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "has", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -332,8 +301,8 @@ PHP_METHOD(Ice_Http_Response, hasHeader) {
  * @param string name
  * @return string
  */
-PHP_METHOD(Ice_Http_Response, getHeader) {
-
+PHP_METHOD(Ice_Http_Response, getHeader)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
@@ -347,13 +316,11 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
@@ -361,7 +328,6 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -371,8 +337,8 @@ PHP_METHOD(Ice_Http_Response, getHeader) {
  * @param string value
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, setHeader) {
-
+PHP_METHOD(Ice_Http_Response, setHeader)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *value_param = NULL, _0;
@@ -388,13 +354,11 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
 		Z_PARAM_STR(name)
 		Z_PARAM_STR(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value_param);
-
 	zephir_get_strval(&name, name_param);
 	zephir_get_strval(&value, value_param);
 
@@ -403,7 +367,6 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &name, &value);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -412,8 +375,8 @@ PHP_METHOD(Ice_Http_Response, setHeader) {
  * @param array headers
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, setHeaders) {
-
+PHP_METHOD(Ice_Http_Response, setHeaders)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *headers_param = NULL, _0;
@@ -427,13 +390,11 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ARRAY(headers)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &headers_param);
-
 	zephir_get_arrval(&headers, headers_param);
 
 
@@ -441,7 +402,6 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "merge", NULL, 0, &headers);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -450,8 +410,8 @@ PHP_METHOD(Ice_Http_Response, setHeaders) {
  * @param string name
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, removeHeader) {
-
+PHP_METHOD(Ice_Http_Response, removeHeader)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, _0;
@@ -465,13 +425,11 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &name_param);
-
 	zephir_get_strval(&name, name_param);
 
 
@@ -479,7 +437,6 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "remove", NULL, 0, &name);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -488,8 +445,8 @@ PHP_METHOD(Ice_Http_Response, removeHeader) {
  * @param string content
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, setContent) {
-
+PHP_METHOD(Ice_Http_Response, setContent)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *contet_param = NULL;
 	zval contet;
@@ -501,19 +458,16 @@ PHP_METHOD(Ice_Http_Response, setContent) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(contet)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &contet_param);
-
 	zephir_get_strval(&contet, contet_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("body"), &contet);
 	RETURN_THIS();
-
 }
 
 /**
@@ -523,8 +477,8 @@ PHP_METHOD(Ice_Http_Response, setContent) {
  * @param RequestInterface request
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, finalize) {
-
+PHP_METHOD(Ice_Http_Response, finalize)
+{
 	zval _1;
 	zend_bool sendBody = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -546,13 +500,11 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_OBJECT_OF_CLASS(request, ice_http_request_requestinterface_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &request);
-
 
 
 	sendBody = 1;
@@ -590,7 +542,6 @@ PHP_METHOD(Ice_Http_Response, finalize) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("body"), &_7$$5);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -598,8 +549,8 @@ PHP_METHOD(Ice_Http_Response, finalize) {
  *
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, send) {
-
+PHP_METHOD(Ice_Http_Response, send)
+{
 	zend_bool _21$$3;
 	zval _0, _1$$3, _2$$3, _3$$3, di$$3, _19$$3, _20$$3, _22$$3, _25$$3, _4$$4, _5$$4, _6$$4, _8$$4, _9$$4, _12$$5, _13$$5, _14$$5, _15$$5, _16$$5, _17$$5, _23$$6, _24$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -694,7 +645,6 @@ PHP_METHOD(Ice_Http_Response, send) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -727,8 +677,8 @@ PHP_METHOD(Ice_Http_Response, send) {
  * @param array options The keys can be [file|inline|resumable|delete|timeout|speed]
  * @return  void
  */
-PHP_METHOD(Ice_Http_Response, sendFile) {
-
+PHP_METHOD(Ice_Http_Response, sendFile)
+{
 	zend_bool _19$$9, _45$$17;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_35 = NULL, *_36 = NULL, *_39 = NULL, *_44 = NULL, *_47 = NULL, *_51 = NULL, *_52 = NULL, *_54 = NULL;
@@ -807,13 +757,11 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &filename_param, &mime_param, &options_param);
-
 	zephir_get_strval(&filename, filename_param);
 	zephir_get_strval(&mime, mime_param);
 	if (!options_param) {
@@ -828,7 +776,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 	if (ZEPHIR_IS_EMPTY(&_0)) {
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("body"), PH_NOISY_CC);
-		zephir_get_strval(&_2$$3, &_1$$3);
+		zephir_cast_to_string(&_2$$3, &_1$$3);
 		ZEPHIR_CPY_WRT(&data, &_2$$3);
 		ZEPHIR_INIT_VAR(&size);
 		ZVAL_LONG(&size, zephir_fast_strlen_ev(&data));
@@ -1031,7 +979,7 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 			ZVAL_OBJ(&_55$$21, EG(exception));
 			Z_ADDREF_P(&_55$$21);
 			ZEPHIR_INIT_VAR(&_56$$21);
-			if (zephir_instance_of_ev(&_55$$21, zend_ce_exception)) {
+			if (zephir_is_instance_of(&_55$$21, SL("Exception"))) {
 				zend_clear_exception();
 				ZEPHIR_CPY_WRT(&_56$$21, &_55$$21);
 			}
@@ -1040,7 +988,6 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
 	ZEPHIR_MM_RESTORE();
 	zephir_exit_empty();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -1051,8 +998,8 @@ PHP_METHOD(Ice_Http_Response, sendFile) {
  * @param int status The redirect HTTP status code
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, redirect) {
-
+PHP_METHOD(Ice_Http_Response, redirect)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL;
 	zend_bool external, _6;
@@ -1083,16 +1030,13 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 		Z_PARAM_LONG(status)
 		Z_PARAM_BOOL(external)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &location_param, &status_param, &external_param);
-
 	if (!location_param) {
 		ZEPHIR_INIT_VAR(&location);
-		ZVAL_STRING(&location, "");
 	} else {
 		zephir_get_strval(&location, location_param);
 	}
@@ -1162,7 +1106,6 @@ PHP_METHOD(Ice_Http_Response, redirect) {
 	ZEPHIR_CALL_METHOD(NULL, &_11, "set", NULL, 0, &_5, &location);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -1170,8 +1113,8 @@ PHP_METHOD(Ice_Http_Response, redirect) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isEmpty) {
-
+PHP_METHOD(Ice_Http_Response, isEmpty)
+{
 	zval _1;
 	zval _0, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1197,7 +1140,6 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
 	ZVAL_LONG(&_2, 304);
 	zephir_array_fast_append(&_1, &_2);
 	RETURN_MM_BOOL(zephir_fast_in_array(&_0, &_1));
-
 }
 
 /**
@@ -1205,8 +1147,8 @@ PHP_METHOD(Ice_Http_Response, isEmpty) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isInformational) {
-
+PHP_METHOD(Ice_Http_Response, isInformational)
+{
 	zend_bool _1;
 	zval _0, _2;
 	zval *this_ptr = getThis();
@@ -1223,7 +1165,6 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
 		_1 = ZEPHIR_LT_LONG(&_2, 200);
 	}
 	RETURN_BOOL(_1);
-
 }
 
 /**
@@ -1231,8 +1172,8 @@ PHP_METHOD(Ice_Http_Response, isInformational) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isOk) {
-
+PHP_METHOD(Ice_Http_Response, isOk)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
@@ -1242,7 +1183,6 @@ PHP_METHOD(Ice_Http_Response, isOk) {
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_LONG_IDENTICAL(&_0, 200));
-
 }
 
 /**
@@ -1250,8 +1190,8 @@ PHP_METHOD(Ice_Http_Response, isOk) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isSuccessful) {
-
+PHP_METHOD(Ice_Http_Response, isSuccessful)
+{
 	zend_bool _1;
 	zval _0, _2;
 	zval *this_ptr = getThis();
@@ -1268,7 +1208,6 @@ PHP_METHOD(Ice_Http_Response, isSuccessful) {
 		_1 = ZEPHIR_LT_LONG(&_2, 300);
 	}
 	RETURN_BOOL(_1);
-
 }
 
 /**
@@ -1276,8 +1215,8 @@ PHP_METHOD(Ice_Http_Response, isSuccessful) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isRedirect) {
-
+PHP_METHOD(Ice_Http_Response, isRedirect)
+{
 	zval _1;
 	zval _0, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1306,7 +1245,6 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
 	ZVAL_LONG(&_2, 307);
 	zephir_array_fast_append(&_1, &_2);
 	RETURN_MM_BOOL(zephir_fast_in_array(&_0, &_1));
-
 }
 
 /**
@@ -1314,8 +1252,8 @@ PHP_METHOD(Ice_Http_Response, isRedirect) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isRedirection) {
-
+PHP_METHOD(Ice_Http_Response, isRedirection)
+{
 	zend_bool _1;
 	zval _0, _2;
 	zval *this_ptr = getThis();
@@ -1332,7 +1270,6 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
 		_1 = ZEPHIR_LT_LONG(&_2, 400);
 	}
 	RETURN_BOOL(_1);
-
 }
 
 /**
@@ -1340,8 +1277,8 @@ PHP_METHOD(Ice_Http_Response, isRedirection) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isForbidden) {
-
+PHP_METHOD(Ice_Http_Response, isForbidden)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
@@ -1351,7 +1288,6 @@ PHP_METHOD(Ice_Http_Response, isForbidden) {
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_LONG_IDENTICAL(&_0, 403));
-
 }
 
 /**
@@ -1359,8 +1295,8 @@ PHP_METHOD(Ice_Http_Response, isForbidden) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isNotFound) {
-
+PHP_METHOD(Ice_Http_Response, isNotFound)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
@@ -1370,7 +1306,6 @@ PHP_METHOD(Ice_Http_Response, isNotFound) {
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("status"), PH_NOISY_CC | PH_READONLY);
 	RETURN_BOOL(ZEPHIR_IS_LONG_IDENTICAL(&_0, 404));
-
 }
 
 /**
@@ -1378,8 +1313,8 @@ PHP_METHOD(Ice_Http_Response, isNotFound) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isClientError) {
-
+PHP_METHOD(Ice_Http_Response, isClientError)
+{
 	zend_bool _1;
 	zval _0, _2;
 	zval *this_ptr = getThis();
@@ -1396,7 +1331,6 @@ PHP_METHOD(Ice_Http_Response, isClientError) {
 		_1 = ZEPHIR_LT_LONG(&_2, 500);
 	}
 	RETURN_BOOL(_1);
-
 }
 
 /**
@@ -1404,8 +1338,8 @@ PHP_METHOD(Ice_Http_Response, isClientError) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response, isServerError) {
-
+PHP_METHOD(Ice_Http_Response, isServerError)
+{
 	zend_bool _1;
 	zval _0, _2;
 	zval *this_ptr = getThis();
@@ -1422,7 +1356,6 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
 		_1 = ZEPHIR_LT_LONG(&_2, 600);
 	}
 	RETURN_BOOL(_1);
-
 }
 
 /**
@@ -1431,8 +1364,8 @@ PHP_METHOD(Ice_Http_Response, isServerError) {
  * @param int code Status code
  * @return string
  */
-PHP_METHOD(Ice_Http_Response, getMessage) {
-
+PHP_METHOD(Ice_Http_Response, getMessage)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *code_param = NULL, message, _0, _1;
 	zend_long code, ZEPHIR_LAST_CALL_STATUS;
@@ -1447,13 +1380,11 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_LONG(code)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &code_param);
-
 	if (!code_param) {
 		code = 200;
 	} else {
@@ -1472,7 +1403,6 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
 		ZVAL_STRING(&_1, "");
 	}
 	RETURN_CCTOR(&_1);
-
 }
 
 /**
@@ -1480,8 +1410,8 @@ PHP_METHOD(Ice_Http_Response, getMessage) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Http_Response, getMessages) {
-
+PHP_METHOD(Ice_Http_Response, getMessages)
+{
 	zval *this_ptr = getThis();
 
 
@@ -1548,7 +1478,6 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
 	add_index_stringl(return_value, 510, SL("Not Extended"));
 	add_index_stringl(return_value, 511, SL("Network Authentication Required"));
 	return;
-
 }
 
 /**
@@ -1558,8 +1487,8 @@ PHP_METHOD(Ice_Http_Response, getMessages) {
  * @param int option The options for json_encode
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, toJson) {
-
+PHP_METHOD(Ice_Http_Response, toJson)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data, data_sub, *option = NULL, option_sub, __$null, _0, _1, _2;
@@ -1576,15 +1505,13 @@ PHP_METHOD(Ice_Http_Response, toJson) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(data)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(option)
+		Z_PARAM_ZVAL_OR_NULL(option)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &data, &option);
-
 	if (!option) {
 		option = &option_sub;
 		option = &__$null;
@@ -1602,7 +1529,6 @@ PHP_METHOD(Ice_Http_Response, toJson) {
 	zephir_json_encode(&_1, data, zephir_get_intval(option) );
 	zephir_update_property_zval(this_ptr, ZEND_STRL("body"), &_1);
 	RETURN_THIS();
-
 }
 
 /**
@@ -1623,8 +1549,8 @@ PHP_METHOD(Ice_Http_Response, toJson) {
  * @param array options The options can be [root|charset|namespace]
  * @return object Response
  */
-PHP_METHOD(Ice_Http_Response, toXml) {
-
+PHP_METHOD(Ice_Http_Response, toXml)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *data, data_sub, *options = NULL, options_sub, __$true, __$false, __$null, doc, ns, rootName, charset, _1, _2, _3, _4, _0$$3;
@@ -1649,15 +1575,13 @@ PHP_METHOD(Ice_Http_Response, toXml) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(data)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(options)
+		Z_PARAM_ZVAL_OR_NULL(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &data, &options);
-
 	if (!options) {
 		options = &options_sub;
 		options = &__$null;
@@ -1709,7 +1633,6 @@ PHP_METHOD(Ice_Http_Response, toXml) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("body"), &_4);
 	RETURN_THIS();
-
 }
 
 /**
@@ -1720,8 +1643,8 @@ PHP_METHOD(Ice_Http_Response, toXml) {
  * @param DOMElement domNode null, ONLY FOR INTERNAL USE
  * @return DOMDocument domDoc object
  */
-PHP_METHOD(Ice_Http_Response, xmlEncode) {
-
+PHP_METHOD(Ice_Http_Response, xmlEncode)
+{
 	zend_bool _25$$12, _27$$15;
 	zend_string *_6$$4, *_24$$11;
 	zend_ulong _5$$4, _23$$11;
@@ -1768,15 +1691,13 @@ PHP_METHOD(Ice_Http_Response, xmlEncode) {
 		Z_PARAM_ZVAL(data)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(root)
-		Z_PARAM_ZVAL(domNode)
+		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(domNode, zephir_get_internal_ce(SL("domelement")))
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &data, &root_param, &domNode);
-
 	ZEPHIR_SEPARATE_PARAM(data);
 	if (!root_param) {
 		ZEPHIR_INIT_VAR(&root);
@@ -1977,7 +1898,6 @@ PHP_METHOD(Ice_Http_Response, xmlEncode) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -1985,8 +1905,8 @@ PHP_METHOD(Ice_Http_Response, xmlEncode) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Http_Response, __toString) {
-
+PHP_METHOD(Ice_Http_Response, __toString)
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -2000,9 +1920,8 @@ PHP_METHOD(Ice_Http_Response, __toString) {
 
 	ZEPHIR_OBS_VAR(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("body"), PH_NOISY_CC);
-	zephir_get_strval(&_1, &_0);
+	zephir_cast_to_string(&_1, &_0);
 	RETURN_CTOR(&_1);
-
 }
 
 /**
@@ -2020,8 +1939,8 @@ PHP_METHOD(Ice_Http_Response, __toString) {
  *
  * @return array The bytes range start and end, error message if there is
  */
-PHP_METHOD(Ice_Http_Response, getByteRange) {
-
+PHP_METHOD(Ice_Http_Response, getByteRange)
+{
 	zend_bool _15$$5, _16$$5, _12$$7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -2052,14 +1971,12 @@ PHP_METHOD(Ice_Http_Response, getByteRange) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(size)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
 	zephir_fetch_params(1, 1, 0, &size_param);
-
 	size = zephir_get_intval(size_param);
 
 
@@ -2135,6 +2052,5 @@ PHP_METHOD(Ice_Http_Response, getByteRange) {
 	zephir_array_fast_append(return_value, &start);
 	zephir_array_fast_append(return_value, &end);
 	RETURN_MM();
-
 }
 

@@ -21,26 +21,24 @@
 #include "kernel/string.h"
 
 
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\Route\\DataGenerator, GroupCount, ice, mvc_route_datagenerator_groupcount, ice_mvc_route_datagenerator_regex_ce, ice_mvc_route_datagenerator_groupcount_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize) {
-
+PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_LONG(10);
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
-
+PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
+{
 	zval _12$$3, _20$$4;
 	zend_string *_3;
 	zend_ulong _2;
@@ -81,13 +79,11 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(regexToRoutesMap)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &regexToRoutesMap);
-
 
 
 	ZEPHIR_INIT_VAR(&routeMap);
@@ -196,6 +192,5 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk) {
 	zephir_array_update_string(return_value, SL("regex"), &_23, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
-
 }
 

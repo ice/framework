@@ -28,12 +28,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Config_Env) {
-
+ZEPHIR_INIT_CLASS(Ice_Config_Env)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Env, ice, config_env, ice_config_ini_ce, ice_config_env_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -41,8 +40,8 @@ ZEPHIR_INIT_CLASS(Ice_Config_Env) {
  *
  * @param string data Path to the env file
  */
-PHP_METHOD(Ice_Config_Env, __construct) {
-
+PHP_METHOD(Ice_Config_Env, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -58,16 +57,14 @@ PHP_METHOD(Ice_Config_Env, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(data)
+		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 0, 1, &data);
-
 	if (!data) {
 		data = &data_sub;
 		data = &__$null;
@@ -81,7 +78,6 @@ PHP_METHOD(Ice_Config_Env, __construct) {
 	zephir_fast_array_merge(&_1, &_ENV, &_2);
 	ZEPHIR_HASH_COPY(&_ENV, &_1);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -89,8 +85,8 @@ PHP_METHOD(Ice_Config_Env, __construct) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Config_Env, has) {
-
+PHP_METHOD(Ice_Config_Env, has)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, _ENV;
 	zval key;
@@ -103,19 +99,16 @@ PHP_METHOD(Ice_Config_Env, has) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 0, &key_param);
-
 	zephir_get_strval(&key, key_param);
 
 
 	RETURN_MM_BOOL(zephir_array_isset(&_ENV, &key));
-
 }
 
 /**
@@ -123,8 +116,8 @@ PHP_METHOD(Ice_Config_Env, has) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Config_Env, get) {
-
+PHP_METHOD(Ice_Config_Env, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool required;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _ENV, __$null, value;
@@ -141,17 +134,15 @@ PHP_METHOD(Ice_Config_Env, get) {
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_STR(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 		Z_PARAM_BOOL(required)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 2, &key_param, &defaultValue, &required_param);
-
 	zephir_get_strval(&key, key_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -169,7 +160,6 @@ PHP_METHOD(Ice_Config_Env, get) {
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -177,8 +167,8 @@ PHP_METHOD(Ice_Config_Env, get) {
  *
  * @return object
  */
-PHP_METHOD(Ice_Config_Env, set) {
-
+PHP_METHOD(Ice_Config_Env, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, *value, value_sub, _ENV;
 	zval key;
@@ -193,20 +183,17 @@ PHP_METHOD(Ice_Config_Env, set) {
 		Z_PARAM_STR(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 2, 0, &key_param, &value);
-
 	zephir_get_strval(&key, key_param);
 
 
 	zephir_array_update_zval(&_ENV, &key, value, PH_COPY | PH_SEPARATE);
 	RETURN_THIS();
-
 }
 
 /**
@@ -214,8 +201,8 @@ PHP_METHOD(Ice_Config_Env, set) {
  *
  * @return object
  */
-PHP_METHOD(Ice_Config_Env, remove) {
-
+PHP_METHOD(Ice_Config_Env, remove)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, _ENV;
 	zval key;
@@ -228,20 +215,17 @@ PHP_METHOD(Ice_Config_Env, remove) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 0, &key_param);
-
 	zephir_get_strval(&key, key_param);
 
 
 	zephir_array_unset(&_ENV, &key, PH_SEPARATE);
 	RETURN_THIS();
-
 }
 
 /**
@@ -249,8 +233,8 @@ PHP_METHOD(Ice_Config_Env, remove) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Config_Env, getData) {
-
+PHP_METHOD(Ice_Config_Env, getData)
+{
 	zval _ENV;
 	zval *this_ptr = getThis();
 
@@ -261,6 +245,5 @@ PHP_METHOD(Ice_Config_Env, getData) {
 
 	RETVAL_ZVAL(&_ENV, 1, 0);
 	return;
-
 }
 

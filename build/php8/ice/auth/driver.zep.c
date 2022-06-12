@@ -31,24 +31,18 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth, Driver, ice, auth_driver, ice_auth_driver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(ice_auth_driver_ce, SL("session"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_auth_driver_ce, SL("cookies"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_auth_driver_ce, SL("request"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_auth_driver_ce, SL("user"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_auth_driver_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	ice_auth_driver_ce->create_object = zephir_init_properties_Ice_Auth_Driver;
 
 	return SUCCESS;
-
 }
 
 /**
@@ -57,8 +51,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver) {
  * @param array options Config options
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver, __construct) {
-
+PHP_METHOD(Ice_Auth_Driver, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -80,13 +74,11 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -117,7 +109,6 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("request"), &_6);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -127,8 +118,8 @@ PHP_METHOD(Ice_Auth_Driver, __construct) {
  * @param string hash Hash version of password
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver, checkHash) {
-
+PHP_METHOD(Ice_Auth_Driver, checkHash)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, *hash_param = NULL, _0, _1, _2$$3;
@@ -146,13 +137,11 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 		Z_PARAM_STR(password)
 		Z_PARAM_STR(hash)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &password_param, &hash_param);
-
 	zephir_get_strval(&password, password_param);
 	zephir_get_strval(&hash, hash_param);
 
@@ -169,7 +158,6 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 
 /**
@@ -179,8 +167,8 @@ PHP_METHOD(Ice_Auth_Driver, checkHash) {
  * @param array roles User's roles
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver, completeLogin) {
-
+PHP_METHOD(Ice_Auth_Driver, completeLogin)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -204,13 +192,11 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(roles)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &user, &roles_param);
-
 	if (!roles_param) {
 		ZEPHIR_INIT_VAR(&roles);
 		array_init(&roles);
@@ -241,7 +227,6 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -251,8 +236,8 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin) {
  * @param mixed defaultValue The value to return if option key does not exist
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver, getOption) {
-
+PHP_METHOD(Ice_Auth_Driver, getOption)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval key;
@@ -268,15 +253,13 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
-
 	if (UNEXPECTED(Z_TYPE_P(key_param) != IS_STRING && Z_TYPE_P(key_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'key' must be of the type string"));
 		RETURN_MM_NULL();
@@ -285,7 +268,6 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 		zephir_get_strval(&key, key_param);
 	} else {
 		ZEPHIR_INIT_VAR(&key);
-		ZVAL_EMPTY_STRING(&key);
 	}
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -299,7 +281,6 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -309,8 +290,8 @@ PHP_METHOD(Ice_Auth_Driver, getOption) {
  * @param mixed value
  * @return object self
  */
-PHP_METHOD(Ice_Auth_Driver, setOption) {
-
+PHP_METHOD(Ice_Auth_Driver, setOption)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, *value, value_sub;
 	zval key;
@@ -324,19 +305,16 @@ PHP_METHOD(Ice_Auth_Driver, setOption) {
 		Z_PARAM_STR(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &key_param, &value);
-
 	zephir_get_strval(&key, key_param);
 
 
 	zephir_update_property_array(this_ptr, SL("options"), &key, value);
 	RETURN_THIS();
-
 }
 
 /**
@@ -345,8 +323,8 @@ PHP_METHOD(Ice_Auth_Driver, setOption) {
  * @param mixed defaultValue Default value to return if the user is currently not logged in.
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver, getUser) {
-
+PHP_METHOD(Ice_Auth_Driver, getUser)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *defaultValue = NULL, defaultValue_sub, __$null, _0, _1, _2;
@@ -361,15 +339,13 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &defaultValue);
-
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
@@ -384,7 +360,6 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &_1, defaultValue);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -393,8 +368,8 @@ PHP_METHOD(Ice_Auth_Driver, getUser) {
  * @param string password String to hash
  * @return string
  */
-PHP_METHOD(Ice_Auth_Driver, hash) {
-
+PHP_METHOD(Ice_Auth_Driver, hash)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *password_param = NULL, _0, _1, _2$$3, _3$$3, _4$$3, _5$$3, _6$$4, _7$$4, _8$$4, _9$$4;
@@ -417,13 +392,11 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(password)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &password_param);
-
 	zephir_get_strval(&password, password_param);
 
 
@@ -447,7 +420,6 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 
 /**
@@ -456,8 +428,8 @@ PHP_METHOD(Ice_Auth_Driver, hash) {
  * @param string role Role name
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver, loggedIn) {
-
+PHP_METHOD(Ice_Auth_Driver, loggedIn)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *role_param = NULL, user, sessionRoles, roles, _0$$4, _1$$6;
@@ -476,16 +448,13 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(role)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &role_param);
-
 	if (!role_param) {
 		ZEPHIR_INIT_VAR(&role);
-		ZVAL_STRING(&role, "");
 	} else {
 		zephir_get_strval(&role, role_param);
 	}
@@ -496,7 +465,7 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 	if (!(zephir_is_true(&user))) {
 		RETURN_MM_BOOL(0);
 	} else {
-		if (!(!(Z_TYPE_P(&role) == IS_UNDEF) && Z_STRLEN_P(&role))) {
+		if (!(!(ZEPHIR_IS_EMPTY(&role)))) {
 			RETURN_MM_BOOL(1);
 		}
 		ZEPHIR_INIT_VAR(&_0$$4);
@@ -515,7 +484,6 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
 		}
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -525,8 +493,8 @@ PHP_METHOD(Ice_Auth_Driver, loggedIn) {
  * @param boolean logoutAll Remove all tokens for user
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Driver, logout) {
-
+PHP_METHOD(Ice_Auth_Driver, logout)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -549,13 +517,11 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 		Z_PARAM_BOOL(destroy)
 		Z_PARAM_BOOL(logoutAll)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &destroy_param, &logoutAll_param);
-
 	if (!destroy_param) {
 		destroy = 0;
 	} else {
@@ -596,11 +562,10 @@ PHP_METHOD(Ice_Auth_Driver, logout) {
 	ZEPHIR_CALL_METHOD(&_7, this_ptr, "loggedin", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM_BOOL(!zephir_is_true(&_7));
-
 }
 
-zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type)
+{
 		zval _1$$3;
 	zval _0, _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -631,6 +596,5 @@ zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

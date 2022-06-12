@@ -29,13 +29,12 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
-
+ZEPHIR_INIT_CLASS(Ice_Log_Driver)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Log, Driver, ice, log_driver, ice_log_driver_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_class_implements(ice_log_driver_ce, 1, ice_log_loggerinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
@@ -45,8 +44,8 @@ ZEPHIR_INIT_CLASS(Ice_Log_Driver) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, emergency) {
-
+PHP_METHOD(Ice_Log_Driver, emergency)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -64,13 +63,11 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -85,7 +82,6 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -97,8 +93,8 @@ PHP_METHOD(Ice_Log_Driver, emergency) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, alert) {
-
+PHP_METHOD(Ice_Log_Driver, alert)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -116,13 +112,11 @@ PHP_METHOD(Ice_Log_Driver, alert) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -137,7 +131,6 @@ PHP_METHOD(Ice_Log_Driver, alert) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -149,8 +142,8 @@ PHP_METHOD(Ice_Log_Driver, alert) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, critical) {
-
+PHP_METHOD(Ice_Log_Driver, critical)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -168,13 +161,11 @@ PHP_METHOD(Ice_Log_Driver, critical) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -189,7 +180,6 @@ PHP_METHOD(Ice_Log_Driver, critical) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -199,8 +189,8 @@ PHP_METHOD(Ice_Log_Driver, critical) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, error) {
-
+PHP_METHOD(Ice_Log_Driver, error)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -218,13 +208,11 @@ PHP_METHOD(Ice_Log_Driver, error) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -239,7 +227,6 @@ PHP_METHOD(Ice_Log_Driver, error) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -251,8 +238,8 @@ PHP_METHOD(Ice_Log_Driver, error) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, warning) {
-
+PHP_METHOD(Ice_Log_Driver, warning)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -270,13 +257,11 @@ PHP_METHOD(Ice_Log_Driver, warning) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -291,7 +276,6 @@ PHP_METHOD(Ice_Log_Driver, warning) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -301,8 +285,8 @@ PHP_METHOD(Ice_Log_Driver, warning) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, notice) {
-
+PHP_METHOD(Ice_Log_Driver, notice)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -320,13 +304,11 @@ PHP_METHOD(Ice_Log_Driver, notice) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -341,7 +323,6 @@ PHP_METHOD(Ice_Log_Driver, notice) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -353,8 +334,8 @@ PHP_METHOD(Ice_Log_Driver, notice) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, info) {
-
+PHP_METHOD(Ice_Log_Driver, info)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -372,13 +353,11 @@ PHP_METHOD(Ice_Log_Driver, info) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -393,7 +372,6 @@ PHP_METHOD(Ice_Log_Driver, info) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -403,8 +381,8 @@ PHP_METHOD(Ice_Log_Driver, info) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, debug) {
-
+PHP_METHOD(Ice_Log_Driver, debug)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval context;
@@ -422,13 +400,11 @@ PHP_METHOD(Ice_Log_Driver, debug) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
-
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
 		ZEPHIR_INIT_VAR(&context);
@@ -443,7 +419,6 @@ PHP_METHOD(Ice_Log_Driver, debug) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "log", NULL, 0, &_0, &message, &context);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -454,7 +429,7 @@ PHP_METHOD(Ice_Log_Driver, debug) {
  * @param array context
  * @return void
  */
-PHP_METHOD(Ice_Log_Driver, log) {
-
+PHP_METHOD(Ice_Log_Driver, log)
+{
 }
 

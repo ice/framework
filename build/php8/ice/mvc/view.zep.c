@@ -33,33 +33,24 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_View) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_View)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, View, ice, mvc_view, ice_arr_ce, ice_mvc_view_method_entry, 0);
 
 	zend_declare_property_null(ice_mvc_view_ce, SL("engines"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_view_ce, SL("content"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_view_ce, SL("mainView"), "index", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_view_ce, SL("layoutsDir"), "layouts/", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_view_ce, SL("partialsDir"), "partials/", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_view_ce, SL("viewsDir"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_view_ce, SL("file"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_mvc_view_ce, SL("silent"), 0, ZEND_ACC_PROTECTED);
-
 	zend_class_implements(ice_mvc_view_ce, 1, ice_mvc_view_viewinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setEngines) {
-
+PHP_METHOD(Ice_Mvc_View, setEngines)
+{
 	zval *engines, engines_sub;
 	zval *this_ptr = getThis();
 
@@ -69,21 +60,18 @@ PHP_METHOD(Ice_Mvc_View, setEngines) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(engines)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &engines);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("engines"), engines);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setContent) {
-
+PHP_METHOD(Ice_Mvc_View, setContent)
+{
 	zval *content, content_sub;
 	zval *this_ptr = getThis();
 
@@ -93,31 +81,27 @@ PHP_METHOD(Ice_Mvc_View, setContent) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(content)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &content);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), content);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getContent) {
-
+PHP_METHOD(Ice_Mvc_View, getContent)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "content");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setMainView) {
-
+PHP_METHOD(Ice_Mvc_View, setMainView)
+{
 	zval *mainView, mainView_sub;
 	zval *this_ptr = getThis();
 
@@ -127,31 +111,27 @@ PHP_METHOD(Ice_Mvc_View, setMainView) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(mainView)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &mainView);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("mainView"), mainView);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getMainView) {
-
+PHP_METHOD(Ice_Mvc_View, getMainView)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "mainView");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setLayoutsDir) {
-
+PHP_METHOD(Ice_Mvc_View, setLayoutsDir)
+{
 	zval *layoutsDir, layoutsDir_sub;
 	zval *this_ptr = getThis();
 
@@ -161,31 +141,27 @@ PHP_METHOD(Ice_Mvc_View, setLayoutsDir) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(layoutsDir)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &layoutsDir);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("layoutsDir"), layoutsDir);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getLayoutsDir) {
-
+PHP_METHOD(Ice_Mvc_View, getLayoutsDir)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "layoutsDir");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setPartialsDir) {
-
+PHP_METHOD(Ice_Mvc_View, setPartialsDir)
+{
 	zval *partialsDir, partialsDir_sub;
 	zval *this_ptr = getThis();
 
@@ -195,31 +171,27 @@ PHP_METHOD(Ice_Mvc_View, setPartialsDir) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(partialsDir)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &partialsDir);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("partialsDir"), partialsDir);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getPartialsDir) {
-
+PHP_METHOD(Ice_Mvc_View, getPartialsDir)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "partialsDir");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setViewsDir) {
-
+PHP_METHOD(Ice_Mvc_View, setViewsDir)
+{
 	zval *viewsDir, viewsDir_sub;
 	zval *this_ptr = getThis();
 
@@ -229,31 +201,27 @@ PHP_METHOD(Ice_Mvc_View, setViewsDir) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(viewsDir)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &viewsDir);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("viewsDir"), viewsDir);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getViewsDir) {
-
+PHP_METHOD(Ice_Mvc_View, getViewsDir)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "viewsDir");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setFile) {
-
+PHP_METHOD(Ice_Mvc_View, setFile)
+{
 	zval *file, file_sub;
 	zval *this_ptr = getThis();
 
@@ -263,31 +231,27 @@ PHP_METHOD(Ice_Mvc_View, setFile) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(file)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &file);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("file"), file);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_View, getFile) {
-
+PHP_METHOD(Ice_Mvc_View, getFile)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "file");
-
 }
 
-PHP_METHOD(Ice_Mvc_View, setSilent) {
-
+PHP_METHOD(Ice_Mvc_View, setSilent)
+{
 	zval *silent, silent_sub;
 	zval *this_ptr = getThis();
 
@@ -297,17 +261,14 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(silent)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &silent);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("silent"), silent);
 	RETURN_THISW();
-
 }
 
 /**
@@ -316,8 +277,8 @@ PHP_METHOD(Ice_Mvc_View, setSilent) {
  * @param string file
  * @param array data
  */
-PHP_METHOD(Ice_Mvc_View, __construct) {
-
+PHP_METHOD(Ice_Mvc_View, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -332,16 +293,14 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(file)
+		Z_PARAM_ZVAL_OR_NULL(file)
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &file, &data_param);
-
 	if (!file) {
 		file = &file_sub;
 		file = &__$null;
@@ -360,14 +319,13 @@ PHP_METHOD(Ice_Mvc_View, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_mvc_view_ce, getThis(), "__construct", &_0, 0, &data);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Get registered engines.
  */
-PHP_METHOD(Ice_Mvc_View, getEngines) {
-
+PHP_METHOD(Ice_Mvc_View, getEngines)
+{
 	zval _9$$7, _11$$9, _18$$13, _20$$15;
 	zend_string *_7$$4;
 	zend_ulong _6$$4;
@@ -426,7 +384,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				ZEPHIR_INIT_NVAR(&engine);
 				ZVAL_COPY(&engine, _4$$4);
 				if (Z_TYPE_P(&engine) == IS_OBJECT) {
-					if (zephir_instance_of_ev(&engine, zend_ce_closure)) {
+					if (zephir_is_instance_of(&engine, SL("Closure"))) {
 						ZEPHIR_INIT_NVAR(&_8$$7);
 						ZEPHIR_INIT_NVAR(&_9$$7);
 						zephir_create_array(&_9$$7, 1, 0);
@@ -473,7 +431,7 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 				ZEPHIR_CALL_METHOD(&engine, &_3$$4, "current", NULL, 0);
 				zephir_check_call_status();
 					if (Z_TYPE_P(&engine) == IS_OBJECT) {
-						if (zephir_instance_of_ev(&engine, zend_ce_closure)) {
+						if (zephir_is_instance_of(&engine, SL("Closure"))) {
 							ZEPHIR_INIT_NVAR(&_17$$13);
 							ZEPHIR_INIT_NVAR(&_18$$13);
 							zephir_create_array(&_18$$13, 1, 0);
@@ -513,7 +471,6 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
 		ZEPHIR_INIT_NVAR(&ext);
 	}
 	RETURN_MM_MEMBER(getThis(), "engines");
-
 }
 
 /**
@@ -523,8 +480,8 @@ PHP_METHOD(Ice_Mvc_View, getEngines) {
  * @param array data
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View, render) {
-
+PHP_METHOD(Ice_Mvc_View, render)
+{
 	zend_string *_20$$13;
 	zend_ulong _19$$13;
 	zend_bool exists = 0, _37;
@@ -575,16 +532,14 @@ PHP_METHOD(Ice_Mvc_View, render) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(file)
+		Z_PARAM_ZVAL_OR_NULL(file)
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &file, &data_param);
-
 	if (!file) {
 		file = &file_sub;
 		file = &__$null;
@@ -839,7 +794,6 @@ PHP_METHOD(Ice_Mvc_View, render) {
 		return;
 	}
 	RETURN_CCTOR(&content);
-
 }
 
 /**
@@ -849,8 +803,8 @@ PHP_METHOD(Ice_Mvc_View, render) {
  * @param array data Vars to send
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View, load) {
-
+PHP_METHOD(Ice_Mvc_View, load)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
@@ -867,13 +821,11 @@ PHP_METHOD(Ice_Mvc_View, load) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
-
 	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be of the type string"));
 		RETURN_MM_NULL();
@@ -882,7 +834,6 @@ PHP_METHOD(Ice_Mvc_View, load) {
 		zephir_get_strval(&file, file_param);
 	} else {
 		ZEPHIR_INIT_VAR(&file);
-		ZVAL_EMPTY_STRING(&file);
 	}
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
@@ -895,7 +846,6 @@ PHP_METHOD(Ice_Mvc_View, load) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, &file, &data);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -905,8 +855,8 @@ PHP_METHOD(Ice_Mvc_View, load) {
  * @param array data Vars to send
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View, partial) {
-
+PHP_METHOD(Ice_Mvc_View, partial)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
@@ -925,13 +875,11 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &data_param);
-
 	if (UNEXPECTED(Z_TYPE_P(file_param) != IS_STRING && Z_TYPE_P(file_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'file' must be of the type string"));
 		RETURN_MM_NULL();
@@ -940,7 +888,6 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 		zephir_get_strval(&file, file_param);
 	} else {
 		ZEPHIR_INIT_VAR(&file);
-		ZVAL_EMPTY_STRING(&file);
 	}
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
@@ -956,7 +903,6 @@ PHP_METHOD(Ice_Mvc_View, partial) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, &_1, &data);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -966,8 +912,8 @@ PHP_METHOD(Ice_Mvc_View, partial) {
  * @param array data Vars to send
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View, layout) {
-
+PHP_METHOD(Ice_Mvc_View, layout)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval data;
@@ -983,16 +929,14 @@ PHP_METHOD(Ice_Mvc_View, layout) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(file)
+		Z_PARAM_ZVAL_OR_NULL(file)
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &file, &data_param);
-
 	if (!file) {
 		file = &file_sub;
 		ZEPHIR_CPY_WRT(file, &__$null);
@@ -1017,7 +961,6 @@ PHP_METHOD(Ice_Mvc_View, layout) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0, &_1, &data);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1027,8 +970,8 @@ PHP_METHOD(Ice_Mvc_View, layout) {
  * @param mixed value
  * @return object View
  */
-PHP_METHOD(Ice_Mvc_View, setVar) {
-
+PHP_METHOD(Ice_Mvc_View, setVar)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *name_param = NULL, *value, value_sub;
@@ -1043,13 +986,11 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
 		Z_PARAM_STR(name)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &value);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1058,14 +999,12 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, &name, value);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -1074,8 +1013,8 @@ PHP_METHOD(Ice_Mvc_View, setVar) {
  * @param array vars
  * @return object View
  */
-PHP_METHOD(Ice_Mvc_View, setVars) {
-
+PHP_METHOD(Ice_Mvc_View, setVars)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *vars_param = NULL;
@@ -1088,20 +1027,17 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ARRAY(vars)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &vars_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&vars, vars_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &vars);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -1110,8 +1046,8 @@ PHP_METHOD(Ice_Mvc_View, setVars) {
  * @param array vars
  * @return object View
  */
-PHP_METHOD(Ice_Mvc_View, setLayout) {
-
+PHP_METHOD(Ice_Mvc_View, setLayout)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *layout_param = NULL;
@@ -1124,27 +1060,24 @@ PHP_METHOD(Ice_Mvc_View, setLayout) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(layout)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &layout_param);
-
 	zephir_get_strval(&layout, layout_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setmainview", NULL, 0, &layout);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
  * Magic toStrint, get the rendered view.
  */
-PHP_METHOD(Ice_Mvc_View, __toString) {
-
+PHP_METHOD(Ice_Mvc_View, __toString)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
@@ -1156,6 +1089,5 @@ PHP_METHOD(Ice_Mvc_View, __toString) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "render", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

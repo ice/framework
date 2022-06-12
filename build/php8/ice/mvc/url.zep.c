@@ -30,30 +30,26 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Url) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Url)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Url, ice, mvc_url, ice_mvc_url_method_entry, 0);
 
 	zend_declare_property_string(ice_mvc_url_ce, SL("baseUri"), "/", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_url_ce, SL("staticUri"), "/", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Url, getBaseUri) {
-
+PHP_METHOD(Ice_Mvc_Url, getBaseUri)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "baseUri");
-
 }
 
-PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
-
+PHP_METHOD(Ice_Mvc_Url, setBaseUri)
+{
 	zval *baseUri, baseUri_sub;
 	zval *this_ptr = getThis();
 
@@ -63,31 +59,27 @@ PHP_METHOD(Ice_Mvc_Url, setBaseUri) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(baseUri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &baseUri);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("baseUri"), baseUri);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Url, getStaticUri) {
-
+PHP_METHOD(Ice_Mvc_Url, getStaticUri)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "staticUri");
-
 }
 
-PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
-
+PHP_METHOD(Ice_Mvc_Url, setStaticUri)
+{
 	zval *staticUri, staticUri_sub;
 	zval *this_ptr = getThis();
 
@@ -97,17 +89,14 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(staticUri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &staticUri);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("staticUri"), staticUri);
 	RETURN_THISW();
-
 }
 
 /**
@@ -116,8 +105,8 @@ PHP_METHOD(Ice_Mvc_Url, setStaticUri) {
  * @param string uri
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Url, href) {
-
+PHP_METHOD(Ice_Mvc_Url, href)
+{
 	unsigned char _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *uri_param = NULL, staticUri, _0, _1;
@@ -134,16 +123,13 @@ PHP_METHOD(Ice_Mvc_Url, href) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(uri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
-
 	if (!uri_param) {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_STRING(&uri, "");
 	} else {
 		zephir_get_strval(&uri, uri_param);
 	}
@@ -160,7 +146,6 @@ PHP_METHOD(Ice_Mvc_Url, href) {
 	}
 	ZEPHIR_CONCAT_VV(return_value, &staticUri, &uri);
 	RETURN_MM();
-
 }
 
 /**
@@ -169,8 +154,8 @@ PHP_METHOD(Ice_Mvc_Url, href) {
  * @deprecated
  * @see self::href()
  */
-PHP_METHOD(Ice_Mvc_Url, getStatic) {
-
+PHP_METHOD(Ice_Mvc_Url, getStatic)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *uri_param = NULL;
@@ -184,16 +169,13 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(uri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &uri_param);
-
 	if (!uri_param) {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_STRING(&uri, "");
 	} else {
 		zephir_get_strval(&uri, uri_param);
 	}
@@ -202,7 +184,6 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "href", NULL, 0, &uri);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -210,8 +191,8 @@ PHP_METHOD(Ice_Mvc_Url, getStatic) {
  *
  * @see self::get()
  */
-PHP_METHOD(Ice_Mvc_Url, rel) {
-
+PHP_METHOD(Ice_Mvc_Url, rel)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zend_bool local;
@@ -226,17 +207,15 @@ PHP_METHOD(Ice_Mvc_Url, rel) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 3)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(uri)
-		Z_PARAM_ZVAL(args)
+		Z_PARAM_ZVAL_OR_NULL(uri)
+		Z_PARAM_ZVAL_OR_NULL(args)
 		Z_PARAM_BOOL(local)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &uri, &args, &local_param);
-
 	if (!uri) {
 		uri = &uri_sub;
 		uri = &__$null;
@@ -260,7 +239,6 @@ PHP_METHOD(Ice_Mvc_Url, rel) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, uri, args, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -271,8 +249,8 @@ PHP_METHOD(Ice_Mvc_Url, rel) {
  * @param bool local
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Url, get) {
-
+PHP_METHOD(Ice_Mvc_Url, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -298,18 +276,16 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 3)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(uri)
-		Z_PARAM_ZVAL(args)
+		Z_PARAM_ZVAL_OR_NULL(uri)
+		Z_PARAM_ZVAL_OR_NULL(args)
 		Z_PARAM_BOOL(local)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_GET, SL("_GET"));
 	zephir_fetch_params(1, 0, 3, &uri, &args, &local_param);
-
 	if (!uri) {
 		uri = &uri_sub;
 		ZEPHIR_CPY_WRT(uri, &__$null);
@@ -387,6 +363,5 @@ PHP_METHOD(Ice_Mvc_Url, get) {
 	}
 	RETVAL_ZVAL(uri, 1, 0);
 	RETURN_MM();
-
 }
 

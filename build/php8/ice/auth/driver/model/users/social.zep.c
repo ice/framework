@@ -27,19 +27,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Users, Social, ice, auth_driver_model_users_social, ice_mvc_model_ce, ice_auth_driver_model_users_social_method_entry, 0);
 
 	zend_declare_property_string(ice_auth_driver_model_users_social_ce, SL("from"), "user_social", ZEND_ACC_PROTECTED);
-
 	/**
 	 * User class name.
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_social_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -47,8 +44,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Social) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize)
+{
 	zval _5;
 	zval auth, _0, _1, _2, _3, _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -87,7 +84,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, 0, &_1, &_2, &_4, &_5);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -95,8 +91,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, initialize) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct)
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -120,6 +116,5 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Social, onConstruct) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "setprimary", NULL, 0, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 

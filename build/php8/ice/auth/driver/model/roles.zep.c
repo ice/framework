@@ -27,17 +27,15 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model, Roles, ice, auth_driver_model_roles, ice_mvc_model_ce, ice_auth_driver_model_roles_method_entry, 0);
 
 	/**
 	 * User class name.
 	 */
 	zend_declare_property_string(ice_auth_driver_model_roles_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -45,8 +43,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize)
+{
 	zval _2;
 	zval _0, _1, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -72,6 +70,5 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles, initialize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasmany", NULL, 0, &_0, &_1, &_3, &_2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 

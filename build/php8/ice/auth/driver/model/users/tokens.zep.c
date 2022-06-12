@@ -30,19 +30,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Users, Tokens, ice, auth_driver_model_users_tokens, ice_mvc_model_ce, ice_auth_driver_model_users_tokens_method_entry, 0);
 
 	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("from"), "user_tokens", ZEND_ACC_PROTECTED);
-
 	/**
 	 * User class name.
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_tokens_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -50,8 +47,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
+{
 	zend_bool _8;
 	zval _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -115,7 +112,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -125,8 +121,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize) {
  * @param object extra Extra validation
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -144,13 +140,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -168,7 +162,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", &_1, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -176,8 +169,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create) {
  *
  * @return bool status
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired)
+{
 	zval _2;
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -202,7 +195,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "delete", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -212,8 +204,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired) {
  * @param object extra Extra validation
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -231,13 +223,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -255,7 +245,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
 	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", &_1, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -264,8 +253,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update) {
  * @return string
  * @uses Text::random()
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate)
+{
 	zval _6;
 	zval token, _4, _0$$3, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -295,6 +284,5 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate) {
 		zephir_check_call_status();
 	} while (zephir_is_true(&_4));
 	RETURN_CCTOR(&token);
-
 }
 

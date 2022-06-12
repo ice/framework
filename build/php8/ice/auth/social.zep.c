@@ -28,24 +28,21 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Social) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Social)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Auth, Social, ice, auth_social, ice_auth_social_method_entry, 0);
 
 	zend_declare_property_null(ice_auth_social_ce, SL("adapter"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Auth_Social, getAdapter) {
-
+PHP_METHOD(Ice_Auth_Social, getAdapter)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "adapter");
-
 }
 
 /**
@@ -53,8 +50,8 @@ PHP_METHOD(Ice_Auth_Social, getAdapter) {
  *
  * @param SocialInterface adapter
  */
-PHP_METHOD(Ice_Auth_Social, __construct) {
-
+PHP_METHOD(Ice_Auth_Social, __construct)
+{
 	zval *adapter, adapter_sub;
 	zval *this_ptr = getThis();
 
@@ -64,16 +61,13 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_OBJECT_OF_CLASS(adapter, ice_auth_social_socialinterface_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &adapter);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("adapter"), adapter);
-
 }
 
 /**
@@ -81,8 +75,8 @@ PHP_METHOD(Ice_Auth_Social, __construct) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Auth_Social, authenticate) {
-
+PHP_METHOD(Ice_Auth_Social, authenticate)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -97,7 +91,6 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "authenticate", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -107,8 +100,8 @@ PHP_METHOD(Ice_Auth_Social, authenticate) {
  * @param mixed defaultValue The value to return if data key does not exist
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Social, get) {
-
+PHP_METHOD(Ice_Auth_Social, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, __$null, _0;
@@ -124,15 +117,13 @@ PHP_METHOD(Ice_Auth_Social, get) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &defaultValue);
-
 	zephir_get_strval(&key, key_param);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
@@ -144,7 +135,6 @@ PHP_METHOD(Ice_Auth_Social, get) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "get", NULL, 0, &key, defaultValue);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -154,8 +144,8 @@ PHP_METHOD(Ice_Auth_Social, get) {
  * @param mixed arguments
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Social, __call) {
-
+PHP_METHOD(Ice_Auth_Social, __call)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -173,15 +163,13 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(arguments)
+		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
-
 	zephir_get_strval(&method, method_param);
 	if (!arguments) {
 		arguments = &arguments_sub;
@@ -198,6 +186,5 @@ PHP_METHOD(Ice_Auth_Social, __call) {
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, arguments);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

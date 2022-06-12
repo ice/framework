@@ -24,11 +24,10 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Controller) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Controller)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Controller, ice, mvc_controller, ice_di_access_ce, NULL, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	return SUCCESS;
-
 }
 

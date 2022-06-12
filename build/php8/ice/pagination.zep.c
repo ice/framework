@@ -32,36 +32,31 @@
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
-ZEPHIR_INIT_CLASS(Ice_Pagination) {
-
+ZEPHIR_INIT_CLASS(Ice_Pagination)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Pagination, ice, pagination, ice_arr_ce, ice_pagination_method_entry, 0);
 
 	zend_declare_property_null(ice_pagination_ce, SL("di"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_pagination_ce, SL("tag"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Pagination, getDi) {
-
+PHP_METHOD(Ice_Pagination, getDi)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "di");
-
 }
 
-PHP_METHOD(Ice_Pagination, getTag) {
-
+PHP_METHOD(Ice_Pagination, getTag)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "tag");
-
 }
 
 /**
@@ -69,8 +64,8 @@ PHP_METHOD(Ice_Pagination, getTag) {
  *
  * @param array options
  */
-PHP_METHOD(Ice_Pagination, __construct) {
-
+PHP_METHOD(Ice_Pagination, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL;
@@ -88,13 +83,11 @@ PHP_METHOD(Ice_Pagination, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -114,7 +107,6 @@ PHP_METHOD(Ice_Pagination, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("tag"), &_2);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -122,8 +114,8 @@ PHP_METHOD(Ice_Pagination, __construct) {
  *
  * @return object Pagination
  */
-PHP_METHOD(Ice_Pagination, calculate) {
-
+PHP_METHOD(Ice_Pagination, calculate)
+{
 	zval _15;
 	zend_bool _9, _3$$3;
 	zval items, data, total, _0, _4, _5, _6, _7, _8, _14, _1$$3, _2$$3, _10$$8, _11$$8, _12$$8, _13$$8;
@@ -256,7 +248,6 @@ PHP_METHOD(Ice_Pagination, calculate) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "merge", NULL, 0, &_15);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -268,8 +259,8 @@ PHP_METHOD(Ice_Pagination, calculate) {
  * @param string symbol HTML symbol to add
  * @return string HTML
  */
-PHP_METHOD(Ice_Pagination, prepareButton) {
-
+PHP_METHOD(Ice_Pagination, prepareButton)
+{
 	zval _27, _8$$9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -320,17 +311,15 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 	ZEND_PARSE_PARAMETERS_START(1, 4)
 		Z_PARAM_ZVAL(page)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(url)
+		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_BOOL(active)
-		Z_PARAM_ZVAL(symbol)
+		Z_PARAM_ZVAL_OR_NULL(symbol)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &page, &url, &active_param, &symbol);
-
 	ZEPHIR_SEPARATE_PARAM(page);
 	if (!url) {
 		url = &url_sub;
@@ -534,7 +523,6 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_SVSVS(return_value, "<li", &_24, ">", &_26, "</li>");
 	RETURN_MM();
-
 }
 
 /**
@@ -545,8 +533,8 @@ PHP_METHOD(Ice_Pagination, prepareButton) {
  * @param array parameters UL attributes to adding
  * @return string HTML
  */
-PHP_METHOD(Ice_Pagination, minimal) {
-
+PHP_METHOD(Ice_Pagination, minimal)
+{
 	zend_bool _9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -580,16 +568,14 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(url)
+		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_ARRAY(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
-
 	if (!url) {
 		url = &url_sub;
 		url = &__$null;
@@ -674,7 +660,6 @@ PHP_METHOD(Ice_Pagination, minimal) {
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_19);
 	RETURN_CCTOR(&html);
-
 }
 
 /**
@@ -685,8 +670,8 @@ PHP_METHOD(Ice_Pagination, minimal) {
  * @param array parameters UL attributes to adding
  * @return string HTML
  */
-PHP_METHOD(Ice_Pagination, basic) {
-
+PHP_METHOD(Ice_Pagination, basic)
+{
 	zend_bool _12;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_7 = NULL;
@@ -726,16 +711,14 @@ PHP_METHOD(Ice_Pagination, basic) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(url)
+		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_ARRAY(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
-
 	if (!url) {
 		url = &url_sub;
 		url = &__$null;
@@ -848,7 +831,6 @@ PHP_METHOD(Ice_Pagination, basic) {
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_25);
 	RETURN_CCTOR(&html);
-
 }
 
 /**
@@ -861,8 +843,8 @@ PHP_METHOD(Ice_Pagination, basic) {
  * @param int countIn Number of page links on each side of current page
  * @return string HTML
  */
-PHP_METHOD(Ice_Pagination, floating) {
-
+PHP_METHOD(Ice_Pagination, floating)
+{
 	zend_string *_41;
 	zend_ulong _40;
 	zend_bool useMiddle = 0, useN3 = 0, useN6 = 0, _11, _14, _16, _21, _26;
@@ -934,18 +916,16 @@ PHP_METHOD(Ice_Pagination, floating) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 4)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(url)
+		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_ARRAY(parameters)
 		Z_PARAM_LONG(countOut)
 		Z_PARAM_LONG(countIn)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 4, &url, &parameters_param, &countOut_param, &countIn_param);
-
 	if (!url) {
 		url = &url_sub;
 		url = &__$null;
@@ -1222,6 +1202,5 @@ PHP_METHOD(Ice_Pagination, floating) {
 	zephir_check_call_status();
 	zephir_concat_self(&html, &_56);
 	RETURN_CCTOR(&html);
-
 }
 

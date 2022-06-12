@@ -21,11 +21,10 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Http_Response_ResponseInterface) {
-
+ZEPHIR_INIT_CLASS(Ice_Http_Response_ResponseInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Http\\Response, ResponseInterface, ice, http_response_responseinterface, NULL);
 
 	return SUCCESS;
-
 }
 

@@ -29,30 +29,26 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_App) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_App)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, App, ice, mvc_app, ice_di_access_ce, ice_mvc_app_method_entry, 0);
 
 	zend_declare_property_bool(ice_mvc_app_ce, SL("autoRender"), 1, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_app_ce, SL("modules"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_App, getAutoRender) {
-
+PHP_METHOD(Ice_Mvc_App, getAutoRender)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "autoRender");
-
 }
 
-PHP_METHOD(Ice_Mvc_App, setAutoRender) {
-
+PHP_METHOD(Ice_Mvc_App, setAutoRender)
+{
 	zval *autoRender, autoRender_sub;
 	zval *this_ptr = getThis();
 
@@ -62,31 +58,27 @@ PHP_METHOD(Ice_Mvc_App, setAutoRender) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(autoRender)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &autoRender);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("autoRender"), autoRender);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_App, getModules) {
-
+PHP_METHOD(Ice_Mvc_App, getModules)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "modules");
-
 }
 
-PHP_METHOD(Ice_Mvc_App, setModules) {
-
+PHP_METHOD(Ice_Mvc_App, setModules)
+{
 	zval *modules, modules_sub;
 	zval *this_ptr = getThis();
 
@@ -96,17 +88,14 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(modules)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &modules);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("modules"), modules);
 	RETURN_THISW();
-
 }
 
 /**
@@ -114,8 +103,8 @@ PHP_METHOD(Ice_Mvc_App, setModules) {
  *
  * @param Di $di
  */
-PHP_METHOD(Ice_Mvc_App, __construct) {
-
+PHP_METHOD(Ice_Mvc_App, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *di = NULL, di_sub, __$null, _0, _1;
@@ -131,13 +120,11 @@ PHP_METHOD(Ice_Mvc_App, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(di, ice_di_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &di);
-
 	if (!di) {
 		di = &di_sub;
 		di = &__$null;
@@ -151,7 +138,6 @@ PHP_METHOD(Ice_Mvc_App, __construct) {
 	ZEPHIR_CALL_METHOD(NULL, &_0, "set", NULL, 0, &_1, this_ptr);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -161,8 +147,8 @@ PHP_METHOD(Ice_Mvc_App, __construct) {
  * @param string uri
  * @return ResponseInterface|boolean
  */
-PHP_METHOD(Ice_Mvc_App, handle) {
-
+PHP_METHOD(Ice_Mvc_App, handle)
+{
 	zval _9, _40, _18$$7;
 	zend_bool _3, _10, _4$$5, _16$$7, _20$$7, _24$$9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -221,17 +207,15 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(method)
-		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL_OR_NULL(method)
+		Z_PARAM_ZVAL_OR_NULL(uri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_get_global(&_SERVER, SL("_SERVER"));
 	zephir_fetch_params(1, 0, 2, &method, &uri);
-
 	if (!method) {
 		method = &method_sub;
 		ZEPHIR_CPY_WRT(method, &__$null);
@@ -423,7 +407,6 @@ PHP_METHOD(Ice_Mvc_App, handle) {
 	ZEPHIR_RETURN_CALL_METHOD(&response, "send", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -433,8 +416,8 @@ PHP_METHOD(Ice_Mvc_App, handle) {
  * @param array options The keys can be [path|class|namespace]
  * @return object App
  */
-PHP_METHOD(Ice_Mvc_App, addModule) {
-
+PHP_METHOD(Ice_Mvc_App, addModule)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options;
 	zval *name_param = NULL, *options_param = NULL;
@@ -449,19 +432,16 @@ PHP_METHOD(Ice_Mvc_App, addModule) {
 		Z_PARAM_STR(name)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &options_param);
-
 	zephir_get_strval(&name, name_param);
 	zephir_get_arrval(&options, options_param);
 
 
 	zephir_update_property_array(this_ptr, SL("modules"), &name, &options);
 	RETURN_THIS();
-
 }
 

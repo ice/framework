@@ -19,20 +19,17 @@
 #include "kernel/array.h"
 
 
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Collector)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\Route, Collector, ice, mvc_route_collector, ice_mvc_route_collector_method_entry, 0);
 
 	zend_declare_property_null(ice_mvc_route_collector_ce, SL("routeParser"), ZEND_ACC_PRIVATE);
-
 	zend_declare_property_null(ice_mvc_route_collector_ce, SL("dataGenerator"), ZEND_ACC_PRIVATE);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
-
+PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser)
+{
 	zval *routeParser, routeParser_sub;
 	zval *this_ptr = getThis();
 
@@ -42,21 +39,18 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setRouteParser) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(routeParser)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &routeParser);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("routeParser"), routeParser);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
-
+PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator)
+{
 	zval *dataGenerator, dataGenerator_sub;
 	zval *this_ptr = getThis();
 
@@ -66,17 +60,14 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(dataGenerator)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &dataGenerator);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("dataGenerator"), dataGenerator);
 	RETURN_THISW();
-
 }
 
 /**
@@ -85,8 +76,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, setDataGenerator) {
  * @param RouteParser   $routeParser
  * @param DataGenerator $dataGenerator
  */
-PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
-
+PHP_METHOD(Ice_Mvc_Route_Collector, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *routeParser = NULL, routeParser_sub, *dataGenerator = NULL, dataGenerator_sub, __$null;
@@ -102,13 +93,11 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(routeParser, ice_mvc_route_parser_parserinterface_ce)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(dataGenerator, ice_mvc_route_datagenerator_datageneratorinterface_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &routeParser, &dataGenerator);
-
 	if (!routeParser) {
 		routeParser = &routeParser_sub;
 		ZEPHIR_CPY_WRT(routeParser, &__$null);
@@ -130,6 +119,7 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 			ZEPHIR_CALL_METHOD(NULL, routeParser, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 	}
 	if (!(zephir_is_true(dataGenerator))) {
 		ZEPHIR_INIT_NVAR(dataGenerator);
@@ -138,11 +128,11 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
 			ZEPHIR_CALL_METHOD(NULL, dataGenerator, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("routeParser"), routeParser);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("dataGenerator"), dataGenerator);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -155,8 +145,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, __construct) {
  * @param mixed  $handler
  * @return object Collector
  */
-PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
-
+PHP_METHOD(Ice_Mvc_Route_Collector, addRoute)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval route;
@@ -185,15 +175,13 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 		Z_PARAM_ZVAL(httpMethod)
 		Z_PARAM_STR(route)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(handler)
+		Z_PARAM_ZVAL_OR_NULL(handler)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &httpMethod, &route_param, &handler);
-
 	ZEPHIR_SEPARATE_PARAM(httpMethod);
 	zephir_get_strval(&route, route_param);
 	if (!handler) {
@@ -294,7 +282,6 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
 	}
 	ZEPHIR_INIT_NVAR(&method);
 	RETURN_THIS();
-
 }
 
 /**
@@ -302,8 +289,8 @@ PHP_METHOD(Ice_Mvc_Route_Collector, addRoute) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
-
+PHP_METHOD(Ice_Mvc_Route_Collector, getData)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -318,6 +305,5 @@ PHP_METHOD(Ice_Mvc_Route_Collector, getData) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getdata", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

@@ -28,21 +28,19 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Di_Access) {
-
+ZEPHIR_INIT_CLASS(Ice_Di_Access)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Di, Access, ice, di_access, ice_di_access_method_entry, 0);
 
 	zend_declare_property_null(ice_di_access_ce, SL("di"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
  * Magic get to easy retrieve service from the di.
  */
-PHP_METHOD(Ice_Di_Access, __get) {
-
+PHP_METHOD(Ice_Di_Access, __get)
+{
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -63,13 +61,11 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(property)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &property_param);
-
 	zephir_get_strval(&property, property_param);
 
 
@@ -95,11 +91,10 @@ PHP_METHOD(Ice_Di_Access, __get) {
 	zephir_check_call_status();
 	zephir_update_property_zval_zval(this_ptr, &property, &service);
 	RETURN_CCTOR(&service);
-
 }
 
-PHP_METHOD(Ice_Di_Access, __set) {
-
+PHP_METHOD(Ice_Di_Access, __set)
+{
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -120,13 +115,11 @@ PHP_METHOD(Ice_Di_Access, __set) {
 		Z_PARAM_STR(property)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &property_param, &value);
-
 	zephir_get_strval(&property, property_param);
 
 
@@ -147,6 +140,5 @@ PHP_METHOD(Ice_Di_Access, __set) {
 	ZEPHIR_RETURN_CALL_METHOD(&_5, "set", NULL, 0, &property, value);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

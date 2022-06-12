@@ -31,24 +31,17 @@
  * @license     http://iceframework.org/license
  * @uses        jsmin.c www.crockford.com
  */
-ZEPHIR_INIT_CLASS(Ice_Filter_Js) {
-
+ZEPHIR_INIT_CLASS(Ice_Filter_Js)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Filter, Js, ice, filter_js, ice_filter_js_method_entry, 0);
 
 	zend_declare_property_string(ice_filter_js_ce, SL("a"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_filter_js_ce, SL("b"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_filter_js_ce, SL("input"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(ice_filter_js_ce, SL("inputIndex"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_long(ice_filter_js_ce, SL("inputLength"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_filter_js_ce, SL("lookAhead"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_filter_js_ce, SL("output"), "", ZEND_ACC_PROTECTED);
-
 	zephir_declare_class_constant_long(ice_filter_js_ce, SL("ORD_LF"), 10);
 
 	zephir_declare_class_constant_long(ice_filter_js_ce, SL("ORD_SPACE"), 32);
@@ -60,17 +53,15 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Js) {
 	zephir_declare_class_constant_long(ice_filter_js_ce, SL("ACTION_DELETE_A_B"), 3);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Filter_Js, getOutput) {
-
+PHP_METHOD(Ice_Filter_Js, getOutput)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "output");
-
 }
 
 /**
@@ -79,8 +70,8 @@ PHP_METHOD(Ice_Filter_Js, getOutput) {
  * @param string js JS code to minify
  * @return string
  */
-PHP_METHOD(Ice_Filter_Js, sanitize) {
-
+PHP_METHOD(Ice_Filter_Js, sanitize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *js_param = NULL, __$null, _0, _1, _2, _3, _4, _5;
@@ -100,13 +91,11 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(js)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &js_param);
-
 	zephir_get_strval(&js, js_param);
 
 
@@ -139,7 +128,6 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "min", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -158,8 +146,8 @@ PHP_METHOD(Ice_Filter_Js, sanitize) {
  *      ACTION_DELETE_A    Copy B to A. Get the next B. (Delete A).
  *      ACTION_DELETE_A_B  Get the next B. (Delete B).
  */
-PHP_METHOD(Ice_Filter_Js, action) {
-
+PHP_METHOD(Ice_Filter_Js, action)
+{
 	zend_bool _3, _23, _24, _6$$4, _28$$10, _30$$10, _32$$10, _34$$10, _36$$10, _38$$10, _40$$10, _42$$10, _44$$10, _46$$10, _48$$10, _50$$10, _52$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_12 = NULL, *_17 = NULL, *_26 = NULL;
@@ -236,13 +224,11 @@ PHP_METHOD(Ice_Filter_Js, action) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(command)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &command_param);
-
 	command = zephir_get_intval(command_param);
 
 
@@ -464,7 +450,6 @@ PHP_METHOD(Ice_Filter_Js, action) {
 		}
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -472,8 +457,8 @@ PHP_METHOD(Ice_Filter_Js, action) {
  *
  * @return string|null
  */
-PHP_METHOD(Ice_Filter_Js, get) {
-
+PHP_METHOD(Ice_Filter_Js, get)
+{
 	zend_bool _6, _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -533,7 +518,6 @@ PHP_METHOD(Ice_Filter_Js, get) {
 		RETURN_CCTOR(&c);
 	}
 	RETURN_MM_STRING(" ");
-
 }
 
 /**
@@ -541,8 +525,8 @@ PHP_METHOD(Ice_Filter_Js, get) {
  *
  * @return bool
  */
-PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
-
+PHP_METHOD(Ice_Filter_Js, isAlphaNum)
+{
 	zend_bool _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -560,13 +544,11 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(c)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &c);
-
 
 
 	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 34, c);
@@ -587,7 +569,6 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
 		_2 = ZEPHIR_IS_LONG_IDENTICAL(&_5, 1);
 	}
 	RETURN_MM_BOOL(_2);
-
 }
 
 /**
@@ -595,8 +576,8 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Filter_Js, min) {
-
+PHP_METHOD(Ice_Filter_Js, min)
+{
 	zval _0, _1, _2, _3, _6$$4, _7$$5, _8$$5, _10$$6, _11$$7, _12$$8, _13$$9, _14$$10, _15$$11, _16$$11, _17$$12, _18$$13, _19$$14, _20$$15, _21$$15, _23$$15, _22$$16, _24$$17, _25$$18, _26$$19, _27$$19, _28$$20, _29$$21, _30$$22;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_5 = NULL, *_9 = NULL;
@@ -761,7 +742,6 @@ PHP_METHOD(Ice_Filter_Js, min) {
 
 	}
 	RETURN_MM_MEMBER(getThis(), "output");
-
 }
 
 /**
@@ -771,8 +751,8 @@ PHP_METHOD(Ice_Filter_Js, min) {
  * @throws Exception On unterminated comment.
  * @return string
  */
-PHP_METHOD(Ice_Filter_Js, next) {
-
+PHP_METHOD(Ice_Filter_Js, next)
+{
 	zval c, _1$$3, _3$$5, _5$$8, _6$$9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL, *_4 = NULL;
@@ -841,7 +821,6 @@ PHP_METHOD(Ice_Filter_Js, next) {
 
 	}
 	RETURN_CCTOR(&c);
-
 }
 
 /**
@@ -849,8 +828,8 @@ PHP_METHOD(Ice_Filter_Js, next) {
  *
  * @return string|null
  */
-PHP_METHOD(Ice_Filter_Js, peek) {
-
+PHP_METHOD(Ice_Filter_Js, peek)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -865,6 +844,5 @@ PHP_METHOD(Ice_Filter_Js, peek) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("lookAhead"), &_0);
 	RETURN_MM_MEMBER(getThis(), "lookAhead");
-
 }
 

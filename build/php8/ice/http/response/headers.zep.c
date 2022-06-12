@@ -29,13 +29,12 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
-
+ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Http\\Response, Headers, ice, http_response_headers, ice_arr_ce, ice_http_response_headers_method_entry, 0);
 
 	zend_class_implements(ice_http_response_headers_ce, 1, ice_http_response_headersinterface_ce);
 	return SUCCESS;
-
 }
 
 /**
@@ -43,8 +42,8 @@ ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Http_Response_Headers, send) {
-
+PHP_METHOD(Ice_Http_Response_Headers, send)
+{
 	zend_object_iterator *_1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -85,6 +84,5 @@ PHP_METHOD(Ice_Http_Response_Headers, send) {
 		RETURN_MM_BOOL(1);
 	}
 	RETURN_MM_BOOL(0);
-
 }
 

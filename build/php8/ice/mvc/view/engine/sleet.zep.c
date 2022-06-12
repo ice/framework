@@ -34,24 +34,21 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc\\View\\Engine, Sleet, ice, mvc_view_engine_sleet, ice_mvc_view_engine_ce, ice_mvc_view_engine_sleet_method_entry, 0);
 
 	zend_declare_property_null(ice_mvc_view_engine_sleet_ce, SL("compiler"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
-
+PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "compiler");
-
 }
 
 /**
@@ -60,8 +57,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, getCompiler) {
  * @param string path Path to the file
  * @return string Path to the compiled file
  */
-PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
-
+PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile)
+{
 	zend_bool _10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_16 = NULL;
@@ -101,13 +98,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(path)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &path_param);
-
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
@@ -116,7 +111,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
-		ZVAL_EMPTY_STRING(&path);
 	}
 
 
@@ -215,7 +209,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
 		}
 	}
 	RETURN_CCTOR(&compiledPath);
-
 }
 
 /**
@@ -225,8 +218,8 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile) {
  * @param array data
  * @return string
  */
-PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
-
+PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render)
+{
 	zend_string *_4;
 	zend_ulong _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -251,13 +244,11 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
-
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
 		RETURN_MM_NULL();
@@ -266,7 +257,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 		zephir_get_strval(&path, path_param);
 	} else {
 		ZEPHIR_INIT_VAR(&path);
-		ZVAL_EMPTY_STRING(&path);
 	}
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
@@ -327,6 +317,5 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render) {
 	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 169);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

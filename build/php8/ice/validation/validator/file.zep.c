@@ -53,12 +53,11 @@
  *  }
  * </code></pre>
  */
-ZEPHIR_INIT_CLASS(Ice_Validation_Validator_File) {
-
+ZEPHIR_INIT_CLASS(Ice_Validation_Validator_File)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, File, ice, validation_validator_file, ice_validation_validator_ce, ice_validation_validator_file_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -70,8 +69,8 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_File) {
  * @param string field
  * @return boolean
  */
-PHP_METHOD(Ice_Validation_Validator_File, validate) {
-
+PHP_METHOD(Ice_Validation_Validator_File, validate)
+{
 	zend_bool _4, _5, _6, _8, _9, _25, _26, _27, _29, _30, _32, _48, _49, _107, _16$$5, _40$$10, _55$$14, _81$$20, _98$$28, _114$$32, _120$$35, _131$$39, _137$$40;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_23 = NULL, *_70 = NULL;
@@ -232,7 +231,6 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		Z_PARAM_OBJECT_OF_CLASS(validation, ice_validation_ce)
 		Z_PARAM_STR(field)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
@@ -241,7 +239,6 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 	zephir_get_global(&_POST, SL("_POST"));
 	zephir_get_global(&_SERVER, SL("_SERVER"));
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
-
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
@@ -250,7 +247,6 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
-		ZVAL_EMPTY_STRING(&field);
 	}
 
 
@@ -858,6 +854,5 @@ PHP_METHOD(Ice_Validation_Validator_File, validate) {
 		}
 	}
 	RETURN_MM_BOOL(1);
-
 }
 

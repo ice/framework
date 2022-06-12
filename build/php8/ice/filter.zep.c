@@ -33,14 +33,12 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Filter) {
-
+ZEPHIR_INIT_CLASS(Ice_Filter)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Filter, ice, filter, ice_filter_method_entry, 0);
 
 	zend_declare_property_null(ice_filter_ce, SL("filters"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -50,8 +48,8 @@ ZEPHIR_INIT_CLASS(Ice_Filter) {
  * @param callable body
  * @return object Filter
  */
-PHP_METHOD(Ice_Filter, add) {
-
+PHP_METHOD(Ice_Filter, add)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *name_param = NULL, *body, body_sub;
 	zval name;
@@ -65,13 +63,11 @@ PHP_METHOD(Ice_Filter, add) {
 		Z_PARAM_STR(name)
 		Z_PARAM_ZVAL(body)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &name_param, &body);
-
 	if (UNEXPECTED(Z_TYPE_P(name_param) != IS_STRING && Z_TYPE_P(name_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'name' must be of the type string"));
 		RETURN_MM_NULL();
@@ -80,7 +76,6 @@ PHP_METHOD(Ice_Filter, add) {
 		zephir_get_strval(&name, name_param);
 	} else {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_EMPTY_STRING(&name);
 	}
 
 
@@ -90,7 +85,6 @@ PHP_METHOD(Ice_Filter, add) {
 	}
 	zephir_update_property_array(this_ptr, SL("filters"), &name, body);
 	RETURN_THIS();
-
 }
 
 /**
@@ -100,8 +94,8 @@ PHP_METHOD(Ice_Filter, add) {
  * @param mixed filters
  * @return mixed
  */
-PHP_METHOD(Ice_Filter, sanitize) {
-
+PHP_METHOD(Ice_Filter, sanitize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -121,13 +115,11 @@ PHP_METHOD(Ice_Filter, sanitize) {
 		Z_PARAM_ZVAL(value)
 		Z_PARAM_ZVAL(filters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &value, &filters);
-
 	ZEPHIR_SEPARATE_PARAM(value);
 	ZEPHIR_SEPARATE_PARAM(filters);
 
@@ -170,7 +162,6 @@ PHP_METHOD(Ice_Filter, sanitize) {
 	}
 	RETVAL_ZVAL(value, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -180,8 +171,8 @@ PHP_METHOD(Ice_Filter, sanitize) {
  * @param string filter
  * @return mixed
  */
-PHP_METHOD(Ice_Filter, doSanitize) {
-
+PHP_METHOD(Ice_Filter, doSanitize)
+{
 	zval _1$$4, _30$$19, _32$$19;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_14 = NULL, *_22 = NULL;
@@ -239,13 +230,11 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		Z_PARAM_STR(value)
 		Z_PARAM_STR(filter)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &value_param, &filter_param);
-
 	zephir_get_strval(&value, value_param);
 	if (UNEXPECTED(Z_TYPE_P(filter_param) != IS_STRING && Z_TYPE_P(filter_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'filter' must be of the type string"));
@@ -255,14 +244,13 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 		zephir_get_strval(&filter, filter_param);
 	} else {
 		ZEPHIR_INIT_VAR(&filter);
-		ZVAL_EMPTY_STRING(&filter);
 	}
 
 
 	ZEPHIR_OBS_VAR(&custom);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("filters"), PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&custom, &_0, &filter, 0)) {
-		if (zephir_instance_of_ev(&custom, zend_ce_closure)) {
+		if (zephir_is_instance_of(&custom, SL("Closure"))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
 			zephir_create_array(&_1$$4, 1, 0);
 			zephir_array_fast_append(&_1$$4, &value);
@@ -432,7 +420,7 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 			RETURN_MM();
 		}
 		if (ZEPHIR_IS_STRING(&filter, "e") || ZEPHIR_IS_STRING(&filter, "escape") || ZEPHIR_IS_STRING(&filter, "strip_special")) {
-			zephir_get_strval(&_36$$20, &value);
+			zephir_cast_to_string(&_36$$20, &value);
 			ZVAL_LONG(&_37$$20, (3 | 48));
 			ZEPHIR_RETURN_CALL_FUNCTION("htmlspecialchars", NULL, 123, &_36$$20, &_37$$20);
 			zephir_check_call_status();
@@ -458,6 +446,5 @@ PHP_METHOD(Ice_Filter, doSanitize) {
 	} while(0);
 
 	ZEPHIR_MM_RESTORE();
-
 }
 

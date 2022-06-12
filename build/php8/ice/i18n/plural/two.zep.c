@@ -37,17 +37,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Two) {
-
+ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Two)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\I18n\\Plural, Two, ice, i18n_plural_two, ice_i18n_plural_two_method_entry, 0);
 
 	zend_class_implements(ice_i18n_plural_two_ce, 1, ice_i18n_plural_pluralinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_I18n_Plural_Two, getCategory) {
-
+PHP_METHOD(Ice_I18n_Plural_Two, getCategory)
+{
 	zval *count_param = NULL;
 	zend_long count;
 	zval *this_ptr = getThis();
@@ -57,12 +56,10 @@ PHP_METHOD(Ice_I18n_Plural_Two, getCategory) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &count_param);
-
 	count = zephir_get_intval(count_param);
 
 
@@ -73,6 +70,5 @@ PHP_METHOD(Ice_I18n_Plural_Two, getCategory) {
 	} else {
 		RETURN_STRING("other");
 	}
-
 }
 

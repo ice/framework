@@ -33,38 +33,24 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Model) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Model)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Model, ice, mvc_model, ice_arr_ce, ice_mvc_model_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(ice_mvc_model_ce, SL("di"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("db"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_model_ce, SL("service"), "db", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("from"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("primary"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_mvc_model_ce, SL("autoincrement"), 1, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("filters"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("fields"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("validation"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("relations"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("labels"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("rules"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("messages"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_model_ce, SL("isLoaded"), ZEND_ACC_PROTECTED);
-
 	ice_mvc_model_ce->create_object = zephir_init_properties_Ice_Mvc_Model;
 	zephir_declare_class_constant_long(ice_mvc_model_ce, SL("BELONGS_TO"), 1);
 
@@ -74,31 +60,28 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Model) {
 
 	zend_class_implements(ice_mvc_model_ce, 1, zend_ce_serializable);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getDi) {
-
+PHP_METHOD(Ice_Mvc_Model, getDi)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "di");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getDb) {
-
+PHP_METHOD(Ice_Mvc_Model, getDb)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "db");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setFrom) {
-
+PHP_METHOD(Ice_Mvc_Model, setFrom)
+{
 	zval *from, from_sub;
 	zval *this_ptr = getThis();
 
@@ -108,21 +91,18 @@ PHP_METHOD(Ice_Mvc_Model, setFrom) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(from)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &from);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("from"), from);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setPrimary) {
-
+PHP_METHOD(Ice_Mvc_Model, setPrimary)
+{
 	zval *primary, primary_sub;
 	zval *this_ptr = getThis();
 
@@ -132,31 +112,27 @@ PHP_METHOD(Ice_Mvc_Model, setPrimary) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(primary)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &primary);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("primary"), primary);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getPrimary) {
-
+PHP_METHOD(Ice_Mvc_Model, getPrimary)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "primary");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setAutoincrement) {
-
+PHP_METHOD(Ice_Mvc_Model, setAutoincrement)
+{
 	zval *autoincrement, autoincrement_sub;
 	zval *this_ptr = getThis();
 
@@ -166,21 +142,18 @@ PHP_METHOD(Ice_Mvc_Model, setAutoincrement) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(autoincrement)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &autoincrement);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("autoincrement"), autoincrement);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setFilters) {
-
+PHP_METHOD(Ice_Mvc_Model, setFilters)
+{
 	zval *filters, filters_sub;
 	zval *this_ptr = getThis();
 
@@ -190,31 +163,27 @@ PHP_METHOD(Ice_Mvc_Model, setFilters) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(filters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &filters);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("filters"), filters);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getFilters) {
-
+PHP_METHOD(Ice_Mvc_Model, getFilters)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "filters");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setFields) {
-
+PHP_METHOD(Ice_Mvc_Model, setFields)
+{
 	zval *fields, fields_sub;
 	zval *this_ptr = getThis();
 
@@ -224,31 +193,27 @@ PHP_METHOD(Ice_Mvc_Model, setFields) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(fields)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &fields);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("fields"), fields);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getFields) {
-
+PHP_METHOD(Ice_Mvc_Model, getFields)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "fields");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setValidation) {
-
+PHP_METHOD(Ice_Mvc_Model, setValidation)
+{
 	zval *validation, validation_sub;
 	zval *this_ptr = getThis();
 
@@ -258,41 +223,36 @@ PHP_METHOD(Ice_Mvc_Model, setValidation) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(validation)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &validation);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("validation"), validation);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getValidation) {
-
+PHP_METHOD(Ice_Mvc_Model, getValidation)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "validation");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getRelations) {
-
+PHP_METHOD(Ice_Mvc_Model, getRelations)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "relations");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setLabels) {
-
+PHP_METHOD(Ice_Mvc_Model, setLabels)
+{
 	zval *labels, labels_sub;
 	zval *this_ptr = getThis();
 
@@ -302,31 +262,27 @@ PHP_METHOD(Ice_Mvc_Model, setLabels) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(labels)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &labels);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("labels"), labels);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, getMessages) {
-
+PHP_METHOD(Ice_Mvc_Model, getMessages)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "messages");
-
 }
 
-PHP_METHOD(Ice_Mvc_Model, setMessages) {
-
+PHP_METHOD(Ice_Mvc_Model, setMessages)
+{
 	zval *messages, messages_sub;
 	zval *this_ptr = getThis();
 
@@ -336,17 +292,14 @@ PHP_METHOD(Ice_Mvc_Model, setMessages) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(messages)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &messages);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("messages"), messages);
 	RETURN_THISW();
-
 }
 
 /**
@@ -356,8 +309,8 @@ PHP_METHOD(Ice_Mvc_Model, setMessages) {
  * @param array data
  * @param array options Options to limit/group/orderby results when filters is not null
  */
-PHP_METHOD(Ice_Mvc_Model, __construct) {
-
+PHP_METHOD(Ice_Mvc_Model, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL, *_6 = NULL;
@@ -385,17 +338,15 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 3)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ZVAL_OR_NULL(filters)
 		Z_PARAM_ARRAY(data)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &filters, &data_param, &options_param);
-
 	if (!filters) {
 		filters = &filters_sub;
 		filters = &__$null;
@@ -457,7 +408,6 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -465,8 +415,8 @@ PHP_METHOD(Ice_Mvc_Model, __construct) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Mvc_Model, getId) {
-
+PHP_METHOD(Ice_Mvc_Model, getId)
+{
 	zval _0, _1$$3, _2$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -492,7 +442,6 @@ PHP_METHOD(Ice_Mvc_Model, getId) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 
 /**
@@ -500,8 +449,8 @@ PHP_METHOD(Ice_Mvc_Model, getId) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Model, getIdKey) {
-
+PHP_METHOD(Ice_Mvc_Model, getIdKey)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -516,7 +465,6 @@ PHP_METHOD(Ice_Mvc_Model, getIdKey) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "getid", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -526,8 +474,8 @@ PHP_METHOD(Ice_Mvc_Model, getIdKey) {
  * @param boolean model
  * @return object
  */
-PHP_METHOD(Ice_Mvc_Model, getDateTime) {
-
+PHP_METHOD(Ice_Mvc_Model, getDateTime)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key, key_sub, *model = NULL, model_sub, __$false, value, _0, _1;
@@ -546,13 +494,11 @@ PHP_METHOD(Ice_Mvc_Model, getDateTime) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(model)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key, &model);
-
 	if (!model) {
 		model = &model_sub;
 		model = &__$false;
@@ -571,7 +517,6 @@ PHP_METHOD(Ice_Mvc_Model, getDateTime) {
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "getdatetime", NULL, 0, &value, model);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -581,8 +526,8 @@ PHP_METHOD(Ice_Mvc_Model, getDateTime) {
  * @param array options Options to limit/group/orderby results
  * @return this|false
  */
-PHP_METHOD(Ice_Mvc_Model, loadOne) {
-
+PHP_METHOD(Ice_Mvc_Model, loadOne)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options;
@@ -604,13 +549,11 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &filters, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -646,7 +589,6 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
 		RETURN_MM_BOOL(0);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -656,8 +598,8 @@ PHP_METHOD(Ice_Mvc_Model, loadOne) {
  * @param array options
  * @return object Arr
  */
-PHP_METHOD(Ice_Mvc_Model, load) {
-
+PHP_METHOD(Ice_Mvc_Model, load)
+{
 	zend_object_iterator *_3$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -686,13 +628,11 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &filters, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -738,7 +678,6 @@ PHP_METHOD(Ice_Mvc_Model, load) {
 	ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 4, &instances);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -757,8 +696,8 @@ PHP_METHOD(Ice_Mvc_Model, load) {
  * @param array options
  * @return this|false
  */
-PHP_METHOD(Ice_Mvc_Model, findOne) {
-
+PHP_METHOD(Ice_Mvc_Model, findOne)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options, _1;
@@ -777,16 +716,14 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ZVAL_OR_NULL(filters)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &options_param);
-
 	if (!filters) {
 		filters = &filters_sub;
 		filters = &__$null;
@@ -819,7 +756,6 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
 		ZVAL_BOOL(&_2, 0);
 	}
 	RETURN_CCTOR(&_2);
-
 }
 
 /**
@@ -834,8 +770,8 @@ PHP_METHOD(Ice_Mvc_Model, findOne) {
  * @param array options
  * @return object Arr
  */
-PHP_METHOD(Ice_Mvc_Model, find) {
-
+PHP_METHOD(Ice_Mvc_Model, find)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options;
@@ -851,16 +787,14 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(filters)
+		Z_PARAM_ZVAL_OR_NULL(filters)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &filters, &options_param);
-
 	if (!filters) {
 		filters = &filters_sub;
 		filters = &__$null;
@@ -881,7 +815,6 @@ PHP_METHOD(Ice_Mvc_Model, find) {
 	ZEPHIR_RETURN_CALL_METHOD(&model, "load", NULL, 0, filters, &options);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -891,8 +824,8 @@ PHP_METHOD(Ice_Mvc_Model, find) {
  * @param boolean primary Keep primary key
  * @return array
  */
-PHP_METHOD(Ice_Mvc_Model, fields) {
-
+PHP_METHOD(Ice_Mvc_Model, fields)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_4 = NULL, *_9 = NULL, *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -937,13 +870,11 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_BOOL(primary)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &primary_param);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -1088,7 +1019,6 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
 	}
 	RETVAL_ZVAL(fields, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -1106,8 +1036,8 @@ PHP_METHOD(Ice_Mvc_Model, fields) {
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
  * @return null|boolean If validate fail return null, else return insert status
  */
-PHP_METHOD(Ice_Mvc_Model, create) {
-
+PHP_METHOD(Ice_Mvc_Model, create)
+{
 	zend_bool _9, _11, _14$$5;
 	zval _6, _37, _40, _50;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1176,13 +1106,11 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -1346,7 +1274,6 @@ PHP_METHOD(Ice_Mvc_Model, create) {
 	ZEPHIR_CALL_METHOD(NULL, &_49, "applyhook", NULL, 0, &_7, &_50, this_ptr);
 	zephir_check_call_status();
 	RETURN_CCTOR(&status);
-
 }
 
 /**
@@ -1363,8 +1290,8 @@ PHP_METHOD(Ice_Mvc_Model, create) {
  * @param object extra Validation for fields such as a CSRF token, password verification, or a CAPTCHA
  * @return null|boolean If validate fail return null, else return update status
  */
-PHP_METHOD(Ice_Mvc_Model, update) {
-
+PHP_METHOD(Ice_Mvc_Model, update)
+{
 	zend_bool _20;
 	zval _17, _34, _37, _45;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1431,13 +1358,11 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -1612,7 +1537,6 @@ PHP_METHOD(Ice_Mvc_Model, update) {
 	ZEPHIR_CALL_METHOD(NULL, &_43, "applyhook", NULL, 0, &_18, &_45, this_ptr);
 	zephir_check_call_status();
 	RETURN_CCTOR(&status);
-
 }
 
 /**
@@ -1635,8 +1559,8 @@ PHP_METHOD(Ice_Mvc_Model, update) {
  * @param Validation extra
  * @return null|boolean If validate fail return null, else return save status
  */
-PHP_METHOD(Ice_Mvc_Model, save) {
-
+PHP_METHOD(Ice_Mvc_Model, save)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
@@ -1653,13 +1577,11 @@ PHP_METHOD(Ice_Mvc_Model, save) {
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
-
 	if (!fields) {
 		fields = &fields_sub;
 		ZEPHIR_INIT_VAR(fields);
@@ -1682,7 +1604,6 @@ PHP_METHOD(Ice_Mvc_Model, save) {
 		zephir_check_call_status();
 		RETURN_MM();
 	}
-
 }
 
 /**
@@ -1700,8 +1621,8 @@ PHP_METHOD(Ice_Mvc_Model, save) {
  * @param filters
  * @return boolean
  */
-PHP_METHOD(Ice_Mvc_Model, delete) {
-
+PHP_METHOD(Ice_Mvc_Model, delete)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1730,13 +1651,11 @@ PHP_METHOD(Ice_Mvc_Model, delete) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(filters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &filters);
-
 	if (!filters) {
 		filters = &filters_sub;
 		ZEPHIR_INIT_VAR(filters);
@@ -1806,7 +1725,6 @@ PHP_METHOD(Ice_Mvc_Model, delete) {
 		}
 	}
 	RETURN_CCTOR(&status);
-
 }
 
 /**
@@ -1815,8 +1733,8 @@ PHP_METHOD(Ice_Mvc_Model, delete) {
  * @param mixed filters
  * @return Model|false
  */
-PHP_METHOD(Ice_Mvc_Model, exists) {
-
+PHP_METHOD(Ice_Mvc_Model, exists)
+{
 	zend_bool _9$$6, _14$$9, _19$$12;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL, *_11 = NULL;
@@ -1852,13 +1770,11 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(filters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &filters);
-
 	if (!filters) {
 		filters = &filters_sub;
 		ZEPHIR_INIT_VAR(filters);
@@ -1968,7 +1884,6 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "loadone", NULL, 0, filters);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1976,8 +1891,8 @@ PHP_METHOD(Ice_Mvc_Model, exists) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Mvc_Model, loaded) {
-
+PHP_METHOD(Ice_Mvc_Model, loaded)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *this_ptr = getThis();
@@ -1996,7 +1911,6 @@ PHP_METHOD(Ice_Mvc_Model, loaded) {
 		ZVAL_BOOL(&_0, 0);
 	}
 	RETURN_CCTOR(&_0);
-
 }
 
 /**
@@ -2004,8 +1918,8 @@ PHP_METHOD(Ice_Mvc_Model, loaded) {
  *
  * @return mixed
  */
-PHP_METHOD(Ice_Mvc_Model, getError) {
-
+PHP_METHOD(Ice_Mvc_Model, getError)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -2020,7 +1934,6 @@ PHP_METHOD(Ice_Mvc_Model, getError) {
 	ZEPHIR_RETURN_CALL_METHOD(&_0, "geterror", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -2047,8 +1960,8 @@ PHP_METHOD(Ice_Mvc_Model, getError) {
  * @param array options
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, belongsTo) {
-
+PHP_METHOD(Ice_Mvc_Model, belongsTo)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options, _0;
 	zval *field_param = NULL, *referenceModel_param = NULL, *referencedField_param = NULL, *options_param = NULL, alias;
@@ -2070,13 +1983,11 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &field_param, &referenceModel_param, &referencedField_param, &options_param);
-
 	zephir_get_strval(&field, field_param);
 	zephir_get_strval(&referenceModel, referenceModel_param);
 	zephir_get_strval(&referencedField, referencedField_param);
@@ -2101,7 +2012,6 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
 	zephir_array_update_string(&_0, SL("options"), &options, PH_COPY | PH_SEPARATE);
 	zephir_update_property_array(this_ptr, SL("relations"), &alias, &_0);
 	RETURN_THIS();
-
 }
 
 /**
@@ -2123,8 +2033,8 @@ PHP_METHOD(Ice_Mvc_Model, belongsTo) {
  * @param array options
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, hasOne) {
-
+PHP_METHOD(Ice_Mvc_Model, hasOne)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options, _0;
 	zval *field_param = NULL, *referenceModel_param = NULL, *referencedField_param = NULL, *options_param = NULL, alias;
@@ -2146,13 +2056,11 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &field_param, &referenceModel_param, &referencedField_param, &options_param);
-
 	zephir_get_strval(&field, field_param);
 	zephir_get_strval(&referenceModel, referenceModel_param);
 	zephir_get_strval(&referencedField, referencedField_param);
@@ -2177,7 +2085,6 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
 	zephir_array_update_string(&_0, SL("options"), &options, PH_COPY | PH_SEPARATE);
 	zephir_update_property_array(this_ptr, SL("relations"), &alias, &_0);
 	RETURN_THIS();
-
 }
 
 /**
@@ -2206,8 +2113,8 @@ PHP_METHOD(Ice_Mvc_Model, hasOne) {
  * @param array options
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, hasMany) {
-
+PHP_METHOD(Ice_Mvc_Model, hasMany)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options, _0;
 	zval *field_param = NULL, *referenceModel_param = NULL, *referencedField_param = NULL, *options_param = NULL, alias;
@@ -2229,13 +2136,11 @@ PHP_METHOD(Ice_Mvc_Model, hasMany) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 1, &field_param, &referenceModel_param, &referencedField_param, &options_param);
-
 	zephir_get_strval(&field, field_param);
 	zephir_get_strval(&referenceModel, referenceModel_param);
 	zephir_get_strval(&referencedField, referencedField_param);
@@ -2260,7 +2165,6 @@ PHP_METHOD(Ice_Mvc_Model, hasMany) {
 	zephir_array_update_string(&_0, SL("options"), &options, PH_COPY | PH_SEPARATE);
 	zephir_update_property_array(this_ptr, SL("relations"), &alias, &_0);
 	RETURN_THIS();
-
 }
 
 /**
@@ -2270,8 +2174,8 @@ PHP_METHOD(Ice_Mvc_Model, hasMany) {
  * @param array filters
  * @param array options
  */
-PHP_METHOD(Ice_Mvc_Model, getRelated) {
-
+PHP_METHOD(Ice_Mvc_Model, getRelated)
+{
 	zend_class_entry *_10$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -2306,13 +2210,11 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 		Z_PARAM_ARRAY(filters)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &alias_param, &filters_param, &options_param);
-
 	zephir_get_strval(&alias, alias_param);
 	if (!filters_param) {
 		ZEPHIR_INIT_VAR(&filters);
@@ -2384,7 +2286,6 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
 	} while(0);
 
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -2404,8 +2305,8 @@ PHP_METHOD(Ice_Mvc_Model, getRelated) {
  * @param mixed fields
  * @return mixed
  */
-PHP_METHOD(Ice_Mvc_Model, getRules) {
-
+PHP_METHOD(Ice_Mvc_Model, getRules)
+{
 	zend_bool _0$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -2430,15 +2331,13 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(fields)
+		Z_PARAM_ZVAL_OR_NULL(fields)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &fields);
-
 	if (!fields) {
 		fields = &fields_sub;
 		fields = &__$null;
@@ -2498,7 +2397,6 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
 		RETURN_MM_NULL();
 	}
 	RETURN_MM_MEMBER(getThis(), "rules");
-
 }
 
 /**
@@ -2508,8 +2406,8 @@ PHP_METHOD(Ice_Mvc_Model, getRules) {
  * @param boolean merge
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, setRules) {
-
+PHP_METHOD(Ice_Mvc_Model, setRules)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool merge;
 	zval *rules_param = NULL, *merge_param = NULL, _0$$3, _1$$3;
@@ -2526,13 +2424,11 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 		Z_PARAM_ARRAY(rules)
 		Z_PARAM_BOOL(merge)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &rules_param, &merge_param);
-
 	if (!rules_param) {
 		ZEPHIR_INIT_VAR(&rules);
 		array_init(&rules);
@@ -2555,7 +2451,6 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("rules"), &rules);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -2563,8 +2458,8 @@ PHP_METHOD(Ice_Mvc_Model, setRules) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Model, serialize) {
-
+PHP_METHOD(Ice_Mvc_Model, serialize)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -2582,15 +2477,14 @@ PHP_METHOD(Ice_Mvc_Model, serialize) {
 	ZEPHIR_RETURN_CALL_FUNCTION("base64_encode", NULL, 14, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
  * Unserialize and set the data.
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, unserialize) {
-
+PHP_METHOD(Ice_Mvc_Model, unserialize)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *serialized, serialized_sub, _0, _1;
@@ -2604,13 +2498,11 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(serialized)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &serialized);
-
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "__construct", NULL, 0);
@@ -2621,14 +2513,13 @@ PHP_METHOD(Ice_Mvc_Model, unserialize) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &_1);
 	RETURN_THIS();
-
 }
 
 /**
  * Magic call to get related models.
  */
-PHP_METHOD(Ice_Mvc_Model, __call) {
-
+PHP_METHOD(Ice_Mvc_Model, __call)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, filters, options, _3, _4, _5, _0$$3, _1$$3, _2$$3;
@@ -2651,15 +2542,13 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(arguments)
+		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
-
 	zephir_get_strval(&method, method_param);
 	if (!arguments) {
 		arguments = &arguments_sub;
@@ -2698,11 +2587,10 @@ PHP_METHOD(Ice_Mvc_Model, __call) {
 	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 834);
 	ZEPHIR_MM_RESTORE();
 	return;
-
 }
 
-zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type)
+{
 		zval _0, _2, _4, _6, _8, _10, _12, _1$$3, _3$$4, _5$$5, _7$$6, _9$$7, _11$$8, _13$$9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -2771,6 +2659,5 @@ zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type) 
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

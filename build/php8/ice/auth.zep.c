@@ -65,11 +65,10 @@
  *  {% endif %}
  * </code></pre>
  */
-ZEPHIR_INIT_CLASS(Ice_Auth) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Auth, ice, auth, NULL, 0);
 
 	return SUCCESS;
-
 }
 

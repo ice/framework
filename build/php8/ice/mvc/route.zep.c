@@ -32,22 +32,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, Route, ice, mvc_route, ice_mvc_route_method_entry, 0);
 
 	zend_declare_property_string(ice_mvc_route_ce, SL("routeUri"), "", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_ce, SL("regexMap"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_ce, SL("routeRegex"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_ce, SL("defaults"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_ce, SL("method"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_ce, SL("error"), ZEND_ACC_PROTECTED);
-
 	ice_mvc_route_ce->create_object = zephir_init_properties_Ice_Mvc_Route;
 	zephir_declare_class_constant_string(ice_mvc_route_ce, SL("REGEX_KEYWORD"), "\\{([a-zA-Z0-9_]++)\\}");
 
@@ -56,21 +50,19 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route) {
 	zephir_declare_class_constant_string(ice_mvc_route_ce, SL("REGEX_ESCAPE"), "[.\\+*?^$=!|]");
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Route, getDefaults) {
-
+PHP_METHOD(Ice_Mvc_Route, getDefaults)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "defaults");
-
 }
 
-PHP_METHOD(Ice_Mvc_Route, setDefaults) {
-
+PHP_METHOD(Ice_Mvc_Route, setDefaults)
+{
 	zval *defaults, defaults_sub;
 	zval *this_ptr = getThis();
 
@@ -80,37 +72,32 @@ PHP_METHOD(Ice_Mvc_Route, setDefaults) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(defaults)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaults);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaults"), defaults);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Route, getMethod) {
-
+PHP_METHOD(Ice_Mvc_Route, getMethod)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "method");
-
 }
 
-PHP_METHOD(Ice_Mvc_Route, getError) {
-
+PHP_METHOD(Ice_Mvc_Route, getError)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "error");
-
 }
 
 /**
@@ -145,8 +132,8 @@ PHP_METHOD(Ice_Mvc_Route, getError) {
  * @param array regexMap Key patterns map
  * @param mix method Request method limitation, * for no limit or an array of methods
  */
-PHP_METHOD(Ice_Mvc_Route, __construct) {
-
+PHP_METHOD(Ice_Mvc_Route, __construct)
+{
 	zend_string *_22$$10;
 	zend_ulong _21$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -198,22 +185,18 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 		Z_PARAM_ARRAY_OR_NULL(regexMap)
 		Z_PARAM_ZVAL(method)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &uri_param, &regexMap_param, &method);
-
 	if (!uri_param) {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_STRING(&uri, "");
 	} else {
 		zephir_get_strval(&uri, uri_param);
 	}
 	if (!regexMap_param) {
 		ZEPHIR_INIT_VAR(&regexMap);
-		array_init(&regexMap);
 	} else {
 	ZEPHIR_OBS_COPY_OR_DUP(&regexMap, regexMap_param);
 	}
@@ -224,7 +207,7 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	}
 
 
-	if (ZEPHIR_IS_STRING_IDENTICAL(&uri, "")) {
+	if (ZEPHIR_IS_NULL(&uri)) {
 		RETURN_MM_NULL();
 	}
 	zephir_update_property_zval(this_ptr, ZEND_STRL("routeUri"), &uri);
@@ -359,7 +342,6 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
 	ZEPHIR_CONCAT_SVS(&_28, "#^", &regex, "$#uD");
 	zephir_update_property_zval(this_ptr, ZEND_STRL("routeRegex"), &_28);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -374,8 +356,8 @@ PHP_METHOD(Ice_Mvc_Route, __construct) {
  * @param string method
  * @return array|false|null Routed parameters, method not allowed or no match
  */
-PHP_METHOD(Ice_Mvc_Route, matches) {
-
+PHP_METHOD(Ice_Mvc_Route, matches)
+{
 	zend_bool _7$$5, _8$$7;
 	zend_string *_6;
 	zend_ulong _5;
@@ -402,13 +384,11 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(method)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &uri_param, &method_param);
-
 	zephir_get_strval(&uri, uri_param);
 	if (!method_param) {
 		ZEPHIR_INIT_VAR(&method);
@@ -482,7 +462,6 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CCTOR(&params);
-
 }
 
 /**
@@ -491,8 +470,8 @@ PHP_METHOD(Ice_Mvc_Route, matches) {
  * @param string method
  * @return boolean
  */
-PHP_METHOD(Ice_Mvc_Route, checkMethod) {
-
+PHP_METHOD(Ice_Mvc_Route, checkMethod)
+{
 	zend_bool _1, _4$$3, _6$$3, _8$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *method_param = NULL, _0, _2$$4, _3$$3, _5$$3, _7$$3, _9$$3;
@@ -511,13 +490,11 @@ PHP_METHOD(Ice_Mvc_Route, checkMethod) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(method)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &method_param);
-
 	zephir_get_strval(&method, method_param);
 
 
@@ -559,7 +536,6 @@ PHP_METHOD(Ice_Mvc_Route, checkMethod) {
 		}
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
 /**
@@ -574,8 +550,8 @@ PHP_METHOD(Ice_Mvc_Route, checkMethod) {
  * @param array URI parameters
  * @return string|false
  */
-PHP_METHOD(Ice_Mvc_Route, uri) {
-
+PHP_METHOD(Ice_Mvc_Route, uri)
+{
 	zval _17, _12$$5;
 	zend_bool _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -623,16 +599,13 @@ PHP_METHOD(Ice_Mvc_Route, uri) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY_OR_NULL(params)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &params_param);
-
 	if (!params_param) {
 		ZEPHIR_INIT_VAR(&params);
-		array_init(&params);
 	} else {
 	ZEPHIR_OBS_COPY_OR_DUP(&params, params_param);
 	}
@@ -741,11 +714,10 @@ PHP_METHOD(Ice_Mvc_Route, uri) {
 	ZEPHIR_RETURN_CALL_FUNCTION("preg_replace", NULL, 51, &_24, &_25, &_22);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-zend_object *zephir_init_properties_Ice_Mvc_Route(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Mvc_Route(zend_class_entry *class_type)
+{
 		zval _1$$3;
 	zval _0, _2, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -776,6 +748,5 @@ zend_object *zephir_init_properties_Ice_Mvc_Route(zend_class_entry *class_type) 
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

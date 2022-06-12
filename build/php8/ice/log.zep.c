@@ -23,8 +23,8 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Log) {
-
+ZEPHIR_INIT_CLASS(Ice_Log)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Log, ice, log, NULL, 0);
 
 	zephir_declare_class_constant_string(ice_log_ce, SL("EMERGENCY"), "emergency");
@@ -44,6 +44,5 @@ ZEPHIR_INIT_CLASS(Ice_Log) {
 	zephir_declare_class_constant_string(ice_log_ce, SL("DEBUG"), "debug");
 
 	return SUCCESS;
-
 }
 

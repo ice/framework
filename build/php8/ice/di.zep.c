@@ -33,24 +33,20 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Di) {
-
+ZEPHIR_INIT_CLASS(Ice_Di)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Di, ice, di, ice_arr_ce, ice_di_method_entry, 0);
 
 	zend_declare_property_null(ice_di_ce, SL("di"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
-
 	zend_declare_property_null(ice_di_ce, SL("hooks"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_di_ce, SL("defaults"), ZEND_ACC_PROTECTED);
-
 	ice_di_ce->create_object = zephir_init_properties_Ice_Di;
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Di, setDefaults) {
-
+PHP_METHOD(Ice_Di, setDefaults)
+{
 	zval *defaults, defaults_sub;
 	zval *this_ptr = getThis();
 
@@ -60,17 +56,14 @@ PHP_METHOD(Ice_Di, setDefaults) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(defaults)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaults);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaults"), defaults);
 	RETURN_THISW();
-
 }
 
 /**
@@ -78,8 +71,8 @@ PHP_METHOD(Ice_Di, setDefaults) {
  *
  * @param array data Array of services
  */
-PHP_METHOD(Ice_Di, __construct) {
-
+PHP_METHOD(Ice_Di, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_0 = NULL;
@@ -94,13 +87,11 @@ PHP_METHOD(Ice_Di, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data_param);
-
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -113,7 +104,6 @@ PHP_METHOD(Ice_Di, __construct) {
 	zephir_check_call_status();
 	zephir_update_static_property_ce(ice_di_ce, ZEND_STRL("di"), this_ptr);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -121,8 +111,8 @@ PHP_METHOD(Ice_Di, __construct) {
  *
  * @return Di
  */
-PHP_METHOD(Ice_Di, fetch) {
-
+PHP_METHOD(Ice_Di, fetch)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
@@ -132,7 +122,6 @@ PHP_METHOD(Ice_Di, fetch) {
 
 	zephir_read_static_property_ce(&_0, ice_di_ce, SL("di"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
 /**
@@ -141,8 +130,8 @@ PHP_METHOD(Ice_Di, fetch) {
  * @param string key Service name
  * @param mixed parameters Definition
  */
-PHP_METHOD(Ice_Di, get) {
-
+PHP_METHOD(Ice_Di, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -162,15 +151,13 @@ PHP_METHOD(Ice_Di, get) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(parameters)
+		Z_PARAM_ZVAL_OR_NULL(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &key_param, &parameters);
-
 	zephir_get_strval(&key, key_param);
 	if (!parameters) {
 		parameters = &parameters_sub;
@@ -200,7 +187,6 @@ PHP_METHOD(Ice_Di, get) {
 		RETURN_MM();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -209,8 +195,8 @@ PHP_METHOD(Ice_Di, get) {
  * @param string key Service name
  * @param mixed value Definition
  */
-PHP_METHOD(Ice_Di, set) {
-
+PHP_METHOD(Ice_Di, set)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *key_param = NULL, *value, value_sub, service;
@@ -226,13 +212,11 @@ PHP_METHOD(Ice_Di, set) {
 		Z_PARAM_STR(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &key_param, &value);
-
 	zephir_get_strval(&key, key_param);
 
 
@@ -240,7 +224,6 @@ PHP_METHOD(Ice_Di, set) {
 	zephir_check_call_status();
 	zephir_update_property_array(this_ptr, SL("data"), &key, &service);
 	RETURN_CCTOR(&service);
-
 }
 
 /**
@@ -248,8 +231,8 @@ PHP_METHOD(Ice_Di, set) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Di, getDefaults) {
-
+PHP_METHOD(Ice_Di, getDefaults)
+{
 	zval _2$$3;
 	zval defaults, _0, _3, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -297,7 +280,6 @@ PHP_METHOD(Ice_Di, getDefaults) {
 	zephir_read_property(&_3, this_ptr, ZEND_STRL("defaults"), PH_NOISY_CC | PH_READONLY);
 	zephir_fast_array_merge(return_value, &defaults, &_3);
 	RETURN_MM();
-
 }
 
 /**
@@ -307,8 +289,8 @@ PHP_METHOD(Ice_Di, getDefaults) {
  * @return object service
  * @return string key
  */
-PHP_METHOD(Ice_Di, resolve) {
-
+PHP_METHOD(Ice_Di, resolve)
+{
 	zval _3$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -333,13 +315,11 @@ PHP_METHOD(Ice_Di, resolve) {
 		Z_PARAM_ZVAL(service)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &service, &key_param);
-
 	ZEPHIR_SEPARATE_PARAM(service);
 	zephir_get_strval(&key, key_param);
 
@@ -354,7 +334,7 @@ PHP_METHOD(Ice_Di, resolve) {
 		}
 	} else {
 		if (Z_TYPE_P(service) == IS_OBJECT) {
-			if (zephir_instance_of_ev(service, zend_ce_closure)) {
+			if (zephir_is_instance_of(service, SL("Closure"))) {
 				ZEPHIR_INIT_VAR(&_1$$8);
 				ZEPHIR_CALL_USER_FUNC(&_1$$8, service);
 				zephir_check_call_status();
@@ -395,7 +375,6 @@ PHP_METHOD(Ice_Di, resolve) {
 	}
 	RETVAL_ZVAL(service, 1, 0);
 	RETURN_MM();
-
 }
 
 /**
@@ -404,8 +383,8 @@ PHP_METHOD(Ice_Di, resolve) {
  * @param string service
  * @return mixed
  */
-PHP_METHOD(Ice_Di, build) {
-
+PHP_METHOD(Ice_Di, build)
+{
 	zval _2$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -429,13 +408,11 @@ PHP_METHOD(Ice_Di, build) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &service, &parameters);
-
 	if (!parameters) {
 		parameters = &parameters_sub;
 		ZEPHIR_INIT_VAR(parameters);
@@ -446,7 +423,7 @@ PHP_METHOD(Ice_Di, build) {
 
 
 	if (Z_TYPE_P(service) == IS_OBJECT) {
-		if (zephir_instance_of_ev(service, zend_ce_closure)) {
+		if (zephir_is_instance_of(service, SL("Closure"))) {
 			ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, service, parameters);
 			zephir_check_call_status();
 			RETURN_MM();
@@ -491,7 +468,6 @@ PHP_METHOD(Ice_Di, build) {
 	ZEPHIR_RETURN_CALL_METHOD(&reflector, "newinstanceargs", NULL, 105, &dependencies);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -501,8 +477,8 @@ PHP_METHOD(Ice_Di, build) {
  * @param array parameters
  * @return array
  */
-PHP_METHOD(Ice_Di, getParameters) {
-
+PHP_METHOD(Ice_Di, getParameters)
+{
 	zend_string *_3;
 	zend_ulong _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -525,13 +501,11 @@ PHP_METHOD(Ice_Di, getParameters) {
 		Z_PARAM_ARRAY(dependencies)
 		Z_PARAM_ARRAY(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &dependencies_param, &parameters_param);
-
 	zephir_get_arrval(&dependencies, dependencies_param);
 	zephir_get_arrval(&parameters, parameters_param);
 
@@ -584,7 +558,6 @@ PHP_METHOD(Ice_Di, getParameters) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CTOR(&parameters);
-
 }
 
 /**
@@ -593,8 +566,8 @@ PHP_METHOD(Ice_Di, getParameters) {
  * @param array parameters
  * @return array
  */
-PHP_METHOD(Ice_Di, getDependencies) {
-
+PHP_METHOD(Ice_Di, getDependencies)
+{
 	zend_bool _3$$3, _19$$8;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_8 = NULL, *_14 = NULL, *_17 = NULL;
@@ -640,13 +613,11 @@ PHP_METHOD(Ice_Di, getDependencies) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(primitives)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &parameters_param, &primitives_param);
-
 	zephir_get_arrval(&parameters, parameters_param);
 	if (!primitives_param) {
 		ZEPHIR_INIT_VAR(&primitives);
@@ -768,7 +739,6 @@ PHP_METHOD(Ice_Di, getDependencies) {
 	}
 	ZEPHIR_INIT_NVAR(&parameter);
 	RETURN_CCTOR(&dependencies);
-
 }
 
 /**
@@ -779,8 +749,8 @@ PHP_METHOD(Ice_Di, getDependencies) {
  *
  * @throws Exception
  */
-PHP_METHOD(Ice_Di, resolveNonClass) {
-
+PHP_METHOD(Ice_Di, resolveNonClass)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -797,15 +767,13 @@ PHP_METHOD(Ice_Di, resolveNonClass) {
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_ZVAL(parameter)
+		Z_PARAM_OBJECT_OF_CLASS(parameter, zephir_get_internal_ce(SL("reflectionparameter")))
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &parameter);
-
 
 
 	ZEPHIR_CALL_METHOD(&_0, parameter, "isdefaultvalueavailable", NULL, 0);
@@ -833,7 +801,6 @@ PHP_METHOD(Ice_Di, resolveNonClass) {
 	zephir_throw_exception_debug(&_1, "ice/di.zep", 264);
 	ZEPHIR_MM_RESTORE();
 	return;
-
 }
 
 /**
@@ -843,8 +810,8 @@ PHP_METHOD(Ice_Di, resolveNonClass) {
  * @param string className
  * @return object Di
  */
-PHP_METHOD(Ice_Di, errors) {
-
+PHP_METHOD(Ice_Di, errors)
+{
 	zval _0, _2, _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -863,13 +830,11 @@ PHP_METHOD(Ice_Di, errors) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(className)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &className_param);
-
 	if (!className_param) {
 		ZEPHIR_INIT_VAR(&className);
 		ZVAL_STRING(&className, "Ice\\Exception");
@@ -903,7 +868,6 @@ PHP_METHOD(Ice_Di, errors) {
 	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 108, &_3);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -915,8 +879,8 @@ PHP_METHOD(Ice_Di, errors) {
  * @param int priority The hook priority; 0 = high, 10 = low
  * @return object Di
  */
-PHP_METHOD(Ice_Di, hook) {
-
+PHP_METHOD(Ice_Di, hook)
+{
 	zval _3$$5;
 	zend_bool _0$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -939,16 +903,14 @@ PHP_METHOD(Ice_Di, hook) {
 		Z_PARAM_STR(name)
 		Z_PARAM_ZVAL(callback)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 		Z_PARAM_LONG(priority)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &name_param, &callback, &context, &priority_param);
-
 	zephir_get_strval(&name, name_param);
 	if (!context) {
 		context = &context_sub;
@@ -983,7 +945,6 @@ PHP_METHOD(Ice_Di, hook) {
 		zephir_update_property_array_multi(this_ptr, SL("hooks"), callback, SL("zla"), 3, &name, priority);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -994,8 +955,8 @@ PHP_METHOD(Ice_Di, hook) {
  * @param mixed context The callback bind to the object
  * @return object Di
  */
-PHP_METHOD(Ice_Di, applyHook) {
-
+PHP_METHOD(Ice_Di, applyHook)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1031,19 +992,16 @@ PHP_METHOD(Ice_Di, applyHook) {
 		Z_PARAM_STR(name)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY_OR_NULL(args)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &name_param, &args_param, &context);
-
 	zephir_get_strval(&name, name_param);
 	if (!args_param) {
 		ZEPHIR_INIT_VAR(&args);
-		array_init(&args);
 	} else {
 		zephir_get_arrval(&args, args_param);
 	}
@@ -1163,7 +1121,6 @@ PHP_METHOD(Ice_Di, applyHook) {
 		ZEPHIR_INIT_NVAR(&priority);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -1176,8 +1133,8 @@ PHP_METHOD(Ice_Di, applyHook) {
  * @param mixed context The callback bind to the object
  * @return array|null
  */
-PHP_METHOD(Ice_Di, getHooks) {
-
+PHP_METHOD(Ice_Di, getHooks)
+{
 	zend_bool _0$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1197,18 +1154,15 @@ PHP_METHOD(Ice_Di, getHooks) {
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(name)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &name_param, &context);
-
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_STRING(&name, "");
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
@@ -1218,7 +1172,7 @@ PHP_METHOD(Ice_Di, getHooks) {
 	}
 
 
-	if (!(Z_TYPE_P(&name) == IS_UNDEF) && Z_STRLEN_P(&name)) {
+	if (!(ZEPHIR_IS_EMPTY(&name))) {
 		_0$$3 = Z_TYPE_P(context) != IS_NULL;
 		if (_0$$3) {
 			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
@@ -1240,7 +1194,6 @@ PHP_METHOD(Ice_Di, getHooks) {
 	} else {
 		RETURN_MM_MEMBER(getThis(), "hooks");
 	}
-
 }
 
 /**
@@ -1252,8 +1205,8 @@ PHP_METHOD(Ice_Di, getHooks) {
  * @param mixed context The callback bind to the object
  * @return object Di
  */
-PHP_METHOD(Ice_Di, clearHooks) {
-
+PHP_METHOD(Ice_Di, clearHooks)
+{
 	zend_bool _0$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1272,18 +1225,15 @@ PHP_METHOD(Ice_Di, clearHooks) {
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(name)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &name_param, &context);
-
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_STRING(&name, "");
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
@@ -1293,7 +1243,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 	}
 
 
-	if (!(Z_TYPE_P(&name) == IS_UNDEF) && Z_STRLEN_P(&name)) {
+	if (!(ZEPHIR_IS_EMPTY(&name))) {
 		_0$$3 = Z_TYPE_P(context) != IS_NULL;
 		if (_0$$3) {
 			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
@@ -1303,6 +1253,7 @@ PHP_METHOD(Ice_Di, clearHooks) {
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}
+		zephir_unset_property_array(this_ptr, ZEND_STRL("hooks"), &name);
 		zephir_read_property(&_2$$3, this_ptr, ZEND_STRL("hooks"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_unset(&_2$$3, &name, PH_SEPARATE);
 	} else {
@@ -1311,7 +1262,6 @@ PHP_METHOD(Ice_Di, clearHooks) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("hooks"), &_3$$5);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -1321,8 +1271,8 @@ PHP_METHOD(Ice_Di, clearHooks) {
  * @param mixed arguments
  * @return mixed
  */
-PHP_METHOD(Ice_Di, __call) {
-
+PHP_METHOD(Ice_Di, __call)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_3 = NULL;
@@ -1347,15 +1297,13 @@ PHP_METHOD(Ice_Di, __call) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(arguments)
+		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
-
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1364,7 +1312,6 @@ PHP_METHOD(Ice_Di, __call) {
 		zephir_get_strval(&method, method_param);
 	} else {
 		ZEPHIR_INIT_VAR(&method);
-		ZVAL_EMPTY_STRING(&method);
 	}
 	if (!arguments) {
 		arguments = &arguments_sub;
@@ -1405,11 +1352,10 @@ PHP_METHOD(Ice_Di, __call) {
 	zephir_throw_exception_debug(&_7, "ice/di.zep", 416);
 	ZEPHIR_MM_RESTORE();
 	return;
-
 }
 
-zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type)
+{
 		zval _0, _2, _4, _1$$3, _3$$4, _5$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -1446,6 +1392,5 @@ zend_object *zephir_init_properties_Ice_Di(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

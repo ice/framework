@@ -49,12 +49,11 @@
  *  }
  * </code></pre>
  */
-ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
-
+ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Validation\\Validator, Without, ice, validation_validator_without, ice_validation_validator_ce, ice_validation_validator_without_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -65,8 +64,8 @@ ZEPHIR_INIT_CLASS(Ice_Validation_Validator_Without) {
  * @param string field
  * @return boolean
  */
-PHP_METHOD(Ice_Validation_Validator_Without, validate) {
-
+PHP_METHOD(Ice_Validation_Validator_Without, validate)
+{
 	zend_string *_23$$15;
 	zend_ulong _22$$15;
 	zend_bool _0, _5$$6, _6$$8, _14$$10;
@@ -115,13 +114,11 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		Z_PARAM_OBJECT_OF_CLASS(validation, ice_validation_ce)
 		Z_PARAM_STR(field)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
-
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
 		RETURN_MM_NULL();
@@ -130,7 +127,6 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		zephir_get_strval(&field, field_param);
 	} else {
 		ZEPHIR_INIT_VAR(&field);
-		ZVAL_EMPTY_STRING(&field);
 	}
 
 
@@ -305,6 +301,5 @@ PHP_METHOD(Ice_Validation_Validator_Without, validate) {
 		RETURN_MM_BOOL(0);
 	}
 	RETURN_MM_BOOL(1);
-
 }
 

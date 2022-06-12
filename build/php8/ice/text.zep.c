@@ -30,8 +30,8 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Text) {
-
+ZEPHIR_INIT_CLASS(Ice_Text)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Text, ice, text, ice_text_method_entry, 0);
 
 	zephir_declare_class_constant_long(ice_text_ce, SL("ALNUM"), 0);
@@ -45,7 +45,6 @@ ZEPHIR_INIT_CLASS(Ice_Text) {
 	zephir_declare_class_constant_long(ice_text_ce, SL("NOZERO"), 4);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -55,8 +54,8 @@ ZEPHIR_INIT_CLASS(Ice_Text) {
  * @param int length
  * @return string
  */
-PHP_METHOD(Ice_Text, random) {
-
+PHP_METHOD(Ice_Text, random)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_3 = NULL, *_22 = NULL;
 	long length;
@@ -95,15 +94,13 @@ PHP_METHOD(Ice_Text, random) {
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_LONG(type)
-		Z_PARAM_ZVAL(length)
+		Z_PARAM_LONG(length)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &type_param, &length_param);
-
 	if (!type_param) {
 		type = 0;
 	} else {
@@ -197,6 +194,5 @@ PHP_METHOD(Ice_Text, random) {
 		zephir_concat_self(&str, &_23$$8);
 	}
 	RETURN_CCTOR(&str);
-
 }
 

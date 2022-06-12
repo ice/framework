@@ -21,12 +21,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_I18n_Plural_PluralInterface) {
-
+ZEPHIR_INIT_CLASS(Ice_I18n_Plural_PluralInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Ice\\I18n\\Plural, PluralInterface, ice, i18n_plural_pluralinterface, ice_i18n_plural_pluralinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 ZEPHIR_DOC_METHOD(Ice_I18n_Plural_PluralInterface, getCategory);

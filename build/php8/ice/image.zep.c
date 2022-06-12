@@ -31,22 +31,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Image) {
-
+ZEPHIR_INIT_CLASS(Ice_Image)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Image, ice, image, ice_image_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_bool(ice_image_ce, SL("checked"), 0, ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
-
 	zend_declare_property_null(ice_image_ce, SL("file"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_image_ce, SL("width"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_image_ce, SL("height"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_image_ce, SL("type"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_image_ce, SL("mime"), ZEND_ACC_PROTECTED);
-
 	zephir_declare_class_constant_long(ice_image_ce, SL("NONE"), 1);
 
 	zephir_declare_class_constant_long(ice_image_ce, SL("WIDTH"), 2);
@@ -64,57 +58,51 @@ ZEPHIR_INIT_CLASS(Ice_Image) {
 	zephir_declare_class_constant_long(ice_image_ce, SL("VERTICAL"), 12);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Image, getFile) {
-
+PHP_METHOD(Ice_Image, getFile)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "file");
-
 }
 
-PHP_METHOD(Ice_Image, getWidth) {
-
+PHP_METHOD(Ice_Image, getWidth)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "width");
-
 }
 
-PHP_METHOD(Ice_Image, getHeight) {
-
+PHP_METHOD(Ice_Image, getHeight)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "height");
-
 }
 
-PHP_METHOD(Ice_Image, getType) {
-
+PHP_METHOD(Ice_Image, getType)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "type");
-
 }
 
-PHP_METHOD(Ice_Image, getMime) {
-
+PHP_METHOD(Ice_Image, getMime)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "mime");
-
 }
 
 /**
@@ -129,8 +117,8 @@ PHP_METHOD(Ice_Image, getMime) {
  *
  * @throws Exception
  */
-PHP_METHOD(Ice_Image, factory) {
-
+PHP_METHOD(Ice_Image, factory)
+{
 	zend_class_entry *_1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -149,23 +137,20 @@ PHP_METHOD(Ice_Image, factory) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(driver)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &file_param, &driver_param);
-
 	zephir_get_strval(&file, file_param);
 	if (!driver_param) {
 		ZEPHIR_INIT_VAR(&driver);
-		ZVAL_STRING(&driver, "");
 	} else {
 		zephir_get_strval(&driver, driver_param);
 	}
 
 
-	if (!(!(Z_TYPE_P(&driver) == IS_UNDEF) && Z_STRLEN_P(&driver))) {
+	if (!(!(ZEPHIR_IS_EMPTY(&driver)))) {
 		ZEPHIR_INIT_NVAR(&driver);
 		ZVAL_STRING(&driver, "Ice\\Image\\Gd");
 	}
@@ -180,12 +165,12 @@ PHP_METHOD(Ice_Image, factory) {
 		ZEPHIR_CALL_METHOD(NULL, &instance, "__construct", NULL, 0, &file);
 		zephir_check_call_status();
 	}
+
 	if (!(zephir_instance_of_ev(&instance, ice_image_ce))) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Driver must be an Image", "ice/image.zep", 60);
 		return;
 	}
 	RETURN_CCTOR(&instance);
-
 }
 
 /**
@@ -196,8 +181,8 @@ PHP_METHOD(Ice_Image, factory) {
  * @return void
  * @throws Exception
  */
-PHP_METHOD(Ice_Image, __construct) {
-
+PHP_METHOD(Ice_Image, __construct)
+{
 	zval _5$$5;
 	zend_bool _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -223,13 +208,11 @@ PHP_METHOD(Ice_Image, __construct) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(file)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &file_param);
-
 	zephir_get_strval(&file, file_param);
 
 
@@ -285,7 +268,6 @@ PHP_METHOD(Ice_Image, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("mime"), &_11);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -297,8 +279,8 @@ PHP_METHOD(Ice_Image, __construct) {
  *
  * @return string Binary string, it must be rendered with the appropriate Content-Type header
  */
-PHP_METHOD(Ice_Image, __toString) {
-
+PHP_METHOD(Ice_Image, __toString)
+{
 	zval _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -329,7 +311,6 @@ PHP_METHOD(Ice_Image, __toString) {
 			ZEPHIR_CPY_WRT(&_1, &_0);
 		}
 	}
-
 }
 
 /**
@@ -358,8 +339,8 @@ PHP_METHOD(Ice_Image, __toString) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, resize) {
-
+PHP_METHOD(Ice_Image, resize)
+{
 	zend_bool _0, _1;
 	double ratio = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -402,13 +383,11 @@ PHP_METHOD(Ice_Image, resize) {
 		Z_PARAM_LONG_OR_NULL(height, is_null_true)
 		Z_PARAM_LONG_OR_NULL(master, is_null_true)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &width_param, &height_param, &master_param);
-
 	if (!width_param) {
 		width = 0;
 	} else {
@@ -541,7 +520,6 @@ PHP_METHOD(Ice_Image, resize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "doresize", NULL, 0, &_26, &_27);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -562,8 +540,8 @@ PHP_METHOD(Ice_Image, resize) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, crop) {
-
+PHP_METHOD(Ice_Image, crop)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *width_param = NULL, *height_param = NULL, *offsetX = NULL, offsetX_sub, *offsetY = NULL, offsetY_sub, __$null, _0, _2, _14, _15, _18, _21, _1$$3, _3$$4, _4$$5, _5$$5, _6$$6, _7$$7, _9$$8, _10$$8, _11$$9, _12$$10, _16$$11, _17$$11, _19$$12, _20$$12;
 	zend_long width, height, ZEPHIR_LAST_CALL_STATUS, _8$$7, _13$$10;
@@ -598,16 +576,14 @@ PHP_METHOD(Ice_Image, crop) {
 		Z_PARAM_LONG(width)
 		Z_PARAM_LONG(height)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(offsetX)
-		Z_PARAM_ZVAL(offsetY)
+		Z_PARAM_ZVAL_OR_NULL(offsetX)
+		Z_PARAM_ZVAL_OR_NULL(offsetY)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 2, &width_param, &height_param, &offsetX, &offsetY);
-
 	width = zephir_get_intval(width_param);
 	height = zephir_get_intval(height_param);
 	if (!offsetX) {
@@ -687,7 +663,6 @@ PHP_METHOD(Ice_Image, crop) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "docrop", NULL, 0, &_14, &_21, offsetX, offsetY);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -705,8 +680,8 @@ PHP_METHOD(Ice_Image, crop) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, rotate) {
-
+PHP_METHOD(Ice_Image, rotate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *degrees_param = NULL, _0;
 	zend_long degrees, ZEPHIR_LAST_CALL_STATUS;
@@ -718,13 +693,11 @@ PHP_METHOD(Ice_Image, rotate) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(degrees)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &degrees_param);
-
 	degrees = zephir_get_intval(degrees_param);
 
 
@@ -742,7 +715,6 @@ PHP_METHOD(Ice_Image, rotate) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "dorotate", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -760,8 +732,8 @@ PHP_METHOD(Ice_Image, rotate) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, flip) {
-
+PHP_METHOD(Ice_Image, flip)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *direction_param = NULL, _0;
 	zend_long direction, ZEPHIR_LAST_CALL_STATUS;
@@ -773,13 +745,11 @@ PHP_METHOD(Ice_Image, flip) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(direction)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &direction_param);
-
 	direction = zephir_get_intval(direction_param);
 
 
@@ -790,7 +760,6 @@ PHP_METHOD(Ice_Image, flip) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "doflip", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -805,8 +774,8 @@ PHP_METHOD(Ice_Image, flip) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, sharpen) {
-
+PHP_METHOD(Ice_Image, sharpen)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *amount_param = NULL, tmp, _0, _1, _2;
 	zend_long amount, ZEPHIR_LAST_CALL_STATUS;
@@ -821,13 +790,11 @@ PHP_METHOD(Ice_Image, sharpen) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(amount)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &amount_param);
-
 	amount = zephir_get_intval(amount_param);
 
 
@@ -843,7 +810,6 @@ PHP_METHOD(Ice_Image, sharpen) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "dosharpen", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -869,8 +835,8 @@ PHP_METHOD(Ice_Image, sharpen) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, reflection) {
-
+PHP_METHOD(Ice_Image, reflection)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool fadeIn, _0;
 	zval *height_param = NULL, *opacity_param = NULL, *fadeIn_param = NULL, tmp, _1, _3, _4, _5, _6, _2$$3;
@@ -892,13 +858,11 @@ PHP_METHOD(Ice_Image, reflection) {
 		Z_PARAM_LONG(opacity)
 		Z_PARAM_BOOL(fadeIn)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &height_param, &opacity_param, &fadeIn_param);
-
 	if (!height_param) {
 		height = 0;
 	} else {
@@ -943,7 +907,6 @@ PHP_METHOD(Ice_Image, reflection) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "doreflection", NULL, 0, &_3, &_4, &_6);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -965,8 +928,8 @@ PHP_METHOD(Ice_Image, reflection) {
  *
  * @return Image
  */
-PHP_METHOD(Ice_Image, watermark) {
-
+PHP_METHOD(Ice_Image, watermark)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long offsetX, offsetY, opacity, ZEPHIR_LAST_CALL_STATUS;
 	zval *watermark, watermark_sub, *offsetX_param = NULL, *offsetY_param = NULL, *opacity_param = NULL, tmp, _18, _19, _20, _21, _0$$3, _1$$3, _2$$3, _3$$4, _4$$4, _5$$4, _6$$5, _7$$5, _8$$5, _9$$6, _10$$6, _11$$6, _12$$7, _13$$7, _14$$7, _15$$8, _16$$8, _17$$8;
@@ -1005,13 +968,11 @@ PHP_METHOD(Ice_Image, watermark) {
 		Z_PARAM_LONG_OR_NULL(offsetY, is_null_true)
 		Z_PARAM_LONG(opacity)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &watermark, &offsetX_param, &offsetY_param, &opacity_param);
-
 	if (!offsetX_param) {
 		offsetX = 0;
 	} else {
@@ -1093,7 +1054,6 @@ PHP_METHOD(Ice_Image, watermark) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "dowatermark", NULL, 0, watermark, &_18, &_19, &_21);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -1112,8 +1072,8 @@ PHP_METHOD(Ice_Image, watermark) {
 
  * @return Image
  */
-PHP_METHOD(Ice_Image, background) {
-
+PHP_METHOD(Ice_Image, background)
+{
 	unsigned char _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long opacity, ZEPHIR_LAST_CALL_STATUS;
@@ -1143,13 +1103,11 @@ PHP_METHOD(Ice_Image, background) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_LONG(opacity)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &color_param, &opacity_param);
-
 	zephir_get_strval(&color, color_param);
 	if (!opacity_param) {
 		opacity = 100;
@@ -1199,7 +1157,6 @@ PHP_METHOD(Ice_Image, background) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "dobackground", NULL, 0, &r, &g, &b, &_6);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -1222,8 +1179,8 @@ PHP_METHOD(Ice_Image, background) {
  * @return boolean
  * @throws Exception
  */
-PHP_METHOD(Ice_Image, save) {
-
+PHP_METHOD(Ice_Image, save)
+{
 	zend_bool _11$$6;
 	zval _5$$5, _14$$7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1259,16 +1216,13 @@ PHP_METHOD(Ice_Image, save) {
 		Z_PARAM_STR_OR_NULL(file)
 		Z_PARAM_LONG(quality)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &file_param, &quality_param);
-
 	if (!file_param) {
 		ZEPHIR_INIT_VAR(&file);
-		ZVAL_STRING(&file, "");
 	} else {
 		zephir_get_strval(&file, file_param);
 	}
@@ -1345,7 +1299,6 @@ PHP_METHOD(Ice_Image, save) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dosave", NULL, 0, &file, &_16);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1364,8 +1317,8 @@ PHP_METHOD(Ice_Image, save) {
 
  * @return string
  */
-PHP_METHOD(Ice_Image, render) {
-
+PHP_METHOD(Ice_Image, render)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long quality, ZEPHIR_LAST_CALL_STATUS;
 	zval *type_param = NULL, *quality_param = NULL, __$false, tmp, _2, _0$$3;
@@ -1385,16 +1338,13 @@ PHP_METHOD(Ice_Image, render) {
 		Z_PARAM_STR_OR_NULL(type)
 		Z_PARAM_LONG(quality)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &type_param, &quality_param);
-
 	if (!type_param) {
 		ZEPHIR_INIT_VAR(&type);
-		ZVAL_STRING(&type, "");
 	} else {
 		zephir_get_strval(&type, type_param);
 	}
@@ -1409,14 +1359,13 @@ PHP_METHOD(Ice_Image, render) {
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("type"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_CALL_FUNCTION(&tmp, "image_type_to_extension", NULL, 57, &_0$$3, &__$false);
 		zephir_check_call_status();
-		zephir_get_strval(&_1$$3, &tmp);
+		zephir_cast_to_string(&_1$$3, &tmp);
 		ZEPHIR_CPY_WRT(&type, &_1$$3);
 	}
 	ZVAL_LONG(&_2, quality);
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "dorender", NULL, 0, &type, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1427,8 +1376,8 @@ PHP_METHOD(Ice_Image, render) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doResize) {
-
+PHP_METHOD(Ice_Image, doResize)
+{
 }
 
 /**
@@ -1441,8 +1390,8 @@ PHP_METHOD(Ice_Image, doResize) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doCrop) {
-
+PHP_METHOD(Ice_Image, doCrop)
+{
 }
 
 /**
@@ -1452,8 +1401,8 @@ PHP_METHOD(Ice_Image, doCrop) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doRotate) {
-
+PHP_METHOD(Ice_Image, doRotate)
+{
 }
 
 /**
@@ -1463,8 +1412,8 @@ PHP_METHOD(Ice_Image, doRotate) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doFlip) {
-
+PHP_METHOD(Ice_Image, doFlip)
+{
 }
 
 /**
@@ -1474,8 +1423,8 @@ PHP_METHOD(Ice_Image, doFlip) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doSharpen) {
-
+PHP_METHOD(Ice_Image, doSharpen)
+{
 }
 
 /**
@@ -1487,8 +1436,8 @@ PHP_METHOD(Ice_Image, doSharpen) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doReflection) {
-
+PHP_METHOD(Ice_Image, doReflection)
+{
 }
 
 /**
@@ -1501,8 +1450,8 @@ PHP_METHOD(Ice_Image, doReflection) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doWatermark) {
-
+PHP_METHOD(Ice_Image, doWatermark)
+{
 }
 
 /**
@@ -1515,8 +1464,8 @@ PHP_METHOD(Ice_Image, doWatermark) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Image, doBackground) {
-
+PHP_METHOD(Ice_Image, doBackground)
+{
 }
 
 /**
@@ -1527,8 +1476,8 @@ PHP_METHOD(Ice_Image, doBackground) {
  *
  * @return boolean
  */
-PHP_METHOD(Ice_Image, doSave) {
-
+PHP_METHOD(Ice_Image, doSave)
+{
 }
 
 /**
@@ -1539,7 +1488,7 @@ PHP_METHOD(Ice_Image, doSave) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Image, doRender) {
-
+PHP_METHOD(Ice_Image, doRender)
+{
 }
 

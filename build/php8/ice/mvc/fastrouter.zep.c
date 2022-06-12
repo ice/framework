@@ -37,38 +37,24 @@
  * @license     http://iceframework.org/license
  * @uses        FastRoute http:/github.com/nikic/FastRoute
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_FastRouter) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_FastRouter)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, FastRouter, ice, mvc_fastrouter, ice_mvc_fastrouter_method_entry, 0);
 
 	zend_declare_property_string(ice_mvc_fastrouter_ce, SL("defaultModule"), "default", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_fastrouter_ce, SL("defaultHandler"), "index", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_fastrouter_ce, SL("defaultAction"), "index", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("method"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("module"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("handler"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("action"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("params"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_mvc_fastrouter_ce, SL("ready"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_mvc_fastrouter_ce, SL("silent"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("routes"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("collector"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_fastrouter_ce, SL("dispatcher"), ZEND_ACC_PROTECTED);
-
 	ice_mvc_fastrouter_ce->create_object = zephir_init_properties_Ice_Mvc_FastRouter;
 	zephir_declare_class_constant_long(ice_mvc_fastrouter_ce, SL("NOT_FOUND"), 0);
 
@@ -77,21 +63,19 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_FastRouter) {
 	zephir_declare_class_constant_long(ice_mvc_fastrouter_ce, SL("METHOD_NOT_ALLOWED"), 2);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getDefaultModule) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getDefaultModule)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "defaultModule");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setDefaultModule) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setDefaultModule)
+{
 	zval *defaultModule, defaultModule_sub;
 	zval *this_ptr = getThis();
 
@@ -101,31 +85,27 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaultModule) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(defaultModule)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaultModule);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultModule"), defaultModule);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getDefaultHandler) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getDefaultHandler)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "defaultHandler");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setDefaultHandler) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setDefaultHandler)
+{
 	zval *defaultHandler, defaultHandler_sub;
 	zval *this_ptr = getThis();
 
@@ -135,31 +115,27 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaultHandler) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(defaultHandler)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaultHandler);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultHandler"), defaultHandler);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getDefaultAction) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getDefaultAction)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "defaultAction");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setDefaultAction) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setDefaultAction)
+{
 	zval *defaultAction, defaultAction_sub;
 	zval *this_ptr = getThis();
 
@@ -169,71 +145,63 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaultAction) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(defaultAction)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &defaultAction);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("defaultAction"), defaultAction);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getMethod) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getMethod)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "method");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getModule) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getModule)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "module");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getHandler) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getHandler)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "handler");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getAction) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getAction)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "action");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getParams) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getParams)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "params");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setSilent) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setSilent)
+{
 	zval *silent, silent_sub;
 	zval *this_ptr = getThis();
 
@@ -243,41 +211,36 @@ PHP_METHOD(Ice_Mvc_FastRouter, setSilent) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(silent)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &silent);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("silent"), silent);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getOptions) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getOptions)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "options");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getRoutes) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getRoutes)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "routes");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setRoutes) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setRoutes)
+{
 	zval *routes, routes_sub;
 	zval *this_ptr = getThis();
 
@@ -287,31 +250,27 @@ PHP_METHOD(Ice_Mvc_FastRouter, setRoutes) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(routes)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &routes);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("routes"), routes);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getCollector) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getCollector)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "collector");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setCollector) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setCollector)
+{
 	zval *collector, collector_sub;
 	zval *this_ptr = getThis();
 
@@ -321,31 +280,27 @@ PHP_METHOD(Ice_Mvc_FastRouter, setCollector) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(collector)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &collector);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("collector"), collector);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, getDispatcher) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, getDispatcher)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "dispatcher");
-
 }
 
-PHP_METHOD(Ice_Mvc_FastRouter, setDispatcher) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setDispatcher)
+{
 	zval *dispatcher, dispatcher_sub;
 	zval *this_ptr = getThis();
 
@@ -355,17 +310,14 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDispatcher) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(dispatcher)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &dispatcher);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("dispatcher"), dispatcher);
 	RETURN_THISW();
-
 }
 
 /**
@@ -374,8 +326,8 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDispatcher) {
  * @param array defaults
  * @return object Router
  */
-PHP_METHOD(Ice_Mvc_FastRouter, setDefaults) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setDefaults)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *defaults_param = NULL, module, handler, action;
 	zval defaults;
@@ -390,13 +342,11 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaults) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ARRAY(defaults)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &defaults_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&defaults, defaults_param);
 
 
@@ -410,7 +360,6 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaults) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("defaultAction"), &action);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -419,8 +368,8 @@ PHP_METHOD(Ice_Mvc_FastRouter, setDefaults) {
  * @param array options
  * @return object Router
  */
-PHP_METHOD(Ice_Mvc_FastRouter, setOptions) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, setOptions)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *options_param = NULL;
 	zval options;
@@ -432,27 +381,24 @@ PHP_METHOD(Ice_Mvc_FastRouter, setOptions) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &options_param);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&options, options_param);
 
 
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &options);
 	RETURN_THIS();
-
 }
 
 /**
  * Prepare the FastRoute.
  * @return object Router
  */
-PHP_METHOD(Ice_Mvc_FastRouter, fastRoute) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, fastRoute)
+{
 	zend_bool _3, _5, _26, _28;
 	zval _0, _13$$4, _14$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -678,7 +624,6 @@ PHP_METHOD(Ice_Mvc_FastRouter, fastRoute) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("ready"), &__$false);
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -687,8 +632,8 @@ PHP_METHOD(Ice_Mvc_FastRouter, fastRoute) {
  * @param string uri
  * @return mixed
  */
-PHP_METHOD(Ice_Mvc_FastRouter, handle) {
-
+PHP_METHOD(Ice_Mvc_FastRouter, handle)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL, *_12 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -738,16 +683,14 @@ PHP_METHOD(Ice_Mvc_FastRouter, handle) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(method)
-		Z_PARAM_ZVAL(uri)
+		Z_PARAM_ZVAL_OR_NULL(method)
+		Z_PARAM_ZVAL_OR_NULL(uri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &method, &uri);
-
 	if (!method) {
 		method = &method_sub;
 		method = &__$null;
@@ -906,11 +849,10 @@ PHP_METHOD(Ice_Mvc_FastRouter, handle) {
 	zephir_array_update_string(return_value, SL("action"), &action, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("params"), &params, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
-
 }
 
-zend_object *zephir_init_properties_Ice_Mvc_FastRouter(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Mvc_FastRouter(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -939,6 +881,5 @@ zend_object *zephir_init_properties_Ice_Mvc_FastRouter(zend_class_entry *class_t
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

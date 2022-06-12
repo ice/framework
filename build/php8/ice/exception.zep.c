@@ -32,12 +32,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Exception) {
-
+ZEPHIR_INIT_CLASS(Ice_Exception)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Exception, ice, exception, zend_ce_exception, ice_exception_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -48,8 +47,8 @@ ZEPHIR_INIT_CLASS(Ice_Exception) {
  * @param mixed code The exception code
  * @param Exception|Throwable previous Previous exception
  */
-PHP_METHOD(Ice_Exception, __construct) {
-
+PHP_METHOD(Ice_Exception, __construct)
+{
 	zval _11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -82,15 +81,13 @@ PHP_METHOD(Ice_Exception, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(message)
 		Z_PARAM_ZVAL(code)
-		Z_PARAM_ZVAL(previous)
+		Z_PARAM_ZVAL_OR_NULL(previous)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 3, &message, &code, &previous);
-
 	if (!message) {
 		message = &message_sub;
 		ZEPHIR_INIT_VAR(message);
@@ -152,12 +149,11 @@ PHP_METHOD(Ice_Exception, __construct) {
 			ZEPHIR_CPY_WRT(message, &_9$$8);
 		}
 	}
-	zephir_get_strval(&_11, message);
+	zephir_cast_to_string(&_11, message);
 	ZVAL_LONG(&_12, zephir_get_intval(code));
 	ZEPHIR_CALL_PARENT(NULL, ice_exception_ce, getThis(), "__construct", NULL, 0, &_11, &_12, previous);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -166,8 +162,8 @@ PHP_METHOD(Ice_Exception, __construct) {
  * @param Exception|Throwable $e
  * @return string
  */
-PHP_METHOD(Ice_Exception, getFullTraceAsString) {
-
+PHP_METHOD(Ice_Exception, getFullTraceAsString)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_30 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, count;
@@ -239,13 +235,11 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(e)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
-
 
 
 	count = 0;
@@ -593,7 +587,6 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
 	}
 	ZEPHIR_INIT_NVAR(&frame);
 	RETURN_CCTOR(&output);
-
 }
 
 /**
@@ -602,8 +595,8 @@ PHP_METHOD(Ice_Exception, getFullTraceAsString) {
  * @throws ErrorException
  * @return true
  */
-PHP_METHOD(Ice_Exception, errorHandler) {
-
+PHP_METHOD(Ice_Exception, errorHandler)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval context;
 	zval message, file;
@@ -629,18 +622,15 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 		Z_PARAM_LONG(line)
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 3, &code_param, &message_param, &file_param, &line_param, &context_param);
-
 	code = zephir_get_intval(code_param);
 	zephir_get_strval(&message, message_param);
 	if (!file_param) {
 		ZEPHIR_INIT_VAR(&file);
-		ZVAL_STRING(&file, "");
 	} else {
 		zephir_get_strval(&file, file_param);
 	}
@@ -672,7 +662,6 @@ PHP_METHOD(Ice_Exception, errorHandler) {
 		return;
 	}
 	RETURN_MM_BOOL(1);
-
 }
 
 /**
@@ -681,8 +670,8 @@ PHP_METHOD(Ice_Exception, errorHandler) {
  * @param Exception|Throwable $e
  * @return void
  */
-PHP_METHOD(Ice_Exception, handler) {
-
+PHP_METHOD(Ice_Exception, handler)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -703,13 +692,11 @@ PHP_METHOD(Ice_Exception, handler) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(e)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &e);
-
 
 
 	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_0, 0);
@@ -745,7 +732,6 @@ PHP_METHOD(Ice_Exception, handler) {
 	ZEPHIR_MM_RESTORE();
 	zephir_exit(&_5);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -754,8 +740,8 @@ PHP_METHOD(Ice_Exception, handler) {
  *
  * @return  void
  */
-PHP_METHOD(Ice_Exception, shutdownHandler) {
-
+PHP_METHOD(Ice_Exception, shutdownHandler)
+{
 	zval _2;
 	zend_bool _0;
 	zval e, _1, _3, _4$$3, _5$$3, _6$$3, _7$$3, _8$$3, _9$$3;
@@ -819,6 +805,5 @@ PHP_METHOD(Ice_Exception, shutdownHandler) {
 		zephir_exit(&_9$$3);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

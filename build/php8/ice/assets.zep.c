@@ -33,16 +33,13 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Assets) {
-
+ZEPHIR_INIT_CLASS(Ice_Assets)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Assets, ice, assets, ice_assets_method_entry, 0);
 
 	zend_declare_property_null(ice_assets_ce, SL("di"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_assets_ce, SL("collections"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_assets_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	ice_assets_ce->create_object = zephir_init_properties_Ice_Assets;
 	zephir_declare_class_constant_long(ice_assets_ce, SL("NEVER"), 0);
 
@@ -53,11 +50,10 @@ ZEPHIR_INIT_CLASS(Ice_Assets) {
 	zephir_declare_class_constant_long(ice_assets_ce, SL("ALWAYS"), 3);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Assets, setCollections) {
-
+PHP_METHOD(Ice_Assets, setCollections)
+{
 	zval *collections, collections_sub;
 	zval *this_ptr = getThis();
 
@@ -67,31 +63,27 @@ PHP_METHOD(Ice_Assets, setCollections) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(collections)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &collections);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("collections"), collections);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Assets, getCollections) {
-
+PHP_METHOD(Ice_Assets, getCollections)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "collections");
-
 }
 
-PHP_METHOD(Ice_Assets, setOptions) {
-
+PHP_METHOD(Ice_Assets, setOptions)
+{
 	zval *options, options_sub;
 	zval *this_ptr = getThis();
 
@@ -101,24 +93,21 @@ PHP_METHOD(Ice_Assets, setOptions) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &options);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), options);
 	RETURN_THISW();
-
 }
 
 /**
  * Assets constructor. Fetch Di and set it as a property.
  */
-PHP_METHOD(Ice_Assets, __construct) {
-
+PHP_METHOD(Ice_Assets, __construct)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -134,7 +123,6 @@ PHP_METHOD(Ice_Assets, __construct) {
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_0);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -144,8 +132,8 @@ PHP_METHOD(Ice_Assets, __construct) {
  * @param mixed defaultValue The value to return if data key does not exist
  * @return mixed
  */
-PHP_METHOD(Ice_Assets, getOption) {
-
+PHP_METHOD(Ice_Assets, getOption)
+{
 	zval *key, key_sub, *defaultValue = NULL, defaultValue_sub, __$null, value, _0;
 	zval *this_ptr = getThis();
 
@@ -159,14 +147,12 @@ PHP_METHOD(Ice_Assets, getOption) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(key)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(defaultValue)
+		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 1, &key, &defaultValue);
-
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
@@ -179,7 +165,6 @@ PHP_METHOD(Ice_Assets, getOption) {
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	return;
-
 }
 
 /**
@@ -191,8 +176,8 @@ PHP_METHOD(Ice_Assets, getOption) {
  * @param mixed minify Local minify option
  * @return object this
  */
-PHP_METHOD(Ice_Assets, add) {
-
+PHP_METHOD(Ice_Assets, add)
+{
 	zend_bool _0, _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -215,25 +200,21 @@ PHP_METHOD(Ice_Assets, add) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(version)
 		Z_PARAM_STR_OR_NULL(collection)
-		Z_PARAM_ZVAL(minify)
+		Z_PARAM_ZVAL_OR_NULL(minify)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters, &version_param, &collection_param, &minify);
-
 	ZEPHIR_SEPARATE_PARAM(parameters);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
-		ZVAL_STRING(&version, "");
 	} else {
 		zephir_get_strval(&version, version_param);
 	}
 	if (!collection_param) {
 		ZEPHIR_INIT_VAR(&collection);
-		ZVAL_STRING(&collection, "");
 	} else {
 		zephir_get_strval(&collection, collection_param);
 	}
@@ -265,14 +246,14 @@ PHP_METHOD(Ice_Assets, add) {
 		_1 = ZEPHIR_IS_STRING(&type, "text/javascript");
 	}
 	if (_0) {
-		if (!(!(Z_TYPE_P(&collection) == IS_UNDEF) && Z_STRLEN_P(&collection))) {
+		if (!(!(ZEPHIR_IS_EMPTY(&collection)))) {
 			ZEPHIR_INIT_NVAR(&collection);
 			ZVAL_STRING(&collection, "css");
 		}
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "addcss", NULL, 0, parameters, &version, &collection, minify);
 		zephir_check_call_status();
 	} else if (_1) {
-		if (!(!(Z_TYPE_P(&collection) == IS_UNDEF) && Z_STRLEN_P(&collection))) {
+		if (!(!(ZEPHIR_IS_EMPTY(&collection)))) {
 			ZEPHIR_INIT_NVAR(&collection);
 			ZVAL_STRING(&collection, "js");
 		}
@@ -280,7 +261,6 @@ PHP_METHOD(Ice_Assets, add) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -292,8 +272,8 @@ PHP_METHOD(Ice_Assets, add) {
  * @param mixed minify Local minify option
  * @return object this
  */
-PHP_METHOD(Ice_Assets, addCss) {
-
+PHP_METHOD(Ice_Assets, addCss)
+{
 	zend_bool _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
@@ -332,19 +312,16 @@ PHP_METHOD(Ice_Assets, addCss) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(version)
 		Z_PARAM_STR(collection)
-		Z_PARAM_ZVAL(minify)
+		Z_PARAM_ZVAL_OR_NULL(minify)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
-		ZVAL_STRING(&version, "");
 	} else {
 		zephir_get_strval(&version, version_param);
 	}
@@ -415,7 +392,7 @@ PHP_METHOD(Ice_Assets, addCss) {
 		ZEPHIR_CALL_METHOD(&_10$$8, this_ptr, "prepare", NULL, 0, &content, &_11$$8, minify);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_12$$8);
-		if (!(Z_TYPE_P(&version) == IS_UNDEF) && Z_STRLEN_P(&version)) {
+		if (!(ZEPHIR_IS_EMPTY(&version))) {
 			ZEPHIR_INIT_VAR(&_13$$8);
 			ZEPHIR_CONCAT_SV(&_13$$8, "?v=", &version);
 			ZEPHIR_CPY_WRT(&_12$$8, &_13$$8);
@@ -432,7 +409,6 @@ PHP_METHOD(Ice_Assets, addCss) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -444,8 +420,8 @@ PHP_METHOD(Ice_Assets, addCss) {
  * @param mixed minify Local minify option
  * @return object this
  */
-PHP_METHOD(Ice_Assets, addJs) {
-
+PHP_METHOD(Ice_Assets, addJs)
+{
 	zend_bool _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_9 = NULL;
@@ -484,19 +460,16 @@ PHP_METHOD(Ice_Assets, addJs) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(version)
 		Z_PARAM_STR(collection)
-		Z_PARAM_ZVAL(minify)
+		Z_PARAM_ZVAL_OR_NULL(minify)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &parameters_param, &version_param, &collection_param, &minify);
-
 	ZEPHIR_OBS_COPY_OR_DUP(&parameters, parameters_param);
 	if (!version_param) {
 		ZEPHIR_INIT_VAR(&version);
-		ZVAL_STRING(&version, "");
 	} else {
 		zephir_get_strval(&version, version_param);
 	}
@@ -567,7 +540,7 @@ PHP_METHOD(Ice_Assets, addJs) {
 		ZEPHIR_CALL_METHOD(&_10$$8, this_ptr, "prepare", NULL, 0, &content, &_11$$8, minify);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_12$$8);
-		if (!(Z_TYPE_P(&version) == IS_UNDEF) && Z_STRLEN_P(&version)) {
+		if (!(ZEPHIR_IS_EMPTY(&version))) {
 			ZEPHIR_INIT_VAR(&_13$$8);
 			ZEPHIR_CONCAT_SV(&_13$$8, "?v=", &version);
 			ZEPHIR_CPY_WRT(&_12$$8, &_13$$8);
@@ -584,7 +557,6 @@ PHP_METHOD(Ice_Assets, addJs) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -593,8 +565,8 @@ PHP_METHOD(Ice_Assets, addJs) {
  * @param string key Collection name
  * @param string value Asset HTML code
  */
-PHP_METHOD(Ice_Assets, addToCollection) {
-
+PHP_METHOD(Ice_Assets, addToCollection)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key, key_sub, *value, value_sub, _0, _1$$3;
 	zval *this_ptr = getThis();
@@ -609,13 +581,11 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 		Z_PARAM_ZVAL(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &key, &value);
-
 
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("collections"), PH_NOISY_CC | PH_READONLY);
@@ -626,7 +596,6 @@ PHP_METHOD(Ice_Assets, addToCollection) {
 	}
 	zephir_update_property_array_multi(this_ptr, SL("collections"), value, SL("za"), 2, key);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -634,8 +603,8 @@ PHP_METHOD(Ice_Assets, addToCollection) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Assets, getCss) {
-
+PHP_METHOD(Ice_Assets, getCss)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -651,7 +620,6 @@ PHP_METHOD(Ice_Assets, getCss) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -659,8 +627,8 @@ PHP_METHOD(Ice_Assets, getCss) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Assets, getJs) {
-
+PHP_METHOD(Ice_Assets, getJs)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -676,7 +644,6 @@ PHP_METHOD(Ice_Assets, getJs) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, &_0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -685,8 +652,8 @@ PHP_METHOD(Ice_Assets, getJs) {
  * @param string key Collection name
  * @return array
  */
-PHP_METHOD(Ice_Assets, get) {
-
+PHP_METHOD(Ice_Assets, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, collection, _0, _1;
 	zval key;
@@ -701,13 +668,11 @@ PHP_METHOD(Ice_Assets, get) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &key_param);
-
 	zephir_get_strval(&key, key_param);
 
 
@@ -720,7 +685,6 @@ PHP_METHOD(Ice_Assets, get) {
 		array_init(&_1);
 	}
 	RETURN_CCTOR(&_1);
-
 }
 
 /**
@@ -730,8 +694,8 @@ PHP_METHOD(Ice_Assets, get) {
  * @param string type Type of content
  * @return string
  */
-PHP_METHOD(Ice_Assets, minify) {
-
+PHP_METHOD(Ice_Assets, minify)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *content_param = NULL, *type, type_sub, _0, _1, _2, _3;
@@ -750,13 +714,11 @@ PHP_METHOD(Ice_Assets, minify) {
 		Z_PARAM_STR(content)
 		Z_PARAM_ZVAL(type)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &content_param, &type);
-
 	if (UNEXPECTED(Z_TYPE_P(content_param) != IS_STRING && Z_TYPE_P(content_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'content' must be of the type string"));
 		RETURN_MM_NULL();
@@ -765,7 +727,6 @@ PHP_METHOD(Ice_Assets, minify) {
 		zephir_get_strval(&content, content_param);
 	} else {
 		ZEPHIR_INIT_VAR(&content);
-		ZVAL_EMPTY_STRING(&content);
 	}
 
 
@@ -779,7 +740,6 @@ PHP_METHOD(Ice_Assets, minify) {
 	ZEPHIR_RETURN_CALL_METHOD(&_1, "sanitize", NULL, 0, &content, &_3);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -790,8 +750,8 @@ PHP_METHOD(Ice_Assets, minify) {
  * @param int minify Option of minify
  * @return string New path to the source
  */
-PHP_METHOD(Ice_Assets, prepare) {
-
+PHP_METHOD(Ice_Assets, prepare)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL, *_14 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -833,13 +793,11 @@ PHP_METHOD(Ice_Assets, prepare) {
 		Z_PARAM_STR(type)
 		Z_PARAM_ZVAL(minify)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 3, 0, &uri_param, &type_param, &minify);
-
 	if (UNEXPECTED(Z_TYPE_P(uri_param) != IS_STRING && Z_TYPE_P(uri_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'uri' must be of the type string"));
 		RETURN_MM_NULL();
@@ -848,7 +806,6 @@ PHP_METHOD(Ice_Assets, prepare) {
 		zephir_get_strval(&uri, uri_param);
 	} else {
 		ZEPHIR_INIT_VAR(&uri);
-		ZVAL_EMPTY_STRING(&uri);
 	}
 	zephir_get_strval(&type, type_param);
 	ZEPHIR_SEPARATE_PARAM(minify);
@@ -960,11 +917,10 @@ PHP_METHOD(Ice_Assets, prepare) {
 		RETURN_CCTOR(&uriMin);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
-zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type)
+{
 		zval _0, _2, _1$$3, _3$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -993,6 +949,5 @@ zend_object *zephir_init_properties_Ice_Assets(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

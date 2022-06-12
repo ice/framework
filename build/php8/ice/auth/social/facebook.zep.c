@@ -29,12 +29,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Social_Facebook) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Social_Facebook)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Social, Facebook, ice, auth_social_facebook, ice_auth_social_adapter_ce, ice_auth_social_facebook_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -42,8 +41,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Facebook) {
  *
  * @param array config
  */
-PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
-
+PHP_METHOD(Ice_Auth_Social_Facebook, __construct)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -60,13 +59,11 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(config)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
-
 	if (!config) {
 		config = &config_sub;
 		ZEPHIR_INIT_VAR(config);
@@ -90,7 +87,6 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
 	add_assoc_stringl_ex(&_2, SL("birthday"), SL("birthday"));
 	zephir_update_property_zval(this_ptr, ZEND_STRL("socialFieldsMap"), &_2);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -98,8 +94,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, __construct) {
  *
  * @return string|null
  */
-PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
-
+PHP_METHOD(Ice_Auth_Social_Facebook, getImage)
+{
 	zval _0, _1, _2$$3, _3$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -126,7 +122,6 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
 		RETURN_MM();
 	}
 	RETURN_MM_NULL();
-
 }
 
 /**
@@ -134,8 +129,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, getImage) {
  *
  * @return bool
  */
-PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
-
+PHP_METHOD(Ice_Auth_Social_Facebook, authenticate)
+{
 	zend_bool result = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -221,7 +216,6 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
 		}
 	}
 	RETURN_MM_BOOL(result);
-
 }
 
 /**
@@ -229,8 +223,8 @@ PHP_METHOD(Ice_Auth_Social_Facebook, authenticate) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
-
+PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams)
+{
 	zval _1, _2, _3, _4;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -266,6 +260,5 @@ PHP_METHOD(Ice_Auth_Social_Facebook, prepareAuthParams) {
 	zephir_array_update_string(&_0, SL("scope"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("auth_params"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
-
 }
 

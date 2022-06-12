@@ -39,17 +39,16 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Balkan) {
-
+ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Balkan)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\I18n\\Plural, Balkan, ice, i18n_plural_balkan, ice_i18n_plural_balkan_method_entry, 0);
 
 	zend_class_implements(ice_i18n_plural_balkan_ce, 1, ice_i18n_plural_pluralinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory) {
-
+PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory)
+{
 	zend_bool _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *count_param = NULL, isInt, _0;
@@ -63,13 +62,11 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &count_param);
-
 	count = zephir_get_intval(count_param);
 
 
@@ -131,11 +128,10 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory) {
 	} else {
 		RETURN_MM_STRING("other");
 	}
-
 }
 
-PHP_METHOD(Ice_I18n_Plural_Balkan, isInt) {
-
+PHP_METHOD(Ice_I18n_Plural_Balkan, isInt)
+{
 	zend_bool _0;
 	zval *value, value_sub;
 	zval *this_ptr = getThis();
@@ -146,12 +142,10 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, isInt) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &value);
-
 
 
 	_0 = zephir_is_numeric(value);
@@ -159,6 +153,5 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, isInt) {
 		_0 = (zephir_get_numberval(value) - zephir_get_intval(value)) == 0;
 	}
 	RETURN_BOOL(_0);
-
 }
 

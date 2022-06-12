@@ -307,7 +307,6 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals)
 	memset(ice_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
 		ice_globals->cli_colors = 1;
-
 	
 }
 
@@ -384,7 +383,11 @@ static PHP_GSHUTDOWN_FUNCTION(ice)
 PHP_FUNCTION(g_ice__t);
 ZEND_BEGIN_ARG_INFO_EX(arginfo_g_ice__t, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, str, IS_STRING, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, values, IS_ARRAY, 1, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, values, 1)
+#endif
 	ZEND_ARG_INFO(0, context)
 	ZEND_ARG_TYPE_INFO(0, lang, IS_STRING, 1)
 ZEND_END_ARG_INFO()

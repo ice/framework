@@ -31,34 +31,29 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Mvc, Dispatcher, ice, mvc_dispatcher, ice_dispatcher_ce, ice_mvc_dispatcher_method_entry, 0);
 
 	zend_declare_property_null(ice_mvc_dispatcher_ce, SL("method"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlers"), "Controllers", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_string(ice_mvc_dispatcher_ce, SL("handlerSuffix"), "Controller", ZEND_ACC_PROTECTED);
-
 	zephir_declare_class_constant_long(ice_mvc_dispatcher_ce, SL("REDIRECT_CYCLIC"), 5);
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Dispatcher, getMethod) {
-
+PHP_METHOD(Ice_Mvc_Dispatcher, getMethod)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "method");
-
 }
 
-PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
-
+PHP_METHOD(Ice_Mvc_Dispatcher, setMethod)
+{
 	zval *method, method_sub;
 	zval *this_ptr = getThis();
 
@@ -68,17 +63,14 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(method)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &method);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("method"), method);
 	RETURN_THISW();
-
 }
 
 /**
@@ -86,8 +78,8 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod) {
  *
  * @return string
  */
-PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
-
+PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod)
+{
 	zval action, _0, _1, _2, _3, _4, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -121,11 +113,10 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod) {
 	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 0);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
-PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
-
+PHP_METHOD(Ice_Mvc_Dispatcher, dispatch)
+{
 	zval parent, response, _1, _2, _3, _4, _5$$3, _8$$3, _9$$3, _10$$3, _6$$4, _7$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -184,6 +175,5 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch) {
 		return;
 	}
 	RETURN_CCTOR(&parent);
-
 }
 

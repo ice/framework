@@ -33,12 +33,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Log_LoggerInterface) {
-
+ZEPHIR_INIT_CLASS(Ice_Log_LoggerInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Log, LoggerInterface, ice, log_loggerinterface, ice_log_loggerinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 ZEPHIR_DOC_METHOD(Ice_Log_LoggerInterface, emergency);

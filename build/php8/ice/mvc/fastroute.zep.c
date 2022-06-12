@@ -29,20 +29,15 @@
  * @license     http://iceframework.org/license
  * @uses        FastRoute https://github.com/nikic/FastRoute/commit/30470b69c785f7c28a0203be86692f4780a43bdf
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_FastRoute) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_FastRoute)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc, FastRoute, ice, mvc_fastroute, ice_mvc_fastroute_method_entry, 0);
 
 	zend_declare_property_null(ice_mvc_fastroute_ce, SL("httpMethod"), ZEND_ACC_PUBLIC);
-
 	zend_declare_property_null(ice_mvc_fastroute_ce, SL("regex"), ZEND_ACC_PUBLIC);
-
 	zend_declare_property_null(ice_mvc_fastroute_ce, SL("variables"), ZEND_ACC_PUBLIC);
-
 	zend_declare_property_null(ice_mvc_fastroute_ce, SL("handler"), ZEND_ACC_PUBLIC);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -53,8 +48,8 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_FastRoute) {
  * @param string regex
  * @param array variables
  */
-PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
-
+PHP_METHOD(Ice_Mvc_FastRoute, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval variables;
 	zval *httpMethod_param = NULL, *handler, handler_sub, *regex_param = NULL, *variables_param = NULL;
@@ -73,13 +68,11 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
 		Z_PARAM_STR(regex)
 		Z_PARAM_ARRAY(variables)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 4, 0, &httpMethod_param, &handler, &regex_param, &variables_param);
-
 	zephir_get_strval(&httpMethod, httpMethod_param);
 	zephir_get_strval(&regex, regex_param);
 	zephir_get_arrval(&variables, variables_param);
@@ -90,7 +83,6 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
 	zephir_update_property_zval(this_ptr, ZEND_STRL("regex"), &regex);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("variables"), &variables);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -99,8 +91,8 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct) {
  * @param string str
  * @return bool
  */
-PHP_METHOD(Ice_Mvc_FastRoute, matches) {
-
+PHP_METHOD(Ice_Mvc_FastRoute, matches)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *str_param = NULL, regex, _0, _1, _2, _3;
 	zval str;
@@ -117,13 +109,11 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(str)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &str_param);
-
 	zephir_get_strval(&str, str_param);
 
 
@@ -135,6 +125,5 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches) {
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_preg_match(&_3, &regex, &str, &_2, 0, 0 , 0 );
 	RETURN_MM_BOOL(zephir_get_boolval(&_3));
-
 }
 

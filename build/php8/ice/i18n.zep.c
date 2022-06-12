@@ -37,22 +37,17 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_I18n) {
-
+ZEPHIR_INIT_CLASS(Ice_I18n)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, I18n, ice, i18n, ice_i18n_method_entry, 0);
 
 	zend_declare_property_null(ice_i18n_ce, SL("i18n"), ZEND_ACC_PROTECTED|ZEND_ACC_STATIC);
-
 	zend_declare_property_null(ice_i18n_ce, SL("cache"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_i18n_ce, SL("rules"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_i18n_ce, SL("options"), ZEND_ACC_PROTECTED);
-
 	ice_i18n_ce->create_object = zephir_init_properties_Ice_I18n;
 
 	return SUCCESS;
-
 }
 
 /**
@@ -60,8 +55,8 @@ ZEPHIR_INIT_CLASS(Ice_I18n) {
  *
  * @param array options
  */
-PHP_METHOD(Ice_I18n, __construct) {
-
+PHP_METHOD(Ice_I18n, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *options_param = NULL, _0, _1;
 	zval options;
@@ -76,13 +71,11 @@ PHP_METHOD(Ice_I18n, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &options_param);
-
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
 		array_init(&options);
@@ -97,7 +90,6 @@ PHP_METHOD(Ice_I18n, __construct) {
 	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &_0);
 	zephir_update_static_property_ce(ice_i18n_ce, ZEND_STRL("i18n"), this_ptr);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -105,8 +97,8 @@ PHP_METHOD(Ice_I18n, __construct) {
  *
  * @return I18n
  */
-PHP_METHOD(Ice_I18n, fetch) {
-
+PHP_METHOD(Ice_I18n, fetch)
+{
 	zval _0;
 	zval *this_ptr = getThis();
 
@@ -116,7 +108,6 @@ PHP_METHOD(Ice_I18n, fetch) {
 
 	zephir_read_static_property_ce(&_0, ice_i18n_ce, SL("i18n"), PH_NOISY_CC | PH_READONLY);
 	RETURN_CTORW(&_0);
-
 }
 
 /**
@@ -125,8 +116,8 @@ PHP_METHOD(Ice_I18n, fetch) {
  * @param string lang New language setting
  * @return string
  */
-PHP_METHOD(Ice_I18n, lang) {
-
+PHP_METHOD(Ice_I18n, lang)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *lang_param = NULL, _0$$3, _1$$3, _2$$3, _3$$3, _4$$3, _5, _6;
 	zval lang;
@@ -146,22 +137,19 @@ PHP_METHOD(Ice_I18n, lang) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &lang_param);
-
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
 
 
-	if (!(Z_TYPE_P(&lang) == IS_UNDEF) && Z_STRLEN_P(&lang)) {
+	if (!(ZEPHIR_IS_EMPTY(&lang))) {
 		ZEPHIR_INIT_VAR(&_0$$3);
 		ZEPHIR_INIT_VAR(&_1$$3);
 		ZEPHIR_INIT_VAR(&_2$$3);
@@ -177,7 +165,6 @@ PHP_METHOD(Ice_I18n, lang) {
 	zephir_read_property(&_5, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch_string(&_6, &_5, SL("lang"), PH_NOISY | PH_READONLY, "ice/i18n.zep", 73);
 	RETURN_CTOR(&_6);
-
 }
 
 /**
@@ -187,8 +174,8 @@ PHP_METHOD(Ice_I18n, lang) {
  * @param boolean country Get country code, by default gets language code
  * @return string
  */
-PHP_METHOD(Ice_I18n, iso) {
-
+PHP_METHOD(Ice_I18n, iso)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool country, _6;
 	zval *lang = NULL, lang_sub, *country_param = NULL, __$null, parts, _1, _2, _3, _4, _5, _0$$3;
@@ -207,16 +194,14 @@ PHP_METHOD(Ice_I18n, iso) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(lang)
+		Z_PARAM_ZVAL_OR_NULL(lang)
 		Z_PARAM_BOOL(country)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &lang, &country_param);
-
 	if (!lang) {
 		lang = &lang_sub;
 		ZEPHIR_CPY_WRT(lang, &__$null);
@@ -256,7 +241,6 @@ PHP_METHOD(Ice_I18n, iso) {
 		zephir_array_fetch_long(&_5, &parts, 0, PH_NOISY, "ice/i18n.zep", 93);
 	}
 	RETURN_CCTOR(&_5);
-
 }
 
 /**
@@ -268,8 +252,8 @@ PHP_METHOD(Ice_I18n, iso) {
  * @param string lang Target language
  * @return string
  */
-PHP_METHOD(Ice_I18n, get) {
-
+PHP_METHOD(Ice_I18n, get)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *form = NULL, form_sub, *lang_param = NULL, __$null, messages, translation, _0$$3, _1$$3, _3$$5, _4$$6, _5$$7;
@@ -293,16 +277,14 @@ PHP_METHOD(Ice_I18n, get) {
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_STR(str)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(form)
+		Z_PARAM_ZVAL_OR_NULL(form)
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &form, &lang_param);
-
 	zephir_get_strval(&str, str_param);
 	if (!form) {
 		form = &form_sub;
@@ -310,7 +292,6 @@ PHP_METHOD(Ice_I18n, get) {
 	}
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
@@ -318,11 +299,11 @@ PHP_METHOD(Ice_I18n, get) {
 
 	ZEPHIR_INIT_VAR(&messages);
 	array_init(&messages);
-	if (!(!(Z_TYPE_P(&lang) == IS_UNDEF) && Z_STRLEN_P(&lang))) {
+	if (!(!(ZEPHIR_IS_EMPTY(&lang)))) {
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_array_fetch_string(&_1$$3, &_0$$3, SL("lang"), PH_NOISY, "ice/i18n.zep", 115);
-		zephir_get_strval(&_2$$3, &_1$$3);
+		zephir_cast_to_string(&_2$$3, &_1$$3);
 		ZEPHIR_CPY_WRT(&lang, &_2$$3);
 	}
 	ZEPHIR_CALL_METHOD(&messages, this_ptr, "load", NULL, 148, &lang);
@@ -349,7 +330,6 @@ PHP_METHOD(Ice_I18n, get) {
 		RETURN_CCTOR(&translation);
 	}
 	RETURN_CTOR(&str);
-
 }
 
 /**
@@ -358,8 +338,8 @@ PHP_METHOD(Ice_I18n, get) {
  * @param string lang Language code
  * @return array
  */
-PHP_METHOD(Ice_I18n, load) {
-
+PHP_METHOD(Ice_I18n, load)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -407,13 +387,11 @@ PHP_METHOD(Ice_I18n, load) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &lang_param);
-
 	zephir_get_strval(&lang, lang_param);
 
 
@@ -457,7 +435,7 @@ PHP_METHOD(Ice_I18n, load) {
 					zephir_read_property(&_8$$6, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 					ZEPHIR_OBS_NVAR(&_9$$6);
 					zephir_array_fetch_string(&_9$$6, &_8$$6, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
-					zephir_get_strval(&_10$$6, &_9$$6);
+					zephir_cast_to_string(&_10$$6, &_9$$6);
 					ZEPHIR_INIT_NVAR(&path);
 					ZEPHIR_CONCAT_VVS(&path, &_10$$6, &found, ".php");
 					if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -483,7 +461,7 @@ PHP_METHOD(Ice_I18n, load) {
 						zephir_read_property(&_12$$8, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_OBS_NVAR(&_13$$8);
 						zephir_array_fetch_string(&_13$$8, &_12$$8, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
-						zephir_get_strval(&_14$$8, &_13$$8);
+						zephir_cast_to_string(&_14$$8, &_13$$8);
 						ZEPHIR_INIT_NVAR(&path);
 						ZEPHIR_CONCAT_VVS(&path, &_14$$8, &found, ".php");
 						if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -527,7 +505,7 @@ PHP_METHOD(Ice_I18n, load) {
 						zephir_read_property(&_19$$12, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 						ZEPHIR_OBS_NVAR(&_20$$12);
 						zephir_array_fetch_string(&_20$$12, &_19$$12, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
-						zephir_get_strval(&_21$$12, &_20$$12);
+						zephir_cast_to_string(&_21$$12, &_20$$12);
 						ZEPHIR_INIT_NVAR(&path);
 						ZEPHIR_CONCAT_VVS(&path, &_21$$12, &found, ".php");
 						if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -553,7 +531,7 @@ PHP_METHOD(Ice_I18n, load) {
 							zephir_read_property(&_23$$14, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_OBS_NVAR(&_24$$14);
 							zephir_array_fetch_string(&_24$$14, &_23$$14, SL("dir"), PH_NOISY, "ice/i18n.zep", 171);
-							zephir_get_strval(&_25$$14, &_24$$14);
+							zephir_cast_to_string(&_25$$14, &_24$$14);
 							ZEPHIR_INIT_NVAR(&path);
 							ZEPHIR_CONCAT_VVS(&path, &_25$$14, &found, ".php");
 							if ((zephir_file_exists(&path) == SUCCESS)) {
@@ -578,7 +556,6 @@ PHP_METHOD(Ice_I18n, load) {
 	zephir_read_property(&_27, this_ptr, ZEND_STRL("cache"), PH_NOISY_CC | PH_READONLY);
 	zephir_array_fetch(&_28, &_27, &lang, PH_NOISY | PH_READONLY, "ice/i18n.zep", 183);
 	RETURN_CTOR(&_28);
-
 }
 
 /**
@@ -590,8 +567,8 @@ PHP_METHOD(Ice_I18n, load) {
  * @param string lang
  * @return string
  */
-PHP_METHOD(Ice_I18n, plural) {
-
+PHP_METHOD(Ice_I18n, plural)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long count, ZEPHIR_LAST_CALL_STATUS;
 	zval *str_param = NULL, *count_param = NULL, *lang_param = NULL, rules, form, code, _0, _4, _1$$3, _2$$3, _3$$3;
@@ -616,13 +593,11 @@ PHP_METHOD(Ice_I18n, plural) {
 		Z_PARAM_LONG(count)
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &str_param, &count_param, &lang_param);
-
 	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be of the type string"));
 		RETURN_MM_NULL();
@@ -631,7 +606,6 @@ PHP_METHOD(Ice_I18n, plural) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
-		ZVAL_EMPTY_STRING(&str);
 	}
 	if (!count_param) {
 		count = 0;
@@ -640,7 +614,6 @@ PHP_METHOD(Ice_I18n, plural) {
 	}
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
@@ -664,7 +637,6 @@ PHP_METHOD(Ice_I18n, plural) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "get", NULL, 0, &str, &form, &lang);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -673,8 +645,8 @@ PHP_METHOD(Ice_I18n, plural) {
  * @param string code Language code
  * @return object
  */
-PHP_METHOD(Ice_I18n, pluralRules) {
-
+PHP_METHOD(Ice_I18n, pluralRules)
+{
 	zval _0, _3, _5, _7, _9, _11, _13, _15;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -708,13 +680,11 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(code)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &code_param);
-
 	zephir_get_strval(&code, code_param);
 
 
@@ -1233,6 +1203,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (ZEPHIR_IS_STRING_IDENTICAL(&code, "ar")) {
 		object_init_ex(return_value, ice_i18n_plural_arabic_ce);
@@ -1240,6 +1211,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_2)) {
 		object_init_ex(return_value, ice_i18n_plural_czech_ce);
@@ -1247,6 +1219,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_4)) {
 		object_init_ex(return_value, ice_i18n_plural_balkan_ce);
@@ -1254,6 +1227,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_6)) {
 		object_init_ex(return_value, ice_i18n_plural_french_ce);
@@ -1261,6 +1235,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_8)) {
 		object_init_ex(return_value, ice_i18n_plural_romanian_ce);
@@ -1268,6 +1243,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_10)) {
 		object_init_ex(return_value, ice_i18n_plural_zero_ce);
@@ -1275,6 +1251,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_12)) {
 		object_init_ex(return_value, ice_i18n_plural_one_ce);
@@ -1282,6 +1259,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_14)) {
 		object_init_ex(return_value, ice_i18n_plural_two_ce);
@@ -1289,6 +1267,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else if (zephir_is_true(&_16)) {
 		object_init_ex(return_value, ice_i18n_plural_none_ce);
@@ -1296,6 +1275,7 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 			ZEPHIR_CALL_METHOD(NULL, return_value, "__construct", NULL, 0);
 			zephir_check_call_status();
 		}
+
 		RETURN_MM();
 	} else {
 		ZEPHIR_INIT_VAR(&_17$$13);
@@ -1308,14 +1288,13 @@ PHP_METHOD(Ice_I18n, pluralRules) {
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-
 }
 
 /**
  * Alias of translate.
  */
-PHP_METHOD(Ice_I18n, _) {
-
+PHP_METHOD(Ice_I18n, _)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval values;
@@ -1334,16 +1313,14 @@ PHP_METHOD(Ice_I18n, _) {
 		Z_PARAM_STR(str)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY_OR_NULL(values)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
-
 	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1352,11 +1329,9 @@ PHP_METHOD(Ice_I18n, _) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
-		ZVAL_EMPTY_STRING(&str);
 	}
 	if (!values_param) {
 		ZEPHIR_INIT_VAR(&values);
-		array_init(&values);
 	} else {
 		zephir_get_arrval(&values, values_param);
 	}
@@ -1366,7 +1341,6 @@ PHP_METHOD(Ice_I18n, _) {
 	}
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
@@ -1375,7 +1349,6 @@ PHP_METHOD(Ice_I18n, _) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "translate", NULL, 0, &str, &values, &lang);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1387,8 +1360,8 @@ PHP_METHOD(Ice_I18n, _) {
  * @param string lang Source language
  * @return string
  */
-PHP_METHOD(Ice_I18n, translate) {
-
+PHP_METHOD(Ice_I18n, translate)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval values, _9$$9;
@@ -1418,16 +1391,14 @@ PHP_METHOD(Ice_I18n, translate) {
 		Z_PARAM_STR(str)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY_OR_NULL(values)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
-
 	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1436,11 +1407,9 @@ PHP_METHOD(Ice_I18n, translate) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
-		ZVAL_EMPTY_STRING(&str);
 	}
 	if (!values_param) {
 		ZEPHIR_INIT_VAR(&values);
-		array_init(&values);
 	} else {
 		zephir_get_arrval(&values, values_param);
 	}
@@ -1450,17 +1419,16 @@ PHP_METHOD(Ice_I18n, translate) {
 	}
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
 
 
-	if (!(!(Z_TYPE_P(&lang) == IS_UNDEF) && Z_STRLEN_P(&lang))) {
+	if (!(!(ZEPHIR_IS_EMPTY(&lang)))) {
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
 		ZEPHIR_OBS_VAR(&_1$$3);
 		zephir_array_fetch_string(&_1$$3, &_0$$3, SL("lang"), PH_NOISY, "ice/i18n.zep", 276);
-		zephir_get_strval(&_2$$3, &_1$$3);
+		zephir_cast_to_string(&_2$$3, &_1$$3);
 		ZEPHIR_CPY_WRT(&lang, &_2$$3);
 	}
 	if (zephir_is_numeric(context)) {
@@ -1498,11 +1466,10 @@ PHP_METHOD(Ice_I18n, translate) {
 			RETURN_MM();
 		}
 	}
-
 }
 
-zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type)
+{
 		zval _1$$3;
 	zval _0, _2, _4, _3$$4, _5$$5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1543,7 +1510,6 @@ zend_object *zephir_init_properties_Ice_I18n(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 
 PHP_FUNCTION(g_ice__t) {
@@ -1565,16 +1531,14 @@ PHP_FUNCTION(g_ice__t) {
 		Z_PARAM_STR(str)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY_OR_NULL(values)
-		Z_PARAM_ZVAL(context)
+		Z_PARAM_ZVAL_OR_NULL(context)
 		Z_PARAM_STR_OR_NULL(lang)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 3, &str_param, &values_param, &context, &lang_param);
-
 	if (UNEXPECTED(Z_TYPE_P(str_param) != IS_STRING && Z_TYPE_P(str_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'str' must be of the type string"));
 		RETURN_MM_NULL();
@@ -1583,11 +1547,9 @@ PHP_FUNCTION(g_ice__t) {
 		zephir_get_strval(&str, str_param);
 	} else {
 		ZEPHIR_INIT_VAR(&str);
-		ZVAL_EMPTY_STRING(&str);
 	}
 	if (!values_param) {
 		ZEPHIR_INIT_VAR(&values);
-		array_init(&values);
 	} else {
 		zephir_get_arrval(&values, values_param);
 	}
@@ -1597,7 +1559,6 @@ PHP_FUNCTION(g_ice__t) {
 	}
 	if (!lang_param) {
 		ZEPHIR_INIT_VAR(&lang);
-		ZVAL_STRING(&lang, "");
 	} else {
 		zephir_get_strval(&lang, lang_param);
 	}
@@ -1611,6 +1572,5 @@ PHP_FUNCTION(g_ice__t) {
 		RETURN_MM();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 

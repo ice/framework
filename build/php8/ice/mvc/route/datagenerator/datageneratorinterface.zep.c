@@ -12,12 +12,11 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_DataGeneratorInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Mvc\\Route\\DataGenerator, DataGeneratorInterface, ice, mvc_route_datagenerator_datageneratorinterface, ice_mvc_route_datagenerator_datageneratorinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**

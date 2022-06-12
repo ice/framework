@@ -27,8 +27,8 @@
  * @license     http://iceframework.org/license
  * @uses        cssmin.c www.ryanday.org
  */
-ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
-
+ZEPHIR_INIT_CLASS(Ice_Filter_Css)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Filter, Css, ice, filter_css, ice_filter_css_method_entry, 0);
 
 	zephir_declare_class_constant_long(ice_filter_css_ce, SL("FREE"), 1);
@@ -44,7 +44,6 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
 	zephir_declare_class_constant_long(ice_filter_css_ce, SL("COMMENT"), 6);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -54,8 +53,8 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css) {
  * @param string css CSS code to minify
  * @return string
  */
-PHP_METHOD(Ice_Filter_Css, sanitize) {
-
+PHP_METHOD(Ice_Filter_Css, sanitize)
+{
 	unsigned char _2$$3;
 	zend_bool _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$33;
 	long _0;
@@ -73,18 +72,15 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(css)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &css_param);
-
 	zephir_get_strval(&css, css_param);
 
 
 	ZEPHIR_INIT_VAR(&min);
-	ZVAL_STRING(&min, "");
 	state = 1;
 	inParen = 0;
 	for (_0 = 0; _0 < Z_STRLEN_P(&css); _0++) {
@@ -211,6 +207,5 @@ PHP_METHOD(Ice_Filter_Css, sanitize) {
 		}
 	}
 	RETURN_CTOR(&min);
-
 }
 

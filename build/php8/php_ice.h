@@ -14,7 +14,7 @@
 #define PHP_ICE_VERSION     "1.8.0"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.13.0-$Id$"
+#define PHP_ICE_ZEPVERSION  "0.16.0-$Id$"
 #define PHP_ICE_DESCRIPTION "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2021 Ice Team."
 
 
@@ -36,7 +36,6 @@ ZEND_BEGIN_MODULE_GLOBALS(ice)
 
 	
 	zend_bool cli_colors;
-
 
 ZEND_END_MODULE_GLOBALS(ice)
 

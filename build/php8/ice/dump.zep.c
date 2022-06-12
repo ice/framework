@@ -51,40 +51,32 @@
  *  {{ dump('str', 1, 2.5, true, null, ['key': 'value']) }}
  * </code></pre>
  */
-ZEPHIR_INIT_CLASS(Ice_Dump) {
-
+ZEPHIR_INIT_CLASS(Ice_Dump)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Dump, ice, dump, ice_dump_method_entry, 0);
 
 	zend_declare_property_bool(ice_dump_ce, SL("detailed"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_dump_ce, SL("plain"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_dump_ce, SL("skip"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_dump_ce, SL("methods"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_dump_ce, SL("objects"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_dump_ce, SL("styles"), ZEND_ACC_PROTECTED);
-
 	ice_dump_ce->create_object = zephir_init_properties_Ice_Dump;
 
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Dump, getDetailed) {
-
+PHP_METHOD(Ice_Dump, getDetailed)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "detailed");
-
 }
 
-PHP_METHOD(Ice_Dump, setDetailed) {
-
+PHP_METHOD(Ice_Dump, setDetailed)
+{
 	zval *detailed, detailed_sub;
 	zval *this_ptr = getThis();
 
@@ -94,31 +86,27 @@ PHP_METHOD(Ice_Dump, setDetailed) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(detailed)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &detailed);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("detailed"), detailed);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Dump, getPlain) {
-
+PHP_METHOD(Ice_Dump, getPlain)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "plain");
-
 }
 
-PHP_METHOD(Ice_Dump, setPlain) {
-
+PHP_METHOD(Ice_Dump, setPlain)
+{
 	zval *plain, plain_sub;
 	zval *this_ptr = getThis();
 
@@ -128,31 +116,27 @@ PHP_METHOD(Ice_Dump, setPlain) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(plain)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &plain);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("plain"), plain);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Dump, getSkip) {
-
+PHP_METHOD(Ice_Dump, getSkip)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "skip");
-
 }
 
-PHP_METHOD(Ice_Dump, setSkip) {
-
+PHP_METHOD(Ice_Dump, setSkip)
+{
 	zval *skip, skip_sub;
 	zval *this_ptr = getThis();
 
@@ -162,17 +146,14 @@ PHP_METHOD(Ice_Dump, setSkip) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(skip)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &skip);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("skip"), skip);
 	RETURN_THISW();
-
 }
 
 /**
@@ -181,8 +162,8 @@ PHP_METHOD(Ice_Dump, setSkip) {
  * @param boolean detailed debug object's private and protected properties
  * @param mixed styles
  */
-PHP_METHOD(Ice_Dump, __construct) {
-
+PHP_METHOD(Ice_Dump, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *detailed_param = NULL, *styles = NULL, styles_sub, __$true, __$false;
@@ -199,13 +180,11 @@ PHP_METHOD(Ice_Dump, __construct) {
 		Z_PARAM_BOOL(detailed)
 		Z_PARAM_ZVAL(styles)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 2, &detailed_param, &styles);
-
 	if (!detailed_param) {
 		detailed = 0;
 	} else {
@@ -230,7 +209,6 @@ PHP_METHOD(Ice_Dump, __construct) {
 		zephir_update_property_zval(this_ptr, ZEND_STRL("detailed"), &__$false);
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -244,8 +222,8 @@ PHP_METHOD(Ice_Dump, __construct) {
  * @param ...
  * @return string
  */
-PHP_METHOD(Ice_Dump, all) {
-
+PHP_METHOD(Ice_Dump, all)
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -269,7 +247,6 @@ PHP_METHOD(Ice_Dump, all) {
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, &_1);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -278,8 +255,8 @@ PHP_METHOD(Ice_Dump, all) {
  * @param string type
  * @return string
  */
-PHP_METHOD(Ice_Dump, getStyle) {
-
+PHP_METHOD(Ice_Dump, getStyle)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *type_param = NULL, style, _0;
 	zval type;
@@ -293,13 +270,11 @@ PHP_METHOD(Ice_Dump, getStyle) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(type)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &type_param);
-
 	if (UNEXPECTED(Z_TYPE_P(type_param) != IS_STRING && Z_TYPE_P(type_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'type' must be of the type string"));
 		RETURN_MM_NULL();
@@ -308,7 +283,6 @@ PHP_METHOD(Ice_Dump, getStyle) {
 		zephir_get_strval(&type, type_param);
 	} else {
 		ZEPHIR_INIT_VAR(&type);
-		ZVAL_EMPTY_STRING(&type);
 	}
 
 
@@ -318,7 +292,6 @@ PHP_METHOD(Ice_Dump, getStyle) {
 	} else {
 		RETURN_MM_STRING("color:gray");
 	}
-
 }
 
 /**
@@ -328,8 +301,8 @@ PHP_METHOD(Ice_Dump, getStyle) {
  * @param array styles
  * @return array
  */
-PHP_METHOD(Ice_Dump, setStyles) {
-
+PHP_METHOD(Ice_Dump, setStyles)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *styles_param = NULL, defaultStyles, _0;
 	zval styles;
@@ -344,13 +317,11 @@ PHP_METHOD(Ice_Dump, setStyles) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(styles)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &styles_param);
-
 	if (!styles_param) {
 		ZEPHIR_INIT_VAR(&styles);
 		array_init(&styles);
@@ -382,7 +353,6 @@ PHP_METHOD(Ice_Dump, setStyles) {
 	zephir_fast_array_merge(&_0, &defaultStyles, &styles);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("styles"), &_0);
 	RETURN_MM_MEMBER(getThis(), "styles");
-
 }
 
 /**
@@ -396,8 +366,8 @@ PHP_METHOD(Ice_Dump, setStyles) {
  * @param string name
  * @return string
  */
-PHP_METHOD(Ice_Dump, one) {
-
+PHP_METHOD(Ice_Dump, one)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval name;
@@ -413,16 +383,13 @@ PHP_METHOD(Ice_Dump, one) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &variable, &name_param);
-
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_STRING(&name, "");
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
@@ -431,7 +398,6 @@ PHP_METHOD(Ice_Dump, one) {
 	ZEPHIR_RETURN_CALL_METHOD(this_ptr, "variable", NULL, 0, variable, &name);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -442,8 +408,8 @@ PHP_METHOD(Ice_Dump, one) {
  * @param integer tab
  * @return  string
  */
-PHP_METHOD(Ice_Dump, output) {
-
+PHP_METHOD(Ice_Dump, output)
+{
 	zend_bool _21$$5, _22$$5, _23$$5, _36$$8, _37$$8, _38$$8;
 	zend_string *_12$$4, *_71$$15;
 	zend_ulong _11$$4, _70$$15;
@@ -675,16 +641,14 @@ PHP_METHOD(Ice_Dump, output) {
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_ZVAL(variable)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(name)
+		Z_PARAM_ZVAL_OR_NULL(name)
 		Z_PARAM_ZVAL(tab)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 2, &variable, &name, &tab);
-
 	if (!name) {
 		name = &name_sub;
 		name = &__$null;
@@ -1050,7 +1014,7 @@ PHP_METHOD(Ice_Dump, output) {
 			ZEPHIR_INIT_NVAR(&value);
 			ZEPHIR_INIT_NVAR(&key);
 		} else {
-			if (zephir_instance_of_ev(variable, zend_standard_class_def)) {
+			if (zephir_is_instance_of(variable, SL("stdClass"))) {
 				ZEPHIR_INIT_VAR(&reflect$$18);
 				object_init_ex(&reflect$$18, zephir_get_internal_ce(SL("reflectionobject")));
 				ZEPHIR_CALL_METHOD(NULL, &reflect$$18, "__construct", NULL, 114, variable);
@@ -1602,7 +1566,6 @@ PHP_METHOD(Ice_Dump, output) {
 	zephir_check_call_status();
 	ZEPHIR_CONCAT_VV(return_value, &output, &_220);
 	RETURN_MM();
-
 }
 
 /**
@@ -1617,8 +1580,8 @@ PHP_METHOD(Ice_Dump, output) {
  * @param string name
  * @return string
  */
-PHP_METHOD(Ice_Dump, variable) {
-
+PHP_METHOD(Ice_Dump, variable)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -1640,16 +1603,13 @@ PHP_METHOD(Ice_Dump, variable) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR_OR_NULL(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &variable, &name_param);
-
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_STRING(&name, "");
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
@@ -1677,7 +1637,6 @@ PHP_METHOD(Ice_Dump, variable) {
 	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 110, &_0, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 
 /**
@@ -1695,8 +1654,8 @@ PHP_METHOD(Ice_Dump, variable) {
  * @param ...
  * @return string
  */
-PHP_METHOD(Ice_Dump, vars) {
-
+PHP_METHOD(Ice_Dump, vars)
+{
 	zend_string *_4;
 	zend_ulong _3;
 	zval key, value, output, _0, *_1, _2, _5$$3, _6$$3, _8$$4, _9$$4;
@@ -1765,7 +1724,6 @@ PHP_METHOD(Ice_Dump, vars) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	RETURN_CCTOR(&output);
-
 }
 
 /**
@@ -1776,8 +1734,8 @@ PHP_METHOD(Ice_Dump, vars) {
  * @param integer padding Number of padding lines
  * @return array Source of file, false if file is unreadable
  */
-PHP_METHOD(Ice_Dump, source) {
-
+PHP_METHOD(Ice_Dump, source)
+{
 	zval _15$$8, _25$$9;
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1825,13 +1783,11 @@ PHP_METHOD(Ice_Dump, source) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_LONG(padding)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &filename_param, &line_param, &padding_param);
-
 	zephir_get_strval(&filename, filename_param);
 	line = zephir_get_intval(line_param);
 	if (!padding_param) {
@@ -1944,11 +1900,10 @@ PHP_METHOD(Ice_Dump, source) {
 	}
 	zephir_fclose(&file);
 	RETURN_CCTOR(&lines);
-
 }
 
-zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type)
+{
 		zval _7$$6;
 	zval _0, _2, _4, _6, _1$$3, _3$$4, _5$$5, _8$$6;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -1998,6 +1953,5 @@ zend_object *zephir_init_properties_Ice_Dump(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

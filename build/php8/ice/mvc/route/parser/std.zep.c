@@ -27,8 +27,8 @@
  *
  * "/user/{name}[/{id:[0-9]+}]"
  */
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_Std) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_Std)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\Route\\Parser, Std, ice, mvc_route_parser_std, ice_mvc_route_parser_std_method_entry, 0);
 
 	zephir_declare_class_constant_string(ice_mvc_route_parser_std_ce, SL("VARIABLE_REGEX"), "\\{ \\s* ([a-zA-Z_][a-zA-Z0-9_-]*) \\s* (?: : \\s* ([^{}]*(?:\\{(?-1)\\}[^{}]*)*) )? \\}");
@@ -37,11 +37,10 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Parser_Std) {
 
 	zend_class_implements(ice_mvc_route_parser_std_ce, 1, ice_mvc_route_parser_parserinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
-
+PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse)
+{
 	zend_bool _9$$5, _12$$7;
 	zend_string *_8;
 	zend_ulong _7;
@@ -73,13 +72,11 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(route)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
-
 
 
 	ZEPHIR_INIT_VAR(&_0);
@@ -166,14 +163,13 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parse) {
 	ZEPHIR_INIT_NVAR(&segment);
 	ZEPHIR_INIT_NVAR(&n);
 	RETURN_CCTOR(&routeDatas);
-
 }
 
 /**
  * Parses a route string that does not contain optional segments.
  */
-PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
-
+PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders)
+{
 	zval _12$$4, _28$$6;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -229,13 +225,11 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(route)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &route);
-
 
 
 	ZEPHIR_INIT_VAR(&matches);
@@ -354,6 +348,5 @@ PHP_METHOD(Ice_Mvc_Route_Parser_Std, parsePlaceholders) {
 		zephir_array_append(&routeData, &_38$$8, PH_SEPARATE, "ice/mvc/route/parser/std.zep", 80);
 	}
 	RETURN_CCTOR(&routeData);
-
 }
 

@@ -30,28 +30,25 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Db) {
-
+ZEPHIR_INIT_CLASS(Ice_Db)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Db, ice, db, ice_db_method_entry, 0);
 
 	zend_declare_property_null(ice_db_ce, SL("driver"), ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Db, getDriver) {
-
+PHP_METHOD(Ice_Db, getDriver)
+{
 	zval *this_ptr = getThis();
 
 
 
 	RETURN_MEMBER(getThis(), "driver");
-
 }
 
-PHP_METHOD(Ice_Db, setDriver) {
-
+PHP_METHOD(Ice_Db, setDriver)
+{
 	zval *driver, driver_sub;
 	zval *this_ptr = getThis();
 
@@ -61,17 +58,14 @@ PHP_METHOD(Ice_Db, setDriver) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(driver)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &driver);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), driver);
 	RETURN_THISW();
-
 }
 
 /**
@@ -85,8 +79,8 @@ PHP_METHOD(Ice_Db, setDriver) {
  * @param string password
  * @param array options
  */
-PHP_METHOD(Ice_Db, __construct) {
-
+PHP_METHOD(Ice_Db, __construct)
+{
 	zend_bool _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval options;
@@ -130,16 +124,13 @@ PHP_METHOD(Ice_Db, __construct) {
 		Z_PARAM_STR_OR_NULL(password)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 6, &dsn, &host_param, &port_param, &name_param, &user_param, &password_param, &options_param);
-
 	if (!host_param) {
 		ZEPHIR_INIT_VAR(&host);
-		ZVAL_STRING(&host, "");
 	} else {
 		zephir_get_strval(&host, host_param);
 	}
@@ -150,19 +141,16 @@ PHP_METHOD(Ice_Db, __construct) {
 	}
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
-		ZVAL_STRING(&name, "");
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
 	if (!user_param) {
 		ZEPHIR_INIT_VAR(&user);
-		ZVAL_STRING(&user, "");
 	} else {
 		zephir_get_strval(&user, user_param);
 	}
 	if (!password_param) {
 		ZEPHIR_INIT_VAR(&password);
-		ZVAL_STRING(&password, "");
 	} else {
 		zephir_get_strval(&password, password_param);
 	}
@@ -212,7 +200,7 @@ PHP_METHOD(Ice_Db, __construct) {
 			}
 			ZEPHIR_INIT_VAR(&settings$$7);
 			array_init(&settings$$7);
-			if (!(Z_TYPE_P(&host) == IS_UNDEF) && Z_STRLEN_P(&host)) {
+			if (!(ZEPHIR_IS_EMPTY(&host))) {
 				ZEPHIR_INIT_VAR(&_8$$8);
 				ZEPHIR_CONCAT_SV(&_8$$8, "host=", &host);
 				zephir_array_append(&settings$$7, &_8$$8, PH_SEPARATE, "ice/db.zep", 50);
@@ -224,7 +212,7 @@ PHP_METHOD(Ice_Db, __construct) {
 				ZEPHIR_CONCAT_SV(&_10$$9, "port=", &_9$$9);
 				zephir_array_append(&settings$$7, &_10$$9, PH_SEPARATE, "ice/db.zep", 54);
 			}
-			if (!(Z_TYPE_P(&name) == IS_UNDEF) && Z_STRLEN_P(&name)) {
+			if (!(ZEPHIR_IS_EMPTY(&name))) {
 				ZEPHIR_INIT_VAR(&_11$$10);
 				ZEPHIR_CONCAT_SV(&_11$$10, "dbname=", &name);
 				zephir_array_append(&settings$$7, &_11$$10, PH_SEPARATE, "ice/db.zep", 58);
@@ -246,14 +234,13 @@ PHP_METHOD(Ice_Db, __construct) {
 
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
  * Magic call, call driver's method.
  */
-PHP_METHOD(Ice_Db, __call) {
-
+PHP_METHOD(Ice_Db, __call)
+{
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -271,15 +258,13 @@ PHP_METHOD(Ice_Db, __call) {
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(arguments)
+		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
-
 	zephir_get_strval(&method, method_param);
 	if (!arguments) {
 		arguments = &arguments_sub;
@@ -296,6 +281,5 @@ PHP_METHOD(Ice_Db, __call) {
 	ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_0, arguments);
 	zephir_check_call_status();
 	RETURN_MM();
-
 }
 

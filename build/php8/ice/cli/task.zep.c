@@ -25,11 +25,10 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Cli_Task) {
-
+ZEPHIR_INIT_CLASS(Ice_Cli_Task)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Cli, Task, ice, cli_task, ice_di_access_ce, NULL, 0);
 
 	return SUCCESS;
-
 }
 

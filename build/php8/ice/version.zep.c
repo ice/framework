@@ -30,8 +30,8 @@
  * @license     http://iceframework.org/license
  * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
-ZEPHIR_INIT_CLASS(Ice_Version) {
-
+ZEPHIR_INIT_CLASS(Ice_Version)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Version, ice, version, ice_version_method_entry, 0);
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("DEV"), 0);
@@ -55,7 +55,6 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
 	zephir_declare_class_constant_long(ice_version_ce, SL("BUILD"), 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -63,8 +62,8 @@ ZEPHIR_INIT_CLASS(Ice_Version) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Version, current) {
-
+PHP_METHOD(Ice_Version, current)
+{
 	zval *this_ptr = getThis();
 
 
@@ -76,7 +75,6 @@ PHP_METHOD(Ice_Version, current) {
 	add_assoc_long_ex(return_value, SL("stage"), 4);
 	add_assoc_long_ex(return_value, SL("build"), 0);
 	return;
-
 }
 
 /**
@@ -91,8 +89,8 @@ PHP_METHOD(Ice_Version, current) {
  * @see https://semver.org/spec/v2.0.0.html
  * @return string
  */
-PHP_METHOD(Ice_Version, get) {
-
+PHP_METHOD(Ice_Version, get)
+{
 	zval _2$$4, _4$$5, _6$$6;
 	zend_long _0;
 	zval suffix, _7, _8, _9, _1$$4, _3$$5, _5$$6;
@@ -159,7 +157,6 @@ PHP_METHOD(Ice_Version, get) {
 	ZVAL_LONG(&_9, 0);
 	ZEPHIR_CONCAT_VSVSVV(return_value, &_7, ".", &_8, ".", &_9, &suffix);
 	RETURN_MM();
-
 }
 
 /**
@@ -170,8 +167,8 @@ PHP_METHOD(Ice_Version, get) {
  *
  * @return int
  */
-PHP_METHOD(Ice_Version, id) {
-
+PHP_METHOD(Ice_Version, id)
+{
 	zval id, _0, _1, _2, _3, _5, _6, _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -209,6 +206,5 @@ PHP_METHOD(Ice_Version, id) {
 	ZEPHIR_INIT_VAR(&id);
 	ZEPHIR_CONCAT_VVVVV(&id, &_0, &_3, &_5, &_6, &_7);
 	RETURN_MM_LONG(zephir_get_intval(&id));
-
 }
 

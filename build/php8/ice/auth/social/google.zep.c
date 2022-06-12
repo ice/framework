@@ -29,12 +29,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Social, Google, ice, auth_social_google, ice_auth_social_adapter_ce, ice_auth_social_google_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -42,8 +41,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google) {
  *
  * @param array config
  */
-PHP_METHOD(Ice_Auth_Social_Google, __construct) {
-
+PHP_METHOD(Ice_Auth_Social_Google, __construct)
+{
 	zval _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -60,13 +59,11 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(config)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &config);
-
 	if (!config) {
 		config = &config_sub;
 		ZEPHIR_INIT_VAR(config);
@@ -90,7 +87,6 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
 	add_assoc_stringl_ex(&_2, SL("image"), SL("picture"));
 	zephir_update_property_zval(this_ptr, ZEND_STRL("socialFieldsMap"), &_2);
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -98,8 +94,8 @@ PHP_METHOD(Ice_Auth_Social_Google, __construct) {
  *
  * @return string|null
  */
-PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
-
+PHP_METHOD(Ice_Auth_Social_Google, getBirthday)
+{
 	zval _0, _1, _2$$3, _3$$3, _4$$3, _6$$3, _7$$3, _8$$3, _9$$3, _10$$3, _11$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_5 = NULL;
@@ -150,7 +146,6 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
 		RETURN_MM();
 	}
 	RETURN_MM_NULL();
-
 }
 
 /**
@@ -158,8 +153,8 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday) {
  *
  * @return bool
  */
-PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
-
+PHP_METHOD(Ice_Auth_Social_Google, authenticate)
+{
 	zend_bool result = 0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -232,7 +227,6 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
 		}
 	}
 	RETURN_MM_BOOL(result);
-
 }
 
 /**
@@ -240,8 +234,8 @@ PHP_METHOD(Ice_Auth_Social_Google, authenticate) {
  *
  * @return array
  */
-PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
-
+PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams)
+{
 	zval _1, _2, _3, _4;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -277,6 +271,5 @@ PHP_METHOD(Ice_Auth_Social_Google, prepareAuthParams) {
 	zephir_array_update_string(&_0, SL("scope"), &_2, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("auth_params"), &_0, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
-
 }
 

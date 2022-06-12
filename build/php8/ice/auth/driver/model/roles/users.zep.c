@@ -28,30 +28,24 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model\\Roles, Users, ice, auth_driver_model_roles_users, ice_mvc_model_ce, ice_auth_driver_model_roles_users_method_entry, 0);
 
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("from"), "roles_users", ZEND_ACC_PROTECTED);
-
 	zend_declare_property_bool(ice_auth_driver_model_roles_users_ce, SL("autoincrement"), 0, ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_auth_driver_model_roles_users_ce, SL("primary"), ZEND_ACC_PROTECTED);
-
 	/**
 	 * User class name.
 	 */
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Users", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Role class name.
 	 */
 	zend_declare_property_string(ice_auth_driver_model_roles_users_ce, SL("roleClass"), "Ice\\Auth\\Driver\\Model\\Roles", ZEND_ACC_PROTECTED);
-
 	ice_auth_driver_model_roles_users_ce->create_object = zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users;
 
 	return SUCCESS;
-
 }
 
 /**
@@ -59,8 +53,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Roles_Users) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize)
+{
 	zval _5, _8;
 	zval auth, _0, _1, _2, _3, _4, _6, _7;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -112,11 +106,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Roles_Users, initialize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "belongsto", NULL, 0, &_1, &_6, &_7, &_8);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
-zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class_entry *class_type)
+{
 		zval _15$$10;
 	zval _0, _2, _4, _6, _8, _10, _12, _14, _1$$3, _3$$4, _5$$5, _7$$6, _9$$7, _11$$8, _13$$9, _16$$10;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -201,6 +194,5 @@ zend_object *zephir_init_properties_Ice_Auth_Driver_Model_Roles_Users(zend_class
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

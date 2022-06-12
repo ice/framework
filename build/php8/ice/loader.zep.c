@@ -32,16 +32,14 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Loader) {
-
+ZEPHIR_INIT_CLASS(Ice_Loader)
+{
 	ZEPHIR_REGISTER_CLASS(Ice, Loader, ice, loader, ice_loader_method_entry, 0);
 
 	zend_declare_property_null(ice_loader_ce, SL("prefixes"), ZEND_ACC_PROTECTED);
-
 	ice_loader_ce->create_object = zephir_init_properties_Ice_Loader;
 
 	return SUCCESS;
-
 }
 
 /**
@@ -49,8 +47,8 @@ ZEPHIR_INIT_CLASS(Ice_Loader) {
  *
  * @param array prefixes
  */
-PHP_METHOD(Ice_Loader, __construct) {
-
+PHP_METHOD(Ice_Loader, __construct)
+{
 	zend_string *_3$$3;
 	zend_ulong _2$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -70,13 +68,11 @@ PHP_METHOD(Ice_Loader, __construct) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(prefixes)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &prefixes_param);
-
 	if (!prefixes_param) {
 		ZEPHIR_INIT_VAR(&prefixes);
 		array_init(&prefixes);
@@ -126,7 +122,6 @@ PHP_METHOD(Ice_Loader, __construct) {
 		zephir_check_call_status();
 	}
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -134,8 +129,8 @@ PHP_METHOD(Ice_Loader, __construct) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Loader, register) {
-
+PHP_METHOD(Ice_Loader, register)
+{
 	zval _1;
 	zval _0;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -157,7 +152,6 @@ PHP_METHOD(Ice_Loader, register) {
 	ZEPHIR_CALL_FUNCTION(NULL, "spl_autoload_register", NULL, 171, &_0);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -169,8 +163,8 @@ PHP_METHOD(Ice_Loader, register) {
  * be searched first rather than last
  * @return Loader
  */
-PHP_METHOD(Ice_Loader, addNamespace) {
-
+PHP_METHOD(Ice_Loader, addNamespace)
+{
 	zval _10$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -208,13 +202,11 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_BOOL(prepend)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 1, &prefix_param, &baseDir_param, &prepend_param);
-
 	zephir_get_strval(&prefix, prefix_param);
 	zephir_get_strval(&baseDir, baseDir_param);
 	if (!prepend_param) {
@@ -275,7 +267,6 @@ PHP_METHOD(Ice_Loader, addNamespace) {
 		zephir_check_call_status();
 	}
 	RETURN_THIS();
-
 }
 
 /**
@@ -284,8 +275,8 @@ PHP_METHOD(Ice_Loader, addNamespace) {
  * @param string className The fully-qualified class name
  * @return mixed The mapped file name on success, or boolean false on failure
  */
-PHP_METHOD(Ice_Loader, loadClass) {
-
+PHP_METHOD(Ice_Loader, loadClass)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL, *_3 = NULL;
@@ -310,13 +301,11 @@ PHP_METHOD(Ice_Loader, loadClass) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(className)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &className_param);
-
 	zephir_get_strval(&className, className_param);
 
 
@@ -359,7 +348,6 @@ PHP_METHOD(Ice_Loader, loadClass) {
 		} while (!ZEPHIR_IS_FALSE_IDENTICAL(&pos));
 	}
 	RETURN_MM_BOOL(0);
-
 }
 
 /**
@@ -369,8 +357,8 @@ PHP_METHOD(Ice_Loader, loadClass) {
  * @param string $relative_class The relative class name
  * @return mixed Boolean false if no mapped file can be loaded, or the name of the mapped file that was loaded
  */
-PHP_METHOD(Ice_Loader, loadMappedFile) {
-
+PHP_METHOD(Ice_Loader, loadMappedFile)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -398,13 +386,11 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 		Z_PARAM_STR(prefix)
 		Z_PARAM_STR(relativeClass)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &prefix_param, &relativeClass_param);
-
 	zephir_get_strval(&prefix, prefix_param);
 	zephir_get_strval(&relativeClass, relativeClass_param);
 
@@ -462,7 +448,6 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
 	}
 	ZEPHIR_INIT_NVAR(&baseDir);
 	RETURN_MM_BOOL(0);
-
 }
 
 /**
@@ -471,8 +456,8 @@ PHP_METHOD(Ice_Loader, loadMappedFile) {
  * @param string $file The file to require
  * @return bool True if the file exists, false if not
  */
-PHP_METHOD(Ice_Loader, requireFile) {
-
+PHP_METHOD(Ice_Loader, requireFile)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *file_param = NULL;
 	zval file;
@@ -484,13 +469,11 @@ PHP_METHOD(Ice_Loader, requireFile) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(file)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 1, 0, &file_param);
-
 	zephir_get_strval(&file, file_param);
 
 
@@ -501,11 +484,10 @@ PHP_METHOD(Ice_Loader, requireFile) {
 		RETURN_MM_BOOL(1);
 	}
 	RETURN_MM_BOOL(0);
-
 }
 
-zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type) {
-
+zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type)
+{
 		zval _0, _1$$3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 		ZVAL_UNDEF(&_0);
@@ -526,6 +508,5 @@ zend_object *zephir_init_properties_Ice_Loader(zend_class_entry *class_type) {
 		ZEPHIR_MM_RESTORE();
 		return Z_OBJ_P(this_ptr);
 	}
-
 }
 

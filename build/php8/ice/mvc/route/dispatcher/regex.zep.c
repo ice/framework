@@ -21,21 +21,18 @@
 #include "kernel/operators.h"
 
 
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_Regex)
+{
 	ZEPHIR_REGISTER_CLASS(Ice\\Mvc\\Route\\Dispatcher, Regex, ice, mvc_route_dispatcher_regex, ice_mvc_route_dispatcher_regex_method_entry, ZEND_ACC_EXPLICIT_ABSTRACT_CLASS);
 
 	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("staticRouteMap"), ZEND_ACC_PROTECTED);
-
 	zend_declare_property_null(ice_mvc_route_dispatcher_regex_ce, SL("variableRouteData"), ZEND_ACC_PROTECTED);
-
 	zend_class_implements(ice_mvc_route_dispatcher_regex_ce, 1, ice_mvc_route_dispatcher_dispatcherinterface_ce);
 	return SUCCESS;
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
-
+PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap)
+{
 	zval *staticRouteMap, staticRouteMap_sub;
 	zval *this_ptr = getThis();
 
@@ -45,21 +42,18 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setStaticRouteMap) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(staticRouteMap)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &staticRouteMap);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("staticRouteMap"), staticRouteMap);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
-
+PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData)
+{
 	zval *variableRouteData, variableRouteData_sub;
 	zval *this_ptr = getThis();
 
@@ -69,21 +63,18 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setVariableRouteData) {
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(variableRouteData)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	zephir_fetch_params_without_memory_grow(1, 0, &variableRouteData);
 
 
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("variableRouteData"), variableRouteData);
 	RETURN_THISW();
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
-
+PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *data_param = NULL, _0, _1;
 	zval data;
@@ -98,13 +89,11 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data_param);
-
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
 		array_init(&data);
@@ -118,15 +107,14 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, setData) {
 	zephir_array_fetch_long(&_1, &data, 1, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/regex.zep", 15);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("variableRouteData"), &_1);
 	ZEPHIR_MM_RESTORE();
-
 }
 
-PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchVariableRoute) {
-
+PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatchVariableRoute)
+{
 }
 
-PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
-
+PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch)
+{
 	zend_string *_28, *_34;
 	zend_ulong _27, _33;
 	zend_bool _1, _29$$13, _30$$15;
@@ -181,13 +169,11 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		Z_PARAM_STR(httpMethod)
 		Z_PARAM_STR(uri)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 2, 0, &httpMethod_param, &uri_param);
-
 	zephir_get_strval(&httpMethod, httpMethod_param);
 	zephir_get_strval(&uri, uri_param);
 
@@ -392,6 +378,5 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_Regex, dispatch) {
 		zephir_array_fast_append(return_value, &_38$$24);
 		RETURN_MM();
 	}
-
 }
 

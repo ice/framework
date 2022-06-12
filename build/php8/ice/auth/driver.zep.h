@@ -15,7 +15,11 @@ PHP_METHOD(Ice_Auth_Driver, logout);
 zend_object *zephir_init_properties_Ice_Auth_Driver(zend_class_entry *class_type);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver___construct, 0, 0, 0)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, options, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_checkhash, 0, 2, _IS_BOOL, 0)
@@ -25,7 +29,11 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_completelogin, 0, 0, 1)
 	ZEND_ARG_INFO(0, user)
+#if PHP_VERSION_ID >= 80000
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, roles, IS_ARRAY, 0, "[]")
+#else
 	ZEND_ARG_ARRAY_INFO(0, roles, 0)
+#endif
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_getoption, 0, 0, 1)

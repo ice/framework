@@ -29,32 +29,27 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users) {
-
+ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Auth\\Driver\\Model, Users, ice, auth_driver_model_users, ice_mvc_model_ce, ice_auth_driver_model_users_method_entry, 0);
 
 	/**
 	 * Role class name must extend from Ice\Auth\Driver\Model\Roles
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_ce, SL("roleClass"), "Ice\\Auth\\Driver\\Model\\Roles", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Token class name must extend from Ice\Auth\Driver\Model\Users\Tokens
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_ce, SL("tokenClass"), "Ice\\Auth\\Driver\\Model\\Users\\Tokens", ZEND_ACC_PROTECTED);
-
 	/**
 	 * User class name must extend from Ice\Auth\Driver\Model\Roles\Users
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_ce, SL("userClass"), "Ice\\Auth\\Driver\\Model\\Roles\\Users", ZEND_ACC_PROTECTED);
-
 	/**
 	 * Social class name must extend from Ice\Auth\Driver\Model\Users\Social
 	 */
 	zend_declare_property_string(ice_auth_driver_model_users_ce, SL("socialClass"), "Ice\\Auth\\Driver\\Model\\Users\\Social", ZEND_ACC_PROTECTED);
-
 	return SUCCESS;
-
 }
 
 /**
@@ -62,8 +57,8 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users) {
  *
  * @return void
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize)
+{
 	zval _1, _4, _6;
 	zval idKey, _0, _2, _3, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -109,7 +104,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "hasone", NULL, 0, &idKey, &_5, &_2, &_6);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 
 /**
@@ -117,8 +111,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize) {
  *
  * @return object this
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin)
+{
 	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
@@ -144,7 +138,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "update", NULL, 0);
 	zephir_check_call_status();
 	RETURN_THIS();
-
 }
 
 /**
@@ -153,8 +146,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin) {
  * @param string name Role name to get
  * @return mixed
  */
-PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
-
+PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole)
+{
 	zend_class_entry *_1;
 	zval _0, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
@@ -177,13 +170,11 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &name_param);
-
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
 		ZVAL_STRING(&name, "login");
@@ -222,6 +213,5 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole) {
 		ZVAL_BOOL(&_4, 0);
 	}
 	RETURN_CCTOR(&_4);
-
 }
 

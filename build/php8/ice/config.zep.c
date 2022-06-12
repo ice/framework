@@ -31,12 +31,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Config) {
-
+ZEPHIR_INIT_CLASS(Ice_Config)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice, Config, ice, config, ice_arr_ce, ice_config_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -44,8 +43,8 @@ ZEPHIR_INIT_CLASS(Ice_Config) {
  *
  * @param array data Initial config
  */
-PHP_METHOD(Ice_Config, __construct) {
-
+PHP_METHOD(Ice_Config, __construct)
+{
 	zval _3$$5;
 	zend_string *_9, *_13$$11, *_19$$21;
 	zend_ulong _8, _12$$11, _18$$21;
@@ -75,15 +74,13 @@ PHP_METHOD(Ice_Config, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(data)
+		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
-
 	if (!data) {
 		data = &data_sub;
 		ZEPHIR_CPY_WRT(data, &__$null);
@@ -276,6 +273,5 @@ PHP_METHOD(Ice_Config, __construct) {
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
 	ZEPHIR_MM_RESTORE();
-
 }
 

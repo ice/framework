@@ -30,12 +30,11 @@
  * @copyright   (c) 2014-2021 Ice Team
  * @license     http://iceframework.org/license
  */
-ZEPHIR_INIT_CLASS(Ice_Config_Json) {
-
+ZEPHIR_INIT_CLASS(Ice_Config_Json)
+{
 	ZEPHIR_REGISTER_CLASS_EX(Ice\\Config, Json, ice, config_json, ice_config_ce, ice_config_json_method_entry, 0);
 
 	return SUCCESS;
-
 }
 
 /**
@@ -43,8 +42,8 @@ ZEPHIR_INIT_CLASS(Ice_Config_Json) {
  *
  * @param string data Path to the file or json string
  */
-PHP_METHOD(Ice_Config_Json, __construct) {
-
+PHP_METHOD(Ice_Config_Json, __construct)
+{
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_1 = NULL;
@@ -60,15 +59,13 @@ PHP_METHOD(Ice_Config_Json, __construct) {
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ZVAL(data)
+		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-
 #endif
 
 
 	ZEPHIR_MM_GROW();
 	zephir_fetch_params(1, 0, 1, &data);
-
 	if (!data) {
 		data = &data_sub;
 		ZEPHIR_CPY_WRT(data, &__$null);
@@ -91,6 +88,5 @@ PHP_METHOD(Ice_Config_Json, __construct) {
 	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_1, 0, &_2);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
-
 }
 

@@ -12,12 +12,11 @@
 #include "kernel/main.h"
 
 
-ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_DispatcherInterface) {
-
+ZEPHIR_INIT_CLASS(Ice_Mvc_Route_Dispatcher_DispatcherInterface)
+{
 	ZEPHIR_REGISTER_INTERFACE(Ice\\Mvc\\Route\\Dispatcher, DispatcherInterface, ice, mvc_route_dispatcher_dispatcherinterface, ice_mvc_route_dispatcher_dispatcherinterface_method_entry);
 
 	return SUCCESS;
-
 }
 
 /**
