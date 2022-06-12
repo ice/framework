@@ -56,7 +56,7 @@ jobs:
 
       - name: Generate Ice
         shell: bash
-        run: php -d memory_limit=512M ./vendor/bin/zephir generate; mkdir generated; cp -a ext/. generated
+        run: php -d memory_limit=512M ./vendor/bin/zephir generate; mkdir $GITHUB_WORKSPACE/../generated; cp -a ext/. $GITHUB_WORKSPACE/../generated
 
       - name: Compile Ice
         shell: bash
@@ -91,7 +91,7 @@ jobs:
             export SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`
             rm -rf build/$ZEPHIR_TARGET/
             mkdir -p build/$ZEPHIR_TARGET
-            cp -a generated/. build/$ZEPHIR_TARGET
+            cp -a $GITHUB_WORKSPACE/../generated/. build/$ZEPHIR_TARGET
 
             git add -A build/$ZEPHIR_TARGET
             git commit -m "$ZEPHIR_TARGET, $SHORT_SHA: regenerate ice sources [ci skip]" build/$ZEPHIR_TARGET
