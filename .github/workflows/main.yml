@@ -76,6 +76,7 @@ jobs:
         with:
           ssh-key: ${{ secrets.ICE_SSH_KEY }}
           ref: dev
+          clean: false
 
       - name: Create artifacts
         shell: bash
