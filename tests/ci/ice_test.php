@@ -18,7 +18,8 @@
         'password' => 'password',
         'name'     => 'ice_test',
         'options' => [
-            'authMechanism' => 'SCRAM-SHA-1',
+            'authMechanism' => 'SCRAM-SHA-256',
+            'authSource'    => 'admin'
         ],
     ],
     'auth' => [
