@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Jun 13 16:34:08 UTC 2022
+
+- Ice 1.9.0
+ * PHP 8.1, add support fix #299
+ * Switch to Github Actions fix #302
+ * Update zephir to 0.16.0
+ * Update zephir parser to 1.5.0
+
+-------------------------------------------------------------------
 Fri Mar 26 07:28:51 UTC 2021
 
 - Ice 1.8.0
