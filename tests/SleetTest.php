@@ -30,7 +30,7 @@ class SleetTest extends TestCase
         $this->assertEquals($expected, $parsed, $content);
     }
 
-    public function stringProvider()
+    public static function stringProvider()
     {
         /**
          * input, expected parser output

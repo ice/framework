@@ -26,7 +26,7 @@ class CryptTest extends TestCase
         $this->assertEquals($content, $decrypted);
     }
 
-    public function stringProvider()
+    public static function stringProvider()
     {
         /**
          * input

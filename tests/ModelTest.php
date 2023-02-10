@@ -85,7 +85,7 @@ class ModelTest extends TestCase
      *
      * @return array
      */
-    public function roles()
+    public static function roles()
     {
         return [
             [['id' => 1], ['id' => '1', 'name' => 'login', 'description' => 'Login privileges, granted after account confirmation.']],

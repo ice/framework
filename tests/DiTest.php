@@ -78,7 +78,7 @@ class DiTest extends TestCase
      *
      * @return array
      */
-    public function configs()
+    public static function configs()
     {
         yield 'Set object' => [
             new Config(['key' => 'value'])

@@ -29,7 +29,7 @@ class UrlTest extends TestCase
     }
 
 
-    public function staticUrls()
+    public static function staticUrls()
     {
         yield ['style.css', '/style.css'];
         yield ['/style.css', '/style.css'];
@@ -46,7 +46,7 @@ class UrlTest extends TestCase
         $this->assertEquals(self::$url->get(...$args), $expected);
     }
 
-    public function urls()
+    public static function urls()
     {
         yield [[null, [], true], '/'];
         yield [[null, [], true], '/blog/', '/blog/'];
