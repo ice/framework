@@ -3,7 +3,7 @@
     "name": "ice",
     "description": "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2021 Ice Team.",
     "author": "Ice Team",
-    "version": "1.9.0",
+    "version": "1.10.0",
     "verbose": false,
     "info": [
         {
