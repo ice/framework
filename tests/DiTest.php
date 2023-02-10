@@ -42,7 +42,7 @@ class DiTest extends TestCase
      *
      * @return array
      */
-    public function services()
+    public static function services()
     {
         return [
             ['getConfig', Config::class],

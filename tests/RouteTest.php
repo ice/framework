@@ -158,7 +158,7 @@ class RouteTest extends TestCase
      *
      * @return array
      */
-    public function POSTrouteProvider()
+    public static function POSTrouteProvider()
     {
         return [
             ['/info/contact', ['frontend', 'info', 'contact', []]],
