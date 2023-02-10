@@ -109,7 +109,7 @@ class FastRouteTest extends TestCase
      *
      * @return array
      */
-    public function GETrouteProvider()
+    public static function GETrouteProvider()
     {
         return [
             ['', ['frontend', 'index', 'index', []]],
@@ -127,7 +127,7 @@ class FastRouteTest extends TestCase
             ['/doc/index', ['doc', 'index', 'index', []]],
             ['/doc/index/index', ['doc', 'index', 'index', []]],
             ['/doc/index/test', ['doc', 'index', 'test', []]],
-            
+
             ['/doc/install', ['doc', 'install', 'index', []]],
             ['/doc/install/requirements', ['doc', 'install', 'requirements', []]],
             ['/doc/install/requirements/php', ['doc', 'install', 'requirements', ['param' => 'php']]],
@@ -140,7 +140,7 @@ class FastRouteTest extends TestCase
      *
      * @return array
      */
-    public function POSTrouteProvider()
+    public static function POSTrouteProvider()
     {
         return [
             ['/info/contact', ['frontend', 'info', 'contact', []]],

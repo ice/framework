@@ -91,7 +91,9 @@ class RouteTest extends TestCase
 
         $return = $route->uri(['module' => 'doc', "controller" => "blog", "action" => "post", "param" => 10]);
 
-        if (!$return) $return = $route->getError();
+        if (!$return) {
+            $return = $route->getError();
+        }
 
         $this->assertEquals('/doc/blog/post/10', $return, "The reverse route is ".$return);
     }
@@ -124,7 +126,7 @@ class RouteTest extends TestCase
      *
      * @return array
      */
-    public function GETrouteProvider()
+    public static function GETrouteProvider()
     {
         return [
             ['', ['frontend', 'index', 'index', []]],
@@ -143,7 +145,7 @@ class RouteTest extends TestCase
             ['/doc/index', ['doc', 'index', 'index', []]],
             ['/doc/index/index', ['doc', 'index', 'index', []]],
             ['/doc/index/test', ['doc', 'index', 'test', []]],
-            
+
             ['/doc/install', ['doc', 'install', 'index', []]],
             ['/doc/install/requirements', ['doc', 'install', 'requirements', []]],
             ['/doc/install/requirements/php', ['doc', 'install', 'requirements', ['param' => 'php']]],
@@ -156,7 +158,7 @@ class RouteTest extends TestCase
      *
      * @return array
      */
-    public function POSTrouteProvider()
+    public static function POSTrouteProvider()
     {
         return [
             ['/info/contact', ['frontend', 'info', 'contact', []]],

@@ -9,7 +9,7 @@ use Ice\Exception;
  * @package     Ice/Cli
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 class Client extends Websocket
@@ -92,7 +92,7 @@ class Client extends Websocket
     protected function generateKey() -> string
     {
         string chars, key;
-        var length;
+        var length, index;
         int i = 0;
 
         let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"$&/()=[]{}0123456789",
@@ -100,7 +100,8 @@ class Client extends Websocket
             length = strlen(chars) - 1;
 
         while i < 16 {
-            let key .= chars[mt_rand(0, length)],
+            let index = mt_rand(0, length),
+                key .= chars[(int) index],
                 i++;
         }
 

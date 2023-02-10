@@ -103,7 +103,7 @@ class DbTest extends TestCase
      *
      * @return array
      */
-    public function roles()
+    public static function roles()
     {
         return [
             ['roles', ['id' => 1], ['id' => 1, 'name' => 'login', 'description' => 'Login privileges, granted after account confirmation.']],

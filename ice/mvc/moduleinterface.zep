@@ -10,7 +10,7 @@ use Ice\Loader;
  * @package     Ice/Mvc
  * @category    Interface
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 interface ModuleInterface

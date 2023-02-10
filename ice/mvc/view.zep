@@ -12,7 +12,7 @@ use Ice\Mvc\View\ViewInterface;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 class View extends Arr implements ViewInterface

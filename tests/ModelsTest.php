@@ -155,7 +155,7 @@ class ModelsTest extends TestCase
      *
      * @return array
      */
-    public function users()
+    public static function users()
     {
         return [
             [['id'=>1, 'email' => 'user@example.com', 'username' => 'user', 'password' => 'password']],
@@ -171,7 +171,7 @@ class ModelsTest extends TestCase
      *
      * @return array
      */
-    public function posts()
+    public static function posts()
     {
         return [
             [['id'=>1, 'user_id' => 1, 'title' => 'Post 1', 'content' => 'Post 1 content', 'status' => 1]],
@@ -188,7 +188,7 @@ class ModelsTest extends TestCase
      *
      * @return array
      */
-    public function comments()
+    public static function comments()
     {
         return [
             [['id'=>1, 'user_id' => 1, 'post_id' => 1, 'content' => 'Post 1 comment 1', 'status' => 1]],

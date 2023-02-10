@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Fri Feb 10 22:37:06 UTC 2023
+
+- Ice 1.10.0
+ * PHP 8.2, add support fix #309
+ * Install on Alpine fix #308
+ * Update zephir-lang/zephir@57c522d
+ * Update zephir parser to 1.5.3
+ * Fix phpunit tests
+
+-------------------------------------------------------------------
 Mon Jun 13 16:34:08 UTC 2022
 
 - Ice 1.9.0

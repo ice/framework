@@ -76,7 +76,7 @@ class TagTest extends TestCase
         $this->assertEquals($expected, $output, json_encode($parameters));
     }
 
-    public function tagProvider()
+    public static function tagProvider()
     {
         /**
          * input, parameters, expected output
@@ -174,7 +174,7 @@ class TagTest extends TestCase
         $this->assertEquals($expected, $output, json_encode($parameters));
     }
 
-    public function tagXHTMLProvider()
+    public static function tagXHTMLProvider()
     {
         /**
          * input, parameters, expected output
