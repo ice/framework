@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Tag
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Mvc\Url
  */
