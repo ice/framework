@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0', '8.1']
+        php: ['7.4', '8.0', '8.1', '8.2']
         include:
           - name: focal
             os: ubuntu-20.04
@@ -82,7 +82,7 @@ jobs:
         shell: bash
         if: success() && github.repository_owner == 'ice' && github.ref == 'refs/heads/dev'
         run: |
-          if [[ "${{ matrix.php }}" = "8.1" ]]; then
+          if [[ "${{ matrix.php }}" = "8.2" ]]; then
             git config push.default simple
             git config user.email "info@iceframework.org"
             git config user.name "Ice Framework"
