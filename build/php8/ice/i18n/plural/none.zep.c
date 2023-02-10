@@ -32,7 +32,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_None)

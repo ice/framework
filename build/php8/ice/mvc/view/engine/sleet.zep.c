@@ -31,7 +31,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet)
@@ -173,7 +173,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile)
 	if (zephir_is_true(&compile)) {
 		ZEPHIR_INIT_VAR(&_11$$9);
 		object_init_ex(&_11$$9, ice_mvc_view_engine_sleet_compiler_ce);
-		ZEPHIR_CALL_METHOD(NULL, &_11$$9, "__construct", NULL, 183, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, &_11$$9, "__construct", NULL, 184, this_ptr);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("compiler"), &_11$$9);
 		zephir_read_property(&_12$$9, this_ptr, ZEND_STRL("compiler"), PH_NOISY_CC | PH_READONLY);
@@ -309,12 +309,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, render)
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 168);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 169);
 	zephir_check_call_status();
 	if (zephir_require_zval(&path) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 169);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 170);
 	zephir_check_call_status();
 	RETURN_MM();
 }

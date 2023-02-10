@@ -30,7 +30,7 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response)
@@ -584,7 +584,7 @@ PHP_METHOD(Ice_Http_Response, send)
 
 	ZEPHIR_MM_GROW();
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 134);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 135);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$3);
@@ -602,7 +602,7 @@ PHP_METHOD(Ice_Http_Response, send)
 			ZVAL_STRING(&_8$$4, "Status: %d %s");
 			ZEPHIR_CALL_FUNCTION(&_9$$4, "sprintf", &_10, 11, &_8$$4, &_4$$4, &_5$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 135, &_9$$4);
+			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 136, &_9$$4);
 			zephir_check_call_status();
 		} else {
 			ZEPHIR_CALL_METHOD(&_12$$5, this_ptr, "getprotocolversion", NULL, 0);
@@ -615,7 +615,7 @@ PHP_METHOD(Ice_Http_Response, send)
 			ZVAL_STRING(&_16$$5, "%s %d %s");
 			ZEPHIR_CALL_FUNCTION(&_17$$5, "sprintf", &_10, 11, &_16$$5, &_12$$5, &_13$$5, &_14$$5);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 135, &_17$$5);
+			ZEPHIR_CALL_FUNCTION(NULL, "header", &_11, 136, &_17$$5);
 			zephir_check_call_status();
 		}
 		ZEPHIR_CALL_CE_STATIC(&di$$3, ice_di_ce, "fetch", &_18, 0);
@@ -780,7 +780,7 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 		ZEPHIR_CPY_WRT(&data, &_2$$3);
 		ZEPHIR_INIT_VAR(&size);
 		ZVAL_LONG(&size, zephir_fast_strlen_ev(&data));
-		ZEPHIR_CALL_FUNCTION(&file, "tmpfile", NULL, 136);
+		ZEPHIR_CALL_FUNCTION(&file, "tmpfile", NULL, 137);
 		zephir_check_call_status();
 		zephir_fwrite(NULL, &file, &data);
 		ZEPHIR_INIT_VAR(&isDelete);
@@ -789,11 +789,11 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 		zephir_array_fetch_string(&_3$$4, &options, SL("file"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 236);
 		ZEPHIR_CALL_FUNCTION(&filepath, "realpath", NULL, 47, &_3$$4);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&size, "filesize", NULL, 137, &filepath);
+		ZEPHIR_CALL_FUNCTION(&size, "filesize", NULL, 138, &filepath);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_4$$4);
 		ZVAL_STRING(&_4$$4, "rb");
-		ZEPHIR_CALL_FUNCTION(&file, "fopen", NULL, 121, &filepath, &_4$$4);
+		ZEPHIR_CALL_FUNCTION(&file, "fopen", NULL, 122, &filepath, &_4$$4);
 		zephir_check_call_status();
 		ZEPHIR_OBS_NVAR(&isDelete);
 		zephir_array_isset_string_fetch(&isDelete, &options, SL("delete"), 0);
@@ -846,7 +846,7 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 			ZVAL_STRING(&_17$$10, "%s %d %s");
 			ZEPHIR_CALL_FUNCTION(&_18$$10, "sprintf", NULL, 11, &_17$$10, &_13$$10, &_14$$10, &_15$$10);
 			zephir_check_call_status();
-			ZEPHIR_CALL_FUNCTION(NULL, "header", NULL, 135, &_18$$10);
+			ZEPHIR_CALL_FUNCTION(NULL, "header", NULL, 136, &_18$$10);
 			zephir_check_call_status();
 			ZEPHIR_MM_RESTORE();
 			zephir_exit_empty();
@@ -899,26 +899,26 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 	ZEPHIR_CALL_METHOD(NULL, &_33, "send", NULL, 0);
 	zephir_check_call_status();
 	while (1) {
-		ZEPHIR_CALL_FUNCTION(&_34, "ob_get_level", &_35, 128);
+		ZEPHIR_CALL_FUNCTION(&_34, "ob_get_level", &_35, 129);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_34))) {
 			break;
 		}
-		ZEPHIR_CALL_FUNCTION(NULL, "ob_end_flush", &_36, 138);
+		ZEPHIR_CALL_FUNCTION(NULL, "ob_end_flush", &_36, 139);
 		zephir_check_call_status();
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "ignore_user_abort", NULL, 139, &__$true);
+	ZEPHIR_CALL_FUNCTION(NULL, "ignore_user_abort", NULL, 140, &__$true);
 	zephir_check_call_status();
 	zephir_array_fetch_string(&_37, &options, SL("timeout"), PH_NOISY | PH_READONLY, "ice/http/response.zep", 297);
 	if (ZEPHIR_IS_EMPTY(&_37)) {
 		ZVAL_LONG(&_38$$13, 0);
-		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_39, 140, &_38$$13);
+		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_39, 141, &_38$$13);
 		zephir_check_call_status();
 	} else {
 		ZEPHIR_OBS_VAR(&_40$$14);
 		zephir_array_fetch_string(&_40$$14, &options, SL("timeout"), PH_NOISY, "ice/http/response.zep", 301);
 		ZVAL_LONG(&_41$$14, zephir_get_intval(&_40$$14));
-		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_39, 140, &_41$$14);
+		ZEPHIR_CALL_FUNCTION(NULL, "set_time_limit", &_39, 141, &_41$$14);
 		zephir_check_call_status();
 	}
 	block = 16384;
@@ -930,17 +930,17 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 	} else {
 		speed = 0;
 	}
-	ZEPHIR_CALL_FUNCTION(NULL, "fseek", NULL, 141, &file, &start);
+	ZEPHIR_CALL_FUNCTION(NULL, "fseek", NULL, 142, &file, &start);
 	zephir_check_call_status();
 	while (1) {
 		if (!(!(zephir_feof(&file)))) {
 			break;
 		}
-		ZEPHIR_CALL_FUNCTION(&pos, "ftell", &_44, 142, &file);
+		ZEPHIR_CALL_FUNCTION(&pos, "ftell", &_44, 143, &file);
 		zephir_check_call_status();
 		_45$$17 = ZEPHIR_GT(&pos, &end);
 		if (!(_45$$17)) {
-			ZEPHIR_CALL_FUNCTION(&_46$$17, "connection_aborted", &_47, 143);
+			ZEPHIR_CALL_FUNCTION(&_46$$17, "connection_aborted", &_47, 144);
 			zephir_check_call_status();
 			_45$$17 = zephir_is_true(&_46$$17);
 		}
@@ -956,7 +956,7 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 		ZEPHIR_CALL_FUNCTION(&_50$$17, "fread", &_51, 30, &file, &_49$$17);
 		zephir_check_call_status();
 		zend_print_zval(&_50$$17, 0);
-		ZEPHIR_CALL_FUNCTION(NULL, "flush", &_52, 144);
+		ZEPHIR_CALL_FUNCTION(NULL, "flush", &_52, 145);
 		zephir_check_call_status();
 		if (speed > 0) {
 			ZVAL_LONG(&_53$$20, speed);
@@ -969,7 +969,7 @@ PHP_METHOD(Ice_Http_Response, sendFile)
 
 		/* try_start_1: */
 
-			ZEPHIR_CALL_FUNCTION(NULL, "unlink", NULL, 145, &filepath);
+			ZEPHIR_CALL_FUNCTION(NULL, "unlink", NULL, 146, &filepath);
 			zephir_check_call_status_or_jump(try_end_1);
 
 		try_end_1:
@@ -1723,7 +1723,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 		ZEPHIR_CALL_METHOD(NULL, &domDoc, "appendchild", NULL, 0, domNode);
 		zephir_check_call_status();
 		ZVAL_NULL(&_0$$3);
-		ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 146, data, &_0$$3, domNode);
+		ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 147, data, &_0$$3, domNode);
 		zephir_check_call_status();
 		RETURN_CCTOR(&domDoc);
 	}
@@ -1764,7 +1764,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 				ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_11, 0, &node);
 				zephir_check_call_status();
 				ZVAL_NULL(&_12$$5);
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 146, &val, &_12$$5, &node);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 147, &val, &_12$$5, &node);
 				zephir_check_call_status();
 			} ZEND_HASH_FOREACH_END();
 		} else {
@@ -1799,7 +1799,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 					ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_11, 0, &node);
 					zephir_check_call_status();
 					ZVAL_NULL(&_17$$8);
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 146, &val, &_17$$8, &node);
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 147, &val, &_17$$8, &node);
 					zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(NULL, data, "next", NULL, 0);
 				zephir_check_call_status();
@@ -1814,7 +1814,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 		ZVAL_STRING(&_19$$11, "obj");
 		ZEPHIR_CALL_METHOD(NULL, domNode, "setattribute", NULL, 0, &_18$$11, &_19$$11);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&_20$$11, "get_object_vars", NULL, 113, data);
+		ZEPHIR_CALL_FUNCTION(&_20$$11, "get_object_vars", NULL, 114, data);
 		zephir_check_call_status();
 		zephir_is_iterable(&_20$$11, 0, "ice/http/response.zep", 690);
 		if (Z_TYPE_P(&_20$$11) == IS_ARRAY) {
@@ -1838,7 +1838,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 					ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_11, 0, &node);
 					zephir_check_call_status();
 					ZVAL_NULL(&_26$$13);
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 146, &val, &_26$$13, &node);
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 147, &val, &_26$$13, &node);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_CALL_METHOD(NULL, domNode, "setattribute", NULL, 0, &key, &val);
@@ -1868,7 +1868,7 @@ PHP_METHOD(Ice_Http_Response, xmlEncode)
 						ZEPHIR_CALL_METHOD(NULL, domNode, "appendchild", &_11, 0, &node);
 						zephir_check_call_status();
 						ZVAL_NULL(&_28$$16);
-						ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 146, &val, &_28$$16, &node);
+						ZEPHIR_CALL_METHOD(NULL, this_ptr, "xmlencode", &_1, 147, &val, &_28$$16, &node);
 						zephir_check_call_status();
 					} else {
 						ZEPHIR_CALL_METHOD(NULL, domNode, "setattribute", NULL, 0, &key, &val);
@@ -2002,10 +2002,10 @@ PHP_METHOD(Ice_Http_Response, getByteRange)
 			zephir_array_fetch_long(&_4$$5, &range, 0, PH_NOISY | PH_READONLY, "ice/http/response.zep", 742);
 			if (ZEPHIR_IS_STRING(&_4$$5, "-")) {
 				ZVAL_LONG(&_5$$6, zephir_get_intval(&range));
-				ZEPHIR_CALL_FUNCTION(&_6$$6, "abs", &_7, 147, &_5$$6);
+				ZEPHIR_CALL_FUNCTION(&_6$$6, "abs", &_7, 148, &_5$$6);
 				zephir_check_call_status();
 				ZVAL_LONG(&_5$$6, (size - zephir_get_numberval(&_6$$6)));
-				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 147, &_5$$6);
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 148, &_5$$6);
 				zephir_check_call_status();
 			} else {
 				ZEPHIR_INIT_VAR(&_8$$7);
@@ -2014,7 +2014,7 @@ PHP_METHOD(Ice_Http_Response, getByteRange)
 				ZEPHIR_OBS_VAR(&_9$$7);
 				zephir_array_fetch_long(&_9$$7, &range, 0, PH_NOISY, "ice/http/response.zep", 745);
 				ZVAL_LONG(&_10$$7, zephir_get_intval(&_9$$7));
-				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 147, &_10$$7);
+				ZEPHIR_CALL_FUNCTION(&start, "abs", &_7, 148, &_10$$7);
 				zephir_check_call_status();
 				zephir_array_fetch_long(&_11$$7, &range, 1, PH_NOISY | PH_READONLY, "ice/http/response.zep", 747);
 				_12$$7 = zephir_is_true(&_11$$7);

@@ -26,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Adapter
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Social_Google)
@@ -137,7 +137,7 @@ PHP_METHOD(Ice_Auth_Social_Google, getBirthday)
 		zephir_update_property_array(this_ptr, SL("userInfo"), &_8$$3, &_2$$3);
 		zephir_read_property(&_9$$3, this_ptr, ZEND_STRL("userInfo"), PH_NOISY_CC | PH_READONLY);
 		zephir_array_fetch_string(&_10$$3, &_9$$3, SL("birthday"), PH_NOISY | PH_READONLY, "ice/auth/social/google.zep", 46);
-		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 72, &_10$$3);
+		ZEPHIR_CALL_FUNCTION(&_11$$3, "strtotime", NULL, 73, &_10$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_2$$3);
 		ZVAL_STRING(&_2$$3, "d.m.Y");

@@ -97,7 +97,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_prependtitle, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, separator, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_tag_addmeta, 0, 1, NULL, 0)
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_ice_tag_addmeta, 0, 1, MAY_BE_OBJECT)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_addmeta, 0, 1, IS_OBJECT, 0)
+#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 

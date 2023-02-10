@@ -29,7 +29,7 @@
  * @package     Ice/Log
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Log_Driver_File)
@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct)
 
 
 	if (!((zephir_file_exists(&file) == SUCCESS))) {
-		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 175, &file);
+		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 176, &file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_0$$3))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Log_Driver_File, log)
 	ZEPHIR_CONCAT_SVSVSVV(&line, "[", &_1, "] ", &_0, ": ", &_2, &_3);
 	zephir_read_property(&_4, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 8);
-	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 176, &_4, &line, &_5);
+	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 177, &_4, &line, &_5);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }
@@ -262,7 +262,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate)
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 110, &message, &replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 111, &message, &replace);
 	zephir_check_call_status();
 	RETURN_MM();
 }

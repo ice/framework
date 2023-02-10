@@ -30,7 +30,7 @@
  * @package     Ice/Di
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Di)
@@ -342,7 +342,7 @@ PHP_METHOD(Ice_Di, resolve)
 			}
 		} else {
 			if (Z_TYPE_P(service) == IS_ARRAY) {
-				ZEPHIR_CALL_FUNCTION(&name$$10, "key", NULL, 100, service);
+				ZEPHIR_CALL_FUNCTION(&name$$10, "key", NULL, 101, service);
 				zephir_check_call_status();
 				if (zephir_is_numeric(&name$$10)) {
 					ZEPHIR_OBS_NVAR(&name$$10);
@@ -350,7 +350,7 @@ PHP_METHOD(Ice_Di, resolve)
 					zephir_check_call_status();
 					zephir_array_isset_fetch(&name$$10, &_2$$11, &key, 0);
 				}
-				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 99, service);
+				ZEPHIR_CALL_FUNCTION(&params, "current", NULL, 100, service);
 				zephir_check_call_status();
 				ZEPHIR_INIT_VAR(&_3$$10);
 				zephir_create_array(&_3$$10, 1, 0);
@@ -431,9 +431,9 @@ PHP_METHOD(Ice_Di, build)
 	}
 	ZEPHIR_INIT_VAR(&reflector);
 	object_init_ex(&reflector, zephir_get_internal_ce(SL("reflectionclass")));
-	ZEPHIR_CALL_METHOD(NULL, &reflector, "__construct", NULL, 102, service);
+	ZEPHIR_CALL_METHOD(NULL, &reflector, "__construct", NULL, 103, service);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_0, &reflector, "isinstantiable", NULL, 103);
+	ZEPHIR_CALL_METHOD(&_0, &reflector, "isinstantiable", NULL, 104);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		ZEPHIR_INIT_VAR(&_1$$5);
@@ -450,7 +450,7 @@ PHP_METHOD(Ice_Di, build)
 		ZEPHIR_MM_RESTORE();
 		return;
 	}
-	ZEPHIR_CALL_METHOD(&constructor, &reflector, "getconstructor", NULL, 104);
+	ZEPHIR_CALL_METHOD(&constructor, &reflector, "getconstructor", NULL, 105);
 	zephir_check_call_status();
 	if (Z_TYPE_P(&constructor) == IS_NULL) {
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(return_value, service);
@@ -465,7 +465,7 @@ PHP_METHOD(Ice_Di, build)
 	ZEPHIR_CALL_METHOD(&_4, this_ptr, "getdependencies", NULL, 0, &dependencies, parameters);
 	zephir_check_call_status();
 	ZEPHIR_CPY_WRT(&dependencies, &_4);
-	ZEPHIR_RETURN_CALL_METHOD(&reflector, "newinstanceargs", NULL, 105, &dependencies);
+	ZEPHIR_RETURN_CALL_METHOD(&reflector, "newinstanceargs", NULL, 106, &dependencies);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -652,7 +652,7 @@ PHP_METHOD(Ice_Di, getDependencies)
 				zephir_check_call_status();
 				ZEPHIR_CALL_METHOD(&_7$$3, &_6$$3, "getname", NULL, 0);
 				zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, &dependency, "__construct", &_8, 102, &_7$$3);
+				ZEPHIR_CALL_METHOD(NULL, &dependency, "__construct", &_8, 103, &_7$$3);
 				zephir_check_call_status();
 			} else {
 				ZEPHIR_INIT_NVAR(&dependency);
@@ -707,7 +707,7 @@ PHP_METHOD(Ice_Di, getDependencies)
 					zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(&_23$$8, &_22$$8, "getname", NULL, 0);
 					zephir_check_call_status();
-					ZEPHIR_CALL_METHOD(NULL, &dependency, "__construct", &_8, 102, &_23$$8);
+					ZEPHIR_CALL_METHOD(NULL, &dependency, "__construct", &_8, 103, &_23$$8);
 					zephir_check_call_status();
 				} else {
 					ZEPHIR_INIT_NVAR(&dependency);
@@ -849,7 +849,7 @@ PHP_METHOD(Ice_Di, errors)
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "handler");
 	zephir_array_fast_append(&_0, &_1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 106, &_0);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_exception_handler", NULL, 107, &_0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_2);
 	zephir_create_array(&_2, 2, 0);
@@ -857,7 +857,7 @@ PHP_METHOD(Ice_Di, errors)
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "errorHandler");
 	zephir_array_fast_append(&_2, &_1);
-	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 107, &_2);
+	ZEPHIR_CALL_FUNCTION(NULL, "set_error_handler", NULL, 108, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_3);
 	zephir_create_array(&_3, 2, 0);
@@ -865,7 +865,7 @@ PHP_METHOD(Ice_Di, errors)
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "shutdownHandler");
 	zephir_array_fast_append(&_3, &_1);
-	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 108, &_3);
+	ZEPHIR_CALL_FUNCTION(NULL, "register_shutdown_function", NULL, 109, &_3);
 	zephir_check_call_status();
 	RETURN_THIS();
 }
@@ -929,7 +929,7 @@ PHP_METHOD(Ice_Di, hook)
 			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
 		}
 		if (_0$$3) {
-			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 109, context);
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 110, context);
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}
@@ -1016,7 +1016,7 @@ PHP_METHOD(Ice_Di, applyHook)
 		_0 = Z_TYPE_P(context) == IS_OBJECT;
 	}
 	if (_0) {
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "spl_object_hash", NULL, 109, context);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "spl_object_hash", NULL, 110, context);
 		zephir_check_call_status();
 		zephir_concat_self(&name, &_1$$3);
 	}
@@ -1178,7 +1178,7 @@ PHP_METHOD(Ice_Di, getHooks)
 			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
 		}
 		if (_0$$3) {
-			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 109, context);
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 110, context);
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}
@@ -1249,7 +1249,7 @@ PHP_METHOD(Ice_Di, clearHooks)
 			_0$$3 = Z_TYPE_P(context) == IS_OBJECT;
 		}
 		if (_0$$3) {
-			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 109, context);
+			ZEPHIR_CALL_FUNCTION(&_1$$4, "spl_object_hash", NULL, 110, context);
 			zephir_check_call_status();
 			zephir_concat_self(&name, &_1$$4);
 		}

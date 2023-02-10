@@ -31,7 +31,7 @@
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Db_Driver_Pdo)
@@ -748,17 +748,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where)
 						{
 							ZEPHIR_INIT_NVAR(&item);
 							ZVAL_COPY(&item, _8$$5);
-							ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 100, &item);
+							ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 101, &item);
 							zephir_check_call_status();
-							ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 99, &item);
+							ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 100, &item);
 							zephir_check_call_status();
 							zephir_read_property(&_12$$9, this_ptr, ZEND_STRL("identifier"), PH_NOISY_CC | PH_READONLY);
 							ZEPHIR_CALL_FUNCTION(&column, "sprintf", &_13, 11, &_12$$9, &key);
 							zephir_check_call_status();
 							if (Z_TYPE_P(&value) == IS_ARRAY) {
-								ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 100, &value);
+								ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 101, &value);
 								zephir_check_call_status();
-								ZEPHIR_CALL_FUNCTION(&_14$$10, "current", &_11, 99, &value);
+								ZEPHIR_CALL_FUNCTION(&_14$$10, "current", &_11, 100, &value);
 								zephir_check_call_status();
 								ZEPHIR_CPY_WRT(&value, &_14$$10);
 							} else {
@@ -871,17 +871,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where)
 							}
 							ZEPHIR_CALL_METHOD(&item, &data, "current", NULL, 0);
 							zephir_check_call_status();
-								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 100, &item);
+								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 101, &item);
 								zephir_check_call_status();
-								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 99, &item);
+								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 100, &item);
 								zephir_check_call_status();
 								zephir_read_property(&_26$$23, this_ptr, ZEND_STRL("identifier"), PH_NOISY_CC | PH_READONLY);
 								ZEPHIR_CALL_FUNCTION(&column, "sprintf", &_13, 11, &_26$$23, &key);
 								zephir_check_call_status();
 								if (Z_TYPE_P(&value) == IS_ARRAY) {
-									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 100, &value);
+									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 101, &value);
 									zephir_check_call_status();
-									ZEPHIR_CALL_FUNCTION(&_27$$24, "current", &_11, 99, &value);
+									ZEPHIR_CALL_FUNCTION(&_27$$24, "current", &_11, 100, &value);
 									zephir_check_call_status();
 									ZEPHIR_CPY_WRT(&value, &_27$$24);
 								} else {
@@ -1040,17 +1040,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where)
 							{
 								ZEPHIR_INIT_NVAR(&item);
 								ZVAL_COPY(&item, _43$$38);
-								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 100, &item);
+								ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 101, &item);
 								zephir_check_call_status();
-								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 99, &item);
+								ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 100, &item);
 								zephir_check_call_status();
 								zephir_read_property(&_45$$42, this_ptr, ZEND_STRL("identifier"), PH_NOISY_CC | PH_READONLY);
 								ZEPHIR_CALL_FUNCTION(&column, "sprintf", &_13, 11, &_45$$42, &key);
 								zephir_check_call_status();
 								if (Z_TYPE_P(&value) == IS_ARRAY) {
-									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 100, &value);
+									ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 101, &value);
 									zephir_check_call_status();
-									ZEPHIR_CALL_FUNCTION(&_46$$43, "current", &_11, 99, &value);
+									ZEPHIR_CALL_FUNCTION(&_46$$43, "current", &_11, 100, &value);
 									zephir_check_call_status();
 									ZEPHIR_CPY_WRT(&value, &_46$$43);
 								} else {
@@ -1163,17 +1163,17 @@ PHP_METHOD(Ice_Db_Driver_Pdo, where)
 								}
 								ZEPHIR_CALL_METHOD(&item, &data, "current", NULL, 0);
 								zephir_check_call_status();
-									ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 100, &item);
+									ZEPHIR_CALL_FUNCTION(&key, "key", &_10, 101, &item);
 									zephir_check_call_status();
-									ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 99, &item);
+									ZEPHIR_CALL_FUNCTION(&value, "current", &_11, 100, &item);
 									zephir_check_call_status();
 									zephir_read_property(&_58$$56, this_ptr, ZEND_STRL("identifier"), PH_NOISY_CC | PH_READONLY);
 									ZEPHIR_CALL_FUNCTION(&column, "sprintf", &_13, 11, &_58$$56, &key);
 									zephir_check_call_status();
 									if (Z_TYPE_P(&value) == IS_ARRAY) {
-										ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 100, &value);
+										ZEPHIR_CALL_FUNCTION(&is, "key", &_10, 101, &value);
 										zephir_check_call_status();
-										ZEPHIR_CALL_FUNCTION(&_59$$57, "current", &_11, 99, &value);
+										ZEPHIR_CALL_FUNCTION(&_59$$57, "current", &_11, 100, &value);
 										zephir_check_call_status();
 										ZEPHIR_CPY_WRT(&value, &_59$$57);
 									} else {

@@ -28,7 +28,7 @@
  * @package     Ice/Auth
  * @category    Adapter
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Social_Twitter)
@@ -228,7 +228,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate)
 		if (!(zephir_is_true(&_2$$3))) {
 			ZEPHIR_INIT_VAR(&accessTokenUrl);
 			ZVAL_STRING(&accessTokenUrl, "https://api.twitter.com/oauth/access_token");
-			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "prepareurlparams", &_4, 73, &accessTokenUrl, &params);
+			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "prepareurlparams", &_4, 74, &accessTokenUrl, &params);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&params, &_3$$4);
 			ZVAL_LONG(&_5$$4, 0);
@@ -236,7 +236,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate)
 			ZEPHIR_CALL_METHOD(&_3$$4, this_ptr, "call", NULL, 0, &_5$$4, &accessTokenUrl, &params, &_6$$4);
 			zephir_check_call_status();
 			ZEPHIR_MAKE_REF(&tokenInfo);
-			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 74, &_3$$4, &tokenInfo);
+			ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 75, &_3$$4, &tokenInfo);
 			ZEPHIR_UNREF(&tokenInfo);
 			zephir_check_call_status();
 			_7$$4 = zephir_fast_count_int(&tokenInfo) > 0;
@@ -284,7 +284,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, authenticate)
 			ZEPHIR_CPY_WRT(&params, &_13$$6);
 			zephir_read_property(&_18$$6, this_ptr, ZEND_STRL("accessToken"), PH_NOISY_CC | PH_READONLY);
 			zephir_array_fetch_string(&_19$$6, &_18$$6, SL("oauth_token_secret"), PH_NOISY | PH_READONLY, "ice/auth/social/twitter.zep", 106);
-			ZEPHIR_CALL_METHOD(&_17$$6, this_ptr, "prepareurlparams", &_4, 73, &getDataUrl, &params, &_19$$6);
+			ZEPHIR_CALL_METHOD(&_17$$6, this_ptr, "prepareurlparams", &_4, 74, &getDataUrl, &params, &_19$$6);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&params, &_17$$6);
 			ZVAL_LONG(&_20$$6, 0);
@@ -332,14 +332,14 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareAuthParams)
 	ZEPHIR_OBS_VAR(&_1);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("redirectUri"), PH_NOISY_CC);
 	zephir_array_update_string(&_0, SL("oauth_callback"), &_1, PH_COPY | PH_SEPARATE);
-	ZEPHIR_CALL_METHOD(&params, this_ptr, "prepareurlparams", NULL, 73, &requestTokenUrl, &_0);
+	ZEPHIR_CALL_METHOD(&params, this_ptr, "prepareurlparams", NULL, 74, &requestTokenUrl, &_0);
 	zephir_check_call_status();
 	ZVAL_LONG(&_2, 0);
 	ZVAL_BOOL(&_3, 0);
 	ZEPHIR_CALL_METHOD(&requestTokens, this_ptr, "call", NULL, 0, &_2, &requestTokenUrl, &params, &_3);
 	zephir_check_call_status();
 	ZEPHIR_MAKE_REF(&requestTokens);
-	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 74, &requestTokens, &requestTokens);
+	ZEPHIR_CALL_FUNCTION(NULL, "parse_str", NULL, 75, &requestTokens, &requestTokens);
 	ZEPHIR_UNREF(&requestTokens);
 	zephir_check_call_status();
 	zephir_create_array(return_value, 2, 0);
@@ -439,7 +439,7 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams)
 	ZEPHIR_INIT_VAR(&_3);
 	ZEPHIR_CALL_FUNCTION(&_4, "rand", NULL, 40);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_5, "uniqid", NULL, 75, &_4, &__$true);
+	ZEPHIR_CALL_FUNCTION(&_5, "uniqid", NULL, 76, &_4, &__$true);
 	zephir_check_call_status();
 	zephir_md5(&_3, &_5);
 	zephir_array_update_string(&_1, SL("oauth_nonce"), &_3, PH_COPY | PH_SEPARATE);
@@ -452,14 +452,14 @@ PHP_METHOD(Ice_Auth_Social_Twitter, prepareUrlParams)
 	zephir_fast_array_merge(&_0, &_1, params);
 	ZEPHIR_CPY_WRT(params, &_0);
 	ZEPHIR_MAKE_REF(params);
-	ZEPHIR_CALL_FUNCTION(NULL, "ksort", NULL, 76, params);
+	ZEPHIR_CALL_FUNCTION(NULL, "ksort", NULL, 77, params);
 	ZEPHIR_UNREF(params);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_6, "urlencode", &_7, 77, &url);
+	ZEPHIR_CALL_FUNCTION(&_6, "urlencode", &_7, 78, &url);
 	zephir_check_call_status();
 	ZEPHIR_CALL_FUNCTION(&_8, "http_build_query", NULL, 18, params);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_9, "urlencode", &_7, 77, &_8);
+	ZEPHIR_CALL_FUNCTION(&_9, "urlencode", &_7, 78, &_8);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&sigBaseStr);
 	ZEPHIR_CONCAT_VSVSV(&sigBaseStr, &type, "&", &_6, "&", &_9);

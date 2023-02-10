@@ -27,7 +27,7 @@
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Db)
@@ -180,7 +180,7 @@ PHP_METHOD(Ice_Db, __construct)
 				object_init_ex(&_3$$5, ice_db_driver_pdo_ce);
 				ZEPHIR_INIT_VAR(&_4$$5);
 				ZEPHIR_CONCAT_SV(&_4$$5, "oci:dbname=", &tns$$5);
-				ZEPHIR_CALL_METHOD(NULL, &_3$$5, "__construct", NULL, 95, &_4$$5, &user, &password, &options);
+				ZEPHIR_CALL_METHOD(NULL, &_3$$5, "__construct", NULL, 96, &_4$$5, &user, &password, &options);
 				zephir_check_call_status();
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_3$$5);
 				break;
@@ -193,7 +193,7 @@ PHP_METHOD(Ice_Db, __construct)
 				ZEPHIR_CPY_WRT(&dsn$$6, &_6$$6);
 				ZEPHIR_INIT_VAR(&_7$$6);
 				object_init_ex(&_7$$6, ice_db_driver_mongodb_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_7$$6, "__construct", NULL, 96, &dsn$$6, &name, &options);
+				ZEPHIR_CALL_METHOD(NULL, &_7$$6, "__construct", NULL, 97, &dsn$$6, &name, &options);
 				zephir_check_call_status();
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_7$$6);
 				break;
@@ -226,7 +226,7 @@ PHP_METHOD(Ice_Db, __construct)
 			}
 			ZEPHIR_INIT_VAR(&_14$$7);
 			object_init_ex(&_14$$7, ice_db_driver_pdo_ce);
-			ZEPHIR_CALL_METHOD(NULL, &_14$$7, "__construct", NULL, 95, dsn, &user, &password, &options);
+			ZEPHIR_CALL_METHOD(NULL, &_14$$7, "__construct", NULL, 96, dsn, &user, &password, &options);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_14$$7);
 			break;

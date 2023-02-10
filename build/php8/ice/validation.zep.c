@@ -30,7 +30,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Filter (if service is available)
  * @uses        Ice\I18n (if service is available)
@@ -460,7 +460,7 @@ PHP_METHOD(Ice_Validation, rule)
 						ZEPHIR_INIT_NVAR(options);
 						array_init(options);
 					}
-					ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 215, &field, &validator, options);
+					ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 216, &field, &validator, options);
 					zephir_check_call_status();
 				} ZEND_HASH_FOREACH_END();
 			} else {
@@ -481,7 +481,7 @@ PHP_METHOD(Ice_Validation, rule)
 							ZEPHIR_INIT_NVAR(options);
 							array_init(options);
 						}
-						ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 215, &field, &validator, options);
+						ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 216, &field, &validator, options);
 						zephir_check_call_status();
 					ZEPHIR_CALL_METHOD(NULL, validators, "next", NULL, 0);
 					zephir_check_call_status();
@@ -667,7 +667,7 @@ PHP_METHOD(Ice_Validation, rules)
 			zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(&rules, &validators, "current", NULL, 0);
 			zephir_check_call_status();
-				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 215, &field, &rules);
+				ZEPHIR_CALL_METHOD(NULL, this_ptr, "rule", &_5, 216, &field, &rules);
 				zephir_check_call_status();
 			ZEPHIR_CALL_METHOD(NULL, &validators, "next", NULL, 0);
 			zephir_check_call_status();

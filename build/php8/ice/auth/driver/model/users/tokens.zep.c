@@ -16,7 +16,6 @@
 #include "kernel/fcall.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
-#include "kernel/math.h"
 #include "kernel/operators.h"
 #include "kernel/time.h"
 
@@ -27,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens)
@@ -49,10 +48,10 @@ ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens)
  */
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 {
-	zend_bool _8;
+	zend_bool _9;
 	zval _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval __$true, auth, expire, _0, _1, _2, _3, _4, _6, _7;
+	zval __$true, auth, expire, _0, _1, _2, _3, _4, _6, _7, _8;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
@@ -66,6 +65,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&_7);
+	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_5);
 
 
@@ -93,7 +93,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 	zephir_check_call_status();
 	ZVAL_LONG(&_6, 1);
 	ZVAL_LONG(&_7, 100);
-	if (zephir_mt_rand(zephir_get_intval(&_6), zephir_get_intval(&_7)) == 1) {
+	ZEPHIR_CALL_FUNCTION(&_8, "mt_rand", NULL, 70, &_6, &_7);
+	zephir_check_call_status();
+	if (ZEPHIR_IS_LONG_IDENTICAL(&_8, 1)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "deleteexpired", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -101,13 +103,13 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 	ZVAL_STRING(&_1, "expires");
 	ZEPHIR_CALL_METHOD(&expire, this_ptr, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	_8 = ZEPHIR_GT_LONG(&expire, 0);
-	if (_8) {
+	_9 = ZEPHIR_GT_LONG(&expire, 0);
+	if (_9) {
 		ZEPHIR_INIT_NVAR(&_1);
 		zephir_time(&_1);
-		_8 = ZEPHIR_LT(&expire, &_1);
+		_9 = ZEPHIR_LT(&expire, &_1);
 	}
-	if (_8) {
+	if (_9) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "delete", NULL, 0);
 		zephir_check_call_status();
 	}
@@ -273,9 +275,9 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate)
 
 	do {
 		ZVAL_LONG(&_0$$3, 16);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 70, &_0$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 71, &_0$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 71, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 72, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_6);
 		zephir_create_array(&_6, 1, 0);

@@ -28,7 +28,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -294,7 +294,7 @@ PHP_METHOD(Ice_Validation_Validator_With, validate)
 		ZEPHIR_INIT_NVAR(&_8$$10);
 		zephir_fast_join_str(&_8$$10, SL(", "), &required);
 		zephir_array_update_string(&replace, SL(":fields"), &_8$$10, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_28$$10, "strtr", NULL, 110, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_28$$10, "strtr", NULL, 111, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_28$$10);
 		zephir_check_call_status();

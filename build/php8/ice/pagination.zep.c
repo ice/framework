@@ -28,7 +28,7 @@
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -207,7 +207,7 @@ PHP_METHOD(Ice_Pagination, calculate)
 	if (_9) {
 		ZVAL_LONG(&_10$$8, (limit * ((page - 1))));
 		ZVAL_LONG(&_11$$8, limit);
-		ZEPHIR_CALL_FUNCTION(&_12$$8, "array_slice", NULL, 124, &items, &_10$$8, &_11$$8);
+		ZEPHIR_CALL_FUNCTION(&_12$$8, "array_slice", NULL, 125, &items, &_10$$8, &_11$$8);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_13$$8);
 		ZVAL_STRING(&_13$$8, "items");

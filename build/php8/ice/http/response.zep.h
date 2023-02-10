@@ -102,7 +102,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_removeheader, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_OBJ_INFO_EX(arginfo_ice_http_response_setcontent, 0, 1, NULL, 0)
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_ice_http_response_setcontent, 0, 1, MAY_BE_OBJECT)
+#else
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_setcontent, 0, 1, IS_OBJECT, 0)
+#endif
 	ZEND_ARG_TYPE_INFO(0, contet, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 

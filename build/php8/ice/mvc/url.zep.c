@@ -27,7 +27,7 @@
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Url)
@@ -309,12 +309,12 @@ PHP_METHOD(Ice_Mvc_Url, get)
 	}
 	if (_0) {
 		ZVAL_LONG(&_1$$3, 1);
-		ZEPHIR_CALL_FUNCTION(&_2$$3, "parse_url", &_3, 78, uri, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&_2$$3, "parse_url", &_3, 79, uri, &_1$$3);
 		zephir_check_call_status();
 		_4$$3 = ZEPHIR_IS_EMPTY(&_2$$3);
 		if (_4$$3) {
 			ZVAL_LONG(&_1$$3, 0);
-			ZEPHIR_CALL_FUNCTION(&_5$$3, "parse_url", &_3, 78, uri, &_1$$3);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "parse_url", &_3, 79, uri, &_1$$3);
 			zephir_check_call_status();
 			_4$$3 = ZEPHIR_IS_EMPTY(&_5$$3);
 		}

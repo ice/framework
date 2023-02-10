@@ -28,7 +28,7 @@
  * @package     Ice/Cookies
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2021 Ice Team
+ * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Cookies)
@@ -665,7 +665,7 @@ PHP_METHOD(Ice_Cookies, setcookie)
 	ZVAL_LONG(&_0, expire);
 	ZVAL_BOOL(&_1, (secure ? 1 : 0));
 	ZVAL_BOOL(&_2, (httpOnly ? 1 : 0));
-	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 90, &name, &value, &_0, &path, &domain, &_1, &_2);
+	ZEPHIR_RETURN_CALL_FUNCTION("setcookie", NULL, 91, &name, &value, &_0, &path, &domain, &_1, &_2);
 	zephir_check_call_status();
 	RETURN_MM();
 }
