@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./index.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         verbose="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="all">
+            <directory>./</directory>
+        </testsuite>
+        <testsuite name="stable">
+            <file>CryptTest.php</file>
+            <file>DbTest.php</file>
+            <file>FastRouteTest.php</file>
+            <file>ModelTest.php</file>
+            <file>SleetTest.php</file>
+            <file>TagTest.php</file>
+            <file>ValidationTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
