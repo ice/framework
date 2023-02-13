@@ -30,6 +30,6 @@ class GroupCount extends Regex
         }
 
         let regex = "~^(?|" . implode("|", regexes) . ")$~";
-        return ["regex": utf8_encode(regex), "routeMap": routeMap];
+        return ["regex": regex, "routeMap": routeMap];
     }
 }
