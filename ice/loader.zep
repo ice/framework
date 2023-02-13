@@ -63,15 +63,15 @@ class Loader
         // initialize the namespace prefix array
         if !isset this->prefixes[prefix] {
             // Refcount of the new array zephir/issues/1140
-            let this->prefixes[prefix] = [utf8_encode(baseDir)];
+            let this->prefixes[prefix] = [baseDir];
             return this;
         }
 
         // retain the base directory for the namespace prefix
         if prepend {
-            array_unshift(this->prefixes[prefix], utf8_encode(baseDir));
+            array_unshift(this->prefixes[prefix], baseDir);
         } else {
-            array_push(this->prefixes[prefix], utf8_encode(baseDir));
+            array_push(this->prefixes[prefix], baseDir);
         }
         return this;
     }
