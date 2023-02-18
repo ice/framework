@@ -51,7 +51,7 @@ class Loader
      * be searched first rather than last
      * @return Loader
      */
-    public function addNamespace(string prefix, string baseDir, boolean prepend = false)
+    public function addNamespace(string prefix, string baseDir = null, boolean prepend = false)
     {
         // normalize namespace prefix
         let prefix = trim(prefix, "\\") . "\\";
