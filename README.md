@@ -25,9 +25,9 @@ or become a contributor
 Ice is a C-extension, so you need to download a binary for your platform or compile it from source code.
 
 ## Download
-* openSUSE package: [php7-ice](http://software.opensuse.org/package/php7-ice)
-* Windows: [DLLs](http://www.iceframework.org/info/download)
-* source code of [stable releases](https://github.com/ice/framework/releases)
+* openSUSE package: [php8-ice](https://software.opensuse.org/package/php8-ice)
+* pecl: [ice](https://pecl.php.net/package/ice)
+* source code: [releases](https://github.com/ice/framework/tags)
 
 ## Donation
 Support us with a donation and help us continue our activities. [Become a contributor](https://opencollective.com/ice)
