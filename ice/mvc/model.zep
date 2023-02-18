@@ -16,7 +16,7 @@ use Ice\Validation;
  * @copyright   (c) 2014-2023 Ice Team
  * @license     http://iceframework.org/license
  */
-abstract class Model extends Arr implements \Serializable
+abstract class Model extends Arr
 {
     protected di { get };
     protected db { get };
@@ -792,21 +792,25 @@ abstract class Model extends Arr implements \Serializable
     /**
      * Serialize the model's data.
      *
-     * @return string
+     * @return array
      */
-    public function serialize() -> string
+    public function __serialize() -> array
     {
-        return base64_encode(serialize(this->data));
+        return [
+            "data": base64_encode(serialize(this->data))
+        ];
     }
 
     /**
      * Unserialize and set the data.
+     *
+     * @param array serialized
      * @return object Model
      */
-    public function unserialize(serialized)
+    public function __unserialize(array serialized)
     {
         this->__construct();
-        let this->data = unserialize(base64_decode(serialized));
+        let this->data = unserialize(base64_decode(serialized["data"]));
 
         return this;
     }
