@@ -120,7 +120,7 @@ class Cookies
         unset _COOKIE[key];
 
         // Nullify the cookie and make it expire
-        return this->setcookie(key, null, -86400, this->path, (string) this->domain, this->secure, this->httpOnly);
+        return this->setcookie(key, "", -86400, this->path, (string) this->domain, this->secure, this->httpOnly);
     }
 
     /**
