@@ -154,6 +154,7 @@ class ModelsTest extends TestCase
      * Auth test
      *
      * @dataProvider users
+     * @requires PHPUnit >= 10.0
      */
     public function testAuth($data)
     {
