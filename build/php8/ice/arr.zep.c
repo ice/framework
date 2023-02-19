@@ -973,7 +973,8 @@ PHP_METHOD(Ice_Arr, offsetExists)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset, offset_sub;
+	zval offset_sub;
+	zval *offset;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset_sub);
@@ -1005,7 +1006,8 @@ PHP_METHOD(Ice_Arr, offsetGet)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset, offset_sub;
+	zval offset_sub;
+	zval *offset;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset_sub);
@@ -1038,7 +1040,8 @@ PHP_METHOD(Ice_Arr, offsetSet)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset, offset_sub, *value, value_sub;
+	zval offset_sub, *value, value_sub;
+	zval *offset;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset_sub);
@@ -1072,7 +1075,8 @@ PHP_METHOD(Ice_Arr, offsetUnset)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *offset, offset_sub;
+	zval offset_sub;
+	zval *offset;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&offset_sub);

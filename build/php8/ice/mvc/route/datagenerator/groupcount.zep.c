@@ -45,7 +45,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zephir_fcall_cache_entry *_6 = NULL, *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
-	zval *regexToRoutesMap, regexToRoutesMap_sub, routeMap, regex, route, regexes, numGroups, numVariables, *_0, _1, _22, _23, _4$$3, _5$$3, _7$$3, _8$$3, _9$$3, _11$$3, _13$$3, _14$$4, _15$$4, _16$$4, _17$$4, _18$$4, _19$$4, _21$$4;
+	zval *regexToRoutesMap, regexToRoutesMap_sub, routeMap, regex, route, regexes, numGroups, numVariables, *_0, _1, _22, _4$$3, _5$$3, _7$$3, _8$$3, _9$$3, _11$$3, _13$$3, _14$$4, _15$$4, _16$$4, _17$$4, _18$$4, _19$$4, _21$$4;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&regexToRoutesMap_sub);
@@ -57,7 +57,6 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 	ZVAL_UNDEF(&numVariables);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_22);
-	ZVAL_UNDEF(&_23);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$3);
 	ZVAL_UNDEF(&_7$$3);
@@ -187,9 +186,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 	ZEPHIR_INIT_NVAR(&regex);
 	ZEPHIR_CONCAT_SVS(&regex, "~^(?|", &_22, ")$~");
 	zephir_create_array(return_value, 2, 0);
-	ZEPHIR_CALL_FUNCTION(&_23, "utf8_encode", NULL, 173, &regex);
-	zephir_check_call_status();
-	zephir_array_update_string(return_value, SL("regex"), &_23, PH_COPY | PH_SEPARATE);
+	zephir_array_update_string(return_value, SL("regex"), &regex, PH_COPY | PH_SEPARATE);
 	zephir_array_update_string(return_value, SL("routeMap"), &routeMap, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 }

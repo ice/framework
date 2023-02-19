@@ -28,7 +28,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_checkhash, 0, 2,
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_completelogin, 0, 0, 1)
-	ZEND_ARG_INFO(0, user)
+	ZEND_ARG_TYPE_INFO(0, user, IS_STRING, 0)
 #if PHP_VERSION_ID >= 80000
 	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, roles, IS_ARRAY, 0, "[]")
 #else

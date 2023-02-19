@@ -753,17 +753,19 @@ PHP_METHOD(Ice_Filter_Js, min)
  */
 PHP_METHOD(Ice_Filter_Js, next)
 {
-	zval c, _1$$3, _3$$5, _5$$8, _6$$9;
+	zval _3$$5;
+	zval c, _1$$3, _4$$5, _6$$8, _7$$9;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL, *_4 = NULL;
+	zephir_fcall_cache_entry *_0 = NULL, *_2 = NULL, *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&c);
 	ZVAL_UNDEF(&_1$$3);
+	ZVAL_UNDEF(&_4$$5);
+	ZVAL_UNDEF(&_6$$8);
+	ZVAL_UNDEF(&_7$$9);
 	ZVAL_UNDEF(&_3$$5);
-	ZVAL_UNDEF(&_5$$8);
-	ZVAL_UNDEF(&_6$$9);
 
 
 	ZEPHIR_MM_GROW();
@@ -781,9 +783,10 @@ PHP_METHOD(Ice_Filter_Js, next)
 					}
 					ZEPHIR_CALL_METHOD(&c, this_ptr, "get", &_0, 0);
 					zephir_check_call_status();
-					ZEPHIR_CALL_FUNCTION(&_3$$5, "ord", &_4, 34, &c);
+					zephir_cast_to_string(&_3$$5, &c);
+					ZEPHIR_CALL_FUNCTION(&_4$$5, "ord", &_5, 34, &_3$$5);
 					zephir_check_call_status();
-					if (ZEPHIR_LE_LONG(&_3$$5, 10)) {
+					if (ZEPHIR_LE_LONG(&_4$$5, 10)) {
 						RETURN_CCTOR(&c);
 					}
 				}
@@ -795,20 +798,20 @@ PHP_METHOD(Ice_Filter_Js, next)
 					if (!(1)) {
 						break;
 					}
-					ZEPHIR_CALL_METHOD(&_5$$8, this_ptr, "get", &_0, 0);
+					ZEPHIR_CALL_METHOD(&_6$$8, this_ptr, "get", &_0, 0);
 					zephir_check_call_status();
 					do {
-						if (ZEPHIR_IS_STRING(&_5$$8, "*")) {
-							ZEPHIR_CALL_METHOD(&_6$$9, this_ptr, "peek", &_2, 0);
+						if (ZEPHIR_IS_STRING(&_6$$8, "*")) {
+							ZEPHIR_CALL_METHOD(&_7$$9, this_ptr, "peek", &_2, 0);
 							zephir_check_call_status();
-							if (ZEPHIR_IS_STRING_IDENTICAL(&_6$$9, "/")) {
+							if (ZEPHIR_IS_STRING_IDENTICAL(&_7$$9, "/")) {
 								ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_0, 0);
 								zephir_check_call_status();
 								RETURN_MM_STRING(" ");
 							}
 							break;
 						}
-						if (Z_TYPE_P(&_5$$8) == IS_NULL) {
+						if (Z_TYPE_P(&_6$$8) == IS_NULL) {
 							ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Unterminated comment.", "ice/filter/js.zep", 311);
 							return;
 						}

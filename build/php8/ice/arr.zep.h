@@ -117,7 +117,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetexists, 0, 1, _IS_
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
+#if PHP_VERSION_ID >= 80000
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetget, 0, 1, IS_MIXED, 0)
+#else
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetget, 0, 0, 1)
+#endif
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 

@@ -488,7 +488,7 @@ PHP_METHOD(Ice_Mvc_FastRouter, fastRoute)
 		zephir_array_fetch_string(&_11$$3, &options, SL("dataGenerator"), PH_NOISY | PH_READONLY, "ice/mvc/fastrouter.zep", 98);
 		ZEPHIR_LAST_CALL_STATUS = zephir_create_instance(&_10$$3, &_11$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 178, &_8$$3, &_10$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 177, &_8$$3, &_10$$3);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("collector"), &_7$$3);
 	}

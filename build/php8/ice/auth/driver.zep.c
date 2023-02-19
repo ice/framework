@@ -163,7 +163,7 @@ PHP_METHOD(Ice_Auth_Driver, checkHash)
 /**
  * Complete the login for a user by setting session data and eg. incrementing the logins.
  *
- * @param mixed user Complete the login for this user
+ * @param string user Complete the login for this user
  * @param array roles User's roles
  * @return void
  */
@@ -173,10 +173,11 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin)
 	zephir_fcall_cache_entry *_5 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval roles;
-	zval *user, user_sub, *roles_param = NULL, sessionRoles, _0, _1, _2, _3, _4, _6$$3;
+	zval *user_param = NULL, *roles_param = NULL, sessionRoles, _0, _1, _2, _3, _4, _6$$3;
+	zval user;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&user_sub);
+	ZVAL_UNDEF(&user);
 	ZVAL_UNDEF(&sessionRoles);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
@@ -188,7 +189,7 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin)
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
-		Z_PARAM_ZVAL(user)
+		Z_PARAM_STR(user)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(roles)
 	ZEND_PARSE_PARAMETERS_END();
@@ -196,7 +197,8 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin)
 
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 1, &user, &roles_param);
+	zephir_fetch_params(1, 1, 1, &user_param, &roles_param);
+	zephir_get_strval(&user, user_param);
 	if (!roles_param) {
 		ZEPHIR_INIT_VAR(&roles);
 		array_init(&roles);
@@ -215,7 +217,7 @@ PHP_METHOD(Ice_Auth_Driver, completeLogin)
 	ZVAL_STRING(&_4, "auth_user");
 	ZEPHIR_CALL_METHOD(&_2, this_ptr, "getoption", &_5, 0, &_3, &_4);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(NULL, &_1, "set", NULL, 0, &_2, user);
+	ZEPHIR_CALL_METHOD(NULL, &_1, "set", NULL, 0, &_2, &user);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_3);
 	ZVAL_STRING(&_3, "session_roles");

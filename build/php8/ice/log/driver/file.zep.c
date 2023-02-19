@@ -76,7 +76,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct)
 
 
 	if (!((zephir_file_exists(&file) == SUCCESS))) {
-		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 176, &file);
+		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 175, &file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_0$$3))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
@@ -170,7 +170,7 @@ PHP_METHOD(Ice_Log_Driver_File, log)
 	ZEPHIR_CONCAT_SVSVSVV(&line, "[", &_1, "] ", &_0, ": ", &_2, &_3);
 	zephir_read_property(&_4, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 8);
-	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 177, &_4, &line, &_5);
+	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 176, &_4, &line, &_5);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }

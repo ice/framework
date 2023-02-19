@@ -58,7 +58,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Model)
 
 	zephir_declare_class_constant_long(ice_mvc_model_ce, SL("HAS_MANY"), 3);
 
-	zend_class_implements(ice_mvc_model_ce, 1, zend_ce_serializable);
 	return SUCCESS;
 }
 
@@ -2456,62 +2455,71 @@ PHP_METHOD(Ice_Mvc_Model, setRules)
 /**
  * Serialize the model's data.
  *
- * @return string
+ * @return array
  */
-PHP_METHOD(Ice_Mvc_Model, serialize)
+PHP_METHOD(Ice_Mvc_Model, __serialize)
 {
-	zval _0, _1;
+	zval _0, _1, _2;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 
 
 	ZEPHIR_MM_GROW();
 
+	zephir_create_array(return_value, 1, 0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_FUNCTION(&_1, "serialize", NULL, 13, &_0);
 	zephir_check_call_status();
-	ZEPHIR_RETURN_CALL_FUNCTION("base64_encode", NULL, 14, &_1);
+	ZEPHIR_CALL_FUNCTION(&_2, "base64_encode", NULL, 14, &_1);
 	zephir_check_call_status();
+	zephir_array_update_string(return_value, SL("data"), &_2, PH_COPY | PH_SEPARATE);
 	RETURN_MM();
 }
 
 /**
  * Unserialize and set the data.
+ *
+ * @param array serialized
  * @return object Model
  */
-PHP_METHOD(Ice_Mvc_Model, unserialize)
+PHP_METHOD(Ice_Mvc_Model, __unserialize)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *serialized, serialized_sub, _0, _1;
+	zval *serialized_param = NULL, _0, _1, _2;
+	zval serialized;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&serialized_sub);
+	ZVAL_UNDEF(&serialized);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	ZVAL_UNDEF(&_2);
 #if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
-		Z_PARAM_ZVAL(serialized)
+		Z_PARAM_ARRAY(serialized)
 	ZEND_PARSE_PARAMETERS_END();
 #endif
 
 
 	ZEPHIR_MM_GROW();
-	zephir_fetch_params(1, 1, 0, &serialized);
+	zephir_fetch_params(1, 1, 0, &serialized_param);
+	zephir_get_arrval(&serialized, serialized_param);
 
 
 	ZEPHIR_CALL_METHOD(NULL, this_ptr, "__construct", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_0, "base64_decode", NULL, 15, serialized);
+	zephir_array_fetch_string(&_0, &serialized, SL("data"), PH_NOISY | PH_READONLY, "ice/mvc/model.zep", 813);
+	ZEPHIR_CALL_FUNCTION(&_1, "base64_decode", NULL, 15, &_0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_FUNCTION(&_1, "unserialize", NULL, 16, &_0);
+	ZEPHIR_CALL_FUNCTION(&_2, "unserialize", NULL, 16, &_1);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &_1);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("data"), &_2);
 	RETURN_THIS();
 }
 
@@ -2584,7 +2592,7 @@ PHP_METHOD(Ice_Mvc_Model, __call)
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(NULL, &_3, "__construct", NULL, 12, &_5);
 	zephir_check_call_status();
-	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 834);
+	zephir_throw_exception_debug(&_3, "ice/mvc/model.zep", 838);
 	ZEPHIR_MM_RESTORE();
 	return;
 }

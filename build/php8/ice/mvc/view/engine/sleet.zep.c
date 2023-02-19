@@ -173,7 +173,7 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet, compile)
 	if (zephir_is_true(&compile)) {
 		ZEPHIR_INIT_VAR(&_11$$9);
 		object_init_ex(&_11$$9, ice_mvc_view_engine_sleet_compiler_ce);
-		ZEPHIR_CALL_METHOD(NULL, &_11$$9, "__construct", NULL, 184, this_ptr);
+		ZEPHIR_CALL_METHOD(NULL, &_11$$9, "__construct", NULL, 183, this_ptr);
 		zephir_check_call_status();
 		zephir_update_property_zval(this_ptr, ZEND_STRL("compiler"), &_11$$9);
 		zephir_read_property(&_12$$9, this_ptr, ZEND_STRL("compiler"), PH_NOISY_CC | PH_READONLY);

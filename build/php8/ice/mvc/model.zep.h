@@ -41,8 +41,8 @@ PHP_METHOD(Ice_Mvc_Model, hasMany);
 PHP_METHOD(Ice_Mvc_Model, getRelated);
 PHP_METHOD(Ice_Mvc_Model, getRules);
 PHP_METHOD(Ice_Mvc_Model, setRules);
-PHP_METHOD(Ice_Mvc_Model, serialize);
-PHP_METHOD(Ice_Mvc_Model, unserialize);
+PHP_METHOD(Ice_Mvc_Model, __serialize);
+PHP_METHOD(Ice_Mvc_Model, __unserialize);
 PHP_METHOD(Ice_Mvc_Model, __call);
 zend_object *zephir_init_properties_Ice_Mvc_Model(zend_class_entry *class_type);
 
@@ -257,18 +257,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
 	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_serialize, 0, 0, IS_STRING, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model___serialize, 0, 0, IS_ARRAY, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 80000
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_unserialize, 0, 1, IS_VOID, 0)
-    ZEND_ARG_TYPE_INFO(0, serialized, IS_STRING, 0)
+ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___unserialize, 0, 0, 1)
+	ZEND_ARG_ARRAY_INFO(0, serialized, 0)
 ZEND_END_ARG_INFO()
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model_unserialize, 0, 1, IS_VOID, 0)
-    ZEND_ARG_INFO(0, serialized)
-ZEND_END_ARG_INFO()
-#endif
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___call, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
@@ -357,8 +351,8 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, getRelated, arginfo_ice_mvc_model_getrelated, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getRules, arginfo_ice_mvc_model_getrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setRules, arginfo_ice_mvc_model_setrules, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Model, serialize, arginfo_ice_mvc_model_serialize, ZEND_ACC_PUBLIC)
-	PHP_ME(Ice_Mvc_Model, unserialize, arginfo_ice_mvc_model_unserialize, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, __serialize, arginfo_ice_mvc_model___serialize, ZEND_ACC_PUBLIC)
+	PHP_ME(Ice_Mvc_Model, __unserialize, arginfo_ice_mvc_model___unserialize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __call, arginfo_ice_mvc_model___call, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
