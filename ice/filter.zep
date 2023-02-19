@@ -63,7 +63,7 @@ class Filter
      * @param string filter
      * @return mixed
      */
-    protected function doSanitize(string value, string! filter)
+    protected function doSanitize(var value, string! filter)
     {
         var custom;
 
@@ -114,7 +114,7 @@ class Filter
             case "integer":
                 return (int) filter_var(value, FILTER_SANITIZE_NUMBER_INT);
             case "string":
-                return filter_var(value, FILTER_SANITIZE_STRING);
+                return filter_var(value, FILTER_UNSAFE_RAW);
 
             case "repeats":
             case "strip_repeats":

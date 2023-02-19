@@ -303,6 +303,8 @@ class Db extends Driver implements DriverInterface
             }
         }
 
+        let this->user = null;
+
         return parent::logout(destroy);
     }
 

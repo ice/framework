@@ -151,6 +151,38 @@ class ModelsTest extends TestCase
     }
 
     /**
+     * Auth test
+     *
+     * @dataProvider users
+     * @requires PHPUnit >= 10.0
+     */
+    public function testAuth($data)
+    {
+        $service = new UserService(new Users());
+        $auth = $service->auth;
+
+        $loggedIn = $auth->loggedIn();
+        $this->assertFalse($loggedIn);
+
+        $loggedIn = $auth->login($data['username'], $data['password']);
+        $this->assertTrue($loggedIn);
+
+        $loggedIn = $auth->loggedIn();
+        $this->assertTrue($loggedIn);
+
+        if (strpos($data['username'], 'admin') === 0) {
+            $loggedIn = $auth->loggedIn('admin');
+            $this->assertTrue($loggedIn);
+        }
+
+        $loggedIn = $auth->logout();
+        $this->assertTrue($loggedIn);
+
+        $loggedIn = $auth->loggedIn();
+        $this->assertFalse($loggedIn);
+    }
+
+    /**
      * Users
      *
      * @return array

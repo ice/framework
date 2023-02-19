@@ -16,7 +16,7 @@
     "require-dev": {
         "phpunit/phpunit": ">=8.0.0",
         "iceframework/zephir-parser": "1.5.3",
-        "phalcon/zephir": "dev-development#57c522d20cf0cf5be0b3c3243d257feddf616127",
+        "phalcon/zephir": "0.17.0",
         "mongodb/mongodb": "^1.2.0"
     },
     "scripts": {

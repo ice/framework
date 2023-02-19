@@ -105,7 +105,7 @@ class Cookies
         // Add the salt to the cookie value
         let value = this->salt(key, value) . "~" . value;
 
-        return this->setcookie(key, value, lifetime, this->path, this->domain, this->secure, this->httpOnly);
+        return this->setcookie(key, value, lifetime, this->path, (string) this->domain, this->secure, this->httpOnly);
     }
 
     /**
@@ -120,7 +120,7 @@ class Cookies
         unset _COOKIE[key];
 
         // Nullify the cookie and make it expire
-        return this->setcookie(key, null, -86400, this->path, this->domain, this->secure, this->httpOnly);
+        return this->setcookie(key, "", -86400, this->path, (string) this->domain, this->secure, this->httpOnly);
     }
 
     /**

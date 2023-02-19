@@ -65,11 +65,11 @@ abstract class Driver
     /**
      * Complete the login for a user by setting session data and eg. incrementing the logins.
      *
-     * @param mixed user Complete the login for this user
+     * @param string user Complete the login for this user
      * @param array roles User's roles
      * @return void
      */
-    protected function completeLogin(var user, array roles = [])
+    protected function completeLogin(string user, array roles = [])
     {
         var sessionRoles;
 

@@ -1,4 +1,17 @@
 -------------------------------------------------------------------
+Sun Feb 19 16:46:10 UTC 2023
+
+- Ice 1.10.1
+ * Arr, deprecation message fix #311
+ * Loader, don't encode to utf8
+ * Don't encode regex in route group count data generator
+ * Passing null to parameter of type string is deprecated
+ * Filter, sanitize string is deprecated
+ * Model, serializable interface is deprecated fix #311
+ * Auth, add login tests, logout fix
+ * Composer, update zephir to 0.17.0
+
+-------------------------------------------------------------------
 Fri Feb 10 22:37:06 UTC 2023
 
 - Ice 1.10.0

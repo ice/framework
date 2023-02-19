@@ -292,7 +292,7 @@ class Js
                 case "/":
                     while 1 {
                         let c = this->get();
-                        if ord(c) <= self::ORD_LF {
+                        if ord((string) c) <= self::ORD_LF {
                             return c;
                         }
                     }

@@ -51,7 +51,7 @@ class Loader
      * be searched first rather than last
      * @return Loader
      */
-    public function addNamespace(string prefix, string baseDir, boolean prepend = false)
+    public function addNamespace(string prefix, string baseDir = null, boolean prepend = false)
     {
         // normalize namespace prefix
         let prefix = trim(prefix, "\\") . "\\";
@@ -63,15 +63,15 @@ class Loader
         // initialize the namespace prefix array
         if !isset this->prefixes[prefix] {
             // Refcount of the new array zephir/issues/1140
-            let this->prefixes[prefix] = [utf8_encode(baseDir)];
+            let this->prefixes[prefix] = [baseDir];
             return this;
         }
 
         // retain the base directory for the namespace prefix
         if prepend {
-            array_unshift(this->prefixes[prefix], utf8_encode(baseDir));
+            array_unshift(this->prefixes[prefix], baseDir);
         } else {
-            array_push(this->prefixes[prefix], utf8_encode(baseDir));
+            array_push(this->prefixes[prefix], baseDir);
         }
         return this;
     }
