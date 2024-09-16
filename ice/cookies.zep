@@ -67,7 +67,7 @@ class Cookies
             if this->salt(key, value) == hash {
                 // Cookie signature is valid
                 if this->encrypt {
-                    let value = this->di->get("crypt")->decrypt(value);
+                    let value = this->di->get("crypt", this->encrypt)->decrypt(value);
                 }
 
                 return value;
@@ -98,7 +98,7 @@ class Cookies
 
         if this->encrypt {
             if !empty value {
-                let value = this->di->get("crypt")->encrypt(value);
+                let value = this->di->get("crypt", this->encrypt)->encrypt(value);
             }
         }
 
