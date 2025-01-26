@@ -27,7 +27,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Php)
@@ -53,7 +53,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render)
 	zval data;
 	zval *path_param = NULL, *data_param = NULL, key, value, *_0, _1, _4$$3, _5$$4;
 	zval path;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&path);
 	ZVAL_UNDEF(&key);
@@ -62,17 +61,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render)
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&data);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(path)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 1, &path_param, &data_param);
 	if (UNEXPECTED(Z_TYPE_P(path_param) != IS_STRING && Z_TYPE_P(path_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'path' must be of the type string"));
@@ -89,8 +84,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render)
 	} else {
 		zephir_get_arrval(&data, data_param);
 	}
-
-
 	zephir_is_iterable(&data, 0, "ice/mvc/view/engine/php.zep", 32);
 	if (Z_TYPE_P(&data) == IS_ARRAY) {
 		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&data), _2, _3, _0)
@@ -131,12 +124,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Php, render)
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 169);
+	ZEPHIR_CALL_FUNCTION(NULL, "ob_start", NULL, 170);
 	zephir_check_call_status();
 	if (zephir_require_zval(&path) == FAILURE) {
 		RETURN_MM_NULL();
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 170);
+	ZEPHIR_RETURN_CALL_FUNCTION("ob_get_clean", NULL, 171);
 	zephir_check_call_status();
 	RETURN_MM();
 }

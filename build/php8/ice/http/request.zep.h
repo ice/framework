@@ -110,11 +110,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_request_getfiles, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_http_request_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Request, __construct, arginfo_ice_http_request___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#else
-	PHP_ME(Ice_Http_Request, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#endif
+PHP_ME(Ice_Http_Request, __construct, arginfo_ice_http_request___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Http_Request, hasRequest, arginfo_ice_http_request_hasrequest, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, hasPost, arginfo_ice_http_request_haspost, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Request, hasGet, arginfo_ice_http_request_hasget, ZEND_ACC_PUBLIC)

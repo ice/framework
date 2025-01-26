@@ -27,7 +27,7 @@
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Service)
@@ -44,26 +44,16 @@ PHP_METHOD(Ice_Mvc_Service, setModel)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(model)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &model);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
 	RETURN_THISW();
 }
 
 PHP_METHOD(Ice_Mvc_Service, getModel)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "model");
 }
@@ -92,17 +82,14 @@ PHP_METHOD(Ice_Mvc_Service, __call)
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_3$$3);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
 	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
@@ -117,20 +104,18 @@ PHP_METHOD(Ice_Mvc_Service, __call)
 		arguments = &arguments_sub;
 		arguments = &__$null;
 	}
-
-
-	ZEPHIR_OBS_VAR(&_0);
+	zephir_memory_observe(&_0);
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) == IS_OBJECT;
 	if (_1) {
-		ZEPHIR_OBS_VAR(&_2);
+		zephir_memory_observe(&_2);
 		zephir_read_property(&_2, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 		_1 = zephir_instance_of_ev(&_2, ice_mvc_model_ce);
 	}
 	if (_1) {
 		ZEPHIR_INIT_VAR(&_3$$3);
 		zephir_create_array(&_3$$3, 2, 0);
-		ZEPHIR_OBS_VAR(&_4$$3);
+		zephir_memory_observe(&_4$$3);
 		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
 		zephir_array_fast_append(&_3$$3, &_4$$3);
 		zephir_array_fast_append(&_3$$3, &method);

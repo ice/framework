@@ -35,11 +35,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_getdata, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr___construct, 0, 0, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_has, 0, 1, _IS_BOOL, 0)
@@ -81,11 +77,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_setdata, 0, 0, IS_VOID, 0)
 
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_keys, 0, 0, IS_ARRAY, 0)
@@ -117,11 +109,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetexists, 0, 1, _IS_
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 80000
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_arr_offsetget, 0, 1, IS_MIXED, 0)
-#else
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_offsetget, 0, 0, 1)
-#endif
 	ZEND_ARG_INFO(0, offset)
 ZEND_END_ARG_INFO()
 
@@ -159,11 +147,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_arr_zephir_init_properties_ice_arr, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Arr, getData, arginfo_ice_arr_getdata, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Arr, getData, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Arr, getData, arginfo_ice_arr_getdata, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, __construct, arginfo_ice_arr___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Arr, has, arginfo_ice_arr_has, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, get, arginfo_ice_arr_get, ZEND_ACC_PUBLIC)
@@ -176,11 +160,7 @@ ZEPHIR_INIT_FUNCS(ice_arr_method_entry) {
 	PHP_ME(Ice_Arr, setData, arginfo_ice_arr_setdata, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, keys, arginfo_ice_arr_keys, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, remove, arginfo_ice_arr_remove, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Arr, clear, arginfo_ice_arr_clear, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Arr, clear, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Arr, clear, arginfo_ice_arr_clear, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, count, arginfo_ice_arr_count, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, getIterator, arginfo_ice_arr_getiterator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Arr, getPath, arginfo_ice_arr_getpath, ZEND_ACC_PUBLIC)

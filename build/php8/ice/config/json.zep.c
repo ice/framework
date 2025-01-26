@@ -27,7 +27,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config_Json)
@@ -46,25 +46,20 @@ PHP_METHOD(Ice_Config_Json, __construct)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_1 = NULL;
-	zval *data = NULL, data_sub, __$true, __$null, _0$$4, _2;
-	zval *this_ptr = getThis();
+	zval *data = NULL, data_sub, __$true, __$null, _0$$4, _1;
 
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0$$4);
-	ZVAL_UNDEF(&_2);
-#if PHP_VERSION_ID >= 80000
+	ZVAL_UNDEF(&_1);
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &data);
 	if (!data) {
 		data = &data_sub;
@@ -72,8 +67,6 @@ PHP_METHOD(Ice_Config_Json, __construct)
 	} else {
 		ZEPHIR_SEPARATE_PARAM(data);
 	}
-
-
 	if (Z_TYPE_P(data) != IS_STRING) {
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "Data must be a json string or path to the file", "ice/config/json.zep", 26);
 		return;
@@ -83,9 +76,9 @@ PHP_METHOD(Ice_Config_Json, __construct)
 		zephir_file_get_contents(&_0$$4, data);
 		ZEPHIR_CPY_WRT(data, &_0$$4);
 	}
-	ZEPHIR_INIT_VAR(&_2);
-	zephir_json_decode(&_2, data, zephir_get_intval(&__$true) );
-	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", &_1, 0, &_2);
+	ZEPHIR_INIT_VAR(&_1);
+	zephir_json_decode(&_1, data, zephir_get_intval(&__$true) );
+	ZEPHIR_CALL_PARENT(NULL, ice_config_json_ce, getThis(), "__construct", NULL, 0, &_1);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }

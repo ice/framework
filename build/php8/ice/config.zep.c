@@ -28,7 +28,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config)
@@ -70,16 +70,13 @@ PHP_METHOD(Ice_Config, __construct)
 	ZVAL_UNDEF(&_17$$21);
 	ZVAL_UNDEF(&_20$$27);
 	ZVAL_UNDEF(&_3$$5);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &data);
 	if (!data) {
 		data = &data_sub;
@@ -87,8 +84,6 @@ PHP_METHOD(Ice_Config, __construct)
 	} else {
 		ZEPHIR_SEPARATE_PARAM(data);
 	}
-
-
 	_0 = Z_TYPE_P(data) == IS_STRING;
 	if (_0) {
 		_0 = !ZEPHIR_IS_STRING(data, "");

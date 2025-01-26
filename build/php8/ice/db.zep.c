@@ -27,7 +27,7 @@
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Db)
@@ -40,9 +40,6 @@ ZEPHIR_INIT_CLASS(Ice_Db)
 
 PHP_METHOD(Ice_Db, getDriver)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "driver");
 }
@@ -53,17 +50,10 @@ PHP_METHOD(Ice_Db, setDriver)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&driver_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(driver)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &driver);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), driver);
 	RETURN_THISW();
 }
@@ -112,7 +102,6 @@ PHP_METHOD(Ice_Db, __construct)
 	ZVAL_UNDEF(&_10$$9);
 	ZVAL_UNDEF(&_11$$10);
 	ZVAL_UNDEF(&options);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 7)
 		Z_PARAM_ZVAL(dsn)
@@ -124,10 +113,8 @@ PHP_METHOD(Ice_Db, __construct)
 		Z_PARAM_STR_OR_NULL(password)
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 6, &dsn, &host_param, &port_param, &name_param, &user_param, &password_param, &options_param);
 	if (!host_param) {
 		ZEPHIR_INIT_VAR(&host);
@@ -137,8 +124,7 @@ PHP_METHOD(Ice_Db, __construct)
 	if (!port_param) {
 		port = 0;
 	} else {
-		port = zephir_get_intval(port_param);
-	}
+		}
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
 	} else {
@@ -160,8 +146,6 @@ PHP_METHOD(Ice_Db, __construct)
 	} else {
 		zephir_get_arrval(&options, options_param);
 	}
-
-
 	_0 = Z_TYPE_P(dsn) == IS_OBJECT;
 	if (_0) {
 		_0 = (zephir_instance_of_ev(dsn, ice_db_dbinterface_ce));
@@ -180,7 +164,7 @@ PHP_METHOD(Ice_Db, __construct)
 				object_init_ex(&_3$$5, ice_db_driver_pdo_ce);
 				ZEPHIR_INIT_VAR(&_4$$5);
 				ZEPHIR_CONCAT_SV(&_4$$5, "oci:dbname=", &tns$$5);
-				ZEPHIR_CALL_METHOD(NULL, &_3$$5, "__construct", NULL, 96, &_4$$5, &user, &password, &options);
+				ZEPHIR_CALL_METHOD(NULL, &_3$$5, "__construct", NULL, 97, &_4$$5, &user, &password, &options);
 				zephir_check_call_status();
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_3$$5);
 				break;
@@ -193,7 +177,7 @@ PHP_METHOD(Ice_Db, __construct)
 				ZEPHIR_CPY_WRT(&dsn$$6, &_6$$6);
 				ZEPHIR_INIT_VAR(&_7$$6);
 				object_init_ex(&_7$$6, ice_db_driver_mongodb_ce);
-				ZEPHIR_CALL_METHOD(NULL, &_7$$6, "__construct", NULL, 97, &dsn$$6, &name, &options);
+				ZEPHIR_CALL_METHOD(NULL, &_7$$6, "__construct", NULL, 98, &dsn$$6, &name, &options);
 				zephir_check_call_status();
 				zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_7$$6);
 				break;
@@ -226,7 +210,7 @@ PHP_METHOD(Ice_Db, __construct)
 			}
 			ZEPHIR_INIT_VAR(&_14$$7);
 			object_init_ex(&_14$$7, ice_db_driver_pdo_ce);
-			ZEPHIR_CALL_METHOD(NULL, &_14$$7, "__construct", NULL, 96, dsn, &user, &password, &options);
+			ZEPHIR_CALL_METHOD(NULL, &_14$$7, "__construct", NULL, 97, dsn, &user, &password, &options);
 			zephir_check_call_status();
 			zephir_update_property_zval(this_ptr, ZEND_STRL("driver"), &_14$$7);
 			break;
@@ -253,28 +237,23 @@ PHP_METHOD(Ice_Db, __call)
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(arguments)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
 	zephir_get_strval(&method, method_param);
 	if (!arguments) {
 		arguments = &arguments_sub;
 		arguments = &__$null;
 	}
-
-
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 2, 0);
-	ZEPHIR_OBS_VAR(&_1);
+	zephir_memory_observe(&_1);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("driver"), PH_NOISY_CC);
 	zephir_array_fast_append(&_0, &_1);
 	zephir_array_fast_append(&_0, &method);

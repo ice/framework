@@ -35,11 +35,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server___construct, 0, 0, 0)
 	ZEND_ARG_TYPE_INFO(0, address, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_server_run, 0, 0, IS_VOID, 0)
@@ -88,21 +84,9 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_cli_websocket_server_method_entry) {
 	PHP_ME(Ice_Cli_Websocket_Server, setVerbose, arginfo_ice_cli_websocket_server_setverbose, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cli_Websocket_Server, getAddress, arginfo_ice_cli_websocket_server_getaddress, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cli_Websocket_Server, getAddress, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cli_Websocket_Server, getServer, arginfo_ice_cli_websocket_server_getserver, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cli_Websocket_Server, getServer, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cli_Websocket_Server, getClients, arginfo_ice_cli_websocket_server_getclients, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cli_Websocket_Server, getClients, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cli_Websocket_Server, getAddress, arginfo_ice_cli_websocket_server_getaddress, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Cli_Websocket_Server, getServer, arginfo_ice_cli_websocket_server_getserver, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Cli_Websocket_Server, getClients, arginfo_ice_cli_websocket_server_getclients, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, __construct, arginfo_ice_cli_websocket_server___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Cli_Websocket_Server, run, arginfo_ice_cli_websocket_server_run, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Websocket_Server, connect, arginfo_ice_cli_websocket_server_connect, ZEND_ACC_PROTECTED)

@@ -25,7 +25,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config_Env)
@@ -44,39 +44,33 @@ PHP_METHOD(Ice_Config_Env, __construct)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
-	zval *data = NULL, data_sub, _ENV, __$null, _1, _2;
+	zval *data = NULL, data_sub, _ENV, __$null, _0, _1;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&data_sub);
 	ZVAL_UNDEF(&_ENV);
 	ZVAL_NULL(&__$null);
+	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_2);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(data)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 0, 1, &data);
 	if (!data) {
 		data = &data_sub;
 		data = &__$null;
 	}
-
-
-	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", &_0, 0, data);
+	ZEPHIR_CALL_PARENT(NULL, ice_config_env_ce, getThis(), "__construct", NULL, 0, data);
 	zephir_check_call_status();
-	ZEPHIR_INIT_VAR(&_1);
-	zephir_read_property(&_2, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
-	zephir_fast_array_merge(&_1, &_ENV, &_2);
-	ZEPHIR_HASH_COPY(&_ENV, &_1);
+	ZEPHIR_INIT_VAR(&_0);
+	zephir_read_property(&_1, this_ptr, ZEND_STRL("data"), PH_NOISY_CC | PH_READONLY);
+	zephir_fast_array_merge(&_0, &_ENV, &_1);
+	ZEPHIR_HASH_COPY(&_ENV, &_0);
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -90,24 +84,17 @@ PHP_METHOD(Ice_Config_Env, has)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *key_param = NULL, _ENV;
 	zval key;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_ENV);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 0, &key_param);
 	zephir_get_strval(&key, key_param);
-
-
 	RETURN_MM_BOOL(zephir_array_isset(&_ENV, &key));
 }
 
@@ -122,14 +109,12 @@ PHP_METHOD(Ice_Config_Env, get)
 	zend_bool required;
 	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _ENV, __$null, value;
 	zval key;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_UNDEF(&_ENV);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 3)
 		Z_PARAM_STR(key)
@@ -137,10 +122,8 @@ PHP_METHOD(Ice_Config_Env, get)
 		Z_PARAM_ZVAL_OR_NULL(defaultValue)
 		Z_PARAM_BOOL(required)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 2, &key_param, &defaultValue, &required_param);
 	zephir_get_strval(&key, key_param);
@@ -151,12 +134,10 @@ PHP_METHOD(Ice_Config_Env, get)
 	if (!required_param) {
 		required = 0;
 	} else {
-		required = zephir_get_boolval(required_param);
-	}
-
-
-	if (zephir_array_isset_fetch(&value, &_ENV, &key, 1)) {
-		RETURN_CTOR(&value);
+		}
+	zephir_memory_observe(&value);
+	if (zephir_array_isset_fetch(&value, &_ENV, &key, 0)) {
+		RETURN_CCTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
 	RETURN_MM();
@@ -177,21 +158,15 @@ PHP_METHOD(Ice_Config_Env, set)
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_ENV);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 2, 0, &key_param, &value);
 	zephir_get_strval(&key, key_param);
-
-
 	zephir_array_update_zval(&_ENV, &key, value, PH_COPY | PH_SEPARATE);
 	RETURN_THIS();
 }
@@ -210,20 +185,14 @@ PHP_METHOD(Ice_Config_Env, remove)
 
 	ZVAL_UNDEF(&key);
 	ZVAL_UNDEF(&_ENV);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_ENV, SL("_ENV"));
 	zephir_fetch_params(1, 1, 0, &key_param);
 	zephir_get_strval(&key, key_param);
-
-
 	zephir_array_unset(&_ENV, &key, PH_SEPARATE);
 	RETURN_THIS();
 }
@@ -236,11 +205,8 @@ PHP_METHOD(Ice_Config_Env, remove)
 PHP_METHOD(Ice_Config_Env, getData)
 {
 	zval _ENV;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_ENV);
-
-
 	zephir_get_global(&_ENV, SL("_ENV"));
 
 	RETVAL_ZVAL(&_ENV, 1, 0);

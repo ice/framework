@@ -113,47 +113,19 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cookies_setcookie, 0, 0, 7)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_cookies_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getSalt, arginfo_ice_cookies_getsalt, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getSalt, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getSalt, arginfo_ice_cookies_getsalt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setSalt, arginfo_ice_cookies_setsalt, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getExpiration, arginfo_ice_cookies_getexpiration, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getExpiration, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getExpiration, arginfo_ice_cookies_getexpiration, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setExpiration, arginfo_ice_cookies_setexpiration, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getPath, arginfo_ice_cookies_getpath, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getPath, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getPath, arginfo_ice_cookies_getpath, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setPath, arginfo_ice_cookies_setpath, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getDomain, arginfo_ice_cookies_getdomain, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getDomain, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getDomain, arginfo_ice_cookies_getdomain, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setDomain, arginfo_ice_cookies_setdomain, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getSecure, arginfo_ice_cookies_getsecure, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getSecure, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getSecure, arginfo_ice_cookies_getsecure, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setSecure, arginfo_ice_cookies_setsecure, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getHttpOnly, arginfo_ice_cookies_gethttponly, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getHttpOnly, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getHttpOnly, arginfo_ice_cookies_gethttponly, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setHttpOnly, arginfo_ice_cookies_sethttponly, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cookies, getEncrypt, arginfo_ice_cookies_getencrypt, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cookies, getEncrypt, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cookies, getEncrypt, arginfo_ice_cookies_getencrypt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, setEncrypt, arginfo_ice_cookies_setencrypt, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cookies, __construct, arginfo_ice_cookies___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Cookies, has, arginfo_ice_cookies_has, ZEND_ACC_PUBLIC)

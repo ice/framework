@@ -29,17 +29,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_model_users_toke
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_tokens_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, initialize, arginfo_ice_auth_driver_model_users_tokens_initialize, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, initialize, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, initialize, arginfo_ice_auth_driver_model_users_tokens_initialize, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, create, arginfo_ice_auth_driver_model_users_tokens_create, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired, arginfo_ice_auth_driver_model_users_tokens_deleteexpired, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired, arginfo_ice_auth_driver_model_users_tokens_deleteexpired, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, update, arginfo_ice_auth_driver_model_users_tokens_update, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Model_Users_Tokens, generate, arginfo_ice_auth_driver_model_users_tokens_generate, ZEND_ACC_PROTECTED)
 	PHP_FE_END

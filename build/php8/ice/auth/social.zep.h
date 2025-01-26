@@ -30,17 +30,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_social___call, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_social_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social, getAdapter, arginfo_ice_auth_social_getadapter, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social, getAdapter, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Social, getAdapter, arginfo_ice_auth_social_getadapter, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social, __construct, arginfo_ice_auth_social___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social, authenticate, arginfo_ice_auth_social_authenticate, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social, authenticate, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Social, authenticate, arginfo_ice_auth_social_authenticate, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social, get, arginfo_ice_auth_social_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social, __call, arginfo_ice_auth_social___call, ZEND_ACC_PUBLIC)
 	PHP_FE_END

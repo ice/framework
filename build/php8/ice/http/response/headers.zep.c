@@ -26,7 +26,7 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers)
@@ -56,11 +56,10 @@ PHP_METHOD(Ice_Http_Response_Headers, send)
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2$$5);
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 135);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 136);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		_1$$3 = zephir_get_iterator(this_ptr);
@@ -73,10 +72,10 @@ PHP_METHOD(Ice_Http_Response_Headers, send)
 			if (!(ZEPHIR_IS_EMPTY(&value))) {
 				ZEPHIR_INIT_NVAR(&_2$$5);
 				ZEPHIR_CONCAT_VSV(&_2$$5, &header, ": ", &value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 136, &_2$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 137, &_2$$5, &__$true);
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 136, &header, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 137, &header, &__$true);
 				zephir_check_call_status();
 			}
 		}

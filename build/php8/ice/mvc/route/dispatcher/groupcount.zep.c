@@ -35,17 +35,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setStaticRouteMap)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&staticRouteMap_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(staticRouteMap)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &staticRouteMap);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("staticRouteMap"), staticRouteMap);
 	RETURN_THISW();
 }
@@ -56,17 +49,10 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, setVariableRouteData)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&variableRouteData_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(variableRouteData)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &variableRouteData);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("variableRouteData"), variableRouteData);
 	RETURN_THISW();
 }
@@ -81,16 +67,12 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct)
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(data)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &data_param);
 	if (!data_param) {
 		ZEPHIR_INIT_VAR(&data);
@@ -98,8 +80,6 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, __construct)
 	} else {
 		zephir_get_arrval(&data, data_param);
 	}
-
-
 	if (zephir_fast_count_int(&data)) {
 		zephir_array_fetch_long(&_0$$3, &data, 0, PH_NOISY | PH_READONLY, "ice/mvc/route/dispatcher/groupcount.zep", 15);
 		zephir_update_property_zval(this_ptr, ZEND_STRL("staticRouteMap"), &_0$$3);
@@ -114,7 +94,6 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, i = 0, j = 0;
 	zval *routeData, routeData_sub, *uri, uri_sub, data, matches, handler, varName, varNames, vars, *_0, _1, _24, _2$$3, _3$$3, _4$$3, _5$$3, _6$$3, _7$$3, *_8$$3, _9$$3, _12$$3, _10$$5, _11$$6, _13$$7, _14$$7, _15$$7, _16$$7, _17$$7, _18$$7, *_19$$7, _20$$7, _23$$7, _21$$9, _22$$10;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&routeData_sub);
 	ZVAL_UNDEF(&uri_sub);
@@ -146,19 +125,13 @@ PHP_METHOD(Ice_Mvc_Route_Dispatcher_GroupCount, dispatchVariableRoute)
 	ZVAL_UNDEF(&_23$$7);
 	ZVAL_UNDEF(&_21$$9);
 	ZVAL_UNDEF(&_22$$10);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_ZVAL(routeData)
 		Z_PARAM_ZVAL(uri)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 2, 0, &routeData, &uri);
-
-
 	ZEPHIR_INIT_VAR(&matches);
 	ZVAL_NULL(&matches);
 	zephir_is_iterable(routeData, 0, "ice/mvc/route/dispatcher/groupcount.zep", 47);

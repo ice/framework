@@ -17,11 +17,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_db_completelogin, 0, 0, 1)
 	ZEND_ARG_INFO(0, user)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, roles, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, roles, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, roles, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_db_getuser, 0, 0, 0)
@@ -54,21 +50,13 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_db_refreshuser, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_db_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Driver_Db, autoLogin, arginfo_ice_auth_driver_db_autologin, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Driver_Db, autoLogin, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Driver_Db, autoLogin, arginfo_ice_auth_driver_db_autologin, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Db, completeLogin, arginfo_ice_auth_driver_db_completelogin, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Auth_Driver_Db, getUser, arginfo_ice_auth_driver_db_getuser, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Db, hasRole, arginfo_ice_auth_driver_db_hasrole, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Db, login, arginfo_ice_auth_driver_db_login, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Db, loginBy, arginfo_ice_auth_driver_db_loginby, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Driver_Db, logout, arginfo_ice_auth_driver_db_logout, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Driver_Db, refreshUser, arginfo_ice_auth_driver_db_refreshuser, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Driver_Db, refreshUser, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Driver_Db, refreshUser, arginfo_ice_auth_driver_db_refreshuser, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

@@ -54,11 +54,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_getstyle, 0, 1, IS_STRI
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_setstyles, 0, 0, IS_ARRAY, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, styles, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, styles, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, styles, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_dump_one, 0, 1, IS_STRING, 0)
@@ -90,23 +86,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_dump_zephir_init_properties_ice_dump, 0, 0, 0
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_dump_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Dump, getDetailed, arginfo_ice_dump_getdetailed, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Dump, getDetailed, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Dump, getDetailed, arginfo_ice_dump_getdetailed, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setDetailed, arginfo_ice_dump_setdetailed, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Dump, getPlain, arginfo_ice_dump_getplain, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Dump, getPlain, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Dump, getPlain, arginfo_ice_dump_getplain, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setPlain, arginfo_ice_dump_setplain, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Dump, getSkip, arginfo_ice_dump_getskip, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Dump, getSkip, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Dump, getSkip, arginfo_ice_dump_getskip, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, setSkip, arginfo_ice_dump_setskip, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Dump, __construct, arginfo_ice_dump___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Dump, all, arginfo_ice_dump_all, ZEND_ACC_PUBLIC)

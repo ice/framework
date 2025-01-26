@@ -66,21 +66,13 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_sethumanlabels, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation___construct, 0, 0, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_resolve, 0, 0, 2)
 	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rule, 0, 0, 2)
@@ -95,11 +87,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_rules, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_validate, 0, 0, _IS_BOOL, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
 	ZEND_ARG_TYPE_INFO(0, clear, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
@@ -125,11 +113,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getlabel, 0, 1, I
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_setdefaultmessages, 0, 0, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, messages, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, messages, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, messages, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_validation_getdefaultmessage, 0, 1, IS_STRING, 0)
@@ -148,31 +132,15 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_validation_zephir_init_properties_ice_validat
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_validation_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Validation, getDi, arginfo_ice_validation_getdi, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Validation, getDi, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Validation, getData, arginfo_ice_validation_getdata, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Validation, getData, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Validation, getDi, arginfo_ice_validation_getdi, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Validation, getData, arginfo_ice_validation_getdata, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setRules, arginfo_ice_validation_setrules, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Validation, getRules, arginfo_ice_validation_getrules, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Validation, getRules, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Validation, getRules, arginfo_ice_validation_getrules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setFilters, arginfo_ice_validation_setfilters, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setLabels, arginfo_ice_validation_setlabels, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setAliases, arginfo_ice_validation_setaliases, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setTranslate, arginfo_ice_validation_settranslate, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Validation, getTranslate, arginfo_ice_validation_gettranslate, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Validation, getTranslate, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Validation, getTranslate, arginfo_ice_validation_gettranslate, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, setHumanLabels, arginfo_ice_validation_sethumanlabels, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Validation, __construct, arginfo_ice_validation___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Validation, resolve, arginfo_ice_validation_resolve, ZEND_ACC_PUBLIC)

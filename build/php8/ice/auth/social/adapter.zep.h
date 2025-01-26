@@ -67,30 +67,14 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_social_adapter_method_entry) {
 	PHP_ME(Ice_Auth_Social_Adapter, setAccessToken, arginfo_ice_auth_social_adapter_setaccesstoken, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social_Adapter, getAccessToken, arginfo_ice_auth_social_adapter_getaccesstoken, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social_Adapter, getAccessToken, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social_Adapter, getProvider, arginfo_ice_auth_social_adapter_getprovider, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social_Adapter, getProvider, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social_Adapter, getResponseType, arginfo_ice_auth_social_adapter_getresponsetype, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social_Adapter, getResponseType, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Social_Adapter, getAccessToken, arginfo_ice_auth_social_adapter_getaccesstoken, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Auth_Social_Adapter, getProvider, arginfo_ice_auth_social_adapter_getprovider, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Auth_Social_Adapter, getResponseType, arginfo_ice_auth_social_adapter_getresponsetype, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, __construct, arginfo_ice_auth_social_adapter___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Auth_Social_Adapter, __call, arginfo_ice_auth_social_adapter___call, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, has, arginfo_ice_auth_social_adapter_has, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, get, arginfo_ice_auth_social_adapter_get, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Auth_Social_Adapter, getAuthUrl, arginfo_ice_auth_social_adapter_getauthurl, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Auth_Social_Adapter, getAuthUrl, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Auth_Social_Adapter, getAuthUrl, arginfo_ice_auth_social_adapter_getauthurl, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, getOption, arginfo_ice_auth_social_adapter_getoption, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Auth_Social_Adapter, call, arginfo_ice_auth_social_adapter_call, ZEND_ACC_PROTECTED)
 	PHP_FE_END

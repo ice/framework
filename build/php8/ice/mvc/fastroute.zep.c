@@ -25,7 +25,7 @@
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  * @uses        FastRoute https://github.com/nikic/FastRoute/commit/30470b69c785f7c28a0203be86692f4780a43bdf
  */
@@ -60,24 +60,18 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct)
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&handler_sub);
 	ZVAL_UNDEF(&variables);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(4, 4)
 		Z_PARAM_STR(httpMethod)
 		Z_PARAM_ZVAL(handler)
 		Z_PARAM_STR(regex)
 		Z_PARAM_ARRAY(variables)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 4, 0, &httpMethod_param, &handler, &regex_param, &variables_param);
 	zephir_get_strval(&httpMethod, httpMethod_param);
 	zephir_get_strval(&regex, regex_param);
 	zephir_get_arrval(&variables, variables_param);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("httpMethod"), &httpMethod);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("regex"), &regex);
@@ -104,19 +98,13 @@ PHP_METHOD(Ice_Mvc_FastRoute, matches)
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(str)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &str_param);
 	zephir_get_strval(&str, str_param);
-
-
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("regex"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_SVS(&_1, "~^", &_0, "$~");

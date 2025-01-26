@@ -32,7 +32,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_None)
@@ -47,20 +47,11 @@ PHP_METHOD(Ice_I18n_Plural_None, getCategory)
 {
 	zval *count_param = NULL;
 	zend_long count;
-	zval *this_ptr = getThis();
 
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &count_param);
-	count = zephir_get_intval(count_param);
-
-
 	RETURN_STRING("other");
 }
 

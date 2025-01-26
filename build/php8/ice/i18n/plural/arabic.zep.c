@@ -38,7 +38,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Arabic)
@@ -59,19 +59,12 @@ PHP_METHOD(Ice_I18n_Plural_Arabic, getCategory)
 
 	ZVAL_UNDEF(&isInt);
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &count_param);
-	count = zephir_get_intval(count_param);
-
-
 	ZVAL_LONG(&_0, count);
 	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, 0, &_0);
 	zephir_check_call_status();
@@ -111,20 +104,12 @@ PHP_METHOD(Ice_I18n_Plural_Arabic, isInt)
 {
 	zend_bool _0;
 	zval *value, value_sub;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&value_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &value);
-
-
 	_0 = zephir_is_numeric(value);
 	if (_0) {
 		_0 = (zephir_get_numberval(value) - zephir_get_intval(value)) == 0;

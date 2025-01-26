@@ -108,11 +108,7 @@ ZEND_END_ARG_INFO()
 ZEPHIR_INIT_FUNCS(ice_image_gd_method_entry) {
 	PHP_ME(Ice_Image_Gd, __construct, arginfo_ice_image_gd___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Image_Gd, check, arginfo_ice_image_gd_check, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image_Gd, __destruct, arginfo_ice_image_gd___destruct, ZEND_ACC_PUBLIC|ZEND_ACC_DTOR)
-#else
-	PHP_ME(Ice_Image_Gd, __destruct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_DTOR)
-#endif
+PHP_ME(Ice_Image_Gd, __destruct, arginfo_ice_image_gd___destruct, ZEND_ACC_PUBLIC|ZEND_ACC_DTOR)
 	PHP_ME(Ice_Image_Gd, loadImage, arginfo_ice_image_gd_loadimage, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Image_Gd, doResize, arginfo_ice_image_gd_doresize, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Image_Gd, doCrop, arginfo_ice_image_gd_docrop, ZEND_ACC_PROTECTED)

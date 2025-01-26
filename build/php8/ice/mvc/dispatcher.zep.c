@@ -28,7 +28,7 @@
  * @package     Ice/Dispatcher
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher)
@@ -45,9 +45,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher)
 
 PHP_METHOD(Ice_Mvc_Dispatcher, getMethod)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "method");
 }
@@ -58,17 +55,10 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(method)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
 	zephir_fetch_params_without_memory_grow(1, 0, &method);
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("method"), method);
 	RETURN_THISW();
 }
@@ -83,7 +73,6 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod)
 	zval action, _0, _1, _2, _3, _4, _5;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_6 = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&action);
@@ -93,9 +82,8 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod)
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_read_property(&_1, this_ptr, ZEND_STRL("method"), PH_NOISY_CC | PH_READONLY);
@@ -110,67 +98,65 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod)
 	if ((zephir_method_exists(&_5, &action)  == SUCCESS)) {
 		RETURN_CCTOR(&action);
 	}
-	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", &_6, 0);
+	ZEPHIR_RETURN_CALL_PARENT(ice_mvc_dispatcher_ce, getThis(), "getactivemethod", NULL, 0);
 	zephir_check_call_status();
 	RETURN_MM();
 }
 
 PHP_METHOD(Ice_Mvc_Dispatcher, dispatch)
 {
-	zval parent, response, _1, _2, _3, _4, _5$$3, _8$$3, _9$$3, _10$$3, _6$$4, _7$$4;
+	zval parent, response, _0, _1, _2, _3, _4$$3, _7$$3, _8$$3, _9$$3, _5$$4, _6$$4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&parent);
 	ZVAL_UNDEF(&response);
+	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
-	ZVAL_UNDEF(&_4);
-	ZVAL_UNDEF(&_5$$3);
+	ZVAL_UNDEF(&_4$$3);
+	ZVAL_UNDEF(&_7$$3);
 	ZVAL_UNDEF(&_8$$3);
 	ZVAL_UNDEF(&_9$$3);
-	ZVAL_UNDEF(&_10$$3);
+	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
-	ZVAL_UNDEF(&_7$$4);
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", &_0, 0);
+	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_1, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_VAR(&_2);
-	ZVAL_STRING(&_2, "response");
-	ZEPHIR_CALL_METHOD(&response, &_1, "get", NULL, 0, &_2);
+	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_INIT_VAR(&_1);
+	ZVAL_STRING(&_1, "response");
+	ZEPHIR_CALL_METHOD(&response, &_0, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_3, &response, "getredirects", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_2, &response, "getredirects", NULL, 0);
 	zephir_check_call_status();
-	ZEPHIR_CALL_METHOD(&_4, &response, "getloops", NULL, 0);
+	ZEPHIR_CALL_METHOD(&_3, &response, "getloops", NULL, 0);
 	zephir_check_call_status();
-	if (ZEPHIR_GT(&_3, &_4)) {
-		zephir_read_property(&_5$$3, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
-		if (zephir_is_true(&_5$$3)) {
-			ZVAL_LONG(&_6$$4, 310);
-			ZEPHIR_CALL_METHOD(NULL, &response, "setstatus", NULL, 0, &_6$$4);
+	if (ZEPHIR_GT(&_2, &_3)) {
+		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
+		if (zephir_is_true(&_4$$3)) {
+			ZVAL_LONG(&_5$$4, 310);
+			ZEPHIR_CALL_METHOD(NULL, &response, "setstatus", NULL, 0, &_5$$4);
 			zephir_check_call_status();
-			ZVAL_LONG(&_6$$4, 310);
-			ZEPHIR_CALL_METHOD(&_7$$4, &response, "getmessage", NULL, 0, &_6$$4);
+			ZVAL_LONG(&_5$$4, 310);
+			ZEPHIR_CALL_METHOD(&_6$$4, &response, "getmessage", NULL, 0, &_5$$4);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(NULL, &response, "setbody", NULL, 0, &_7$$4);
+			ZEPHIR_CALL_METHOD(NULL, &response, "setbody", NULL, 0, &_6$$4);
 			zephir_check_call_status();
 			RETURN_CCTOR(&response);
 		}
+		ZEPHIR_INIT_VAR(&_7$$3);
+		object_init_ex(&_7$$3, ice_exception_ce);
 		ZEPHIR_INIT_VAR(&_8$$3);
-		object_init_ex(&_8$$3, ice_exception_ce);
-		ZEPHIR_INIT_VAR(&_9$$3);
-		ZVAL_STRING(&_9$$3, "This Webpage has a redirect loop");
-		ZVAL_LONG(&_10$$3, 5);
-		ZEPHIR_CALL_METHOD(NULL, &_8$$3, "__construct", NULL, 12, &_9$$3, &_10$$3);
+		ZVAL_STRING(&_8$$3, "This Webpage has a redirect loop");
+		ZVAL_LONG(&_9$$3, 5);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 12, &_8$$3, &_9$$3);
 		zephir_check_call_status();
-		zephir_throw_exception_debug(&_8$$3, "ice/mvc/dispatcher.zep", 58);
+		zephir_throw_exception_debug(&_7$$3, "ice/mvc/dispatcher.zep", 58);
 		ZEPHIR_MM_RESTORE();
 		return;
 	}

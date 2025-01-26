@@ -30,9 +30,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_Route_DataGenerator_GroupCount)
 
 PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, getApproxChunkSize)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_LONG(10);
 }
@@ -46,7 +43,6 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 	zephir_fcall_cache_entry *_6 = NULL, *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS, repeat = 0, i = 0;
 	zval *regexToRoutesMap, regexToRoutesMap_sub, routeMap, regex, route, regexes, numGroups, numVariables, *_0, _1, _22, _4$$3, _5$$3, _7$$3, _8$$3, _9$$3, _11$$3, _13$$3, _14$$4, _15$$4, _16$$4, _17$$4, _18$$4, _19$$4, _21$$4;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&regexToRoutesMap_sub);
 	ZVAL_UNDEF(&routeMap);
@@ -73,18 +69,12 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 	ZVAL_UNDEF(&_21$$4);
 	ZVAL_UNDEF(&_12$$3);
 	ZVAL_UNDEF(&_20$$4);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(regexToRoutesMap)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &regexToRoutesMap);
-
-
 	ZEPHIR_INIT_VAR(&routeMap);
 	array_init(&routeMap);
 	ZEPHIR_INIT_VAR(&regexes);
@@ -106,7 +96,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 			zephir_read_property(&_4$$3, &route, ZEND_STRL("variables"), PH_NOISY_CC | PH_READONLY);
 			ZEPHIR_INIT_NVAR(&numVariables);
 			ZVAL_LONG(&numVariables, zephir_fast_count_int(&_4$$3));
-			ZEPHIR_CALL_FUNCTION(&_5$$3, "max", &_6, 50, &numGroups, &numVariables);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "max", &_6, 51, &numGroups, &numVariables);
 			zephir_check_call_status();
 			ZEPHIR_CPY_WRT(&numGroups, &_5$$3);
 			ZEPHIR_INIT_NVAR(&_7$$3);
@@ -115,7 +105,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 			ZEPHIR_INIT_NVAR(&_8$$3);
 			ZVAL_STRING(&_8$$3, "()");
 			ZVAL_LONG(&_9$$3, repeat);
-			ZEPHIR_CALL_FUNCTION(&_5$$3, "str_repeat", &_10, 94, &_8$$3, &_9$$3);
+			ZEPHIR_CALL_FUNCTION(&_5$$3, "str_repeat", &_10, 95, &_8$$3, &_9$$3);
 			zephir_check_call_status();
 			ZEPHIR_INIT_NVAR(&_11$$3);
 			ZEPHIR_CONCAT_VV(&_11$$3, &regex, &_5$$3);
@@ -130,7 +120,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 			zephir_read_property(&_13$$3, &route, ZEND_STRL("variables"), PH_NOISY_CC);
 			zephir_array_fast_append(&_12$$3, &_13$$3);
 			zephir_array_update_long(&routeMap, i, &_12$$3, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
-			ZEPHIR_SEPARATE(&numGroups);
+			SEPARATE_ZVAL(&numGroups);
 			zephir_increment(&numGroups);
 		} ZEND_HASH_FOREACH_END();
 	} else {
@@ -149,7 +139,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 				zephir_read_property(&_14$$4, &route, ZEND_STRL("variables"), PH_NOISY_CC | PH_READONLY);
 				ZEPHIR_INIT_NVAR(&numVariables);
 				ZVAL_LONG(&numVariables, zephir_fast_count_int(&_14$$4));
-				ZEPHIR_CALL_FUNCTION(&_15$$4, "max", &_6, 50, &numGroups, &numVariables);
+				ZEPHIR_CALL_FUNCTION(&_15$$4, "max", &_6, 51, &numGroups, &numVariables);
 				zephir_check_call_status();
 				ZEPHIR_CPY_WRT(&numGroups, &_15$$4);
 				ZEPHIR_INIT_NVAR(&_16$$4);
@@ -158,7 +148,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 				ZEPHIR_INIT_NVAR(&_17$$4);
 				ZVAL_STRING(&_17$$4, "()");
 				ZVAL_LONG(&_18$$4, repeat);
-				ZEPHIR_CALL_FUNCTION(&_15$$4, "str_repeat", &_10, 94, &_17$$4, &_18$$4);
+				ZEPHIR_CALL_FUNCTION(&_15$$4, "str_repeat", &_10, 95, &_17$$4, &_18$$4);
 				zephir_check_call_status();
 				ZEPHIR_INIT_NVAR(&_19$$4);
 				ZEPHIR_CONCAT_VV(&_19$$4, &regex, &_15$$4);
@@ -173,7 +163,7 @@ PHP_METHOD(Ice_Mvc_Route_DataGenerator_GroupCount, processChunk)
 				zephir_read_property(&_21$$4, &route, ZEND_STRL("variables"), PH_NOISY_CC);
 				zephir_array_fast_append(&_20$$4, &_21$$4);
 				zephir_array_update_long(&routeMap, i, &_20$$4, PH_COPY | PH_SEPARATE ZEPHIR_DEBUG_PARAMS_DUMMY);
-				ZEPHIR_SEPARATE(&numGroups);
+				SEPARATE_ZVAL(&numGroups);
 				zephir_increment(&numGroups);
 			ZEPHIR_CALL_METHOD(NULL, regexToRoutesMap, "next", NULL, 0);
 			zephir_check_call_status();

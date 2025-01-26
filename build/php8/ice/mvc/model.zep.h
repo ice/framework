@@ -104,16 +104,8 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, data, 0)
-#endif
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, data, IS_ARRAY, 0, "[]")
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getid, 0, 0, 0)
@@ -129,38 +121,22 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_loadone, 0, 0, 1)
 	ZEND_ARG_INFO(0, filters)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_load, 0, 0, 1)
 	ZEND_ARG_INFO(0, filters)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_findone, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_find, 0, 0, 0)
 	ZEND_ARG_INFO(0, filters)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_fields, 0, 0, 0)
@@ -201,47 +177,27 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_belongsto, 0, 0, 3)
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_hasone, 0, 0, 3)
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_hasmany, 0, 0, 3)
 	ZEND_ARG_TYPE_INFO(0, field, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referenceModel, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, referencedField, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrelated, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, alias, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, filters, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, filters, 0)
-#endif
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, filters, IS_ARRAY, 0, "[]")
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrules, 0, 0, 0)
@@ -249,11 +205,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_getrules, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, rules, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, rules, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, rules, IS_ARRAY, 0, "[]")
 	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
@@ -273,60 +225,24 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_zephir_init_properties_ice_mvc_mode
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getDi, arginfo_ice_mvc_model_getdi, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getDi, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getDb, arginfo_ice_mvc_model_getdb, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getDb, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getDi, arginfo_ice_mvc_model_getdi, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Mvc_Model, getDb, arginfo_ice_mvc_model_getdb, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFrom, arginfo_ice_mvc_model_setfrom, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setPrimary, arginfo_ice_mvc_model_setprimary, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getPrimary, arginfo_ice_mvc_model_getprimary, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getPrimary, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getPrimary, arginfo_ice_mvc_model_getprimary, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setAutoincrement, arginfo_ice_mvc_model_setautoincrement, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFilters, arginfo_ice_mvc_model_setfilters, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getFilters, arginfo_ice_mvc_model_getfilters, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getFilters, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getFilters, arginfo_ice_mvc_model_getfilters, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setFields, arginfo_ice_mvc_model_setfields, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getFields, arginfo_ice_mvc_model_getfields, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getFields, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getFields, arginfo_ice_mvc_model_getfields, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setValidation, arginfo_ice_mvc_model_setvalidation, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getValidation, arginfo_ice_mvc_model_getvalidation, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getValidation, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getRelations, arginfo_ice_mvc_model_getrelations, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getRelations, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getValidation, arginfo_ice_mvc_model_getvalidation, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Mvc_Model, getRelations, arginfo_ice_mvc_model_getrelations, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setLabels, arginfo_ice_mvc_model_setlabels, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getMessages, arginfo_ice_mvc_model_getmessages, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getMessages, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getMessages, arginfo_ice_mvc_model_getmessages, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, setMessages, arginfo_ice_mvc_model_setmessages, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, __construct, arginfo_ice_mvc_model___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getId, arginfo_ice_mvc_model_getid, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getId, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getId, arginfo_ice_mvc_model_getid, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getIdKey, arginfo_ice_mvc_model_getidkey, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, getDateTime, arginfo_ice_mvc_model_getdatetime, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, loadOne, arginfo_ice_mvc_model_loadone, ZEND_ACC_PUBLIC)
@@ -340,11 +256,7 @@ ZEPHIR_INIT_FUNCS(ice_mvc_model_method_entry) {
 	PHP_ME(Ice_Mvc_Model, delete, arginfo_ice_mvc_model_delete, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, exists, arginfo_ice_mvc_model_exists, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, loaded, arginfo_ice_mvc_model_loaded, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Model, getError, arginfo_ice_mvc_model_geterror, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Model, getError, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Model, getError, arginfo_ice_mvc_model_geterror, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, belongsTo, arginfo_ice_mvc_model_belongsto, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, hasOne, arginfo_ice_mvc_model_hasone, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Model, hasMany, arginfo_ice_mvc_model_hasmany, ZEND_ACC_PUBLIC)

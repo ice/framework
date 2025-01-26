@@ -97,11 +97,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_prependtitle, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, separator, IS_STRING, 1)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 80000
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_ice_tag_addmeta, 0, 1, MAY_BE_OBJECT)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_addmeta, 0, 1, IS_OBJECT, 0)
-#endif
 	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
 ZEND_END_ARG_INFO()
 
@@ -191,21 +187,9 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_taghtml, 0, 1, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, parameters, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, parameters, 0)
-#endif
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, defaultParams, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, defaultParams, 0)
-#endif
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, skip, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, skip, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, parameters, IS_ARRAY, 0, "[]")
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, defaultParams, IS_ARRAY, 0, "[]")
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, skip, IS_ARRAY, 0, "[]")
 	ZEND_ARG_TYPE_INFO(0, content, IS_STRING, 1)
 	ZEND_ARG_TYPE_INFO(0, close, _IS_BOOL, 0)
 	ZEND_ARG_TYPE_INFO(0, eol, _IS_BOOL, 0)
@@ -220,11 +204,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_tag_preparetag, 0, 2, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 	ZEND_ARG_ARRAY_INFO(0, attributes, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, skip, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, skip, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, skip, IS_ARRAY, 0, "[]")
 	ZEND_ARG_TYPE_INFO(0, single, _IS_BOOL, 0)
 ZEND_END_ARG_INFO()
 
@@ -260,41 +240,17 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_tag_zephir_init_properties_ice_tag, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_tag_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, getDi, arginfo_ice_tag_getdi, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Tag, getDi, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, getValues, arginfo_ice_tag_getvalues, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Tag, getValues, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Tag, getDi, arginfo_ice_tag_getdi, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Tag, getValues, arginfo_ice_tag_getvalues, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setDocType, arginfo_ice_tag_setdoctype, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitle, arginfo_ice_tag_settitle, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, getTitle, arginfo_ice_tag_gettitle, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Tag, getTitle, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Tag, getTitle, arginfo_ice_tag_gettitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setTitleSeparator, arginfo_ice_tag_settitleseparator, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, getTitleSeparator, arginfo_ice_tag_gettitleseparator, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Tag, getTitleSeparator, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Tag, getTitleSeparator, arginfo_ice_tag_gettitleseparator, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setMeta, arginfo_ice_tag_setmeta, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, getMeta, arginfo_ice_tag_getmeta, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Tag, getMeta, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Tag, getMeta, arginfo_ice_tag_getmeta, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, setEscape, arginfo_ice_tag_setescape, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Tag, __construct, arginfo_ice_tag___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#else
-	PHP_ME(Ice_Tag, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#endif
+PHP_ME(Ice_Tag, __construct, arginfo_ice_tag___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Tag, appendTitle, arginfo_ice_tag_appendtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, prependTitle, arginfo_ice_tag_prependtitle, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Tag, addMeta, arginfo_ice_tag_addmeta, ZEND_ACC_PUBLIC)

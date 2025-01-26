@@ -23,7 +23,7 @@
  * @package     Ice/Filter
  * @category    Minification
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  * @uses        cssmin.c www.ryanday.org
  */
@@ -63,23 +63,16 @@ PHP_METHOD(Ice_Filter_Css, sanitize)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *css_param = NULL;
 	zval css, min;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&css);
 	ZVAL_UNDEF(&min);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(css)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &css_param);
 	zephir_get_strval(&css, css_param);
-
-
 	ZEPHIR_INIT_VAR(&min);
 	state = 1;
 	inParen = 0;

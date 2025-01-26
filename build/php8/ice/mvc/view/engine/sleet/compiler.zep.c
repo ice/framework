@@ -25,7 +25,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler)
@@ -49,9 +49,6 @@ ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler)
 
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, getParser)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "parser");
 }
@@ -71,27 +68,22 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct)
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(view)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &view);
 	if (!view) {
 		view = &view_sub;
 		view = &__$null;
 	}
-
-
 	zephir_update_property_zval(this_ptr, ZEND_STRL("view"), view);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_view_engine_sleet_parser_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 184);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 185);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("parser"), &_0);
 	ZEPHIR_MM_RESTORE();
@@ -115,19 +107,13 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile)
 	ZVAL_UNDEF(&content);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(path)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &path_param);
 	zephir_get_strval(&path, path_param);
-
-
 	ZEPHIR_INIT_VAR(&content);
 	zephir_file_get_contents(&content, &path);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), &content);
@@ -143,9 +129,6 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile)
  */
 PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __toString)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "parsed");
 }

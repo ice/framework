@@ -27,7 +27,7 @@
  * @package     Ice/Filter
  * @category    Minification
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  * @uses        jsmin.c www.crockford.com
  */
@@ -57,9 +57,6 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Js)
 
 PHP_METHOD(Ice_Filter_Js, getOutput)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "output");
 }
@@ -86,19 +83,13 @@ PHP_METHOD(Ice_Filter_Js, sanitize)
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(js)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &js_param);
 	zephir_get_strval(&js, js_param);
-
-
 	ZEPHIR_INIT_VAR(&_0);
 	ZEPHIR_INIT_NVAR(&_0);
 	ZVAL_STRING(&_0, "");
@@ -114,10 +105,10 @@ PHP_METHOD(Ice_Filter_Js, sanitize)
 	zephir_fast_str_replace(&_0, &_1, &_2, &js);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("input"), &_0);
 	zephir_read_property(&_3, this_ptr, ZEND_STRL("input"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_INIT_ZVAL_NREF(_4);
+	ZVAL_UNDEF(&_4);
 	ZVAL_LONG(&_4, zephir_fast_strlen_ev(&_3));
 	zephir_update_property_zval(this_ptr, ZEND_STRL("inputLength"), &_4);
-	ZEPHIR_INIT_ZVAL_NREF(_4);
+	ZVAL_UNDEF(&_4);
 	ZVAL_LONG(&_4, 0);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("inputIndex"), &_4);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("lookAhead"), &__$null);
@@ -219,19 +210,12 @@ PHP_METHOD(Ice_Filter_Js, action)
 	ZVAL_UNDEF(&_77$$19);
 	ZVAL_UNDEF(&_78$$19);
 	ZVAL_UNDEF(&_79$$19);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(command)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &command_param);
-	command = zephir_get_intval(command_param);
-
-
 	if (command == 1) {
 		zephir_read_property(&_0$$3, this_ptr, ZEND_STRL("output"), PH_NOISY_CC | PH_READONLY);
 		zephir_read_property(&_1$$3, this_ptr, ZEND_STRL("a"), PH_NOISY_CC | PH_READONLY);
@@ -475,11 +459,10 @@ PHP_METHOD(Ice_Filter_Js, get)
 	ZVAL_UNDEF(&_3$$4);
 	ZVAL_UNDEF(&_4$$4);
 	ZVAL_UNDEF(&_5$$4);
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-
-	ZEPHIR_MM_GROW();
-
-	ZEPHIR_OBS_VAR(&c);
+	zephir_memory_observe(&c);
 	zephir_read_property(&c, this_ptr, ZEND_STRL("lookAhead"), PH_NOISY_CC);
 	zephir_update_property_zval(this_ptr, ZEND_STRL("lookAhead"), &__$null);
 	if (Z_TYPE_P(&c) == IS_NULL) {
@@ -491,9 +474,9 @@ PHP_METHOD(Ice_Filter_Js, get)
 			ZVAL_LONG(&_4$$4, 1);
 			ZEPHIR_INIT_NVAR(&c);
 			zephir_substr(&c, &_2$$4, zephir_get_intval(&_3$$4), 1 , 0);
-			ZEPHIR_OBS_VAR(&i);
+			zephir_memory_observe(&i);
 			zephir_read_property(&i, this_ptr, ZEND_STRL("inputIndex"), PH_NOISY_CC);
-			ZEPHIR_INIT_ZVAL_NREF(_5$$4);
+			ZVAL_UNDEF(&_5$$4);
 			ZVAL_LONG(&_5$$4, (zephir_get_numberval(&i) + 1));
 			zephir_update_property_zval(this_ptr, ZEND_STRL("inputIndex"), &_5$$4);
 		} else {
@@ -531,7 +514,6 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *c, c_sub, _0, _3, _4, _5, _6;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&c_sub);
 	ZVAL_UNDEF(&_0);
@@ -539,18 +521,12 @@ PHP_METHOD(Ice_Filter_Js, isAlphaNum)
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_6);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(c)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &c);
-
-
 	ZEPHIR_CALL_FUNCTION(&_0, "ord", NULL, 34, c);
 	zephir_check_call_status();
 	_1 = ZEPHIR_GT_LONG(&_0, 126);
@@ -612,16 +588,15 @@ PHP_METHOD(Ice_Filter_Js, min)
 	ZVAL_UNDEF(&_28$$20);
 	ZVAL_UNDEF(&_29$$21);
 	ZVAL_UNDEF(&_30$$22);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "peek", NULL, 0);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "\xef");
 	ZVAL_LONG(&_2, 1);
-	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 83, &_0, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_3, "strncmp", NULL, 84, &_0, &_1, &_2);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG(&_3, 0)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "get", &_4, 0);
@@ -766,9 +741,8 @@ PHP_METHOD(Ice_Filter_Js, next)
 	ZVAL_UNDEF(&_6$$8);
 	ZVAL_UNDEF(&_7$$9);
 	ZVAL_UNDEF(&_3$$5);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_CALL_METHOD(&c, this_ptr, "get", &_0, 0);
 	zephir_check_call_status();
@@ -839,9 +813,8 @@ PHP_METHOD(Ice_Filter_Js, peek)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, 0);
 	zephir_check_call_status();

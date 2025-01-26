@@ -21,11 +21,7 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_service_method_entry) {
 	PHP_ME(Ice_Mvc_Service, setModel, arginfo_ice_mvc_service_setmodel, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Service, getModel, arginfo_ice_mvc_service_getmodel, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Service, getModel, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Service, getModel, arginfo_ice_mvc_service_getmodel, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Service, __call, arginfo_ice_mvc_service___call, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };

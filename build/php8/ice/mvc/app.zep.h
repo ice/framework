@@ -40,17 +40,9 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app_addmodule, 0, 0, 2)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_app_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_App, getAutoRender, arginfo_ice_mvc_app_getautorender, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_App, getAutoRender, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_App, getAutoRender, arginfo_ice_mvc_app_getautorender, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_App, setAutoRender, arginfo_ice_mvc_app_setautorender, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_App, getModules, arginfo_ice_mvc_app_getmodules, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_App, getModules, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_App, getModules, arginfo_ice_mvc_app_getmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_App, setModules, arginfo_ice_mvc_app_setmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_App, __construct, arginfo_ice_mvc_app___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_App, handle, arginfo_ice_mvc_app_handle, ZEND_ACC_PUBLIC)

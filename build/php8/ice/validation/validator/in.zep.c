@@ -28,7 +28,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -92,16 +92,12 @@ PHP_METHOD(Ice_Validation_Validator_In, validate)
 	ZVAL_UNDEF(&_14$$11);
 	ZVAL_UNDEF(&_15$$11);
 	ZVAL_UNDEF(&field);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_OBJECT_OF_CLASS(validation, ice_validation_ce)
 		Z_PARAM_STR(field)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 2, 0, &validation, &field_param);
 	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
 		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
@@ -112,8 +108,6 @@ PHP_METHOD(Ice_Validation_Validator_In, validate)
 	} else {
 		ZEPHIR_INIT_VAR(&field);
 	}
-
-
 	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, &field);
 	zephir_check_call_status();
 	_0 = ZEPHIR_IS_STRING_IDENTICAL(&value, "");
@@ -197,7 +191,7 @@ PHP_METHOD(Ice_Validation_Validator_In, validate)
 		ZEPHIR_INIT_NVAR(&_4$$6);
 		zephir_fast_join_str(&_4$$6, SL(", "), &values);
 		zephir_array_update_string(&replace, SL(":values"), &_4$$6, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_16$$6, "strtr", NULL, 111, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_16$$6, "strtr", NULL, 112, &message, &replace);
 		zephir_check_call_status();
 		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_16$$6);
 		zephir_check_call_status();

@@ -90,32 +90,16 @@ ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_assets_method_entry) {
 	PHP_ME(Ice_Assets, setCollections, arginfo_ice_assets_setcollections, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Assets, getCollections, arginfo_ice_assets_getcollections, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Assets, getCollections, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Assets, getCollections, arginfo_ice_assets_getcollections, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, setOptions, arginfo_ice_assets_setoptions, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Assets, __construct, arginfo_ice_assets___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#else
-	PHP_ME(Ice_Assets, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#endif
+PHP_ME(Ice_Assets, __construct, arginfo_ice_assets___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Assets, getOption, arginfo_ice_assets_getoption, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, add, arginfo_ice_assets_add, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, addCss, arginfo_ice_assets_addcss, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, addJs, arginfo_ice_assets_addjs, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, addToCollection, arginfo_ice_assets_addtocollection, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Assets, getCss, arginfo_ice_assets_getcss, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Assets, getCss, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Assets, getJs, arginfo_ice_assets_getjs, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Assets, getJs, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Assets, getCss, arginfo_ice_assets_getcss, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Assets, getJs, arginfo_ice_assets_getjs, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, get, arginfo_ice_assets_get, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Assets, minify, arginfo_ice_assets_minify, ZEND_ACC_PROTECTED)
 	PHP_ME(Ice_Assets, prepare, arginfo_ice_assets_prepare, ZEND_ACC_PROTECTED)

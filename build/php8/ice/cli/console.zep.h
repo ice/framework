@@ -58,11 +58,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_error, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_cli_console_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Cli_Console, getModules, arginfo_ice_cli_console_getmodules, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Cli_Console, getModules, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Cli_Console, getModules, arginfo_ice_cli_console_getmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Console, setModules, arginfo_ice_cli_console_setmodules, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Cli_Console, __construct, arginfo_ice_cli_console___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Cli_Console, addModule, arginfo_ice_cli_console_addmodule, ZEND_ACC_PUBLIC)

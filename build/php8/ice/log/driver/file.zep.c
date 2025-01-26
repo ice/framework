@@ -29,7 +29,7 @@
  * @package     Ice/Log
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Log_Driver_File)
@@ -62,21 +62,15 @@ PHP_METHOD(Ice_Log_Driver_File, __construct)
 	ZVAL_UNDEF(&_1$$4);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5$$5);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(file)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &file_param);
 	zephir_get_strval(&file, file_param);
-
-
 	if (!((zephir_file_exists(&file) == SUCCESS))) {
-		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 175, &file);
+		ZEPHIR_CALL_FUNCTION(&_0$$3, "touch", NULL, 176, &file);
 		zephir_check_call_status();
 		if (!(zephir_is_true(&_0$$3))) {
 			ZEPHIR_INIT_VAR(&_1$$4);
@@ -90,7 +84,7 @@ PHP_METHOD(Ice_Log_Driver_File, __construct)
 			return;
 		}
 	}
-	ZEPHIR_CALL_FUNCTION(&_4, "is_writable", NULL, 54, &file);
+	ZEPHIR_CALL_FUNCTION(&_4, "is_writable", NULL, 55, &file);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_4))) {
 		ZEPHIR_INIT_VAR(&_5$$5);
@@ -134,18 +128,14 @@ PHP_METHOD(Ice_Log_Driver_File, log)
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&context);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(2, 3)
 		Z_PARAM_ZVAL(level)
 		Z_PARAM_STR(message)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 2, 1, &level, &message_param, &context_param);
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
@@ -154,8 +144,6 @@ PHP_METHOD(Ice_Log_Driver_File, log)
 	} else {
 		zephir_get_arrval(&context, context_param);
 	}
-
-
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "Y-m-d H:i:s");
 	ZEPHIR_CALL_FUNCTION(&_1, "date", NULL, 41, &_0);
@@ -170,7 +158,7 @@ PHP_METHOD(Ice_Log_Driver_File, log)
 	ZEPHIR_CONCAT_SVSVSVV(&line, "[", &_1, "] ", &_0, ": ", &_2, &_3);
 	zephir_read_property(&_4, this_ptr, ZEND_STRL("file"), PH_NOISY_CC | PH_READONLY);
 	ZVAL_LONG(&_5, 8);
-	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 176, &_4, &line, &_5);
+	ZEPHIR_CALL_FUNCTION(NULL, "file_put_contents", NULL, 177, &_4, &line, &_5);
 	zephir_check_call_status();
 	ZEPHIR_MM_RESTORE();
 }
@@ -191,7 +179,6 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate)
 	zval context;
 	zval *message_param = NULL, *context_param = NULL, replace, key, value, *_0, _1, _4$$3, _5$$4;
 	zval message;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&message);
 	ZVAL_UNDEF(&replace);
@@ -201,17 +188,13 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate)
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&context);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(message)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(context)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 1, &message_param, &context_param);
 	zephir_get_strval(&message, message_param);
 	if (!context_param) {
@@ -220,8 +203,6 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate)
 	} else {
 		zephir_get_arrval(&context, context_param);
 	}
-
-
 	ZEPHIR_INIT_VAR(&replace);
 	array_init(&replace);
 	zephir_is_iterable(&context, 0, "ice/log/driver/file.zep", 76);
@@ -262,7 +243,7 @@ PHP_METHOD(Ice_Log_Driver_File, interpolate)
 	}
 	ZEPHIR_INIT_NVAR(&value);
 	ZEPHIR_INIT_NVAR(&key);
-	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 111, &message, &replace);
+	ZEPHIR_RETURN_CALL_FUNCTION("strtr", NULL, 112, &message, &replace);
 	zephir_check_call_status();
 	RETURN_MM();
 }

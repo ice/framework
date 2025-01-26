@@ -36,7 +36,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_One)
@@ -52,26 +52,20 @@ PHP_METHOD(Ice_I18n_Plural_One, getCategory)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval *count_param = NULL, _0;
 	zend_long count;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_LONG(count)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &count_param);
-	count = zephir_get_intval(count_param);
-
-
 	ZEPHIR_INIT_VAR(&_0);
 	if (count == 1) {
+		ZEPHIR_INIT_NVAR(&_0);
 		ZVAL_STRING(&_0, "one");
 	} else {
+		ZEPHIR_INIT_NVAR(&_0);
 		ZVAL_STRING(&_0, "other");
 	}
 	RETURN_CCTOR(&_0);

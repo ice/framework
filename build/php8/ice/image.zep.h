@@ -175,31 +175,11 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_image_dorender, 0, 2, IS_STR
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_image_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image, getFile, arginfo_ice_image_getfile, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Image, getFile, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image, getWidth, arginfo_ice_image_getwidth, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Image, getWidth, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image, getHeight, arginfo_ice_image_getheight, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Image, getHeight, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image, getType, arginfo_ice_image_gettype, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Image, getType, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Image, getMime, arginfo_ice_image_getmime, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Image, getMime, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Image, getFile, arginfo_ice_image_getfile, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Image, getWidth, arginfo_ice_image_getwidth, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Image, getHeight, arginfo_ice_image_getheight, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Image, getType, arginfo_ice_image_gettype, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Image, getMime, arginfo_ice_image_getmime, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Image, factory, arginfo_ice_image_factory, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	PHP_ME(Ice_Image, __construct, arginfo_ice_image___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Image, __toString, arginfo_ice_image___tostring, ZEND_ACC_PUBLIC)

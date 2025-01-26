@@ -28,7 +28,7 @@
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -43,18 +43,12 @@ ZEPHIR_INIT_CLASS(Ice_Pagination)
 
 PHP_METHOD(Ice_Pagination, getDi)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "di");
 }
 
 PHP_METHOD(Ice_Pagination, getTag)
 {
-	zval *this_ptr = getThis();
-
-
 
 	RETURN_MEMBER(getThis(), "tag");
 }
@@ -68,25 +62,20 @@ PHP_METHOD(Ice_Pagination, __construct)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zephir_fcall_cache_entry *_0 = NULL, *_1 = NULL;
-	zval *options_param = NULL, di, _2, _3;
+	zval *options_param = NULL, di, _0, _1;
 	zval options;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
 	ZVAL_UNDEF(&di);
-	ZVAL_UNDEF(&_2);
-	ZVAL_UNDEF(&_3);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
+	ZVAL_UNDEF(&_0);
+	ZVAL_UNDEF(&_1);
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ARRAY(options)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &options_param);
 	if (!options_param) {
 		ZEPHIR_INIT_VAR(&options);
@@ -94,18 +83,16 @@ PHP_METHOD(Ice_Pagination, __construct)
 	} else {
 		zephir_get_arrval(&options, options_param);
 	}
-
-
-	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, getThis(), "__construct", &_0, 0, &options);
+	ZEPHIR_CALL_PARENT(NULL, ice_pagination_ce, getThis(), "__construct", NULL, 0, &options);
 	zephir_check_call_status();
-	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", &_1, 0);
+	ZEPHIR_CALL_CE_STATIC(&di, ice_di_ce, "fetch", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &di);
-	ZEPHIR_INIT_VAR(&_3);
-	ZVAL_STRING(&_3, "tag");
-	ZEPHIR_CALL_METHOD(&_2, &di, "get", NULL, 0, &_3);
+	ZEPHIR_INIT_VAR(&_1);
+	ZVAL_STRING(&_1, "tag");
+	ZEPHIR_CALL_METHOD(&_0, &di, "get", NULL, 0, &_1);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, ZEND_STRL("tag"), &_2);
+	zephir_update_property_zval(this_ptr, ZEND_STRL("tag"), &_0);
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -140,9 +127,8 @@ PHP_METHOD(Ice_Pagination, calculate)
 	ZVAL_UNDEF(&_12$$8);
 	ZVAL_UNDEF(&_13$$8);
 	ZVAL_UNDEF(&_15);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_INIT_VAR(&_0);
 	ZVAL_STRING(&_0, "total");
@@ -207,7 +193,7 @@ PHP_METHOD(Ice_Pagination, calculate)
 	if (_9) {
 		ZVAL_LONG(&_10$$8, (limit * ((page - 1))));
 		ZVAL_LONG(&_11$$8, limit);
-		ZEPHIR_CALL_FUNCTION(&_12$$8, "array_slice", NULL, 125, &items, &_10$$8, &_11$$8);
+		ZEPHIR_CALL_FUNCTION(&_12$$8, "array_slice", NULL, 126, &items, &_10$$8, &_11$$8);
 		zephir_check_call_status();
 		ZEPHIR_INIT_VAR(&_13$$8);
 		ZVAL_STRING(&_13$$8, "items");
@@ -306,7 +292,6 @@ PHP_METHOD(Ice_Pagination, prepareButton)
 	ZVAL_UNDEF(&_23$$15);
 	ZVAL_UNDEF(&_27);
 	ZVAL_UNDEF(&_8$$9);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 4)
 		Z_PARAM_ZVAL(page)
@@ -315,10 +300,8 @@ PHP_METHOD(Ice_Pagination, prepareButton)
 		Z_PARAM_BOOL(active)
 		Z_PARAM_ZVAL_OR_NULL(symbol)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 3, &page, &url, &active_param, &symbol);
 	ZEPHIR_SEPARATE_PARAM(page);
 	if (!url) {
@@ -330,16 +313,13 @@ PHP_METHOD(Ice_Pagination, prepareButton)
 	if (!active_param) {
 		active = 0;
 	} else {
-		active = zephir_get_boolval(active_param);
-	}
+		}
 	if (!symbol) {
 		symbol = &symbol_sub;
 		ZEPHIR_CPY_WRT(symbol, &__$null);
 	} else {
 		ZEPHIR_SEPARATE_PARAM(symbol);
 	}
-
-
 	pages = 0;
 	do {
 		if (ZEPHIR_IS_STRING(page, "first")) {
@@ -564,17 +544,14 @@ PHP_METHOD(Ice_Pagination, minimal)
 	ZVAL_UNDEF(&_16$$3);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_1);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_ARRAY(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
 	if (!url) {
 		url = &url_sub;
@@ -586,8 +563,6 @@ PHP_METHOD(Ice_Pagination, minimal)
 	} else {
 		zephir_get_arrval(&parameters, parameters_param);
 	}
-
-
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("tag"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_create_array(&_1, 1, 0);
@@ -707,17 +682,14 @@ PHP_METHOD(Ice_Pagination, basic)
 	ZVAL_UNDEF(&_19$$3);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_1);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL_OR_NULL(url)
 		Z_PARAM_ARRAY(parameters)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 2, &url, &parameters_param);
 	if (!url) {
 		url = &url_sub;
@@ -729,8 +701,6 @@ PHP_METHOD(Ice_Pagination, basic)
 	} else {
 		zephir_get_arrval(&parameters, parameters_param);
 	}
-
-
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("tag"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	zephir_create_array(&_1, 1, 0);
@@ -912,7 +882,6 @@ PHP_METHOD(Ice_Pagination, floating)
 	ZVAL_UNDEF(&_49$$10);
 	ZVAL_UNDEF(&parameters);
 	ZVAL_UNDEF(&_30);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 4)
 		Z_PARAM_OPTIONAL
@@ -921,10 +890,8 @@ PHP_METHOD(Ice_Pagination, floating)
 		Z_PARAM_LONG(countOut)
 		Z_PARAM_LONG(countIn)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 4, &url, &parameters_param, &countOut_param, &countIn_param);
 	if (!url) {
 		url = &url_sub;
@@ -939,15 +906,11 @@ PHP_METHOD(Ice_Pagination, floating)
 	if (!countOut_param) {
 		countOut = 0;
 	} else {
-		countOut = zephir_get_intval(countOut_param);
-	}
+		}
 	if (!countIn_param) {
 		countIn = 2;
 	} else {
-		countIn = zephir_get_intval(countIn_param);
-	}
-
-
+		}
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "pages");
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "get", NULL, 0, &_1);
@@ -969,7 +932,7 @@ PHP_METHOD(Ice_Pagination, floating)
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, 1);
 	ZVAL_LONG(&_6, ((zephir_get_numberval(&_5) - countOut) + 1));
-	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 50, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n7, "max", &_7, 51, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "pages");
@@ -981,7 +944,7 @@ PHP_METHOD(Ice_Pagination, floating)
 	zephir_check_call_status();
 	ZVAL_LONG(&_3, (zephir_get_numberval(&n2) + 1));
 	ZVAL_LONG(&_6, (zephir_get_numberval(&_8) - countIn));
-	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 50, &_3, &_6);
+	ZEPHIR_CALL_FUNCTION(&n4, "max", &_7, 51, &_3, &_6);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "current");
@@ -1044,7 +1007,7 @@ PHP_METHOD(Ice_Pagination, floating)
 	if (ZEPHIR_LE(&_22, &_23)) {
 		while (1) {
 			if (_21) {
-				ZEPHIR_SEPARATE(&_22);
+				SEPARATE_ZVAL(&_22);
 				zephir_increment(&_22);
 				if (!(ZEPHIR_LE(&_22, &_23))) {
 					break;
@@ -1069,7 +1032,7 @@ PHP_METHOD(Ice_Pagination, floating)
 	if (ZEPHIR_LE(&_27, &_28)) {
 		while (1) {
 			if (_26) {
-				ZEPHIR_SEPARATE(&_27);
+				SEPARATE_ZVAL(&_27);
 				zephir_increment(&_27);
 				if (!(ZEPHIR_LE(&_27, &_28))) {
 					break;

@@ -47,17 +47,9 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_url_get, 0, 0, IS_STRING
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_url_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Url, getBaseUri, arginfo_ice_mvc_url_getbaseuri, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Url, getBaseUri, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Url, getBaseUri, arginfo_ice_mvc_url_getbaseuri, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, setBaseUri, arginfo_ice_mvc_url_setbaseuri, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_Url, getStaticUri, arginfo_ice_mvc_url_getstaticuri, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Mvc_Url, getStaticUri, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Mvc_Url, getStaticUri, arginfo_ice_mvc_url_getstaticuri, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, setStaticUri, arginfo_ice_mvc_url_setstaticuri, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, href, arginfo_ice_mvc_url_href, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_Url, getStatic, arginfo_ice_mvc_url_getstatic, ZEND_ACC_PUBLIC)

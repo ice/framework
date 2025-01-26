@@ -26,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users_Tokens)
@@ -67,9 +67,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 	ZVAL_UNDEF(&_7);
 	ZVAL_UNDEF(&_8);
 	ZVAL_UNDEF(&_5);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
@@ -93,7 +92,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 	zephir_check_call_status();
 	ZVAL_LONG(&_6, 1);
 	ZVAL_LONG(&_7, 100);
-	ZEPHIR_CALL_FUNCTION(&_8, "mt_rand", NULL, 70, &_6, &_7);
+	ZEPHIR_CALL_FUNCTION(&_8, "mt_rand", NULL, 71, &_6, &_7);
 	zephir_check_call_status();
 	if (ZEPHIR_IS_LONG_IDENTICAL(&_8, 1)) {
 		ZEPHIR_CALL_METHOD(NULL, this_ptr, "deleteexpired", NULL, 0);
@@ -126,7 +125,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, initialize)
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
 	zval *this_ptr = getThis();
@@ -135,17 +133,14 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create)
 	ZVAL_UNDEF(&extra_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
 	if (!fields) {
 		fields = &fields_sub;
@@ -156,12 +151,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, create)
 		extra = &extra_sub;
 		extra = &__$null;
 	}
-
-
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("token"), &_0);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", &_1, 0, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "create", NULL, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -182,9 +175,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired)
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 1, 0);
@@ -209,7 +201,6 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, deleteExpired)
 PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_1 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval *fields = NULL, fields_sub, *extra = NULL, extra_sub, __$null, _0;
 	zval *this_ptr = getThis();
@@ -218,17 +209,14 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update)
 	ZVAL_UNDEF(&extra_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
-#if PHP_VERSION_ID >= 80000
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(fields)
 		Z_PARAM_OBJECT_OF_CLASS_OR_NULL(extra, ice_validation_ce)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 2, &fields, &extra);
 	if (!fields) {
 		fields = &fields_sub;
@@ -239,12 +227,10 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, update)
 		extra = &extra_sub;
 		extra = &__$null;
 	}
-
-
 	ZEPHIR_CALL_METHOD(&_0, this_ptr, "generate", NULL, 0);
 	zephir_check_call_status();
 	zephir_update_property_zval(this_ptr, ZEND_STRL("token"), &_0);
-	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", &_1, 0, fields);
+	ZEPHIR_RETURN_CALL_PARENT(ice_auth_driver_model_users_tokens_ce, getThis(), "update", NULL, 0, fields);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -262,22 +248,20 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users_Tokens, generate)
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zephir_fcall_cache_entry *_2 = NULL, *_3 = NULL, *_5 = NULL;
-	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&token);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_0$$3);
 	ZVAL_UNDEF(&_1$$3);
 	ZVAL_UNDEF(&_6);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	do {
 		ZVAL_LONG(&_0$$3, 16);
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 71, &_0$$3);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "openssl_random_pseudo_bytes", &_2, 72, &_0$$3);
 		zephir_check_call_status();
-		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 72, &_1$$3);
+		ZEPHIR_CALL_FUNCTION(&token, "bin2hex", &_3, 73, &_1$$3);
 		zephir_check_call_status();
 		ZEPHIR_INIT_NVAR(&_6);
 		zephir_create_array(&_6, 1, 0);

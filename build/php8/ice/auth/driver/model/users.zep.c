@@ -26,7 +26,7 @@
  * @package     Ice/Auth
  * @category    Model
  * @author      Ice Team
- * @copyright   (c) 2014-2023 Ice Team
+ * @copyright   (c) 2014-2025 Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Auth_Driver_Model_Users)
@@ -73,9 +73,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, initialize)
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_6);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_CALL_METHOD(&idKey, this_ptr, "getidkey", NULL, 0);
 	zephir_check_call_status();
@@ -121,9 +120,8 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, completeLogin)
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "logins");
@@ -164,16 +162,12 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole)
 	ZVAL_UNDEF(&_5);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
-#if PHP_VERSION_ID >= 80000
-	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_STR(name)
 	ZEND_PARSE_PARAMETERS_END();
-#endif
-
-
-	ZEPHIR_MM_GROW();
+	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
+	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 0, 1, &name_param);
 	if (!name_param) {
 		ZEPHIR_INIT_VAR(&name);
@@ -181,9 +175,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole)
 	} else {
 		zephir_get_strval(&name, name_param);
 	}
-
-
-	ZEPHIR_OBS_VAR(&roles);
+	zephir_memory_observe(&roles);
 	zephir_read_property(&roles, this_ptr, ZEND_STRL("roleClass"), PH_NOISY_CC);
 	ZEPHIR_INIT_VAR(&_0);
 	zephir_create_array(&_0, 1, 0);
@@ -210,6 +202,7 @@ PHP_METHOD(Ice_Auth_Driver_Model_Users, getRole)
 		ZEPHIR_CALL_METHOD(&_4, &_5, "current", NULL, 0);
 		zephir_check_call_status();
 	} else {
+		ZEPHIR_INIT_NVAR(&_4);
 		ZVAL_BOOL(&_4, 0);
 	}
 	RETURN_CCTOR(&_4);

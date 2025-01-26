@@ -102,11 +102,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_removeheader, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
-#if PHP_VERSION_ID >= 80000
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_ice_http_response_setcontent, 0, 1, MAY_BE_OBJECT)
-#else
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_setcontent, 0, 1, IS_OBJECT, 0)
-#endif
 	ZEND_ARG_TYPE_INFO(0, contet, IS_STRING, 0)
 ZEND_END_ARG_INFO()
 
@@ -120,11 +116,7 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_sendfile, 0, 0, 2)
 	ZEND_ARG_TYPE_INFO(0, filename, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, mime, IS_STRING, 0)
-#if PHP_VERSION_ID >= 80000
-	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
-#else
-	ZEND_ARG_ARRAY_INFO(0, options, 0)
-#endif
+ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_redirect, 0, 0, 0)
@@ -194,34 +186,14 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getbyterange, 
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, getProtocolVersion, arginfo_ice_http_response_getprotocolversion, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, getProtocolVersion, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Http_Response, getProtocolVersion, arginfo_ice_http_response_getprotocolversion, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setProtocolVersion, arginfo_ice_http_response_setprotocolversion, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, getStatus, arginfo_ice_http_response_getstatus, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, getStatus, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Http_Response, getStatus, arginfo_ice_http_response_getstatus, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setStatus, arginfo_ice_http_response_setstatus, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, getLoops, arginfo_ice_http_response_getloops, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, getLoops, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Http_Response, getLoops, arginfo_ice_http_response_getloops, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setLoops, arginfo_ice_http_response_setloops, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, getRedirects, arginfo_ice_http_response_getredirects, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, getRedirects, NULL, ZEND_ACC_PUBLIC)
-#endif
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, getBody, arginfo_ice_http_response_getbody, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, getBody, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Http_Response, getRedirects, arginfo_ice_http_response_getredirects, ZEND_ACC_PUBLIC)
+PHP_ME(Ice_Http_Response, getBody, arginfo_ice_http_response_getbody, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setBody, arginfo_ice_http_response_setbody, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, __construct, arginfo_ice_http_response___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Http_Response, getHeaders, arginfo_ice_http_response_getheaders, ZEND_ACC_PUBLIC)
@@ -232,11 +204,7 @@ ZEPHIR_INIT_FUNCS(ice_http_response_method_entry) {
 	PHP_ME(Ice_Http_Response, removeHeader, arginfo_ice_http_response_removeheader, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, setContent, arginfo_ice_http_response_setcontent, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, finalize, arginfo_ice_http_response_finalize, ZEND_ACC_PUBLIC)
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Http_Response, send, arginfo_ice_http_response_send, ZEND_ACC_PUBLIC)
-#else
-	PHP_ME(Ice_Http_Response, send, NULL, ZEND_ACC_PUBLIC)
-#endif
+PHP_ME(Ice_Http_Response, send, arginfo_ice_http_response_send, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, sendFile, arginfo_ice_http_response_sendfile, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, redirect, arginfo_ice_http_response_redirect, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Http_Response, isEmpty, arginfo_ice_http_response_isempty, ZEND_ACC_PUBLIC)

@@ -56,11 +56,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine_sleet_parser_zephir_init_prop
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_mvc_view_engine_sleet_parser_method_entry) {
-#if PHP_VERSION_ID >= 80000
-	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, __construct, arginfo_ice_mvc_view_engine_sleet_parser___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#else
-	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, __construct, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
-#endif
+PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, __construct, arginfo_ice_mvc_view_engine_sleet_parser___construct, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, text, arginfo_ice_mvc_view_engine_sleet_parser_text, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, parse, arginfo_ice_mvc_view_engine_sleet_parser_parse, ZEND_ACC_PUBLIC)
 	PHP_ME(Ice_Mvc_View_Engine_Sleet_Parser, parseControl, arginfo_ice_mvc_view_engine_sleet_parser_parsecontrol, ZEND_ACC_PRIVATE)
