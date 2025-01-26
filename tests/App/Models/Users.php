@@ -25,7 +25,7 @@ class Users extends IceUsers
             ->hasMany('id', __NAMESPACE__ . '\Comments', 'user_id', ['alias' => 'Comments']);
     }
 
-    public function create($fields = [], Validation $extra = null)
+    public function create($fields = [], ?Validation $extra = null)
     {
         $model = $this;
 
