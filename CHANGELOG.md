@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Sun Jan 26 15:03:59 UTC 2025
+
+- Ice 1.11.0
+ * PHP 7.4, dropp support
+ * PHP 8.3 and PHP 8.4, add support #314
+ * Update zephir parser to 1.7.0
+ * Update zephir-lang/zephir@c79b710
+
+-------------------------------------------------------------------
 Sun Feb 19 16:46:10 UTC 2023
 
 - Ice 1.10.1
