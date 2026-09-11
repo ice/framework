@@ -17,7 +17,7 @@
         "phpunit/phpunit": ">=8.0.0",
         "iceframework/zephir-parser": "1.7.0",
         "phalcon/zephir": "1.4.0",
-        "mongodb/mongodb": "~1.20 || ~2"
+        "mongodb/mongodb": "~1.20.0 || ~2"
     },
     "scripts": {
         "post-install-cmd": ["./install"],
