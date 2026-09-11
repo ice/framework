@@ -339,7 +339,7 @@ class Websocket
      */
     public function console(string text, int color = null, int decoration = Console::NORMAL, int bgColor = null, boolean exit = false)
     {
-        var di, text;
+        var di;
 
         let text = date(this->getParam("date_format", "[Y-m-d H:i:s]")) . " " . text . "\r\n";
 

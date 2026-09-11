@@ -14,7 +14,16 @@ function _t(string! str, array values = null, var context = null, string lang = 
 
 namespace Ice;
 
-use Ice\I18n\Plural;
+use Ice\I18n\Plural\Arabic;
+use Ice\I18n\Plural\Balkan;
+use Ice\I18n\Plural\Czech;
+use Ice\I18n\Plural\French;
+use Ice\I18n\Plural\None;
+use Ice\I18n\Plural\One;
+use Ice\I18n\Plural\Polish;
+use Ice\I18n\Plural\Romanian;
+use Ice\I18n\Plural\Two;
+use Ice\I18n\Plural\Zero;
 
 /**
  * Internationalization (i18n) class.
@@ -220,19 +229,19 @@ class I18n
     protected function pluralRules(string code)
     {
         if code === "pl" {
-            return new Plural\Polish;
+            return new Polish;
         } elseif code === "ar" {
-            return new Plural\Arabic;
+            return new Arabic;
         } elseif in_array(code, ["cs", "sk"], true) {
-            return new Plural\Czech;
+            return new Czech;
         } elseif in_array(code, ["ru", "sr", "uk", "sh", "be", "hr", "bs"], true) {
-            return new Plural\Balkan;
+            return new Balkan;
         } elseif in_array(code, ["fr", "ff", "kab"], true) {
-            return new Plural\French;
+            return new French;
         } elseif in_array(code, ["mo", "ro"], true) {
-            return new Plural\Romanian;
+            return new Romanian;
         } elseif in_array(code, ["hi", "ln", "mg", "ak", "tl", "am", "bh", "wa", "ti", "guw", "fil", "nso"], true) {
-            return new Plural\Zero;
+            return new Zero;
         } elseif in_array(code, [
             "en", "ny", "nr", "no", "om", "os", "ps", "pa", "nn", "or", "nl", "lg", "lb", "ky", "ml", "mr",
             "ne", "nd", "nb", "pt", "rm", "ts", "tn", "tk", "ur", "vo", "zu", "xh", "ve", "te", "ta", "sq",
@@ -241,13 +250,13 @@ class I18n
             "brx", "mas", "teo", "chr", "cgg", "tig", "wae", "xog", "ast", "vun", "bem", "syr", "bez", "asa",
             "rof", "ksb", "rwk", "haw", "pap", "gsw", "fur", "saq", "seh", "nyn", "kcg", "ssy", "kaj", "jmc",
             "nah", "ckb"], true) {
-            return new Plural\One;
+            return new One;
         } elseif in_array(code, ["se", "kw", "iu", "smn", "sms", "smj", "sma", "naq", "smi"], true) {
-            return new Plural\Two;
+            return new Two;
         } elseif in_array(code, [
             "my", "sg", "ms", "lo", "kn", "ko", "th", "to", "yo", "zh", "wo", "vi", "tr", "az", "km", "id",
             "ig", "fa", "dz", "bm", "bo", "ii", "hu", "ka", "jv", "ja", "kde", "ses", "sah", "kea"], true) {
-            return new Plural\None;
+            return new None;
         } else {
             throw new Exception("Unknown language code: " . code);
         }
