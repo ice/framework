@@ -39,7 +39,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: gettext, gd, intl, json, mbstring, pdo, mysql, mongodb
+          extensions: gettext, gd, intl, json, mbstring, pdo, mysql, ${{ matrix.php == '8.0' && 'mongodb-1.20.0' || 'mongodb' }}
           tools: pecl, phpize, php-config
         env:
           COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}

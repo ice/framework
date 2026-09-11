@@ -73,7 +73,7 @@ abstract class Image
      */
     public function __construct(string file)
     {
-        var file, info;
+        var info;
 
         try {
             // Get the real path to the file

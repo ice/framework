@@ -40,7 +40,7 @@ class Db
                     let this->driver = new Pdo("oci:dbname=" . tns, user, password, options);
                     break;
                 case "mongodb":
-                    var dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name;
+                    let dsn = "mongodb://" . user . ":" . password . "@" . host . ":" . port . "/" . name;
                     let this->driver = new Mongodb(dsn, name, options);
                     break;
                 default:
