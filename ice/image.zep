@@ -113,6 +113,7 @@ abstract class Image
             return this->render();
         } catch Exception {
             // Ignore all errors
+            return "";
         }
     }
 
