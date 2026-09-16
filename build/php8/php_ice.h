@@ -11,11 +11,13 @@
 #include "kernel/globals.h"
 
 #define PHP_ICE_NAME        "ice"
-#define PHP_ICE_VERSION     "1.11.0"
+#define PHP_ICE_VERSION     "1.12.0"
 #define PHP_ICE_EXTNAME     "ice"
 #define PHP_ICE_AUTHOR      "Ice Team"
-#define PHP_ICE_ZEPVERSION  "0.18.0-$Id$"
-#define PHP_ICE_DESCRIPTION "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2025 Ice Team."
+#define PHP_ICE_ZEPVERSION  "1.4.0-$Id$"
+#define PHP_ICE_DESCRIPTION "Simple and fast PHP framework frozen in C extension.<br>Copyright (c) 2014-2026 Ice Team."
+
+
 
 
 
@@ -27,6 +29,9 @@ ZEND_BEGIN_MODULE_GLOBALS(ice)
 	HashTable *fcache;
 
 	zephir_fcall_cache_entry *scache[ZEPHIR_MAX_CACHE_SLOTS];
+
+	/* Inline property cache slots (issue #1902): [ce, offset, prop_info] per site */
+	void *pcache[ZEPHIR_MAX_PROPERTY_CACHE_SLOTS * ZEPHIR_PROPERTY_CACHE_SLOT_SIZE];
 
 	/* Cache enabled */
 	unsigned int cache_enabled;

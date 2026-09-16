@@ -82,7 +82,7 @@ ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, regex, IS_ARRAY, 1, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroute, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, name, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroutename, 0, 0, 1)
@@ -90,7 +90,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_getroutename, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_cache, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, file, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, file, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_defaults, 0, 0, 1)
@@ -102,18 +102,18 @@ ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, routes, IS_ARRAY, 1, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_handle, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, method, IS_STRING, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, uri, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_match, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, uri, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, uri, IS_STRING, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, method, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_uri, 0, 0, 1)
 	ZEND_ARG_ARRAY_INFO(0, params, 0)
-	ZEND_ARG_TYPE_INFO(0, method, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, method, IS_STRING, 0, "'*'")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_router_zephir_init_properties_ice_mvc_router, 0, 0, 0)

@@ -17,8 +17,6 @@
 #include "kernel/array.h"
 #include "kernel/fcall.h"
 #include "kernel/exception.h"
-#include "ext/spl/spl_exceptions.h"
-#include "kernel/operators.h"
 
 
 /**
@@ -27,7 +25,7 @@
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Service)
@@ -44,11 +42,16 @@ PHP_METHOD(Ice_Mvc_Service, setModel)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&model_sub);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("model", 5, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(model)
 	ZEND_PARSE_PARAMETERS_END();
 	zephir_fetch_params_without_memory_grow(1, 0, &model);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("model"), model);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 240, model);
 	RETURN_THISW();
 }
 
@@ -71,17 +74,22 @@ PHP_METHOD(Ice_Mvc_Service, __call)
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *method_param = NULL, *arguments = NULL, arguments_sub, __$null, _0, _2, _4$$3;
-	zval method;
+	zval method_zv, *arguments = NULL, arguments_sub, __$null, _0, _2, _4$$3;
+	zend_string *method = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&method);
+	ZVAL_UNDEF(&method_zv);
 	ZVAL_UNDEF(&arguments_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4$$3);
 	ZVAL_UNDEF(&_3$$3);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("model", 5, 1);
+	}
+
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_STR(method)
@@ -90,35 +98,30 @@ PHP_METHOD(Ice_Mvc_Service, __call)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 1, &method_param, &arguments);
-	if (UNEXPECTED(Z_TYPE_P(method_param) != IS_STRING && Z_TYPE_P(method_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'method' must be of the type string"));
-		RETURN_MM_NULL();
+	if (ZEND_NUM_ARGS() > 1) {
+		arguments = ZEND_CALL_ARG(execute_data, 2);
 	}
-	if (EXPECTED(Z_TYPE_P(method_param) == IS_STRING)) {
-		zephir_get_strval(&method, method_param);
-	} else {
-		ZEPHIR_INIT_VAR(&method);
-	}
+	zephir_memory_observe(&method_zv);
+	ZVAL_STR_COPY(&method_zv, method);
 	if (!arguments) {
 		arguments = &arguments_sub;
 		arguments = &__$null;
 	}
 	zephir_memory_observe(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 240, PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) == IS_OBJECT;
 	if (_1) {
 		zephir_memory_observe(&_2);
-		zephir_read_property(&_2, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
+		zephir_read_property_cached(&_2, this_ptr, _zephir_prop_0, 240, PH_NOISY_CC);
 		_1 = zephir_instance_of_ev(&_2, ice_mvc_model_ce);
 	}
 	if (_1) {
 		ZEPHIR_INIT_VAR(&_3$$3);
 		zephir_create_array(&_3$$3, 2, 0);
 		zephir_memory_observe(&_4$$3);
-		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("model"), PH_NOISY_CC);
+		zephir_read_property_cached(&_4$$3, this_ptr, _zephir_prop_0, 240, PH_NOISY_CC);
 		zephir_array_fast_append(&_3$$3, &_4$$3);
-		zephir_array_fast_append(&_3$$3, &method);
+		zephir_array_fast_append(&_3$$3, &method_zv);
 		ZEPHIR_CALL_USER_FUNC_ARRAY(return_value, &_3$$3, arguments);
 		zephir_check_call_status();
 		RETURN_MM();

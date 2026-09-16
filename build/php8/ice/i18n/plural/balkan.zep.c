@@ -36,7 +36,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Balkan)
@@ -66,8 +66,8 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory)
 	ZVAL_LONG(&_0, count);
 	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, 0, &_0);
 	zephir_check_call_status();
-	i10 = (long) (zephir_safe_mod_long_long(count, 10));
-	i100 = (long) (zephir_safe_mod_long_long(count, 100));
+	i10 = zephir_safe_mod_long_long(count, 10);
+	i100 = zephir_safe_mod_long_long(count, 100);
 	_1 = zephir_is_true(&isInt);
 	if (_1) {
 		_1 = zephir_safe_mod_long_long(count, 10) == 1;
@@ -76,50 +76,54 @@ PHP_METHOD(Ice_I18n_Plural_Balkan, getCategory)
 	if (_2) {
 		_2 = zephir_safe_mod_long_long(count, 100) != 11;
 	}
-	_3 = zephir_is_true(&isInt);
-	if (_3) {
-		_3 = i10 >= 2;
-	}
-	_4 = _3;
-	if (_4) {
-		_4 = i10 <= 4;
-	}
-	_5 = _4;
-	if (_5) {
-		_6 = i100 >= 12;
-		if (_6) {
-			_6 = i100 <= 14;
-		}
-		_5 = !(_6);
-	}
-	_7 = zephir_is_true(&isInt);
-	if (_7) {
-		_8 = i10 == 0;
-		if (!(_8)) {
-			_9 = i10 >= 5;
-			if (_9) {
-				_9 = i10 <= 9;
-			}
-			_8 = _9;
-		}
-		_10 = _8;
-		if (!(_10)) {
-			_11 = i100 >= 11;
-			if (_11) {
-				_11 = i100 <= 14;
-			}
-			_10 = _11;
-		}
-		_7 = _10;
-	}
 	if (_2) {
 		RETURN_MM_STRING("one");
-	} else if (_5) {
-		RETURN_MM_STRING("few");
-	} else if (_7) {
-		RETURN_MM_STRING("many");
 	} else {
-		RETURN_MM_STRING("other");
+		_3 = zephir_is_true(&isInt);
+		if (_3) {
+			_3 = i10 >= 2;
+		}
+		_4 = _3;
+		if (_4) {
+			_4 = i10 <= 4;
+		}
+		_5 = _4;
+		if (_5) {
+			_6 = i100 >= 12;
+			if (_6) {
+				_6 = i100 <= 14;
+			}
+			_5 = !(_6);
+		}
+		if (_5) {
+			RETURN_MM_STRING("few");
+		} else {
+			_7 = zephir_is_true(&isInt);
+			if (_7) {
+				_8 = i10 == 0;
+				if (!(_8)) {
+					_9 = i10 >= 5;
+					if (_9) {
+						_9 = i10 <= 9;
+					}
+					_8 = _9;
+				}
+				_10 = _8;
+				if (!(_10)) {
+					_11 = i100 >= 11;
+					if (_11) {
+						_11 = i100 <= 14;
+					}
+					_10 = _11;
+				}
+				_7 = _10;
+			}
+			if (_7) {
+				RETURN_MM_STRING("many");
+			} else {
+				RETURN_MM_STRING("other");
+			}
+		}
 	}
 }
 

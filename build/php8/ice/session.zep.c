@@ -25,7 +25,7 @@
  * @package     Ice/Session
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Session)
@@ -75,16 +75,20 @@ PHP_METHOD(Ice_Session, start)
 	ZVAL_UNDEF(&_6$$5);
 	ZVAL_UNDEF(&_7$$5);
 	ZVAL_UNDEF(&_8$$6);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("started", 7, 1);
+	}
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 136);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 137);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_start", &_2, 205);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_start", &_2, 206);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &_1$$3);
-		zephir_read_property(&_3$$3, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
+		zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &_1$$3);
+		zephir_read_property_cached(&_3$$3, this_ptr, _zephir_prop_0, 262, PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_3$$3)) {
 			ZEPHIR_INIT_VAR(&valid);
 			ZVAL_STRING(&valid, "__valid__");
@@ -94,20 +98,20 @@ PHP_METHOD(Ice_Session, start)
 				ZVAL_BOOL(&_6$$5, 1);
 				ZEPHIR_CALL_METHOD(NULL, this_ptr, "set", NULL, 0, &valid, &_6$$5);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(NULL, "session_write_close", NULL, 206);
+				ZEPHIR_CALL_FUNCTION(NULL, "session_write_close", NULL, 207);
 				zephir_check_call_status();
-				ZEPHIR_CALL_FUNCTION(&_7$$5, "session_start", &_2, 205);
+				ZEPHIR_CALL_FUNCTION(&_7$$5, "session_start", &_2, 206);
 				zephir_check_call_status();
-				zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &_7$$5);
-				zephir_read_property(&_6$$5, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
+				zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &_7$$5);
+				zephir_read_property_cached(&_6$$5, this_ptr, _zephir_prop_0, 262, PH_NOISY_CC | PH_READONLY);
 				if (zephir_is_true(&_6$$5)) {
 					ZEPHIR_CALL_METHOD(&_8$$6, this_ptr, "has", &_5, 0, &valid);
 					zephir_check_call_status();
 					if (!(zephir_is_true(&_8$$6))) {
 						if (0) {
-							zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &__$true);
+							zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &__$true);
 						} else {
-							zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &__$false);
+							zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &__$false);
 						}
 					} else {
 						ZEPHIR_CALL_METHOD(NULL, this_ptr, "remove", NULL, 0, &valid);
@@ -138,6 +142,11 @@ PHP_METHOD(Ice_Session, isStarted)
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_1$$3);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("started", 7, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_BOOL(autoStart)
@@ -149,9 +158,9 @@ PHP_METHOD(Ice_Session, isStarted)
 		autoStart = 1;
 	} else {
 		}
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("started"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 262, PH_NOISY_CC | PH_READONLY);
 	if (zephir_is_true(&_0)) {
-		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_status", NULL, 207);
+		ZEPHIR_CALL_FUNCTION(&_1$$3, "session_status", NULL, 208);
 		zephir_check_call_status();
 		if (ZEPHIR_IS_LONG(&_1$$3, 1)) {
 			ZEPHIR_RETURN_CALL_METHOD(this_ptr, "start", &_2, 0);
@@ -183,7 +192,7 @@ PHP_METHOD(Ice_Session, getId)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 208);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_id", NULL, 209);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -200,7 +209,7 @@ PHP_METHOD(Ice_Session, regenerate)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 209);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_regenerate_id", NULL, 210);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -219,15 +228,19 @@ PHP_METHOD(Ice_Session, destroy)
 
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_BOOL(&__$false, 0);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("started", 7, 1);
+	}
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	if (0) {
-		zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &__$true);
+		zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &__$true);
 	} else {
-		zephir_update_property_zval(this_ptr, ZEND_STRL("started"), &__$false);
+		zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 262, &__$false);
 	}
-	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 210);
+	ZEPHIR_RETURN_CALL_FUNCTION("session_destroy", NULL, 211);
 	zephir_check_call_status();
 	RETURN_MM();
 }
@@ -240,21 +253,17 @@ PHP_METHOD(Ice_Session, destroy)
  */
 PHP_METHOD(Ice_Session, has)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *key_param = NULL, _SESSION;
-	zval key;
+	zval key_zv, _SESSION;
+	zend_string *key = NULL;
 
-	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&key_zv);
 	ZVAL_UNDEF(&_SESSION);
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_SESSION, SL("_SESSION"));
-	zephir_fetch_params(1, 1, 0, &key_param);
-	zephir_get_strval(&key, key_param);
-	RETURN_MM_BOOL(zephir_array_isset(&_SESSION, &key));
+	ZVAL_STR(&key_zv, key);
+	RETURN_BOOL(zephir_array_isset_value(&_SESSION, &key_zv));
 }
 
 /**
@@ -266,10 +275,10 @@ PHP_METHOD(Ice_Session, get)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_bool required;
-	zval *key_param = NULL, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _SESSION, __$null, value;
-	zval key;
+	zval key_zv, *defaultValue = NULL, defaultValue_sub, *required_param = NULL, _SESSION, __$null, value;
+	zend_string *key = NULL;
 
-	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&key_zv);
 	ZVAL_UNDEF(&defaultValue_sub);
 	ZVAL_UNDEF(&_SESSION);
 	ZVAL_NULL(&__$null);
@@ -284,8 +293,14 @@ PHP_METHOD(Ice_Session, get)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_SESSION, SL("_SESSION"));
-	zephir_fetch_params(1, 1, 2, &key_param, &defaultValue, &required_param);
-	zephir_get_strval(&key, key_param);
+	if (ZEND_NUM_ARGS() > 1) {
+		defaultValue = ZEND_CALL_ARG(execute_data, 2);
+	}
+	if (ZEND_NUM_ARGS() > 2) {
+		required_param = ZEND_CALL_ARG(execute_data, 3);
+	}
+	zephir_memory_observe(&key_zv);
+	ZVAL_STR_COPY(&key_zv, key);
 	if (!defaultValue) {
 		defaultValue = &defaultValue_sub;
 		defaultValue = &__$null;
@@ -295,7 +310,7 @@ PHP_METHOD(Ice_Session, get)
 	} else {
 		}
 	zephir_memory_observe(&value);
-	if (zephir_array_isset_fetch(&value, &_SESSION, &key, 0)) {
+	if (zephir_array_isset_fetch(&value, &_SESSION, &key_zv, 0)) {
 		RETURN_CCTOR(&value);
 	}
 	RETVAL_ZVAL(defaultValue, 1, 0);
@@ -309,25 +324,22 @@ PHP_METHOD(Ice_Session, get)
  */
 PHP_METHOD(Ice_Session, set)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *key_param = NULL, *value, value_sub, _SESSION;
-	zval key;
+	zval key_zv, *value, value_sub, _SESSION;
+	zend_string *key = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&key_zv);
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_SESSION);
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_STR(key)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_SESSION, SL("_SESSION"));
-	zephir_fetch_params(1, 2, 0, &key_param, &value);
-	zephir_get_strval(&key, key_param);
-	zephir_array_update_zval(&_SESSION, &key, value, PH_COPY | PH_SEPARATE);
-	RETURN_THIS();
+	value = ZEND_CALL_ARG(execute_data, 2);
+	ZVAL_STR(&key_zv, key);
+	zephir_array_update_zval(&_SESSION, &key_zv, value, PH_COPY | PH_SEPARATE);
+	RETURN_THISW();
 }
 
 /**
@@ -337,23 +349,19 @@ PHP_METHOD(Ice_Session, set)
  */
 PHP_METHOD(Ice_Session, remove)
 {
-	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *key_param = NULL, _SESSION;
-	zval key;
+	zval key_zv, _SESSION;
+	zend_string *key = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&key);
+	ZVAL_UNDEF(&key_zv);
 	ZVAL_UNDEF(&_SESSION);
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(key)
 	ZEND_PARSE_PARAMETERS_END();
-	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
-	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_get_global(&_SESSION, SL("_SESSION"));
-	zephir_fetch_params(1, 1, 0, &key_param);
-	zephir_get_strval(&key, key_param);
-	zephir_array_unset(&_SESSION, &key, PH_SEPARATE);
-	RETURN_THIS();
+	ZVAL_STR(&key_zv, key);
+	zephir_array_unset(&_SESSION, &key_zv, PH_SEPARATE);
+	RETURN_THISW();
 }
 
 /**

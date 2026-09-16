@@ -22,7 +22,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_setmodules, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console___construct, 0, 0, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, di, Ice\\Di, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_addmodule, 0, 0, 2)
@@ -36,9 +36,9 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_color, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, color, IS_LONG, 1)
-	ZEND_ARG_TYPE_INFO(0, decoration, IS_LONG, 0)
-	ZEND_ARG_TYPE_INFO(0, bgColor, IS_LONG, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, color, IS_LONG, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, decoration, IS_LONG, 0, "0")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, bgColor, IS_LONG, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_console_info, 0, 0, 1)

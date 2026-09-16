@@ -20,8 +20,8 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_addnamespace, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, prefix, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, baseDir, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, prepend, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, baseDir, IS_STRING, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, prepend, _IS_BOOL, 0, "false")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_loader_loadclass, 0, 0, 1)

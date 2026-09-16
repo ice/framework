@@ -16,7 +16,6 @@
 #include "kernel/memory.h"
 #include "kernel/fcall.h"
 #include "kernel/file.h"
-#include "kernel/operators.h"
 
 
 /**
@@ -25,7 +24,7 @@
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_View_Engine_Sleet_Compiler)
@@ -68,6 +67,15 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct)
 	ZVAL_UNDEF(&view_sub);
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&_0);
+	static zend_string *_zephir_prop_0 = NULL;
+	static zend_string *_zephir_prop_1 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("view", 4, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_1)) {
+		_zephir_prop_1 = zend_string_init("parser", 6, 1);
+	}
+
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
@@ -80,12 +88,12 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, __construct)
 		view = &view_sub;
 		view = &__$null;
 	}
-	zephir_update_property_zval(this_ptr, ZEND_STRL("view"), view);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 253, view);
 	ZEPHIR_INIT_VAR(&_0);
 	object_init_ex(&_0, ice_mvc_view_engine_sleet_parser_ce);
-	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 185);
+	ZEPHIR_CALL_METHOD(NULL, &_0, "__construct", NULL, 186);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, ZEND_STRL("parser"), &_0);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_1, 254, &_0);
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -99,28 +107,41 @@ PHP_METHOD(Ice_Mvc_View_Engine_Sleet_Compiler, compile)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *path_param = NULL, content, _0, _1;
-	zval path;
+	zval path_zv, content, _0, _1;
+	zend_string *path = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&path);
+	ZVAL_UNDEF(&path_zv);
 	ZVAL_UNDEF(&content);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
+	static zend_string *_zephir_prop_0 = NULL;
+	static zend_string *_zephir_prop_1 = NULL;
+	static zend_string *_zephir_prop_2 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("content", 7, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_1)) {
+		_zephir_prop_1 = zend_string_init("parser", 6, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_2)) {
+		_zephir_prop_2 = zend_string_init("parsed", 6, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(path)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 0, &path_param);
-	zephir_get_strval(&path, path_param);
+	zephir_memory_observe(&path_zv);
+	ZVAL_STR_COPY(&path_zv, path);
 	ZEPHIR_INIT_VAR(&content);
-	zephir_file_get_contents(&content, &path);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("content"), &content);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("parser"), PH_NOISY_CC | PH_READONLY);
+	zephir_file_get_contents(&content, &path_zv);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 255, &content);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_1, 254, PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CALL_METHOD(&_1, &_0, "text", NULL, 0, &content);
 	zephir_check_call_status();
-	zephir_update_property_zval(this_ptr, ZEND_STRL("parsed"), &_1);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_2, 256, &_1);
 	RETURN_MM_MEMBER(getThis(), "parsed");
 }
 

@@ -43,18 +43,18 @@ void zephir_throw_exception_debug(zval *object, const char *file, uint32_t line)
 
 	if (Z_TYPE_P(object) != IS_OBJECT) {
 		ZVAL_COPY_VALUE(&object_copy, object);
-		object_init_ex(object, zend_exception_get_default());
+		object_init_ex(object, zend_ce_exception);
 		ZEPHIR_CALL_METHOD(NULL, object, "__construct", NULL, 0, &object_copy);
 		zval_ptr_dtor(&object_copy);
 	}
 
+	/* Handed over to zend_throw_exception_object() below. */
 	Z_ADDREF_P(object);
 
 	if (line > 0) {
 		ZEPHIR_CALL_METHOD(&curline, object, "getline", NULL, 0);
-		zephir_check_call_status();
-		if (ZEPHIR_IS_LONG(&curline, 0)) {
-			default_exception_ce = zend_exception_get_default();
+		if (ZEPHIR_LAST_CALL_STATUS != FAILURE && ZEPHIR_IS_LONG(&curline, 0)) {
+			default_exception_ce = zend_ce_exception;
 			zend_update_property_string(default_exception_ce, Z_OBJ_P(object), SL("file"), file);
 			zend_update_property_long(default_exception_ce, Z_OBJ_P(object), SL("line"), line);
 		}
@@ -62,7 +62,11 @@ void zephir_throw_exception_debug(zval *object, const char *file, uint32_t line)
 
 	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
 		zend_throw_exception_object(object);
+	} else {
+		/* Nothing consumed the reference taken above, so give it back. */
+		Z_DELREF_P(object);
 	}
+
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -82,13 +86,17 @@ void zephir_throw_exception_string_debug(zend_class_entry *ce, const char *messa
 	ZEPHIR_CALL_METHOD_WITHOUT_OBSERVE(NULL, &object, "__construct", NULL, 0, &msg);
 
 	if (line > 0) {
-		default_exception_ce = zend_exception_get_default();
+		default_exception_ce = zend_ce_exception;
 		zend_update_property_string(default_exception_ce, Z_OBJ(object), "file", sizeof("file")-1, file);
 		zend_update_property_long(default_exception_ce, Z_OBJ(object), "line", sizeof("line")-1, line);
 	}
 
 	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
 		zend_throw_exception_object(&object);
+	} else {
+		/* The constructor call failed, so nothing took ownership of the
+		 * instance object_init_ex() created. */
+		zval_ptr_dtor(&object);
 	}
 
 	zval_ptr_dtor(&msg);
@@ -110,6 +118,10 @@ void zephir_throw_exception_string(zend_class_entry *ce, const char *message, ui
 
 	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
 		zend_throw_exception_object(&object);
+	} else {
+		/* The constructor call failed, so nothing took ownership of the
+		 * instance object_init_ex() created. */
+		zval_ptr_dtor(&object);
 	}
 
 	zval_ptr_dtor(&msg);
@@ -138,6 +150,10 @@ void zephir_throw_exception_format(zend_class_entry *ce, const char *format, ...
 
 	if (ZEPHIR_LAST_CALL_STATUS != FAILURE) {
 		zend_throw_exception_object(&object);
+	} else {
+		/* The constructor call failed, so nothing took ownership of the
+		 * instance object_init_ex() created. */
+		zval_ptr_dtor(&object);
 	}
 
 	zval_ptr_dtor(&msg);

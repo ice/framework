@@ -35,7 +35,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Czech)
@@ -62,23 +62,25 @@ PHP_METHOD(Ice_I18n_Plural_Czech, getCategory)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &count_param);
-	ZVAL_LONG(&_1, count);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, &_1);
-	zephir_check_call_status();
-	_2 = zephir_is_true(&_0);
-	if (_2) {
-		_2 = count >= 2;
-	}
-	_3 = _2;
-	if (_3) {
-		_3 = count <= 4;
-	}
 	if (count == 1) {
 		RETURN_MM_STRING("one");
-	} else if (_3) {
-		RETURN_MM_STRING("few");
 	} else {
-		RETURN_MM_STRING("other");
+		ZVAL_LONG(&_1, count);
+		ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, &_1);
+		zephir_check_call_status();
+		_2 = zephir_is_true(&_0);
+		if (_2) {
+			_2 = count >= 2;
+		}
+		_3 = _2;
+		if (_3) {
+			_3 = count <= 4;
+		}
+		if (_3) {
+			RETURN_MM_STRING("few");
+		} else {
+			RETURN_MM_STRING("other");
+		}
 	}
 }
 

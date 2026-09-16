@@ -16,8 +16,6 @@
 #include "kernel/operators.h"
 #include "kernel/memory.h"
 #include "kernel/array.h"
-#include "ext/spl/spl_exceptions.h"
-#include "kernel/exception.h"
 #include "kernel/object.h"
 
 
@@ -27,7 +25,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  *
  * <pre><code>
@@ -70,11 +68,12 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 	zend_bool _0, _20$$11;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval field;
-	zval *validation, validation_sub, *field_param = NULL, __$true, value, label, message, i18n, replace, di, db, from, custom, insensitive, options, result, _1, _2, _3, _6, _9, _4$$4, _5$$5, _7$$6, _8$$7, _10$$9, _11$$10, _13$$11, _14$$11, _16$$11, _19$$11, _21$$11, _22$$11, _26$$11, _15$$12, _17$$14, _18$$15, _23$$16, _24$$16, _25$$16;
+	zend_string *field = NULL;
+	zval *validation, validation_sub, field_zv, __$true, value, label, message, i18n, replace, di, db, from, custom, insensitive, options, result, _1, _2, _3, _6, _9, _4$$4, _5$$5, _7$$6, _8$$7, _10$$9, _11$$10, _13$$11, _14$$11, _16$$11, _19$$11, _21$$11, _22$$11, _26$$11, _15$$12, _17$$14, _18$$15, _23$$16, _24$$16, _25$$16;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&validation_sub);
+	ZVAL_UNDEF(&field_zv);
 	ZVAL_BOOL(&__$true, 1);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&label);
@@ -112,7 +111,6 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 	ZVAL_UNDEF(&_23$$16);
 	ZVAL_UNDEF(&_24$$16);
 	ZVAL_UNDEF(&_25$$16);
-	ZVAL_UNDEF(&field);
 	ZVAL_UNDEF(&_12);
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_OBJECT_OF_CLASS(validation, ice_validation_ce)
@@ -120,17 +118,10 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 2, 0, &validation, &field_param);
-	if (UNEXPECTED(Z_TYPE_P(field_param) != IS_STRING && Z_TYPE_P(field_param) != IS_NULL)) {
-		zephir_throw_exception_string(spl_ce_InvalidArgumentException, SL("Parameter 'field' must be of the type string"));
-		RETURN_MM_NULL();
-	}
-	if (EXPECTED(Z_TYPE_P(field_param) == IS_STRING)) {
-		zephir_get_strval(&field, field_param);
-	} else {
-		ZEPHIR_INIT_VAR(&field);
-	}
-	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, &field);
+	validation = ZEND_CALL_ARG(execute_data, 1);
+	zephir_memory_observe(&field_zv);
+	ZVAL_STR_COPY(&field_zv, field);
+	ZEPHIR_CALL_METHOD(&value, validation, "getvalue", NULL, 0, &field_zv);
 	zephir_check_call_status();
 	_0 = ZEPHIR_IS_STRING_IDENTICAL(&value, "");
 	if (!(_0)) {
@@ -172,7 +163,7 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 		zephir_check_call_status();
 	}
 	if (ZEPHIR_IS_EMPTY(&custom)) {
-		ZEPHIR_CPY_WRT(&custom, &field);
+		ZEPHIR_CPY_WRT(&custom, &field_zv);
 	}
 	ZVAL_LONG(&_3, 2);
 	ZEPHIR_CALL_METHOD(&_9, this_ptr, "has", NULL, 0, &_3);
@@ -211,7 +202,7 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 			ZEPHIR_CALL_METHOD(&label, this_ptr, "get", NULL, 0, &_15$$12);
 			zephir_check_call_status();
 		} else {
-			ZEPHIR_CALL_METHOD(&label, validation, "getlabel", NULL, 0, &field);
+			ZEPHIR_CALL_METHOD(&label, validation, "getlabel", NULL, 0, &field_zv);
 			zephir_check_call_status();
 		}
 		ZEPHIR_INIT_NVAR(&_14$$11);
@@ -258,9 +249,9 @@ PHP_METHOD(Ice_Validation_Validator_Exists, validate)
 		ZEPHIR_INIT_VAR(&replace);
 		zephir_create_array(&replace, 1, 0);
 		zephir_array_update_string(&replace, SL(":field"), &label, PH_COPY | PH_SEPARATE);
-		ZEPHIR_CALL_FUNCTION(&_26$$11, "strtr", NULL, 112, &message, &replace);
+		ZEPHIR_CALL_FUNCTION(&_26$$11, "strtr", NULL, 113, &message, &replace);
 		zephir_check_call_status();
-		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field, &_26$$11);
+		ZEPHIR_CALL_METHOD(NULL, validation, "addmessage", NULL, 0, &field_zv, &_26$$11);
 		zephir_check_call_status();
 		RETURN_MM_BOOL(0);
 	}

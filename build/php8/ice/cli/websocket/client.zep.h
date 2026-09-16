@@ -12,7 +12,7 @@ PHP_METHOD(Ice_Cli_Websocket_Client, onMessage);
 PHP_METHOD(Ice_Cli_Websocket_Client, onTick);
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_client_connect, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, address, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, address, IS_STRING, 0, "'ws://127.0.0.1:8080'")
 	ZEND_ARG_INFO(0, headers)
 ZEND_END_ARG_INFO()
 
@@ -25,7 +25,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_client_send, 0, 1, _IS_BOOL, 0)
 	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, opcode, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, opcode, IS_STRING, 0, "'text'")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_client_run, 0, 0, IS_VOID, 0)

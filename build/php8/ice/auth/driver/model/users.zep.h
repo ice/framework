@@ -14,7 +14,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_completelogin, 0, 0, 
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_getrole, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, name, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, name, IS_STRING, 0, "'login'")
 ZEND_END_ARG_INFO()
 
 ZEPHIR_INIT_FUNCS(ice_auth_driver_model_users_method_entry) {

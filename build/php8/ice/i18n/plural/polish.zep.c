@@ -35,7 +35,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Polish)
@@ -65,38 +65,40 @@ PHP_METHOD(Ice_I18n_Plural_Polish, getCategory)
 	ZVAL_LONG(&_0, count);
 	ZEPHIR_CALL_METHOD(&isInt, this_ptr, "isint", NULL, 0, &_0);
 	zephir_check_call_status();
-	i10 = (long) (zephir_safe_mod_long_long(count, 10));
-	i100 = (long) (zephir_safe_mod_long_long(count, 100));
-	_1 = zephir_is_true(&isInt);
-	if (_1) {
-		_1 = i10 >= 2;
-	}
-	_2 = _1;
-	if (_2) {
-		_2 = i10 <= 4;
-	}
-	_3 = _2;
-	if (_3) {
-		_4 = i100 >= 12;
-		if (_4) {
-			_4 = i100 <= 14;
-		}
-		_3 = !(_4);
-	}
-	_5 = _3;
-	if (_5) {
-		_6 = i100 >= 22;
-		if (_6) {
-			_6 = i100 <= 24;
-		}
-		_5 = !(_6);
-	}
+	i10 = zephir_safe_mod_long_long(count, 10);
+	i100 = zephir_safe_mod_long_long(count, 100);
 	if (count == 1) {
 		RETURN_MM_STRING("one");
-	} else if (_5) {
-		RETURN_MM_STRING("few");
 	} else {
-		RETURN_MM_STRING("other");
+		_1 = zephir_is_true(&isInt);
+		if (_1) {
+			_1 = i10 >= 2;
+		}
+		_2 = _1;
+		if (_2) {
+			_2 = i10 <= 4;
+		}
+		_3 = _2;
+		if (_3) {
+			_4 = i100 >= 12;
+			if (_4) {
+				_4 = i100 <= 14;
+			}
+			_3 = !(_4);
+		}
+		_5 = _3;
+		if (_5) {
+			_6 = i100 >= 22;
+			if (_6) {
+				_6 = i100 <= 24;
+			}
+			_5 = !(_6);
+		}
+		if (_5) {
+			RETURN_MM_STRING("few");
+		} else {
+			RETURN_MM_STRING("other");
+		}
 	}
 }
 

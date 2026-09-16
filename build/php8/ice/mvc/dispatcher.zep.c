@@ -28,7 +28,7 @@
  * @package     Ice/Dispatcher
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Mvc_Dispatcher)
@@ -55,11 +55,16 @@ PHP_METHOD(Ice_Mvc_Dispatcher, setMethod)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&method_sub);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("method", 6, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(method)
 	ZEND_PARSE_PARAMETERS_END();
 	zephir_fetch_params_without_memory_grow(1, 0, &method);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("method"), method);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 195, method);
 	RETURN_THISW();
 }
 
@@ -82,19 +87,35 @@ PHP_METHOD(Ice_Mvc_Dispatcher, getActiveMethod)
 	ZVAL_UNDEF(&_3);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_5);
+	static zend_string *_zephir_prop_0 = NULL;
+	static zend_string *_zephir_prop_1 = NULL;
+	static zend_string *_zephir_prop_2 = NULL;
+	static zend_string *_zephir_prop_3 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("method", 6, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_1)) {
+		_zephir_prop_1 = zend_string_init("action", 6, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_2)) {
+		_zephir_prop_2 = zend_string_init("actionSuffix", 12, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_3)) {
+		_zephir_prop_3 = zend_string_init("activeHandler", 13, 1);
+	}
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_INIT_VAR(&_0);
-	zephir_read_property(&_1, this_ptr, ZEND_STRL("method"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_1, this_ptr, _zephir_prop_0, 195, PH_NOISY_CC | PH_READONLY);
 	zephir_fast_strtolower(&_0, &_1);
 	ZEPHIR_INIT_VAR(&_2);
-	zephir_read_property(&_3, this_ptr, ZEND_STRL("action"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_3, this_ptr, _zephir_prop_1, 196, PH_NOISY_CC | PH_READONLY);
 	zephir_ucfirst(&_2, &_3);
-	zephir_read_property(&_4, this_ptr, ZEND_STRL("actionSuffix"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_4, this_ptr, _zephir_prop_2, 197, PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&action);
 	ZEPHIR_CONCAT_VVV(&action, &_0, &_2, &_4);
-	zephir_read_property(&_5, this_ptr, ZEND_STRL("activeHandler"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_5, this_ptr, _zephir_prop_3, 198, PH_NOISY_CC | PH_READONLY);
 	if ((zephir_method_exists(&_5, &action)  == SUCCESS)) {
 		RETURN_CCTOR(&action);
 	}
@@ -122,12 +143,20 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch)
 	ZVAL_UNDEF(&_9$$3);
 	ZVAL_UNDEF(&_5$$4);
 	ZVAL_UNDEF(&_6$$4);
+	static zend_string *_zephir_prop_0 = NULL;
+	static zend_string *_zephir_prop_1 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("di", 2, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_1)) {
+		_zephir_prop_1 = zend_string_init("silent", 6, 1);
+	}
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
 	ZEPHIR_CALL_PARENT(&parent, ice_mvc_dispatcher_ce, getThis(), "dispatch", NULL, 0);
 	zephir_check_call_status();
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 199, PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "response");
 	ZEPHIR_CALL_METHOD(&response, &_0, "get", NULL, 0, &_1);
@@ -137,7 +166,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch)
 	ZEPHIR_CALL_METHOD(&_3, &response, "getloops", NULL, 0);
 	zephir_check_call_status();
 	if (ZEPHIR_GT(&_2, &_3)) {
-		zephir_read_property(&_4$$3, this_ptr, ZEND_STRL("silent"), PH_NOISY_CC | PH_READONLY);
+		zephir_read_property_cached(&_4$$3, this_ptr, _zephir_prop_1, 200, PH_NOISY_CC | PH_READONLY);
 		if (zephir_is_true(&_4$$3)) {
 			ZVAL_LONG(&_5$$4, 310);
 			ZEPHIR_CALL_METHOD(NULL, &response, "setstatus", NULL, 0, &_5$$4);
@@ -154,7 +183,7 @@ PHP_METHOD(Ice_Mvc_Dispatcher, dispatch)
 		ZEPHIR_INIT_VAR(&_8$$3);
 		ZVAL_STRING(&_8$$3, "This Webpage has a redirect loop");
 		ZVAL_LONG(&_9$$3, 5);
-		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 12, &_8$$3, &_9$$3);
+		ZEPHIR_CALL_METHOD(NULL, &_7$$3, "__construct", NULL, 13, &_8$$3, &_9$$3);
 		zephir_check_call_status();
 		zephir_throw_exception_debug(&_7$$3, "ice/mvc/dispatcher.zep", 58);
 		ZEPHIR_MM_RESTORE();

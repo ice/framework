@@ -14,6 +14,7 @@
 #include "kernel/main.h"
 #include "kernel/memory.h"
 #include "kernel/operators.h"
+#include "kernel/string.h"
 #include "kernel/object.h"
 
 
@@ -23,7 +24,7 @@
  * @package     Ice/Filter
  * @category    Minification
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @uses        cssmin.c www.ryanday.org
  */
@@ -55,145 +56,153 @@ ZEPHIR_INIT_CLASS(Ice_Filter_Css)
  */
 PHP_METHOD(Ice_Filter_Css, sanitize)
 {
-	unsigned char _2$$3;
-	zend_bool _1$$3, _3$$5, _4$$7, _5$$11, _6$$16, _7$$19, _8$$33;
-	long _0;
-	zend_long i = 0, tmp = 0, state, inParen;
-	char c = 0, next = 0;
+	zend_bool _1$$3, _2$$6, _3$$8, _4$$12, _5$$17, _6$$20, _7$$34;
+	zend_long _0;
+	zend_long i = 0, tmp, state, inParen;
+	char c = 0, next = 0, prev = 0;
+	zval min;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *css_param = NULL;
-	zval css, min;
+	zval css_zv;
+	zend_string *css = NULL;
 
-	ZVAL_UNDEF(&css);
+	ZVAL_UNDEF(&css_zv);
 	ZVAL_UNDEF(&min);
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(css)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 0, &css_param);
-	zephir_get_strval(&css, css_param);
+	zephir_memory_observe(&css_zv);
+	ZVAL_STR_COPY(&css_zv, css);
 	ZEPHIR_INIT_VAR(&min);
+	ZVAL_STRING(&min, "");
+	tmp = 0;
 	state = 1;
 	inParen = 0;
-	for (_0 = 0; _0 < Z_STRLEN_P(&css); _0++) {
+	for (_0 = 0; _0 < Z_STRLEN_P(&css_zv); _0++) {
 		i = _0; 
-		c = ZEPHIR_STRING_OFFSET(&css, _0);
-		next = ZEPHIR_STRING_OFFSET(&css, (i + 1));
+		c = ZEPHIR_STRING_OFFSET(&css_zv, _0);
+		next = zephir_string_offset_byte(&css_zv, (i + 1), PH_NOISY);
 		next = next;
+		prev = 0;
+		if (i > 0) {
+			prev = zephir_string_offset_byte(&css_zv, (i - 1), PH_NOISY);
+			prev = prev;
+		}
 		_1$$3 = c == '/';
 		if (_1$$3) {
-			_2$$3 = ZEPHIR_STRING_OFFSET(&css, (i - 1));
-			_1$$3 = _2$$3 == '*';
+			_1$$3 = prev == '*';
 		}
 		if (_1$$3) {
 			continue;
 		}
 		if (state != 6) {
-			_3$$5 = c == '/';
-			if (_3$$5) {
-				_3$$5 = next == '*';
+			_2$$6 = c == '/';
+			if (_2$$6) {
+				_2$$6 = next == '*';
 			}
-			if (_3$$5) {
+			if (_2$$6) {
 				tmp = state;
 				state = 6;
 			}
 		}
-		do {
-			if (state == 1) {
-				_4$$7 = c == ' ';
-				if (_4$$7) {
-					_4$$7 = c == '\n';
+		if (state == 1) { goto zephir_switch_0_clause_0; }
+		if (state == 3) { goto zephir_switch_0_clause_1; }
+		if (state == 2) { goto zephir_switch_0_clause_2; }
+		if (state == 4) { goto zephir_switch_0_clause_3; }
+		if (state == 5) { goto zephir_switch_0_clause_4; }
+		if (state == 6) { goto zephir_switch_0_clause_5; }
+		goto zephir_switch_0_end;
+		zephir_switch_0_clause_0: ;
+			_3$$8 = c == ' ';
+			if (_3$$8) {
+				_3$$8 = c == '\n';
+			}
+			if (_3$$8) {
+				c = 0;
+			} else if (c == '@') {
+				state = 2;
+				goto zephir_switch_0_end;
+			} else if (c > 0) {
+				state = 3;
+			}
+		zephir_switch_0_clause_1: ;
+			if (c == '{') {
+				state = 4;
+			} else if (c == '\n') {
+				c = 0;
+			} else if (c == '@') {
+				state = 2;
+			} else {
+				_4$$12 = c == ' ';
+				if (_4$$12) {
+					_4$$12 = next == '{';
 				}
-				if (_4$$7) {
+				if (_4$$12) {
 					c = 0;
-				} else if (c == '@') {
-					state = 2;
-					break;
-				} else if (c > 0) {
-					state = 3;
 				}
 			}
-			if (state == 3) {
-				_5$$11 = c == ' ';
-				if (_5$$11) {
-					_5$$11 = next == '{';
-				}
-				if (c == '{') {
+			goto zephir_switch_0_end;
+		zephir_switch_0_clause_2: ;
+			_5$$17 = c == '\n';
+			if (!(_5$$17)) {
+				_5$$17 = c == ';';
+			}
+			if (_5$$17) {
+				c = ';';
+				state = 1;
+			} else if (c == '{') {
+				state = 4;
+			}
+			goto zephir_switch_0_end;
+		zephir_switch_0_clause_3: ;
+			_6$$20 = c == ' ';
+			if (!(_6$$20)) {
+				_6$$20 = c == '\n';
+			}
+			if (_6$$20) {
+				c = 0;
+				goto zephir_switch_0_end;
+			} else if (c == '}') {
+				state = 1;
+				goto zephir_switch_0_end;
+			} else {
+				state = 5;
+			}
+		zephir_switch_0_clause_4: ;
+			if (c == '(') {
+				inParen = 1;
+			}
+			if (inParen == 0) {
+				if (c == ';') {
 					state = 4;
-				} else if (c == '\n') {
-					c = 0;
-				} else if (c == '@') {
-					state = 2;
-				} else if (_5$$11) {
-					c = 0;
-				}
-				break;
-			}
-			if (state == 2) {
-				_6$$16 = c == '\n';
-				if (!(_6$$16)) {
-					_6$$16 = c == ';';
-				}
-				if (_6$$16) {
-					c = ';';
-					state = 1;
-				} else if (c == '{') {
-					state = 4;
-				}
-				break;
-			}
-			if (state == 4) {
-				_7$$19 = c == ' ';
-				if (!(_7$$19)) {
-					_7$$19 = c == '\n';
-				}
-				if (_7$$19) {
-					c = 0;
-					break;
+					if (next == '}') {
+						c = 0;
+					}
 				} else if (c == '}') {
 					state = 1;
-					break;
-				} else {
-					state = 5;
-				}
-			}
-			if (state == 5) {
-				if (c == '(') {
-					inParen = 1;
-				}
-				if (inParen == 0) {
-					if (c == ';') {
-						state = 4;
-						if (next == '}') {
-							c = 0;
-						}
-					} else if (c == '}') {
-						state = 1;
-					} else if (c == '\n') {
+				} else if (c == '\n') {
+					c = 0;
+				} else if (c == ' ') {
+					if (next == c) {
 						c = 0;
-					} else if (c == ' ') {
-						if (next == c) {
-							c = 0;
-						}
 					}
-				} else if (c == ')') {
-					inParen = 0;
 				}
-				break;
+			} else if (c == ')') {
+				inParen = 0;
 			}
-			if (state == 6) {
-				_8$$33 = c == '*';
-				if (_8$$33) {
-					_8$$33 = next == '/';
-				}
-				if (_8$$33) {
-					state = tmp;
-				}
-				c = 0;
-				break;
+			goto zephir_switch_0_end;
+		zephir_switch_0_clause_5: ;
+			_7$$34 = c == '*';
+			if (_7$$34) {
+				_7$$34 = next == '/';
 			}
-		} while(0);
+			if (_7$$34) {
+				state = tmp;
+			}
+			c = 0;
+			goto zephir_switch_0_end;
+		zephir_switch_0_end: ;
 
 		if (c != 0) {
 			zephir_concat_self_char(&min, c);

@@ -26,7 +26,7 @@
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Http_Response_Headers)
@@ -59,12 +59,13 @@ PHP_METHOD(Ice_Http_Response_Headers, send)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 136);
+	ZEPHIR_CALL_FUNCTION(&_0, "headers_sent", NULL, 137);
 	zephir_check_call_status();
 	if (!(zephir_is_true(&_0))) {
 		_1$$3 = zephir_get_iterator(this_ptr);
-		_1$$3->funcs->rewind(_1$$3);
-		for (;_1$$3->funcs->valid(_1$$3) == SUCCESS && !EG(exception); _1$$3->funcs->move_forward(_1$$3)) {
+		if (EXPECTED(_1$$3 != NULL)) {
+			_1$$3->funcs->rewind(_1$$3);
+			for (;_1$$3->funcs->valid(_1$$3) == SUCCESS && !EG(exception); _1$$3->funcs->move_forward(_1$$3)) {
 			ZEPHIR_GET_IMKEY(header, _1$$3);
 			{
 				ZEPHIR_ITERATOR_COPY(&value, _1$$3);
@@ -72,14 +73,15 @@ PHP_METHOD(Ice_Http_Response_Headers, send)
 			if (!(ZEPHIR_IS_EMPTY(&value))) {
 				ZEPHIR_INIT_NVAR(&_2$$5);
 				ZEPHIR_CONCAT_VSV(&_2$$5, &header, ": ", &value);
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 137, &_2$$5, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 138, &_2$$5, &__$true);
 				zephir_check_call_status();
 			} else {
-				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 137, &header, &__$true);
+				ZEPHIR_CALL_FUNCTION(NULL, "header", &_3, 138, &header, &__$true);
 				zephir_check_call_status();
 			}
 		}
 		zend_iterator_dtor(_1$$3);
+		}
 		RETURN_MM_BOOL(1);
 	}
 	RETURN_MM_BOOL(0);

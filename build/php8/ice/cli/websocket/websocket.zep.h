@@ -18,7 +18,6 @@ PHP_METHOD(Ice_Cli_Websocket_Websocket, warning);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, error);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getUptime);
 PHP_METHOD(Ice_Cli_Websocket_Websocket, getMemoryUsage);
-void zephir_init_static_properties_Ice_Cli_Websocket_Websocket();
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_sendclear, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, socket)
@@ -28,23 +27,23 @@ ZEND_END_ARG_INFO()
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_senddata, 0, 2, _IS_BOOL, 0)
 	ZEND_ARG_INFO(0, socket)
 	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, opcode, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, masked, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, opcode, IS_STRING, 0, "'text'")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, masked, _IS_BOOL, 0, "false")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_receiveclear, 0, 1, IS_STRING, 0)
 	ZEND_ARG_INFO(0, socket)
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_receive, 0, 0, 1)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_MASK_EX(arginfo_ice_cli_websocket_websocket_receive, 0, 1, MAY_BE_STRING|MAY_BE_BOOL)
 	ZEND_ARG_INFO(0, socket)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_cli_websocket_websocket_encode, 0, 1, IS_STRING, 0)
 	ZEND_ARG_TYPE_INFO(0, data, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, opcode, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, masked, _IS_BOOL, 0)
-	ZEND_ARG_TYPE_INFO(0, fin, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, opcode, IS_STRING, 0, "'text'")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, masked, _IS_BOOL, 0, "true")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, fin, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_setparams, 0, 0, 1)
@@ -61,10 +60,10 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_console, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, text, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, color, IS_LONG, 1)
-	ZEND_ARG_TYPE_INFO(0, decoration, IS_LONG, 0)
-	ZEND_ARG_TYPE_INFO(0, bgColor, IS_LONG, 1)
-	ZEND_ARG_TYPE_INFO(0, exit, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, color, IS_LONG, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, decoration, IS_LONG, 0, "0")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, bgColor, IS_LONG, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, exit, _IS_BOOL, 0, "false")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_info, 0, 0, 1)
@@ -84,11 +83,11 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_error, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_getuptime, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, human, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, human, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_getmemoryusage, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, human, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, human, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_websocket_zephir_init_static_properties_ice_cli_websocket_websocket, 0, 0, 0)

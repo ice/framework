@@ -26,7 +26,7 @@
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
@@ -46,7 +46,7 @@ ZEPHIR_INIT_CLASS(Ice_Version)
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("MAJOR"), 1);
 
-	zephir_declare_class_constant_long(ice_version_ce, SL("MINOR"), 11);
+	zephir_declare_class_constant_long(ice_version_ce, SL("MINOR"), 12);
 
 	zephir_declare_class_constant_long(ice_version_ce, SL("PATCH"), 0);
 
@@ -67,7 +67,7 @@ PHP_METHOD(Ice_Version, current)
 
 	zephir_create_array(return_value, 5, 0);
 	add_assoc_long_ex(return_value, SL("major"), 1);
-	add_assoc_long_ex(return_value, SL("minor"), 11);
+	add_assoc_long_ex(return_value, SL("minor"), 12);
 	add_assoc_long_ex(return_value, SL("patch"), 0);
 	add_assoc_long_ex(return_value, SL("stage"), 4);
 	add_assoc_long_ex(return_value, SL("build"), 0);
@@ -106,48 +106,50 @@ PHP_METHOD(Ice_Version, get)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 
-	do {
-		_0 = 4;
-		if (_0 == 0) {
-			ZEPHIR_INIT_VAR(&suffix);
-			ZVAL_STRING(&suffix, "-dev");
-			break;
-		}
-		if (_0 == 1) {
-			ZEPHIR_INIT_VAR(&_1$$4);
-			ZVAL_LONG(&_1$$4, 0);
-			ZEPHIR_INIT_VAR(&_2$$4);
-			ZEPHIR_CONCAT_SV(&_2$$4, "-alpha.", &_1$$4);
-			ZEPHIR_CPY_WRT(&suffix, &_2$$4);
-			break;
-		}
-		if (_0 == 2) {
-			ZEPHIR_INIT_VAR(&_3$$5);
-			ZVAL_LONG(&_3$$5, 0);
-			ZEPHIR_INIT_VAR(&_4$$5);
-			ZEPHIR_CONCAT_SV(&_4$$5, "-beta.", &_3$$5);
-			ZEPHIR_CPY_WRT(&suffix, &_4$$5);
-			break;
-		}
-		if (_0 == 3) {
-			ZEPHIR_INIT_VAR(&_5$$6);
-			ZVAL_LONG(&_5$$6, 0);
-			ZEPHIR_INIT_VAR(&_6$$6);
-			ZEPHIR_CONCAT_SV(&_6$$6, "-rc.", &_5$$6);
-			ZEPHIR_CPY_WRT(&suffix, &_6$$6);
-			break;
-		}
-		if (_0 == 4) {
-			ZEPHIR_INIT_NVAR(&suffix);
-			ZVAL_STRING(&suffix, "");
-			break;
-		}
-	} while(0);
+	ZEPHIR_INIT_VAR(&suffix);
+	ZVAL_STRING(&suffix, "");
+	_0 = 4;
+	if (_0 == 0) { goto zephir_switch_0_clause_0; }
+	if (_0 == 1) { goto zephir_switch_0_clause_1; }
+	if (_0 == 2) { goto zephir_switch_0_clause_2; }
+	if (_0 == 3) { goto zephir_switch_0_clause_3; }
+	if (_0 == 4) { goto zephir_switch_0_clause_4; }
+	goto zephir_switch_0_end;
+	zephir_switch_0_clause_0: ;
+		ZEPHIR_INIT_NVAR(&suffix);
+		ZVAL_STRING(&suffix, "-dev");
+		goto zephir_switch_0_end;
+	zephir_switch_0_clause_1: ;
+		ZEPHIR_INIT_VAR(&_1$$4);
+		ZVAL_LONG(&_1$$4, 0);
+		ZEPHIR_INIT_VAR(&_2$$4);
+		ZEPHIR_CONCAT_SV(&_2$$4, "-alpha.", &_1$$4);
+		ZEPHIR_CPY_WRT(&suffix, &_2$$4);
+		goto zephir_switch_0_end;
+	zephir_switch_0_clause_2: ;
+		ZEPHIR_INIT_VAR(&_3$$5);
+		ZVAL_LONG(&_3$$5, 0);
+		ZEPHIR_INIT_VAR(&_4$$5);
+		ZEPHIR_CONCAT_SV(&_4$$5, "-beta.", &_3$$5);
+		ZEPHIR_CPY_WRT(&suffix, &_4$$5);
+		goto zephir_switch_0_end;
+	zephir_switch_0_clause_3: ;
+		ZEPHIR_INIT_VAR(&_5$$6);
+		ZVAL_LONG(&_5$$6, 0);
+		ZEPHIR_INIT_VAR(&_6$$6);
+		ZEPHIR_CONCAT_SV(&_6$$6, "-rc.", &_5$$6);
+		ZEPHIR_CPY_WRT(&suffix, &_6$$6);
+		goto zephir_switch_0_end;
+	zephir_switch_0_clause_4: ;
+		ZEPHIR_INIT_NVAR(&suffix);
+		ZVAL_STRING(&suffix, "");
+		goto zephir_switch_0_end;
+	zephir_switch_0_end: ;
 
 	ZEPHIR_INIT_VAR(&_7);
 	ZVAL_LONG(&_7, 1);
 	ZEPHIR_INIT_VAR(&_8);
-	ZVAL_LONG(&_8, 11);
+	ZVAL_LONG(&_8, 12);
 	ZEPHIR_INIT_VAR(&_9);
 	ZVAL_LONG(&_9, 0);
 	ZEPHIR_CONCAT_VSVSVV(return_value, &_7, ".", &_8, ".", &_9, &suffix);
@@ -184,13 +186,13 @@ PHP_METHOD(Ice_Version, id)
 	ZVAL_LONG(&_0, 1);
 	ZEPHIR_INIT_VAR(&_1);
 	ZVAL_STRING(&_1, "%02s");
-	ZVAL_LONG(&_2, 11);
-	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 11, &_1, &_2);
+	ZVAL_LONG(&_2, 12);
+	ZEPHIR_CALL_FUNCTION(&_3, "sprintf", &_4, 12, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_NVAR(&_1);
 	ZVAL_STRING(&_1, "%02s");
 	ZVAL_LONG(&_2, 0);
-	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 11, &_1, &_2);
+	ZEPHIR_CALL_FUNCTION(&_5, "sprintf", &_4, 12, &_1, &_2);
 	zephir_check_call_status();
 	ZEPHIR_INIT_VAR(&_6);
 	ZVAL_LONG(&_6, 4);

@@ -9,7 +9,7 @@ if test "$PHP_ICE" = "yes"; then
 	fi
 
 	AC_DEFINE(HAVE_ICE, 1, [Whether you have Ice])
-	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c ice/validation/validator.zep.c
+	ice_sources="ice.c kernel/main.c kernel/memory.c kernel/exception.c kernel/debug.c kernel/backtrace.c kernel/object.c kernel/array.c kernel/string.c kernel/fcall.c kernel/require.c kernel/file.c kernel/operators.c kernel/math.c kernel/concat.c kernel/variables.c kernel/filter.c kernel/iterator.c kernel/time.c kernel/exit.c kernel/generator.c ice/validation/validator.zep.c
 	ice/arr.zep.c
 	ice/i18n/plural/pluralinterface.zep.c
 	ice/di/access.zep.c
@@ -175,6 +175,10 @@ if test "$PHP_ICE" = "yes"; then
 	)
 
 	CPPFLAGS=$old_CPPFLAGS
+
+	dnl Detection of zend_parse_arg_array(zval **) was removed; the inline
+	dnl function has always taken zval** since PHP 7.0. ZEPHIR_Z_PARAM_ARRAY
+	dnl now unconditionally feeds the zval* companion. See kernel/main.h.
 
 	PHP_INSTALL_HEADERS([ext/ice], [php_ICE.h])
 

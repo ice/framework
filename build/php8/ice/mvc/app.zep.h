@@ -26,10 +26,10 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app_setmodules, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app___construct, 0, 0, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, di, Ice\\Di, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
-ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_app_handle, 0, 0, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_OBJ_TYPE_MASK_EX(arginfo_ice_mvc_app_handle, 0, 0, Ice\\Http\\Response\\ResponseInterface, MAY_BE_BOOL)
 	ZEND_ARG_INFO(0, method)
 	ZEND_ARG_INFO(0, uri)
 ZEND_END_ARG_INFO()

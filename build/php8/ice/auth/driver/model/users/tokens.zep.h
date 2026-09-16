@@ -14,7 +14,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_create, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, extra, Ice\\Validation, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_deleteexpired, 0, 0, 0)
@@ -22,7 +22,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_update, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, extra, Ice\\Validation, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_model_users_tokens_generate, 0, 0, IS_STRING, 0)

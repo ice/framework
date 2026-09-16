@@ -47,12 +47,12 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_hash, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_loggedin, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, role, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, role, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_auth_driver_logout, 0, 0, _IS_BOOL, 0)
-	ZEND_ARG_TYPE_INFO(0, destroy, _IS_BOOL, 0)
-	ZEND_ARG_TYPE_INFO(0, logoutAll, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, destroy, _IS_BOOL, 0, "false")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, logoutAll, _IS_BOOL, 0, "false")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_auth_driver_zephir_init_properties_ice_auth_driver, 0, 0, 0)

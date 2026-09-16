@@ -25,7 +25,7 @@
  * @package     Ice/Router
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @uses        FastRoute https://github.com/nikic/FastRoute/commit/30470b69c785f7c28a0203be86692f4780a43bdf
  */
@@ -52,30 +52,48 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zval variables;
-	zval *httpMethod_param = NULL, *handler, handler_sub, *regex_param = NULL, *variables_param = NULL;
-	zval httpMethod, regex;
+	zval httpMethod_zv, *handler, handler_sub, regex_zv, *variables_param = NULL;
+	zend_string *httpMethod = NULL, *regex = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&httpMethod);
-	ZVAL_UNDEF(&regex);
+	ZVAL_UNDEF(&httpMethod_zv);
 	ZVAL_UNDEF(&handler_sub);
+	ZVAL_UNDEF(&regex_zv);
 	ZVAL_UNDEF(&variables);
+	static zend_string *_zephir_prop_0 = NULL;
+	static zend_string *_zephir_prop_1 = NULL;
+	static zend_string *_zephir_prop_2 = NULL;
+	static zend_string *_zephir_prop_3 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("httpMethod", 10, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_1)) {
+		_zephir_prop_1 = zend_string_init("handler", 7, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_2)) {
+		_zephir_prop_2 = zend_string_init("regex", 5, 1);
+	}
+	if (UNEXPECTED(!_zephir_prop_3)) {
+		_zephir_prop_3 = zend_string_init("variables", 9, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(4, 4)
 		Z_PARAM_STR(httpMethod)
 		Z_PARAM_ZVAL(handler)
 		Z_PARAM_STR(regex)
-		Z_PARAM_ARRAY(variables)
+		ZEPHIR_Z_PARAM_ARRAY(variables, variables_param)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 4, 0, &httpMethod_param, &handler, &regex_param, &variables_param);
-	zephir_get_strval(&httpMethod, httpMethod_param);
-	zephir_get_strval(&regex, regex_param);
+	handler = ZEND_CALL_ARG(execute_data, 2);
+	variables_param = ZEND_CALL_ARG(execute_data, 4);
+	ZVAL_STR(&httpMethod_zv, httpMethod);
+	ZVAL_STR(&regex_zv, regex);
 	zephir_get_arrval(&variables, variables_param);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("httpMethod"), &httpMethod);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("handler"), handler);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("regex"), &regex);
-	zephir_update_property_zval(this_ptr, ZEND_STRL("variables"), &variables);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 201, &httpMethod_zv);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_1, 202, handler);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_2, 203, &regex_zv);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_3, 204, &variables);
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -88,30 +106,35 @@ PHP_METHOD(Ice_Mvc_FastRoute, __construct)
 PHP_METHOD(Ice_Mvc_FastRoute, matches)
 {
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zval *str_param = NULL, regex, _0, _1, _2, _3;
-	zval str;
+	zval str_zv, regex, _0, _1, _2, _3;
+	zend_string *str = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&str);
+	ZVAL_UNDEF(&str_zv);
 	ZVAL_UNDEF(&regex);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_1);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_3);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("regex", 5, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(str)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 0, &str_param);
-	zephir_get_strval(&str, str_param);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("regex"), PH_NOISY_CC | PH_READONLY);
+	zephir_memory_observe(&str_zv);
+	ZVAL_STR_COPY(&str_zv, str);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 203, PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_INIT_VAR(&_1);
 	ZEPHIR_CONCAT_SVS(&_1, "~^", &_0, "$~");
 	ZEPHIR_CPY_WRT(&regex, &_1);
 	ZEPHIR_INIT_VAR(&_2);
 	ZEPHIR_INIT_VAR(&_3);
-	zephir_preg_match(&_3, &regex, &str, &_2, 0, 0 , 0 );
+	zephir_preg_match(&_3, &regex, &str_zv, &_2, 0, 0 , 0 );
 	RETURN_MM_BOOL(zephir_get_boolval(&_3));
 }
 

@@ -35,7 +35,7 @@
  * @package     Ice/I18n
  * @category    Plural rules
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_I18n_Plural_Romanian)
@@ -62,28 +62,30 @@ PHP_METHOD(Ice_I18n_Plural_Romanian, getCategory)
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
 	zephir_fetch_params(1, 1, 0, &count_param);
-	i100 = (long) (zephir_safe_mod_long_long(count, 100));
-	ZVAL_LONG(&_1, count);
-	ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, &_1);
-	zephir_check_call_status();
-	_2 = zephir_is_true(&_0);
-	if (_2) {
-		_3 = count == 0;
-		if (!(_3)) {
-			_4 = i100 >= 1;
-			if (_4) {
-				_4 = i100 <= 19;
-			}
-			_3 = _4;
-		}
-		_2 = _3;
-	}
+	i100 = zephir_safe_mod_long_long(count, 100);
 	if (count == 1) {
 		RETURN_MM_STRING("one");
-	} else if (_2) {
-		RETURN_MM_STRING("few");
 	} else {
-		RETURN_MM_STRING("other");
+		ZVAL_LONG(&_1, count);
+		ZEPHIR_CALL_METHOD(&_0, this_ptr, "isint", NULL, 0, &_1);
+		zephir_check_call_status();
+		_2 = zephir_is_true(&_0);
+		if (_2) {
+			_3 = count == 0;
+			if (!(_3)) {
+				_4 = i100 >= 1;
+				if (_4) {
+					_4 = i100 <= 19;
+				}
+				_3 = _4;
+			}
+			_2 = _3;
+		}
+		if (_2) {
+			RETURN_MM_STRING("few");
+		} else {
+			RETURN_MM_STRING("other");
+		}
 	}
 }
 

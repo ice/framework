@@ -34,7 +34,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server_getclients, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_cli_websocket_server___construct, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, address, IS_STRING, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, address, IS_STRING, 0, "'ws://127.0.0.1:8080'")
 ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 

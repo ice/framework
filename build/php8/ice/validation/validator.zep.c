@@ -16,6 +16,7 @@
 #include "kernel/memory.h"
 #include "kernel/operators.h"
 #include "kernel/array.h"
+#include "kernel/string.h"
 #include "kernel/fcall.h"
 
 
@@ -25,7 +26,7 @@
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Validation_Validator)
@@ -56,9 +57,14 @@ PHP_METHOD(Ice_Validation_Validator, __construct)
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&options);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("options", 7, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(0, 1)
 		Z_PARAM_OPTIONAL
-		Z_PARAM_ARRAY(options)
+		ZEPHIR_Z_PARAM_ARRAY(options, options_param)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
@@ -69,7 +75,7 @@ PHP_METHOD(Ice_Validation_Validator, __construct)
 	} else {
 		zephir_get_arrval(&options, options_param);
 	}
-	zephir_update_property_zval(this_ptr, ZEND_STRL("options"), &options);
+	zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 1, &options);
 	ZEPHIR_MM_RESTORE();
 }
 
@@ -96,12 +102,17 @@ PHP_METHOD(Ice_Validation_Validator, has)
 
 	ZVAL_UNDEF(&key_sub);
 	ZVAL_UNDEF(&_0);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("options", 7, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_ZVAL(key)
 	ZEND_PARSE_PARAMETERS_END();
 	zephir_fetch_params_without_memory_grow(1, 0, &key);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
-	RETURN_BOOL(zephir_array_isset(&_0, key));
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 1, PH_NOISY_CC | PH_READONLY);
+	RETURN_BOOL(zephir_array_key_exists(&_0, key));
 }
 
 /**
@@ -122,6 +133,11 @@ PHP_METHOD(Ice_Validation_Validator, get)
 	ZVAL_NULL(&__$null);
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("options", 7, 1);
+	}
+
 	bool is_null_true = 1;
 	ZEND_PARSE_PARAMETERS_START(1, 2)
 		Z_PARAM_ZVAL(key)
@@ -136,7 +152,7 @@ PHP_METHOD(Ice_Validation_Validator, get)
 		defaultValue = &__$null;
 	}
 	zephir_memory_observe(&value);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 1, PH_NOISY_CC | PH_READONLY);
 	if (zephir_array_isset_fetch(&value, &_0, key, 0)) {
 		RETURN_CCTOR(&value);
 	}
@@ -175,12 +191,13 @@ PHP_METHOD(Ice_Validation_Validator, set)
  */
 PHP_METHOD(Ice_Validation_Validator, getOptions)
 {
-	zend_string *_4;
-	zend_ulong _3;
+	zend_bool _7;
+	zend_string *_5;
+	zend_ulong _4;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
 	zval options;
-	zval *keys = NULL, keys_sub, *options_param = NULL, key, value, _0, *_1, _2;
+	zval *keys = NULL, keys_sub, *options_param = NULL, key, value, _0, *_1, _2, *_3, _6;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&keys_sub);
@@ -188,11 +205,17 @@ PHP_METHOD(Ice_Validation_Validator, getOptions)
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
+	ZVAL_UNDEF(&_6);
 	ZVAL_UNDEF(&options);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("options", 7, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(0, 2)
 		Z_PARAM_OPTIONAL
 		Z_PARAM_ZVAL(keys)
-		Z_PARAM_ARRAY(options)
+		ZEPHIR_Z_PARAM_ARRAY(options, options_param)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
@@ -208,69 +231,83 @@ PHP_METHOD(Ice_Validation_Validator, getOptions)
 	} else {
 		zephir_get_arrval(&options, options_param);
 	}
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("options"), PH_NOISY_CC | PH_READONLY);
-	zephir_is_iterable(&_0, 0, "ice/validation/validator.zep", 112);
-	if (Z_TYPE_P(&_0) == IS_ARRAY) {
-		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(&_0), _3, _4, _1)
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 1, PH_NOISY_CC | PH_READONLY);
+	if (Z_TYPE_P(&_0) == IS_STRING) {
+		ZEPHIR_INIT_VAR(&_2);
+		zephir_string_to_char_array(&_2, &_0);
+		_1 = &_2;
+	} else {
+		_1 = &_0;
+	}
+	zephir_is_iterable(_1, 0, "ice/validation/validator.zep", 112);
+	if (Z_TYPE_P(_1) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(_1), _4, _5, _3)
 		{
 			ZEPHIR_INIT_NVAR(&key);
-			if (_4 != NULL) { 
-				ZVAL_STR_COPY(&key, _4);
+			if (_5 != NULL) { 
+				ZVAL_STR_COPY(&key, _5);
 			} else {
-				ZVAL_LONG(&key, _3);
+				ZVAL_LONG(&key, _4);
 			}
 			ZEPHIR_INIT_NVAR(&value);
-			ZVAL_COPY(&value, _1);
-			do {
-				if (ZEPHIR_IS_LONG(keys, 1)) {
-					if (Z_TYPE_P(&key) == IS_LONG) {
-						zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-					}
-					break;
+			ZVAL_COPY(&value, _3);
+			if (ZEPHIR_IS_LONG(keys, 1)) { goto zephir_switch_0_clause_0; }
+			if (ZEPHIR_IS_LONG(keys, 2)) { goto zephir_switch_0_clause_1; }
+			goto zephir_switch_0_clause_2;
+			zephir_switch_0_clause_0: ;
+				if (Z_TYPE_P(&key) == IS_LONG) {
+					zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
 				}
-				if (ZEPHIR_IS_LONG(keys, 2)) {
-					if (Z_TYPE_P(&key) == IS_STRING) {
-						zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-					}
-					break;
+				goto zephir_switch_0_end;
+			zephir_switch_0_clause_1: ;
+				if (Z_TYPE_P(&key) == IS_STRING) {
+					zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
 				}
+				goto zephir_switch_0_end;
+			zephir_switch_0_clause_2: ;
 				zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-				break;
-			} while(0);
+				goto zephir_switch_0_end;
+			zephir_switch_0_end: ;
 
 		} ZEND_HASH_FOREACH_END();
 	} else {
-		ZEPHIR_CALL_METHOD(NULL, &_0, "rewind", NULL, 0);
+		ZEPHIR_CALL_METHOD(NULL, _1, "rewind", NULL, 0);
 		zephir_check_call_status();
+		_7 = 1;
 		while (1) {
-			ZEPHIR_CALL_METHOD(&_2, &_0, "valid", NULL, 0);
+			if (_7) {
+				_7 = 0;
+			} else {
+				ZEPHIR_CALL_METHOD(NULL, _1, "next", NULL, 0);
+				zephir_check_call_status();
+			}
+			ZEPHIR_CALL_METHOD(&_6, _1, "valid", NULL, 0);
 			zephir_check_call_status();
-			if (!zend_is_true(&_2)) {
+			if (!zend_is_true(&_6)) {
 				break;
 			}
-			ZEPHIR_CALL_METHOD(&key, &_0, "key", NULL, 0);
+			ZEPHIR_CALL_METHOD(&key, _1, "key", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&value, &_0, "current", NULL, 0);
+			ZEPHIR_CALL_METHOD(&value, _1, "current", NULL, 0);
 			zephir_check_call_status();
-				do {
-					if (ZEPHIR_IS_LONG(keys, 1)) {
-						if (Z_TYPE_P(&key) == IS_LONG) {
-							zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-						}
-						break;
+				if (ZEPHIR_IS_LONG(keys, 1)) { goto zephir_switch_1_clause_0; }
+				if (ZEPHIR_IS_LONG(keys, 2)) { goto zephir_switch_1_clause_1; }
+				goto zephir_switch_1_clause_2;
+				zephir_switch_1_clause_0: ;
+					if (Z_TYPE_P(&key) == IS_LONG) {
+						zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
 					}
-					if (ZEPHIR_IS_LONG(keys, 2)) {
-						if (Z_TYPE_P(&key) == IS_STRING) {
-							zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-						}
-						break;
+					goto zephir_switch_1_end;
+				zephir_switch_1_clause_1: ;
+					if (Z_TYPE_P(&key) == IS_STRING) {
+						zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
 					}
+					goto zephir_switch_1_end;
+				zephir_switch_1_clause_2: ;
 					zephir_array_update_zval(&options, &key, &value, PH_COPY | PH_SEPARATE);
-					break;
-				} while(0);
+					goto zephir_switch_1_end;
+				zephir_switch_1_end: ;
 
-			ZEPHIR_CALL_METHOD(NULL, &_0, "next", NULL, 0);
-			zephir_check_call_status();
 		}
 	}
 	ZEPHIR_INIT_NVAR(&value);

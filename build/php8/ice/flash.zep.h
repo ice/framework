@@ -33,7 +33,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_flash_getoption, 0, 0, 1)
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_flash_getmessages, 0, 0, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, remove, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, remove, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_flash_getmessage, 0, 2, IS_STRING, 0)

@@ -75,7 +75,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response___construct, 0, 0, 0)
 	ZEND_ARG_INFO(0, body)
-	ZEND_ARG_TYPE_INFO(0, status, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, status, IS_LONG, 0, "200")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getheaders, 0, 0, IS_ARRAY, 0)
@@ -120,9 +120,9 @@ ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_redirect, 0, 0, 0)
-	ZEND_ARG_TYPE_INFO(0, location, IS_STRING, 1)
-	ZEND_ARG_TYPE_INFO(0, status, IS_LONG, 0)
-	ZEND_ARG_TYPE_INFO(0, external, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, location, IS_STRING, 1, "null")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, status, IS_LONG, 0, "302")
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, external, _IS_BOOL, 0, "false")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isempty, 0, 0, _IS_BOOL, 0)
@@ -156,7 +156,7 @@ ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_isservererror,
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessage, 0, 0, IS_STRING, 0)
-	ZEND_ARG_TYPE_INFO(0, code, IS_LONG, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, code, IS_LONG, 0, "200")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response_getmessages, 0, 0, IS_ARRAY, 0)
@@ -174,8 +174,8 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_http_response_xmlencode, 0, 0, 1)
 	ZEND_ARG_INFO(0, data)
-	ZEND_ARG_TYPE_INFO(0, root, IS_STRING, 0)
-	ZEND_ARG_OBJ_INFO(0, domNode, DOMElement, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, root, IS_STRING, 0, "'root'")
+	ZEND_ARG_OBJ_TYPE_MASK(0, domNode, DOMElement, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_http_response___tostring, 0, 0, IS_STRING, 0)

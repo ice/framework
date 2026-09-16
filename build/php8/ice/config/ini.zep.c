@@ -27,7 +27,7 @@
  * @package     Ice/Config
  * @category    Configuration
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Config_Ini)
@@ -74,10 +74,10 @@ PHP_METHOD(Ice_Config_Ini, __construct)
 		ZEPHIR_THROW_EXCEPTION_DEBUG_STR(ice_exception_ce, "The file path must be a string", "ice/config/ini.zep", 28);
 		return;
 	}
-	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 46, data, &__$true);
+	ZEPHIR_CALL_FUNCTION(&ini, "parse_ini_file", &_0, 47, data, &__$true);
 	zephir_check_call_status();
 	ZVAL_LONG(&_1, 1);
-	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 46, data, &__$true, &_1);
+	ZEPHIR_CALL_FUNCTION(&raw, "parse_ini_file", &_0, 47, data, &__$true, &_1);
 	zephir_check_call_status();
 	ZEPHIR_CALL_METHOD(data, this_ptr, "map", NULL, 0, &ini, &raw);
 	zephir_check_call_status();
@@ -178,12 +178,13 @@ PHP_METHOD(Ice_Config_Ini, cast)
  */
 PHP_METHOD(Ice_Config_Ini, map)
 {
-	zend_string *_3;
-	zend_ulong _2;
+	zend_bool _12;
+	zend_string *_4;
+	zend_ulong _3;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
-	zephir_fcall_cache_entry *_6 = NULL, *_9 = NULL;
+	zephir_fcall_cache_entry *_7 = NULL, *_10 = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *ini, ini_sub, *raw, raw_sub, key, value, data, *_0, _1, _4$$4, _5$$4, _7$$5, _8$$5, _10$$7, _11$$7, _12$$8, _13$$8;
+	zval *ini, ini_sub, *raw, raw_sub, key, value, data, *_0, _1, *_2, _11, _5$$4, _6$$4, _8$$5, _9$$5, _13$$7, _14$$7, _15$$8, _16$$8;
 	zval *this_ptr = getThis();
 
 	ZVAL_UNDEF(&ini_sub);
@@ -192,14 +193,15 @@ PHP_METHOD(Ice_Config_Ini, map)
 	ZVAL_UNDEF(&value);
 	ZVAL_UNDEF(&data);
 	ZVAL_UNDEF(&_1);
-	ZVAL_UNDEF(&_4$$4);
+	ZVAL_UNDEF(&_11);
 	ZVAL_UNDEF(&_5$$4);
-	ZVAL_UNDEF(&_7$$5);
+	ZVAL_UNDEF(&_6$$4);
 	ZVAL_UNDEF(&_8$$5);
-	ZVAL_UNDEF(&_10$$7);
-	ZVAL_UNDEF(&_11$$7);
-	ZVAL_UNDEF(&_12$$8);
-	ZVAL_UNDEF(&_13$$8);
+	ZVAL_UNDEF(&_9$$5);
+	ZVAL_UNDEF(&_13$$7);
+	ZVAL_UNDEF(&_14$$7);
+	ZVAL_UNDEF(&_15$$8);
+	ZVAL_UNDEF(&_16$$8);
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_ZVAL(ini)
 		Z_PARAM_ZVAL(raw)
@@ -209,56 +211,72 @@ PHP_METHOD(Ice_Config_Ini, map)
 	zephir_fetch_params(1, 2, 0, &ini, &raw);
 	ZEPHIR_INIT_VAR(&data);
 	array_init(&data);
-	zephir_is_iterable(ini, 0, "ice/config/ini.zep", 93);
-	if (Z_TYPE_P(ini) == IS_ARRAY) {
-		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(ini), _2, _3, _0)
+	if (Z_TYPE_P(ini) == IS_STRING) {
+		ZEPHIR_INIT_VAR(&_1);
+		zephir_string_to_char_array(&_1, ini);
+		_0 = &_1;
+	} else {
+		_0 = ini;
+	}
+	zephir_is_iterable(_0, 0, "ice/config/ini.zep", 93);
+	if (Z_TYPE_P(_0) == IS_ARRAY) {
+		ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(_0), _3, _4, _2)
 		{
 			ZEPHIR_INIT_NVAR(&key);
-			if (_3 != NULL) { 
-				ZVAL_STR_COPY(&key, _3);
+			if (_4 != NULL) { 
+				ZVAL_STR_COPY(&key, _4);
 			} else {
-				ZVAL_LONG(&key, _2);
+				ZVAL_LONG(&key, _3);
 			}
 			ZEPHIR_INIT_NVAR(&value);
-			ZVAL_COPY(&value, _0);
+			ZVAL_COPY(&value, _2);
 			if (Z_TYPE_P(&value) == IS_ARRAY) {
-				zephir_array_fetch(&_5$$4, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 88);
-				ZEPHIR_CALL_METHOD(&_4$$4, this_ptr, "map", &_6, 47, &value, &_5$$4);
+				ZEPHIR_OBS_NVAR(&_6$$4);
+				zephir_array_fetch(&_6$$4, raw, &key, PH_NOISY, "ice/config/ini.zep", 88);
+				ZEPHIR_CALL_METHOD(&_5$$4, this_ptr, "map", &_7, 48, &value, &_6$$4);
 				zephir_check_call_status();
-				zephir_array_update_zval(&data, &key, &_4$$4, PH_COPY | PH_SEPARATE);
+				zephir_array_update_zval(&data, &key, &_5$$4, PH_COPY | PH_SEPARATE);
 			} else {
-				zephir_array_fetch(&_8$$5, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 90);
-				ZEPHIR_CALL_METHOD(&_7$$5, this_ptr, "cast", &_9, 0, &value, &_8$$5);
+				ZEPHIR_OBS_NVAR(&_9$$5);
+				zephir_array_fetch(&_9$$5, raw, &key, PH_NOISY, "ice/config/ini.zep", 90);
+				ZEPHIR_CALL_METHOD(&_8$$5, this_ptr, "cast", &_10, 0, &value, &_9$$5);
 				zephir_check_call_status();
-				zephir_array_update_zval(&data, &key, &_7$$5, PH_COPY | PH_SEPARATE);
+				zephir_array_update_zval(&data, &key, &_8$$5, PH_COPY | PH_SEPARATE);
 			}
 		} ZEND_HASH_FOREACH_END();
 	} else {
-		ZEPHIR_CALL_METHOD(NULL, ini, "rewind", NULL, 0);
+		ZEPHIR_CALL_METHOD(NULL, _0, "rewind", NULL, 0);
 		zephir_check_call_status();
+		_12 = 1;
 		while (1) {
-			ZEPHIR_CALL_METHOD(&_1, ini, "valid", NULL, 0);
+			if (_12) {
+				_12 = 0;
+			} else {
+				ZEPHIR_CALL_METHOD(NULL, _0, "next", NULL, 0);
+				zephir_check_call_status();
+			}
+			ZEPHIR_CALL_METHOD(&_11, _0, "valid", NULL, 0);
 			zephir_check_call_status();
-			if (!zend_is_true(&_1)) {
+			if (!zend_is_true(&_11)) {
 				break;
 			}
-			ZEPHIR_CALL_METHOD(&key, ini, "key", NULL, 0);
+			ZEPHIR_CALL_METHOD(&key, _0, "key", NULL, 0);
 			zephir_check_call_status();
-			ZEPHIR_CALL_METHOD(&value, ini, "current", NULL, 0);
+			ZEPHIR_CALL_METHOD(&value, _0, "current", NULL, 0);
 			zephir_check_call_status();
 				if (Z_TYPE_P(&value) == IS_ARRAY) {
-					zephir_array_fetch(&_11$$7, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 88);
-					ZEPHIR_CALL_METHOD(&_10$$7, this_ptr, "map", &_6, 47, &value, &_11$$7);
+					ZEPHIR_OBS_NVAR(&_14$$7);
+					zephir_array_fetch(&_14$$7, raw, &key, PH_NOISY, "ice/config/ini.zep", 88);
+					ZEPHIR_CALL_METHOD(&_13$$7, this_ptr, "map", &_7, 48, &value, &_14$$7);
 					zephir_check_call_status();
-					zephir_array_update_zval(&data, &key, &_10$$7, PH_COPY | PH_SEPARATE);
+					zephir_array_update_zval(&data, &key, &_13$$7, PH_COPY | PH_SEPARATE);
 				} else {
-					zephir_array_fetch(&_13$$8, raw, &key, PH_NOISY | PH_READONLY, "ice/config/ini.zep", 90);
-					ZEPHIR_CALL_METHOD(&_12$$8, this_ptr, "cast", &_9, 0, &value, &_13$$8);
+					ZEPHIR_OBS_NVAR(&_16$$8);
+					zephir_array_fetch(&_16$$8, raw, &key, PH_NOISY, "ice/config/ini.zep", 90);
+					ZEPHIR_CALL_METHOD(&_15$$8, this_ptr, "cast", &_10, 0, &value, &_16$$8);
 					zephir_check_call_status();
-					zephir_array_update_zval(&data, &key, &_12$$8, PH_COPY | PH_SEPARATE);
+					zephir_array_update_zval(&data, &key, &_15$$8, PH_COPY | PH_SEPARATE);
 				}
-			ZEPHIR_CALL_METHOD(NULL, ini, "next", NULL, 0);
-			zephir_check_call_status();
 		}
 	}
 	ZEPHIR_INIT_NVAR(&value);

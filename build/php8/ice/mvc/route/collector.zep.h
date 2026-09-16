@@ -18,8 +18,8 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_collector_setdatagenerator, 0, 0, 1
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_collector___construct, 0, 0, 0)
-	ZEND_ARG_OBJ_INFO(0, routeParser, Ice\\Mvc\\Route\\Parser\\ParserInterface, 1)
-	ZEND_ARG_OBJ_INFO(0, dataGenerator, Ice\\Mvc\\Route\\DataGenerator\\DataGeneratorInterface, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, routeParser, Ice\\Mvc\\Route\\Parser\\ParserInterface, MAY_BE_NULL, "null")
+	ZEND_ARG_OBJ_TYPE_MASK(0, dataGenerator, Ice\\Mvc\\Route\\DataGenerator\\DataGeneratorInterface, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_route_collector_addroute, 0, 0, 2)

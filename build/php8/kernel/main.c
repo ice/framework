@@ -25,6 +25,7 @@
 #include "kernel/fcall.h"
 #include "kernel/object.h"
 #include "kernel/exception.h"
+#include "kernel/generator.h"
 
 
 zend_string* i_parent = NULL;
@@ -75,6 +76,34 @@ int zephir_fetch_parameters(int num_args, int required_args, int optional_args, 
 		*p = arg;
 
 		i++;
+	}
+
+	va_end(va);
+
+	return SUCCESS;
+}
+
+int zephir_fetch_parameters_variadic(int num_args, int required_args, int optional_args, ...)
+{
+	va_list va;
+	zval *arg, **p;
+	int i, fixed_args;
+
+	if (num_args < required_args) {
+		zephir_throw_exception_string(spl_ce_BadMethodCallException, SL("Wrong number of parameters"));
+		return FAILURE;
+	}
+
+	fixed_args = required_args + optional_args;
+
+	va_start(va, optional_args);
+
+	for (i = 0; i < fixed_args; i++) {
+		p = va_arg(va, zval **);
+		if (i < num_args) {
+			arg = ZEND_CALL_ARG(EG(current_execute_data), i + 1);
+			*p = arg;
+		}
 	}
 
 	va_end(va);
@@ -272,7 +301,7 @@ int zephir_function_exists(const zval *function_name)
  */
 int zephir_function_exists_ex(const char *function_name, unsigned int function_len)
 {
-	if (zend_hash_str_exists(CG(function_table), function_name, function_len) != NULL) {
+	if (zend_hash_str_exists(CG(function_table), function_name, function_len)) {
         return SUCCESS;
     }
 
@@ -397,6 +426,199 @@ int zephir_declare_class_constant(zend_class_entry *ce, const char *name, size_t
 	return SUCCESS;
 }
 
+/**
+ * Deep-copies a (request) zval into persistent, immutable memory so it can be
+ * stored as a constant or as a property default on a persistently-registered
+ * (internal) class. Only the value kinds that may appear in a Zephir array
+ * constant are handled: scalars, strings and (nested) arrays.
+ *
+ * The result is one table shared by every instance and every reader, so it must
+ * carry PHP's own shared-immutable-array shape. php-src builds that shape in two
+ * places -- zend_empty_array (Zend/zend_hash.c) and opcache's zend_persist_zval()
+ * (ext/opcache/zend_persist.c) -- and both agree on three invariants:
+ *
+ *   1. refcount 2, so SEPARATE_ARRAY()'s `GC_REFCOUNT(arr) > 1` test always
+ *      fires and a userland write duplicates instead of mutating this table.
+ *      The count never moves: SEPARATE_ARRAY releases via GC_TRY_DELREF(), a
+ *      no-op on GC_IMMUTABLE, and ZVAL_COPY never addrefs a non-refcounted zval.
+ *   2. every string inside is non-refcounted, and
+ *   3. the table carries HASH_FLAG_STATIC_KEYS.
+ *
+ * (2) and (3) exist because zend_array_dup()'s immutable branch is a raw memcpy
+ * of the buckets with no addref on keys or values, while the copy it produces
+ * gets pDestructor = ZVAL_PTR_DTOR. A refcounted string value or a non-static
+ * string key would therefore be released by a copy that never referenced it,
+ * freeing memory this table still points at.
+ *
+ * @see https://github.com/zephir-lang/zephir/issues/2533
+ * @see https://github.com/zephir-lang/zephir/issues/2651
+ */
+static void zephir_persist_constant_zval(zval *dst, zval *src)
+{
+	switch (Z_TYPE_P(src)) {
+		case IS_STRING:
+			ZVAL_STR(dst, zend_string_init(Z_STRVAL_P(src), Z_STRLEN_P(src), 1));
+			GC_ADD_FLAGS(Z_STR_P(dst), IS_STR_PERSISTENT);
+			/* Non-refcounted, like opcache's `Z_TYPE_FLAGS_P(z) = 0`: a copy of the
+			 * owning array borrows this string without an addref and must never
+			 * release it. */
+			Z_TYPE_INFO_P(dst) = IS_STRING;
+			break;
+
+		case IS_ARRAY: {
+			zend_array *ht;
+			zend_ulong idx;
+			zend_string *key;
+			zval *val;
+
+			ht = (zend_array *) pemalloc(sizeof(zend_array), 1);
+			zend_hash_init(ht, zend_hash_num_elements(Z_ARRVAL_P(src)), NULL, NULL, 1);
+
+			ZEND_HASH_FOREACH_KEY_VAL(Z_ARRVAL_P(src), idx, key, val) {
+				zval copy;
+				zephir_persist_constant_zval(&copy, val);
+				if (key) {
+					zend_string *pkey = zend_string_init(ZSTR_VAL(key), ZSTR_LEN(key), 1);
+					GC_ADD_FLAGS(pkey, IS_STR_PERSISTENT);
+					zend_hash_add_new(ht, pkey, &copy);
+					zend_string_release(pkey);
+				} else {
+					zend_hash_index_add_new(ht, idx, &copy);
+				}
+			} ZEND_HASH_FOREACH_END();
+
+			ZVAL_ARR(dst, ht);
+			/* A non-interned key cleared this flag on every insert above. Restore it
+			 * (as zend_hash_persist() does) so neither this table nor a copy made by
+			 * zend_array_dup() releases keys it does not own; the flag is inside
+			 * HASH_FLAG_MASK, so the copy inherits it. */
+			HT_FLAGS(ht) |= HASH_FLAG_STATIC_KEYS;
+			GC_SET_REFCOUNT(ht, 2);
+			GC_ADD_FLAGS(ht, IS_ARRAY_IMMUTABLE);
+			/* store as a non-refcounted (immutable) array zval */
+			Z_TYPE_INFO_P(dst) = IS_ARRAY;
+			break;
+		}
+
+		default:
+			/* IS_LONG / IS_DOUBLE / IS_TRUE / IS_FALSE / IS_NULL: no allocation */
+			ZVAL_COPY_VALUE(dst, src);
+			break;
+	}
+}
+
+int zephir_declare_class_constant_array(zend_class_entry *ce, const char *name, size_t name_length, zval *value)
+{
+	zval persisted;
+
+	zephir_persist_constant_zval(&persisted, value);
+	zval_ptr_dtor(value);
+
+	return zephir_declare_class_constant(ce, name, name_length, &persisted);
+}
+
+/**
+ * Declares a class property whose default value is an array.
+ *
+ * Unlike a regular class, a trait cannot rely on the runtime create_object
+ * initializer to build an array default: PHP's zend_do_bind_traits() copies a
+ * trait's property_info and default zvals into a using class but not its object
+ * handlers, so the initializer never runs for a userland class that `use`s the
+ * trait. Storing the array as a persistent, immutable (non-refcounted) zval in
+ * the ce's default_properties_table makes the engine carry it natively, exactly
+ * like a hand-written PHP trait property default.
+ *
+ * @see https://github.com/zephir-lang/zephir/issues/2607
+ */
+int zephir_declare_property_array(zend_class_entry *ce, const char *name, size_t name_length, zval *value, int access_type)
+{
+	zval persisted;
+
+	zephir_persist_constant_zval(&persisted, value);
+	zval_ptr_dtor(value);
+
+	zend_declare_property(ce, name, name_length, &persisted, access_type);
+
+	return SUCCESS;
+}
+
+/**
+ * Declares a class property with a PHP type (issue #2608).
+ *
+ * Emits the engine's typed-property machinery so Reflection reports the type
+ * and PHP enforces it. `type_mask` is a MAY_BE_* bitmask for builtin/array
+ * types with MAY_BE_NULL folded in for `?type`. When `class_name` is non-NULL
+ * the property is a class type: the name is stored persistently and resolved
+ * lazily by the engine, with nullability taken from the MAY_BE_NULL bit.
+ *
+ * The default zval is made persistent exactly like zephir_declare_property_array
+ * so native trait binding and the immutable default_properties_table carry it.
+ * A default of IS_UNDEF yields an uninitialized typed property, matching PHP.
+ */
+zend_property_info *zephir_declare_typed_property(zend_class_entry *ce, const char *name, size_t name_length, zval *value, int access_type, uint32_t type_mask, const char *class_name, size_t class_name_length)
+{
+	zend_string *key = zend_string_init_interned(name, name_length, 1);
+	zval persisted;
+	zend_type type;
+
+	if (class_name != NULL) {
+		zend_string *cn = zend_string_init(class_name, class_name_length, 1);
+		GC_ADD_FLAGS(cn, IS_STR_PERSISTENT);
+		type = (zend_type) ZEND_TYPE_INIT_CLASS(cn, (type_mask & MAY_BE_NULL) ? 1 : 0, 0);
+	} else {
+		type = (zend_type) ZEND_TYPE_INIT_MASK(type_mask);
+	}
+
+	zephir_persist_constant_zval(&persisted, value);
+	zval_ptr_dtor(value);
+
+	return zend_declare_typed_property(ce, key, &persisted, access_type, NULL, type);
+}
+
+zend_property_info *zephir_declare_typed_property_union(zend_class_entry *ce, const char *name, size_t name_length, zval *value, int access_type, uint32_t type_mask, const char **class_names, uint32_t num_classes)
+{
+	zend_string *key = zend_string_init_interned(name, name_length, 1);
+	zval persisted;
+	zend_type type;
+	uint32_t i;
+
+	if (num_classes == 0) {
+		/* Scalar-only union (e.g. int|float|null): a plain OR-ed type mask. */
+		type = (zend_type) ZEND_TYPE_INIT_MASK(type_mask);
+	} else if (num_classes == 1) {
+		/* One class plus optional scalar/null bits (e.g. <Foo>|int, <Foo>|null).
+		 * The scalar/null bits ride along in the class type's extra flags. */
+		zend_string *cn = zend_string_init(class_names[0], strlen(class_names[0]), 1);
+		GC_ADD_FLAGS(cn, IS_STR_PERSISTENT);
+		type = (zend_type) ZEND_TYPE_INIT_CLASS(cn, 0, type_mask);
+	} else {
+		/* Two or more classes (e.g. <A>|<B>|int): a persistent zend_type_list of
+		 * class names, with any scalar/null bits kept in the outer union mask.
+		 * PHP 8.1+ tags the list with _ZEND_TYPE_UNION_BIT (to distinguish it from
+		 * intersection lists); PHP 8.0 has no intersection types and only
+		 * _ZEND_TYPE_LIST_BIT, and lacks ZEND_TYPE_INIT_UNION — so build the type
+		 * via the portable ZEND_TYPE_INIT_PTR and add the union bit only when it
+		 * exists. */
+		uint32_t list_kind   = _ZEND_TYPE_LIST_BIT;
+		zend_type_list *list = pemalloc(ZEND_TYPE_LIST_SIZE(num_classes), 1);
+#ifdef _ZEND_TYPE_UNION_BIT
+		list_kind |= _ZEND_TYPE_UNION_BIT;
+#endif
+		list->num_types = num_classes;
+		for (i = 0; i < num_classes; i++) {
+			zend_string *cn = zend_string_init(class_names[i], strlen(class_names[i]), 1);
+			GC_ADD_FLAGS(cn, IS_STR_PERSISTENT);
+			list->types[i] = (zend_type) ZEND_TYPE_INIT_CLASS(cn, 0, 0);
+		}
+		type = (zend_type) ZEND_TYPE_INIT_PTR(list, list_kind, 0, type_mask);
+	}
+
+	zephir_persist_constant_zval(&persisted, value);
+	zval_ptr_dtor(value);
+
+	return zend_declare_typed_property(ce, key, &persisted, access_type, NULL, type);
+}
+
 int zephir_declare_class_constant_null(zend_class_entry *ce, const char *name, size_t name_length)
 {
 	zval constant;
@@ -511,6 +733,54 @@ void zephir_get_args(zval *return_value)
 	}
 }
 
+void zephir_get_args_from(zval *return_value, uint32_t skip)
+{
+	zend_execute_data *ex = EG(current_execute_data);
+	uint32_t arg_count    = ZEND_CALL_NUM_ARGS(ex);
+
+	array_init(return_value);
+
+	if (arg_count > skip) {
+		uint32_t first_extra_arg = ex->func->op_array.num_args;
+		zval *p    = ZEND_CALL_ARG(ex, 1);
+		uint32_t i = 0;
+
+		if (arg_count > first_extra_arg) {
+			while (i < first_extra_arg) {
+				if (i >= skip) {
+					zval *q = p;
+
+					if (Z_TYPE_P(q) != IS_UNDEF) {
+						ZVAL_DEREF(q);
+						Z_TRY_ADDREF_P(q);
+						zend_hash_next_index_insert_new(Z_ARRVAL_P(return_value), q);
+					}
+				}
+
+				++p;
+				++i;
+			}
+
+			p = ZEND_CALL_VAR_NUM(ex, i);
+		}
+
+		while (i < arg_count) {
+			if (i >= skip) {
+				zval *q = p;
+
+				if (Z_TYPE_P(q) != IS_UNDEF) {
+					ZVAL_DEREF(q);
+					Z_TRY_ADDREF_P(q);
+					zend_hash_next_index_insert_new(Z_ARRVAL_P(return_value), q);
+				}
+			}
+
+			++p;
+			++i;
+		}
+	}
+}
+
 void zephir_get_arg(zval *return_value, zend_long idx)
 {
 	zend_execute_data *ex = EG(current_execute_data);
@@ -558,4 +828,19 @@ void zephir_module_init()
 	i_parent = zend_new_interned_string(zend_string_init(ZEND_STRL("parent"), 1));
 	i_static = zend_new_interned_string(zend_string_init(ZEND_STRL("static"), 1));
 	i_self   = zend_new_interned_string(zend_string_init(ZEND_STRL("self"), 1));
+
+	zephir_generator_module_init();
+	zephir_closure_module_init();
+}
+
+/**
+ * Undoes what zephir_module_init() installed process-wide.
+ *
+ * Called unconditionally from MSHUTDOWN, release builds included: the closure
+ * rebinding hooks point at code inside this extension, so leaving them in
+ * place once it is unloaded would leave a dangling handler behind.
+ */
+void zephir_module_shutdown(void)
+{
+	zephir_closure_module_shutdown();
 }

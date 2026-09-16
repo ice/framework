@@ -141,22 +141,22 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_fields, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_TYPE_INFO(0, primary, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, primary, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_create, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, extra, Ice\\Validation, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_update, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, extra, Ice\\Validation, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_save, 0, 0, 0)
 	ZEND_ARG_INFO(0, fields)
-	ZEND_ARG_OBJ_INFO(0, extra, Ice\\Validation, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, extra, Ice\\Validation, MAY_BE_NULL, "null")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_delete, 0, 0, 0)
@@ -206,7 +206,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_model_setrules, 0, 0, 0)
 ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, rules, IS_ARRAY, 0, "[]")
-	ZEND_ARG_TYPE_INFO(0, merge, _IS_BOOL, 0)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, merge, _IS_BOOL, 0, "true")
 ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_ice_mvc_model___serialize, 0, 0, IS_ARRAY, 0)

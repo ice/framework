@@ -280,15 +280,25 @@ static PHP_MINIT_FUNCTION(ice)
 	return SUCCESS;
 }
 
-#ifndef ZEPHIR_RELEASE
 static PHP_MSHUTDOWN_FUNCTION(ice)
 {
+#ifndef ZEPHIR_RELEASE
 	
 	zephir_deinitialize_memory();
+#endif
+	/**
+	 * Both of these have to run in every build, release included.
+	 *
+	 * module_destructor() unregisters a module's INI entries for it only when
+	 * the module has no MSHUTDOWN of its own, so declaring one takes over that
+	 * duty; skipping it leaves zend_ini_entry records pointing into an
+	 * unloaded extension. And the kernel installs process-wide hooks that
+	 * point into this extension and must not outlive it.
+	 */
 	UNREGISTER_INI_ENTRIES();
+	zephir_module_shutdown();
 	return SUCCESS;
 }
-#endif
 
 /**
  * Initialize globals on each request or each thread started
@@ -306,6 +316,9 @@ static void php_zephir_init_globals(zend_ice_globals *ice_globals)
 	/* Static cache */
 	memset(ice_globals->scache, '\0', sizeof(zephir_fcall_cache_entry*) * ZEPHIR_MAX_CACHE_SLOTS);
 
+	/* Inline property cache (per-request reset defeats stale-ce/ABA reuse) */
+	memset(ice_globals->pcache, '\0', sizeof(void*) * ZEPHIR_MAX_PROPERTY_CACHE_SLOTS * ZEPHIR_PROPERTY_CACHE_SLOT_SIZE);
+
 		ice_globals->cli_colors = 1;
 	
 }
@@ -318,6 +331,7 @@ static void php_zephir_init_module_globals(zend_ice_globals *ice_globals)
 	
 }
 
+void zephir_init_static_properties_Ice_Cli_Websocket_Websocket();
 static PHP_RINIT_FUNCTION(ice)
 {
 	zend_ice_globals *ice_globals_ptr;
@@ -385,7 +399,7 @@ ZEND_BEGIN_ARG_INFO_EX(arginfo_g_ice__t, 0, 0, 1)
 	ZEND_ARG_TYPE_INFO(0, str, IS_STRING, 0)
 ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, values, IS_ARRAY, 1, "[]")
 	ZEND_ARG_INFO(0, context)
-	ZEND_ARG_TYPE_INFO(0, lang, IS_STRING, 1)
+	ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, lang, IS_STRING, 1, "null")
 ZEND_END_ARG_INFO()
 
 
@@ -407,11 +421,7 @@ zend_module_entry ice_module_entry = {
 	PHP_ICE_EXTNAME,
 	php_ice_functions,
 	PHP_MINIT(ice),
-#ifndef ZEPHIR_RELEASE
 	PHP_MSHUTDOWN(ice),
-#else
-	NULL,
-#endif
 	PHP_RINIT(ice),
 	PHP_RSHUTDOWN(ice),
 	PHP_MINFO(ice),

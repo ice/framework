@@ -24,6 +24,9 @@
 #include "kernel/backtrace.h"
 #include "kernel/variables.h"
 
+/* See the declaration in kernel/fcall.h for what this stands in for (#2639). */
+zend_internal_function zephir_internal_call_frame_func = { ZEND_INTERNAL_FUNCTION };
+
 int zephir_has_constructor_ce(const zend_class_entry *ce)
 {
 	do {
@@ -35,6 +38,30 @@ int zephir_has_constructor_ce(const zend_class_entry *ce)
 	} while (ce);
 
 	return 0;
+}
+
+int zephir_check_constructor_access(const zval *object)
+{
+	zend_object *obj;
+
+	if (Z_TYPE_P(object) != IS_OBJECT) {
+		return SUCCESS;
+	}
+
+	obj = Z_OBJ_P(object);
+
+	/*
+	 * The get_constructor handler enforces PHP's visibility rules against the
+	 * currently executing scope and throws an Error when the constructor is
+	 * not accessible (e.g. protected or private). This mirrors what the engine
+	 * does for "new ClassName()" and prevents dynamic instantiation from
+	 * bypassing the access control.
+	 *
+	 * @see https://github.com/zephir-lang/zephir/issues/882
+	 */
+	obj->handlers->get_constructor(obj);
+
+	return EG(exception) ? FAILURE : SUCCESS;
 }
 
 /**
@@ -104,7 +131,7 @@ static int zephir_make_fcall_key(zend_string* s, zephir_call_type type, zend_cla
 		t = 1;
 	}
 	else {
-	/* Can safely call only public methods */
+		/* Can safely call only public methods */
 		t = 2;
 	}
 
@@ -118,14 +145,14 @@ static int zephir_make_fcall_key(zend_string* s, zephir_call_type type, zend_cla
 		if (Z_TYPE_P(function) == IS_STRING) {
 			mth     = Z_STRVAL_P(function);
 			mth_len = Z_STRLEN_P(function);
-		}
-		else if (Z_TYPE_P(function) == IS_ARRAY) {
+		} else if (Z_TYPE_P(function) == IS_ARRAY) {
 			zval *method;
 			HashTable *function_hash = Z_ARRVAL_P(function);
+
 			if (
-					function_hash->nNumOfElements == 2
-				 && ((method = zend_hash_index_find(function_hash, 1)) != NULL)
-				 && Z_TYPE_P(method) == IS_STRING
+				function_hash->nNumOfElements == 2 &&
+				((method = zend_hash_index_find(function_hash, 1)) != NULL) &&
+				Z_TYPE_P(method) == IS_STRING
 			) {
 				mth     = Z_STRVAL_P(method);
 				mth_len = Z_STRLEN_P(method);
@@ -197,7 +224,15 @@ static void resolve_callable(zval* retval, zephir_call_type type, zend_class_ent
 	} ZEND_HASH_FILL_END();
 }
 
-static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, zend_class_entry* ce, zval *this_ptr, zval *func, zend_class_entry* called_scope)
+/**
+ * Fills the fcall info cache (scopes, object, handler) for a call.
+ *
+ * When `cached_handler` is non-NULL the already-resolved function is reused
+ * instead of re-running the `zend_hash_find_ptr` method-table lookups: the
+ * scope assignments are unchanged, only the redundant resolution is skipped.
+ * See the FastCall investigation: https://github.com/zephir-lang/zephir/issues/1510
+ */
+static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, zend_class_entry* ce, zval *this_ptr, zval *func, zend_class_entry* called_scope, zend_function* cached_handler)
 {
 	zend_class_entry* calling_scope;
 
@@ -216,11 +251,11 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 	switch (type) {
 		case zephir_fcall_parent:
 			if (ce && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&ce->parent->function_table, Z_STR_P(func));
+				fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&ce->parent->function_table, Z_STR_P(func));
 				fcic->calling_scope = ce->parent;
 			} else if (EXPECTED(calling_scope && calling_scope->parent)) {
 				if (Z_TYPE_P(func) == IS_STRING) {
-					fcic->function_handler = zend_hash_find_ptr(&calling_scope->parent->function_table, Z_STR_P(func));
+					fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&calling_scope->parent->function_table, Z_STR_P(func));
 				}
 				fcic->calling_scope = calling_scope->parent;
 			} else {
@@ -236,10 +271,10 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 
 		case zephir_fcall_static:
 			if (ce && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
+				fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
 				fcic->calling_scope = ce;
 			} else if (calling_scope && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
+				fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
 				fcic->calling_scope = called_scope;
 			}
 
@@ -247,10 +282,10 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 
 		case zephir_fcall_self:
 			if (ce && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
+				fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
 				fcic->calling_scope = ce;
 			} else if (calling_scope && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
+				fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
 				// TODO: Review when error will be enabled in zend_is_callable_ex() calls
 				//fcic->object = zend_get_this_object(EG(current_execute_data));
 				//fcic->called_scope = zend_get_called_scope(EG(current_execute_data));
@@ -259,39 +294,84 @@ static void populate_fcic(zend_fcall_info_cache* fcic, zephir_call_type type, ze
 			break;
 
 		case zephir_fcall_ce:
-			if (ce && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
-
-				fcic->calling_scope = ce;
-			} else if (calling_scope && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
-				fcic->calling_scope = calling_scope;
-			}
-			// TODO: Check for PHP 7.4 and PHP 8.0, as it rewrite from above
+			/**
+			 * @see https://github.com/zephir-lang/zephir/issues/2321
+			 * Set the calling/called scope up-front so the engine resolves
+			 * visibility against the class entry we were asked to use, even
+			 * when no function handler can be found in the PHP 8 fast path.
+			 */
 			fcic->calling_scope = ce;
 			fcic->called_scope  = ce;
+
+#if PHP_VERSION_ID >= 80000
+			if (Z_TYPE_P(func) == IS_STRING) {
+				if (ce) {
+					fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
+				} else if (calling_scope) {
+					fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&calling_scope->function_table, Z_STR_P(func));
+					fcic->calling_scope = calling_scope;
+				}
+			}
+#endif
 			break;
 
 		case zephir_fcall_function:
 		case zephir_fcall_method:
 			if (Z_TYPE_P(func) == IS_OBJECT) {
-				if (Z_OBJ_HANDLER_P(func, get_closure) && Z_OBJ_HANDLER_P(func, get_closure)(Z_OBJ_P(func), &fcic->calling_scope, &fcic->function_handler, &fcic->object, 0) == SUCCESS) {
+				/**
+				 * @see https://github.com/zephir-lang/zephir/issues/2321
+				 * Seed `calling_scope` from `this_ptr` first so that closures
+				 * bound to the enclosing instance retain access to its
+				 * private/protected members. `get_closure` may overwrite the
+				 * scope when the value is itself a Closure.
+				 */
+				if (Z_TYPE_P(this_ptr) == IS_OBJECT) {
+					fcic->calling_scope = Z_OBJCE_P(this_ptr);
+				}
+
+#if PHP_VERSION_ID >= 80000
+				if (
+					Z_OBJ_HANDLER_P(func, get_closure)
+					&& Z_OBJ_HANDLER_P(func, get_closure)(Z_OBJ_P(func), &fcic->calling_scope, &fcic->function_handler, &fcic->object, 1) == SUCCESS
+				) {
+#else
+				if (
+					Z_OBJ_HANDLER_P(func, get_closure)
+					&& Z_OBJ_HANDLER_P(func, get_closure)(func, &fcic->calling_scope, &fcic->function_handler, &fcic->object) == SUCCESS
+				) {
+#endif
 					fcic->called_scope = fcic->calling_scope;
 					break;
 				}
+			} else if (Z_TYPE_P(func) == IS_STRING) {
+				/**
+				 * @see https://github.com/zephir-lang/zephir/issues/2321
+				 * `[this, 'methodName']` style callback. When `ce` is set,
+				 * pin the calling scope to it so the engine permits access
+				 * to private/protected methods declared on `ce`.
+				 *
+				 * If `ce` is NULL we still need to leave `fcic` in a
+				 * well-defined state — `fcic` is stack-allocated by the
+				 * caller and not zeroed, so skipping the writes here would
+				 * leak whatever a prior `zend_is_callable_at_frame()` left
+				 * behind (or stack garbage on its failure path) into
+				 * `zend_call_function()`. Derive scope from `this_ptr`,
+				 * matching the pre-#2321 fallback.
+				 */
+				if (ce) {
+					fcic->calling_scope = ce;
 
-				return;
+#if PHP_VERSION_ID >= 80000
+					fcic->function_handler = cached_handler ? cached_handler : zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
+#endif
+				} else {
+					fcic->calling_scope = this_ptr ? Z_OBJCE_P(this_ptr) : NULL;
+				}
+
+				fcic->called_scope = fcic->calling_scope;
 			}
 
-			if (ce && Z_TYPE_P(func) == IS_STRING) {
-				fcic->function_handler = zend_hash_find_ptr(&ce->function_table, Z_STR_P(func));
-			}
-			fcic->calling_scope = this_ptr ? Z_OBJCE_P(this_ptr) : NULL;
-			fcic->called_scope  = fcic->calling_scope;
 			break;
-
-		default:
-			return;
 	}
 }
 
@@ -358,8 +438,9 @@ int zephir_call_user_function(
 	fci.named_params = NULL;
 
 	if (cache_entry && *cache_entry) {
-		/* We have a cache record, initialize scope */
-		populate_fcic(&fcic, type, obj_ce, object_pp, function_name, called_scope);
+		/* We have a cache record: reuse the resolved handler and skip the
+		 * redundant method-table lookup while still setting up the scopes. */
+		populate_fcic(&fcic, type, obj_ce, object_pp, function_name, called_scope, *cache_entry);
 		if (!fcic.function_handler) {
 			fcic.function_handler = *cache_entry;
 		}
@@ -380,10 +461,16 @@ int zephir_call_user_function(
 				zend_error(E_WARNING, "%s", is_callable_error);
 				efree(is_callable_error);
 
+				/* resolve_callable() built this; the tail that releases it is
+				 * below this early return. */
+				if (Z_TYPE(callable) != IS_UNDEF) {
+					zval_ptr_dtor(&callable);
+				}
+
 				return FAILURE;
 			}
 
-			populate_fcic(&fcic, type, obj_ce, object_pp, function_name, called_scope);
+			populate_fcic(&fcic, type, obj_ce, object_pp, function_name, called_scope, NULL);
 		}
 	}
 
@@ -405,6 +492,7 @@ int zephir_call_user_function(
 
 	status = zend_call_function(&fci, &fcic);
 
+
 #ifdef _MSC_VER
 	efree(p);
 #endif
@@ -413,7 +501,8 @@ int zephir_call_user_function(
 		zval_ptr_dtor(&callable);
 	}
 
-	/* Skip caching IF:
+	/**
+	 * Skip caching IF:
 	 * call failed OR there was an exception (to be safe) OR cache key is not defined OR
 	 * fcall cache was de-initialized OR we have a slot cache
 	 */
@@ -446,10 +535,15 @@ int zephir_call_user_function(
 	return status;
 }
 
-int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint32_t func_length,
-	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint32_t param_count, zval **params)
-{
+int zephir_call_func_aparams(
+	zval *return_value_ptr,
+	const char *func_name,
+	uint32_t func_length,
+	zephir_fcall_cache_entry **cache_entry,
+	int cache_slot,
+	uint32_t param_count,
+	zval **params
+) {
 	int status;
 	zval rv, *rvp = return_value_ptr ? return_value_ptr : &rv;
 
@@ -481,10 +575,14 @@ int zephir_call_func_aparams(zval *return_value_ptr, const char *func_name, uint
 	return status;
 }
 
-int zephir_call_zval_func_aparams(zval *return_value_ptr, zval *func_name,
-	zephir_fcall_cache_entry **cache_entry, int cache_slot,
-	uint32_t param_count, zval **params)
-{
+int zephir_call_zval_func_aparams(
+	zval *return_value_ptr,
+	zval *func_name,
+	zephir_fcall_cache_entry **cache_entry,
+	int cache_slot,
+	uint32_t param_count,
+	zval **params
+) {
 	int status;
 	zval rv, *rvp = return_value_ptr ? return_value_ptr : &rv;
 
@@ -610,15 +708,18 @@ int zephir_call_user_func_array_noex(zval *return_value, zval *handler, zval *pa
 
 	fci.size = sizeof(fci);
 	fci.object = fci_cache.object;
-	ZVAL_COPY_VALUE(&fci.function_name, handler);
+	/* We have an FCC so no need to copy the callable */
+	ZVAL_UNDEF(&fci.function_name);
 	fci.param_count = 0;
 	fci.params = NULL;
 	fci.retval = return_value;
-	fci.named_params = NULL;
+	if (params) {
+		fci.named_params = Z_ARRVAL_P(params);
+	} else {
+		fci.named_params = NULL;
+	}
 
-	zend_fcall_info_args(&fci, params);
 	status = zend_call_function(&fci, &fci_cache);
-	zend_fcall_info_args_clear(&fci, 1);
 
 	return status;
 }

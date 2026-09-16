@@ -25,7 +25,7 @@
  * @package     Ice/Di
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 ZEPHIR_INIT_CLASS(Ice_Di_Access)
@@ -44,45 +44,50 @@ PHP_METHOD(Ice_Di_Access, __get)
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *property_param = NULL, di, service, _0, _2, _4, _3$$3;
-	zval property;
+	zval property_zv, di, service, _0, _2, _4, _3$$3;
+	zend_string *property = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&property);
+	ZVAL_UNDEF(&property_zv);
 	ZVAL_UNDEF(&di);
 	ZVAL_UNDEF(&service);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_3$$3);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("di", 2, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(1, 1)
 		Z_PARAM_STR(property)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 1, 0, &property_param);
-	zephir_get_strval(&property, property_param);
+	zephir_memory_observe(&property_zv);
+	ZVAL_STR_COPY(&property_zv, property);
 	zephir_memory_observe(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
 	if (!(_1)) {
 		zephir_memory_observe(&_2);
-		zephir_read_property(&_2, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
+		zephir_read_property_cached(&_2, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC);
 		_1 = !(zephir_instance_of_ev(&_2, ice_di_ce));
 	}
 	if (_1) {
 		ZEPHIR_CALL_CE_STATIC(&_3$$3, ice_di_ce, "fetch", NULL, 0);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
+		zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 3, &_3$$3);
 	}
-	zephir_read_property(&_4, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
+	zephir_read_property_cached(&_4, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC | PH_READONLY);
 	ZEPHIR_CPY_WRT(&di, &_4);
-	if (ZEPHIR_IS_STRING(&property, "di")) {
+	if (ZEPHIR_IS_STRING(&property_zv, "di")) {
 		RETURN_CCTOR(&di);
 	}
-	ZEPHIR_CALL_METHOD(&service, &di, "get", NULL, 0, &property);
+	ZEPHIR_CALL_METHOD(&service, &di, "get", NULL, 0, &property_zv);
 	zephir_check_call_status();
-	zephir_update_property_zval_zval(this_ptr, &property, &service);
+	zephir_update_property_zval_zval(this_ptr, &property_zv, &service);
 	RETURN_CCTOR(&service);
 }
 
@@ -91,39 +96,45 @@ PHP_METHOD(Ice_Di_Access, __set)
 	zend_bool _1;
 	zephir_method_globals *ZEPHIR_METHOD_GLOBALS_PTR = NULL;
 	zend_long ZEPHIR_LAST_CALL_STATUS;
-	zval *property_param = NULL, *value, value_sub, _0, _2, _4, _3$$3;
-	zval property;
+	zval property_zv, *value, value_sub, _0, _2, _4, _3$$3;
+	zend_string *property = NULL;
 	zval *this_ptr = getThis();
 
-	ZVAL_UNDEF(&property);
+	ZVAL_UNDEF(&property_zv);
 	ZVAL_UNDEF(&value_sub);
 	ZVAL_UNDEF(&_0);
 	ZVAL_UNDEF(&_2);
 	ZVAL_UNDEF(&_4);
 	ZVAL_UNDEF(&_3$$3);
+	static zend_string *_zephir_prop_0 = NULL;
+	if (UNEXPECTED(!_zephir_prop_0)) {
+		_zephir_prop_0 = zend_string_init("di", 2, 1);
+	}
+
 	ZEND_PARSE_PARAMETERS_START(2, 2)
 		Z_PARAM_STR(property)
 		Z_PARAM_ZVAL(value)
 	ZEND_PARSE_PARAMETERS_END();
 	ZEPHIR_METHOD_GLOBALS_PTR = pecalloc(1, sizeof(zephir_method_globals), 0);
 	zephir_memory_grow_stack(ZEPHIR_METHOD_GLOBALS_PTR, __func__);
-	zephir_fetch_params(1, 2, 0, &property_param, &value);
-	zephir_get_strval(&property, property_param);
+	value = ZEND_CALL_ARG(execute_data, 2);
+	zephir_memory_observe(&property_zv);
+	ZVAL_STR_COPY(&property_zv, property);
 	zephir_memory_observe(&_0);
-	zephir_read_property(&_0, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
+	zephir_read_property_cached(&_0, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC);
 	_1 = Z_TYPE_P(&_0) != IS_OBJECT;
 	if (!(_1)) {
 		zephir_memory_observe(&_2);
-		zephir_read_property(&_2, this_ptr, ZEND_STRL("di"), PH_NOISY_CC);
+		zephir_read_property_cached(&_2, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC);
 		_1 = !(zephir_instance_of_ev(&_2, ice_di_ce));
 	}
 	if (_1) {
 		ZEPHIR_CALL_CE_STATIC(&_3$$3, ice_di_ce, "fetch", NULL, 0);
 		zephir_check_call_status();
-		zephir_update_property_zval(this_ptr, ZEND_STRL("di"), &_3$$3);
+		zephir_update_property_zval_cached(this_ptr, _zephir_prop_0, 3, &_3$$3);
 	}
-	zephir_read_property(&_4, this_ptr, ZEND_STRL("di"), PH_NOISY_CC | PH_READONLY);
-	ZEPHIR_RETURN_CALL_METHOD(&_4, "set", NULL, 0, &property, value);
+	zephir_read_property_cached(&_4, this_ptr, _zephir_prop_0, 3, PH_NOISY_CC | PH_READONLY);
+	ZEPHIR_RETURN_CALL_METHOD(&_4, "set", NULL, 0, &property_zv, value);
 	zephir_check_call_status();
 	RETURN_MM();
 }

@@ -16,7 +16,7 @@ ZEND_END_ARG_INFO()
 
 ZEND_BEGIN_ARG_INFO_EX(arginfo_ice_mvc_view_engine___construct, 0, 0, 1)
 	ZEND_ARG_OBJ_INFO(0, view, Ice\\Mvc\\View\\ViewInterface, 0)
-	ZEND_ARG_OBJ_INFO(0, di, Ice\\Di, 1)
+	ZEND_ARG_OBJ_TYPE_MASK(0, di, Ice\\Di, MAY_BE_NULL, "null")
 ZEND_ARG_TYPE_INFO_WITH_DEFAULT_VALUE(0, options, IS_ARRAY, 0, "[]")
 ZEND_END_ARG_INFO()
 
