@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Crypt;
 
@@ -15,9 +16,7 @@ class CryptTest extends TestCase
         self::$crypt = new Crypt('0123456789ABCDEF');
     }
 
-    /**
-     * @dataProvider stringProvider
-     */
+    #[DataProvider('stringProvider')]
     public function testEncrypt($content)
     {
         $encrypted = self::$crypt->encrypt($content);

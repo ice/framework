@@ -11,7 +11,7 @@ use Ice\Db\DbInterface;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Mongodb implements DbInterface
@@ -62,12 +62,11 @@ class Mongodb implements DbInterface
     public function getDateTime(value = null, model = false)
     {
         var date;
+        long tmp;
 
         if typeof value == "object" && value instanceof \MongoDB\BSON\UTCDateTime {
             let date = value;
         } else {
-            long tmp;
-
             switch typeof value {
                 case "NULL":
                     let tmp = time() * 1000,
@@ -149,7 +148,7 @@ class Mongodb implements DbInterface
      */
     public function count(string! from, var filters = []) -> int
     {
-        var filtered, collection, result;
+        var filtered = [], collection, result;
 
         switch typeof filters {
             case "object":
@@ -191,7 +190,7 @@ class Mongodb implements DbInterface
      */
     public function select(string! from, var filters = [], array options = [], array fields = [])
     {
-        var filtered, collection, result;
+        var filtered = [], collection, result;
 
         switch typeof filters {
             case "object":

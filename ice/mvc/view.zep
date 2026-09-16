@@ -12,7 +12,7 @@ use Ice\Mvc\View\ViewInterface;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class View extends Arr implements ViewInterface
@@ -76,7 +76,7 @@ class View extends Arr implements ViewInterface
      */
     public function render(file = null, array data = [])
     {
-        var ext, engine, engines, path, dir, dirs, exists, content;
+        var ext, engine, engines, path = null, dir, dirs, exists, content;
 
         let exists = false,
             content = null;

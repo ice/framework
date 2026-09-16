@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Di;
 use Ice\Mvc\FastRouter;
@@ -33,9 +34,8 @@ class FastRouteTest extends TestCase
 
     /**
      * Test route matching for universal routes and GET method
-     *
-     * @dataProvider GETrouteProvider
      */
+    #[DataProvider('GETrouteProvider')]
     public function testUniversalGET($pattern, $expected)
     {
         $return = $this->router->handle('GET', $pattern);
@@ -60,9 +60,8 @@ class FastRouteTest extends TestCase
 
     /**
      * Test route matching for universal routes and POST method
-     *
-     * @dataProvider POSTrouteProvider
      */
+    #[DataProvider('POSTrouteProvider')]
     public function testUniversalPOST($pattern, $expected)
     {
         $return = $this->router->handle('POST', $pattern);

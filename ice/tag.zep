@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Tag
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Mvc\Url
  */
@@ -910,7 +910,7 @@ class Tag
      */
     public function friendlyTitle(string text, string separator = "-", boolean lowercase = true, var replace = null) -> string
     {
-        var friendly, locale, search;
+        var friendly, locale = null, search;
 
         if extension_loaded("iconv") {
             // Save the old locale and set the new locale to UTF-8

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Di;
 use Ice\Tag;
@@ -67,9 +68,7 @@ class TagTest extends TestCase
         $this->assertEquals($expected, $this->tag->getTitle());
     }
 
-    /**
-     * @dataProvider tagProvider
-     */
+    #[DataProvider('tagProvider')]
     public function testTag($method, $parameters, $expected)
     {
         $output = $this->tag->{$method}($parameters);
@@ -164,9 +163,7 @@ class TagTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider tagXHTMLProvider
-     */
+    #[DataProvider('tagXHTMLProvider')]
     public function testTagXHTML($input, $parameters, $expected)
     {
         $this->tag->setDocType(Tag::XHTML5);

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Exception;
 use Ice\Arr;
@@ -34,9 +35,8 @@ class ModelsTest extends TestCase
 
     /**
      * Test create
-     *
-     * @dataProvider users
      */
+    #[DataProvider('users')]
     public function test1CreateUsers($data)
     {
         $user = new Users(null, $data);
@@ -59,9 +59,8 @@ class ModelsTest extends TestCase
 
     /**
      * Test create
-     *
-     * @dataProvider posts
      */
+    #[DataProvider('posts')]
     public function test2CreatePosts($data)
     {
         $post = new Posts;
@@ -70,9 +69,8 @@ class ModelsTest extends TestCase
 
     /**
      * Test create
-     *
-     * @dataProvider comments
      */
+    #[DataProvider('comments')]
     public function test3CreateComments($data)
     {
         $comment = new Comments;
@@ -153,9 +151,9 @@ class ModelsTest extends TestCase
     /**
      * Auth test
      *
-     * @dataProvider users
      * @requires PHPUnit >= 10.0
      */
+    #[DataProvider('users')]
     public function testAuth($data)
     {
         $service = new UserService(new Users());

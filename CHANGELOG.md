@@ -1,4 +1,21 @@
 -------------------------------------------------------------------
+Wed Sep 16 10:48:46 UTC 2026
+
+- Ice 1.12.0
+ * PHP 8.0, drop support
+ * PHP 8.5, add support
+ * Update zephir parser to 2.8.0
+ * Update mongodb/mongodb to ~2
+ * Sleet\Parser, fix template parsing and array literal syntax
+ * Di, Arr, fix magic get/set returning null for registered services
+ * FastRouter, fix routes with no explicit handler not matching
+ * Url, fix double leading slash in generated URLs
+ * Filter\Css, fix comment stripping
+ * Http\Response, fix byte range for non-resumable downloads
+ * Fix various Zephir compile errors and conditional-initialization warnings
+ * Tests, convert @dataProvider annotations to PHP 8 attributes for PHPUnit 11+
+
+-------------------------------------------------------------------
 Sun Jan 26 15:03:59 UTC 2025
 
 - Ice 1.11.0

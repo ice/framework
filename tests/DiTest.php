@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Arr;
 use Ice\Config;
@@ -26,9 +27,8 @@ class DiTest extends TestCase
 
     /**
      * Test magic call
-     *
-     * @dataProvider services
      */
+    #[DataProvider('services')]
     public function testGetMagicService($method, $expected)
     {
         $di = self::$di;
@@ -62,9 +62,9 @@ class DiTest extends TestCase
     /**
      * Test set service
      *
-     * @dataProvider configs
      * @param mixed $service
      */
+    #[DataProvider('configs')]
     public function testSetDefaultService($service)
     {
         $di = new Di();

@@ -19,11 +19,12 @@ abstract class Regex implements DispatcherInterface
 
     public function dispatch(string httpMethod, string uri)
     {
-        var handler, varRouteData, result, allowedMethods, uriMap, method, routeData;
+        var handler, varRouteData, result, allowedMethods, uriMap, method, routeData, methodMap;
 
-        if isset this->staticRouteMap[httpMethod] && isset this->staticRouteMap[httpMethod][uri] {
-            let handler = this->staticRouteMap[httpMethod][uri];
-            return [FastRouter::FOUND, handler, []];
+        if fetch methodMap, this->staticRouteMap[httpMethod] {
+            if fetch handler, methodMap[uri] {
+                return [FastRouter::FOUND, handler, []];
+            }
         }
 
         let varRouteData = this->variableRouteData;
@@ -38,10 +39,10 @@ abstract class Regex implements DispatcherInterface
 
         // For HEAD requests, attempt fallback to GET
         if httpMethod === "HEAD" {
-            if isset this->staticRouteMap["GET"][uri] {
-                let handler = this->staticRouteMap["GET"][uri];
-
-                return [FastRouter::FOUND, handler, []];
+            if fetch methodMap, this->staticRouteMap["GET"] {
+                if fetch handler, methodMap[uri] {
+                    return [FastRouter::FOUND, handler, []];
+                }
             }
             if isset varRouteData["GET"] {
                 let result = this->dispatchVariableRoute(varRouteData["GET"], uri);
@@ -53,10 +54,10 @@ abstract class Regex implements DispatcherInterface
         }
 
         // If nothing else matches, try fallback routes
-        if isset this->staticRouteMap["*"][uri] {
-            let handler = this->staticRouteMap["*"][uri];
-
-            return [FastRouter::FOUND, handler, []];
+        if fetch methodMap, this->staticRouteMap["*"] {
+            if fetch handler, methodMap[uri] {
+                return [FastRouter::FOUND, handler, []];
+            }
         }
         if isset varRouteData["*"] {
             let result = this->dispatchVariableRoute(varRouteData["*"], uri);
@@ -70,7 +71,7 @@ abstract class Regex implements DispatcherInterface
         let allowedMethods = [];
 
         for method, uriMap in this->staticRouteMap {
-            if method !== httpMethod && isset uriMap[uri] {
+            if method !== httpMethod && array_key_exists(uri, uriMap) {
                 let allowedMethods[] = method;
             }
         }

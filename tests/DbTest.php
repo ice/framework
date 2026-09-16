@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Arr;
 use Tests\App\Bootstrap;
@@ -27,9 +28,8 @@ class DbTest extends TestCase
 
     /**
      * Test find one
-     *
-     * @dataProvider roles
      */
+    #[DataProvider('roles')]
     public function testFindOne($from, $filters, $expected)
     {
         $return = $this->db->findOne($from, $filters);
@@ -64,9 +64,8 @@ class DbTest extends TestCase
 
     /**
      * Test find one
-     *
-     * @dataProvider roles
      */
+    #[DataProvider('roles')]
     public function testMongoFindOne($from, $filters, $expected)
     {
         $return = $this->mongo->findOne($from, $filters);

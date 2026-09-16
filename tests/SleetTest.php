@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Mvc\View\Engine\Sleet\Parser;
 
@@ -20,9 +21,7 @@ class SleetTest extends TestCase
         self::$parser = null;
     }
 
-    /**
-     * @dataProvider stringProvider
-     */
+    #[DataProvider('stringProvider')]
     public function testParser($content, $expected)
     {
         $parsed = self::$parser->text($content);

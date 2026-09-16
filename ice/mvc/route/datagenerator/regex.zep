@@ -69,7 +69,7 @@ abstract class Regex implements DataGeneratorInterface
 
         let routeStr = routeData[0];
 
-        if isset this->staticRoutes[httpMethod] && isset this->staticRoutes[httpMethod][routeStr] {
+        if isset this->staticRoutes[httpMethod] && array_key_exists(routeStr, this->staticRoutes[httpMethod]) {
             throw new Exception(sprintf("Cannot register two routes matching '%s' for method '%s'",
                 routeStr, httpMethod
             ));

@@ -10,7 +10,7 @@ use Ice\Exception;
  * @package     Ice/Image
  * @category    Driver
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Gd extends Image
@@ -30,7 +30,7 @@ class Gd extends Image
      */
     public function __construct(string file)
     {
-        var create;
+        var create = null;
 
         if !self::checked {
             // Run the install check
@@ -71,7 +71,7 @@ class Gd extends Image
      */
     public static function check() -> boolean
     {
-        var version;
+        var version = null;
 
         if !function_exists("gd_info") {
             throw new Exception("GD is either not installed or not enabled, check your configuration");
@@ -270,6 +270,7 @@ class Gd extends Image
     protected function doFlip(int direction) -> void
     {
         var flipped;
+        int x, y;
 
         // Create the flipped image
         let flipped = this->create(this->width, this->height);
@@ -278,7 +279,7 @@ class Gd extends Image
         this->loadImage();
 
         if direction === Image::HORIZONTAL {
-            int x = 0;
+            let x = 0;
 
             while x < this->width {
                 // Flip each row from top to bottom
@@ -287,7 +288,7 @@ class Gd extends Image
                 let x++;
             }
         } else {
-            int y = 0;
+            let y = 0;
 
             while y < this->height {
                 // Flip each column from left to right
@@ -592,7 +593,7 @@ class Gd extends Image
      */
     protected function saveFunction(string extension, int quality) -> array
     {
-        var tmp, save, type;
+        var tmp, save = null, type = null;
 
         if !extension {
             // Use the current image type

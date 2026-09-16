@@ -10,7 +10,7 @@ use Ice\Exception;
  * @package     Ice/Auth
  * @category    Adapter
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Adapter implements SocialInterface
@@ -96,12 +96,14 @@ abstract class Adapter implements SocialInterface
      */
     public function has(string key) -> boolean
     {
+        var value;
+
         // Unify the key between adapters
         if isset this->socialFieldsMap[key] {
             let key = this->socialFieldsMap[key];
         }
 
-        return isset this->userInfo[key];
+        return fetch value, this->userInfo[key];
     }
 
     /**

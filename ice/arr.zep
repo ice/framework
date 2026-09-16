@@ -9,7 +9,7 @@ use ArrayIterator;
  * @package     Ice/Arr
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
@@ -410,9 +410,9 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      * Magic get, returns the value at specified key.
      * First check if property exist.
      */
-    public function __get(key)
+    public function __get(string key)
     {
-        if isset this->{key} {
+        if property_exists(this, key) {
             return this->{key};
         }
         return this->get(key);
@@ -424,7 +424,7 @@ class Arr implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function __set(string key, var value) -> void
     {
-        if isset this->{key} {
+        if property_exists(this, key) {
             let this->{key} = value;
         } else {
             this->set(key, value);

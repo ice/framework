@@ -9,7 +9,7 @@ use Ice\Exception;
  * @package     Ice/View
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Parser
@@ -65,8 +65,9 @@ class Parser
      */
     public function text(string text) -> string
     {
-        var pos, start, parsedText, end, ch;
+        var pos, start, parsedText, end;
         int i;
+        char ch;
 
         let pos = 0,
             start = strpos(text, "{"),
@@ -140,6 +141,9 @@ class Parser
     public function parse(string expression) -> string
     {
         var php, tokenized, tokens, token, first;
+
+        // Reset the environment stack for each independent expression
+        let this->env = [Parser::NORMAL];
 
         if starts_with(expression, "{{") {
             let php = "<?php echo " . substr(expression, 2, -2);

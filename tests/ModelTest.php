@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Exception;
 use Ice\Arr;
@@ -30,9 +31,8 @@ class ModelTest extends TestCase
 
     /**
      * Test find one
-     *
-     * @dataProvider roles
      */
+    #[DataProvider('roles')]
     public function testFindOne($filters, $expected)
     {
         $return = Roles::findOne($filters);
@@ -46,9 +46,8 @@ class ModelTest extends TestCase
 
     /**
      * Test construct
-     *
-     * @dataProvider roles
      */
+    #[DataProvider('roles')]
     public function testConstruct($filters, $expected)
     {
         $role = new Roles($filters);
@@ -63,9 +62,8 @@ class ModelTest extends TestCase
 
     /**
      * Test find one
-     *
-     * @dataProvider roles
      */
+    #[DataProvider('roles')]
     public function testMongoFindOne($filters, $expected)
     {
         $return = MongoRoles::findOne($filters);

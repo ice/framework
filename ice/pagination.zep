@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Pagination
  * @category    Library
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @uses        Ice\Tag
  */
@@ -39,7 +39,7 @@ class Pagination extends Arr
      */
     public function calculate() -> <Pagination>
     {
-        var items, data, total;
+        var items = null, data, total;
         int limit, page, pages, previous, next;
 
         let total = this->get("total");

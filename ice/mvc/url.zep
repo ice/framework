@@ -9,7 +9,7 @@ use Ice\Di;
  * @package     Ice/Mvc
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Url
@@ -26,8 +26,12 @@ class Url
     public function href(string uri = null) -> string
     {
         var staticUri;
-        let staticUri = rtrim(this->staticUri, "/");
-        if uri[0] != '/' {
+        char first;
+
+        let staticUri = rtrim(this->staticUri, "/"),
+            first = uri[0];
+
+        if first != '/' {
             let staticUri .= "/";
         }
         return staticUri . uri;

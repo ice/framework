@@ -9,7 +9,7 @@ use Ice\Exception;
  * @package     Ice/Cli
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Client extends Websocket
@@ -157,11 +157,13 @@ class Client extends Websocket
      */
     public function run() -> void
     {
-        var changed, write, except, socket, message;
+        var changed, write, except, socket, message, tick, onMessage;
 
         while 1 {
-            if isset this->tick {
-                if call_user_func(this->tick, this) === false {
+            let tick = isset this->tick ? this->tick : null;
+
+            if tick {
+                if call_user_func(tick, this) === false {
                     break;
                 }
             }
@@ -170,12 +172,14 @@ class Client extends Websocket
                 write = [],
                 except = [];
 
-            if stream_select(changed, null, null, (isset this->tick ? 0 : null)) > 0 {
+            if stream_select(changed, null, null, (tick ? 0 : null)) > 0 {
+                let onMessage = isset this->message ? this->message : null;
+
                 for socket in changed {
                     let message = this->receive(socket);
 
-                    if message !== false && isset this->message {
-                        call_user_func(this->message, message, this);
+                    if message !== false && onMessage {
+                        call_user_func(onMessage, message, this);
                     }
                 }
             }

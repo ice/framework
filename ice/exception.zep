@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Exception
  * @category    Error
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Exception extends \Exception

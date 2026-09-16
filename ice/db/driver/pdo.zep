@@ -11,7 +11,7 @@ use Ice\Db\DbInterface;
  * @package     Ice/Db
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Pdo implements DbInterface
@@ -177,7 +177,7 @@ class Pdo implements DbInterface
      */
     protected function where(var filters = [], array values = [], array options = []) -> array
     {
-        var and, data, operator, key, item, value, or, is, index, i, sql, condition, column;
+        var and, data, operator, key, item, value, or = [], is, index, i, sql, condition, column;
 
         let and = [],
             sql = "",

@@ -13,7 +13,7 @@ use Ice\Http\Response\ResponseInterface;
  * @package     Ice/Http
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Response implements ResponseInterface
@@ -215,7 +215,7 @@ class Response implements ResponseInterface
      */
     public function sendFile(string filename, string mime, array options = [])
     {
-        var file, filepath, data, size, isDelete, disposition, block, pos, speed, range, start, end;
+        var file, filepath = null, data, size, isDelete, disposition, block, pos, speed, range, start, end;
 
         if empty options["file"] {
             // Force the data to be rendered if
@@ -255,6 +255,9 @@ class Response implements ResponseInterface
         }
 
         if empty options["resumable"] {
+            let start = 0,
+                end = size - 1;
+
             this->headers->set("Content-Length", size);
         } else {
             // Calculate byte range to download.

@@ -10,7 +10,7 @@ use Ice\Di\Access;
  * @package     Ice/Cli
  * @category    Application
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 class Console extends Access

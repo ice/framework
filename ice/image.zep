@@ -9,7 +9,7 @@ use Ice\Exception;
  * @package     Ice/Image
  * @category    Component
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Image
@@ -73,7 +73,7 @@ abstract class Image
      */
     public function __construct(string file)
     {
-        var file, info;
+        var info = null;
 
         try {
             // Get the real path to the file
@@ -113,6 +113,7 @@ abstract class Image
             return this->render();
         } catch Exception {
             // Ignore all errors
+            return "";
         }
     }
 

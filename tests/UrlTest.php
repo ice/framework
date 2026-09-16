@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Ice\Mvc\Url;
 
@@ -19,9 +20,7 @@ class UrlTest extends TestCase
         self::$url = null;
     }
 
-    /**
-    * @dataProvider staticUrls
-    */
+    #[DataProvider('staticUrls')]
     public function testGetStatic($uri, $expected, $static = '/')
     {
         self::$url->setStaticUri($static);
@@ -37,9 +36,7 @@ class UrlTest extends TestCase
         yield ['/style.css', 'https://www.iceframework.org/style.css', 'https://www.iceframework.org/'];
     }
 
-    /**
-     * @dataProvider urls
-     */
+    #[DataProvider('urls')]
     public function testGet($args, $expected, $base = '/')
     {
         self::$url->setBaseUri($base);

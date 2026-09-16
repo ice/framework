@@ -9,7 +9,7 @@ use Ice\Validation;
  * @package     Ice/Validation
  * @category    Security
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  */
 abstract class Validator
@@ -46,7 +46,7 @@ abstract class Validator
      */
     public function has(var key) -> boolean
     {
-        return isset this->options[key];
+        return array_key_exists(key, this->options);
     }
 
     /**

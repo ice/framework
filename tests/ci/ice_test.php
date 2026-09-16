@@ -3,8 +3,8 @@
         'type'     => 'mysql',
         'host'     => '127.0.0.1',
         'port'     => 3306,
-        'user'     => 'root',
-        'password' => '',
+        'user'     => 'ice',
+        'password' => 'ice',
         'name'     => 'ice_test',
         'options'  => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8',

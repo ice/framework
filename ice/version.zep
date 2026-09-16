@@ -7,7 +7,7 @@ namespace Ice;
  * @package     Ice/Version
  * @category    Helper
  * @author      Ice Team
- * @copyright   (c) 2014-2025 Ice Team
+ * @copyright   (c) Ice Team
  * @license     http://iceframework.org/license
  * @see         http://semver.org (Semantic Versioning 2.0.0)
  */
@@ -20,7 +20,7 @@ class Version
     const STABLE = 4;
     // Don't forget to update config.json and run zephir fullclean
     const MAJOR = 1;
-    const MINOR = 11;
+    const MINOR = 12;
     const PATCH = 0;
     const STAGE = self::STABLE;
     const BUILD = 0;
@@ -55,7 +55,7 @@ class Version
      */
     public static function get() -> string
     {
-        var suffix;
+        var suffix = "";
 
         switch self::STAGE {
             case self::DEV:
